@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CropDefinition" load_steps=2 format=3]
+[ext_resource type="Script" path="res://scripts/farming/crop_definition.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = "wheat"
+display_name = "小麦"
+seed_price = 8
+sell_price = 22
+growth_days = 2
+atlas_row = 2

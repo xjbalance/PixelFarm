@@ -1,0 +1,7 @@
+Pixel Farm 0.3.0 · 共建河湾
+
+游戏代码、故事、角色、像素素材和合成音乐由本工程独立制作。
+引擎：Godot Engine 4.3，MIT。完整许可：GODOT-LICENSE.txt。
+引擎第三方声明：GODOT-THIRD-PARTY.txt。
+字体：Noto Sans CJK，SIL Open Font License 1.1；完整版权和许可位于 assets/ui/fonts/LICENSE.txt。
+参考仓库只用于设计研究，未引入其游戏代码、角色、美术或音乐。

@@ -1,0 +1,51 @@
+; Pixel Farm — Godot 4.3 Standard / GDScript
+config_version=5
+
+[application]
+config/name="Pixel Farm · 风芽农场"
+config/version="0.3.0"
+run/main_scene="res://scenes/main/main.tscn"
+run/max_fps=60
+config/features=PackedStringArray("4.3", "GL Compatibility")
+config/icon="res://assets/ui/icon.svg"
+
+[autoload]
+Events="*res://scripts/core/events.gd"
+Catalog="*res://scripts/farming/catalog.gd"
+Inventory="*res://scripts/inventory/inventory.gd"
+GameState="*res://scripts/core/game_state.gd"
+GameClock="*res://scripts/time/game_clock.gd"
+FarmProgress="*res://scripts/progression/farm_progress.gd"
+Story="*res://scripts/story/story_state.gd"
+GameWeather="*res://scripts/time/weather.gd"
+VillageProjects="*res://scripts/story/village_projects.gd"
+
+[display]
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=0
+
+[rendering]
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/use_nearest_mipmap_filter=false
+textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.13, 0.23, 0.19, 1)
+
+[input_devices]
+pointing/emulate_touch_from_mouse=false
+pointing/emulate_mouse_from_touch=false
+
+[physics]
+common/physics_ticks_per_second=60
+
+[gui]
+theme/default_font_multichannel_signed_distance_field=false
+
+[audio]
+driver/enable_input=false

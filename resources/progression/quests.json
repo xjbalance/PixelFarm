@@ -1,0 +1,5 @@
+{
+  "first_gift": {"title":"第一份心意", "description":"林芽想用新鲜胡萝卜做一篮河谷点心，送给刚搬来的邻居。", "previous":"", "requirements":{"carrot":3}, "coins":80, "items":{"potato_seed":3}, "friendship":15},
+  "river_path": {"title":"修补河畔小路", "description":"给河边的小路补上护栏和石阶吧，散步的人就能走得更安心。", "previous":"first_gift", "requirements":{"wood":8,"stone":6}, "coins":120, "items":{"wheat_seed":6}, "friendship":20},
+  "valley_table": {"title":"河谷的晚餐", "description":"林芽邀请你筹备一顿小小的邻里晚餐，需要土豆和新收的小麦。", "previous":"river_path", "requirements":{"potato":3,"wheat":4}, "coins":180, "items":{"carrot_seed":6}, "friendship":25}
+}

@@ -1,0 +1,8 @@
+{
+  "version":1, "location":"farm", "player":[700,500],
+  "day":5, "minutes":850, "coins":321,
+  "items":{"carrot_seed":9,"potato_seed":6,"wheat_seed":4,"carrot":3},
+  "stamina":73, "selected":4,
+  "plots":{"17,16":{"crop":"carrot","days":1,"watered":true}},
+  "journal":["翻土","播种","浇水"], "muted":false
+}

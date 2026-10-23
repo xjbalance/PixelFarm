@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/characters/player.png" id="2"]
+[sub_resource type="CircleShape2D" id="feet"]
+radius = 9.0
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -18)
+texture = ExtResource("2")
+hframes = 4
+vframes = 4
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("feet")
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.35, 1.35)
+position_smoothing_enabled = true
+position_smoothing_speed = 7.0
+limit_left = 0
+limit_top = 0
+limit_right = 1536
+limit_bottom = 1024

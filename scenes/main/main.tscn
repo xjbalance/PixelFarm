@@ -1,0 +1,14 @@
+[gd_scene load_steps=6 format=3]
+[ext_resource type="Script" path="res://scripts/core/main.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/world/farm_world.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3"]
+[ext_resource type="Script" path="res://scripts/time/day_night.gd" id="4"]
+[ext_resource type="Script" path="res://scripts/core/audio.gd" id="5"]
+[node name="PixelFarm" type="Node"]
+script = ExtResource("1")
+[node name="FarmWorld" parent="." instance=ExtResource("2")]
+[node name="HUD" parent="." instance=ExtResource("3")]
+[node name="DayNight" type="CanvasModulate" parent="."]
+script = ExtResource("4")
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("5")

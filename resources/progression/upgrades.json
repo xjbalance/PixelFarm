@@ -1,0 +1,5 @@
+{
+  "toolrack": {"name":"精制工具架", "coins":120, "materials":{"wood":8,"stone":9}, "description":"整理并打磨工具。斧头和镐每次造成 2 点采集伤害，体力消耗不变。"},
+  "irrigation": {"name":"田边引水渠", "coins":140, "materials":{"wood":12,"stone":6}, "description":"每天清晨自动浇灌农田西北 4×3 格。建成时、在覆盖区翻土时立即供水。"},
+  "bedding": {"name":"温暖的卧室", "coins":160, "materials":{"wood":16,"stone":6}, "description":"修缮床铺与小屋。体力上限从 100 提升到 130，下次睡觉恢复至新上限。"}
+}

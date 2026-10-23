@@ -1,0 +1,51 @@
+extends Node
+## 仅保存玩家会话状态；作物、背包和时钟分别由各自模块负责。
+signal changed
+const MAX_STAMINA: int = 100
+var stamina: int = MAX_STAMINA
+var modal: bool = false
+var selected: int = 0
+var tools: Array[String] = ["hoe", "water", "hand", "carrot_seed", "potato_seed", "wheat_seed", "axe", "pickaxe"]
+var tool_names: Array[String] = ["锄头", "水壶", "采收", "胡萝卜", "土豆", "小麦", "斧头", "镐"]
+var location: String = "farm"
+
+func _ready() -> void:
+	# 在运行时统一注册按键，避免平台键码与编辑器配置不一致。
+	var bindings := {"move_left": [KEY_A, KEY_LEFT], "move_right": [KEY_D, KEY_RIGHT],
+		"move_up": [KEY_W, KEY_UP], "move_down": [KEY_S, KEY_DOWN],
+		"interact": [KEY_E, KEY_SPACE], "bag": [KEY_B, KEY_TAB], "cycle_tool": [KEY_Q],
+		"save_game": [KEY_F5], "load_game": [KEY_F9], "journal": [KEY_J], "story_map":[KEY_M]}
+	for action in bindings:
+		if not InputMap.has_action(action):
+			InputMap.add_action(action)
+		for code in bindings[action]:
+			var key := InputEventKey.new()
+			key.physical_keycode = code
+			InputMap.action_add_event(action, key)
+
+func select_tool(index: int) -> void:
+	selected = posmod(index, tools.size())
+	Events.tool_changed.emit()
+	changed.emit()
+
+func tool() -> String:
+	return tools[selected]
+
+func spend_energy(amount: int) -> bool:
+	if stamina < amount:
+		Events.notice.emit("体力不足啦，回小屋睡一觉吧。")
+		return false
+	stamina -= amount
+	changed.emit()
+	return true
+
+func set_modal(active: bool) -> void:
+	modal = active
+	Events.modal_changed.emit(active)
+
+func rest() -> void:
+	stamina = max_stamina()
+	changed.emit()
+
+func max_stamina() -> int:
+	return MAX_STAMINA+30 if FarmProgress.has_upgrade("bedding") else MAX_STAMINA

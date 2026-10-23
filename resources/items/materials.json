@@ -1,0 +1,4 @@
+{
+  "wood": {"name":"木材", "sell_price":4, "description":"砍树获得，用于修缮设施和村民委托。"},
+  "stone": {"name":"石料", "sell_price":5, "description":"开采石堆获得，用于引水渠、工具架和委托。"}
+}
