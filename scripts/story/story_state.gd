@@ -9,7 +9,7 @@ var lantern: String = ""
 var seen: Array[String] = []
 var assisted_tools: bool = true
 const SECRET_IDS := ["well","ribbon","post"]
-const NAMES := {"farm":"农场", "home":"你的家", "village":"河湾村"}
+const NAMES := {"farm":"农场", "home":"你的家", "village":"河湾村","mine_a":"废弃矿道","mine_b":"地下水脉","mine_c":"晶石洞窟","abyss":"深渊勘探","greenhouse":"星光温室"}
 
 func _ready() -> void:
 	data = JSON.parse_string(FileAccess.get_file_as_string("res://resources/story/wind_lantern.json"))
@@ -38,6 +38,9 @@ func requirement_text() -> String:
 	return " · ".join(parts)
 
 func request(actor: String) -> void:
+	if stage==8 and ChapterTwo.completed.size()>=6 and actor in ["linya","zhou","ahe"] and not ChapterTwo.knows("talk:"+actor):
+		Events.interaction_requested.emit("mine:talk:"+actor)
+		return
 	var scene := ""
 	match actor:
 		"mail": scene = "letter" if stage == 0 else ("review_letter" if Letters.legacy_review else "letter_repeat")
@@ -61,6 +64,9 @@ func request(actor: String) -> void:
 func scene_data(id: String) -> Dictionary:
 	if data.scenes.has(id):
 		var result: Dictionary = data.scenes[id].duplicate(true)
+		if id=="bench" and (stage!=7 or "bench" in seen or GameClock.minutes>=1080):
+			result.choices=result.choices.filter(func(option: Dictionary): return option.id!="wait")
+			result.lines[0].text="河水慢慢经过，茶屋飘来麦香。这里可以歇脚喝茶，今天的事仍按自己的节奏继续。"
 		if id == "bench" and VillageProjects.has_project("arbor"):
 			result.choices.insert(0,{"id":"tea","text":"喝茶 · 恢复40体力","reply":"藤叶把阳光筛成小块。阿禾给你续上茶，今天还有很长，也可以慢慢来。"})
 		return result
@@ -124,10 +130,13 @@ func complete(id: String, choice: String = "") -> bool:
 			Letters.direction = choice
 			if id == "festival": lantern = choice
 		if id not in seen: seen.append(id)
+		Playtest.record("task",{"id":"chapter1:"+id})
 		chapter_completed.emit(stage)
 		Events.notice.emit("手记已更新 · "+chapter().title)
 	elif id == "bench" and choice == "wait":
-		GameClock.minutes = maxf(GameClock.minutes,1080)
+		if stage!=7 or "bench" in seen or GameClock.minutes>=1080: return false
+		seen.append("bench")
+		GameClock.minutes = 1080
 		GameClock.changed.emit()
 	elif id == "bench" and choice == "tea":
 		return VillageProjects.drink_tea()

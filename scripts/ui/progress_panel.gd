@@ -24,9 +24,11 @@ func _ready() -> void:
 	title = FarmUIStyle.label("",26,FarmUIStyle.GOLD)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
+	header.add_child(FarmUIStyle.button("鱼栏图纸",func(): close_panel(); Events.interaction_requested.emit("fish:guide"),150))
 	header.add_child(FarmUIStyle.button("关闭 ×",close_panel,100))
 	subtitle = FarmUIStyle.label("",17)
 	column.add_child(subtitle)
+	DiamondPayments.controls(column,refresh)
 	tabs = HBoxContainer.new()
 	tabs.add_theme_constant_override("separation",8)
 	column.add_child(tabs)
@@ -69,6 +71,7 @@ func open_panel(requested_mode: String, editable: bool) -> void:
 	refresh()
 
 func close_panel() -> void:
+	DiamondPayments.cancel(self)
 	hide()
 	GameState.set_modal(false)
 
@@ -111,8 +114,8 @@ func refresh_upgrade() -> void:
 	for id in definition.materials: add_cost(id,int(definition.materials[id]))
 	reward.text = "永久生效，离开农场或重新读档后仍然保留。"
 	action_button.text = "已建成" if done else "交付材料并修缮"
-	action_button.disabled = done or Inventory.preview_exchange(definition.materials,{},-int(definition.coins)).is_empty()
-	hint.text = "修缮将扣除上方所列的金币与材料。"
+	action_button.disabled = done or DiamondPayments.preview(definition.materials,{},int(definition.coins)).is_empty()
+	hint.text = "修缮将扣除材料与"+DiamondPayments.text(int(definition.coins))+"。钻石支付需再次确认。"
 
 func refresh_quest() -> void:
 	var definition: Dictionary = FarmProgress.quests[selected_id]
@@ -130,7 +133,9 @@ func refresh_quest() -> void:
 	hint.text = "委托板在小屋东侧。交付会消耗所需物品，奖励只领取一次。"
 
 func perform_action() -> void:
-	if mode == "workshop": FarmProgress.build_upgrade(selected_id)
+	if mode == "workshop":
+		var id := selected_id
+		DiamondPayments.request(self,int(FarmProgress.upgrades[id].coins),func(): FarmProgress.build_upgrade(id); refresh())
 	elif at_board:
 		if FarmProgress.quest_status(selected_id) == "available": FarmProgress.accept(selected_id)
 		else: FarmProgress.deliver(selected_id)

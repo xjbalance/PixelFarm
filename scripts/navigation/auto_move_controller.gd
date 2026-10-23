@@ -75,6 +75,7 @@ func refresh_target() -> bool:
 	return true
 
 func fail() -> void:
+	Playtest.record("navigation_fail",{"source":GameState.location,"depth":AbyssState.state.depth if GameState.location=="abyss" else 0})
 	cancel()
 	state = State.FAILED
 	Events.notice.emit("暂时走不到那里，试试附近的空地。")

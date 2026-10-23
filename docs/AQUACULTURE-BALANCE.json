@@ -1,0 +1,373 @@
+{
+  "version": "0.6.2",
+  "profiles": 12000,
+  "seed": 620000,
+  "assumptions": [
+    "112 game days, random starting season; 94% feeding adherence, 92% maintenance adherence when needed.",
+    "Level 3 has provisioned autofeeder; feed is charged at 4 gold/unit, not generated free.",
+    "Rare fry ingredients priced at foregone sale value; regular fry priced at store cost.",
+    "Batch strategy restocks every harvest, including final-day stocks; brood strategy preserves minimum parents.",
+    "Facility capital, tools, walking, menus, stamina opportunity cost and cooking excluded from net cashflow.",
+    "These are game-day income estimates, not measured play hours or a proof of ideal scheduling.",
+    "Breeding is optional husbandry and collection support; ordinary fry restocking is generally more profitable."
+  ],
+  "results": {
+    "crucian": {
+      "restock_batches": {
+        "profiles": 1000,
+        "days_each": 112,
+        "first_harvest_days_p10_p50_p90": [
+          2,
+          2,
+          3
+        ],
+        "net_gold_per_day_p10_p50_p90": [
+          46.643,
+          47.643,
+          49.5
+        ],
+        "median_harvested": 624,
+        "median_bred": 0,
+        "median_feed_units": 210,
+        "median_maintenance_actions": 16,
+        "max_population": 12,
+        "lowest_health": 92,
+        "no_first_harvest": 0
+      },
+      "keep_breeders": {
+        "profiles": 1000,
+        "days_each": 112,
+        "first_harvest_days_p10_p50_p90": [
+          2,
+          2,
+          3
+        ],
+        "net_gold_per_day_p10_p50_p90": [
+          1.429,
+          1.5,
+          1.571
+        ],
+        "median_harvested": 40,
+        "median_bred": 34,
+        "median_feed_units": 105,
+        "median_maintenance_actions": 6,
+        "max_population": 8,
+        "lowest_health": 92,
+        "no_first_harvest": 0
+      },
+      "fry_opportunity_cost": 6,
+      "best_season_nominal_growth_days": 2
+    },
+    "carp": {
+      "restock_batches": {
+        "profiles": 1000,
+        "days_each": 112,
+        "first_harvest_days_p10_p50_p90": [
+          3,
+          3,
+          4
+        ],
+        "net_gold_per_day_p10_p50_p90": [
+          51.5,
+          53.357,
+          55.0
+        ],
+        "median_harvested": 384,
+        "median_bred": 0,
+        "median_feed_units": 210,
+        "median_maintenance_actions": 16,
+        "max_population": 12,
+        "lowest_health": 92,
+        "no_first_harvest": 0
+      },
+      "keep_breeders": {
+        "profiles": 1000,
+        "days_each": 112,
+        "first_harvest_days_p10_p50_p90": [
+          3,
+          3,
+          4
+        ],
+        "net_gold_per_day_p10_p50_p90": [
+          9.036,
+          9.429,
+          9.536
+        ],
+        "median_harvested": 56,
+        "median_bred": 50,
+        "median_feed_units": 105,
+        "median_maintenance_actions": 6,
+        "max_population": 8,
+        "lowest_health": 92,
+        "no_first_harvest": 0
+      },
+      "fry_opportunity_cost": 10,
+      "best_season_nominal_growth_days": 3
+    },
+    "grass": {
+      "restock_batches": {
+        "profiles": 1000,
+        "days_each": 112,
+        "first_harvest_days_p10_p50_p90": [
+          4,
+          4,
+          6
+        ],
+        "net_gold_per_day_p10_p50_p90": [
+          60.214,
+          62.929,
+          65.714
+        ],
+        "median_harvested": 288,
+        "median_bred": 0,
+        "median_feed_units": 210,
+        "median_maintenance_actions": 16,
+        "max_population": 12,
+        "lowest_health": 94,
+        "no_first_harvest": 0
+      },
+      "keep_breeders": {
+        "profiles": 1000,
+        "days_each": 112,
+        "first_harvest_days_p10_p50_p90": [
+          4,
+          4,
+          6
+        ],
+        "net_gold_per_day_p10_p50_p90": [
+          10.768,
+          11.375,
+          12.018
+        ],
+        "median_harvested": 43,
+        "median_bred": 40,
+        "median_feed_units": 105,
+        "median_maintenance_actions": 6,
+        "max_population": 8,
+        "lowest_health": 94,
+        "no_first_harvest": 0
+      },
+      "fry_opportunity_cost": 14,
+      "best_season_nominal_growth_days": 4
+    },
+    "perch": {
+      "restock_batches": {
+        "profiles": 1000,
+        "days_each": 112,
+        "first_harvest_days_p10_p50_p90": [
+          5,
+          5,
+          7
+        ],
+        "net_gold_per_day_p10_p50_p90": [
+          75.857,
+          76.071,
+          80.357
+        ],
+        "median_harvested": 228,
+        "median_bred": 0,
+        "median_feed_units": 210,
+        "median_maintenance_actions": 16,
+        "max_population": 12,
+        "lowest_health": 94,
+        "no_first_harvest": 0
+      },
+      "keep_breeders": {
+        "profiles": 1000,
+        "days_each": 112,
+        "first_harvest_days_p10_p50_p90": [
+          5,
+          5,
+          7
+        ],
+        "net_gold_per_day_p10_p50_p90": [
+          6.179,
+          6.393,
+          6.75
+        ],
+        "median_harvested": 21,
+        "median_bred": 16,
+        "median_feed_units": 105,
+        "median_maintenance_actions": 6,
+        "max_population": 8,
+        "lowest_health": 94,
+        "no_first_harvest": 0
+      },
+      "fry_opportunity_cost": 18,
+      "best_season_nominal_growth_days": 5
+    },
+    "golden": {
+      "restock_batches": {
+        "profiles": 1000,
+        "days_each": 112,
+        "first_harvest_days_p10_p50_p90": [
+          8,
+          10,
+          12
+        ],
+        "net_gold_per_day_p10_p50_p90": [
+          -119.071,
+          -118.75,
+          -118.429
+        ],
+        "median_harvested": 220,
+        "median_bred": 0,
+        "median_feed_units": 315,
+        "median_maintenance_actions": 11,
+        "max_population": 20,
+        "lowest_health": 92,
+        "no_first_harvest": 0
+      },
+      "keep_breeders": {
+        "profiles": 1000,
+        "days_each": 112,
+        "first_harvest_days_p10_p50_p90": [
+          8,
+          10,
+          12
+        ],
+        "net_gold_per_day_p10_p50_p90": [
+          -6.83,
+          -5.848,
+          -4.938
+        ],
+        "median_harvested": 16,
+        "median_bred": 6,
+        "median_feed_units": 115,
+        "median_maintenance_actions": 1,
+        "max_population": 13,
+        "lowest_health": 92,
+        "no_first_harvest": 0
+      },
+      "fry_opportunity_cost": 151,
+      "best_season_nominal_growth_days": 8
+    },
+    "star": {
+      "restock_batches": {
+        "profiles": 1000,
+        "days_each": 112,
+        "first_harvest_days_p10_p50_p90": [
+          12,
+          14,
+          16
+        ],
+        "net_gold_per_day_p10_p50_p90": [
+          -221.714,
+          -221.714,
+          -221.714
+        ],
+        "median_harvested": 256,
+        "median_bred": 0,
+        "median_feed_units": 448,
+        "median_maintenance_actions": 2,
+        "max_population": 32,
+        "lowest_health": 96,
+        "no_first_harvest": 0
+      },
+      "keep_breeders": {
+        "profiles": 1000,
+        "days_each": 112,
+        "first_harvest_days_p10_p50_p90": [
+          12,
+          14,
+          16
+        ],
+        "net_gold_per_day_p10_p50_p90": [
+          -16.107,
+          -14.5,
+          -13.107
+        ],
+        "median_harvested": 22,
+        "median_bred": 4,
+        "median_feed_units": 140,
+        "median_maintenance_actions": 1,
+        "max_population": 21,
+        "lowest_health": 96,
+        "no_first_harvest": 0
+      },
+      "fry_opportunity_cost": 240,
+      "best_season_nominal_growth_days": 12
+    }
+  },
+  "long_run_1120_days": {
+    "crucian": {
+      "first": 2,
+      "net": 1520,
+      "gross": 6048,
+      "spent": 4528,
+      "sold": 378,
+      "births": 373,
+      "peak": 8,
+      "care": 58,
+      "feed_units": 1120,
+      "min_health": 100
+    },
+    "carp": {
+      "first": 3,
+      "net": 11176,
+      "gross": 15736,
+      "spent": 4560,
+      "sold": 562,
+      "births": 558,
+      "peak": 8,
+      "care": 58,
+      "feed_units": 1120,
+      "min_health": 100
+    },
+    "grass": {
+      "first": 4,
+      "net": 14266,
+      "gross": 18858,
+      "spent": 4592,
+      "sold": 449,
+      "births": 446,
+      "peak": 8,
+      "care": 58,
+      "feed_units": 1120,
+      "min_health": 100
+    },
+    "perch": {
+      "first": 7,
+      "net": 6776,
+      "gross": 11400,
+      "spent": 4624,
+      "sold": 190,
+      "births": 185,
+      "peak": 8,
+      "care": 58,
+      "feed_units": 1120,
+      "min_health": 100
+    },
+    "golden": {
+      "first": 11,
+      "net": 2313,
+      "gross": 8800,
+      "spent": 6487,
+      "sold": 80,
+      "births": 70,
+      "peak": 13,
+      "care": 8,
+      "feed_units": 1131,
+      "min_health": 100
+    },
+    "star": {
+      "first": 12,
+      "net": 1904,
+      "gross": 11520,
+      "spent": 9616,
+      "sold": 64,
+      "births": 45,
+      "peak": 21,
+      "care": 1,
+      "feed_units": 1144,
+      "min_health": 100
+    }
+  },
+  "findings": [
+    "No capacity overflow or finite-resource deadlock in tested profiles; all species have repeatable acquisition.",
+    "Ordinary fish require feed costs and care; rare fry batch sales lose opportunity value intentionally.",
+    "Golden fish need three ordinary collections, underground water progress and level 2; star fish need research, crystal cavern and level 3.",
+    "Rare breeding is season/water/health constrained with guaranteed progress under conditions; no random low drop probability.",
+    "No fish source grants diamonds; optional lake cooperation grants bond 3 once and leaves original marriage gates intact."
+  ]
+}

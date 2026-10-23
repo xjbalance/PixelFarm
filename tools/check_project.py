@@ -21,17 +21,49 @@ logs = ROOT/'builds'
 logs.mkdir(exist_ok=True)
 steps = [
     ('import', ['--editor','--quit']),
+    ('sleep', ['--fixed-fps','60','res://tests/sleep_runner.tscn']),
     ('integration', ['res://tests/runner.tscn']),
+    ('mining', ['--fixed-fps','60','res://tests/mining_runner.tscn']),
+    ('star', ['--fixed-fps','60','res://tests/star_runner.tscn']),
+    ('legend', ['--fixed-fps','60','res://tests/legend_runner.tscn']),
+    ('stability', ['--fixed-fps','60','res://tests/stability_runner.tscn']),
+    ('river', ['--fixed-fps','60','res://tests/river_runner.tscn']),
+    ('aquaculture', ['--fixed-fps','60','res://tests/aquaculture_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),
     ('legacy-restart', ['res://tests/persistence.tscn','--','--legacy-read']),
+    ('mine-persist-write', ['res://tests/mining_persistence.tscn','--','--write-mine-save']),
+    ('mine-persist-restart', ['res://tests/mining_persistence.tscn']),
+    ('mine-backup-write', ['res://tests/mining_persistence.tscn','--','--write-mine-save']),
+    ('mine-backup-corrupt', ['res://tests/mining_persistence.tscn','--','--corrupt-mine-save']),
+    ('mine-backup-restart', ['res://tests/mining_persistence.tscn']),
+    ('star-persist-write', ['res://tests/star_persistence.tscn','--','--write-star-save']),
+    ('star-persist-restart', ['res://tests/star_persistence.tscn']),
+    ('star-backup-corrupt', ['res://tests/star_persistence.tscn','--','--corrupt-star-save']),
+    ('star-backup-restart', ['res://tests/star_persistence.tscn']),
+    ('abyss-write', ['res://tests/abyss_persistence.tscn','--','--write-abyss']),
+    ('abyss-restart', ['--fixed-fps','60','res://tests/abyss_persistence.tscn']),
+    ('abyss-corrupt', ['res://tests/abyss_persistence.tscn','--','--corrupt-abyss']),
+    ('abyss-backup', ['--fixed-fps','60','res://tests/abyss_persistence.tscn']),
+    ('river-write', ['res://tests/river_persistence.tscn','--','--write-river']),
+    ('river-restart', ['--fixed-fps','60','res://tests/river_persistence.tscn']),
+    ('river-corrupt', ['res://tests/river_persistence.tscn','--','--corrupt-river']),
+    ('river-backup', ['--fixed-fps','60','res://tests/river_persistence.tscn']),
+    ('stability-write', ['res://tests/stability_persistence.tscn','--','--write-stability']),
+    ('stability-restart', ['res://tests/stability_persistence.tscn']),
+    ('stability-corrupt', ['res://tests/stability_persistence.tscn','--','--corrupt-stability']),
+    ('stability-backup', ['res://tests/stability_persistence.tscn']),
+    ('aquaculture-write', ['res://tests/aquaculture_persistence.tscn','--','--write-aquaculture']),
+    ('aquaculture-restart', ['res://tests/aquaculture_persistence.tscn']),
+    ('aquaculture-corrupt', ['res://tests/aquaculture_persistence.tscn','--','--corrupt-aquaculture']),
+    ('aquaculture-backup', ['res://tests/aquaculture_persistence.tscn']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:
     env = dict(os.environ, XDG_DATA_HOME=profile, APPDATA=profile)
     for name, options in steps:
-        result = subprocess.run([godot,'--headless','--path',str(ROOT),*options],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,encoding='utf-8',errors='replace',timeout=120)
+        result = subprocess.run([godot,'--headless','--path',str(ROOT),*options],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,encoding='utf-8',errors='replace',timeout=600 if name in ['river','stability'] else 120)
         (logs/(name+'.log')).write_text(result.stdout, encoding='utf-8')
         print(result.stdout, end='')
         if result.returncode or any(marker in result.stdout for marker in ['SCRIPT ERROR:','ERROR:','FAIL:','instances leaked']):

@@ -2,8 +2,11 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,6): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,11): return {}
 	var data: Dictionary = raw.duplicate(true)
+	# 旧路线盘的数字格ID也必须规范，防止JSON浮点枚举失配/重复矿格。
+	if data.get("xiaojing") is Dictionary and data.xiaojing.get("cave") is Dictionary:
+		data.xiaojing.cave=AbyssSaveSchema.canonical(data.xiaojing.cave)
 	if int(data.version) == 1:
 		# 旧版没有采集/设施/委托，保持所有已有进度，新增字段取初始值。
 		if not whole(data.get("stamina"),0,100) or not whole(data.get("selected"),0,5): return {}
@@ -27,6 +30,40 @@ static func normalize(raw: Variant) -> Dictionary:
 	if int(data.version) == 5:
 		data.version = 6
 		data.control_mode = "tap"
+	if int(data.version) == 6:
+		if not whole(data.get("day"),1,999999) or not Xiaojing.validate(data.get("xiaojing"),int(data.day)): return {}
+		data.version=7
+		data.mines=MineState.migrate(data.xiaojing) if data.get("xiaojing") is Dictionary else {}
+		data.chapter_two=ChapterTwo.defaults()
+	if int(data.version)==7:
+		if not whole(data.get("day"),1,999999) or not Xiaojing.validate(data.get("xiaojing"),int(data.day)): return {}
+		data.star_story=StarStory.migrate(data.xiaojing)
+		data.version=8
+	if int(data.version)==8:
+		if not whole(data.get("day"),1,999999) or not Xiaojing.validate(data.get("xiaojing"),int(data.day)) or not data.get("star_story") is Dictionary: return {}
+		data.abyss=AbyssState.defaults()
+		data.legend=LegendState.migrate(data.xiaojing,data.star_story)
+		data.version=9
+	if int(data.version)==9:
+		if not data.get("abyss") is Dictionary or not data.get("legend") is Dictionary or not data.get("xiaojing") is Dictionary or not data.get("star_story") is Dictionary: return {}
+		if not whole(data.get("day"),1,999999) or not Xiaojing.validate(data.xiaojing,int(data.day)) or not StarSaveSchema.validate(data.star_story,int(data.day),data.xiaojing): return {}
+		if not whole(data.abyss.get("max_clear"),0,20) or not data.legend.get("contract") is Dictionary: return {}
+		data.river=River.migrate(data)
+		var old_abyss: Dictionary=data.abyss
+		for key in AbyssState.defaults():
+			if not old_abyss.has(key): old_abyss[key]=AbyssState.defaults()[key]
+		if not data.abyss.bosses is Array: return {}
+		data.abyss.bosses=AbyssSaveSchema.canonical(data.abyss.bosses)
+		if data.abyss.max_clear>=20 and 20 not in data.abyss.bosses: data.abyss.bosses.append(20)
+		data.version=10
+	if int(data.version)==10:
+		if not whole(data.get("day"),1,999999): return {}
+		data.aquaculture=AquacultureSaveSchema.defaults(int(data.day))
+		data.version=11
+	data.aquaculture=AbyssSaveSchema.canonical(data.get("aquaculture"))
+	data.river=AbyssSaveSchema.canonical(data.get("river"))
+	data.abyss=AbyssSaveSchema.canonical(data.get("abyss"))
+	data.legend=AbyssSaveSchema.canonical(data.get("legend"))
 	if not valid_current(data): return {}
 	return data
 
@@ -69,9 +106,14 @@ static func valid_current(data: Variant) -> bool:
 	if not Letters.validate(data.get("letters")): return false
 	if data.letters.direction != "" and (not data.get("story") is Dictionary or data.story.get("stage") != 8): return false
 	if not whole(data.get("day"),1,999999) or not Xiaojing.validate(data.get("xiaojing"),int(data.day)): return false
+	if not AquacultureSaveSchema.validate(data.get("aquaculture"),int(data.day)): return false
+	if data.aquaculture.xiaojing.stage>0 and not data.xiaojing.unlocked: return false
+	if not RiverSaveSchema.validate(data.get("river"),int(data.day)): return false
+	if not StarSaveSchema.validate(data.get("star_story"),int(data.day),data.xiaojing): return false
+	if not AbyssSaveSchema.validate(data.get("abyss"),int(data.day)) or not AbyssSaveSchema.legend(data.get("legend"),data.xiaojing,int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),6,6) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),11,11) or not Story.validate(data.get("story")): return false
 	if data.get("control_mode") not in ["tap","joystick"]: return false
 	if not VillageProjects.validate(data.get("village"),data.get("day"),int(data.story.stage)): return false
 	if not whole(data.get("day"),1,999999): return false
@@ -81,16 +123,30 @@ static func valid_current(data: Variant) -> bool:
 	var minute = data.get("minutes")
 	if not (minute is int or minute is float) or not is_finite(float(minute)) or minute < 360 or minute >= 1440: return false
 	var location = data.get("location")
-	if location not in ["farm","home","village"]: return false
+	if location not in ["farm","home","village","mine_a","mine_b","mine_c","abyss","greenhouse"]: return false
+	if not MineState.validate(data.get("mines"),int(data.day)) or not ChapterTwo.validate(data.get("chapter_two")): return false
+	if data.abyss.unlocked and ("discussion" not in data.chapter_two.completed or not data.mines.resonance_open or data.mines.tool!=3): return false
+	if location=="greenhouse" and (not data.river.venue_used or (not data.xiaojing.married and data.legend.greenhouse<4)): return false
+	if data.river.wedding_step>0 and not data.xiaojing.married: return false
+	if location=="abyss" and not data.abyss.unlocked: return false
+	if location in MineState.AREAS and location not in data.mines.unlocked: return false
+	for i in range(data.mines.unlocked.size()):
+		if ["entrance","records","water"][i] not in data.chapter_two.completed: return false
+	if not data.mines.unlocked.is_empty() and data.story.stage!=8: return false
+	if not data.chapter_two.facts.is_empty() and data.story.stage!=8: return false
+	if data.mines.legacy_board_claimable != (not data.xiaojing.cave.is_empty()): return false
+	if not data.mines.expedition.is_empty() and data.xiaojing.trial.get("id","")!="cave": return false
+	for pair in [["rail_open","track_repaired"],["water_lowered","water_lowered"],["hardened","hardened"],["resonance_open","resonance_open"]]:
+		if pair[0] in data.chapter_two.facts and not data.mines[pair[1]]: return false
 	var pos = data.get("player")
 	if not pos is Array or pos.size() != 2: return false
 	for axis in pos:
 		if not (axis is int or axis is float) or not is_finite(float(axis)): return false
 	var region := Rect2(10,10,1516,1004) if location == "farm" else Rect2(362,234,556,332)
-	if location == "village": region = Rect2(10,10,1260,876)
+	if location == "village" or location in MineState.AREAS or location in ["abyss","greenhouse"]: region = Rect2(10,10,1260,876)
 	if not region.has_point(Vector2(pos[0],pos[1])): return false
 	var items = data.get("items")
-	if not items is Dictionary or items.size() > 32: return false
+	if not items is Dictionary or items.size() > Catalog.materials.size()+Catalog.aquaculture_items.size()+Catalog.crops.size()*2: return false
 	for id in items:
 		if not id is String or not Catalog.is_item(id): return false
 		if not whole(items[id],1,Inventory.MAX_STACK): return false

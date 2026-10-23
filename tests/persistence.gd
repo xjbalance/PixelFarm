@@ -49,6 +49,8 @@ func _ready() -> void:
 		for memory in Xiaojing.data.memories: hidden.memories.append(memory.id)
 		hidden.trials=["management","planning","cave","mechanism","joint"]
 		Xiaojing.restore(hidden)
+		StarStory.restore(StarStory.migrate(hidden))
+		LegendState.restore(LegendState.migrate(hidden,StarStory.snapshot()))
 		# 从真实设置按钮切换，只依靠模式变更的自动保存，再由下一进程读取。
 		game.persistence_enabled=true
 		game.hud.system_panel.open_panel()

@@ -12,7 +12,7 @@ func _ready() -> void:
 	Events.location_changed.connect(func(id: String):
 		fade = 0.4
 		banner_time = 2.6
-		banner = Story.NAMES[id]
+		banner = "深渊第%d层 · %s" % [AbyssState.state.depth,AbyssState.layout().title] if id=="abyss" else Story.NAMES[id]
 	)
 	Story.chapter_completed.connect(func(_stage: int):
 		banner_time = 3.2
@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 		queue_redraw()
 
 func _draw() -> void:
-	if GameState.location != "home":
+	if GameState.location not in ["home","mine_a","mine_b","mine_c","abyss","greenhouse"]:
 		if GameWeather.is_rainy():
 			draw_rect(Rect2(Vector2.ZERO,size),Color("55788b16"))
 			for i in range(100):

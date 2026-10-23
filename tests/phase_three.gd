@@ -13,6 +13,7 @@ static func run(test: Node, game: Node) -> void:
 	await test.frames(25)
 	Input.action_release("move_left")
 	test.check(game.player.position.x < 660, "室内移动不受隐藏农场碰撞干扰")
+	GameClock.minutes=1200 # 夜间床的确认流程；白天拒绝在sleep_runner单独覆盖。
 	game.player.position = Vector2(775,340)
 	game.action_cooldown = 0
 	game.interact()

@@ -92,7 +92,8 @@ func _ready() -> void:
 
 func refresh_gathering() -> void:
 	# 固定工作时段与少量站点；只在可见地图中沿真实可通行路径行走。
-	var evening := GameClock.minutes >= 1080
+	var ending: bool=River.gathering()
+	var evening: bool=GameClock.minutes >= 1080 or ending
 	var gathering := Story.stage == 7 and evening
 	villagers.linya.visible = evening
 	villagers.linya.process_mode = Node.PROCESS_MODE_INHERIT if evening else Node.PROCESS_MODE_DISABLED
@@ -109,6 +110,10 @@ func refresh_gathering() -> void:
 		villagers.linya.set_station(Vector2(610,442))
 		zhou_station = Vector2(548,495)
 		ahe_station = Vector2(713,510)
+	if ending:
+		villagers.linya.set_station(Vector2(700,690))
+		zhou_station=Vector2(760,690)
+		ahe_station=Vector2(810,690)
 	villagers.zhou.set_station(zhou_station)
 	villagers.ahe.set_station(ahe_station)
 

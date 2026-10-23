@@ -40,7 +40,12 @@ func cell(point: Vector2) -> Vector2i:
 
 func active_collider(object: Node) -> bool:
 	if object is CanvasItem and not object.is_visible_in_tree(): return false
-	var map: Node = {"farm":game.world,"home":game.home,"village":game.village}[GameState.location]
+	var map: Node = game.mine_maps.get(GameState.location)
+	if map==null:
+		match GameState.location:
+			"farm": map=game.world
+			"home": map=game.home
+			"village": map=game.village
 	return map == object or map.is_ancestor_of(object)
 
 func people() -> Array[Node2D]:
@@ -51,7 +56,7 @@ func people() -> Array[Node2D]:
 
 func rebuild() -> void:
 	if dirty:
-		region = {"farm":Rect2i(0,0,48,32),"village":Rect2i(0,0,40,28),"home":Rect2i(11,7,18,11)}[GameState.location]
+		region = WorldTravel.region(GameState.location)
 		grid.region = region
 		grid.cell_size = Vector2(32,32)
 		grid.offset = Vector2(16,16)
@@ -64,7 +69,7 @@ func rebuild() -> void:
 		dynamic_cells.clear()
 		var excluded: Array[RID] = []
 		for object in game.get_tree().get_nodes_in_group("interactables"):
-			if object is CollisionObject2D: excluded.append(object.get_rid())
+			if object is CharacterBody2D: excluded.append(object.get_rid())
 		query.exclude = excluded
 		var space := game.player.get_world_2d().direct_space_state as PhysicsDirectSpaceState2D
 		for y in range(region.position.y,region.end.y):

@@ -6,10 +6,14 @@ static func resolve(game: Node, point: Vector2) -> Dictionary:
 	var distance := INF
 	for object in game.get_tree().get_nodes_in_group("interactables"):
 		if not object.is_visible_in_tree(): continue
+		if ("mine_id" in object or "abyss_id" in object) and "active" in object and not object.active: continue
 		# 物件上半部也可点选；优先脚下相近的对象，避免门口误选房后 NPC。
 		var offset: Vector2 = point-object.global_position
 		var rect := Rect2(-34,-65,68,88)
-		if "person_id" in object: rect = Rect2(-22,-48,44,62)
+		if "mine_id" in object or "abyss_id" in object: rect = Rect2(-20,-43,40,58)
+		elif "pen_id" in object: rect = object.hit_rect()
+		elif "person_id" in object: rect = Rect2(-22,-48,44,62)
+		elif "star_id" in object: rect=Rect2(-24,-30,48,42)
 		elif "memory_id" in object: rect = Rect2(-16,-22,32,32)
 		elif "prop_kind" in object and object.prop_kind == "windmill": rect = Rect2(-52,-155,104,168)
 		if rect.has_point(offset):

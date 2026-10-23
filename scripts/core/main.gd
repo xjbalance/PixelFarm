@@ -6,11 +6,14 @@ extends Node
 @onready var farm: Node2D = $FarmWorld/FarmPlots
 @onready var hud: CanvasLayer = $HUD
 var action_cooldown: float = 0.0
+var mine_maps: Dictionary = {}
 var home: Node2D
 var village: Node2D
 var was_running: bool = true
 var backgrounded: bool = false
 var closing: bool = false
+var autosave_pending: bool = false
+var autosave_epoch: int = 0
 var schedule_restore_pending: bool = false
 var auto_move: Node2D
 var touch_input: Node
@@ -38,13 +41,22 @@ func _ready() -> void:
 	hud.bag_requested.connect(show_bag)
 	hud.save_requested.connect(save_game)
 	hud.load_requested.connect(load_game)
-	hud.sleep_requested.connect(GameClock.next_day)
+	hud.sleep_requested.connect(GameClock.request_sleep)
+	GameClock.day_ending.connect(on_day_ending)
 	hud.mute_requested.connect(toggle_audio)
 	Events.action_requested.connect(interact)
 	Events.interaction_requested.connect(handle_interaction)
-	GameClock.day_advanced.connect(autosave)
-	Events.progress_committed.connect(func(): call_deferred("autosave"))
+	GameClock.day_advanced.connect(queue_autosave)
+	Events.progress_committed.connect(queue_autosave)
+	Playtest.bind(self)
+	WorldTravel.create_mines(self)
+	var lake := AquacultureWorld.new()
+	add_child(lake)
+	lake.attach(self)
 	build_xiaojing_world()
+	var star_world := StarWorld.new()
+	add_child(star_world)
+	star_world.setup(self)
 	auto_move = Node2D.new()
 	auto_move.set_script(preload("res://scripts/navigation/auto_move_controller.gd"))
 	add_child(auto_move)
@@ -85,6 +97,7 @@ func nearest_interactable() -> Node2D:
 	var distance: float = 58.0
 	for object in get_tree().get_nodes_in_group("interactables"):
 		if not object.is_visible_in_tree(): continue
+		if ("mine_id" in object or "abyss_id" in object) and "active" in object and not object.active: continue
 		var current: float = player.global_position.distance_to(object.global_position)
 		if current < distance:
 			distance = current
@@ -113,7 +126,13 @@ func resource_target() -> Node2D:
 
 func handle_interaction(kind: String) -> void:
 	if auto_move: auto_move.cancel()
-	if kind.begins_with("xiaojing"): hud.xiaojing_panel.open_panel(kind)
+	if kind.begins_with("fish:"): hud.aquaculture_panel.open_panel(kind.trim_prefix("fish:"))
+	elif kind.begins_with("river:"): hud.river_panel.open_panel(kind.trim_prefix("river:"))
+	elif kind.begins_with("abyss:"): hud.abyss_panel.open_panel(kind.trim_prefix("abyss:"))
+	elif kind.begins_with("star:"): hud.star_panel.open_panel(kind.trim_prefix("star:"))
+	elif kind.begins_with("mine:"): MineInteractions.request(self,kind.trim_prefix("mine:"))
+	elif kind.begins_with("xiaojing_memory:"): hud.star_panel.open_panel("memory:"+kind.trim_prefix("xiaojing_memory:"))
+	elif kind.begins_with("xiaojing"): hud.xiaojing_panel.open_panel(kind)
 	elif kind == "home": change_location("home")
 	elif kind == "exit": change_location("farm")
 	elif kind == "sleep": hud.system_panel.open_panel(true)
@@ -127,37 +146,7 @@ func handle_interaction(kind: String) -> void:
 	elif kind == "community": hud.story_panel.open_panel(true)
 
 func change_location(destination: String, saved_position: Vector2 = Vector2.INF) -> void:
-	if destination not in ["farm","home","village"]: return
-	if auto_move: auto_move.cancel()
-	GameState.location = destination
-	player.touch_direction = Vector2.ZERO
-	player.velocity = Vector2.ZERO
-	hud.joystick.reset()
-	# 复用同一个角色节点，避免换图时出现两份背包或两台摄像机。
-	var target: Node2D = home if destination == "home" else world.get_node("Actors")
-	if destination == "village": target = village.get_node("Actors")
-	player.reparent(target,false)
-	world.visible = destination == "farm"
-	world.get_node("Ground").enabled = destination == "farm"
-	home.visible = destination == "home"
-	village.visible = destination == "village"
-	village.get_node("Ground").enabled = destination == "village"
-	world.process_mode = Node.PROCESS_MODE_INHERIT if destination == "farm" else Node.PROCESS_MODE_DISABLED
-	home.process_mode = Node.PROCESS_MODE_INHERIT if destination == "home" else Node.PROCESS_MODE_DISABLED
-	village.process_mode = Node.PROCESS_MODE_INHERIT if destination == "village" else Node.PROCESS_MODE_DISABLED
-	var entry: Vector2 = {"farm":Vector2(656,440),"home":Vector2(640,500),"village":Vector2(640,756)}[destination]
-	player.position = saved_position if saved_position != Vector2.INF else entry
-	var camera: Camera2D = player.get_node("Camera2D")
-	camera.zoom = Vector2.ONE if destination == "home" else Vector2(1.35,1.35)
-	camera.position.y = 0 if destination == "home" else -60
-	camera.limit_right = 1536 if destination == "farm" else 1280
-	camera.limit_bottom = {"farm":1024,"home":720,"village":896}[destination]
-	camera.reset_smoothing()
-	$DayNight.refresh()
-	Events.location_changed.emit(destination)
-	Xiaojing.record_location(destination)
-	call_deferred("restore_schedules")
-	GameState.changed.emit()
+	WorldTravel.change(self,destination,saved_position)
 
 func recover_blocked_position() -> void:
 	# JSON 坐标合法但可能落在碰撞体中；保留其余进度并回到安全出生点。
@@ -167,10 +156,11 @@ func recover_blocked_position() -> void:
 	query.collision_mask = 1
 	var hits := player.get_world_2d().direct_space_state.intersect_shape(query,1)
 	if not hits.is_empty():
-		player.position = {"home":Vector2(640,500),"farm":Vector2(656,440),"village":Vector2(640,756)}[GameState.location]
+		player.position = WorldTravel.entry(GameState.location)
 		player.get_node("Camera2D").reset_smoothing()
 
 func save_game() -> void:
+	cancel_pending_save()
 	if FarmSaveStore.write(self): Events.notice.emit("进度已保存。下次回来会继续这一天。")
 	else: Events.notice.emit("保存失败，原有存档仍保留。")
 
@@ -182,7 +172,22 @@ func load_game() -> void:
 	FarmSaveStore.restore(self,data)
 	Events.notice.emit("已回到第 %d 天，欢迎回家。" % GameClock.day)
 
+func cancel_pending_save() -> void:
+	autosave_epoch+=1
+	autosave_pending=false
+
+func queue_autosave() -> void:
+	if not persistence_enabled or closing or autosave_pending: return
+	autosave_pending=true
+	call_deferred("flush_autosave",autosave_epoch)
+
+func flush_autosave(epoch: int) -> void:
+	if epoch!=autosave_epoch: return
+	autosave_pending=false
+	autosave()
+
 func autosave() -> void:
+	cancel_pending_save()
 	# 成功时静默保存，保留刚领取的奖励提示；只有失败才打断通知。
 	if persistence_enabled and not FarmSaveStore.write(self):
 		Events.notice.emit("自动保存失败，请在菜单中重试保存。")
@@ -205,11 +210,13 @@ func _notification(what: int) -> void:
 			hud.joystick.reset()
 			for action in ["move_left","move_right","move_up","move_down"]: Input.action_release(action)
 			autosave()
+			Playtest.record("background",{"value":true});Playtest.flush()
 	elif what in [NOTIFICATION_APPLICATION_FOCUS_IN,NOTIFICATION_APPLICATION_RESUMED]:
 		if backgrounded:
 			backgrounded = false
 			GameClock.running = was_running
 			$Audio.in_background = false
+			Playtest.record("background",{"value":false})
 	elif what == NOTIFICATION_WM_CLOSE_REQUEST:
 		close_session()
 	elif what == NOTIFICATION_WM_GO_BACK_REQUEST:
@@ -218,7 +225,9 @@ func _notification(what: int) -> void:
 func close_session() -> void:
 	if closing: return
 	closing = true
+	freeze_for_close()
 	autosave()
+	Playtest.flush()
 	$Audio.stop_all()
 	$Audio.set_process(false)
 	# 混音线程延迟释放播放对象；正常关窗留一轮清理时间，防止长音乐在退出时残留。
@@ -265,6 +274,9 @@ func context_action_name() -> String:
 	return {"hoe":"翻土","water":"浇水","hand":"收获","axe":"砍伐","pickaxe":"采石"}.get(context_tool(),"播种")
 
 func context_hint() -> String:
+	if GameState.location=="greenhouse": return "星光温室 · 左右桌准备仪式 · 星灯下交换约定 · 档案桌安排日常"
+	if GameState.location=="abyss": return "深渊%d层 · 空气%d/160 · 检查刻痕、机关和安全绳" % [AbyssState.state.depth,AbyssState.state.air]
+	if GameState.location in MineState.AREAS: return "点击矿脉采一次 · 阶梯返回 · 手记查看矿道任务"
 	if GameState.location == "home": return "床边可以休息 · 下方门口回农场"
 	if GameState.location != "farm": return "沿河慢慢走 · 靠近村民或物件可交互"
 	var plot: Dictionary = farm.plots.get(farm.key(player.target_cell()),{})
@@ -309,15 +321,9 @@ func build_xiaojing_world() -> void:
 		var parent: Node = {"farm":world.get_node("Actors"),"home":home,"village":village.get_node("Actors")}[location]
 		parent.add_child(person)
 		var refresh_person := func():
-			var place := "village" if GameClock.minutes < 1080 else ("home" if Xiaojing.state.married and GameClock.minutes>=1260 else "farm")
-			# 共同活动时到茶座，婚后仍保留独立的白天工作。
-			if GameClock.minutes>=1080 and GameClock.minutes<1200 and VillageProjects.has_project("arbor"): place="village"
-			var desired: Vector2 = Vector2(624,624) if location=="village" and GameClock.minutes>=1080 else {"farm":Vector2(1232,800),"village":Vector2(1120,624),"home":Vector2(720,452)}[location]
-			if GameState.location == location and player.global_position.distance_to(desired)<30:
-				desired += Vector2(40,0)
-			person.position = desired
-			person.visible = Xiaojing.state.unlocked and place == location
-			person.process_mode = Node.PROCESS_MODE_INHERIT if person.visible else Node.PROCESS_MODE_DISABLED
+			StarWorld.schedule(person,location,self)
+		Aquaculture.changed.connect(refresh_person)
+		StarStory.changed.connect(refresh_person)
 		Xiaojing.changed.connect(refresh_person)
 		GameClock.changed.connect(refresh_person)
 		VillageProjects.changed.connect(refresh_person)
@@ -326,3 +332,22 @@ func build_xiaojing_world() -> void:
 	greenhouse.set_script(preload("res://scripts/world/greenhouse.gd"))
 	greenhouse.position = Vector2(1280,780)
 	world.get_node("Actors").add_child(greenhouse)
+
+func on_day_ending(_reason: String) -> void:
+	if _reason=="fatigue" and GameState.location=="abyss": AbyssState.rescue("fatigue")
+	if auto_move: auto_move.cancel()
+	player.touch_direction=Vector2.ZERO
+	player.auto_direction=Vector2.ZERO
+	player.velocity=Vector2.ZERO
+	hud.joystick.reset()
+	if touch_input: touch_input.reset()
+	while hud.close_active_panel(): pass
+	GameState.set_modal(false)
+
+func freeze_for_close() -> void:
+	GameClock._process(0) # 若已到午夜，先唯一结算再保存。
+	GameClock.running=false
+	auto_move.cancel()
+	player.touch_direction=Vector2.ZERO
+	touch_input.reset();hud.joystick.reset()
+	GameState.set_modal(true)

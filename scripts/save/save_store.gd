@@ -2,7 +2,7 @@ class_name FarmSaveStore
 extends RefCounted
 ## 写临时文件后重命名；保留上一次存档。先完整校验再修改运行状态。
 const PATH: String = "user://farm_save.json"
-const VERSION: int = 6
+const VERSION: int = 11
 
 static func snapshot(game: Node) -> Dictionary:
 	return {
@@ -16,6 +16,8 @@ static func snapshot(game: Node) -> Dictionary:
 		"progress": FarmProgress.snapshot(), "resources": game.world.resource_field.state.duplicate(true),
 		"story": Story.snapshot(),
 		"letters": Letters.snapshot(), "xiaojing": Xiaojing.snapshot(),
+		"mines": MineState.snapshot(), "chapter_two": ChapterTwo.snapshot(), "star_story": StarStory.snapshot(), "abyss": AbyssState.snapshot(), "legend": LegendState.snapshot(), "river": River.snapshot(),
+		"aquaculture": Aquaculture.snapshot(),
 		"village": VillageProjects.snapshot(),
 		"journal": game.hud.completed.keys(), "muted": game.get_node("Audio").muted
 	}
@@ -33,20 +35,26 @@ static func write(game: Node, path: String = PATH) -> bool:
 	file.close()
 	if error != OK: return false
 	if FileAccess.file_exists(path):
-		if FileAccess.file_exists(path+".bak"):
-			if DirAccess.remove_absolute(path+".bak") != OK: return false
-		if DirAccess.rename_absolute(path,path+".bak") != OK: return false
+		# 从备份恢复后，不能用损坏的主档覆盖唯一有效的备份。
+		var previous := JSON.new()
+		var good: bool=previous.parse(FileAccess.get_file_as_string(path))==OK and valid(previous.data)
+		if good:
+			if FileAccess.file_exists(path+".bak"):
+				if DirAccess.remove_absolute(path+".bak") != OK: return false
+			if DirAccess.rename_absolute(path,path+".bak") != OK: return false
+		elif DirAccess.rename_absolute(path,path+".corrupt") != OK: return false
 	if DirAccess.rename_absolute(path+".tmp",path) != OK:
 		if FileAccess.file_exists(path+".bak"):
 			DirAccess.rename_absolute(path+".bak",path)
 		return false
+	Playtest.record("save",{"backup":FileAccess.file_exists(path+".bak")})
 	return true
 
 static func read(path: String = PATH) -> Dictionary:
 	for candidate in [path,path+".bak"]:
 		if not FileAccess.file_exists(candidate): continue
 		var file := FileAccess.open(candidate,FileAccess.READ)
-		if file == null or file.get_length() > 1048576: continue
+		if file == null or file.get_length() > 8388608: continue
 		var parser := JSON.new()
 		var error := parser.parse(file.get_as_text())
 		file.close()
@@ -63,6 +71,9 @@ static func valid(data: Variant) -> bool:
 static func restore(game: Node, raw: Dictionary) -> bool:
 	var data := FarmSaveSchema.normalize(raw)
 	if data.is_empty(): return false
+	game.cancel_pending_save()
+	while game.hud.close_active_panel(): pass
+	game.touch_input.reset()
 	game.auto_move.cancel()
 	GameState.set_control_mode(data.control_mode, false)
 	GameState.manual_tool = false
@@ -75,6 +86,13 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	Story.restore(data["story"])
 	Letters.restore(data["letters"])
 	Xiaojing.restore(data["xiaojing"])
+	MineState.restore(data["mines"])
+	ChapterTwo.restore(data["chapter_two"])
+	StarStory.restore(data["star_story"])
+	River.restore(data["river"])
+	LegendState.restore(data["legend"])
+	AbyssState.restore(data["abyss"])
+	Aquaculture.restore(data["aquaculture"])
 	VillageProjects.restore(data["village"])
 	game.world.resource_field.restore(data["resources"])
 	GameState.stamina = int(data["stamina"])
@@ -92,4 +110,5 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	GameClock.changed.emit()
 	GameState.changed.emit()
 	Events.tool_changed.emit()
+	Playtest.loaded()
 	return true

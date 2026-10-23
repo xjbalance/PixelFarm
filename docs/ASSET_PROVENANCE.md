@@ -29,3 +29,15 @@ python3 tools/generate_assets.py
 
 
 0.4.0新增小京：`tools/generate_xiaojing_assets.py` 以本工程16px原有色板绘制独立32×48角色；`portrait.gd` 原生几何绘制独立头像，`greenhouse.gd` 绘制温室与星灯。未调用AI图片生成服务或引入第三方角色素材。新主线、小京五段关系、12个任务结语、七份记忆、婚礼与婚后信件均为本项目原创文字。截图04来自真实Godot渲染的测试夹具，不代表新档已具备这些进度。
+
+0.5.0矿区图集由`tools/generate_mine_assets.py`使用同一32px色板与固定种子生成，机关/矿脉/入口/灯台由`mine_map.gd`、`mine_point.gd`、`ore_node.gd`原创几何绘制。没有引入外部游戏资源或图片生成服务。05截图为实际Godot窗口渲染的进度夹具；可玩性另由碰撞/输入集成测试验证。
+
+## 0.6.0新增原创资产
+
+工具tools/generate_060.py沿用项目几何像素风：扩展mines.png为五区小图集，原前12图块保留；xiaojing_wedding.png沿原角色轮廓绘制原创礼服/发饰；wedding_floor.png为原创室内地板/墙图块。礼堂桌/杯/灯/1314灯点与村庄交接台由脚本像素绘制。
+
+star_vow.wav为自合成短循环旋律，star_chimes.wav为正弦合成铃风环境音，无外部采样。角色、文本与新机关场景没有使用商业游戏素材。Noto字体与原引擎许可保留，APK校验确认许可内容完整。截图均由实际Godot窗口渲染，使用进度夹具，不能作为真人流程或手机实测证据。
+
+## 0.6.2湖泊养殖
+
+assets/aquaculture 下16张PNG由 tools/generate_aquaculture_assets.py 用Pillow几何逐像素原创生成，含6成鱼、6鱼苗、2帧游动图集、饲料与两种料理。六鱼具有不同轮廓与鳍尾特征，不引用商业游戏素材。岸上木台/栏网/维护箱由 aquaculture_point.gd 程序绘制，沿用现有农场色板；不增加动态光源。

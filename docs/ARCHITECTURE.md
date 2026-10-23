@@ -1,3 +1,14 @@
+# 0.5.0架构增量
+
+- `MineState`拥有矿物/工具/加工/机关/宝箱事务；`MiningSaveSchema`验证新状态。资源与地图定义在`resources/mining`。
+- `CaveMap`按设计数据创建TileMapLayer与交互对象；`ore_node`仅负责碰撞与受击表现，`mine_point`复用原交互组。
+- `WorldTravel`统一六图可见性、物理启停、相机和出生点，复用同一个玩家。导航仍采样真实碰撞，变更等待物理同步；静态障碍按变更缓存，NPC动态占位。
+- `ChapterTwo`记录探索、机关和人物事实，连续八项一次性奖励使用原`Inventory.exchange`。`mine_panel`只提交阅读/确认，不能远程开采或跳过前置。
+- schema7逐步迁移v1–v6；`Xiaojing`保留既有任务与婚姻，实体矿道/星灯共用旧试炼ID。旧路线盘只可完成迁移后在途的一轮。
+- 矿图无每格脚本/粒子/阴影灯阵；共用单盏玩家灯，仅可见地图处理。手机性能尚未实测。
+
+下方保留历史架构记录，版本号与范围以本段及README为准。
+
 # 0.4.0架构补充
 
 当前用户文档见[README](../README.md)，下方保留0.3.0历史架构说明。
@@ -92,3 +103,35 @@
 - `landscape_details` 缓存地形接壤边线，仅在地图状态变化时重建；植物/水面以低频刷新。`weather_screen` 位于单独画布，显示雨、萤火、换图过渡和章节横幅，不截获输入。工具图标、衣着和建筑素材有可复现绘制脚本。
 - 音效池与配乐/雨声独立；常驻声音跟随静音和前后台状态。无界面默认不启动常驻播放，自动测试显式启动来验证静音；渲染测试验证真实窗口的循环播放。关窗先存档、停止混音并留清理帧后退出，避免 Godot 4.3 长 WAV 强制退出时未释放播放对象。
 - 存档 v3 校验已读主线与当前章节、选择与结局、建设与章节前置、每日福利日期；无效数据整体拒绝。v1/v2 迁移新增剧情与村庄字段取初值，保留旧经营数据。
+
+## 0.5.0 小京深化：独立剧情层
+
+`StarStory` autoload只拥有补充剧情与合约状态，旧`Xiaojing`继续拥有播种、三属性、任务、记忆、钻石和婚姻。`StarTrials`记录实际农田提交、有效新田销售、真实加工领取、矿道重访与联合协作。`StarWorld/StarPoint`仅表现与入口，`StarPanel`复用原安全区/长文滚动/模态按钮。新实体不增加地图墙体，不复制角色控制器。
+
+`FarmSaveStore`写v8的`star_story`；`StarSaveSchema`整体验证后恢复，旧进度推导无奖励迁移。婚礼phase0–4分别为未开场、待布置、待最终确认、已扣钻待收尾、已结束。求婚事件不改变旧proposed==married约束。婚后日期始终按day-wedding_day，读取回信不依赖后台通知是否先执行。
+
+`DiamondPayments`负责报价/确认/单笔支付上下文。`Inventory.preview_exchange`在临时钻石上下文将负金币费用折为钻石，仍完整验证材料/容量；`exchange`一次提交原库存、金币与独立钻石余额。上下文同步结束恢复，不写存档；原主线和制造仍检查各自前置。只有商品/服务UI明确确认后才启用该上下文，奖励事务不受影响。
+
+## P0统一日结算与P1深渊
+
+GameClock.request_sleep(expected_day)统一验证20:00–23:59与确认日期，兼容next_day也受限。_settle检查来源和重入锁，day_ending先清理移动/交互/模态，再唯一day_advanced。午夜走fatigue分支回60%，无需新增存档字段；剧情现只有等到18:00，无任意跳日接口。
+
+AbyssState与LegendState为新增autoload；AbyssMap只保留当前40×28楼层，切层通过WorldTravel复用原玩家，地图数据在resources/abyss。AbyssPoint向状态层发请求，真实TileMap闸变化通知原Navigation失效并等物理同步；旧矿区常量与主线任务不改。
+
+LegendTrials接收原农田成功提交、有效新田销售、加工入队/领取、深渊到达与村民协作，不从展示信号计数。强化徽记与原试炼ID同时认可但不重复发奖，避免十二约定与温室之间形成循环依赖。schema9独立abyss/legend在整档验证前只规范新分区整数表示，随后统一恢复；不把JSON整数浮点表示误当楼层枚举损坏。
+
+## 0.6.0扩展层
+
+River持有新增补充事件，不接管原农田/库存/小京关系。AbyssRules处理区域辅助台与机关轮次，AbyssMap仍只实例化当前100层之一。地格数据和已保存整数均规范化，已走格运行时哈希、保存时保留稳定列表。矿石再生由原day_advanced统一驱动，避开玩家。
+
+GreenhouseVenue是独立场景，原Player/Camera通过WorldTravel复用；StarCeremony只负责位置与仪式步骤，最终扣钻仍由原Xiaojing确认事务完成。新增音轨注册到Audio.extra_channels，在统一静音/后台/退出流程中清理。新主线ID追加至原ChapterTwo，奖励与完成标志仍同一提交，River仅提供真实事实和政策。
+
+v10在恢复前校验river与扩展abyss，旧任务/奖励/婚姻/操作方式不重置。普通玩家不启用测试夹具legacy_rules，旧已确认婚约与已接合约明确兼容；新合约/婚礼走0.6条件。
+
+## 0.6.2湖泊养殖分层
+
+Aquaculture autoload拥有状态和原子操作；fish.json定义物品、六鱼、三级设施、七配方。AquacultureSaveSchema只验证/初始化，不发奖。Catalog单独注册aquaculture_items，旧material工具UI不受影响。AquacultureWorld将四个interactable挂在原FarmWorld/Actors；可点击水面栏体，resolve返回岸边锚点。AquaculturePanel只展示/确认与发请求，距离、日期、库存、容量都在状态层重查。
+
+GameClock.day_advanced是唯一日推进源，module和pen.last_settled_day防重，幼鱼cohorts保持独立四分日年龄，成熟和出生都在日结算；restore不调用settle。处理成功发progress_committed，由原main合并同帧自动保存。v11加aquaculture分区，不改变其他分区ID。鱼售卖复用FarmEconomy，已补所有成功交易提交信号。
+
+小京合作只在原NPC日程切换站点，不创建第二个角色；09–18现场观察、三日真实照料与收获后一次小幅羁绊，不改原婚礼门槛。低频鱼群绘制按示意数量而非库存逐节点实例化，建造碰撞变化发navigation_changed。

@@ -23,6 +23,12 @@ func interact() -> void:
 	if person_id == "xiaojing":
 		Events.interaction_requested.emit("xiaojing")
 		return
+	if (StarStory.has("proposal") and person_id not in StarStory.state.invited) or StarTrials.active("joint") or LegendTrials.active("joint"):
+		Events.interaction_requested.emit("star:person:"+person_id)
+		return
+	if River.needs_talk(person_id):
+		Events.interaction_requested.emit("river:talk:"+person_id)
+		return
 	if person_id == "linya": FarmProgress.talk()
 	if Story.stage == 0 and person_id == "linya":
 		Events.dialogue_requested.emit(speaker,["屋东的信箱里有你姨婆留的信。先看看吧，那是写给你的。","我就在这里，不着急。种子摊和田地都等着你。"])

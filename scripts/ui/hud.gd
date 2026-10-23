@@ -3,7 +3,7 @@ signal movement(direction: Vector2)
 signal bag_requested
 signal save_requested
 signal load_requested
-signal sleep_requested
+signal sleep_requested(expected_day: int)
 signal mute_requested
 var root: Control
 var safe: Control
@@ -23,6 +23,11 @@ var inventory_panel: PanelContainer
 var system_panel: PanelContainer
 var progress_panel: PanelContainer
 var story_panel: PanelContainer
+var river_panel: PanelContainer
+var abyss_panel: PanelContainer
+var star_panel: PanelContainer
+var aquaculture_panel: PanelContainer
+var mine_panel: PanelContainer
 var xiaojing_panel: PanelContainer
 var quest_label: Label
 var scrim: ColorRect
@@ -52,6 +57,9 @@ func _ready() -> void:
 	GameClock.changed.connect(refresh)
 	Story.changed.connect(refresh)
 	Letters.changed.connect(refresh)
+	ChapterTwo.changed.connect(refresh)
+	AbyssState.changed.connect(refresh_clock)
+	AbyssState.air_changed.connect(refresh_clock)
 	VillageProjects.changed.connect(refresh)
 	get_viewport().size_changed.connect(update_safe_area)
 	update_safe_area()
@@ -73,7 +81,7 @@ func build_top() -> void:
 	var names := VBoxContainer.new()
 	brand.add_child(names)
 	names.add_child(FarmUIStyle.label("像 素 世 界", 21, FarmUIStyle.GOLD))
-	names.add_child(FarmUIStyle.label("Pixel World · 0.4.0", 12, Color("b9c4a5")))
+	names.add_child(FarmUIStyle.label("Pixel World · 0.6.2", 12, Color("b9c4a5")))
 	var time_panel := PanelContainer.new()
 	top.add_child(time_panel)
 	clock_label = FarmUIStyle.label("第 1 天  ·  06:00", 17)
@@ -178,7 +186,7 @@ func build_feedback() -> void:
 	safe.add_child(system_panel)
 	system_panel.save_requested.connect(func(): save_requested.emit())
 	system_panel.load_requested.connect(func(): load_requested.emit())
-	system_panel.sleep_requested.connect(func(): sleep_requested.emit())
+	system_panel.sleep_requested.connect(func(expected_day: int): sleep_requested.emit(expected_day))
 	system_panel.mute_requested.connect(func(): mute_requested.emit())
 	progress_panel = PanelContainer.new()
 	progress_panel.set_script(preload("res://scripts/ui/progress_panel.gd"))
@@ -192,6 +200,26 @@ func build_feedback() -> void:
 	xiaojing_panel.set_script(preload("res://scripts/ui/xiaojing_panel.gd"))
 	place(xiaojing_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
 	safe.add_child(xiaojing_panel)
+	mine_panel=PanelContainer.new()
+	mine_panel.set_script(preload("res://scripts/ui/mine_panel.gd"))
+	place(mine_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(mine_panel)
+	star_panel=PanelContainer.new()
+	star_panel.set_script(preload("res://scripts/star/star_panel.gd"))
+	place(star_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(star_panel)
+	abyss_panel=PanelContainer.new()
+	abyss_panel.set_script(preload("res://scripts/abyss/abyss_panel.gd"))
+	place(abyss_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(abyss_panel)
+	river_panel=PanelContainer.new()
+	river_panel.set_script(preload("res://scripts/river/river_panel.gd"))
+	place(river_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(river_panel)
+	aquaculture_panel=PanelContainer.new()
+	aquaculture_panel.set_script(preload("res://scripts/aquaculture/aquaculture_panel.gd"))
+	place(aquaculture_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(aquaculture_panel)
 	# 提示位于模态层上方，金币不足、奖励和保存反馈不会被遮罩盖住。
 	safe.move_child(toast,-1)
 	Events.modal_changed.connect(func(active: bool):
@@ -230,7 +258,7 @@ func apply_safe_area(area: Rect2, screen: Vector2) -> void:
 		safe.offset_bottom = -(screen.y - area.end.y) * ratio.y
 
 func refresh() -> void:
-	clock_label.text = "第 %d 天 · %s\n%s · %s" % [GameClock.day,GameClock.clock_text(),Story.NAMES[GameState.location],GameWeather.label()]
+	refresh_clock()
 	money_label.text = "%d 金" % Inventory.coins
 	stamina_label.text = "体力  %d / %d" % [GameState.stamina,GameState.max_stamina()]
 	stamina_bar.max_value = GameState.max_stamina()
@@ -240,6 +268,8 @@ func refresh() -> void:
 		var next := Letters.next_task()
 		quest_label.text = "下一页 · "+Letters.DIRECTIONS.get(Letters.direction,"到风灯架商量发展方向")
 		if not next.is_empty(): quest_label.text += "\n"+str(next.title)
+	if Story.stage==8 and not ChapterTwo.current().is_empty():
+		quest_label.text="山谷深处的回声\n"+str(ChapterTwo.current().title)
 	for i in range(tool_buttons.size()):
 		var id: String = GameState.tools[i]
 		var amount := str(Inventory.count(id)) if id.ends_with("_seed") else str(i + 1)
@@ -264,7 +294,7 @@ func close_active_panel() -> bool:
 	if dialogue.visible:
 		dialogue.close_dialogue()
 		return true
-	for panel in [xiaojing_panel,story_panel,progress_panel,system_panel,inventory_panel]:
+	for panel in [aquaculture_panel,river_panel,abyss_panel,star_panel,mine_panel,xiaojing_panel,story_panel,progress_panel,system_panel,inventory_panel]:
 		if panel.visible:
 			panel.close_panel()
 			return true
@@ -285,3 +315,9 @@ func refresh_farm_guide() -> void:
 func _process(delta: float) -> void:
 	toast_time = maxf(0, toast_time - delta)
 	toast.visible = toast_time > 0
+
+func refresh_clock() -> void:
+	var detail: String="%s · %s" % [Story.NAMES[GameState.location],GameWeather.label()]
+	if GameState.location=="abyss": detail="%d层 · 空气%d/160" % [AbyssState.state.depth,AbyssState.state.air]
+	clock_label.text="第 %d 天 · %s\n%s" % [GameClock.day,GameClock.clock_text(),detail]
+	clock_label.add_theme_color_override("font_color",Color("efb895") if GameState.location=="abyss" and AbyssState.state.air<30 else FarmUIStyle.CREAM)

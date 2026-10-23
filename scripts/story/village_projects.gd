@@ -27,6 +27,7 @@ func build(id: String) -> bool:
 		Events.notice.emit("材料或金币还没备齐，已保留你带来的所有物品。")
 		return false
 	built.append(id)
+	Playtest.record("task",{"id":"village:"+id})
 	built_project.emit(id)
 	changed.emit()
 	Story.changed.emit()

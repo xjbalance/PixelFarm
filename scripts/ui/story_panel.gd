@@ -18,7 +18,9 @@ func _ready() -> void:
 	title = FarmUIStyle.label("那些没有寄出的信",25,FarmUIStyle.GOLD)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
+	header.add_child(FarmUIStyle.button("矿道手记",func(): close_panel(); Events.interaction_requested.emit("mine:journal"),120))
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
+	DiamondPayments.controls(column,refresh)
 	var navigation := HBoxContainer.new()
 	navigation.add_theme_constant_override("separation",10)
 	column.add_child(navigation)
@@ -51,6 +53,7 @@ func open_panel(construction: bool = false) -> void:
 	refresh()
 
 func close_panel() -> void:
+	DiamondPayments.cancel(self)
 	hide()
 	GameState.set_modal(false)
 
@@ -99,7 +102,7 @@ func build_story() -> void:
 		var costs: Array[String] = []
 		for item in definition.materials: costs.append("%s %d/%d" % [Catalog.item_name(item),Inventory.count(item),definition.materials[item]])
 		words.add_child(FarmUIStyle.label("  ·  ".join(costs)+"  ·  %d 金" % definition.coins,14,Color("afc29e")))
-		var button := FarmUIStyle.button("已建成" if built else "一起建造",VillageProjects.build.bind(id),138)
+		var button := FarmUIStyle.button("已建成" if built else "一起建造",func(): DiamondPayments.request(self,int(definition.coins),func(): VillageProjects.build(id); refresh()),138)
 		button.disabled = built or not at_board or Story.stage < 6
 		row.add_child(button)
 	text_row("读过风车建设簿后，可在村中共建板交付材料。" if Story.stage < 6 else ("大家出手艺，你来备材料。建设完成立即生效并保存。" if at_board else "到广场南边的共建板交付材料；手记随时可查看。"),14,Color("b7c6ab"))

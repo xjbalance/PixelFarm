@@ -6,27 +6,33 @@ static func near(test: Node, game: Node, minute: int = 600) -> void:
 	var point := Vector2(1120,674) if minute<1080 else Vector2(624,674)
 	game.change_location("village",point)
 	await test.frames()
+	for object in game.get_tree().get_nodes_in_group("xiaojing"):
+		if object.is_visible_in_tree(): game.player.global_position=object.global_position+Vector2(0,45)
 
 static func collect(test: Node, game: Node, id: String) -> void:
 	for memory in Xiaojing.data.memories:
 		if memory.id == id:
 			game.change_location(memory.location,Vector2(memory.position[0],memory.position[1])+Vector2(0,36))
 			await test.frames()
-			game.action_cooldown=0
-			game.interact()
-			test.check(game.hud.xiaojing_panel.visible and game.hud.xiaojing_panel.page=="story","真实邻近交互能选中独立记忆："+id)
-			if game.hud.xiaojing_panel.visible:
-				game.hud.xiaojing_panel.finish_story()
-				game.hud.xiaojing_panel.close_panel()
+			var old_mode: String=GameState.control_mode
+			GameState.set_control_mode("tap",false)
+			game.auto_move.request(Vector2(memory.position[0],memory.position[1])+Vector2(0,-14))
+			await load("res://tests/mining.gd").settle(test,game)
+			GameState.set_control_mode(old_mode,false)
+			test.check(game.hud.star_panel.visible and game.hud.star_panel.context=="memory:"+id,"真实邻近交互能选中独立记忆："+id)
+			if game.hud.star_panel.visible:
+				await test.frames(3)
+				load("res://tests/story.gd").touch(test,game.hud.star_panel.content.get_child(4))
+				game.hud.star_panel.close_panel()
 			test.check(id in Xiaojing.state.memories,"读取独立记忆："+id)
 
-static func grow(game: Node, count: int) -> void:
+static func grow(game: Node, count: int, crop: String = "carrot") -> void:
 	for i in range(count):
 		var cell := Vector2i(17+i%10,16+int(i/10)%6)
 		game.farm.plots.erase(game.farm.key(cell))
 		game.farm.use_tool(cell,"hoe")
-		game.farm.use_tool(cell,"carrot_seed")
-		game.farm.plots[game.farm.key(cell)].days=2
+		game.farm.use_tool(cell,crop+"_seed")
+		game.farm.plots[game.farm.key(cell)].days=Catalog.crops[crop].growth_days
 		game.farm.use_tool(cell,"hand")
 		GameState.rest()
 
@@ -34,6 +40,12 @@ static func run(test: Node, game: Node) -> void:
 	var saved := FarmSaveStore.snapshot(game)
 	game.hud.close_active_panel()
 	Xiaojing.restore(Xiaojing.defaults())
+	StarStory.restore(StarStory.defaults())
+	LegendState.restore(LegendState.defaults())
+	AbyssState.restore(AbyssState.defaults())
+	River.state.legacy_rules=true
+	River.state.legacy_scene=true
+	River.state.old_checkpoints=[5,15]
 	GameClock.day=100
 	GameClock.running=false
 	Inventory.items={"carrot_seed":999,"carrot":30,"wheat":99,"potato":99,"wood":99,"stone":99}
@@ -98,32 +110,48 @@ static func run(test: Node, game: Node) -> void:
 	await near(test,game)
 	test.check(Xiaojing.finish_quest(),"两岸记忆推进人物调查任务")
 	test.check(not Xiaojing.puzzle_input(1) and Xiaojing.state.puzzle_step==0,"解谜错误重置本轮")
+	game.change_location("home",Vector2(752,468))
+	await test.frames()
 	for symbol in [0,2,1]: Xiaojing.puzzle_input(symbol)
+	await near(test,game)
 	test.check(Xiaojing.finish_quest(),"机关解谜完成专属任务")
 	await collect(test,game,"pond")
 	await collect(test,game,"post")
+	game.change_location("farm",Vector2(1360,800))
+	await test.frames()
+	test.check(StarStory.inspect_greenhouse() and StarStory.repair_vent(),"真实温室调查与气窗修复")
 	await near(test,game)
 	test.check(Xiaojing.finish_quest(),"三地图探索与五份记忆完成路线任务")
 	await near(test,game,1100)
 	test.check(Xiaojing.activity() and not Xiaojing.activity(),"共同活动有地点、时间和每日限额")
 	test.check(Xiaojing.finish_quest(),"共同计划任务可完成")
+	test.check(StarStory.choose("tables","together"),"共同行动后可明确选择研究桌安排")
 	await collect(test,game,"hearth")
 	await collect(test,game,"orchard")
+	game.change_location("farm",Vector2(1360,800))
+	await test.frames()
+	for id in ["window","bridge","post"]: StarStory.assemble(id)
+	test.check(StarStory.has("history_solved") and StarStory.choose("closure","water"),"七份记忆后实际拼接温室历史并作出用水决定")
 	await near(test,game)
 	test.check(Xiaojing.state.memories.size()==7 and not Xiaojing.start_trial("joint"),"七份独立记忆齐全，联合试炼不提前开放")
 	test.check(Xiaojing.start_trial("management"),"经营试炼可以开始")
 	var old_profit: int = Xiaojing.state.trial.profit
 	FarmEconomy.sell("wood",1)
 	test.check(Xiaojing.state.trial.profit==old_profit,"出售旧库存不能冒充经营试炼的新田收入")
-	Inventory.items.carrot_seed=200
-	grow(game,60)
-	FarmEconomy.sell("carrot",60)
+	Inventory.items.potato_seed=48
+	Inventory.items.wheat_seed=12
+	grow(game,48,"potato")
+	grow(game,12,"wheat")
+	FarmEconomy.sell("potato",48)
+	FarmEconomy.sell("wheat",12)
 	test.check(Xiaojing.check_trial() and Xiaojing.finish_quest(),"真实新田种植、收获与销售完成经营挑战")
 	Inventory.coins=5000
 	Inventory.items.wood=200
 	Inventory.items.stone=200
 	FarmProgress.build_upgrade("toolrack")
 	FarmProgress.build_upgrade("bedding")
+	advanced_fixture()
+	Inventory.items.copper_ore=10
 	test.check(Xiaojing.start_trial("planning"),"资源规划试炼可以开始")
 	GameState.rest()
 	game.change_location("farm",Vector2(700,500))
@@ -133,10 +161,25 @@ static func run(test: Node, game: Node) -> void:
 		var object: Node = game.world.resource_field.objects[id]
 		while game.world.resource_field.state[id].hp>0:
 			game.world.resource_field.hit(id,FarmResourceCatalog.TYPES[object.kind].tool)
+	game.change_location("village",Vector2(528,480))
+	await test.frames()
+	test.check(MineState.enqueue("copper_bar"),"资源试炼亲自排入铜锭加工")
+	test.advance_day()
+	test.check(MineState.claim_job(int(MineState.state.queue.back().id)),"次日领取本轮铜锭")
+	game.change_location("farm",Vector2(1360,800))
+	await test.frames()
+	test.check(StarTrials.build_hinge(),"资源试炼实际安装温室铰链")
 	await near(test,game)
 	test.check(Xiaojing.check_trial() and Xiaojing.finish_quest(),"真实采集与剩余体力完成资源规划")
-	var cave_started := Xiaojing.start_trial("cave") and Xiaojing.start_cave(true)
-	test.check(cave_started,"困难基础矿道试炼开启")
+	test.check(Xiaojing.start_trial("cave") and not Xiaojing.start_cave(true),"新档不能从旧路线盘新开钻石勘探")
+	# 构造真实v6在途记录，验证旧版一轮仍可继续；实体试炼另在mining.gd验证。
+	var legacy := FarmSaveStore.snapshot(game)
+	legacy.version=6
+	legacy.erase("mines")
+	legacy.erase("chapter_two")
+	legacy.xiaojing.cave={"x":1,"y":1,"air":36,"hard":true,"visited":[10],"mined":[]}
+	var cave_started: bool = FarmSaveStore.restore(game,legacy) and MineState.state.legacy_board_claimable
+	test.check(cave_started,"v6未结束的困难路线迁移后仍可继续")
 	if not cave_started:
 		FarmSaveStore.restore(game,saved)
 		return
@@ -159,21 +202,42 @@ static func run(test: Node, game: Node) -> void:
 	test.check(Xiaojing.leave_cave() and "cave" in Xiaojing.state.trials and Xiaojing.finish_quest(),"合法路线完成矿道原型试炼并获得钻石")
 	var diamonds: int = Xiaojing.state.diamonds
 	test.check(not Xiaojing.leave_cave() and Xiaojing.state.diamonds==diamonds,"矿道结算不能重复领取")
+	advanced_fixture()
 	test.check(Xiaojing.start_trial("mechanism"),"七份记忆解锁四星机关")
-	for i in range(5): Xiaojing.mechanism_input(0)
+	game.change_location("mine_c",MineState.point(MineState.placements.c_star_hint)+Vector2(0,32))
+	await test.frames()
+	StarTrials.observe_note("c_star_hint")
+	await near(test,game)
+	test.check(not Xiaojing.mechanism_input(0),"不能在小京面前远程操作洞窟星灯")
+	for i in range(5):
+		game.change_location("mine_c",MineState.point(MineState.placements.star_0)+Vector2(0,32))
+		await test.frames(4)
+		Xiaojing.mechanism_input(0)
 	test.check(Xiaojing.state.mechanism==0 and Xiaojing.state.mechanism_moves==0,"机关五步失败可重置，不锁死后续进度")
-	for symbol in [0,2,4,6,8]: Xiaojing.mechanism_input(symbol)
+	for symbol in [0,2,4,6,8]:
+		game.change_location("mine_c",MineState.point(MineState.placements["star_"+str(symbol)])+Vector2(0,-32))
+		await test.frames(4)
+		Xiaojing.mechanism_input(symbol)
+	await near(test,game)
 	test.check("mechanism" in Xiaojing.state.trials and Xiaojing.finish_quest(),"机关试炼推进第11个专属任务")
 	test.check(Xiaojing.start_trial("joint"),"四项试炼完成后开放联合考察")
 	for location in ["home","farm","village"]: game.change_location(location)
 	game.change_location("farm",Vector2(700,500))
-	grow(game,6)
-	await near(test,game)
+	Inventory.items.wheat_seed=10
+	grow(game,6,"wheat")
+	game.change_location("home",Vector2(752,468))
+	await test.frames()
 	for symbol in [0,2,1]: Xiaojing.puzzle_input(symbol)
+	for id in ["linya","zhou","ahe"]:
+		await person(test,game,id)
+		test.check(StarTrials.collaborate(id),"联合考察现场协作："+id)
+	await near(test,game)
 	test.check(Xiaojing.check_trial() and Xiaojing.finish_quest() and Xiaojing.state.quests.size()==12,"联合考察要求探索、种植与解谜，12项全部可推进")
 	Inventory.coins=5000
 	Inventory.items.wood=99
 	Inventory.items.stone=99
+	River.state.legacy_scene=true
+	LegendState.state.legacy_vow=true # 隔离原结构修复与既定婚约回归；新五阶段由legend_runner覆盖。
 	test.check(Xiaojing.repair_greenhouse() and not Xiaojing.repair_greenhouse(),"温室修复只扣一次材料")
 	# 属性上限与所有关系事件；以测试夹具设置三属性，不伪称150小时试玩。
 	Xiaojing.boost(100,100,100)
@@ -184,22 +248,33 @@ static func run(test: Node, game: Node) -> void:
 	Inventory.items.potato=99
 	Inventory.items.wheat=99
 	Inventory.items.wood=99
+	MineState.state.commission_mines=["c_star_0","c_star_1","c_diamond_0"]
 	test.check(Xiaojing.hard_order() and not Xiaojing.hard_order(),"高阶委托三日周期防刷")
 	Xiaojing.state.ore=10
 	Inventory.items.stone=99
 	diamonds=Xiaojing.state.diamonds
 	test.check(Xiaojing.refine() and Xiaojing.state.diamonds==diamonds+2 and Xiaojing.state.ore==5,"稀有材料加工扣原矿与石料")
+	# 隔离验证v8已约定婚礼的原流程；传说新增目标由独立新套覆盖。
+	LegendState.state.legacy_vow=true
+	Xiaojing.state.diamonds=1314
+	test.check(StarStory.propose("share_home"),"独立求婚事件不扣钻石")
+	for id in ["linya","zhou","ahe"]:
+		await person(test,game,id)
+		test.check(StarStory.invite(id),"亲自邀请村民："+id)
+	game.change_location("farm",Vector2(1360,800))
+	await test.frames()
+	test.check(StarStory.start_ceremony(),"温室开始独立婚礼")
+	game.player.position=Vector2(1280,884)
+	test.check(StarStory.place_wedding_table(),"亲手布置婚礼研究桌")
+	game.player.position=Vector2(1376,884)
 	Xiaojing.state.diamonds=1313
 	test.check(not Xiaojing.confirm_wedding(true) and not Xiaojing.state.married,"1313颗钻石不能结婚")
 	Xiaojing.state.diamonds=1314
 	test.check(not Xiaojing.confirm_wedding(false) and Xiaojing.state.diamonds==1314,"求婚取消不扣钻石")
-	game.hud.xiaojing_panel.open_panel()
-	game.hud.xiaojing_panel.page="wedding"
-	game.hud.xiaojing_panel.refresh()
+	game.hud.star_panel.open_panel("desk_right")
 	await test.frames(3)
-	load("res://tests/story.gd").touch(test,game.hud.xiaojing_panel.content.get_child(3))
-	test.check(Xiaojing.state.diamonds==1314 and game.hud.xiaojing_panel.page=="main","真实触点取消婚礼返回关系页，钻石保持")
-	game.hud.xiaojing_panel.close_panel()
+	load("res://tests/story.gd").touch(test,game.hud.star_panel.content.get_child(4))
+	test.check(Xiaojing.state.diamonds==1314 and not game.hud.star_panel.visible,"真实触点取消婚礼关闭面板，钻石保持")
 	test.check(Xiaojing.confirm_wedding(true) and Xiaojing.state.diamonds==0 and Xiaojing.state.married,"全部条件且1314颗钻石可一次完成婚礼事务")
 	test.check(not Xiaojing.confirm_wedding(true) and Xiaojing.state.diamonds==0,"婚后不能重复扣除钻石")
 	for resolution in [Vector2i(1280,720),Vector2i(1600,720),Vector2i(1280,960)]:
@@ -216,8 +291,16 @@ static func run(test: Node, game: Node) -> void:
 	Xiaojing.restore(Xiaojing.defaults())
 	test.check(FarmSaveStore.restore(game,married) and Xiaojing.state.married,"结婚状态恢复后保持")
 	await test.frames()
-	await near(test,game)
+	game.change_location("farm",Vector2(1360,800))
+	await test.frames()
+	test.check(StarStory.finish_ceremony() and StarStory.start_post("separate_desks"),"婚礼收尾后开始实际桌位协作项目")
+	for id in ["desk_left","desk_right"]:
+		var at: Array=StarStory.data.points[id].position
+		game.player.position=Vector2(at[0],at[1])+Vector2(0,36)
+		StarStory.work_desk(id)
+	game.player.position=Vector2(1360,800)
 	test.check(Xiaojing.post_event("separate_desks") and not Xiaojing.post_event("separate_desks"),"婚后专属事件只提交一次")
+	game.player.position=Vector2(1360,800)
 	GameClock.day=int(Xiaojing.state.wedding_day)+519
 	GameClock.running=true
 	Xiaojing._process(0.6)
@@ -238,3 +321,29 @@ static func run(test: Node, game: Node) -> void:
 	test.check(FarmSaveSchema.normalize(migrated)==migrated,"v4到v5迁移可重复执行")
 	FarmSaveStore.restore(game,saved)
 	await test.frames()
+
+static func advanced_fixture() -> void:
+	# 工具与主线的可玩解锁在矿洞集成测试覆盖；这里隔离测试恋爱门槛。
+	var mines := MineState.defaults()
+	mines.unlocked=["mine_a","mine_b","mine_c"]
+	mines.furnace=true
+	mines.tool=3
+	mines.track_repaired=true
+	mines.track_switch=1
+	mines.water_lowered=true
+	mines.hardened=true
+	mines.resonance_open=true
+	MineState.restore(mines)
+	var chapter := ChapterTwo.defaults()
+	for q in ChapterTwo.definitions.slice(0,6):
+		chapter.completed.append(q.id)
+		chapter.facts.append_array(q.conditions)
+	ChapterTwo.restore(chapter)
+
+static func person(test: Node, game: Node, id: String) -> void:
+	game.change_location("farm" if id=="linya" and GameClock.minutes<1080 else "village")
+	await test.frames()
+	for object in game.get_tree().get_nodes_in_group("interactables"):
+		if "person_id" in object and object.person_id==id and object.is_visible_in_tree():
+			game.player.global_position=object.global_position+Vector2(0,45)
+			return

@@ -14,10 +14,11 @@ func _ready() -> void:
 	add_child(layout)
 	var header := HBoxContainer.new()
 	layout.add_child(header)
-	var caption := FarmUIStyle.label("小京的约定",25,FarmUIStyle.GOLD)
+	var caption := FarmUIStyle.label("第 1314 颗星星",25,FarmUIStyle.GOLD)
 	caption.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	header.add_child(caption)
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,110))
+	DiamondPayments.controls(layout,refresh)
 	var scroll := ScrollContainer.new()
 	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"))
@@ -43,6 +44,7 @@ func open_panel(kind: String = "xiaojing") -> void:
 	else: refresh()
 
 func close_panel() -> void:
+	DiamondPayments.cancel(self)
 	pending = Callable()
 	hide()
 	GameState.set_modal(false)
@@ -97,12 +99,7 @@ func refresh() -> void:
 		button("取消，继续商量",func(): page="main"; refresh())
 	elif page == "puzzle":
 		if state.trial.get("id","") == "mechanism":
-			label_row("九格星灯：每按一格，会反转自身与上下左右的灯。五次以内将九盏灯全部点亮。\n记忆里的提示：先想角落，再想中央。已用%d/5次。" % state.mechanism_moves)
-			var grid := GridContainer.new()
-			grid.columns=3
-			content.add_child(grid)
-			for i in range(9):
-				grid.add_child(FarmUIStyle.button("亮" if (int(state.mechanism)&(1<<i))!=0 else "暗",func(): Xiaojing.mechanism_input(i); refresh(),150))
+			label_row("星灯已移到晶石洞窟东南的九座实体灯台。点击灯台会走近并反转自身与上下左右。五次内点亮全部。\n提示：先想角落，再想中央。已用%d/5次；错误会复位，可以重试。" % state.mechanism_moves)
 		else:
 			label_row("种箱刻痕：种子先落下，河风经过，潮声最后回答。\n错误会重置本轮。当前正确步数：%d" % state.puzzle_step)
 			for i in range(3): button(["种子","潮声","河风"][i],func(): Xiaojing.puzzle_input(i); refresh())
@@ -119,9 +116,9 @@ func build_main() -> void:
 		label_row("小京白天在河东观察站，傍晚在农场星灯台；婚后夜间也会回小屋。靠近她后可以交谈、赠礼和办理任务。")
 	else:
 		button("每日交谈",func():
-			read_story("今天各自做了什么","她把今天的水位画在记录边上，又留一块空白给你的见闻。" if not state.married else "小京把自己的调查笔记放在左边，把你的农场账本放在右边：先各自说今天遇到的一件小事吧。",func(): Xiaojing.talk())
+			read_story("今天各自做了什么",StarStory.daily_text(),func(): Xiaojing.talk())
 		)
-		for item in ["carrot","potato","wheat"]:
+		for item in ["carrot","potato","wheat","crystal","stone"]:
 			button("赠送%s ×1（每天一份）" % Catalog.item_name(item),func(): Xiaojing.gift(item); refresh())
 		var event := Xiaojing.available_event()
 		if not event.is_empty():
@@ -129,7 +126,7 @@ func build_main() -> void:
 		var quest := Xiaojing.current_quest()
 		if not quest.is_empty():
 			label_row("%s · %s\n%s" % [quest.type,quest.title,quest.description],20)
-			label_row(quest_progress(quest)+"\n交付："+materials_text(quest.materials),16)
+			label_row(quest_progress(quest)+"\n交付："+materials_text(quest.materials)+"\n"+str(quest.get("failure","")),16)
 			button("完成这项约定",func():
 				if not Xiaojing.quest_ready(quest) or not Story.has_items(quest.materials):
 					Events.notice.emit("目标尚未完成或材料不足，进度已保留。")
@@ -137,7 +134,7 @@ func build_main() -> void:
 				read_story(quest.title,quest.story,func(): Xiaojing.finish_quest(),"读完并提交约定")
 			)
 		button("共同写计划（茶座，18:00后）",func(): read_story("两份计划","你们把下一季想做的事写在同一张纸上，又为彼此保留不同的出发日期。",func(): Xiaojing.activity()))
-		button("种箱与星灯机关",func(): page="puzzle"; refresh())
+		button("种箱与星灯机关",func(): close_panel(); Events.interaction_requested.emit("star:seed_box"))
 		if state.quests.size()>=7:
 			if state.trial.is_empty():
 				for id in ["management","planning","cave","mechanism","joint"]:
@@ -148,21 +145,17 @@ func build_main() -> void:
 					if not Xiaojing.check_trial(): Events.notice.emit("试炼目标尚未满足；可继续尝试或放弃本轮。")
 					refresh()
 				)
-				button("放弃本轮试炼（不退还已用资源）",func(): state.trial={}; state.puzzle_step=0; Xiaojing.commit(); refresh())
-		button("基础矿道勘探",func(): page="cave"; refresh())
-		button("精炼原矿5 + 石料12 → 钻石2",func(): Xiaojing.refine(); refresh())
-		button("高阶考察委托：土豆12、小麦12、木材20 → 钻石5",func(): Xiaojing.hard_order(); refresh())
+				button("放弃本轮试炼（不退还已用资源）",func(): Playtest.record("trial_cancel",{"id":"basic:"+str(state.trial.id)}); state.trial={}; state.puzzle_step=0; StarTrials.cancel(); Xiaojing.commit(); refresh())
+		button("矿洞考察 / 旧档未结束路线",func(): page="cave"; refresh())
+		if state.ore>=5: button("旧原矿精炼：原矿5 + 石12 → 钻石2（需星纹镐与共鸣门）",func(): Xiaojing.refine(); refresh())
+		label_row("高级来源需星纹镐和共鸣门。委托需新采三处高级矿脉、间隔三日。新星辉原矿请在周砚工台加工。",16)
+		button("高阶考察委托：土豆12、小麦12、木20 → 钻石5",func(): Xiaojing.hard_order(); refresh())
 		button("开启记忆遗匣（收齐七份，一次18钻石）",func(): Xiaojing.claim_relic(); refresh())
-		if state.quests.size()==12 and not state.greenhouse: button("修复星光温室：木80、石60、800金",func(): Xiaojing.repair_greenhouse(); refresh())
-		if not state.married:
-			label_row("婚礼：三项属性100、五段关系事件、恋爱关系、12任务、7记忆、5试炼、温室修复、1314钻石。",16)
-			var propose := button("商量求婚与婚礼",func(): page="wedding"; refresh())
-			propose.disabled = not Xiaojing.marriage_ready()
-		else:
-			label_row("已经结婚 · 婚后第 %d 天" % (GameClock.day-state.wedding_day))
-			for id in ["separate_desks","field_trip","day520"]:
-				if id == "day520" and not state.ultimate: continue
-				if id not in state.post_events: button("婚后事件 · "+{"separate_desks":"并排的两张桌","field_trip":"各自归来的傍晚","day520":"第520日的回信"}[id],func(): read_story("星灯以外",post_text(id),func(): Xiaojing.post_event(id)))
+		if LegendState.state.legacy_vow and state.quests.size()==12 and not state.greenhouse: button("修复星光温室：木80、石60、800金",func(): DiamondPayments.request(self,800,func(): Xiaojing.repair_greenhouse(); refresh()))
+		if not LegendState.state.legacy_vow: button("传说约定 · 分阶段温室（农场东南档案桌）",func(): close_panel(); Events.interaction_requested.emit("abyss:legend"))
+		button("六幕剧情 / 关系选择 / 温室与婚后生活",func(): close_panel(); Events.interaction_requested.emit("star:overview"))
+		if state.married: label_row("已经结婚 · 婚后经过 %d 天。婚后项目在农场东南温室档案桌接取。" % (GameClock.day-state.wedding_day))
+
 	label_row("记忆收藏："+str(state.memories.size())+"/7",20)
 	for memory in Xiaojing.data.memories:
 		label_row(memory.title+" · "+Story.NAMES[memory.location]+(" ✓" if memory.id in state.memories else " · 未找到"),16)
@@ -181,26 +174,24 @@ func quest_progress(quest: Dictionary) -> String:
 		elif key == "locations": parts.append("观察区域 %d/%d" % [s.visited.size(),goal])
 		elif key == "trial": parts.append(trial_name(goal)+(" ✓" if goal in s.trials else " · 待挑战"))
 		else: parts.append("%s %d/%d" % [{"plant":"本项种植","activity":"共同活动","puzzle":"解开种箱"}[key],s.counters[key]-s.quest_baseline[key],goal])
+	for fact in quest.get("extra_facts",[]): parts.append({"vent_repaired":"温室气窗修复","history_solved":"温室历史拼接"}.get(fact,fact)+(" ✓" if StarStory.has(fact) else " · 待完成"))
 	return "目标已满足" if parts.is_empty() else " · ".join(parts)
 
 func trial_name(id: String) -> String:
-	return {"management":"八日经营","planning":"一日背囊","cave":"基础矿道路线","mechanism":"四星机关","joint":"联合考察"}[id]
+	return {"management":"八日经营","planning":"三日制作链","cave":"矿道实地考察","mechanism":"洞窟星灯","joint":"联合考察"}[id]
 
 func trial_progress() -> String:
 	var t: Dictionary = Xiaojing.state.trial
-	return "第%d日开始 · 种植%d · 新田收获%d · 净销售%d金\n采木%d/20 · 采石%d/12 · 体力%d（至少35）\n联合考察：地图%d/3、新田收获%d/6、解开一次种箱。\n矿道困难目标：采四处矿晶，探索20格，回到入口时余氧≥4。" % [t.day,t.plants,t.harvest,t.profit,t.wood,t.stone,GameState.stamina,t.maps.size(),t.harvest]
+	return StarTrials.describe()+"
+"+"第%d日开始 · 种植%d · 新田收获%d · 净销售%d金\n采木%d/20 · 采石%d/12 · 体力%d（至少35）\n联合考察：地图%d/3、新田收获%d/6、解开一次种箱。\n矿道：在村东北入口备小麦2开始考察，同日探索20格、采四处矿、到地下水脉并返回，保留20体力，采矿消耗≤90。" % [t.day,t.plants,t.harvest,t.profit,t.wood,t.stone,GameState.stamina,t.maps.size(),t.harvest]
 
 func build_cave() -> void:
 	var c: Dictionary = Xiaojing.state.cave
-	label_row("基础矿道 · 路线、气囊与回程规划。\n每次携带小麦2；移动耗氧1，开采耗氧2。三处矿晶带回可得钻石3。",17)
 	if c.is_empty():
-		label_row("需完成第一章和前七项小京任务后开放。原型为固定9×9路线盘，完整多层矿洞留待后续。",16)
-		button("开始普通勘探（60氧）",func():
-			if not Xiaojing.start_cave(): Events.notice.emit("先完成第一章、前七项约定，并备好小麦2。")
-			refresh()
-		)
-		if Xiaojing.state.trial.get("id","")=="cave": button("开始困难试炼（36氧）",func(): Xiaojing.start_cave(true); refresh())
+		label_row("新的考察在真实矿洞中进行：先读风车东侧运输单，再到村东北入口。废弃矿道、地下水脉、晶石洞窟都可以行走、采矿和操作机关。\n在入口板准备考察；加工、升级在周砚工台。小京的矿道副页在水脉和洞窟，旧记忆不会重复计数。",20)
+		button("查看矿道手记",func(): close_panel(); Events.interaction_requested.emit("mine:journal"))
 	else:
+		label_row("旧档尚未结束的一轮路线可继续或撤退，只结算一次。新勘探请步行进入实体矿洞。",17)
 		label_row("剩余氧气%d · 已采矿晶%d/4" % [c.air,c.mined.size()],21)
 		var map := ""
 		for y in range(9):

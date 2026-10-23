@@ -63,9 +63,9 @@ static func story_flow(test: Node,game: Node) -> void:
 	game.farm.use_tool(Vector2i(17,16),"hoe")
 	game.farm.use_tool(Vector2i(17,16),"carrot_seed")
 	game.farm.use_tool(Vector2i(17,16),"water")
-	GameClock.next_day()
+	test.advance_day()
 	game.farm.use_tool(Vector2i(17,16),"water")
-	GameClock.next_day()
+	test.advance_day()
 	game.farm.use_tool(Vector2i(17,16),"hand")
 	Inventory.items.carrot = 3
 	Story.request("linya")
@@ -176,7 +176,7 @@ static func village_benefits(test: Node,game: Node) -> void:
 	finish(game.hud.dialogue,"tea")
 	test.check(GameState.stamina == 60 and VillageProjects.tea_day == GameClock.day,"茶座剧情选择实际恢复40点体力")
 	test.check(not VillageProjects.drink_tea() and GameState.stamina == 60,"热茶每日不能重复领取")
-	GameClock.next_day()
+	test.advance_day()
 	GameState.stamina = 50
 	test.check(VillageProjects.drink_tea() and VillageProjects.water_fields(),"新一天恢复村庄设施每日额度")
 
@@ -184,10 +184,10 @@ static func weather_and_tools(test: Node,game: Node) -> void:
 	GameWeather.enabled = true
 	GameClock.day = 3
 	game.farm.plots = {"20,18":{"crop":"carrot","days":0,"watered":false}}
-	GameClock.next_day()
+	test.advance_day()
 	test.check(GameWeather.is_rainy() and game.farm.plots["20,18"].days == 0 and game.farm.plots["20,18"].watered,"雨天在昨夜成长之后补水，不凭空多长一天")
 	test.check(game.farm.use_tool(Vector2i(23,20),"hoe") and game.farm.plots["23,20"].watered,"雨天新翻土地即时接到雨水")
-	GameClock.next_day()
+	test.advance_day()
 	test.check(not GameWeather.is_rainy() and game.farm.plots["20,18"].days == 1 and not game.farm.plots["20,18"].watered,"雨后的成长正确结算，晴天恢复人工浇水")
 	game.change_location("farm",Vector2(656,560))
 	game.player.facing = Vector2.DOWN

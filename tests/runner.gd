@@ -25,6 +25,9 @@ func run() -> void:
 	game.persistence_enabled = false
 	add_child(game)
 	GameClock.running = false
+	River.state.legacy_rules=true
+	River.state.legacy_scene=true
+	River.state.old_checkpoints=[5,15]
 	await frames()
 	GameWeather.enabled = false
 	await phase_one()
@@ -72,15 +75,15 @@ func phase_one() -> void:
 	check(game.farm.use_tool(cell,"carrot_seed"), "播种")
 	check(Inventory.count("carrot_seed") == seeds - 1, "种子正确扣除")
 	check(not game.farm.use_tool(cell,"carrot_seed"), "不能覆盖已种作物")
-	GameClock.next_day()
+	advance_day()
 	check(int(game.farm.plots["18,17"]["days"]) == 0, "未浇水的作物不成长")
 	check(game.farm.use_tool(cell,"water"), "浇水")
 	check(not game.farm.use_tool(cell,"water"), "同一天重复浇水被拒绝")
-	GameClock.next_day()
+	advance_day()
 	check(int(game.farm.plots["18,17"]["days"]) == 1 and not game.farm.plots["18,17"]["watered"], "换日成长并清除浇水状态")
 	check(not game.farm.use_tool(cell,"hand"), "未成熟不可收获")
 	game.farm.use_tool(cell,"water")
-	GameClock.next_day()
+	advance_day()
 	check(game.farm.use_tool(cell,"hand"), "第二个生长日收获胡萝卜")
 	check(Inventory.count("carrot") == 1, "收获进入背包")
 	check(not game.farm.use_tool(cell,"hand"), "不能重复收获")
@@ -125,3 +128,7 @@ func phase_one() -> void:
 	touch.pressed = false
 	get_viewport().push_input(touch, true)
 	check(game.player.touch_direction == Vector2.ZERO, "松开摇杆立即停止")
+
+func advance_day() -> void:
+	GameClock.minutes=1200
+	GameClock.next_day()

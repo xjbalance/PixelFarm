@@ -50,6 +50,7 @@ func refresh() -> void:
 		var reward: Dictionary = definition.reward
 		if reward.get("settled_by","") == "" and not Inventory.exchange({},reward.get("items",{}),int(reward.get("coins",0))): continue
 		completed.append(definition.id)
+		Playtest.record("task",{"id":"letters:"+str(definition.id)})
 		updated = true
 	committing = false
 	if updated:

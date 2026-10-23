@@ -22,12 +22,19 @@ func commit_successful_plant(serial: int) -> void:
 	if state.plants >= 999999 or serial != int(state.plant_serial)+1: return
 	state.plant_serial = serial
 	state.plants = mini(999999,int(state.plants)+1)
+	Playtest.record("plant",{"plants":state.plants})
+	if state.plants==520: Playtest.record("unlock",{"id":"plants520"})
 	if state.unlocked: state.counters.plant += 1
 	if not state.trial.is_empty():
 		state.trial.plants += 1
 	commit()
 
 func on_farm_commit(action: String, cell: Vector2i, crop: String) -> void:
+	var eligible: bool=not state.trial.is_empty() and state.trial.sown.has("%d,%d" % [cell.x,cell.y])
+	StarTrials.on_farm(action,crop,eligible)
+	StarStory.on_farm(action)
+	LegendTrials.farm(action,cell,crop)
+	River.farm(action,cell,crop)
 	if action == "播种":
 		commit_successful_plant(int(state.plant_serial)+1)
 		if not state.trial.is_empty(): state.trial.sown["%d,%d" % [cell.x,cell.y]] = crop
@@ -40,19 +47,19 @@ func on_farm_commit(action: String, cell: Vector2i, crop: String) -> void:
 	commit()
 
 func on_gather(kind: String, amount: int) -> void:
-	if state.unlocked and kind == "stone":
-		state.mineral_counter += 1
-		if state.mineral_counter % 5 == 0: state.ore = mini(999999,state.ore+1)
+	# v7 起农场普通石堆不再产出可兑换钻石的原矿；旧库存保留。
 	if not state.trial.is_empty(): state.trial[kind] += amount
 	commit()
 
 func on_trade(coins: int, item: String, quantity: int) -> void:
+	LegendTrials.trade(item,quantity,coins)
 	if state.trial.is_empty(): return
 	if coins < 0:
 		state.trial.profit += coins
 	elif state.trial.outputs.has(item):
 		var eligible := mini(quantity,int(state.trial.outputs[item]))
 		state.trial.profit += eligible*Catalog.sell_price(item)
+		StarTrials.on_trade(item,eligible)
 		state.trial.outputs[item] -= eligible
 	commit()
 
@@ -76,6 +83,8 @@ func check_night() -> void:
 func read_letter() -> bool:
 	if not state.letter_ready or state.unlocked: return false
 	state.unlocked = true
+	Playtest.record("unlock",{"id":"xiaojing"})
+	StarStory.event("act_seed520")
 	state.letter_ready = false
 	commit()
 	return true
@@ -87,40 +96,37 @@ func nearby() -> bool:
 		if object.is_visible_in_tree() and object.global_position.distance_to(player.global_position) <= 76: return true
 	return false
 
-func boost(affection: int, trust: int, bond: int) -> void:
+func boost(affection: int, trust: int, bond: int, source: String = "legacy") -> void:
+	var before := Vector3i(state.affection,state.trust,state.bond)
 	state.affection = clampi(int(state.affection)+affection,0,100)
 	state.trust = clampi(int(state.trust)+trust,0,100)
 	state.bond = clampi(int(state.bond)+bond,0,100)
+	var gain := Vector3i(state.affection,state.trust,state.bond)-before
+	if gain!=Vector3i.ZERO: Playtest.record("relationship",{"source":source,"affection":gain.x,"trust":gain.y,"bond":gain.z})
+	if before!=Vector3i(100,100,100) and Vector3i(state.affection,state.trust,state.bond)==Vector3i(100,100,100): Playtest.record("unlock",{"id":"relationship100"})
 
 func talk() -> bool:
 	if not state.unlocked or not nearby() or state.talk_day >= GameClock.day:
 		Events.notice.emit("今天已经聊过了。她还要继续自己的工作，明天再交换见闻。")
 		return false
 	state.talk_day = GameClock.day
-	boost(1,1,0)
+	boost(1,0,0,"daily_talk")
 	commit()
 	return true
 
 func gift(item: String) -> bool:
-	if not state.unlocked or not nearby() or state.gift_day >= GameClock.day or item not in ["carrot","potato","wheat"]: return false
+	if not state.unlocked or not nearby() or state.gift_day>=GameClock.day or not StarStory.data.gifts.has(item): return false
 	if not Inventory.exchange({item:1},{},0): return false
-	Events.notice.emit("小京收下了这份心意，今天不必再送。")
-	state.gift_day = GameClock.day
-	boost(1,0,1)
+	var entry: Dictionary=StarStory.data.gifts[item]
+	state.gift_day=GameClock.day
+	LegendState.gift_gain(item,entry)
+	if entry.taste=="不喜欢": StarStory.state.gift_mood_day=GameClock.day
+	Events.notice.emit(entry.text)
 	commit()
 	return true
 
 func visit_memory(id: String) -> bool:
-	if not state.unlocked: return false
-	for memory in data.memories:
-		if memory.id != id: continue
-		var player := get_tree().get_first_node_in_group("farm_player") as Node2D
-		if not player or GameState.location != memory.location or player.global_position.distance_to(Vector2(memory.position[0],memory.position[1])) > 76: return false
-		if id not in state.memories: state.memories.append(id)
-		if memory.location not in state.visited: state.visited.append(memory.location)
-		commit()
-		return true
-	return false
+	return StarStory.memory_action(id,0)
 
 func current_quest() -> Dictionary:
 	for quest in data.quests:
@@ -130,6 +136,8 @@ func current_quest() -> Dictionary:
 func quest_ready(quest: Dictionary) -> bool:
 	if quest.is_empty() or quest.id in state.quests or not state.unlocked: return false
 	if quest.previous != "" and quest.previous not in state.quests: return false
+	for fact in quest.get("extra_facts",[]):
+		if not StarStory.has(fact): return false
 	for id in quest.conditions:
 		var goal = quest.conditions[id]
 		if id == "memory" and state.memories.size() < int(goal): return false
@@ -146,7 +154,8 @@ func finish_quest() -> bool:
 		committing = false
 		return false
 	state.quests.append(quest.id)
-	boost(int(quest.reward.affection),int(quest.reward.trust),int(quest.reward.bond))
+	boost(int(quest.reward.affection),int(quest.reward.trust),int(quest.reward.bond),"quest:"+str(quest.id))
+	Playtest.record("task",{"id":"xiaojing:"+str(quest.id)})
 	state.quest_baseline = state.counters.duplicate(true)
 	committing = false
 	commit()
@@ -155,6 +164,7 @@ func finish_quest() -> bool:
 func available_event() -> Dictionary:
 	for event in data.events:
 		if event.id in state.events: continue
+		if not StarStory.relationship_gate(event.id): return {}
 		if state.affection >= int(event.threshold) and state.trust >= int(event.threshold) and state.bond >= int(event.threshold): return event
 	return {}
 
@@ -164,7 +174,7 @@ func finish_event(id: String, accept_dating: bool = false) -> bool:
 	if id == "secret" and not accept_dating: return false
 	state.events.append(id)
 	if id == "secret": state.dating = true
-	if id in ["flower","promise"]: boost(0,0,3)
+	if id in ["flower","promise"]: boost(0,0,3,"relationship_event:"+id)
 	commit()
 	return true
 
@@ -172,15 +182,15 @@ func activity() -> bool:
 	if not nearby() or GameState.location != "village" or GameClock.minutes < 1080 or state.activity_day >= GameClock.day or not VillageProjects.has_project("arbor"): return false
 	state.activity_day = GameClock.day
 	state.counters.activity += 1
-	boost(0,1,1)
+	boost(0,0,1,"tea_activity")
 	commit()
 	return true
 
 func puzzle_input(symbol: int) -> bool:
-	if not nearby() or not state.unlocked or symbol < 0 or symbol > 8: return false
+	if not state.unlocked or symbol < 0 or symbol > 8: return false
 	var hard: bool = state.trial.get("id","") == "mechanism"
 	if hard: return mechanism_input(symbol)
-	if symbol > 2: return false
+	if symbol > 2 or not StarStory.near_point("seed_box"): return false
 	var solution: Array = [0,2,1]
 	if symbol != int(solution[int(state.puzzle_step)]):
 		state.puzzle_step = 0
@@ -190,14 +200,17 @@ func puzzle_input(symbol: int) -> bool:
 	if state.puzzle_step == solution.size():
 		state.puzzle_step = 0
 		state.counters.puzzle += 1
+		River.memory_step("hearth","box")
 		if hard: pass_trial("mechanism")
 	commit()
 	return true
 
 func start_trial(id: String) -> bool:
-	if not nearby() or Story.stage < 8 or state.quests.size() < 7 or id not in ["management","planning","cave","mechanism","joint"] or id in state.trials or not state.trial.is_empty(): return false
+	if LegendTrials.active() or not nearby() or Story.stage < 8 or state.quests.size() < 7 or id not in ["management","planning","cave","mechanism","joint"] or id in state.trials or not state.trial.is_empty(): return false
 	if id == "joint" and state.trials.size() < 4: return false
 	if id == "mechanism" and state.memories.size() < 7: return false
+	if not StarTrials.begin(id): return false
+	Playtest.record("trial_start",{"id":"basic:"+id})
 	state.trial = {"id":id,"day":GameClock.day,"plants":0,"harvest":0,"profit":0,"wood":0,"stone":0,"sown":{},"outputs":{},"maps":[],"puzzles":int(state.counters.puzzle)}
 	state.puzzle_step = 0
 	state.mechanism = 0
@@ -210,15 +223,17 @@ func check_trial() -> bool:
 	var trial: Dictionary = state.trial
 	var id: String = trial.id
 	if id == "management" and GameClock.day-int(trial.day) <= 8 and trial.plants >= 24 and trial.harvest >= 24 and trial.profit >= 1800: return pass_trial(id)
-	if id == "planning" and GameClock.day == int(trial.day) and trial.wood >= 20 and trial.stone >= 12 and GameState.stamina >= 35: return pass_trial(id)
+	if id == "planning" and (GameClock.day-int(trial.day)<=3 if StarTrials.active("planning") else GameClock.day==int(trial.day)) and trial.wood >= 20 and trial.stone >= 12 and GameState.stamina >= 35: return pass_trial(id)
 	if id == "joint" and state.memories.size() == 7 and trial.maps.size() == 3 and trial.harvest >= 6 and int(state.counters.puzzle)>int(trial.puzzles): return pass_trial(id)
 	return false
 
 func pass_trial(id: String) -> bool:
-	if state.trial.get("id","") != id or id in state.trials: return false
+	if state.trial.get("id","") != id or id in state.trials or not StarTrials.complete(id): return false
+	Playtest.record("trial_finish",{"id":"basic:"+id})
 	state.trials.append(id)
 	state.trial = {}
-	boost(1,1,1)
+	StarTrials.settled(id)
+	boost(1,1,1,"basic_trial:"+id)
 	commit()
 	return true
 
@@ -228,46 +243,53 @@ func record_location(location: String) -> void:
 		commit()
 
 func repair_greenhouse() -> bool:
+	if not LegendState.state.legacy_vow: return LegendState.repair()
 	if not nearby() or state.quests.size()!=12 or state.greenhouse: return false
 	if not Inventory.exchange({"wood":80,"stone":60},{},-800): return false
 	state.greenhouse = true
+	LegendState.state.greenhouse=2
+	StarStory.event("act_starlight")
 	commit()
 	return true
 
-func marriage_ready() -> bool:
+func base_marriage_ready() -> bool:
 	return state.unlocked and not state.married and state.affection == 100 and state.trust == 100 and state.bond == 100 and state.events.size() == 5 and state.quests.size() == 12 and state.memories.size() == 7 and state.trials.size() == 5 and state.dating and state.greenhouse and state.diamonds >= 1314
 
+func marriage_ready() -> bool:
+	return base_marriage_ready() and StarStory.wedding_ready()
+
 func confirm_wedding(confirm: bool) -> bool:
-	if not confirm or committing or not nearby() or not marriage_ready(): return false
+	if not confirm or committing or not marriage_ready(): return false
 	committing = true
 	state.diamonds -= 1314
+	Playtest.record("diamonds",{"source":"wedding","delta":-1314})
+	Playtest.record("wedding",{"id":"married"})
 	state.proposed = true
 	state.married = true
 	state.wedding_day = GameClock.day
+	StarStory.wedding_committed()
 	committing = false
 	commit()
 	return true
 
 func refine() -> bool:
-	if not nearby() or state.ore < 5 or state.diamonds > 999997: return false
+	if not nearby() or not MineState.diamond_access() or state.ore < 5 or state.diamonds > 999997: return false
 	if not Inventory.exchange({"stone":12},{},0): return false
 	state.ore -= 5
 	state.diamonds += 2
+	Playtest.record("diamonds",{"source":"legacy_refine","delta":2})
 	commit()
 	return true
 
 func hard_order() -> bool:
-	if not nearby() or "cave" not in state.trials or state.order_day > 0 and GameClock.day-state.order_day < 3 or state.diamonds > 999994: return false
-	if not Inventory.exchange({"potato":12,"wheat":12,"wood":20},{},0): return false
-	state.order_day = GameClock.day
-	state.diamonds += 5
-	commit()
-	return true
+	return nearby() and MineState.complete_commission()
 
 func claim_relic() -> bool:
-	if not nearby() or state.memories.size()!=7 or state.relic_claimed: return false
+	if not nearby() or not MineState.diamond_access() or state.memories.size()!=7 or state.relic_claimed: return false
 	state.relic_claimed = true
-	state.diamonds = mini(999999,state.diamonds+18)
+	var gain: int=mini(18,999999-int(state.diamonds))
+	state.diamonds += gain
+	Playtest.record("diamonds",{"source":"memory_relic","delta":gain})
 	commit()
 	return true
 
@@ -364,14 +386,11 @@ func cave_wall(x: int, y: int) -> bool:
 	return x <= 0 or y <= 0 or x >= 8 or y >= 8 or (x == 4 and y not in [3,7]) or (y == 4 and x in [1,3])
 
 func start_cave(hard: bool = false) -> bool:
-	if not nearby() or not state.unlocked or Story.stage < 8 or state.quests.size() < 7 or not state.cave.is_empty() or (hard and state.trial.get("id","") != "cave"): return false
-	if not Inventory.exchange({"wheat":2},{},0): return false
-	state.cave = {"x":1,"y":1,"air":36 if hard else 60,"hard":hard,"visited":[10],"mined":[]}
-	commit()
-	return true
+	Events.notice.emit("新勘探已迁至河湾村东北的实体矿道。旧路线盘仅可继续旧档未结束的一轮。")
+	return false
 
 func cave_move(direction: Vector2i) -> bool:
-	if not nearby() or state.cave.is_empty() or abs(direction.x)+abs(direction.y)!=1: return false
+	if not nearby() or not MineState.state.legacy_board_claimable or state.cave.is_empty() or abs(direction.x)+abs(direction.y)!=1: return false
 	var cave: Dictionary = state.cave
 	var next := Vector2i(cave.x,cave.y)+direction
 	if cave_wall(next.x,next.y) or cave.air <= 0: return false
@@ -384,7 +403,7 @@ func cave_move(direction: Vector2i) -> bool:
 	return true
 
 func cave_mine() -> bool:
-	if not nearby() or state.cave.is_empty() or state.cave.air<2: return false
+	if not nearby() or not MineState.state.legacy_board_claimable or state.cave.is_empty() or state.cave.air<2: return false
 	var cave: Dictionary = state.cave
 	var id: int = int(cave.y)*9+int(cave.x)
 	if id not in [12,34,66,70] or id in cave.mined: return false
@@ -394,27 +413,35 @@ func cave_mine() -> bool:
 	return true
 
 func leave_cave(abandon: bool = false) -> bool:
-	if not nearby() or state.cave.is_empty(): return false
+	if not nearby() or not MineState.state.legacy_board_claimable or state.cave.is_empty(): return false
 	var cave: Dictionary = state.cave
 	if not abandon and (cave.x != 1 or cave.y != 1): return false
 	if not abandon and cave.mined.size() >= 3 and cave.air > 0:
-		state.diamonds = mini(999999,state.diamonds+3)
+		var gain: int=mini(3,999999-int(state.diamonds))
+		state.diamonds += gain
+		Playtest.record("diamonds",{"source":"legacy_board","delta":gain})
 		state.ore = mini(999999,state.ore+cave.mined.size())
 		if cave.hard and cave.mined.size()==4 and cave.visited.size()>=20 and cave.air>=4: pass_trial("cave")
 	state.cave = {}
+	MineState.state.legacy_board_claimable=false
+	MineState.state.legacy_board_settled=true
 	commit()
 	return true
 
 func post_event(id: String) -> bool:
-	if not nearby() or not state.married or id in state.post_events: return false
+	if not state.married or id in state.post_events or not StarStory.post_ready(id): return false
 	if id not in ["separate_desks","field_trip","day520"]: return false
-	if id == "day520" and not state.ultimate: return false
+	if id == "day520":
+		# 读档后立即阅读也按婚后经过日数判定，不等后台0.5秒轮询。
+		if GameClock.day-int(state.wedding_day)<520: return false
+		state.ultimate=true
 	state.post_events.append(id)
+	StarStory.post_finished(id)
 	commit()
 	return true
 
 func mechanism_input(index: int) -> bool:
-	if not nearby() or state.trial.get("id","") != "mechanism" or index < 0 or index > 8: return false
+	if index < 0 or index > 8 or not MineState.at_star_lamp(index) or state.trial.get("id","") != "mechanism": return false
 	var x := index%3
 	var y := int(index/3)
 	var mask := 1<<index
@@ -427,6 +454,7 @@ func mechanism_input(index: int) -> bool:
 		state.mechanism_moves = 0
 		pass_trial("mechanism")
 	elif state.mechanism_moves >= 5:
+		Playtest.record("trial_fail",{"id":"basic:mechanism","reason":"five_moves"})
 		state.mechanism = 0
 		state.mechanism_moves = 0
 		Events.notice.emit("五次尝试用尽，回路已复位。线索在收齐的记忆里。")

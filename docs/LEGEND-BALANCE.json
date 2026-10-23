@@ -1,0 +1,76 @@
+{
+  "model_only_not_playtest": true,
+  "implemented_floors": 20,
+  "planned_floors": 100,
+  "unique_layouts": 20,
+  "management_plan": {
+    "quantities": {
+      "carrot": 24,
+      "wheat": 24,
+      "potato": 72
+    },
+    "seed_value": 1776,
+    "profit_without_discount": 3648,
+    "required_profit": 3500
+  },
+  "crafting_chain": {
+    "wood": 16,
+    "stone": 8,
+    "copper_bars": 2,
+    "iron_bars": 3,
+    "alloy": 1,
+    "processing_nights": 2
+  },
+  "diamond_sources": {
+    "original_diamonds_per_3_days_mean": 14.75,
+    "abyss_additional_per_3_days_mean": 13.333,
+    "abyss_one_time_chests": 10,
+    "drop_drought": "none; guaranteed deposits/refining, fixed original every-fourth bonus",
+    "all_sources_mean_per_game_day": 9.361
+  },
+  "scenarios": [
+    {
+      "samples": 10000,
+      "scenario": "original_sources",
+      "p10_hours": 40.21,
+      "p50_hours": 45.82,
+      "p90_hours": 51.51,
+      "mean_hours": {
+        "repeatable_resources": 22.47,
+        "main_and_relationships": 16.97,
+        "first_twenty_floors": 1.39,
+        "legend_trials": 4.99,
+        "calendar_lower_bound": 30.45
+      },
+      "target_200_350_met": false
+    },
+    {
+      "samples": 10000,
+      "scenario": "original_plus_abyss",
+      "p10_hours": 44.14,
+      "p50_hours": 49.84,
+      "p90_hours": 55.55,
+      "mean_hours": {
+        "repeatable_resources": 26.44,
+        "main_and_relationships": 17.03,
+        "first_twenty_floors": 1.39,
+        "legend_trials": 5.01,
+        "calendar_lower_bound": 16.1
+      },
+      "target_200_350_met": false
+    }
+  ],
+  "audit": [
+    "20 closed-gate clue/control routes reachable and exits inaccessible; opened routes reach exits/chests/ores.",
+    "All crafted inputs have gatherable renewable sources; diamond shops cost more than refining outputs.",
+    "P0 blocks day-sleep refresh; abyss reset requires exhausted advanced ore and paid supplies with 3-day interval.",
+    "No diamond is required to acquire diamond: surface natural regeneration remains available after all one-time boxes.",
+    "Wrong inference requires rechecking an original; wrong gates reset safely; ladders remain accessible; checkpoints preserve progress.",
+    "200–350h is NOT established. Do not pad model with forced idle time or assumed future 21–100 content."
+  ],
+  "limits": [
+    "Active-operation timings are assumptions; fixed-fps integration is not human timing.",
+    "Calendar lower bound is a constraint, not entertaining content or evidence of engagement.",
+    "Stages21–100, more equipment and larger narrative mechanisms remain unimplemented."
+  ]
+}

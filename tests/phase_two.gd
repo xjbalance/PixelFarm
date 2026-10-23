@@ -20,7 +20,7 @@ static func run(test: Node, game: Node) -> void:
 		test.check(game.farm.use_tool(cell,"hoe") and game.farm.use_tool(cell,crop_id+"_seed"), crop_id + " 可种植")
 		for _day in range(Catalog.crops[crop_id].growth_days):
 			game.farm.use_tool(cell,"water")
-			GameClock.next_day()
+			test.advance_day()
 		test.check(game.farm.use_tool(cell,"hand"), crop_id + " 按各自周期成熟可收获")
 		coins = Inventory.coins
 		test.check(FarmEconomy.sell(crop_id,1), crop_id + " 可出售")
@@ -35,5 +35,5 @@ static func run(test: Node, game: Node) -> void:
 	GameClock.minutes = 1439
 	var day: int = GameClock.day
 	GameClock._process(1.0)
-	test.check(GameClock.day == day + 1 and GameClock.minutes == 360 and GameState.stamina == 100, "午夜自动换日并恢复体力")
+	test.check(GameClock.day == day + 1 and GameClock.minutes == 360 and GameState.stamina == ceili(GameState.max_stamina()*.6), "午夜自动换日并按新规则恢复60%体力")
 	GameClock.running = false

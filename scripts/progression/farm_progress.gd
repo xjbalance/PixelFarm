@@ -61,6 +61,7 @@ func deliver(id: String) -> bool:
 		Events.notice.emit("奖励暂时装不下，先整理种子背包或金币。")
 		return false
 	quest_states[id] = 2
+	Playtest.record("task",{"id":"farm:"+id})
 	friendship = mini(100,friendship+int(quest.friendship))
 	changed.emit()
 	Events.notice.emit("完成「%s」！获得 %d 金，林芽好感 +%d。" % [quest.title,quest.coins,quest.friendship])

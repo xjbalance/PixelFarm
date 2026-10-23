@@ -56,6 +56,8 @@ func _draw() -> void:
 		mark(Vector2(488,400),"周砚 / 木作坊",Color("ede0af"),Vector2(-20,-27))
 		mark(Vector2(790,450),"旧桥",Color("ede0af"),Vector2(-12,-16))
 		mark(Vector2(1090,350),"风车",Color("ede0af"),Vector2(-16,-18))
+		mark(Vector2(1168,208),"矿道入口",Color("c9d7ed"),Vector2(-66,-9))
+		mark(Vector2(528,432),"矿物工台",Color("c9d7ed"),Vector2(-62,22))
 		mark(Vector2(370,565),"水井",Color("ede0af"),Vector2(-42,12))
 		mark(Vector2(628,524),"风灯广场")
 		mark(Vector2(540,610),"茶座",Color("ede0af"),Vector2(-45,10))

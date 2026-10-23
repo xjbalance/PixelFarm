@@ -1,0 +1,169 @@
+{
+  "implemented": 100,
+  "planned": 100,
+  "regions": [
+    {
+      "from": 1,
+      "to": 20,
+      "name": "废弃矿道",
+      "implemented": true
+    },
+    {
+      "from": 21,
+      "to": 40,
+      "name": "地下水脉",
+      "implemented": true
+    },
+    {
+      "from": 41,
+      "to": 60,
+      "name": "晶石洞窟",
+      "implemented": true
+    },
+    {
+      "from": 61,
+      "to": 80,
+      "name": "远古遗迹",
+      "implemented": true
+    },
+    {
+      "from": 81,
+      "to": 100,
+      "name": "星辉深渊",
+      "implemented": true
+    }
+  ],
+  "gear": {
+    "2": {
+      "depth": 10,
+      "required": {
+        "iron_bar": 8,
+        "crystal": 12,
+        "wood": 10
+      },
+      "coins": 800
+    },
+    "3": {
+      "depth": 15,
+      "required": {
+        "star_alloy": 6,
+        "crystal": 20,
+        "starlight_ore": 9
+      },
+      "coins": 1600
+    },
+    "4": {
+      "depth": 40,
+      "required": {
+        "star_alloy": 4,
+        "crystal": 12,
+        "starlight_ore": 6
+      },
+      "coins": 1200
+    },
+    "5": {
+      "depth": 60,
+      "required": {
+        "star_alloy": 4,
+        "crystal": 12,
+        "starlight_ore": 6
+      },
+      "coins": 1800
+    },
+    "6": {
+      "depth": 80,
+      "required": {
+        "star_alloy": 4,
+        "crystal": 8,
+        "ancient_shard": 4
+      },
+      "coins": 2400
+    },
+    "7": {
+      "depth": 99,
+      "required": {
+        "star_alloy": 4,
+        "crystal": 8,
+        "ancient_shard": 4,
+        "star_fragment": 6
+      },
+      "coins": 3000
+    }
+  },
+  "greenhouse": [
+    {
+      "id": "clear",
+      "title": "清理遗址",
+      "required": {
+        "wood": 8,
+        "stone": 8
+      },
+      "coins": 0
+    },
+    {
+      "id": "structure",
+      "title": "修复建筑结构",
+      "required": {
+        "wood": 80,
+        "stone": 60
+      },
+      "coins": 800
+    },
+    {
+      "id": "water",
+      "title": "恢复水源",
+      "required": {
+        "iron_bar": 4,
+        "crystal": 8
+      },
+      "coins": 0
+    },
+    {
+      "id": "core",
+      "title": "安装晶石能源核心",
+      "required": {
+        "star_alloy": 8,
+        "starlight_ore": 12,
+        "crystal": 24
+      },
+      "coins": 0
+    },
+    {
+      "id": "lamps",
+      "title": "点亮1314盏星灯",
+      "required": {},
+      "coins": 0
+    }
+  ],
+  "trials": {
+    "management": {
+      "days": 12,
+      "seeds": 120,
+      "budget": 2800,
+      "harvest_each": 24,
+      "profit": 3500
+    },
+    "planning": {
+      "days": 4,
+      "wood": 24,
+      "stone": 16
+    },
+    "cave": {
+      "start": 80,
+      "end": 100,
+      "air": 10
+    },
+    "mechanism": {
+      "conduits": [
+        20,
+        60,
+        100
+      ]
+    },
+    "joint": {
+      "wheat": 12,
+      "potato": 12,
+      "carrot": 12
+    }
+  }
+}
