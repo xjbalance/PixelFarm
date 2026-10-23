@@ -13,11 +13,13 @@ func _ready() -> void:
 	build_river_life()
 	GameClock.changed.connect(refresh_linya)
 	Story.changed.connect(refresh_linya)
+	GameWeather.changed.connect(refresh_linya)
 	refresh_linya()
 
 func refresh_linya() -> void:
 	var person := get_node_or_null("Actors/Linya")
 	if person:
+		person.set_station(Vector2(400,432) if GameWeather.is_rainy() or GameWeather.is_snowy() else Vector2(429,441))
 		person.visible = GameClock.minutes < 1080 and not River.gathering()
 		person.process_mode = Node.PROCESS_MODE_INHERIT if person.visible else Node.PROCESS_MODE_DISABLED
 

@@ -1,0 +1,29 @@
+{
+  "season_days": 28,
+  "year_days": 112,
+  "default_seed": 70701,
+  "seasons": [
+    {"id":"spring","name":"春","weights":{"clear":40,"cloudy":25,"rain":20,"heavy_rain":8,"fog":7}},
+    {"id":"summer","name":"夏","weights":{"clear":40,"cloudy":15,"rain":15,"heavy_rain":15,"storm":10,"fog":5}},
+    {"id":"autumn","name":"秋","weights":{"clear":35,"cloudy":25,"rain":15,"heavy_rain":10,"fog":15}},
+    {"id":"winter","name":"冬","weights":{"clear":30,"cloudy":25,"snow":30,"blizzard":8,"fog":7}}
+  ],
+  "weather": {
+    "clear":{"name":"晴朗","rain":false,"snow":false,"harsh":false,"lake_water":0,"description":"日照稳定，适合户外劳作。"},
+    "cloudy":{"name":"多云","rain":false,"snow":false,"harsh":false,"lake_water":0,"description":"云层遮住直射阳光，户外活动照常。"},
+    "rain":{"name":"小雨","rain":true,"snow":false,"harsh":false,"lake_water":3,"description":"露天农田接到雨水，湖水得到适量补给。"},
+    "heavy_rain":{"name":"大雨","rain":true,"snow":false,"harsh":true,"lake_water":4,"description":"露天农田浇透，村民会优先在遮雨处工作。"},
+    "storm":{"name":"雷雨","rain":true,"snow":false,"harsh":true,"lake_water":2,"description":"山谷雷阵雨。先找稳妥的岸边，鱼栏水质变化保持缓慢。"},
+    "snow":{"name":"下雪","rain":false,"snow":true,"harsh":false,"lake_water":0,"description":"积雪不替代浇水，耐寒作物仍需要照料。"},
+    "blizzard":{"name":"大雪","rain":false,"snow":true,"harsh":true,"lake_water":-1,"description":"村民避风，湖岸结霜；不会突然损失鱼群。"},
+    "fog":{"name":"大雾","rain":false,"snow":false,"harsh":false,"lake_water":0,"description":"河岸起雾，沿清楚的路标慢行。"},
+    "meteor":{"name":"流星夜","rain":false,"snow":false,"harsh":false,"lake_water":0,"description":"白天晴朗，20:00后可观察流星；午夜仍正常结束一天。"}
+  },
+  "anchors": {
+    "spring":{"8":"fog","18":"heavy_rain"},
+    "summer":{"4":"heavy_rain","7":"storm","12":"meteor","21":"storm"},
+    "autumn":{"8":"fog","18":"heavy_rain","22":"fog"},
+    "winter":{"4":"snow","7":"blizzard","12":"meteor","14":"rain","21":"blizzard"}
+  },
+  "compatibility": "第一年春季保持原河谷七日晴雨节律；旧存档加载当天冻结原天气，下一天进入四季预报。冬季14日为规律融雪雨。"
+}

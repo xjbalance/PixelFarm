@@ -41,3 +41,7 @@ star_vow.wav为自合成短循环旋律，star_chimes.wav为正弦合成铃风�
 ## 0.6.2湖泊养殖
 
 assets/aquaculture 下16张PNG由 tools/generate_aquaculture_assets.py 用Pillow几何逐像素原创生成，含6成鱼、6鱼苗、2帧游动图集、饲料与两种料理。六鱼具有不同轮廓与鳍尾特征，不引用商业游戏素材。岸上木台/栏网/维护箱由 aquaculture_point.gd 程序绘制，沿用现有农场色板；不增加动态光源。
+
+## 0.7.0阶段A季节美术
+
+assets/seasons的四套32px地表和树木纹理由tools/generate_season_assets.py在项目原创旧atlas上生成像素变化，春花、夏草、秋叶、冬雪采用独立细节。SeasonLandscape仅替换纹理并绘制稀疏装饰，不改地图格数或水域碰撞。WeatherScreen使用固定绘制预算、delta动画时钟表现九天气，无外部商业素材、动态灯或粒子实例堆叠。

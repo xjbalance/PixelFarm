@@ -5,9 +5,11 @@ const BOUNDS := Rect2i(17, 16, 10, 6)
 const IRRIGATION := Rect2i(17,16,4,3)
 const CROP_TEXTURE = preload("res://assets/crops/crops.png")
 var plots: Dictionary = {}
+var last_growth_day: int = 1
 var highlighted := Vector2i(-1, -1)
 
 func _ready() -> void:
+	last_growth_day=GameClock.day
 	GameClock.day_advanced.connect(advance_day)
 	VillageProjects.irrigation_requested.connect(func():
 		for plot in plots.values(): plot.watered = true
@@ -43,6 +45,9 @@ func use_tool(cell: Vector2i, tool: String) -> bool:
 			return false
 		if not Catalog.crops.has(crop_id) or Inventory.count(tool) < 1:
 			Events.notice.emit("种子用完了，去林芽的种子摊看看吧。")
+			return false
+		if not Catalog.crop_grows(crop_id):
+			Events.notice.emit("冬季露天土壤不适合这种作物。种子已保留，可以种耐寒小麦。")
 			return false
 		if not GameState.spend_energy(1): return false
 		Inventory.remove(tool, 1)
@@ -84,8 +89,10 @@ func is_mature(plot: Dictionary) -> bool:
 	return Catalog.crops.has(crop_id) and int(plot.get("days", 0)) >= Catalog.crops[crop_id].growth_days
 
 func advance_day() -> void:
+	if last_growth_day==GameClock.day: return
+	last_growth_day=GameClock.day
 	for plot in plots.values():
-		if bool(plot["watered"]) and not str(plot["crop"]).is_empty():
+		if bool(plot["watered"]) and not str(plot["crop"]).is_empty() and Catalog.crop_grows(plot["crop"],maxi(1,GameClock.day-1)):
 			var maximum: int = Catalog.crops[plot["crop"]].growth_days
 			plot["days"] = mini(int(plot["days"]) + 1, maximum)
 		plot["watered"] = GameWeather.is_rainy()

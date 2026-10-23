@@ -18,6 +18,7 @@ func _ready() -> void:
 	title = FarmUIStyle.label("那些没有寄出的信",25,FarmUIStyle.GOLD)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
+	header.add_child(FarmUIStyle.button("四季历",func(): close_panel(); Events.interaction_requested.emit("calendar"),100))
 	header.add_child(FarmUIStyle.button("矿道手记",func(): close_panel(); Events.interaction_requested.emit("mine:journal"),120))
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	DiamondPayments.controls(column,refresh)

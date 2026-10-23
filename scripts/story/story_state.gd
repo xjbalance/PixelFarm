@@ -95,6 +95,8 @@ func scene_data(id: String) -> Dictionary:
 			if VillageProjects.has_project("well"): text.append("午间我去井边洗杯子。今天不用再借谁家的水了。")
 			if VillageProjects.has_project("arbor"): text.append("傍晚在公共茶座等你。" if Letters.direction == "life" else "忙完就来茶座，值日表还留着空格。")
 		_: text = ["河水经过桥下，纸上的名字留了下来。"]
+	if id in ["linya_daily","zhou_daily","ahe_daily"]:
+		text.append(SeasonalDialogue.line(portrait))
 	var lines: Array = []
 	for line in text: lines.append({"who":who,"portrait":portrait,"text":line})
 	return {"title":who,"lines":lines}

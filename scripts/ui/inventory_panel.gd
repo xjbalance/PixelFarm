@@ -105,7 +105,7 @@ func refresh() -> void:
 		detail.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(detail)
 		detail.add_child(FarmUIStyle.label("%s  ·  %d 天成熟" % [crop.display_name,crop.growth_days],20,FarmUIStyle.GOLD))
-		detail.add_child(FarmUIStyle.label("种子 %d    收获 %d" % [Inventory.count(crop_id+"_seed"),Inventory.count(crop_id)],16))
+		detail.add_child(FarmUIStyle.label("种子 %d    收获 %d · %s" % [Inventory.count(crop_id+"_seed"),Inventory.count(crop_id),"本季可种" if Catalog.crop_grows(crop_id) else "冬季休眠"],16))
 		if shop_mode:
 			row.add_child(FarmUIStyle.button("买 %d 袋\n%s" % [quantity,DiamondPayments.text(FarmEconomy.seed_price(crop_id)*quantity)],buy.bind(crop_id),132))
 			var amount := quantity

@@ -252,7 +252,7 @@ func settle_day() -> void:
 			p.fed_count=int(info.total)
 			fed=true
 		var definition: Dictionary=data.species[p.species]
-		var season: int=int((yesterday-1)/28)%4
+		var season: int=Calendar.season(yesterday)
 		var comfortable: bool=season in definition.seasons
 		var good: bool=int(p.water)>=int(definition.water) and p.health>=60
 		var growth: int=(4 if comfortable else 3) if fed and good else (2 if fed else 1)
@@ -271,7 +271,7 @@ func settle_day() -> void:
 		# 不满足条件时保留繁殖进度，满栏不堆叠多次奖励。
 		var crowded: bool=float(info.total)/maxi(1,int(info.capacity))>.8
 		var change: int=-2-(2 if crowded else 0)+(1 if p.level==2 else (3 if p.level==3 else 0))
-		if GameWeather.is_rainy(yesterday): change+=3
+		change+=GameWeather.lake_water_delta(yesterday)
 		p.water=clampi(int(p.water)+change,0,100)
 		p.health=clampi(int(p.health)+(2 if fed and good else -2),0,100)
 	state.last_settled_day=today

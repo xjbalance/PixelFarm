@@ -29,6 +29,7 @@ steps = [
     ('stability', ['--fixed-fps','60','res://tests/stability_runner.tscn']),
     ('river', ['--fixed-fps','60','res://tests/river_runner.tscn']),
     ('aquaculture', ['--fixed-fps','60','res://tests/aquaculture_runner.tscn']),
+    ('seasons-a', ['--fixed-fps','60','res://tests/seasons_a_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),
@@ -58,6 +59,10 @@ steps = [
     ('aquaculture-restart', ['res://tests/aquaculture_persistence.tscn']),
     ('aquaculture-corrupt', ['res://tests/aquaculture_persistence.tscn','--','--corrupt-aquaculture']),
     ('aquaculture-backup', ['res://tests/aquaculture_persistence.tscn']),
+    ('seasons-write', ['res://tests/seasons_a_persistence.tscn','--','--write-seasons']),
+    ('seasons-restart', ['res://tests/seasons_a_persistence.tscn']),
+    ('seasons-corrupt', ['res://tests/seasons_a_persistence.tscn','--','--corrupt-seasons']),
+    ('seasons-backup', ['res://tests/seasons_a_persistence.tscn']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:

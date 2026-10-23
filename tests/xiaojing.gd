@@ -46,7 +46,7 @@ static func run(test: Node, game: Node) -> void:
 	River.state.legacy_rules=true
 	River.state.legacy_scene=true
 	River.state.old_checkpoints=[5,15]
-	GameClock.day=100
+	GameClock.day=128 # 第二年春：本套验证播种幂等，冬季禁播由seasons_a独立验证。
 	GameClock.running=false
 	Inventory.items={"carrot_seed":999,"carrot":30,"wheat":99,"potato":99,"wood":99,"stone":99}
 	GameState.rest()

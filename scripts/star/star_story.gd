@@ -114,17 +114,17 @@ func choose(topic: String, value: String) -> bool:
 	return true
 
 func season_index() -> int:
-	return int((GameClock.day-1)/28)%4
+	return Calendar.season()
 
 func season_serial() -> int:
-	return int((GameClock.day-1)/28)
+	return Calendar.season_serial()
 
 func daily_text() -> String:
 	var s: Dictionary=Xiaojing.state
 	var group: String="married" if s.married else ("dating" if s.dating else "early")
 	var lines: Array=data.daily[group]
 	var index: int=posmod(GameClock.day-int(s.wedding_day) if s.married else GameClock.day,lines.size())
-	var result: String=lines[index]+"\n"+data.weather["rain" if GameWeather.is_rainy() else "clear"]+"\n"+data.season_lines[season_index()]
+	var result: String=lines[index]+"\n"+SeasonalDialogue.line("xiaojing")+"\n"+data.weather["rain" if GameWeather.is_rainy() else "clear"]+"\n"+data.season_lines[season_index()]
 	if s.married and GameClock.day-int(s.wedding_day)==520: result="今天正好是婚后经过的第520天。我把那封回信放在温室档案桌了。\n"+result
 	elif s.married and GameClock.day>int(s.wedding_day) and (GameClock.day-int(s.wedding_day))%112==0: result="又走完一个四季。想从今年没做成的小事开始聊吗？\n"+result
 	elif (GameClock.day-1)%28==13: result="今天是我的生日。我想早一点收工，去看看上次留的种子。\n"+result

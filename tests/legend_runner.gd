@@ -10,6 +10,9 @@ func run() -> void:
 	GameWeather.enabled=false
 	await frames(5)
 	load("res://tests/star_runner.gd").fixture(game,false)
+	# 本套验证三作物生产/结算；先设置第三年春，冬季约束由seasons_a真实跨日验证。
+	GameClock.day=225
+	Calendar.restore(Calendar.snapshot())
 	LegendState.restore(LegendState.defaults())
 	Xiaojing.state.greenhouse=false
 	var chapter := ChapterTwo.defaults()

@@ -1,3 +1,5 @@
+> 当前工作区开发0.7.0阶段A，尚未统一导出0.7.0。以下0.6.2 APK为上一完整交付。阶段A窗口验证见[阶段A记录](VALIDATION-0.7.0-A.md)，真机仍未连接。
+
 # 像素世界0.6.2 Android构建与验收
 
 已生成`builds/PixelWorld-0.6.2-debug.apk`，67,575,928字节。SHA256：`64d37655b8af1d37fca76a5b5c793fa78078e95c030990d58a60e6bf1caeaa55`。

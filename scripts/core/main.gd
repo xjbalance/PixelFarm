@@ -53,6 +53,9 @@ func _ready() -> void:
 	var lake := AquacultureWorld.new()
 	add_child(lake)
 	lake.attach(self)
+	var seasonal := SeasonLandscape.new()
+	add_child(seasonal)
+	seasonal.attach(self)
 	build_xiaojing_world()
 	var star_world := StarWorld.new()
 	add_child(star_world)
@@ -126,7 +129,8 @@ func resource_target() -> Node2D:
 
 func handle_interaction(kind: String) -> void:
 	if auto_move: auto_move.cancel()
-	if kind.begins_with("fish:"): hud.aquaculture_panel.open_panel(kind.trim_prefix("fish:"))
+	if kind=="calendar": hud.calendar_panel.open_panel()
+	elif kind.begins_with("fish:"): hud.aquaculture_panel.open_panel(kind.trim_prefix("fish:"))
 	elif kind.begins_with("river:"): hud.river_panel.open_panel(kind.trim_prefix("river:"))
 	elif kind.begins_with("abyss:"): hud.abyss_panel.open_panel(kind.trim_prefix("abyss:"))
 	elif kind.begins_with("star:"): hud.star_panel.open_panel(kind.trim_prefix("star:"))
@@ -282,6 +286,7 @@ func context_hint() -> String:
 	var plot: Dictionary = farm.plots.get(farm.key(player.target_cell()),{})
 	if not plot.is_empty() and str(plot.crop) != "":
 		var crop = Catalog.crops[plot.crop]
+		if not farm.is_mature(plot) and not Catalog.crop_grows(plot.crop): return "%s · 冬季休眠，转暖后继续生长" % crop.display_name
 		return "%s · %s" % [Catalog.item_name(plot.crop),"可以收获了" if farm.is_mature(plot) else ("已浇水 · 还需 %d 个生长日" % (crop.growth_days-int(plot.days)) if plot.watered else "需要一点水")]
 	return "对准脚前亮框 · "+context_action_name()
 

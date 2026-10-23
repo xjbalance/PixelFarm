@@ -1,0 +1,7 @@
+{
+  "crop_seasons": {"carrot": [0,1,2], "potato": [0,1,2], "wheat": [0,1,2,3]},
+  "groups": {
+    "materials": {"path":"res://resources/items/materials.json", "section":"", "category":"material"},
+    "aquaculture": {"path":"res://resources/aquaculture/fish.json", "section":"items", "category":"aquaculture"}
+  }
+}

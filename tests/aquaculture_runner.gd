@@ -198,7 +198,7 @@ func economy_and_story() -> void:
 func persistence_and_time() -> void:
 	await reset();await near();Aquaculture.build("pen_1");Aquaculture.stock("pen_1","crucian",4);Aquaculture.feed("pen_1")
 	var snap := FarmSaveStore.snapshot(game)
-	check(snap.version==11 and FarmSaveStore.valid(snap),"新养殖栏随完整v11档案通过校验")
+	check(snap.version==FarmSaveStore.VERSION and FarmSaveStore.valid(snap),"新养殖栏随完整v11档案通过校验")
 	var json: Dictionary=JSON.parse_string(JSON.stringify(snap))
 	check(FarmSaveStore.restore(game,json) and Aquaculture.snapshot()==snap.aquaculture,"JSON浮点整数规范后整份恢复批次与每日状态")
 	await frames(4)
@@ -208,7 +208,7 @@ func persistence_and_time() -> void:
 	var old := snap.duplicate(true)
 	old.version=10;old.erase("aquaculture")
 	var migrated := FarmSaveSchema.normalize(old)
-	check(not migrated.is_empty() and migrated.version==11 and migrated.coins==old.coins and migrated.items==old.items and migrated.xiaojing==old.xiaojing and migrated.plots==old.plots and migrated.abyss==old.abyss,"v10迁移保留资源/农田/小京/深渊全部旧进度")
+	check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION and migrated.coins==old.coins and migrated.items==old.items and migrated.xiaojing==old.xiaojing and migrated.plots==old.plots and migrated.abyss==old.abyss,"v10迁移保留资源/农田/小京/深渊全部旧进度")
 	if not migrated.is_empty():
 		check(not migrated.aquaculture.pens.pen_1.built and migrated.aquaculture.last_settled_day==int(old.day),"旧档不捏造鱼群或历史成长日")
 		check(FarmSaveSchema.normalize(migrated)==migrated,"v11迁移重复执行幂等")

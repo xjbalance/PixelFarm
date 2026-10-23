@@ -26,6 +26,7 @@ var story_panel: PanelContainer
 var river_panel: PanelContainer
 var abyss_panel: PanelContainer
 var star_panel: PanelContainer
+var calendar_panel: PanelContainer
 var aquaculture_panel: PanelContainer
 var mine_panel: PanelContainer
 var xiaojing_panel: PanelContainer
@@ -81,7 +82,7 @@ func build_top() -> void:
 	var names := VBoxContainer.new()
 	brand.add_child(names)
 	names.add_child(FarmUIStyle.label("像 素 世 界", 21, FarmUIStyle.GOLD))
-	names.add_child(FarmUIStyle.label("Pixel World · 0.6.2", 12, Color("b9c4a5")))
+	names.add_child(FarmUIStyle.label("Pixel World · 0.7.0 dev", 12, Color("b9c4a5")))
 	var time_panel := PanelContainer.new()
 	top.add_child(time_panel)
 	clock_label = FarmUIStyle.label("第 1 天  ·  06:00", 17)
@@ -220,6 +221,10 @@ func build_feedback() -> void:
 	aquaculture_panel.set_script(preload("res://scripts/aquaculture/aquaculture_panel.gd"))
 	place(aquaculture_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
 	safe.add_child(aquaculture_panel)
+	calendar_panel=PanelContainer.new()
+	calendar_panel.set_script(preload("res://scripts/seasons/calendar_panel.gd"))
+	place(calendar_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(calendar_panel)
 	# 提示位于模态层上方，金币不足、奖励和保存反馈不会被遮罩盖住。
 	safe.move_child(toast,-1)
 	Events.modal_changed.connect(func(active: bool):
@@ -294,7 +299,7 @@ func close_active_panel() -> bool:
 	if dialogue.visible:
 		dialogue.close_dialogue()
 		return true
-	for panel in [aquaculture_panel,river_panel,abyss_panel,star_panel,mine_panel,xiaojing_panel,story_panel,progress_panel,system_panel,inventory_panel]:
+	for panel in [calendar_panel,aquaculture_panel,river_panel,abyss_panel,star_panel,mine_panel,xiaojing_panel,story_panel,progress_panel,system_panel,inventory_panel]:
 		if panel.visible:
 			panel.close_panel()
 			return true
@@ -319,5 +324,5 @@ func _process(delta: float) -> void:
 func refresh_clock() -> void:
 	var detail: String="%s · %s" % [Story.NAMES[GameState.location],GameWeather.label()]
 	if GameState.location=="abyss": detail="%d层 · 空气%d/160" % [AbyssState.state.depth,AbyssState.state.air]
-	clock_label.text="第 %d 天 · %s\n%s" % [GameClock.day,GameClock.clock_text(),detail]
+	clock_label.text="%s · %s\n%s" % [Calendar.label(),GameClock.clock_text(),detail]
 	clock_label.add_theme_color_override("font_color",Color("efb895") if GameState.location=="abyss" and AbyssState.state.air<30 else FarmUIStyle.CREAM)

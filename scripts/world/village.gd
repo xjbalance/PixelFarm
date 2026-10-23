@@ -86,6 +86,7 @@ func _ready() -> void:
 	Story.changed.connect(refresh_bridge)
 	GameClock.changed.connect(refresh_gathering)
 	Story.changed.connect(refresh_gathering)
+	GameWeather.changed.connect(refresh_gathering)
 	VillageProjects.changed.connect(refresh_gathering)
 	refresh_bridge()
 	refresh_gathering()
@@ -106,6 +107,11 @@ func refresh_gathering() -> void:
 	if evening and VillageProjects.has_project("arbor"):
 		zhou_station = Vector2(496,656)
 		ahe_station = Vector2(592,656)
+	if (GameWeather.is_rainy() or GameWeather.is_snowy()) and not gathering and not ending:
+		# 三位仍留在原地图，改在门廊与木作坊附近，必需人物不消失。
+		villagers.linya.set_station(Vector2(608,432))
+		zhou_station=Vector2(488,432)
+		ahe_station=Vector2(272,432)
 	if gathering:
 		villagers.linya.set_station(Vector2(610,442))
 		zhou_station = Vector2(548,495)

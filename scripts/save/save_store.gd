@@ -2,10 +2,11 @@ class_name FarmSaveStore
 extends RefCounted
 ## 写临时文件后重命名；保留上一次存档。先完整校验再修改运行状态。
 const PATH: String = "user://farm_save.json"
-const VERSION: int = 11
+const VERSION: int = 12
 
 static func snapshot(game: Node) -> Dictionary:
 	return {
+		"calendar": Calendar.snapshot(), "world_changes": WorldChanges.snapshot(),
 		"version": VERSION, "location": GameState.location,
 		"player": [game.player.position.x, game.player.position.y],
 		"day": GameClock.day, "minutes": GameClock.minutes,
@@ -82,6 +83,8 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	for id in data["items"]: Inventory.items[id] = int(data["items"][id])
 	GameClock.day = int(data["day"])
 	GameClock.minutes = float(data["minutes"])
+	Calendar.restore(data["calendar"])
+	WorldChanges.restoring=true
 	FarmProgress.restore(data["progress"])
 	Story.restore(data["story"])
 	Letters.restore(data["letters"])
@@ -94,10 +97,13 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	AbyssState.restore(data["abyss"])
 	Aquaculture.restore(data["aquaculture"])
 	VillageProjects.restore(data["village"])
+	WorldChanges.restoring=false
+	WorldChanges.restore(data["world_changes"])
 	game.world.resource_field.restore(data["resources"])
 	GameState.stamina = int(data["stamina"])
 	GameState.selected = int(data["selected"])
 	game.farm.plots = data["plots"].duplicate(true)
+	game.farm.last_growth_day=GameClock.day
 	for plot in game.farm.plots.values(): plot["days"] = int(plot["days"])
 	game.farm.queue_redraw()
 	game.hud.completed.clear()
