@@ -101,4 +101,3 @@ static func valid_current(data: Variant) -> bool:
 		if entry not in ["翻土","播种","浇水","收获"]: return false
 	if not data.get("muted",false) is bool: return false
 	return true
-

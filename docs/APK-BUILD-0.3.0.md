@@ -1,6 +1,6 @@
 # Android APK 构建记录 · 0.3.0 共建河湾
 
-2026-10-23，已真实导出并验证 [PixelFarm-0.3.0-debug.apk](../builds/PixelFarm-0.3.0-debug.apk)。APK 内含引擎、代码、中文字体、剧情、美术、配乐和游戏数据，手机无需另装 Godot 或下载资源。
+2026-10-23，已真实导出并验证 [PixelFarm-0.3.0-debug.apk](https://github.com/xjbalance/PixelFarm/releases/download/v0.3.0/PixelFarm-0.3.0-debug.apk)。APK 内含引擎、代码、中文字体、剧情、美术、配乐和游戏数据，手机无需另装 Godot 或下载资源。
 
 | 项目 | 实测值 |
 |---|---|

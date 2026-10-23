@@ -10,6 +10,8 @@ Godot **4.3 Standard** / GDScript 编写的原创 2D 像素农场 RPG 原型。�
 
 ![村庄建设（截图夹具已备齐材料）](docs/screenshot-03-construction.png)
 
+源码、进度文档和截图保存在仓库中；APK、校验文件和源码压缩包通过 [GitHub Releases](https://github.com/xjbalance/PixelFarm/releases/tag/v0.3.0) 下载。本地 `.tools/`、`.godot/`、签名私钥和构建缓存不上传。
+
 ## 立即运行
 
 ### Windows
@@ -199,7 +201,7 @@ godot --headless --path . res://tests/runner.tscn
 
 已配置横屏、Compatibility、arm64-v8a + armeabi-v7a、原生触摸摇杆、独立触点按钮、自适应布局和安全区处理。关闭「触摸模拟鼠标」，避免多指争用同一个鼠标事件；电脑版鼠标点击仍可使用。
 
-**APK 已生成**：[风芽农场 0.3.0「共建河湾」调试版](builds/PixelFarm-0.3.0-debug.apk)，支持 ARM64/ARMv7、Android 5.0 及以上和 OpenGL ES 3.0。将 APK 传到手机，点击文件并按系统提示允许该来源安装应用即可。无需在手机安装 Godot。
+**APK 已生成**：[风芽农场 0.3.0「共建河湾」调试版](https://github.com/xjbalance/PixelFarm/releases/download/v0.3.0/PixelFarm-0.3.0-debug.apk)，支持 ARM64/ARMv7、Android 5.0 及以上和 OpenGL ES 3.0。将 APK 传到手机，点击文件并按系统提示允许该来源安装应用即可。无需在手机安装 Godot。
 
 已通过签名、包名、启动入口、ZIP 完整性和对齐验证；APK 内的实际游戏资源也已在桌面引擎独立启动。尚未进行 Android 真机安装运行测试。当前 Linux 工作区运行 `python3 tools/build_android.py` 可复用本地工具和签名重新打包。详见 [Android 导出与真机验收](docs/ANDROID.md) 和 [APK 构建报告](docs/APK-BUILD-0.3.0.md)。
 

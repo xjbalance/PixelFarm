@@ -2,7 +2,7 @@
 
 ## 当前状态
 
-已实际生成并签名 [PixelFarm-0.3.0-debug.apk](../builds/PixelFarm-0.3.0-debug.apk)，66,717,852 字节（63.63 MiB）。下载 APK 到手机后，用文件管理器打开，按系统提示允许该来源安装应用，再安装并打开「风芽农场」。手机无需安装 Godot、Java 或 SDK。
+已实际生成并签名 [PixelFarm-0.3.0-debug.apk](https://github.com/xjbalance/PixelFarm/releases/download/v0.3.0/PixelFarm-0.3.0-debug.apk)，66,717,852 字节（63.63 MiB）。下载 APK 到手机后，用文件管理器打开，按系统提示允许该来源安装应用，再安装并打开「风芽农场」。手机无需安装 Godot、Java 或 SDK。
 
 2026-10-23 使用项目内已有便携构建工具完成新版 APK 导出。最终文件通过 v1/v2/v3 签名验证、ZIP 完整性及对齐检查；包内游戏数据与源码一致，提取资源后在桌面 Godot 4.3 独立启动 180 帧无错误。**尚未执行 Android 真机或模拟器安装运行测试**。详细证据见 [APK 构建报告](APK-BUILD-0.3.0.md)。
 

@@ -1,7 +1,9 @@
 # 《Pixel Farm · 风芽农场》开发进度与完成情况
 
-版本：**0.3.0「共建河湾」**  
-记录日期：2026 年 10 月 23 日  
+版本：**0.3.0「共建河湾」**
+
+记录日期：2026 年 10 月 23 日
+
 用途：说明当前交付版本实际能玩到哪里、已经完成哪些内容，以及还需要继续开发和验证的部分。
 
 ## 一、游戏目前实现到了什么程度
@@ -193,8 +195,8 @@
 
 | 交付物 | 文件 |
 |---|---|
-| Android 调试 APK，约 63.63 MiB | [PixelFarm-0.3.0-debug.apk](../builds/PixelFarm-0.3.0-debug.apk) |
-| 完整工程源码压缩包 | [PixelFarm-0.3.0-source.zip](../builds/PixelFarm-0.3.0-source.zip) |
+| Android 调试 APK，约 63.63 MiB | [PixelFarm-0.3.0-debug.apk](https://github.com/xjbalance/PixelFarm/releases/download/v0.3.0/PixelFarm-0.3.0-debug.apk) |
+| 完整工程源码压缩包 | [PixelFarm-0.3.0-source.zip](https://github.com/xjbalance/PixelFarm/releases/download/v0.3.0/PixelFarm-0.3.0-source.zip) |
 | 可直接导入的工程 | [project.godot](../project.godot) |
 | 操作、Windows 运行及扩展说明 | [README](../README.md) |
 | Android 导出与设备验收说明 | [ANDROID.md](ANDROID.md) |
