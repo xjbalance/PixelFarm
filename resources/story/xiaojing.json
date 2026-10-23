@@ -1,0 +1,384 @@
+{
+  "name": "小京的约定",
+  "quests": [
+    {
+      "id": "survey",
+      "title": "借一束窗光",
+      "type": "调查",
+      "description": "调查小屋窗边的旧种植笔记。",
+      "previous": "",
+      "conditions": {
+        "memory": 1
+      },
+      "materials": {},
+      "reward": {
+        "affection": 5,
+        "trust": 8,
+        "bond": 3
+      },
+      "repeatable": false,
+      "story": "你把笔记抄成两份，一份留在窗下，一份交给她。小京圈出背阴处的温度：这页以后也写你的名字，不用照我的结论写。"
+    },
+    {
+      "id": "flowers",
+      "title": "一起种下的花",
+      "type": "种植",
+      "description": "她研究的是作物伴生植物；成功种植30株，亲手照料这片试验田。",
+      "previous": "survey",
+      "conditions": {
+        "plant": 30
+      },
+      "materials": {},
+      "reward": {
+        "affection": 8,
+        "trust": 4,
+        "bond": 6
+      },
+      "repeatable": false,
+      "story": "三十株作物长得并不齐。她把长得慢的那排也记下：我们是在了解土地，不是在交一张没有错字的答卷。"
+    },
+    {
+      "id": "seed_archive",
+      "title": "不以丰收交换信任",
+      "type": "交付",
+      "description": "给她建立留种样本：小麦12、胡萝卜8。",
+      "previous": "flowers",
+      "conditions": {},
+      "materials": {
+        "wheat": 12,
+        "carrot": 8
+      },
+      "reward": {
+        "affection": 6,
+        "trust": 8,
+        "bond": 4
+      },
+      "repeatable": false,
+      "story": "你把样本放上桌，标签上分开写着产地和日期。小京没有把它们混进丰收的箱子：最普通的一株，也值得认真留种。"
+    },
+    {
+      "id": "river_marks",
+      "title": "被水改写的岸",
+      "type": "调查",
+      "description": "找到桥西、风车下的两份记忆。",
+      "previous": "seed_archive",
+      "conditions": {
+        "memory": 3
+      },
+      "materials": {},
+      "reward": {
+        "affection": 5,
+        "trust": 9,
+        "bond": 6
+      },
+      "repeatable": false,
+      "story": "你们在桥边比对两个年份的水线。小京把“我以为”改成“待验证”：谢谢你没有拿我的猜测当承诺。"
+    },
+    {
+      "id": "first_puzzle",
+      "title": "三次回声",
+      "type": "解谜",
+      "description": "根据屋内的图记解开种箱的三道旋扣。",
+      "previous": "river_marks",
+      "conditions": {
+        "puzzle": 1
+      },
+      "materials": {},
+      "reward": {
+        "affection": 5,
+        "trust": 6,
+        "bond": 8
+      },
+      "repeatable": false,
+      "story": "种箱在最后一次潮声后松开。里面不是戒指，是她母亲留下的第一只采种袋：我想接着做这件事，但按我自己的办法。"
+    },
+    {
+      "id": "route_notes",
+      "title": "各自的路线",
+      "type": "探索",
+      "description": "收齐五份记忆，去过农场、小屋和河湾村的观察点。",
+      "previous": "first_puzzle",
+      "conditions": {
+        "memory": 5,
+        "locations": 3
+      },
+      "materials": {},
+      "reward": {
+        "affection": 6,
+        "trust": 8,
+        "bond": 6
+      },
+      "repeatable": false,
+      "story": "地图上有三种笔迹。小京不要求你复制她的路线：你画田里的风，我画河岸的阴影，合在一起才有用。"
+    },
+    {
+      "id": "tea_together",
+      "title": "同一张桌的两份计划",
+      "type": "共同活动",
+      "description": "18:00后到茶座，共同写下下一季的计划。",
+      "previous": "route_notes",
+      "conditions": {
+        "activity": 1
+      },
+      "materials": {
+        "wheat": 2
+      },
+      "reward": {
+        "affection": 8,
+        "trust": 5,
+        "bond": 8
+      },
+      "repeatable": false,
+      "story": "她的计划里有一次远行，你的计划里有一片新田。两张纸没有叠成一张，你们只在同一个傍晚画下回来的箭头。"
+    },
+    {
+      "id": "market_trial",
+      "title": "不欠明天的账",
+      "type": "经营挑战",
+      "description": "完成经营试炼：8日内种植并收获24株，实际销售净收益1800金。",
+      "previous": "tea_together",
+      "conditions": {
+        "trial": "management"
+      },
+      "materials": {},
+      "reward": {
+        "affection": 5,
+        "trust": 7,
+        "bond": 6
+      },
+      "repeatable": false,
+      "story": "你把种子成本也记进账本。小京指着没有出售的那一栏：这些不是浪费，是留给下一季的余地。你们给试验田单独留了预算。"
+    },
+    {
+      "id": "supply_trial",
+      "title": "带得走的重量",
+      "type": "资源规划",
+      "description": "完成一天内的规划试炼：采木20、石12，结余体力至少35。",
+      "previous": "market_trial",
+      "conditions": {
+        "trial": "planning"
+      },
+      "materials": {},
+      "reward": {
+        "affection": 5,
+        "trust": 8,
+        "bond": 5
+      },
+      "repeatable": false,
+      "story": "回程的背囊没有塞满。她称了剩余粮水的重量：能把别人和自己平安带回来的计划，比带走最多东西更难。"
+    },
+    {
+      "id": "cave_trial",
+      "title": "把退路画在前面",
+      "type": "矿道探索",
+      "description": "完成基础矿道的困难勘探，带出矿晶与完整路线。",
+      "previous": "supply_trial",
+      "conditions": {
+        "trial": "cave"
+      },
+      "materials": {},
+      "reward": {
+        "affection": 6,
+        "trust": 8,
+        "bond": 7
+      },
+      "repeatable": false,
+      "story": "矿道出口的日光很窄，你们先对照回程图，再分拣矿晶。小京把你的路线抄到入口牌上：下一位来的人，不必从我们的失误开始。"
+    },
+    {
+      "id": "star_mechanism",
+      "title": "让星灯依次醒来",
+      "type": "机关解谜",
+      "description": "收齐七份记忆，五步以内点亮九格星灯；按一格会反转自身与四邻。",
+      "previous": "cave_trial",
+      "conditions": {
+        "memory": 7,
+        "trial": "mechanism"
+      },
+      "materials": {},
+      "reward": {
+        "affection": 6,
+        "trust": 7,
+        "bond": 8
+      },
+      "repeatable": false,
+      "story": "九盏灯一起亮起时，你们先检查了闸门。小京笑着把灯罩递过来：奇迹也要有人认真拧紧最后一颗螺丝。"
+    },
+    {
+      "id": "shared_future",
+      "title": "永远的约定",
+      "type": "共同挑战",
+      "description": "完成联合考察试炼，整理温室修复计划。",
+      "previous": "star_mechanism",
+      "conditions": {
+        "trial": "joint"
+      },
+      "materials": {},
+      "reward": {
+        "affection": 8,
+        "trust": 8,
+        "bond": 9
+      },
+      "repeatable": false,
+      "story": "种箱、河岸图和新收的作物并排放在桌上。你们决定温室先留两张研究桌，再留一条谁都不被挤走的过道。未来不需要相同，只需要能商量。"
+    }
+  ],
+  "memories": [
+    {
+      "id": "window",
+      "location": "home",
+      "position": [
+        768,
+        274
+      ],
+      "title": "窗光留下的位置",
+      "text": "小京的母亲曾在窗边压平种袋。她不再等母亲替她作决定，只把最明亮的位置留给正在发芽的东西。"
+    },
+    {
+      "id": "pond",
+      "location": "farm",
+      "position": [
+        930,
+        752
+      ],
+      "title": "先画出回去的路",
+      "text": "一张练习地图在池边停笔：不是每条岔路都要走到底，给回程留水，比留下签名更重要。"
+    },
+    {
+      "id": "bridge",
+      "location": "village",
+      "position": [
+        770,
+        580
+      ],
+      "title": "借来的勇气",
+      "text": "她第一次跨过修好的桥，带的不是行李，是一把借来的量尺。独立生活，也允许开口借东西。"
+    },
+    {
+      "id": "mill",
+      "location": "village",
+      "position": [
+        1160,
+        450
+      ],
+      "title": "不必相同的明天",
+      "text": "旧风车背后的便条写着：我想研究耐阴的种子。你可以喜欢别的工作，我们晚上再交换今天的见闻。"
+    },
+    {
+      "id": "post",
+      "location": "village",
+      "position": [
+        200,
+        566
+      ],
+      "title": "没有寄给谁的信",
+      "text": "信没有收件人。她练习把“不愿意”写得清楚，把“愿意”写得不勉强。"
+    },
+    {
+      "id": "hearth",
+      "location": "home",
+      "position": [
+        538,
+        275
+      ],
+      "title": "两个人的安静",
+      "text": "炉边的草图画了两张分开的桌子。一起生活不需要每件事都一起做，也可以各自认真，然后在饭点见面。"
+    },
+    {
+      "id": "orchard",
+      "location": "farm",
+      "position": [
+        1210,
+        800
+      ],
+      "title": "星灯以外",
+      "text": "灯坏了可以修，种子失收可以重种。纸背最后一行：我愿意的那一天，不是因为你攒够了什么，而是我们终于把日子商量好了。"
+    }
+  ],
+  "events": [
+    {
+      "id": "meet",
+      "threshold": 0,
+      "title": "初次认识",
+      "text": "我叫小京，研究河谷耐阴的种子。你照顾过的那些田，把我引到了这里。我有自己的试验计划，也想认识愿意认真种东西的人。"
+    },
+    {
+      "id": "flower",
+      "threshold": 20,
+      "title": "一起种下的花",
+      "text": "我没把伴生花拔掉。它们和作物抢一点位置，也替土地留下休息的缝隙。我们也不必把彼此的生活占满。"
+    },
+    {
+      "id": "secret",
+      "threshold": 50,
+      "title": "星光下的秘密",
+      "text": "我有时会去更远的地方调查。我想和你恋爱，也想继续自己的工作。愿意把这两件事一起商量吗？"
+    },
+    {
+      "id": "promise",
+      "threshold": 80,
+      "title": "永远的约定",
+      "text": "我不会答应永远不离开这条河。我能答应的是：去哪里、何时回来、遇见了什么，都认真告诉你。你也一样。"
+    },
+    {
+      "id": "stars",
+      "threshold": 100,
+      "title": "1314颗钻石",
+      "text": "温室的星灯需要1314颗矿晶。它们不是我的价格，是我们决定修复的公共研究设施。等所有试炼与记忆都完成，再谈婚礼；现在也可以继续各自的生活。"
+    }
+  ],
+  "diamond_sources": {
+    "expedition": {
+      "diamonds": 3,
+      "repeatable": true,
+      "implemented": true,
+      "type": "基础矿道勘探原型",
+      "probability": 1.0,
+      "ore": 4,
+      "refresh": "每次新勘探重置矿晶"
+    },
+    "hard_order": {
+      "diamonds": 5,
+      "cooldown_days": 3
+    },
+    "relic": {
+      "diamonds": 18,
+      "one_time": true
+    },
+    "refine": {
+      "ore": 5,
+      "stone": 12,
+      "diamonds": 2
+    },
+    "deep_vein": {
+      "implemented": false,
+      "type": "完整多层矿洞稀有矿脉",
+      "planned_guaranteed_diamonds": 3,
+      "planned_bonus_probability": 0.25,
+      "planned_minutes": [
+        22,
+        30
+      ]
+    }
+  },
+  "balance": {
+    "target_hours": [
+      150,
+      250
+    ],
+    "prototype_expedition_seconds": [
+      90,
+      240
+    ],
+    "future_expedition_minutes": [
+      22,
+      30
+    ],
+    "future_diamonds_per_expedition": [
+      3,
+      4
+    ],
+    "note": "当前基础矿道内容不能证明终局150–250小时体验，完整多层矿洞与多样化试炼是后续扩展。",
+    "prototype_note": "当前基础矿道已可游玩；完整多层矿洞、可反复游玩的高难试炼与150–250小时内容密度尚未完成。"
+  }
+}

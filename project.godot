@@ -1,9 +1,13 @@
-; Pixel Farm — Godot 4.3 Standard / GDScript
+; Pixel World — Godot 4.3 Standard / GDScript
 config_version=5
 
 [application]
-config/name="Pixel Farm · 风芽农场"
-config/version="0.3.0"
+config/name="像素世界"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="godot/app_userdata/Pixel Farm · 风芽农场"
+config/custom_user_dir_name.windows="Godot/app_userdata/Pixel Farm · 风芽农场"
+config/custom_user_dir_name.macos="Godot/app_userdata/Pixel Farm · 风芽农场"
+config/version="0.4.0"
 run/main_scene="res://scenes/main/main.tscn"
 run/max_fps=60
 config/features=PackedStringArray("4.3", "GL Compatibility")
@@ -19,6 +23,8 @@ FarmProgress="*res://scripts/progression/farm_progress.gd"
 Story="*res://scripts/story/story_state.gd"
 GameWeather="*res://scripts/time/weather.gd"
 VillageProjects="*res://scripts/story/village_projects.gd"
+Letters="*res://scripts/story/letter_quests.gd"
+Xiaojing="*res://scripts/story/xiaojing_state.gd"
 
 [display]
 window/size/viewport_width=1280

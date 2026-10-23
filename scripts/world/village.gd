@@ -36,8 +36,11 @@ func _ready() -> void:
 	npc("ahe",Vector2(314,414))
 	npc("zhou",Vector2(488,480))
 	npc("linya",Vector2(610,442))
-	point("farm_return","返回风芽农场",Vector2(640,826),"sign")
+	point("farm_return","返回农场",Vector2(640,826),"sign")
 	point("bridge","看看旧桥",Vector2(790,450),"")
+	point("bridge_survey","调查桥墩水线",Vector2(785,540),"post")
+	point("repair_record","查看维修记录",Vector2(570,389),"post")
+	point("cargo_note","查看货箱便条",Vector2(1020,370),"post")
 	point("mill","读风车下的记录簿",Vector2(1090,350),"windmill")
 	point("lantern","点亮风灯",Vector2(628,524),"festival")
 	point("bench","长椅 · 等到傍晚",Vector2(540,610),"bench")
@@ -83,16 +86,31 @@ func _ready() -> void:
 	Story.changed.connect(refresh_bridge)
 	GameClock.changed.connect(refresh_gathering)
 	Story.changed.connect(refresh_gathering)
+	VillageProjects.changed.connect(refresh_gathering)
 	refresh_bridge()
 	refresh_gathering()
 
 func refresh_gathering() -> void:
-	# 风灯之夜的人物实际出现在广场，平日仍可到茶屋与木作坊找到他们。
-	var gathering := Story.stage >= 7 and GameClock.minutes >= 1080
-	villagers.linya.visible = gathering
-	villagers.linya.process_mode = Node.PROCESS_MODE_INHERIT if gathering else Node.PROCESS_MODE_DISABLED
-	villagers.zhou.position = Vector2(548,495) if gathering else Vector2(488,480)
-	villagers.ahe.position = Vector2(713,510) if gathering else Vector2(314,414)
+	# 固定工作时段与少量站点；只在可见地图中沿真实可通行路径行走。
+	var evening := GameClock.minutes >= 1080
+	var gathering := Story.stage == 7 and evening
+	villagers.linya.visible = evening
+	villagers.linya.process_mode = Node.PROCESS_MODE_INHERIT if evening else Node.PROCESS_MODE_DISABLED
+	villagers.linya.set_station(Vector2(610,442) if not VillageProjects.has_project("arbor") else Vector2(704,592))
+	var zhou_station := Vector2(488,480)
+	var ahe_station := Vector2(314,414)
+	if Story.stage == 4: zhou_station = Vector2(752,496)
+	elif Story.stage >= 5 and GameClock.minutes >= 840 and not evening: zhou_station = Vector2(960,528)
+	if VillageProjects.has_project("well") and GameClock.minutes >= 720 and GameClock.minutes < 840: ahe_station = Vector2(432,560)
+	if evening and VillageProjects.has_project("arbor"):
+		zhou_station = Vector2(496,656)
+		ahe_station = Vector2(592,656)
+	if gathering:
+		villagers.linya.set_station(Vector2(610,442))
+		zhou_station = Vector2(548,495)
+		ahe_station = Vector2(713,510)
+	villagers.zhou.set_station(zhou_station)
+	villagers.ahe.set_station(ahe_station)
 
 func refresh_bridge() -> void:
 	bridge_open = Story.stage >= 5

@@ -18,7 +18,8 @@ func prompt() -> String:
 	return title
 
 func interact() -> void:
-	if actor_id == "village": Events.interaction_requested.emit("village")
+	if actor_id == "mail" and Xiaojing.state.letter_ready: Events.interaction_requested.emit("xiaojing_letter")
+	elif actor_id == "village": Events.interaction_requested.emit("village")
 	elif actor_id == "farm_return": Events.interaction_requested.emit("farm_return")
 	elif actor_id == "community": Events.interaction_requested.emit("community")
 	else: Story.request(actor_id)

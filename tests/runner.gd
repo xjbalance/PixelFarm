@@ -33,6 +33,8 @@ func run() -> void:
 	await load("res://tests/phase_four.gd").run(self, game)
 	await load("res://tests/expansion.gd").run(self, game)
 	await load("res://tests/story.gd").run(self,game)
+	await load("res://tests/story_v4.gd").run(self,game)
+	await load("res://tests/xiaojing.gd").run(self,game)
 	print("RESULT: %d checks, %d failures" % [checked, failed])
 	game.get_node("Audio").stop_all()
 	await get_tree().create_timer(0.3).timeout

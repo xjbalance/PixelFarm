@@ -8,7 +8,7 @@ import zipfile
 
 root = Path(__file__).resolve().parents[1]
 version = re.search(r'^config/version="([^"]+)"', (root/'project.godot').read_text(),re.MULTILINE).group(1)
-apk_path = root/f'builds/PixelFarm-{version}-debug.apk'
+apk_path = root/f'builds/PixelWorld-{version}-debug.apk'
 engine = root/'.tools/Godot_v4.3-stable_linux.x86_64'
 with tempfile.TemporaryDirectory(prefix='pixelfarm-apk-') as directory:
     workspace = Path(directory)/'game'

@@ -1,4 +1,4 @@
-Pixel Farm 0.3.0 · 共建河湾
+像素世界 / Pixel World 0.4.0 · 那些没有寄出的信
 
 游戏代码、故事、角色、像素素材和合成音乐由本工程独立制作。
 引擎：Godot Engine 4.3，MIT。完整许可：GODOT-LICENSE.txt。

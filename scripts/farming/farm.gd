@@ -28,6 +28,7 @@ func use_tool(cell: Vector2i, tool: String) -> bool:
 	var id := key(cell)
 	var plot: Dictionary = plots.get(id, {})
 	var action := ""
+	var original_crop: String = str(plot.get("crop",""))
 	if tool == "hoe":
 		if not plot.is_empty():
 			Events.notice.emit("这块土地已翻好，可以播种了。")
@@ -71,6 +72,7 @@ func use_tool(cell: Vector2i, tool: String) -> bool:
 		Events.notice.emit("收获了 1 个%s！" % Catalog.item_name(crop_id))
 	else:
 		return false
+	Xiaojing.on_farm_commit(action,cell,tool.trim_suffix("_seed") if action == "播种" else original_crop)
 	changed.emit()
 	Events.farm_action.emit(action)
 	Events.farm_effect.emit(Vector2(cell)*32+Vector2(16,16),action)

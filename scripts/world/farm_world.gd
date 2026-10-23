@@ -18,7 +18,7 @@ func _ready() -> void:
 func refresh_linya() -> void:
 	var person := get_node_or_null("Actors/Linya")
 	if person:
-		person.visible = not (Story.stage >= 7 and GameClock.minutes >= 1080)
+		person.visible = GameClock.minutes < 1080
 		person.process_mode = Node.PROCESS_MODE_INHERIT if person.visible else Node.PROCESS_MODE_DISABLED
 
 func build_tiles() -> void:

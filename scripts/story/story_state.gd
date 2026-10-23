@@ -9,13 +9,21 @@ var lantern: String = ""
 var seen: Array[String] = []
 var assisted_tools: bool = true
 const SECRET_IDS := ["well","ribbon","post"]
-const NAMES := {"farm":"风芽农场", "home":"你的家", "village":"河湾村"}
+const NAMES := {"farm":"农场", "home":"你的家", "village":"河湾村"}
 
 func _ready() -> void:
 	data = JSON.parse_string(FileAccess.get_file_as_string("res://resources/story/wind_lantern.json"))
 
 func chapter() -> Dictionary:
-	return data.chapters[stage]
+	var result: Dictionary = data.chapters[stage].duplicate(true)
+	if stage in [1,2] and GameClock.minutes >= 1080:
+		result.location = "village"
+		result.target = [704,592] if VillageProjects.has_project("arbor") else [610,442]
+		result.goal += " 林芽傍晚在河湾村广场或茶座。"
+	if stage == 8:
+		var task := Letters.next_task()
+		if not task.is_empty(): result.goal = task.description
+	return result
 
 func has_items(requirements: Dictionary) -> bool:
 	for item in requirements:
@@ -32,7 +40,7 @@ func requirement_text() -> String:
 func request(actor: String) -> void:
 	var scene := ""
 	match actor:
-		"mail": scene = "letter" if stage == 0 else "letter_repeat"
+		"mail": scene = "letter" if stage == 0 else ("review_letter" if Letters.legacy_review else "letter_repeat")
 		"linya":
 			if stage == 1: scene = "welcome"
 			elif stage == 2 and has_items({"carrot":3}): scene = "harvest"
@@ -42,11 +50,12 @@ func request(actor: String) -> void:
 			if stage == 4 and has_items({"wood":8,"stone":6}): scene = "bridge"
 			else: scene = "bridge_hint"
 		"mill": scene = "mill" if stage == 5 else "mill_repeat"
-		"ahe": scene = "supper" if stage == 6 and VillageProjects.all_built() and has_items({"wheat":2,"carrot":1}) else "ahe_daily"
-		"lantern": scene = "festival" if stage == 7 and GameClock.minutes >= 1080 else "lantern_hint"
+		"ahe": scene = "guestbook" if stage >= 4 and not Letters.knows("guestbook") else ("supper" if stage == 6 and VillageProjects.all_built() else "ahe_daily")
+		"lantern": scene = "future" if stage == 8 and Letters.direction == "" else ("festival" if stage == 7 and GameClock.minutes >= 1080 else "lantern_hint")
 		"bench": scene = "bench"
 		"well": scene = "water_help" if VillageProjects.has_project("well") and "well" in seen else "well"
 		_: scene = actor
+	if data.scenes.has(scene) and not Letters.can_finish(data.scenes[scene]): scene = "investigation_hint"
 	Events.story_dialogue_requested.emit(scene)
 
 func scene_data(id: String) -> Dictionary:
@@ -59,36 +68,42 @@ func scene_data(id: String) -> Dictionary:
 	var portrait := "letter"
 	var text: Array = []
 	match id:
-		"letter_repeat": text = ["信被你收在信箱里，封口那一行字还在：不必照着从前的样子。",chapter().goal]
-		"bridge_hint": text = ["木桥已经修好，河的另一边不再遥远。" if stage >= 5 else ("周砚量好了桥脚。需要木材 8 份、石料 6 份，备齐后在这里一起动手。" if stage == 4 else "旧桥的木板松了。先去木作坊，听听周砚怎么说。")]
-		"mill_repeat": text = ["记录簿静静躺在风车底下。最后一句话，你已经记得了：留一把空椅子，给还没到的人。"]
-		"lantern_hint": text = ["风灯在等傍晚的第一缕风。18:00 后再来，或坐在旁边的长椅上等一等。" if stage == 7 else ("新种子袋在风里轻轻响。明年的春天，会有新的故事。" if lantern == "tomorrow" else "纸鸟转了半圈，灯下的长桌一直留着一把椅子。") if stage == 8 else "空空的风灯架上，留着去年没解开的线结。也许还能重新挂些什么。"]
-		"bench_late": text = ["已经是傍晚了。长椅还带着一点白天的暖意，广场就在旁边。"]
+		"investigation_hint":
+			text = [chapter().goal,"线索会记进手记。看完调查点的最后一句，再回来聊聊。"]
+		"letter_repeat": text = ["信与地图收在小屋的木盒里。",chapter().goal]
+		"bridge_hint": text = ["桥已通行。检查簿挂在桥头，水位线每年都要再看。" if stage >= 5 else chapter().goal]
+		"mill_repeat": text = ["货运簿记录着东岸三户人的行李。旁边的货箱里，还有未寄出的便条。"]
+		"lantern_hint": text = ["18:00 后再来，或在长椅等到傍晚。" if stage == 7 else ("灯还亮着。下一步先做"+Letters.DIRECTIONS.get(Letters.direction,"邻里商量的事")+"，别的方向也随时能开始。" if stage == 8 else "空风灯架上留着去年没解开的线结。")]
+		"bench_late": text = ["已经到傍晚了。广场的风灯架就在旁边。"]
 		"linya_daily":
 			who = "林芽"; portrait = "linya"
-			if stage == 0: text = ["屋东的信箱里有你姨婆留的信。我没拆过——那是写给你的。","先安顿下来吧。我就在种子摊边，不着急。"]
-			elif stage == 2: text = ["等三个胡萝卜成熟了，带来给我就好。每天浇一次水，回屋睡觉，两个生长日就能收。","味道不必和以前一模一样。这是你种的，就已经很好。"]
-			elif stage == 8: text = ["昨天挂灯的时候，我终于没有在想“如果当年”。","那只纸鸟会和新的种子一起留下来。谢谢你没有催我们忘记。" if lantern == "memory" else "种子袋上有你的字。以后每个春天，我们都再加一行吧。"]
-			elif GameWeather.is_rainy(): text = ["下雨了，田里的水我就放心啦。今天可以去村里走走。","我把种子袋搬到屋檐下了。雨能照顾土地，纸袋还得我们照顾。"]
-			else: text = ["我想让这里重新热闹起来——你那天的话，我偷偷记住了。" if motive == "renew" else "你说想有个能回来的地方。种子也一样，收好了，来年就有家。","清晨的露水很重，午后再收种子，不容易发霉。" if GameClock.minutes < 720 else "今天的新种子都摆在摊上了。路过的时候，别忘了看看树影。"]
+			text = [chapter().goal,"我想恢复收菜的车铃，也想让离开的人有一张回程订单。"]
+			if VillageProjects.has_project("cooperative"): text = ["共仓今天有人留种、有人取种。每袋都写着名字，种子仍按八折卖。","先试一张小订单吧。" if Letters.direction == "trade" else "有空种点新东西。别的方向忙完了，贸易这页也给你留着。"]
 		"zhou_daily":
 			who = "周砚"; portrait = "zhou"
-			text = ["听林芽说起过你。木头可以慢慢修，人也一样。","先照顾好农场吧，有空再来坐坐。"] if stage < 3 else (["桥脚我又检查了一遍。只是习惯……这回我没忍住，也走过去看了看。","下次可以在桥边做个小台阶，给看河水的人坐。"] if stage >= 5 else ["木材要 8 份，石料要 6 份。备齐了，就在东边桥头找我。","这次的桥，会记得不止一个人的力气。"])
-			if stage == 8: text = ["风灯昨晚响了一整夜。我没有觉得吵。","你选的旧纸鸟，我给它换了根结实的线。" if lantern == "memory" else "我想再做几个装种子的小木盒。新的事，总得有地方放。"]
+			text = [chapter().goal,"父亲留下的不是一座永远不会坏的桥，是提醒后来人检查的记号。"]
+			if stage >= 5: text = ["今天又量过桥脚，水位还低于新刻线。过桥慢一点。","要沿河调查，我替你看水位。" if Letters.direction == "explore" else "有人推着种子车过桥了。修好的东西，得让人真正用起来。"]
 		"ahe_daily":
 			who = "阿禾"; portrait = "ahe"
-			if stage == 6: text = ["共建板就在广场南边。水井、共仓、茶座，先做你觉得最需要的那一件。大家会出手艺和力气，你帮着备材料。","三件都做好了，再带麦子 2 份、胡萝卜 1 个来。我们吃一锅粥，商量接下来怎么让村庄更好。"]
-			elif stage == 8: text = ["那把空椅子，昨晚被一只猫占了。也好，它也是后来的人。","风灯会办完了，饭还是要一天一天吃。累了就来这里坐会儿。"]
-			else: text = ["你就是农场的新邻居？桌上有热水，自己倒。","大家总说等忙完再来。其实来这里，才是把一天好好忙完。"]
-		_: text = ["风从河湾经过，日子还在慢慢往前。"]
+			text = [chapter().goal,"留言册里写过离开的原因，也该留一页写回来的打算。"]
+			if VillageProjects.has_project("well"): text.append("午间我去井边洗杯子。今天不用再借谁家的水了。")
+			if VillageProjects.has_project("arbor"): text.append("傍晚在公共茶座等你。" if Letters.direction == "life" else "忙完就来茶座，值日表还留着空格。")
+		_: text = ["河水经过桥下，纸上的名字留了下来。"]
 	var lines: Array = []
 	for line in text: lines.append({"who":who,"portrait":portrait,"text":line})
 	return {"title":who,"lines":lines}
 
 func complete(id: String, choice: String = "") -> bool:
-	if not data.scenes.has(id): return true
+	if not data.scenes.has(id):
+		if id in ["linya_daily","zhou_daily","ahe_daily"]: Letters.record("talk:"+id.trim_suffix("_daily"))
+		return true
 	var scene: Dictionary = scene_data(id)
 	if scene.has("stage") and int(scene.stage) != stage: return false
+	if stage < int(scene.get("min_stage",0)): return false
+	if not Letters.can_finish(scene):
+		Events.notice.emit("先完成调查和交流，线索会保存在手记中。")
+		return false
+	if id == "future" and (stage != 8 or Letters.direction != ""): return false
 	if id == "supper" and not VillageProjects.all_built(): return false
 	if id == "festival" and GameClock.minutes < 1080: return false
 	var choices: Array = scene.get("choices",[])
@@ -97,14 +112,17 @@ func complete(id: String, choice: String = "") -> bool:
 		for option in choices:
 			if option.id == choice: valid_choice = true
 		if not valid_choice: return false
-	if scene.has("stage"):
+	if scene.has("stage") or id == "future":
 		# 回调期间仍可能读档；提交前再次校验阶段、容量与数量，不能跳章或重复拿奖励。
-		if not Inventory.exchange(scene.get("requirements",{}),{},int(scene.get("coins",0))):
+		var reward: Dictionary = {"trade":{"carrot_seed":3},"explore":{"wheat_seed":6},"life":{"potato_seed":3}}.get(choice,{}) if id in ["festival","future"] else {}
+		if not Inventory.exchange(scene.get("requirements",{}),reward,int(scene.get("coins",0))):
 			Events.notice.emit("物品或金币空间不满足，整理后再来，进度不会丢失。")
 			return false
-		stage = int(scene.next)
+		if scene.has("next"): stage = int(scene.next)
 		if id == "letter": motive = choice
-		if id == "festival": lantern = choice
+		if id in ["festival","future"]:
+			Letters.direction = choice
+			if id == "festival": lantern = choice
 		if id not in seen: seen.append(id)
 		chapter_completed.emit(stage)
 		Events.notice.emit("手记已更新 · "+chapter().title)
@@ -120,6 +138,11 @@ func complete(id: String, choice: String = "") -> bool:
 	elif id in SECRET_IDS and id not in seen:
 		seen.append(id)
 		Events.notice.emit("收进河谷手记 · "+scene.title)
+	Letters.record("scene:"+id)
+	if id in ["bridge_survey","repair_record","guestbook","cargo_note"]: Letters.record(id)
+	if id == "cargo_note": Letters.record("cargo_departure" if choice == "ask_departure" else "cargo_name")
+	if id == "water_help" and choice == "draw": Letters.record("water_help")
+	if id == "supper": Letters.record("talk:ahe")
 	changed.emit()
 	Events.progress_committed.emit()
 	return true
@@ -140,7 +163,7 @@ func validate(saved: Variant) -> bool:
 	if not saved is Dictionary or not FarmSaveSchema.whole(saved.get("stage"),0,8): return false
 	if not saved.get("assisted_tools") is bool: return false
 	if saved.get("motive") not in ([""] if saved.stage == 0 else ["renew","home"]): return false
-	if saved.get("lantern") not in (["memory","tomorrow"] if saved.stage == 8 else [""]): return false
+	if saved.get("lantern") not in (["memory","tomorrow","trade","explore","life"] if saved.stage == 8 else [""]): return false
 	if not saved.get("seen") is Array or saved.seen.size() > data.scenes.size(): return false
 	var unique := {}
 	for id in saved.seen:

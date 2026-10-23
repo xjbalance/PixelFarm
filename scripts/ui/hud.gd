@@ -23,6 +23,7 @@ var inventory_panel: PanelContainer
 var system_panel: PanelContainer
 var progress_panel: PanelContainer
 var story_panel: PanelContainer
+var xiaojing_panel: PanelContainer
 var quest_label: Label
 var scrim: ColorRect
 var completed: Dictionary = {}
@@ -49,6 +50,7 @@ func _ready() -> void:
 	FarmProgress.changed.connect(refresh)
 	GameClock.changed.connect(refresh)
 	Story.changed.connect(refresh)
+	Letters.changed.connect(refresh)
 	VillageProjects.changed.connect(refresh)
 	get_viewport().size_changed.connect(update_safe_area)
 	update_safe_area()
@@ -64,8 +66,8 @@ func build_top() -> void:
 	top.add_child(brand)
 	var names := VBoxContainer.new()
 	brand.add_child(names)
-	names.add_child(FarmUIStyle.label("风 芽 农 场", 21, FarmUIStyle.GOLD))
-	names.add_child(FarmUIStyle.label("一同建设 · 河湾村", 12, Color("b9c4a5")))
+	names.add_child(FarmUIStyle.label("像 素 世 界", 21, FarmUIStyle.GOLD))
+	names.add_child(FarmUIStyle.label("Pixel World · 0.4.0", 12, Color("b9c4a5")))
 	var time_panel := PanelContainer.new()
 	top.add_child(time_panel)
 	clock_label = FarmUIStyle.label("第 1 天  ·  06:00", 17)
@@ -132,7 +134,7 @@ func build_feedback() -> void:
 	safe.add_child(guide)
 	var content := VBoxContainer.new()
 	guide.add_child(content)
-	content.add_child(FarmUIStyle.label("把河湾村，一起建得更好",16,FarmUIStyle.GOLD))
+	content.add_child(FarmUIStyle.label("那些没有寄出的信",16,FarmUIStyle.GOLD))
 	progress_label = FarmUIStyle.label("农场起步 / 在屋前开垦一块地",12)
 	progress_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(progress_label)
@@ -180,6 +182,10 @@ func build_feedback() -> void:
 	story_panel.set_script(preload("res://scripts/ui/story_panel.gd"))
 	place(story_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-480,-280,960,560))
 	safe.add_child(story_panel)
+	xiaojing_panel = PanelContainer.new()
+	xiaojing_panel.set_script(preload("res://scripts/ui/xiaojing_panel.gd"))
+	place(xiaojing_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(xiaojing_panel)
 	# 提示位于模态层上方，金币不足、奖励和保存反馈不会被遮罩盖住。
 	safe.move_child(toast,-1)
 	Events.modal_changed.connect(func(active: bool):
@@ -223,7 +229,11 @@ func refresh() -> void:
 	stamina_label.text = "体力  %d / %d" % [GameState.stamina,GameState.max_stamina()]
 	stamina_bar.max_value = GameState.max_stamina()
 	stamina_bar.value = GameState.stamina
-	quest_label.text = Story.chapter().title+"\n"+("共建板 · 公共设施 %d/3，再找阿禾。" % VillageProjects.built.size() if Story.stage == 6 else Story.chapter().goal)
+	quest_label.text = Story.chapter().title+"\n"+Story.chapter().goal
+	if Story.stage == 8:
+		var next := Letters.next_task()
+		quest_label.text = "下一页 · "+Letters.DIRECTIONS.get(Letters.direction,"到风灯架商量发展方向")
+		if not next.is_empty(): quest_label.text += "\n"+str(next.title)
 	for i in range(tool_buttons.size()):
 		var id: String = GameState.tools[i]
 		var amount := str(Inventory.count(id)) if id.ends_with("_seed") else str(i + 1)
@@ -248,7 +258,7 @@ func close_active_panel() -> bool:
 	if dialogue.visible:
 		dialogue.close_dialogue()
 		return true
-	for panel in [story_panel,progress_panel,system_panel,inventory_panel]:
+	for panel in [xiaojing_panel,story_panel,progress_panel,system_panel,inventory_panel]:
 		if panel.visible:
 			panel.close_panel()
 			return true

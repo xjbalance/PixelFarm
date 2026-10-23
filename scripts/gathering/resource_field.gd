@@ -53,6 +53,7 @@ func hit(id: String, tool: String) -> bool:
 	if data.hp == 0:
 		data.ready_day = GameClock.day+int(definition.regrow)
 		Inventory.add(definition.item,definition.amount)
+		Xiaojing.on_gather(definition.item,int(definition.amount))
 		Events.notice.emit("获得%s ×%d；%d 天后这里会恢复。" % [Catalog.item_name(definition.item),definition.amount,definition.regrow])
 	Events.resource_hit.emit(data.hp == 0)
 	objects[id].hit_feedback()

@@ -26,3 +26,6 @@ python3 tools/generate_assets.py
 0.3.0 的 `polish_assets.py` 继续编辑本工程已有像素体系：地表色板、周砚/阿禾、八格工具图标、原创音乐与雨声。`detail_scenery.py` 增加门窗、石基、爬藤、树叶、衣着，并生成茶屋与木作坊建筑变体。`scenery.gd`、`portrait.gd` 为原创原生像素陈设和头像绘制。故事、三位角色、信件与对白均原创；没有下载或分发参考游戏美术、音乐或剧本。
 
 完整重绘顺序：先 `python3 tools/generate_assets.py`，再 `python3 tools/polish_assets.py`，最后 `python3 tools/detail_scenery.py`。不需要在运行游戏或导出前重绘。没有使用 AI 图片生成服务。
+
+
+0.4.0新增小京：`tools/generate_xiaojing_assets.py` 以本工程16px原有色板绘制独立32×48角色；`portrait.gd` 原生几何绘制独立头像，`greenhouse.gd` 绘制温室与星灯。未调用AI图片生成服务或引入第三方角色素材。新主线、小京五段关系、12个任务结语、七份记忆、婚礼与婚后信件均为本项目原创文字。截图04来自真实Godot渲染的测试夹具，不代表新档已具备这些进度。

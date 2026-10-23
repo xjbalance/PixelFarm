@@ -15,7 +15,7 @@ func _ready() -> void:
 	add_child(column)
 	var header := HBoxContainer.new()
 	column.add_child(header)
-	title = FarmUIStyle.label("河湾共建手记",25,FarmUIStyle.GOLD)
+	title = FarmUIStyle.label("那些没有寄出的信",25,FarmUIStyle.GOLD)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
@@ -37,6 +37,7 @@ func _ready() -> void:
 	content.add_theme_constant_override("separation",12)
 	scroll.add_child(content)
 	Story.changed.connect(refresh)
+	Letters.changed.connect(refresh)
 	VillageProjects.changed.connect(refresh)
 	Inventory.changed.connect(refresh)
 
@@ -103,6 +104,17 @@ func build_story() -> void:
 		row.add_child(button)
 	text_row("读过风车建设簿后，可在村中共建板交付材料。" if Story.stage < 6 else ("大家出手艺，你来备材料。建设完成立即生效并保存。" if at_board else "到广场南边的共建板交付材料；手记随时可查看。"),14,Color("b7c6ab"))
 
+
+	text_row("剧情任务与线索",22,FarmUIStyle.GOLD)
+	if Letters.legacy_review:
+		text_row("旧版建设与奖励已保留。小屋信箱可回顾新故事，桥边、木作坊和茶屋可重访线索。",16)
+	if Story.stage == 8:
+		text_row("下一步优先："+Letters.DIRECTIONS.get(Letters.direction,"在风灯架商量")+"；三个方向的起步任务均开放。",17)
+	for definition in Letters.definitions:
+		if not Letters.conditions_met(definition.unlock) and definition.id not in Letters.completed: continue
+		text_row(definition.title,19,FarmUIStyle.GOLD)
+		text_row(definition.description+"\n"+Letters.progress(definition),16)
+
 func build_map() -> void:
 	var locations := HBoxContainer.new()
 	content.add_child(locations)
@@ -147,7 +159,10 @@ func build_memories() -> void:
 		var entry: Dictionary = Story.data.scenes[id]
 		text_row(entry.title if id in Story.seen else "尚未遇见的一件小事",20,FarmUIStyle.GOLD)
 		text_row(entry.lines[0].text if id in Story.seen else {"well":"去井边看看旧刻痕。","ribbon":"过桥后，留意树上的蓝丝带。","post":"茶屋西南边的木牌夹着一张明信片。"}[id])
-	if Story.stage == 8: text_row("你为村庄留下了"+("旧纸鸟。我们记得一起走过的路。" if Story.lantern=="memory" else "新种子。让下一页的愿望也能发芽。"),18,Color("b6c69e"))
+	if Story.stage == 8: text_row("风灯持续亮着。下一页："+Letters.DIRECTIONS.get(Letters.direction,"在风灯架商量新的方向"),18,Color("b6c69e"))
+	for id in ["bridge_survey","repair_record","guestbook","cargo_note"]:
+		text_row(Story.data.scenes[id].title if Letters.knows(id) else "待发现的线索",19,FarmUIStyle.GOLD)
+		text_row(Story.data.scenes[id].lines[0].text if Letters.knows(id) else {"bridge_survey":"旧桥西侧的水位牌。","repair_record":"木作坊檐下的铁盒。","guestbook":"和阿禾谈茶屋留言册。","cargo_note":"河东风车旁的旧货箱。"}[id],16)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and (event.is_action_pressed("ui_cancel") or event.is_action_pressed("story_map")):

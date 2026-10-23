@@ -15,6 +15,7 @@ static func buy(crop_id: String, quantity: int) -> bool:
 		Events.notice.emit("这类种子已经装满背包。")
 		return false
 	if not Inventory.exchange({},{item:quantity},-cost): return false
+	Xiaojing.on_trade(-cost,item,quantity)
 	Events.notice.emit("买到 %s种子 ×%d，花费 %d 金。" % [crop.display_name,quantity,cost])
 	return true
 
@@ -30,5 +31,6 @@ static func sell(crop_id: String, quantity: int) -> bool:
 	if not Inventory.exchange({crop_id:quantity},{},total):
 		Events.notice.emit("金币已经达到上限。")
 		return false
+	Xiaojing.on_trade(total,crop_id,quantity)
 	Events.notice.emit("出售 %s ×%d，获得 %d 金。" % [Catalog.item_name(crop_id),quantity,total])
 	return true

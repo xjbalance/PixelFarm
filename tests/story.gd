@@ -2,6 +2,7 @@ extends RefCounted
 ## 用完整章节、真实桥面碰撞、触屏选择和存档边界验证村庄共建流程。
 static func run(test: Node,game: Node) -> void:
 	Story.restore({})
+	Letters.restore({})
 	VillageProjects.restore({})
 	FarmProgress.restore({})
 	GameState.rest()
@@ -57,6 +58,15 @@ static func story_flow(test: Node,game: Node) -> void:
 	Story.request("linya")
 	test.check(panel.scene_id == "linya_daily","作物不足时提供日常提示，不提前交付")
 	panel.close_dialogue()
+	# 新序幕要求真实种植教学；不以直接发物品代替完成条件。
+	game.farm.plots.erase("17,16")
+	game.farm.use_tool(Vector2i(17,16),"hoe")
+	game.farm.use_tool(Vector2i(17,16),"carrot_seed")
+	game.farm.use_tool(Vector2i(17,16),"water")
+	GameClock.next_day()
+	game.farm.use_tool(Vector2i(17,16),"water")
+	GameClock.next_day()
+	game.farm.use_tool(Vector2i(17,16),"hand")
 	Inventory.items.carrot = 3
 	Story.request("linya")
 	panel.close_dialogue()
@@ -76,6 +86,10 @@ static func story_flow(test: Node,game: Node) -> void:
 	await test.frames(30)
 	Input.action_release("move_right")
 	test.check(game.player.position.x < 825,"断桥河面真实物理碰撞阻止提前过河")
+	Story.request("bridge_survey")
+	finish(panel)
+	Story.request("repair_record")
+	finish(panel)
 	game.player.position = Vector2(488,524)
 	game.action_cooldown = 0
 	game.interact()
@@ -84,6 +98,8 @@ static func story_flow(test: Node,game: Node) -> void:
 	Inventory.items.wood = 7
 	Inventory.items.stone = 6
 	test.check(not Story.complete("bridge") and Inventory.count("wood") == 7,"修桥材料不足不会部分扣除")
+	Story.request("ahe")
+	finish(panel)
 	Inventory.items.wood = 8
 	Story.request("bridge")
 	finish(panel)
@@ -94,6 +110,7 @@ static func story_flow(test: Node,game: Node) -> void:
 	await test.frames(65)
 	Input.action_release("move_right")
 	test.check(game.player.position.x > 940,"修桥后真实移动可以穿过整个河面")
+	Letters.record("east_bank")
 	Story.request("mill")
 	finish(panel)
 	test.check(Story.stage == 6,"风车建设簿解锁三项村庄公共设施")
@@ -126,15 +143,15 @@ static func story_flow(test: Node,game: Node) -> void:
 	game.hud.story_panel.close_panel()
 	Story.request("ahe")
 	finish(panel)
-	test.check(Story.stage == 7 and Inventory.count("wheat") == 0 and Inventory.count("carrot") == 0,"全部工程建成后，聚餐完成食材交付")
+	test.check(Story.stage == 7 and Inventory.count("wheat") == 2 and Inventory.count("carrot") == 1,"全部工程建成后，生活对话推进主线，不再重复交付食材")
 	test.check(not Story.complete("festival","memory"),"庆典不能在白天通过回调提前完成")
 	Story.request("bench")
 	finish(panel,"wait")
 	test.check(GameClock.minutes == 1080,"长椅可等待到18点，不需要空等现实时间")
-	test.check(game.village.villagers.linya.visible and game.village.villagers.ahe.position.distance_to(Vector2(713,510)) < 1 and not game.world.get_node("Actors/Linya").visible,"风灯之夜三位村民实际来到广场，农场不保留另一位林芽")
+	test.check(game.village.villagers.linya.visible and game.village.villagers.ahe.station.distance_to(Vector2(713,510)) < 1 and not game.world.get_node("Actors/Linya").visible,"风灯之夜三位村民实际来到广场，农场不保留另一位林芽")
 	Story.request("lantern")
-	finish(panel,"tomorrow")
-	test.check(Story.stage == 8 and Story.lantern == "tomorrow" and Inventory.coins == 480,"庆典结尾选择完成首章，村庄留下新的种子灯")
+	finish(panel,"trade")
+	test.check(Story.stage == 8 and Story.lantern == "trade" and Inventory.coins == 480,"庆典结尾选择完成首章，村庄留下新的种子灯")
 	test.check(not Story.complete("festival","memory") and Inventory.coins == 480,"结局不能重复领奖或覆写已做的选择")
 	var after: Dictionary = Story.scene_data("zhou_daily")
 	test.check("种子" in after.lines[1].text,"结局选择改变村民后续对白")
@@ -203,7 +220,7 @@ static func save_and_ui(test: Node,game: Node) -> void:
 	test.check(not game.village.bridge_open,"重置故事时桥面同步关闭")
 	test.check(FarmSaveStore.restore(game,saved),"新版剧情与村庄设施整份恢复")
 	await test.frames()
-	test.check(Story.stage == 8 and Story.lantern == "tomorrow" and VillageProjects.all_built() and game.village.bridge_open and GameState.location == "village","读档恢复结局装饰、工程福利和实际桥面")
+	test.check(Story.stage == 8 and Story.lantern == "trade" and VillageProjects.all_built() and game.village.bridge_open and GameState.location == "village","读档恢复结局装饰、工程福利和实际桥面")
 	for changes in [{"stage":9},{"seen":["letter"]},{"lantern":"unknown"},{"assisted_tools":1}]:
 		var invalid: Dictionary = saved.duplicate(true)
 		invalid.story.merge(changes,true)

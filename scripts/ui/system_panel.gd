@@ -14,7 +14,7 @@ func _ready() -> void:
 	var column := VBoxContainer.new()
 	column.add_theme_constant_override("separation",16)
 	add_child(column)
-	title = FarmUIStyle.label("农场小记",26,FarmUIStyle.GOLD)
+	title = FarmUIStyle.label("像素世界 · 0.4.0",26,FarmUIStyle.GOLD)
 	column.add_child(title)
 	body = FarmUIStyle.label("",17)
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -28,8 +28,8 @@ func open_panel(for_sleep: bool = false) -> void:
 	sleep_mode = for_sleep
 	GameState.set_modal(true)
 	show()
-	title.text = "让今天好好结束" if for_sleep else "农场小记"
-	body.text = "睡到明天早上 06:00，恢复全部体力。\n今天浇过水的作物将成长一天。" if for_sleep else "移动：WASD / 方向键 / 左侧摇杆\n操作：E / 右侧按钮；换工具：Q / 1—8\n背包 B · 委托 J · 保存 F5 · 读取 F9\n斧头砍树，镐采石；材料用于修缮与委托。\n小屋东侧有修缮台和委托板。"
+	title.text = "让今天好好结束" if for_sleep else "像素世界 · 0.4.0"
+	body.text = "睡到明天早上 06:00，恢复全部体力。\n今天浇过水的作物将成长一天。" if for_sleep else "移动：WASD / 方向键 / 左侧摇杆\n操作：E / 右侧按钮；换工具：Q / 1—8\n背包 B · 委托 J · 保存 F5 · 读取 F9\n主线：那些没有寄出的信\n第一章：河水带走的名字\n小屋东侧有修缮台和委托板。"
 	for child in actions.get_children():
 		actions.remove_child(child)
 		child.queue_free()

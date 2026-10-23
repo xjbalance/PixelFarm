@@ -30,6 +30,25 @@ func _ready() -> void:
 		GameState.stamina = 117
 		GameState.selected = 7
 		game.farm.plots = {"20,20":{"crop":"potato","days":2,"watered":true}}
+		var hidden := Xiaojing.defaults()
+		hidden.plants=520
+		hidden.plant_serial=520
+		hidden.unlocked=true
+		hidden.affection=100
+		hidden.trust=100
+		hidden.bond=100
+		hidden.dating=true
+		hidden.greenhouse=true
+		hidden.proposed=true
+		hidden.married=true
+		hidden.wedding_day=10
+		hidden.diamonds=7
+		hidden.ore=6
+		for event in Xiaojing.data.events: hidden.events.append(event.id)
+		for quest in Xiaojing.data.quests: hidden.quests.append(quest.id)
+		for memory in Xiaojing.data.memories: hidden.memories.append(memory.id)
+		hidden.trials=["management","planning","cave","mechanism","joint"]
+		Xiaojing.restore(hidden)
 		success = FarmSaveStore.write(game)
 	elif legacy_read:
 		success = Inventory.coins == 321 and Inventory.count("carrot") == 3 and GameClock.day == 5 and GameState.stamina == 73
@@ -40,6 +59,7 @@ func _ready() -> void:
 		success = success and backup.version == 1 and FarmSaveStore.read().version == FarmSaveStore.VERSION
 	else:
 		success = Inventory.coins == 987 and Inventory.count("wheat") == 3 and Inventory.count("carrot_seed") == 7
+		success = success and Xiaojing.state.married and Xiaojing.state.plants==520 and Xiaojing.state.diamonds==7 and Xiaojing.state.ore==6
 		success = success and GameClock.day == 12 and GameClock.minutes == 1057 and GameState.stamina == 117
 		success = success and Inventory.count("wood") == 11 and Inventory.count("stone") == 4 and GameState.selected == 7
 		success = success and FarmProgress.built.size() == 3 and FarmProgress.quest_status("river_path") == "active" and FarmProgress.friendship == 37

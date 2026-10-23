@@ -1,7 +1,7 @@
 """使用项目内便携工具导出并验证 APK；不安装软件、不修改全局配置。
 
 当前脚本用于 Linux 构建机。Windows 手动导出方法见 docs/ANDROID.md。
-依赖放在 .tools/android/，签名只在首次构建时创建，更新包复用原签名。
+依赖放在 .tools/android/；必须复用原更新签名，密钥缺失时不自动新建。
 """
 from pathlib import Path
 import argparse
@@ -37,7 +37,7 @@ def build():
         raise RuntimeError('此入口使用 Linux 便携工具；Windows 请按 docs/ANDROID.md 导出。')
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path,
-                        default=ROOT / f'builds/PixelFarm-{VERSION}-debug.apk')
+                        default=ROOT / f'builds/PixelWorld-{VERSION}-debug.apk')
     args = parser.parse_args()
     output = args.output.resolve()
     if output.suffix.lower() != '.apk':
@@ -67,14 +67,7 @@ def build():
     if not engine.is_file():
         raise RuntimeError(f'缺少 Godot 4.3 便携引擎：{engine}')
     if not keystore.exists():
-        keystore.parent.mkdir(parents=True, exist_ok=True)
-        run('首次创建项目专属调试签名', [
-            jdk / 'bin/keytool', '-genkeypair', '-noprompt', '-storetype', 'JKS',
-            '-keystore', keystore, '-storepass', 'android', '-keypass', 'android',
-            '-alias', 'androiddebugkey', '-keyalg', 'RSA', '-keysize', '2048',
-            '-validity', '10000', '-dname', 'CN=Pixel Farm Debug,O=Pixel Farm,C=CN',
-        ], env, 'android-keygen.log')
-        keystore.chmod(0o600)
+        raise RuntimeError('缺少原有更新签名。为避免破坏覆盖安装，本脚本不会创建新密钥。请恢复原 keystore。')
 
     # 只写入项目隔离的编辑器配置，保留用户原有 Godot/JDK/SDK 设置。
     settings = {
@@ -105,6 +98,9 @@ def build():
     signatures = run('验证 APK 签名', [
         build_tools / 'apksigner', 'verify', '--verbose', '--print-certs', pending,
     ], env, f'android-signature-{VERSION}.log')
+    expected_cert = '89455063278c15e708389a2caff957c7254ff2e88b3e19aaf23cdd755c90414b'
+    if f'certificate SHA-256 digest: {expected_cert}' not in signatures:
+        raise RuntimeError('签名证书与0.3.0不一致，拒绝交付覆盖更新包')
     run('验证 ZIP 对齐', [build_tools / 'zipalign', '-c', '-v', '4', pending],
         env, f'android-alignment-{VERSION}.log')
     badging = run('检查包名、版本、启动入口和设备要求', [

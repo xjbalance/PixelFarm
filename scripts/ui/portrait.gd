@@ -26,7 +26,8 @@ func _draw() -> void:
 	var skin := Color("e8b98c")
 	var hair := Color("564343")
 	var coat := Color("a585aa")
-	if person == "zhou": hair = Color("4a4944"); coat = Color("739798")
+	if person == "xiaojing": hair = Color("4d424c"); coat = Color("668c91")
+	elif person == "zhou": hair = Color("4a4944"); coat = Color("739798")
 	elif person == "ahe": hair = Color("c8c2af"); coat = Color("be8e67")
 	draw_rect(Rect2(9,35,28,11),coat.darkened(0.3))
 	draw_rect(Rect2(11,33,24,13),coat)
@@ -49,6 +50,9 @@ func _draw() -> void:
 		draw_rect(Rect2(14,12,16,2),Color("e6cba5"))
 		draw_rect(Rect2(30,11,4,4),Color("edcb91"))
 		draw_rect(Rect2(10,28,4,10),hair)
+	elif person == "xiaojing":
+		draw_rect(Rect2(30,17,5,23),hair)
+		draw_rect(Rect2(29,14,6,3),Color("b6c98e"))
 	elif person == "zhou":
 		draw_rect(Rect2(13,11,18,7),hair)
 		draw_rect(Rect2(15,11,6,2),Color("72766b"))

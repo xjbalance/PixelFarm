@@ -2,7 +2,7 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,3): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,5): return {}
 	var data: Dictionary = raw.duplicate(true)
 	if int(data.version) == 1:
 		# 旧版没有采集/设施/委托，保持所有已有进度，新增字段取初始值。
@@ -18,6 +18,12 @@ static func normalize(raw: Variant) -> Dictionary:
 		data.version = 3
 		data.story = {"stage":0,"motive":"","lantern":"","seen":[],"assisted_tools":true}
 		data.village = {"built":[],"water_day":0,"tea_day":0}
+	if int(data.version) == 3:
+		data.version = 4
+		data.letters = Letters.migrate(data.story,data.get("journal",[]) if data.get("journal",[]) is Array else []) if data.get("story") is Dictionary and whole(data.story.get("stage"),0,8) else {}
+	if int(data.version) == 4:
+		data.version = 5
+		data.xiaojing = Xiaojing.defaults()
 	if not valid_current(data): return {}
 	return data
 
@@ -57,9 +63,12 @@ static func whole(value: Variant, low: int, high: int) -> bool:
 
 static func valid_current(data: Variant) -> bool:
 	if not data is Dictionary: return false
+	if not Letters.validate(data.get("letters")): return false
+	if data.letters.direction != "" and (not data.get("story") is Dictionary or data.story.get("stage") != 8): return false
+	if not whole(data.get("day"),1,999999) or not Xiaojing.validate(data.get("xiaojing"),int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),3,3) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),5,5) or not Story.validate(data.get("story")): return false
 	if not VillageProjects.validate(data.get("village"),data.get("day"),int(data.story.stage)): return false
 	if not whole(data.get("day"),1,999999): return false
 	if not whole(data.get("coins"),0,999999999): return false

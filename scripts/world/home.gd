@@ -25,6 +25,12 @@ func _ready() -> void:
 		add_child(body)
 	add_point("sleep","睡一觉 · 进入下一天",Vector2(786,342))
 	add_point("exit","返回农场",Vector2(640,556))
+	var letter_box := Node2D.new()
+	letter_box.set_script(preload("res://scripts/world/story_point.gd"))
+	letter_box.actor_id = "mail"
+	letter_box.title = "读窗下木盒里的旧信"
+	letter_box.position = Vector2(720,274)
+	add_child(letter_box)
 	FarmProgress.changed.connect(queue_redraw)
 	queue_redraw()
 
@@ -66,6 +72,8 @@ func _draw() -> void:
 	draw_rect(Rect2(566,298,108,48),Color("bc975f"))
 	draw_rect(Rect2(594,310,38,22),Color("ded0a0"))
 	draw_circle(Vector2(646,318),7,Color("6d8f79"))
+	draw_rect(Rect2(708,254,24,16),Color("947451"))
+	draw_rect(Rect2(711,252,18,7),Color("e5d5ae"))
 	draw_rect(Rect2(612,172,64,38),Color("665343"))
 	draw_rect(Rect2(616,176,56,30),Color("9bc5bc"))
 	draw_line(Vector2(644,176),Vector2(644,206),Color("ead9ac"),4)

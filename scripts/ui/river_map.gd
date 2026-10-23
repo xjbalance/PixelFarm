@@ -60,7 +60,7 @@ func _draw() -> void:
 		mark(Vector2(628,524),"风灯广场")
 		mark(Vector2(540,610),"茶座",Color("ede0af"),Vector2(-45,10))
 		mark(Vector2(680,650),"共建板")
-		mark(Vector2(640,826),"↓ 风芽农场",Color("ede0af"),Vector2(8,0))
+		mark(Vector2(640,826),"↓ 农场",Color("ede0af"),Vector2(8,0))
 	var objective: Dictionary = Story.chapter()
 	if objective.location == location and Story.stage < 8:
 		var p := point(Vector2(objective.target[0],objective.target[1]))

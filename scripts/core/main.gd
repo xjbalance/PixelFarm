@@ -11,6 +11,7 @@ var village: Node2D
 var was_running: bool = true
 var backgrounded: bool = false
 var closing: bool = false
+var schedule_restore_pending: bool = false
 
 func _ready() -> void:
 	get_tree().quit_on_go_back = false
@@ -41,6 +42,7 @@ func _ready() -> void:
 	Events.interaction_requested.connect(handle_interaction)
 	GameClock.day_advanced.connect(autosave)
 	Events.progress_committed.connect(func(): call_deferred("autosave"))
+	build_xiaojing_world()
 	Events.notice.emit("欢迎回家。屋东的信箱里，有一封留给你的信。")
 	if persistence_enabled and (FileAccess.file_exists(FarmSaveStore.PATH) or FileAccess.file_exists(FarmSaveStore.PATH+".bak")):
 		load_game()
@@ -48,7 +50,7 @@ func _ready() -> void:
 		call_deferred("opening_letter")
 
 func opening_letter() -> void:
-	if Story.stage == 0 and not GameState.modal: Story.request("mail")
+	if Story.stage == 0 and not GameState.modal: Events.notice.emit("先回小屋看看。窗下木盒里有一封旧信和半张地图。")
 
 func _process(delta: float) -> void:
 	action_cooldown = maxf(0, action_cooldown - delta)
@@ -97,7 +99,8 @@ func resource_target() -> Node2D:
 	return world.resource_field.find_target(player.global_position,player.facing)
 
 func handle_interaction(kind: String) -> void:
-	if kind == "home": change_location("home")
+	if kind.begins_with("xiaojing"): hud.xiaojing_panel.open_panel(kind)
+	elif kind == "home": change_location("home")
 	elif kind == "exit": change_location("farm")
 	elif kind == "sleep": hud.system_panel.open_panel(true)
 	elif kind == "shop": hud.inventory_panel.open_panel(true)
@@ -137,6 +140,8 @@ func change_location(destination: String, saved_position: Vector2 = Vector2.INF)
 	camera.reset_smoothing()
 	$DayNight.refresh()
 	Events.location_changed.emit(destination)
+	Xiaojing.record_location(destination)
+	call_deferred("restore_schedules")
 	GameState.changed.emit()
 
 func recover_blocked_position() -> void:
@@ -250,3 +255,57 @@ func context_hint() -> String:
 		var crop = Catalog.crops[plot.crop]
 		return "%s · %s" % [Catalog.item_name(plot.crop),"可以收获了" if farm.is_mature(plot) else ("已浇水 · 还需 %d 个生长日" % (crop.growth_days-int(plot.days)) if plot.watered else "需要一点水")]
 	return "对准脚前亮框 · "+context_action_name()
+
+func restore_schedules() -> void:
+	# 等待新桥面/碰撞在物理服务器同步后再恢复 NPC 站点。
+	if schedule_restore_pending: return
+	schedule_restore_pending = true
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	village.refresh_gathering()
+	world.refresh_linya()
+	for person in village.villagers.values():
+		person.reset_station()
+		if person.station != Vector2.INF:
+			var query := PhysicsShapeQueryParameters2D.new()
+			query.shape = person.get_node("CollisionShape2D").shape
+			query.exclude = [person.get_rid()]
+			query.collision_mask = 3
+			query.transform = Transform2D(0,person.station)
+			if person.get_world_2d().direct_space_state.intersect_shape(query,1).is_empty(): person.position = person.station
+	schedule_restore_pending = false
+
+func build_xiaojing_world() -> void:
+	for memory in Xiaojing.data.memories:
+		var point := Node2D.new()
+		point.set_script(preload("res://scripts/world/xiaojing_point.gd"))
+		point.memory_id = memory.id
+		point.title = memory.title
+		point.position = Vector2(memory.position[0],memory.position[1])
+		var map: Node = {"farm":world.get_node("Actors"),"home":home,"village":village.get_node("Actors")}[memory.location]
+		map.add_child(point)
+	for location in ["farm","village","home"]:
+		var person := preload("res://scenes/npc/linya.tscn").instantiate()
+		person.person_id = "xiaojing"
+		person.position = {"farm":Vector2(1232,800),"village":Vector2(1120,624),"home":Vector2(720,452)}[location]
+		person.get_node("Sprite2D").texture = preload("res://assets/characters/xiaojing.png")
+		var parent: Node = {"farm":world.get_node("Actors"),"home":home,"village":village.get_node("Actors")}[location]
+		parent.add_child(person)
+		var refresh_person := func():
+			var place := "village" if GameClock.minutes < 1080 else ("home" if Xiaojing.state.married and GameClock.minutes>=1260 else "farm")
+			# 共同活动时到茶座，婚后仍保留独立的白天工作。
+			if GameClock.minutes>=1080 and GameClock.minutes<1200 and VillageProjects.has_project("arbor"): place="village"
+			var desired: Vector2 = Vector2(624,624) if location=="village" and GameClock.minutes>=1080 else {"farm":Vector2(1232,800),"village":Vector2(1120,624),"home":Vector2(720,452)}[location]
+			if GameState.location == location and player.global_position.distance_to(desired)<30:
+				desired += Vector2(40,0)
+			person.position = desired
+			person.visible = Xiaojing.state.unlocked and place == location
+			person.process_mode = Node.PROCESS_MODE_INHERIT if person.visible else Node.PROCESS_MODE_DISABLED
+		Xiaojing.changed.connect(refresh_person)
+		GameClock.changed.connect(refresh_person)
+		VillageProjects.changed.connect(refresh_person)
+		refresh_person.call()
+	var greenhouse := Node2D.new()
+	greenhouse.set_script(preload("res://scripts/world/greenhouse.gd"))
+	greenhouse.position = Vector2(1280,780)
+	world.get_node("Actors").add_child(greenhouse)
