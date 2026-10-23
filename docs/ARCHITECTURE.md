@@ -6,8 +6,11 @@
 - `Xiaojing`：独立三属性/任务/记忆/试炼/婚姻状态，农田成功提交直接计数，不订阅展示信号；钻石单独账户。
 - `xiaojing_panel.gd`：原生触点/滚动/模态UI，故事读完才提交，婚礼确认才扣费。
 - `VillagerNavigation`：NPC站点间的四向AStarGrid2D，采样当前真实碰撞；复用CharacterBody2D，不是玩家点击寻路模块。
-- 当前schema5，逐步迁移v1–v4；同一用户目录、原包名和签名保留。
-- 默认点击移动与模式切换按用户要求留到下一阶段，未纳入本轮运行代码。
+- 当前schema6，逐步迁移v1–v5；同一用户目录、原包名和签名保留。
+- `TouchInputManager`记录输入归属、UI过滤与相机逆变换；`TouchInteractionResolver`解析原目标。
+- `WorldNavigation`缓存当前图静态碰撞并叠加动态NPC，32px AStarGrid2D基数网格；桥梁/资源变更后等待物理同步刷新。
+- `AutoMoveController`维护一次意图状态机，输入仍由原Player移动/动画/碰撞执行；`TouchInteractionExecutor`在合法距离与视线内调用原交互一次。
+- 模式由GameState统一变更，HUD释放摇杆、控制器取消待操作、输入管理器取消手势；存档仅保存枚举，运行路径不持久化。详见[触控说明](TOUCH-CONTROLS.md)。
 
 ---
 

@@ -109,7 +109,8 @@ def build():
     manifest = run('读取完整 Android 清单', [
         build_tools / 'aapt', 'dump', 'xmltree', pending, 'AndroidManifest.xml',
     ], env, f'android-manifest-tree-{VERSION}.log')
-    required = ["package: name='org.pixelfarm.windbud'", f"versionName='{VERSION}'",
+    version_code = re.search(r'^version/code=(\d+)', (ROOT / 'export_presets.cfg').read_text(), re.MULTILINE).group(1)
+    required = ["package: name='org.pixelfarm.windbud'", f"versionName='{VERSION}'", f"versionCode='{version_code}'",
                 "launchable-activity: name='com.godot.game.GodotApp'"]
     if not all(value in badging for value in required):
         raise RuntimeError('包名、版本或启动入口与工程配置不一致')

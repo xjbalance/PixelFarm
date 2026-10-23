@@ -33,7 +33,7 @@ func _ready() -> void:
 	for bounds in [Rect2(-32,-32,1344,32),Rect2(-32,896,1344,32),Rect2(-32,0,32,896),Rect2(1280,0,32,896)]: blocker(bounds,self)
 	house(Vector2(290,357),preload("res://assets/buildings/tea_house.png"))
 	house(Vector2(520,350),preload("res://assets/buildings/workshop.png"))
-	npc("ahe",Vector2(314,414))
+	npc("ahe",Vector2(284,452))
 	npc("zhou",Vector2(488,480))
 	npc("linya",Vector2(610,442))
 	point("farm_return","返回农场",Vector2(640,826),"sign")
@@ -98,7 +98,7 @@ func refresh_gathering() -> void:
 	villagers.linya.process_mode = Node.PROCESS_MODE_INHERIT if evening else Node.PROCESS_MODE_DISABLED
 	villagers.linya.set_station(Vector2(610,442) if not VillageProjects.has_project("arbor") else Vector2(704,592))
 	var zhou_station := Vector2(488,480)
-	var ahe_station := Vector2(314,414)
+	var ahe_station := Vector2(284,452)
 	if Story.stage == 4: zhou_station = Vector2(752,496)
 	elif Story.stage >= 5 and GameClock.minutes >= 840 and not evening: zhou_station = Vector2(960,528)
 	if VillageProjects.has_project("well") and GameClock.minutes >= 720 and GameClock.minutes < 840: ahe_station = Vector2(432,560)
@@ -116,6 +116,7 @@ func refresh_bridge() -> void:
 	bridge_open = Story.stage >= 5
 	for y in [14,15]:
 		for x in [26,27,28]: ground.set_cell(Vector2i(x,y),0,Vector2i(7 if bridge_open else 5,0))
+	Events.navigation_changed.emit()
 	queue_redraw()
 
 func blocker(rect: Rect2,parent: Node) -> void:

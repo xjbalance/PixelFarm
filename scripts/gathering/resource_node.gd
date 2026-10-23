@@ -27,6 +27,7 @@ func refresh() -> void:
 	var active: bool = field.state[resource_id].hp > 0
 	sprite.visible = active
 	collider.set_deferred("disabled",not active)
+	Events.navigation_changed.emit()
 	queue_redraw()
 
 func hit_feedback() -> void:

@@ -12,6 +12,8 @@ var was_running: bool = true
 var backgrounded: bool = false
 var closing: bool = false
 var schedule_restore_pending: bool = false
+var auto_move: Node2D
+var touch_input: Node
 
 func _ready() -> void:
 	get_tree().quit_on_go_back = false
@@ -43,6 +45,16 @@ func _ready() -> void:
 	GameClock.day_advanced.connect(autosave)
 	Events.progress_committed.connect(func(): call_deferred("autosave"))
 	build_xiaojing_world()
+	auto_move = Node2D.new()
+	auto_move.set_script(preload("res://scripts/navigation/auto_move_controller.gd"))
+	add_child(auto_move)
+	auto_move.setup(self)
+	auto_move.navigation.invalidate()
+	# 最后添加，_input 先于现有原生触点按钮记录归属。
+	touch_input = Node.new()
+	touch_input.set_script(preload("res://scripts/input/touch_input_manager.gd"))
+	add_child(touch_input)
+	touch_input.setup(self)
 	Events.notice.emit("欢迎回家。屋东的信箱里，有一封留给你的信。")
 	if persistence_enabled and (FileAccess.file_exists(FarmSaveStore.PATH) or FileAccess.file_exists(FarmSaveStore.PATH+".bak")):
 		load_game()
@@ -80,6 +92,7 @@ func nearest_interactable() -> Node2D:
 	return found
 
 func interact() -> void:
+	if auto_move: auto_move.cancel()
 	if GameState.modal or action_cooldown > 0: return
 	action_cooldown = 0.16
 	var resource := resource_target()
@@ -99,6 +112,7 @@ func resource_target() -> Node2D:
 	return world.resource_field.find_target(player.global_position,player.facing)
 
 func handle_interaction(kind: String) -> void:
+	if auto_move: auto_move.cancel()
 	if kind.begins_with("xiaojing"): hud.xiaojing_panel.open_panel(kind)
 	elif kind == "home": change_location("home")
 	elif kind == "exit": change_location("farm")
@@ -114,6 +128,7 @@ func handle_interaction(kind: String) -> void:
 
 func change_location(destination: String, saved_position: Vector2 = Vector2.INF) -> void:
 	if destination not in ["farm","home","village"]: return
+	if auto_move: auto_move.cancel()
 	GameState.location = destination
 	player.touch_direction = Vector2.ZERO
 	player.velocity = Vector2.ZERO
@@ -185,6 +200,8 @@ func _notification(what: int) -> void:
 			GameClock.running = false
 			$Audio.in_background = true
 			player.touch_direction = Vector2.ZERO
+			auto_move.cancel()
+			touch_input.reset()
 			hud.joystick.reset()
 			for action in ["move_left","move_right","move_up","move_down"]: Input.action_release(action)
 			autosave()

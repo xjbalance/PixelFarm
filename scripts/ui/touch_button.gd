@@ -5,6 +5,7 @@ var press_origin := Vector2.ZERO
 
 func _ready() -> void:
 	Events.modal_changed.connect(func(_active: bool): finger = -1)
+	GameState.control_mode_changed.connect(func(): finger = -1)
 
 func _input(event: InputEvent) -> void:
 	if not is_visible_in_tree() or disabled:

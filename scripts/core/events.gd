@@ -12,3 +12,4 @@ signal progress_committed
 signal story_dialogue_requested(id: String)
 signal location_changed(id: String)
 signal farm_effect(position: Vector2, kind: String)
+signal navigation_changed

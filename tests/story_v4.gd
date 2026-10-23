@@ -43,7 +43,7 @@ static func run(test: Node, game: Node) -> void:
 			if Story.data.scenes[id].has("next") and int(Story.data.scenes[id].next)<=stage: legacy.story.seen.append(id)
 		legacy.village={"built":["well","cooperative","arbor"] if stage>=7 else [],"water_day":0,"tea_day":0}
 		var normalized := FarmSaveSchema.normalize(legacy)
-		test.check(not normalized.is_empty() and normalized.version==5 and normalized.coins==legacy.coins and normalized.items==legacy.items and normalized.plots==legacy.plots and normalized.player==legacy.player,"v3不同章节迁移保留经营数据：stage"+str(stage))
+		test.check(not normalized.is_empty() and normalized.version==FarmSaveStore.VERSION and normalized.coins==legacy.coins and normalized.items==legacy.items and normalized.plots==legacy.plots and normalized.player==legacy.player,"v3不同章节迁移保留经营数据：stage"+str(stage))
 		test.check(FarmSaveSchema.normalize(normalized)==normalized,"迁移重复执行幂等：stage"+str(stage))
 	test.check(FarmSaveStore.restore(game,saved),"新剧情测试结束恢复原状态")
 	await test.frames()

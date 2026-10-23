@@ -49,9 +49,17 @@ func _ready() -> void:
 		for memory in Xiaojing.data.memories: hidden.memories.append(memory.id)
 		hidden.trials=["management","planning","cave","mechanism","joint"]
 		Xiaojing.restore(hidden)
-		success = FarmSaveStore.write(game)
+		# 从真实设置按钮切换，只依靠模式变更的自动保存，再由下一进程读取。
+		game.persistence_enabled=true
+		game.hud.system_panel.open_panel()
+		await get_tree().process_frame
+		load("res://tests/story.gd").touch(self,game.hud.system_panel.control_mode_button)
+		for _i in range(4): await get_tree().physics_frame
+		var automatic := FarmSaveStore.read()
+		success = automatic.get("control_mode")=="joystick" and automatic.get("xiaojing",{}).get("married",false)
+		game.hud.system_panel.close_panel()
 	elif legacy_read:
-		success = Inventory.coins == 321 and Inventory.count("carrot") == 3 and GameClock.day == 5 and GameState.stamina == 73
+		success = Inventory.coins == 321 and Inventory.count("carrot") == 3 and GameClock.day == 5 and GameState.stamina == 73 and GameState.control_mode == "tap"
 		success = success and FarmProgress.built.is_empty() and FarmProgress.quest_states.is_empty() and FarmProgress.friendship == 0
 		success = success and game.world.resource_field.state.tree_7_20.hp == 3 and game.farm.plots["17,16"].days == 1
 		success = success and FarmSaveStore.write(game)
@@ -61,7 +69,7 @@ func _ready() -> void:
 		success = Inventory.coins == 987 and Inventory.count("wheat") == 3 and Inventory.count("carrot_seed") == 7
 		success = success and Xiaojing.state.married and Xiaojing.state.plants==520 and Xiaojing.state.diamonds==7 and Xiaojing.state.ore==6
 		success = success and GameClock.day == 12 and GameClock.minutes == 1057 and GameState.stamina == 117
-		success = success and Inventory.count("wood") == 11 and Inventory.count("stone") == 4 and GameState.selected == 7
+		success = success and Inventory.count("wood") == 11 and Inventory.count("stone") == 4 and GameState.selected == 7 and GameState.control_mode == "joystick"
 		success = success and FarmProgress.built.size() == 3 and FarmProgress.quest_status("river_path") == "active" and FarmProgress.friendship == 37
 		success = success and FarmProgress.last_talk_day == 12 and game.world.resource_field.state.tree_7_20.ready_day == 14 and game.world.resource_field.state.rock_11_19.hp == 1
 		success = success and GameState.location == "village" and game.player.position.distance_to(Vector2(1010,480)) < 0.1

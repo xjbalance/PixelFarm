@@ -46,6 +46,7 @@ func _ready() -> void:
 	Events.farm_action.connect(on_farm_action)
 	Events.tool_changed.connect(refresh)
 	GameState.changed.connect(refresh)
+	GameState.control_mode_changed.connect(refresh_controls)
 	Inventory.changed.connect(refresh)
 	FarmProgress.changed.connect(refresh)
 	GameClock.changed.connect(refresh)
@@ -55,6 +56,11 @@ func _ready() -> void:
 	get_viewport().size_changed.connect(update_safe_area)
 	update_safe_area()
 	refresh()
+	refresh_controls()
+
+func refresh_controls() -> void:
+	joystick.reset()
+	joystick.visible = GameState.control_mode == "joystick"
 
 func build_top() -> void:
 	var top := HBoxContainer.new()
@@ -168,7 +174,7 @@ func build_feedback() -> void:
 	safe.add_child(inventory_panel)
 	system_panel = PanelContainer.new()
 	system_panel.set_script(preload("res://scripts/ui/system_panel.gd"))
-	place(system_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-290,-235,580,470))
+	place(system_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-310,-270,620,540))
 	safe.add_child(system_panel)
 	system_panel.save_requested.connect(func(): save_requested.emit())
 	system_panel.load_requested.connect(func(): load_requested.emit())

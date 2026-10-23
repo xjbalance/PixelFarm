@@ -7,6 +7,7 @@ var title: Label
 var body: Label
 var actions: VBoxContainer
 var sleep_mode: bool = false
+var control_mode_button: Button
 
 func _ready() -> void:
 	add_to_group("modal_panels")
@@ -29,7 +30,7 @@ func open_panel(for_sleep: bool = false) -> void:
 	GameState.set_modal(true)
 	show()
 	title.text = "让今天好好结束" if for_sleep else "像素世界 · 0.4.0"
-	body.text = "睡到明天早上 06:00，恢复全部体力。\n今天浇过水的作物将成长一天。" if for_sleep else "移动：WASD / 方向键 / 左侧摇杆\n操作：E / 右侧按钮；换工具：Q / 1—8\n背包 B · 委托 J · 保存 F5 · 读取 F9\n主线：那些没有寄出的信\n第一章：河水带走的名字\n小屋东侧有修缮台和委托板。"
+	body.text = "睡到明天早上 06:00，恢复全部体力。\n今天浇过水的作物将成长一天。" if for_sleep else "点击地面行走，点击人物或物件靠近后交互。\n工具栏选择优先用于下一次点击；辅助开关仍有效。\nWASD / 方向键移动 · E 操作 · Q / 1—8 工具\n背包 B · 委托 J · 手记 M · 保存 F5 · 读取 F9"
 	for child in actions.get_children():
 		actions.remove_child(child)
 		child.queue_free()
@@ -42,6 +43,11 @@ func open_panel(for_sleep: bool = false) -> void:
 		row.add_child(FarmUIStyle.button("保存进度",func(): close_panel(); save_requested.emit(),150))
 		row.add_child(FarmUIStyle.button("读取进度",func(): close_panel(); load_requested.emit(),150))
 		actions.add_child(FarmUIStyle.button("音乐与环境声 开 / 关",func(): mute_requested.emit()))
+		control_mode_button = FarmUIStyle.button(mode_text(),func():
+			GameState.set_control_mode("joystick" if GameState.control_mode == "tap" else "tap")
+			control_mode_button.text = mode_text()
+		)
+		actions.add_child(control_mode_button)
 		var assist := FarmUIStyle.button("操作辅助："+("开" if Story.assisted_tools else "关"),func():
 			Story.assisted_tools = not Story.assisted_tools
 			Story.changed.emit()
@@ -52,6 +58,9 @@ func open_panel(for_sleep: bool = false) -> void:
 		actions.add_child(assist)
 	if for_sleep: body.text += "\n明天的河湾村："+GameWeather.tomorrow()+"。"
 	actions.add_child(FarmUIStyle.button("继续农场生活",close_panel))
+
+func mode_text() -> String:
+	return "操作方式：点击移动 → 切换虚拟摇杆" if GameState.control_mode == "tap" else "操作方式：虚拟摇杆 → 切换点击移动"
 
 func close_panel() -> void:
 	hide()

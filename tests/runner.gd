@@ -35,6 +35,7 @@ func run() -> void:
 	await load("res://tests/story.gd").run(self,game)
 	await load("res://tests/story_v4.gd").run(self,game)
 	await load("res://tests/xiaojing.gd").run(self,game)
+	await load("res://tests/touch_navigation.gd").run(self,game)
 	print("RESULT: %d checks, %d failures" % [checked, failed])
 	game.get_node("Audio").stop_all()
 	await get_tree().create_timer(0.3).timeout
@@ -43,6 +44,7 @@ func run() -> void:
 	get_tree().quit(1 if failed else 0)
 
 func phase_one() -> void:
+	GameState.set_control_mode("joystick",false)
 	check(game.world.get_node("Ground") is TileMapLayer, "地图使用 Godot 4.3 TileMapLayer")
 	check(game.world.get_node("Ground").get_used_cells().size() == 48 * 32, "完整农场地图加载")
 	var start: Vector2 = game.player.position

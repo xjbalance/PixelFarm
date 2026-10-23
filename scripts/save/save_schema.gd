@@ -2,7 +2,7 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,5): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,6): return {}
 	var data: Dictionary = raw.duplicate(true)
 	if int(data.version) == 1:
 		# 旧版没有采集/设施/委托，保持所有已有进度，新增字段取初始值。
@@ -24,6 +24,9 @@ static func normalize(raw: Variant) -> Dictionary:
 	if int(data.version) == 4:
 		data.version = 5
 		data.xiaojing = Xiaojing.defaults()
+	if int(data.version) == 5:
+		data.version = 6
+		data.control_mode = "tap"
 	if not valid_current(data): return {}
 	return data
 
@@ -68,7 +71,8 @@ static func valid_current(data: Variant) -> bool:
 	if not whole(data.get("day"),1,999999) or not Xiaojing.validate(data.get("xiaojing"),int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),5,5) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),6,6) or not Story.validate(data.get("story")): return false
+	if data.get("control_mode") not in ["tap","joystick"]: return false
 	if not VillageProjects.validate(data.get("village"),data.get("day"),int(data.story.stage)): return false
 	if not whole(data.get("day"),1,999999): return false
 	if not whole(data.get("coins"),0,999999999): return false

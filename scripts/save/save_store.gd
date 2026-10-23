@@ -2,7 +2,7 @@ class_name FarmSaveStore
 extends RefCounted
 ## 写临时文件后重命名；保留上一次存档。先完整校验再修改运行状态。
 const PATH: String = "user://farm_save.json"
-const VERSION: int = 5
+const VERSION: int = 6
 
 static func snapshot(game: Node) -> Dictionary:
 	return {
@@ -11,6 +11,7 @@ static func snapshot(game: Node) -> Dictionary:
 		"day": GameClock.day, "minutes": GameClock.minutes,
 		"coins": Inventory.coins, "items": Inventory.items.duplicate(true),
 		"stamina": GameState.stamina, "selected": GameState.selected,
+		"control_mode": GameState.control_mode,
 		"plots": game.farm.plots.duplicate(true),
 		"progress": FarmProgress.snapshot(), "resources": game.world.resource_field.state.duplicate(true),
 		"story": Story.snapshot(),
@@ -62,6 +63,9 @@ static func valid(data: Variant) -> bool:
 static func restore(game: Node, raw: Dictionary) -> bool:
 	var data := FarmSaveSchema.normalize(raw)
 	if data.is_empty(): return false
+	game.auto_move.cancel()
+	GameState.set_control_mode(data.control_mode, false)
+	GameState.manual_tool = false
 	Inventory.coins = int(data["coins"])
 	Inventory.items.clear()
 	for id in data["items"]: Inventory.items[id] = int(data["items"][id])

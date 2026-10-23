@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED: float = 145.0
 var facing := Vector2.DOWN
 var touch_direction := Vector2.ZERO
+var auto_direction := Vector2.ZERO
 var animation_time: float = 0.0
 @onready var sprite: Sprite2D = $Sprite2D
 var action_time: float = 0
@@ -16,7 +17,8 @@ func _physics_process(delta: float) -> void:
 	var direction := Vector2.ZERO
 	if not GameState.modal:
 		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-		if touch_direction.length() > 0.08:
+		if direction.length() < 0.05: direction = auto_direction
+		if GameState.control_mode == "joystick" and touch_direction.length() > 0.08:
 			direction = touch_direction
 	if direction.length() > 0.05:
 		if absf(direction.x) > absf(direction.y):
@@ -44,3 +46,4 @@ func target_cell() -> Vector2i:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT:
 		touch_direction = Vector2.ZERO
+		auto_direction = Vector2.ZERO
