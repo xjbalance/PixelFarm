@@ -67,6 +67,7 @@ func daily_line(id: String) -> String:
 	if is_birthday(id): text=person.birthday_line+"\n"+text
 	var festival := get_node_or_null("/root/Festival")
 	if festival and festival.has_method("daily_line") and festival.active_id()!="": text+="\n"+str(festival.daily_line(id))
+	if id=="xiaojing" and GameWeather.is_moon_night(): text+="\n今晚的月影边缘很清楚。我想把它记在水样旁，等下次湖水起风时再比一比。"
 	if id=="xiaojing" and Xiaojing.state.married:
 		text+="\n"+["我把留种用的小碗放在家里了，晚饭后各自写一页计划。","今晚出门看星之前，我会先把自己的水样送回温室。","你忙收成，我去整理档案。回来时给彼此留一杯水。","冬天桌子靠窗会冷，我把两把椅子各挪了一点，过道仍留着。"][Calendar.season()]
 	var quest := current(id)

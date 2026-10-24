@@ -5,7 +5,7 @@ var location: String = "farm"
 var area := Rect2()
 var world_size := Vector2(1536,1024)
 var timer: float = 0
-const FONT = preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc")
+var FONT = load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc")
 
 func _ready() -> void:
 	custom_minimum_size = Vector2(570,350)
@@ -41,7 +41,7 @@ func _draw() -> void:
 		region(Rect2(565,295,175,105),Color("80695b"))
 		mark(Vector2(480,216),"↑ 河湾村")
 		mark(Vector2(640,380),"家",Color("ede0af"),Vector2(-12,-17))
-		mark(Vector2(430,441),"林芽 / 种子摊",Color("ede0af"),Vector2(-116,8))
+		mark(Vector2(430,441),"种子摊",Color("ede0af"),Vector2(-116,8))
 		mark(Vector2(748,440),"信箱",Color("ede0af"),Vector2(8,-12))
 		mark(Vector2(704,608),"农田")
 		mark(Vector2(1070,592),"池塘")
@@ -52,8 +52,8 @@ func _draw() -> void:
 		if Story.stage >= 5: region(Rect2(824,448,115,64),Color("d1b68b"))
 		region(Rect2(218,280,144,68),Color("8f7661"))
 		region(Rect2(448,273,144,68),Color("7e7870"))
-		mark(Vector2(290,357),"阿禾 / 茶屋",Color("ede0af"),Vector2(-90,-7))
-		mark(Vector2(488,400),"周砚 / 木作坊",Color("ede0af"),Vector2(-20,-27))
+		mark(Vector2(290,357),"茶屋",Color("ede0af"),Vector2(-90,-7))
+		mark(Vector2(488,400),"木作坊",Color("ede0af"),Vector2(-20,-27))
 		mark(Vector2(790,450),"旧桥",Color("ede0af"),Vector2(-12,-16))
 		mark(Vector2(1090,350),"风车",Color("ede0af"),Vector2(-16,-18))
 		mark(Vector2(1168,208),"矿道入口",Color("c9d7ed"),Vector2(-66,-9))
@@ -63,6 +63,9 @@ func _draw() -> void:
 		mark(Vector2(540,610),"茶座",Color("ede0af"),Vector2(-45,10))
 		mark(Vector2(680,650),"共建板")
 		mark(Vector2(640,826),"↓ 农场",Color("ede0af"),Vector2(8,0))
+	for id in Social.PEOPLE:
+		var current: Dictionary=preload("res://scripts/seasons/life_schedule.gd").locate(id)
+		if current.get("area","")==location: mark(current.point,Social.data.people[id].name,Color("efda98"),Vector2(8,15))
 	var objective: Dictionary = Story.chapter()
 	if objective.location == location and Story.stage < 8:
 		var p := point(Vector2(objective.target[0],objective.target[1]))

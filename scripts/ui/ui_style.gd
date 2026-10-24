@@ -19,7 +19,7 @@ static func box(color: Color, border: Color = Color("ae9469"), radius: int = 10)
 
 static func make_theme() -> Theme:
 	var theme := Theme.new()
-	theme.default_font = preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc")
+	theme.default_font = load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc")
 	theme.default_font_size = 18
 	theme.set_color("font_color", "Label", CREAM)
 	theme.set_color("font_color", "Button", CREAM)

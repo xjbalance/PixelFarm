@@ -50,7 +50,7 @@ func _draw() -> void:
 		draw_rect(Rect2(-10,-12,20,16),Color("6c7981"))
 		var lit: bool=int(AbyssState.state.depth) in AbyssState.state.gates
 		draw_line(Vector2.ZERO,Vector2(10 if lit else -10,-30),Color("d3ba83"),4)
-		draw_string(preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-9,-47),["风","水","灯","人"][symbol],HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color("eadcb6"))
+		draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-9,-47),["风","水","灯","人"][symbol],HORIZONTAL_ALIGNMENT_LEFT,-1,18,Color("eadcb6"))
 		draw_circle(Vector2(0,-36),4,[Color("92c3cb"),Color("6c96bd"),Color("eed49a"),Color("c9aa92")][symbol])
 	elif kind=="chest":
 		draw_rect(Rect2(-15,-22,30,24),Color("786350"))
@@ -59,6 +59,6 @@ func _draw() -> void:
 		draw_circle(Vector2(0,-18),16,Color("71819b"))
 		draw_circle(Vector2(0,-18),7,Color("eed99c"))
 	else:
-		if kind=="utility": draw_string(preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-24,-36),AbyssRules.utility_title(symbol),HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("ebd8ab"))
+		if kind=="utility": draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-24,-36),AbyssRules.utility_title(symbol),HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("ebd8ab"))
 		draw_rect(Rect2(-15,-28,30,24),Color("ab9d7b"))
 		for y in [-24,-18,-12]: draw_line(Vector2(-10,y),Vector2(10,y),Color("5a6c6d"),2)

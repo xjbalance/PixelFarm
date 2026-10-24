@@ -11,6 +11,7 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = MOUSE_FILTER_IGNORE
 	add_to_group("weather_screens")
+	GameClock.changed.connect(queue_redraw)
 	GameWeather.changed.connect(queue_redraw)
 	Calendar.changed.connect(queue_redraw)
 	Events.location_changed.connect(func(id: String):
@@ -58,6 +59,11 @@ func _draw() -> void:
 					draw_rect(Rect2(p,Vector2(440,64)),Color(.81,.85,.81,.07))
 			"meteor":
 				if GameWeather.is_meteor_night(): draw_meteors()
+		if GameWeather.is_moon_night():
+			var moon := Vector2(size.x-100,132)
+			draw_circle(moon,27,Color(.78,.85,.91,.10));draw_circle(moon,18,Color("dedfca"))
+			draw_rect(Rect2(moon+Vector2(-7,-9),Vector2(7,5)),Color("c2d0c6"))
+			draw_rect(Rect2(moon+Vector2(4,5),Vector2(6,4)),Color("c2d0c6"))
 		if weather in ["clear","cloudy"] and GameClock.minutes>=1140 and Calendar.season()!=3:
 			for i in range(18):
 				var p := Vector2(fposmod(i*183+sin(time*.4+i)*28,size.x),fposmod(i*101+cos(time*.6+i)*16,size.y))
@@ -69,7 +75,7 @@ func _draw() -> void:
 		var rect := Rect2(size.x*.5-240,90,480,50)
 		draw_rect(rect,Color(.12,.24,.20,alpha*.88))
 		draw_line(rect.position+Vector2(24,48),rect.end-Vector2(24,2),Color(.85,.73,.47,alpha),1)
-		draw_string(preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),rect.position+Vector2(16,32),banner,HORIZONTAL_ALIGNMENT_CENTER,448,22,Color(.96,.87,.68,alpha))
+		draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),rect.position+Vector2(16,32),banner,HORIZONTAL_ALIGNMENT_CENTER,448,22,Color(.96,.87,.68,alpha))
 
 func draw_rain(weather: String) -> void:
 	var intensity: int={"rain":48,"heavy_rain":96,"storm":128}[weather]

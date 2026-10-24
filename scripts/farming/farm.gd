@@ -3,7 +3,7 @@ extends Node2D
 signal changed
 const BOUNDS := Rect2i(17, 16, 10, 6)
 const IRRIGATION := Rect2i(17,16,4,3)
-const CROP_TEXTURE = preload("res://assets/crops/crops.png")
+var CROP_TEXTURE = load("res://assets/crops/crops.png")
 var plots: Dictionary = {}
 var last_growth_day: int = 1
 var highlighted := Vector2i(-1, -1)

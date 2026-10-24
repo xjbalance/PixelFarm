@@ -35,3 +35,19 @@ func refresh() -> void:
 		game.world.get_node("Actors/Linya").position=Vector2(429,441)
 		game.world.refresh_linya();game.village.refresh_gathering()
 	summer_active=gathering
+
+static func locate(person_id: String) -> Dictionary:
+	if not is_instance_valid(Social.game) or (person_id=="xiaojing" and not Xiaojing.state.unlocked): return {}
+	var maps: Dictionary=WorldTravel.maps(Social.game)
+	for person in Social.get_tree().get_nodes_in_group("interactables"):
+		if not "person_id" in person or person.person_id!=person_id or not person.visible: continue
+		for id in maps:
+			if not maps[id].is_ancestor_of(person): continue
+			var at: Vector2=person.global_position
+			var place: String=Story.NAMES[id]
+			if id=="farm":
+				place="农场星光温室旁" if at.x>=1200 and at.y>700 else ("农场东侧湖岸" if at.x>=900 else "农场种子摊附近")
+			elif id=="village":
+				place="河湾村东岸" if at.x>832 else ("村南社区活动桌附近" if at.y>=680 else ("茶屋附近" if at.x<400 else ("木作坊附近" if at.x<590 else "村庄广场与茶座附近")))
+			return {"area":id,"point":at,"description":place}
+	return {}

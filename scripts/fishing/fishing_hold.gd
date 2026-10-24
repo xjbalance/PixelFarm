@@ -26,6 +26,6 @@ func _input(event: InputEvent) -> void:
 func _draw() -> void:
 	draw_style_box(held_style if held else normal_style,Rect2(Vector2.ZERO,size))
 	var text := "收紧鱼线 ↑" if held else "按住上移 · 松开下移"
-	draw_string(preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(14,size.y*.5+7),text,HORIZONTAL_ALIGNMENT_CENTER,size.x-28,21,FarmUIStyle.INK if held else FarmUIStyle.CREAM)
+	draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(14,size.y*.5+7),text,HORIZONTAL_ALIGNMENT_CENTER,size.x-28,21,FarmUIStyle.INK if held else FarmUIStyle.CREAM)
 func _notification(what: int) -> void:
 	if what in [NOTIFICATION_APPLICATION_FOCUS_OUT,NOTIFICATION_APPLICATION_PAUSED]: reset()

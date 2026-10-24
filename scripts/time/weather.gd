@@ -34,3 +34,6 @@ func tomorrow() -> String:
 
 func description(day: int = GameClock.day) -> String:
 	return str(Calendar.data.weather[weather_id(day)].description)
+
+func is_moon_night() -> bool:
+	return Calendar.day_of_season()==15 and GameClock.minutes>=1200 and GameClock.minutes<1440 and weather_id() in ["clear","cloudy"]

@@ -10,7 +10,7 @@ func _ready() -> void:
 	var tiles := TileSet.new()
 	tiles.tile_size = Vector2i(32,32)
 	var atlas := TileSetAtlasSource.new()
-	atlas.texture = preload("res://assets/tilesets/ground.png")
+	atlas.texture = load("res://assets/tilesets/ground.png")
 	atlas.texture_region_size = Vector2i(32,32)
 	atlas.create_tile(Vector2i(7,0))
 	tiles.add_source(atlas,0)

@@ -34,3 +34,10 @@ with tempfile.TemporaryDirectory(prefix='pixelfarm-apk-') as directory:
     if result.returncode or any(marker in output for marker in ['SCRIPT ERROR:','ERROR:','instances leaked']):
         raise SystemExit('APK 资源独立启动失败')
     print('PASS: 最终 APK 的实际资源脱离源码启动 180 帧，无脚本、资源或运行时错误。')
+    (workspace/'artifact_probe.gd').write_text('extends Node\nfunc _ready() -> void:\n\tGameClock.running=false\n\tvar save_script: GDScript=load("res://scripts/save/save_store.gd")\n\tvar audio_script: GDScript=load("res://scripts/core/audio.gd")\n\tvar farm_script: GDScript=load("res://scripts/farming/farm.gd")\n\tvar ok: bool=int(save_script.get_script_constant_map().get("VERSION",0))==21 and Housing.defaults().has("flowers")\n\tok=ok and not audio_script.get_script_constant_map().has("SOUNDS") and not farm_script.get_script_constant_map().has("CROP_TEXTURE")\n\tGameClock.day=15;GameClock.minutes=1200;Calendar.restore(Calendar.snapshot());GameWeather.enabled=true\n\tok=ok and GameWeather.is_moon_night() and Catalog.is_item("spring_bloom_seed") and Catalog.is_item("moon_note")\n\tprint("APK CODE INVARIANTS: ","PASS" if ok else "FAIL")\n\tget_tree().quit(0 if ok else 1)\n',encoding='utf-8')
+    (workspace/'artifact_probe.tscn').write_text('[gd_scene load_steps=2 format=3]\n[ext_resource type="Script" path="res://artifact_probe.gd" id="1"]\n[node name="ArtifactProbe" type="Node"]\nscript = ExtResource("1")\n')
+    probe = subprocess.run([str(engine),'--headless','--path',str(workspace),'res://artifact_probe.tscn'],env=dict(os.environ,XDG_DATA_HOME=str(profile)),stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=90)
+    print(probe.stdout)
+    with log.open('a') as stream: stream.write(probe.stdout)
+    if probe.returncode or 'APK CODE INVARIANTS: PASS' not in probe.stdout or any(marker in probe.stdout for marker in ['SCRIPT ERROR:','ERROR:','instances leaked']):
+        raise SystemExit('实际APK代码/数据版本不一致')

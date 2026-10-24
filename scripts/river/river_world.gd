@@ -10,4 +10,4 @@ func _draw() -> void:
 	for x in [-20,0,20]:
 		draw_rect(Rect2(x-5,-22,10,12),color)
 		draw_circle(Vector2(x,12),5,Color("454e47"))
-	draw_string(preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-48,-42),"新一班的交接台",HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color("eddcb0"))
+	draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-48,-42),"新一班的交接台",HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color("eddcb0"))

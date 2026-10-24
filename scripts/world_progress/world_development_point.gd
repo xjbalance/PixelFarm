@@ -71,7 +71,7 @@ func draw_dock() -> void:
 		draw_rect(Rect2(56,-66,48,22),Color("927e5c"))
 		for x in [62,77,92]: draw_rect(Rect2(x,-60,9,12),cargo_color)
 		if Calendar.season()==3: draw_rect(Rect2(49,-88,64,3),Color("e1e7db"))
-	draw_string(preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-33,-102),"岸边交易" if level==2 else "农渔装卸",HORIZONTAL_ALIGNMENT_LEFT,-1,13,FarmUIStyle.CREAM)
+	draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-33,-102),"岸边交易" if level==2 else "农渔装卸",HORIZONTAL_ALIGNMENT_LEFT,-1,13,FarmUIStyle.CREAM)
 func draw_community() -> void:
 	var level: int=WorldDevelopment.state.community
 	if level<1: return

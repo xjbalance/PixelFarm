@@ -1,7 +1,7 @@
 extends Node2D
 ## 水面上的栏体可点击，执行目标始终是岸边。水格保留原碰撞。
 const SPECIES := ["crucian","carp","grass","perch","golden","star"]
-const FISH := preload("res://assets/aquaculture/fish_swim.png")
+var FISH = load("res://assets/aquaculture/fish_swim.png")
 const WOOD := Color("b79461")
 const DARK := Color("5c5e48")
 var pen_id: String = "pen_1"

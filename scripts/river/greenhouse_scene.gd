@@ -14,7 +14,7 @@ func _ready() -> void:
 	ground=TileMapLayer.new();ground.name="Ground";ground.z_index=-5;add_child(ground)
 	actors=Node2D.new();actors.name="Actors";actors.y_sort_enabled=true;add_child(actors)
 	var ts := TileSet.new();ts.tile_size=Vector2i(32,32);ts.add_physics_layer();ts.set_physics_layer_collision_layer(0,1)
-	var atlas := TileSetAtlasSource.new();atlas.texture=preload("res://assets/tilesets/wedding_floor.png");atlas.texture_region_size=Vector2i(32,32);ts.add_source(atlas,0)
+	var atlas := TileSetAtlasSource.new();atlas.texture=load("res://assets/tilesets/wedding_floor.png");atlas.texture_region_size=Vector2i(32,32);ts.add_source(atlas,0)
 	for i in range(2):
 		atlas.create_tile(Vector2i(i,0))
 		if i==1:
@@ -30,12 +30,12 @@ func _ready() -> void:
 	couple=add_point("ceremony_girl","与小京说话",Vector2(690,390))
 	couple.person_id="xiaojing"
 	couple.add_to_group("xiaojing")
-	var bride := Sprite2D.new();bride.texture=preload("res://assets/characters/xiaojing_wedding.png");bride.position.y=-18;couple.add_child(bride)
+	var bride := Sprite2D.new();bride.texture=load("res://assets/characters/xiaojing_wedding.png");bride.position.y=-18;couple.add_child(bride)
 	for i in range(3):
 		var guest := Sprite2D.new();guest.texture=load("res://assets/characters/"+["linya","zhou","ahe"][i]+".png");guest.position=Vector2(520+i*120,650);actors.add_child(guest);guests.append(guest)
-	music=AudioStreamPlayer.new();var song: AudioStreamWAV=preload("res://assets/audio/star_vow.wav").duplicate();song.loop_mode=AudioStreamWAV.LOOP_FORWARD;song.loop_begin=0;song.loop_end=int(song.get_length()*song.mix_rate);music.stream=song;music.volume_db=-20;add_child(music)
+	music=AudioStreamPlayer.new();var song: AudioStreamWAV=load("res://assets/audio/star_vow.wav").duplicate();song.loop_mode=AudioStreamWAV.LOOP_FORWARD;song.loop_begin=0;song.loop_end=int(song.get_length()*song.mix_rate);music.stream=song;music.volume_db=-20;add_child(music)
 	ambience=AudioStreamPlayer.new()
-	var air: AudioStreamWAV=preload("res://assets/audio/star_chimes.wav").duplicate()
+	var air: AudioStreamWAV=load("res://assets/audio/star_chimes.wav").duplicate()
 	air.loop_mode=AudioStreamWAV.LOOP_FORWARD;air.loop_begin=0;air.loop_end=int(air.get_length()*air.mix_rate)
 	ambience.stream=air;ambience.volume_db=-24;add_child(ambience)
 	game.get_node("Audio").extra_channels.append(music)
@@ -49,7 +49,7 @@ func refresh() -> void:
 	if not is_instance_valid(couple): return
 	var ceremony: bool=StarStory.state.wedding_phase in [1,2,3]
 	couple.visible=ceremony or (Xiaojing.state.married and (GameClock.minutes<540 or (GameClock.minutes>=960 and GameClock.minutes<1080)))
-	(couple.get_child(0) as Sprite2D).texture=preload("res://assets/characters/xiaojing_wedding.png") if ceremony else preload("res://assets/characters/xiaojing.png")
+	(couple.get_child(0) as Sprite2D).texture=load("res://assets/characters/xiaojing_wedding.png") if ceremony else load("res://assets/characters/xiaojing.png")
 	for guest in guests: guest.visible=ceremony
 	var step: int=River.state.wedding_step
 	if step!=last_step:

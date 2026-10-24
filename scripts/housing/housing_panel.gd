@@ -84,6 +84,14 @@ func show_layout() -> void:
 		else:
 			words("正在移动："+Housing.data.furniture[active.kind].name)
 			var id: String=selected_id
+			if active.kind=="flower" and active.area=="farm":
+				var age: int=Housing.flower_age(id)
+				words("春铃花："+("尚未播种。春季庆典可获得花种，靠近这个花坛再播下。" if age<0 else "已照料%d / 3日。三个游戏日后采收，移动不改变成长日。" % mini(3,age)),16)
+				button("播下春铃花种 · 消耗1种 / 1体力",func(): result(Housing.sow_flower(id))).disabled=age>=0 or not Housing.near_item(id)
+				if age>=0:
+					button("采收春铃花",func(): result(Housing.harvest_flower(id))).disabled=age<3 or not Housing.near_item(id)
+					button("撤回花苗 · 返还1种",func(): ask("撤回这株花苗并返还1粒种子？现有成长日会清除。",func(): result(Housing.uproot_flower(id)))).disabled=not Housing.near_item(id)
+					words("先采收或撤回花苗，再回收花坛；背包满时整笔保留。",16)
 			button("回收这件家具",func(): ask("收回家具库，原材料不返还，稍后可以再次摆放。继续？",func():
 				if Housing.recycle(id): selected_id="";selected_cell=Vector2i(-1,-1);refresh()
 				else: result(false)

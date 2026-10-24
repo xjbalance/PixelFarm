@@ -101,7 +101,7 @@ func refresh() -> void:
 		rows.add_child(row)
 		var icon := TextureRect.new()
 		var atlas := AtlasTexture.new()
-		atlas.atlas = preload("res://assets/crops/crops.png")
+		atlas.atlas = load("res://assets/crops/crops.png")
 		atlas.region = Rect2(96,crop.atlas_row*40,32,40)
 		icon.texture = atlas
 		icon.custom_minimum_size = Vector2(48,60)

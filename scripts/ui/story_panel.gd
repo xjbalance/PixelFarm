@@ -137,8 +137,10 @@ func build_map() -> void:
 	row.add_child(caption)
 
 func build_people() -> void:
-	for id in Story.data.people:
-		var definition: Dictionary = Story.data.people[id]
+	var people: Array=Story.data.people.keys()
+	if Xiaojing.state.unlocked: people.append("xiaojing")
+	for id in people:
+		var definition: Dictionary = Story.data.people[id] if id!="xiaojing" else {"name":"小京","role":"水样与温室记录者","place":"按季节、约定和自己的研究计划出行。","about":"她会照看水样、整理温室记录，也会独自出门。靠近后可以查看四季近况与共同计划。"}
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation",20)
 		content.add_child(row)
@@ -149,10 +151,12 @@ func build_people() -> void:
 		words.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(words)
 		words.add_child(FarmUIStyle.label(definition.name+" · "+definition.role,23,FarmUIStyle.GOLD))
-		words.add_child(FarmUIStyle.label(definition.place,16,Color("b6c69e")))
+		var current: Dictionary=preload("res://scripts/seasons/life_schedule.gd").locate(id)
+		words.add_child(FarmUIStyle.label("现在："+str(current.get("description",definition.place)),16,Color("b6c69e")))
 		var about := FarmUIStyle.label(definition.about,18)
 		about.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		words.add_child(about)
+		if Social.near_person(id): words.add_child(FarmUIStyle.button("近况、礼物与个人计划",func(): close_panel();Events.interaction_requested.emit("social:"+id),240))
 		var bond := "你们还在慢慢认识彼此。" if Story.stage < 5 else "共同修好的桥，让相聚少了一段绕路。"
 		if Story.stage == 8: bond = "共同建成的村庄，已经有了你的位置。"
 		words.add_child(FarmUIStyle.label(bond,16,Color("b6c69e")))

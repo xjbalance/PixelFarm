@@ -13,7 +13,8 @@ with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as package:
     package.writestr('PixelWorld/builds/.gitkeep','')
     for path in sorted(ROOT.rglob('*')):
         relative = path.relative_to(ROOT)
-        if not path.is_file() or any(part in excluded for part in relative.parts): continue
+        if path.is_symlink() or not path.is_file() or any(part in excluded for part in relative.parts): continue
+        if path.name == 'export_credentials.cfg' or (path.name.startswith('.env') and path.name != '.env.example'): continue
         if path.suffix in {'.pyc','.tmp','.keystore','.jks','.p12','.pfx','.key','.pem'}: continue
         package.write(path,Path('PixelWorld')/relative)
 checksum = hashlib.sha256(out.read_bytes()).hexdigest()

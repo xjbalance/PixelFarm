@@ -365,7 +365,7 @@ func build_xiaojing_world() -> void:
 		var person := preload("res://scenes/npc/linya.tscn").instantiate()
 		person.person_id = "xiaojing"
 		person.position = {"farm":Vector2(1232,800),"village":Vector2(1120,624),"home":Vector2(720,452)}[location]
-		person.get_node("Sprite2D").texture = preload("res://assets/characters/xiaojing.png")
+		person.get_node("Sprite2D").texture = load("res://assets/characters/xiaojing.png")
 		var parent: Node = {"farm":world.get_node("Actors"),"home":home,"village":village.get_node("Actors")}[location]
 		parent.add_child(person)
 		var refresh_person := func():

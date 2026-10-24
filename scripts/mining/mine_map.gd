@@ -25,7 +25,7 @@ func _ready() -> void:
 	tiles.add_physics_layer()
 	tiles.set_physics_layer_collision_layer(0,1)
 	var atlas := TileSetAtlasSource.new()
-	atlas.texture=preload("res://assets/tilesets/mines.png")
+	atlas.texture=load("res://assets/tilesets/mines.png")
 	atlas.texture_region_size=Vector2i(32,32)
 	tiles.add_source(atlas,0)
 	for i in range(12):

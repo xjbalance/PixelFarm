@@ -93,7 +93,7 @@ func build_top() -> void:
 	var names := VBoxContainer.new()
 	brand.add_child(names)
 	names.add_child(FarmUIStyle.label("像 素 世 界", 21, FarmUIStyle.GOLD))
-	names.add_child(FarmUIStyle.label("Pixel World · 0.7.0 dev", 12, Color("b9c4a5")))
+	names.add_child(FarmUIStyle.label("Pixel World · 0.7.0", 12, Color("b9c4a5")))
 	var time_panel := PanelContainer.new()
 	top.add_child(time_panel)
 	clock_label = FarmUIStyle.label("第 1 天  ·  06:00", 17)
@@ -136,7 +136,7 @@ func build_controls() -> void:
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.add_theme_font_size_override("font_size", 13)
 		var icon := AtlasTexture.new()
-		icon.atlas = preload("res://assets/ui/tools.png")
+		icon.atlas = load("res://assets/ui/tools.png")
 		icon.region = Rect2(i*32,0,32,32)
 		button.icon = load("res://assets/fishing/fishing_rod.png") if i==8 else icon
 		button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER

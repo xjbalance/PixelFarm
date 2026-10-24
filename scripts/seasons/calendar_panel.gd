@@ -22,6 +22,7 @@ func open_panel() -> void:
 	words("今日："+GameWeather.label()+"\n"+GameWeather.description())
 	words("四季节日：春24日播种庆典、夏24日湖畔灯会、秋24日丰收评比、冬24日冬日集市。各有实际活动与时间窗口，午夜仍正常结算。")
 	if Festival.active_id()!="": words("今天的活动："+str(Festival.data.events[Festival.active_id()].name))
+	words("特殊月夜：每季15日晴朗或薄云时，20:00后可在湖岸水样台记录满月；雨雪雾夜不会伪造可见月影。")
 	words("未来七日预报")
 	for offset in range(1,8): words(Calendar.label(GameClock.day+offset)+" · "+GameWeather.label(GameClock.day+offset))
 	words("作物农时：胡萝卜、土豆适合春夏秋；小麦全年。冬季已种的不耐寒作物休眠，转暖后从原进度继续，不会被清空。雪不等于浇水。")

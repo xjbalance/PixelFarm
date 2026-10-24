@@ -35,6 +35,12 @@
       "sell_price": 0,
       "kind": "collection",
       "description": "将星辉矿脉与古神庙归航记录联系起来的手作封记。"
+    },
+    "moon_note": {
+      "name": "湖面月影笺",
+      "sell_price": 0,
+      "kind": "collection",
+      "description": "晴朗或薄云的季内15日夜晚，在湖岸水样台实际记录满月倒影；永久收藏，不兑换金币或钻石。"
     }
   },
   "areas": {

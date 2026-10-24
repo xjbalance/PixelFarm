@@ -20,5 +20,5 @@ func _draw() -> void:
 	draw_rect(Rect2(86,origin,16,available),Color("263e38"))
 	var filled: float=available*float(Fishing.session.progress)
 	draw_rect(Rect2(87,origin+available-filled,14,filled),Color("b4cf80"))
-	draw_string(preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(112,size.y*.5),"让鱼留在",HORIZONTAL_ALIGNMENT_LEFT,-1,18,FarmUIStyle.CREAM)
-	draw_string(preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(112,size.y*.5+26),"绿色区域",HORIZONTAL_ALIGNMENT_LEFT,-1,18,FarmUIStyle.CREAM)
+	draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(112,size.y*.5),"让鱼留在",HORIZONTAL_ALIGNMENT_LEFT,-1,18,FarmUIStyle.CREAM)
+	draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(112,size.y*.5+26),"绿色区域",HORIZONTAL_ALIGNMENT_LEFT,-1,18,FarmUIStyle.CREAM)

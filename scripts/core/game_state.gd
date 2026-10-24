@@ -47,7 +47,7 @@ func tool() -> String:
 func spend_energy(amount: int) -> bool:
 	amount=Kitchen.energy_cost(amount)
 	if stamina < amount:
-		Events.notice.emit("体力不足啦，回小屋睡一觉吧。")
+		Events.notice.emit("体力不足：去屋东椅歇脚，或在背包吃食物。20:00后可睡。")
 		return false
 	stamina -= amount
 	changed.emit()

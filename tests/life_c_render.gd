@@ -19,6 +19,9 @@ func run() -> void:
 		game.hud.social_panel.open_panel("linya");await frames(4)
 		check(game.hud.social_panel.visible and game.hud.safe.get_global_rect().encloses(game.hud.social_panel.get_global_rect()),"个人任务与礼物界面适配安全区："+str(resolution))
 		game.hud.social_panel.close_panel()
+		game.hud.story_panel.open_panel();game.hud.story_panel.select_page(2);await frames(4)
+		check(game.hud.safe.get_global_rect().encloses(game.hud.story_panel.get_global_rect()) and preload("res://scripts/seasons/life_schedule.gd").locate("linya").get("area")=="farm","人物手记真实活动位置与界面适配："+str(resolution))
+		game.hud.story_panel.close_panel()
 		GameClock.day=24;Calendar.restore(Calendar.snapshot());GameClock.changed.emit()
 		game.player.position=Vector2(880,528);await frames(4)
 		game.hud.festival_panel.open_panel("spring");await frames(4)
@@ -38,7 +41,7 @@ func run() -> void:
 	game.change_location("farm",Vector2(1088,880));await frames(6)
 	for person in ["linya","zhou","ahe"]:
 		var node: Node2D=Social.person_node(person)
-		check(node!=null and node.get_parent()==game.world.get_node("Actors"),"夏季灯会使用原NPC在湖岸聚集："+person)
+		check(node!=null and node.get_parent()==game.world.get_node("Actors") and preload("res://scripts/seasons/life_schedule.gd").locate(person).get("area")=="farm","夏季灯会使用原NPC在湖岸聚集："+person)
 	get_viewport().get_texture().get_image().save_png("res://docs/screenshot-070c-lanterns.png")
 	game.change_location("home",Vector2(272,464));await frames(5)
 	get_viewport().get_texture().get_image().save_png("res://docs/screenshot-070c-home.png")

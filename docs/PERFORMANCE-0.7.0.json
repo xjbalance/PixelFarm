@@ -1,0 +1,23 @@
+{
+	"android_measurement": false,
+	"areas": [
+		"farm",
+		"home",
+		"village",
+		"mist_forest",
+		"lake_ruins",
+		"old_temple"
+	],
+	"change_call_ms_p50": 0.707,
+	"change_call_ms_p95": 0.891,
+	"limits": "Change-call timing excludes deferred scene presentation; no mobile FPS, GPU, power, thermal or long-session RSS claim.",
+	"navigation_rebuild_ms_p50": 3.404,
+	"navigation_rebuild_ms_p95": 4.583,
+	"nodes_end": 1044,
+	"nodes_start": 1044,
+	"platform": "Linux headless Godot4.3",
+	"static_memory_growth_bytes": -13424,
+	"switches": 240,
+	"version": "0.7.0",
+	"warmup": 24
+}

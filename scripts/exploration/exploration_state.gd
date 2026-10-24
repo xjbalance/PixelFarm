@@ -150,7 +150,7 @@ func claim_collection() -> bool:
 func validate(raw: Variant, day: int) -> bool:
 	if not AquacultureSaveSchema.exact(raw,defaults(day).keys()) or not FarmSaveSchema.whole(day,1,999999): return false
 	if not AquacultureSaveSchema.unique(raw.unlocked,AREAS) or "mist_forest" not in raw.unlocked: return false
-	var facts: Array=["drain_plate","lake_lower_opened"];var chests: Array=[];var plants: Array=[]
+	var facts: Array=["drain_plate","lake_lower_opened","moon_reflection"];var chests: Array=[];var plants: Array=[]
 	for id in data.points:
 		if data.points[id].kind=="note": facts.append(id)
 		elif data.points[id].kind=="chest": chests.append(id)
@@ -186,4 +186,12 @@ func validate(raw: Variant, day: int) -> bool:
 		if gate=="lower_room" and "lake_lower_opened" not in raw.facts: return false
 		if gate=="lake_bridge" and not raw.lake.open: return false
 		if gate=="temple" and not raw.temple.open: return false
+	return true
+
+func observe_moon() -> bool:
+	if busy or GameClock.settling or not LakeEcology.near() or not GameWeather.is_moon_night() or "moon_reflection" in state.facts: return false
+	busy=true
+	if not Inventory.exchange({},{"moon_note":1},0): busy=false;return false
+	state.facts.append("moon_reflection");_commit()
+	Events.notice.emit("月影已记下 · 获得湖面月影笺×1（唯一收藏）。")
 	return true

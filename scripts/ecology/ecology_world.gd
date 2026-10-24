@@ -6,6 +6,7 @@ func attach(owner_game: Node) -> void:
 	game=owner_game;LakeEcology.game=game
 	reparent(game.world,false);z_index=-4
 	var point := Node2D.new();point.set_script(preload("res://scripts/ecology/ecology_point.gd"));point.position=LakeEcology.SHORE;game.world.get_node("Actors").add_child(point)
+	GameClock.changed.connect(queue_redraw)
 	LakeEcology.changed.connect(queue_redraw)
 func _process(delta: float) -> void:
 	if not is_visible_in_tree() or not GameClock.running or GameState.modal: return
@@ -24,4 +25,6 @@ func _draw() -> void:
 	if LakeEcology.state.health>=85:
 		for p in [Vector2(1060,575),Vector2(1128,615),Vector2(1148,560)]:
 			draw_rect(Rect2(p,Vector2(8,3)),Color("c2d5ac"));draw_line(p,p+Vector2(-3,2),Color("789c92"),2)
+	if GameWeather.is_moon_night():
+		for row in range(5): draw_rect(Rect2(1090+row*2,588+row*7,28-row*4,3),Color(.84,.88,.80,.25))
 	for i in range(int(LakeEcology.state.debris)): draw_rect(Rect2(1032+i*32,650,10,5),Color("88735a"))

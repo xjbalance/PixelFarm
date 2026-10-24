@@ -20,7 +20,7 @@ if not version.startswith('4.3.'):
 logs = ROOT/'builds'
 logs.mkdir(exist_ok=True)
 steps = [
-    ('import', ['--editor','--quit']),
+    ('import', ['--import']),
     ('sleep', ['--fixed-fps','60','res://tests/sleep_runner.tscn']),
     ('integration', ['res://tests/runner.tscn']),
     ('mining', ['--fixed-fps','60','res://tests/mining_runner.tscn']),
@@ -41,6 +41,8 @@ steps = [
     ('exploration-d', ['--fixed-fps','60','res://tests/exploration_d_runner.tscn']),
     ('world-progress-d', ['--fixed-fps','60','res://tests/world_progress_d_runner.tscn']),
     ('quality-070', ['--fixed-fps','60','res://tests/quality_070_runner.tscn']),
+    ('performance-070', ['--fixed-fps','60','res://tests/performance_070.tscn']),
+    ('finale-070', ['--fixed-fps','60','res://tests/finale_070_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),

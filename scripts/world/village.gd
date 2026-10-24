@@ -12,7 +12,7 @@ func _ready() -> void:
 	tiles.add_physics_layer()
 	tiles.set_physics_layer_collision_layer(0,1)
 	var atlas := TileSetAtlasSource.new()
-	atlas.texture = preload("res://assets/tilesets/ground.png")
+	atlas.texture = load("res://assets/tilesets/ground.png")
 	atlas.texture_region_size = Vector2i(32,32)
 	tiles.add_source(atlas,0)
 	for i in range(8):
@@ -31,8 +31,8 @@ func _ready() -> void:
 			if x in [26,27,28]: cell = 6 if x==27 else 5
 			ground.set_cell(Vector2i(x,y),0,Vector2i(cell,0))
 	for bounds in [Rect2(-32,-32,1344,32),Rect2(-32,896,1344,32),Rect2(-32,0,32,896),Rect2(1280,0,32,896)]: blocker(bounds,self)
-	house(Vector2(290,357),preload("res://assets/buildings/tea_house.png"))
-	house(Vector2(520,350),preload("res://assets/buildings/workshop.png"))
+	house(Vector2(290,357),load("res://assets/buildings/tea_house.png"))
+	house(Vector2(520,350),load("res://assets/buildings/workshop.png"))
 	npc("ahe",Vector2(284,452))
 	npc("zhou",Vector2(488,480))
 	npc("linya",Vector2(610,442))
@@ -75,7 +75,7 @@ func _ready() -> void:
 		for x in range(2,38,3):
 			if x in [17,20,26,29]: continue
 			var tree := Sprite2D.new()
-			tree.texture = preload("res://assets/tilesets/tree.png")
+			tree.texture = load("res://assets/tilesets/tree.png")
 			tree.position = Vector2(x*32,y*32)
 			actors.add_child(tree)
 			blocker(Rect2(-6,31,12,14),tree)

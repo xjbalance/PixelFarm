@@ -4,9 +4,11 @@ var livestock_id: String = "coop"
 var shape: CollisionShape2D
 var previous_level: int = 0
 var label: Label
+var shelter_floor: Node2D
 
 func _ready() -> void:
 	add_to_group("interactables")
+	shelter_floor=Node2D.new();shelter_floor.set_script(preload("res://scripts/livestock/shelter_floor.gd"));shelter_floor.site=livestock_id;shelter_floor.z_index=-2;add_child(shelter_floor)
 	var body := StaticBody2D.new()
 	body.position=Vector2(0,-92)
 	body.collision_layer=1;body.collision_mask=0
@@ -39,6 +41,7 @@ func refresh() -> void:
 		Events.navigation_changed.emit()
 	var name_text: String=Livestock.data.buildings[livestock_id].name
 	label.text=name_text+" · 待建" if level==0 else "%s Lv%d · %d/%d" % [name_text,level,Livestock.summary(livestock_id).count,Livestock.summary(livestock_id).capacity]
+	if shelter_floor: shelter_floor.queue_redraw()
 	queue_redraw()
 
 func _draw() -> void:
@@ -64,11 +67,17 @@ func _draw() -> void:
 		draw_line(Vector2(x,-95),Vector2(x,-84),Color("718370"),2)
 	# 仅装饰的前庭围栏，不新增横跨通道的硬碰撞。
 	for x in [-64,64]:
-		draw_line(Vector2(x,-28),Vector2(x,88),Color("977e58"),3)
-		for y in range(-24,90,32): draw_rect(Rect2(x-3,y-12,6,21),Color("b9a174"))
+		# 两侧牧门留出真实进出缺口，动物不穿过绘制的围栏。
+		draw_line(Vector2(x,42),Vector2(x,88),Color("977e58"),3)
+		for y in [52,84]: draw_rect(Rect2(x-3,y-12,6,21),Color("b9a174"))
 	for x in range(-64,65,32):
 		if x in [-32,0,32]: continue
 		draw_line(Vector2(x,88),Vector2(x+24,88),Color("b7a277"),2)
+	# 掀开的屋面以剖视显示暖舍，动物在草垫与屋檐内可见；放牧走两侧草地。
+	draw_rect(Rect2(-60,-53,120,6),roof)
+	for x in [-60,56]:
+		draw_rect(Rect2(x,-51,4,14),wall)
+		draw_rect(Rect2(x,28,4,8),wall)
 	if level>=2:
 		for x in [-54,54]: draw_rect(Rect2(x-3,-109,6,43),Color("717b70"))
 	if level==3:

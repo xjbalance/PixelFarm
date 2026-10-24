@@ -2,7 +2,7 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,20): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,21): return {}
 	var data: Dictionary = raw.duplicate(true)
 	# 旧路线盘的数字格ID也必须规范，防止JSON浮点枚举失配/重复矿格。
 	if data.get("xiaojing") is Dictionary and data.xiaojing.get("cave") is Dictionary:
@@ -99,6 +99,10 @@ static func normalize(raw: Variant) -> Dictionary:
 		if not whole(data.get("day"),1,999999): return {}
 		data.world_development=WorldDevelopment.defaults(int(data.day))
 		data.version=20
+	if int(data.version)==20:
+		if not data.get("housing") is Dictionary: return {}
+		data.housing.flowers={}
+		data.version=21
 	data.world_development=AbyssSaveSchema.canonical(data.get("world_development"))
 	data.exploration=AbyssSaveSchema.canonical(data.get("exploration"))
 	data.housing=AbyssSaveSchema.canonical(data.get("housing"))
@@ -166,7 +170,7 @@ static func valid_current(data: Variant) -> bool:
 	if not AbyssSaveSchema.validate(data.get("abyss"),int(data.day)) or not AbyssSaveSchema.legend(data.get("legend"),data.xiaojing,int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),20,20) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),21,21) or not Story.validate(data.get("story")): return false
 	if data.get("control_mode") not in ["tap","joystick"]: return false
 	if not VillageProjects.validate(data.get("village"),data.get("day"),int(data.story.stage)): return false
 	if not whole(data.get("day"),1,999999): return false

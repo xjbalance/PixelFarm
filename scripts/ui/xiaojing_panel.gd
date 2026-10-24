@@ -114,7 +114,7 @@ func refresh() -> void:
 func build_main() -> void:
 	var state: Dictionary = Xiaojing.state
 	if not Xiaojing.nearby():
-		label_row("小京白天在河东观察站，傍晚在农场星灯台；婚后夜间也会回小屋。靠近她后可以交谈、赠礼和办理任务。")
+		label_row("现在："+str(preload("res://scripts/seasons/life_schedule.gd").locate("xiaojing").get("description","暂未找到她的活动记录"))+"。靠近后可以交谈、赠礼和查看共同计划。")
 	else:
 		button("每日交谈",func():
 			read_story("今天各自做了什么",StarStory.daily_text(),func(): Xiaojing.talk())

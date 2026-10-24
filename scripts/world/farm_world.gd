@@ -30,7 +30,7 @@ func build_tiles() -> void:
 	tiles.add_physics_layer()
 	tiles.set_physics_layer_collision_layer(0, 1)
 	var atlas := TileSetAtlasSource.new()
-	atlas.texture = preload("res://assets/tilesets/ground.png")
+	atlas.texture = load("res://assets/tilesets/ground.png")
 	atlas.texture_region_size = Vector2i(TILE_SIZE, TILE_SIZE)
 	tiles.add_source(atlas, 0)
 	for i in range(8):

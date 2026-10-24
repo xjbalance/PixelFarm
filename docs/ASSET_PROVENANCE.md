@@ -57,3 +57,7 @@ assets/fishing、livestock、kitchen由各自tools/generate_*_assets.py以项目
 ## 0.7.0阶段D
 
 assets/exploration为三张地图原创地表atlas及6种材料/封记图标，tools/generate_exploration_assets.py程序像素绘制；森林薄雾/季节草叶、排水廊墙体/干道/水桥、神庙光轴与符台均为代码实体呈现。assets/world_progress的招牌/货物等由tools/generate_world_progress_assets.py原创生成，码头/雨棚/灯/花坛按状态绘制。无其他商业游戏素材。
+
+## 0.7.0最终补齐
+
+春铃花种/双铃花/月影纸笺3张32px图由tools/generate_finale_assets.py原创逐像素生成。满月、水面倒影、幼苗成长与成熟标记、剖面暖舍草垫/屋檐均程序绘制，无商业游戏素材或新增重光照。

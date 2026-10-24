@@ -4,7 +4,7 @@ signal changed
 const SITES := {"coop":Vector2(176,880),"barn":Vector2(400,912),"fold":Vector2(816,912)}
 const CAPACITY := [0,2,4,6]
 const INDOOR := [Vector2(-40,-16),Vector2(-8,-16),Vector2(24,-16),Vector2(-40,16),Vector2(-8,16),Vector2(24,16)]
-const PASTURE := [Vector2(-52,-40),Vector2(-20,-40),Vector2(20,-40),Vector2(52,-40),Vector2(-48,24),Vector2(48,24)]
+const PASTURE := [Vector2(-88,-40),Vector2(88,-40),Vector2(96,-8),Vector2(-96,-8),Vector2(-88,16),Vector2(88,16)]
 var data: Dictionary = {}
 var state: Dictionary = {}
 var game: Node
@@ -272,7 +272,7 @@ func validate(raw: Variant, day: int) -> bool:
 		if not entry.position is Array or entry.position.size()!=2: return false
 		for axis in entry.position:
 			if not (axis is int or axis is float) or not is_finite(float(axis)): return false
-		if not Rect2(SITES[entry.site]+Vector2(-64,-48),Vector2(128,160)).has_point(Vector2(entry.position[0],entry.position[1])): return false
+		if not Rect2(SITES[entry.site]+Vector2(-116,-48),Vector2(232,160)).has_point(Vector2(entry.position[0],entry.position[1])): return false
 	for site in SITES:
 		if int(counts[site])>CAPACITY[int(raw.buildings[site].level)]: return false
 	return true

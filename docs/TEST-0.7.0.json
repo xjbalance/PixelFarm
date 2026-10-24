@@ -1,0 +1,196 @@
+{
+  "version": "0.7.0",
+  "save_schema": 21,
+  "automated": {
+    "checks": 2964,
+    "failures": 0,
+    "suites": [
+      {
+        "suite": "SLEEP RESULT",
+        "checks": 29,
+        "failures": 0
+      },
+      {
+        "suite": "RESULT",
+        "checks": 452,
+        "failures": 0
+      },
+      {
+        "suite": "MINING RESULT",
+        "checks": 98,
+        "failures": 0
+      },
+      {
+        "suite": "STAR RESULT",
+        "checks": 125,
+        "failures": 0
+      },
+      {
+        "suite": "LEGEND RESULT",
+        "checks": 252,
+        "failures": 0
+      },
+      {
+        "suite": "STABILITY RESULT",
+        "checks": 264,
+        "failures": 0
+      },
+      {
+        "suite": "RIVER RESULT",
+        "checks": 448,
+        "failures": 0
+      },
+      {
+        "suite": "AQUACULTURE RESULT",
+        "checks": 155,
+        "failures": 0
+      },
+      {
+        "suite": "SEASONS A RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "CONTROL RECOVERY RESULT",
+        "checks": 52,
+        "failures": 0
+      },
+      {
+        "suite": "FISHING B RESULT",
+        "checks": 84,
+        "failures": 0
+      },
+      {
+        "suite": "LIVESTOCK B RESULT",
+        "checks": 112,
+        "failures": 0
+      },
+      {
+        "suite": "KITCHEN B RESULT",
+        "checks": 100,
+        "failures": 0
+      },
+      {
+        "suite": "ECOLOGY B RESULT",
+        "checks": 65,
+        "failures": 0
+      },
+      {
+        "suite": "FESTIVALS C RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "SOCIAL C RESULT",
+        "checks": 107,
+        "failures": 0
+      },
+      {
+        "suite": "HOUSING C RESULT",
+        "checks": 105,
+        "failures": 0
+      },
+      {
+        "suite": "EXPLORATION D RESULT",
+        "checks": 106,
+        "failures": 0
+      },
+      {
+        "suite": "WORLD PROGRESS D RESULT",
+        "checks": 170,
+        "failures": 0
+      },
+      {
+        "suite": "QUALITY 070 RESULT",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 070 RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FINALE 070 RESULT",
+        "checks": 24,
+        "failures": 0
+      }
+    ],
+    "log": "builds/check-0.7.0-acceptance.log"
+  },
+  "desktop_window": {
+    "checks": 356,
+    "failures": 0,
+    "suites": [
+      {
+        "suite": "render_061",
+        "checks": 113,
+        "failures": 0
+      },
+      {
+        "suite": "render_062",
+        "checks": 32,
+        "failures": 0
+      },
+      {
+        "suite": "render_seasons_a",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "fishing_b_render",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "livestock_b_render",
+        "checks": 25,
+        "failures": 0
+      },
+      {
+        "suite": "kitchen_b_render",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "life_c_render",
+        "checks": 19,
+        "failures": 0
+      },
+      {
+        "suite": "exploration_d_render",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "world_progress_d_render",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "finale_070_render",
+        "checks": 13,
+        "failures": 0
+      }
+    ],
+    "log": "builds/window-0.7.0-acceptance.log"
+  },
+  "real_android_device": false,
+  "real_windows_mac_device": false,
+  "player_profile_testing": "isolated temporary XDG directories",
+  "economic_profiles": 10000,
+  "economic_days_each": 28,
+  "limitations": "Models and desktop tests are not real-device acceptance or human completion-time measurements.",
+  "android_artifact": {
+    "name": "PixelWorld-0.7.0-debug.apk",
+    "bytes": 67960718,
+    "sha256": "b0d6e07ca7efdeb1889ab7bce071de6115902e51bb6706ea47f19c54231a4d17",
+    "package": "org.pixelfarm.windbud",
+    "version_name": "0.7.0",
+    "version_code": 11,
+    "same_original_certificate": true,
+    "real_device_tested": false
+  },
+  "source_archive_independent_import_verified": true,
+  "apk_embedded_code_invariants_verified": true
+}

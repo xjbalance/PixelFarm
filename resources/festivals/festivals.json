@@ -1,34 +1,274 @@
 {
   "events": {
-    "spring":{"name":"播种庆典","season":0,"season_day":24,"opens":540,"closes":1140,"area":"farm","board":[880,496],"title":"三格春田，一起留种","description":"在原农田留出三格空地。报名后亲手播下至少两类作物，照料好这三格，再回木牌前展示。雨水、原引水渠和水井照料同样有效，不会重置玩家农田。","reward":{"items":{"festival_spring_ribbon":1,"carrot_seed":3,"wheat_seed":3},"coins":40}},
-    "summer":{"name":"湖畔灯会","season":1,"season_day":24,"opens":840,"closes":1380,"area":"farm","board":[1168,800],"title":"湖面上的两声水响","description":"报名后在湖泊亲手完成两次自由钓鱼，和至少两位村民现场交流。20:00后回湖岸选择一盏灯，灯型与钓鱼记录会留下。午夜仍正常结束一天。","reward":{"items":{"festival_summer_lantern":1,"fishing_bait":6},"coins":45}},
-    "autumn":{"name":"丰收节","season":2,"season_day":24,"opens":600,"closes":1260,"area":"village","board":[624,608],"title":"把一季的劳作摆在桌上","description":"携带本季亲手收获的作物、鱼类和自己照料的畜产。选择3至6份、至少两类组成展篮；物品会实际交付，评分依据新产记录、种类与组合，不捏造品质等级。","reward":{"items":{"festival_autumn_basket":1,"potato_seed":3},"coins":40}},
-    "winter":{"name":"冬日集市","season":3,"season_day":24,"opens":600,"closes":1320,"area":"village","board":[624,608],"title":"三份暖锅，三处灯火","description":"报名后回原小屋厨房实际制作三份暖锅蔬菜炖。带上成品，走到林芽、周砚、阿禾身边分别送一份，回来把送餐路线补进集市记录。没有自动生成的料理。","reward":{"items":{"festival_winter_star":1,"wheat_seed":6},"coins":55}}
+    "spring": {
+      "name": "播种庆典",
+      "season": 0,
+      "season_day": 24,
+      "opens": 540,
+      "closes": 1140,
+      "area": "farm",
+      "board": [
+        880,
+        496
+      ],
+      "title": "三格春田，一起留种",
+      "description": "在原农田留出三格空地。报名后亲手播下至少两类作物，照料好这三格，再回木牌前展示。雨水、原引水渠和水井照料同样有效，不会重置玩家农田。",
+      "reward": {
+        "items": {
+          "festival_spring_ribbon": 1,
+          "carrot_seed": 3,
+          "wheat_seed": 3,
+          "spring_bloom_seed": 3
+        },
+        "coins": 40
+      }
+    },
+    "summer": {
+      "name": "湖畔灯会",
+      "season": 1,
+      "season_day": 24,
+      "opens": 840,
+      "closes": 1380,
+      "area": "farm",
+      "board": [
+        1168,
+        800
+      ],
+      "title": "湖面上的两声水响",
+      "description": "报名后在湖泊亲手完成两次自由钓鱼，和至少两位村民现场交流。20:00后回湖岸选择一盏灯，灯型与钓鱼记录会留下。午夜仍正常结束一天。",
+      "reward": {
+        "items": {
+          "festival_summer_lantern": 1,
+          "fishing_bait": 6
+        },
+        "coins": 45
+      }
+    },
+    "autumn": {
+      "name": "丰收节",
+      "season": 2,
+      "season_day": 24,
+      "opens": 600,
+      "closes": 1260,
+      "area": "village",
+      "board": [
+        624,
+        608
+      ],
+      "title": "把一季的劳作摆在桌上",
+      "description": "携带本季亲手收获的作物、鱼类和自己照料的畜产。选择3至6份、至少两类组成展篮；物品会实际交付，评分依据新产记录、种类与组合，不捏造品质等级。",
+      "reward": {
+        "items": {
+          "festival_autumn_basket": 1,
+          "potato_seed": 3
+        },
+        "coins": 40
+      }
+    },
+    "winter": {
+      "name": "冬日集市",
+      "season": 3,
+      "season_day": 24,
+      "opens": 600,
+      "closes": 1320,
+      "area": "village",
+      "board": [
+        624,
+        608
+      ],
+      "title": "三份暖锅，三处灯火",
+      "description": "报名后回原小屋厨房实际制作三份暖锅蔬菜炖。带上成品，走到林芽、周砚、阿禾身边分别送一份，回来把送餐路线补进集市记录。没有自动生成的料理。",
+      "reward": {
+        "items": {
+          "festival_winter_star": 1,
+          "wheat_seed": 6
+        },
+        "coins": 55
+      }
+    }
   },
   "items": {
-    "festival_spring_ribbon":{"name":"春田留种缎带","sell_price":0,"description":"亲手完成三格春田比赛的纪念。记录努力，不兑换金币或钻石。","kind":"souvenir"},
-    "festival_summer_lantern":{"name":"湖岸灯会纪念灯","sell_price":0,"description":"两次钓获和村民的谈话留在这盏小灯里。","kind":"souvenir"},
-    "festival_autumn_basket":{"name":"丰收展篮徽记","sell_price":0,"description":"将本季新产物组成展篮后的纪念，不代表虚构的物品品质。","kind":"souvenir"},
-    "festival_winter_star":{"name":"冬日三灯星牌","sell_price":0,"description":"实际做好三份暖锅并分别送达村民，留下三处灯火。","kind":"souvenir"},
-    "shop_spring_wreath":{"name":"嫩枝小花环","sell_price":0,"description":"春季摊位的限购装饰收藏，采用修枝与落花制作。","kind":"decoration"},
-    "shop_summer_flag":{"name":"湖风彩旗","sell_price":0,"description":"夏季限定装饰收藏，一年一面，不生产资源。","kind":"decoration"},
-    "shop_winter_window":{"name":"冬窗纸星","sell_price":0,"description":"冬季限定装饰收藏，记录这一年的集市。","kind":"decoration"}
+    "festival_spring_ribbon": {
+      "name": "春田留种缎带",
+      "sell_price": 0,
+      "description": "亲手完成三格春田比赛的纪念。记录努力，不兑换金币或钻石。",
+      "kind": "souvenir"
+    },
+    "festival_summer_lantern": {
+      "name": "湖岸灯会纪念灯",
+      "sell_price": 0,
+      "description": "两次钓获和村民的谈话留在这盏小灯里。",
+      "kind": "souvenir"
+    },
+    "festival_autumn_basket": {
+      "name": "丰收展篮徽记",
+      "sell_price": 0,
+      "description": "将本季新产物组成展篮后的纪念，不代表虚构的物品品质。",
+      "kind": "souvenir"
+    },
+    "festival_winter_star": {
+      "name": "冬日三灯星牌",
+      "sell_price": 0,
+      "description": "实际做好三份暖锅并分别送达村民，留下三处灯火。",
+      "kind": "souvenir"
+    },
+    "shop_spring_wreath": {
+      "name": "嫩枝小花环",
+      "sell_price": 0,
+      "description": "春季摊位的限购装饰收藏，采用修枝与落花制作。",
+      "kind": "decoration"
+    },
+    "shop_summer_flag": {
+      "name": "湖风彩旗",
+      "sell_price": 0,
+      "description": "夏季限定装饰收藏，一年一面，不生产资源。",
+      "kind": "decoration"
+    },
+    "shop_winter_window": {
+      "name": "冬窗纸星",
+      "sell_price": 0,
+      "description": "冬季限定装饰收藏，记录这一年的集市。",
+      "kind": "decoration"
+    },
+    "spring_bloom_seed": {
+      "name": "春铃花种",
+      "sell_price": 0,
+      "description": "春季庆典赠种。在庭院已有花坛旁播种，三个游戏日后可收春铃花；不占原农田，也不计520次农田播种。",
+      "kind": "garden_seed"
+    },
+    "spring_bloom": {
+      "name": "春铃花",
+      "sell_price": 0,
+      "description": "在庭院花坛亲手养成的纪念花，可以送给林芽；赠礼仍每天一次。",
+      "kind": "flower"
+    }
   },
   "shops": {
-    "spring":[{"item":"shop_spring_wreath","price":90,"limit":1,"unlock":"basic"},{"item":"carrot_seed","price":12,"limit":6,"unlock":"basic"},{"item":"fishing_bait","price":4,"limit":8,"unlock":"basic"}],
-    "summer":[{"item":"shop_summer_flag","price":100,"limit":1,"unlock":"basic"},{"item":"fishing_bait","price":4,"limit":12,"unlock":"basic"},{"item":"fish_feast","price":210,"limit":1,"unlock":"fish_feast"}],
-    "autumn":[{"item":"potato_seed","price":18,"limit":6,"unlock":"basic"},{"item":"hay","price":4,"limit":8,"unlock":"basic"},{"item":"berry_jam","price":55,"limit":2,"unlock":"jam_pot"}],
-    "winter":[{"item":"shop_winter_window","price":120,"limit":1,"unlock":"basic"},{"item":"flour","price":28,"limit":4,"unlock":"mill"},{"item":"milk_porridge","price":68,"limit":2,"unlock":"milk_porridge"}]
+    "spring": [
+      {
+        "item": "shop_spring_wreath",
+        "price": 90,
+        "limit": 1,
+        "unlock": "basic"
+      },
+      {
+        "item": "carrot_seed",
+        "price": 12,
+        "limit": 6,
+        "unlock": "basic"
+      },
+      {
+        "item": "fishing_bait",
+        "price": 4,
+        "limit": 8,
+        "unlock": "basic"
+      },
+      {
+        "item": "spring_bloom_seed",
+        "price": 15,
+        "limit": 3,
+        "unlock": "basic"
+      }
+    ],
+    "summer": [
+      {
+        "item": "shop_summer_flag",
+        "price": 100,
+        "limit": 1,
+        "unlock": "basic"
+      },
+      {
+        "item": "fishing_bait",
+        "price": 4,
+        "limit": 12,
+        "unlock": "basic"
+      },
+      {
+        "item": "fish_feast",
+        "price": 210,
+        "limit": 1,
+        "unlock": "fish_feast"
+      }
+    ],
+    "autumn": [
+      {
+        "item": "potato_seed",
+        "price": 18,
+        "limit": 6,
+        "unlock": "basic"
+      },
+      {
+        "item": "hay",
+        "price": 4,
+        "limit": 8,
+        "unlock": "basic"
+      },
+      {
+        "item": "berry_jam",
+        "price": 55,
+        "limit": 2,
+        "unlock": "jam_pot"
+      }
+    ],
+    "winter": [
+      {
+        "item": "shop_winter_window",
+        "price": 120,
+        "limit": 1,
+        "unlock": "basic"
+      },
+      {
+        "item": "flour",
+        "price": 28,
+        "limit": 4,
+        "unlock": "mill"
+      },
+      {
+        "item": "milk_porridge",
+        "price": 68,
+        "limit": 2,
+        "unlock": "milk_porridge"
+      }
+    ]
   },
   "talks": {
-    "spring":{"linya":"我不看谁撒得最快。三格里留两种种子，明年才知道哪一袋更适合这片地。","zhou":"绳子只做边界，不压在作物上。播下去之后，这些仍是你自己的田。","ahe":"我把参加的人记进本子，没赶上也能明年再来。今天先把手上的种子照料好。","xiaojing":"你记品种，我记行距。三格不大，足够看见人怎么照料一件事。"},
-    "summer":{"linya":"我带来的不是大订单，是几个空菜筐。鱼也好、菜也好，先让做事的人有地方歇脚。","zhou":"灯绳放在岸上，鱼线留在水面。哪一样拉紧了，都要先看清身边的人。","ahe":"我今天想记下两件事：谁第一次钓到鱼，谁愿意把位置让给后来的人。","xiaojing":"灯不用漂远。我想明年还在这段岸边，看得见水草有没有长回来。"},
-    "autumn":{"linya":"展篮里的东西不是越贵越好。田里的、湖里的、畜舍里的，能接成一顿饭就很了不起。","zhou":"我把桌脚垫平了，谁的篮子都不会先往一边滑。记录上写实际做过的事就好。","ahe":"这一季新收的才有这一季的故事。你告诉我来处，我替你把不同的劳作连起来。","xiaojing":"篮子里留一点空隙，免得路上挤坏。收获也需要被温柔地带回来。"},
-    "winter":{"linya":"暖锅先放这里，我等种袋晒干就吃。冬天的小麦还在长，明春也有事情可做。","zhou":"你来得正好，手刚从冷木头上拿开。等这口热气过去，我再给窗框补最后一钉。","ahe":"三份暖锅走过三条小路，今天的集市就不只在广场上了。你的碗我会洗好放回门边。","xiaojing":"我还有几页温室记录要整理。等你送完那三份热食，我把窗前的位置留给你。"}
+    "spring": {
+      "linya": "我不看谁撒得最快。三格里留两种种子，明年才知道哪一袋更适合这片地。",
+      "zhou": "绳子只做边界，不压在作物上。播下去之后，这些仍是你自己的田。",
+      "ahe": "我把参加的人记进本子，没赶上也能明年再来。今天先把手上的种子照料好。",
+      "xiaojing": "你记品种，我记行距。三格不大，足够看见人怎么照料一件事。"
+    },
+    "summer": {
+      "linya": "我带来的不是大订单，是几个空菜筐。鱼也好、菜也好，先让做事的人有地方歇脚。",
+      "zhou": "灯绳放在岸上，鱼线留在水面。哪一样拉紧了，都要先看清身边的人。",
+      "ahe": "我今天想记下两件事：谁第一次钓到鱼，谁愿意把位置让给后来的人。",
+      "xiaojing": "灯不用漂远。我想明年还在这段岸边，看得见水草有没有长回来。"
+    },
+    "autumn": {
+      "linya": "展篮里的东西不是越贵越好。田里的、湖里的、畜舍里的，能接成一顿饭就很了不起。",
+      "zhou": "我把桌脚垫平了，谁的篮子都不会先往一边滑。记录上写实际做过的事就好。",
+      "ahe": "这一季新收的才有这一季的故事。你告诉我来处，我替你把不同的劳作连起来。",
+      "xiaojing": "篮子里留一点空隙，免得路上挤坏。收获也需要被温柔地带回来。"
+    },
+    "winter": {
+      "linya": "暖锅先放这里，我等种袋晒干就吃。冬天的小麦还在长，明春也有事情可做。",
+      "zhou": "你来得正好，手刚从冷木头上拿开。等这口热气过去，我再给窗框补最后一钉。",
+      "ahe": "三份暖锅走过三条小路，今天的集市就不只在广场上了。你的碗我会洗好放回门边。",
+      "xiaojing": "我还有几页温室记录要整理。等你送完那三份热食，我把窗前的位置留给你。"
+    }
   },
   "lanterns": {
-    "seed":{"name":"麦穗灯","text":"你把麦穗纹样夹进灯框。林芽在岸边留出一只菜筐的位置，灯照着通往田地的小路。"},
-    "river":{"name":"水纹灯","text":"水纹映在栏网上，没有被推入湖里。周砚松开一段过紧的灯绳，让风和人都有余地。"},
-    "home":{"name":"窗棂灯","text":"阿禾在灯纸上描了三扇窗。灯亮起来时，屋里的日常也被带到了湖岸。"}
+    "seed": {
+      "name": "麦穗灯",
+      "text": "你把麦穗纹样夹进灯框。林芽在岸边留出一只菜筐的位置，灯照着通往田地的小路。"
+    },
+    "river": {
+      "name": "水纹灯",
+      "text": "水纹映在栏网上，没有被推入湖里。周砚松开一段过紧的灯绳，让风和人都有余地。"
+    },
+    "home": {
+      "name": "窗棂灯",
+      "text": "阿禾在灯纸上描了三扇窗。灯亮起来时，屋里的日常也被带到了湖岸。"
+    }
   }
 }

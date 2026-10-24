@@ -16,10 +16,11 @@ var busy: bool=false
 func _ready() -> void:
 	data=AbyssSaveSchema.canonical(JSON.parse_string(FileAccess.get_file_as_string("res://resources/housing/housing.json")))
 	state=defaults()
+	GameClock.day_advanced.connect(func(): changed.emit())
 	GameState.control_mode_changed.connect(func(): changed.emit())
 
 func defaults(_day: int = GameClock.day) -> Dictionary:
-	return {"level":1,"owned":{},"placed":[],"serial":0,"storage":{},"appearance":{"wallpaper":"plain","floor":"plain"}}
+	return {"level":1,"owned":{},"placed":[],"serial":0,"storage":{},"appearance":{"wallpaper":"plain","floor":"plain"},"flowers":{}}
 func snapshot() -> Dictionary: return state.duplicate(true)
 func restore(raw: Dictionary) -> void:
 	state=AbyssSaveSchema.canonical(raw).duplicate(true);busy=false;changed.emit();Events.navigation_changed.emit()
@@ -115,7 +116,7 @@ func move(id: String, cell: Vector2i) -> bool:
 	busy=true;entry.cell=[cell.x,cell.y];_commit(true);return true
 func recycle(id: String) -> bool:
 	var entry := placement(id)
-	if busy or GameClock.settling or entry.is_empty() or not can_manage(entry.area,id) or int(state.owned.get(entry.kind,0))>=99: return false
+	if busy or GameClock.settling or entry.is_empty() or state.flowers.has(id) or not can_manage(entry.area,id) or int(state.owned.get(entry.kind,0))>=99: return false
 	busy=true;state.owned[entry.kind]=int(state.owned.get(entry.kind,0))+1
 	state.placed.erase(entry);_commit(true);return true
 func apply_style(kind: String) -> bool:
@@ -159,4 +160,27 @@ func validate(raw: Variant, _day: int) -> bool:
 		for old in occupied[entry.area]:
 			if old.intersects(rect): return false
 		occupied[entry.area].append(rect)
+	if not raw.flowers is Dictionary or raw.flowers.size()>MAX_PLACED: return false
+	for id in raw.flowers:
+		if not id is String or not FarmSaveSchema.whole(raw.flowers[id],1,_day): return false
+		var found := false
+		for entry in raw.placed:
+			if entry.id==id and entry.kind=="flower" and entry.area=="farm": found=true;break
+		if not found: return false
 	return true
+
+func flower_age(id: String) -> int:
+	return maxi(0,GameClock.day-int(state.flowers[id])) if state.flowers.has(id) else -1
+func sow_flower(id: String) -> bool:
+	var entry := placement(id)
+	if busy or GameClock.settling or entry.is_empty() or entry.kind!="flower" or entry.area!="farm" or not near_item(id) or state.flowers.has(id) or GameState.stamina<Kitchen.energy_cost(1): return false
+	if not _exchange({"spring_bloom_seed":1},{}): return false
+	GameState.spend_energy(1);state.flowers[id]=GameClock.day;_commit();return true
+func harvest_flower(id: String) -> bool:
+	if busy or GameClock.settling or not near_item(id) or flower_age(id)<3: return false
+	if not _exchange({},{"spring_bloom":1}): return false
+	state.flowers.erase(id);_commit();return true
+func uproot_flower(id: String) -> bool:
+	if busy or GameClock.settling or not near_item(id) or not state.flowers.has(id): return false
+	if not _exchange({},{"spring_bloom_seed":1}): return false
+	state.flowers.erase(id);_commit();return true

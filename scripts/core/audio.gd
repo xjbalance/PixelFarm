@@ -7,10 +7,10 @@ var muted: bool = false
 var music: AudioStreamPlayer
 var rain: AudioStreamPlayer
 var in_background: bool = false
-const SOUNDS := {
-	"action": preload("res://assets/audio/action.wav"),
-	"harvest": preload("res://assets/audio/harvest.wav"),
-	"day": preload("res://assets/audio/day.wav")
+var SOUNDS = {
+	"action": load("res://assets/audio/action.wav"),
+	"harvest": load("res://assets/audio/harvest.wav"),
+	"day": load("res://assets/audio/day.wav")
 }
 
 func _ready() -> void:
@@ -22,8 +22,8 @@ func _ready() -> void:
 	Events.farm_action.connect(func(kind: String): play_sound("harvest" if kind == "收获" else "action"))
 	GameClock.day_advanced.connect(func(): play_sound("day"))
 	Events.resource_hit.connect(func(depleted: bool): play_sound("harvest" if depleted else "action"))
-	music = loop_player(preload("res://assets/audio/river_theme.wav"),-23.0)
-	rain = loop_player(preload("res://assets/audio/rain.wav"),-40.0)
+	music = loop_player(load("res://assets/audio/river_theme.wav"),-23.0)
+	rain = loop_player(load("res://assets/audio/rain.wav"),-40.0)
 
 func loop_player(source: AudioStreamWAV, volume: float) -> AudioStreamPlayer:
 	var player := AudioStreamPlayer.new()

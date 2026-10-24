@@ -61,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	var motion: Vector2=target-global_position
 	velocity=motion.normalized()*minf(18,motion.length()/maxf(delta,.001)) if motion.length()>1 else Vector2.ZERO
 	move_and_slide()
-	var bounds := Rect2(Livestock.SITES[entry.site]+Vector2(-60,-46),Vector2(120,150))
+	var bounds := Rect2(Livestock.SITES[entry.site]+Vector2(-112,-46),Vector2(224,150))
 	global_position=global_position.clamp(bounds.position,bounds.end-Vector2.ONE)
 	entry.position=[snappedf(global_position.x,.01),snappedf(global_position.y,.01)]
 	if velocity.length()>1:

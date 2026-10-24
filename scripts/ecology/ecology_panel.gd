@@ -19,6 +19,9 @@ func refresh() -> void:
 		button("确认材料 · 修复水循环",func(): DiamondPayments.request(self,180,func(): outcome(LakeEcology.repair_cycle())))
 	words("环保委托：生态≥90、水草≥3、修复水循环并清淤，记录恢复。奖励80金、草鱼苗2，唯一结算。")
 	button("提交恢复记录",func(): outcome(LakeEcology.complete_restoration()))
+	button("记录满月倒影 · 月影笺",func(): outcome(Exploration.observe_moon())).disabled=not GameWeather.is_moon_night() or "moon_reflection" in Exploration.state.facts
+	if "moon_reflection" in Exploration.state.facts: words("月亮的倒影被水纹轻轻分开。你把清楚的那一刻画在纸上，留作湖面月影笺。",18)
+	words("季内15日晴朗或薄云，20:00后有特殊满月夜。到湖岸现场记录倒影，可得唯一月影收藏。",16)
 	button("观察今晚湖面星痕",func(): outcome(LakeEcology.observe_meteor())).disabled=not GameWeather.is_meteor_night() or LakeEcology.state.meteor_seen
 	words("小京的后续水样：原三日湖畔合作完成且生态恢复后，在她09–18点做水样时交流；独立信任/羁绊小幅奖励只一次。",16)
 	button("和小京比较新旧水样",func(): outcome(LakeEcology.xiaojing_after()))
