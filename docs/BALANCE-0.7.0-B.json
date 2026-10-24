@@ -1,0 +1,346 @@
+{
+  "version": "0.7.0-stage-B",
+  "seed": 707020,
+  "profiles": 10000,
+  "days_per_profile": 28,
+  "channels_independent_do_not_sum": true,
+  "model_not_human_playtest": true,
+  "source_configs": [
+    "resources/crops/*.tres",
+    "resources/seasons/economy.json",
+    "resources/seasons/climate.json",
+    "resources/fishing/fishing.json",
+    "resources/livestock/livestock.json",
+    "resources/kitchen/kitchen.json",
+    "resources/ecology/config.json",
+    "resources/aquaculture/fish.json"
+  ],
+  "assumptions": [
+    "10000 independent 28-day segments, evenly covering spring/summer/autumn/winter; deterministic engine climate formula and source prices.",
+    "Channels are alternative operating models, not a joint single-player schedule. Never add their medians or count sold ingredients again as processed inputs.",
+    "Farming: 12-30 plots, one season-compatible crop, 90-99% manual care, 60% with existing well/irrigation. New seeds paid; closing immature crops have no cash value.",
+    "Fishing: 4 to ecology-adjusted cap casts/day, store bait 4 gold/cast even on failure, rod mix 35/40/25%, random accessible habitat, 25% night sessions.",
+    "Fishing catch probability is an explicit skill assumption 0.60-0.93 adjusted by configured difficulty/rod; it is not engine QTE or real player measurement.",
+    "Fishing rare aquaculture unlocks are assumed for 60% of advanced-rod profiles. Eternal carp is zero-sale, ecology+weather+cooperation gated, at most one per modeled season.",
+    "Livestock: two existing adults of each species, 90-99% feeding adherence, legal morning grazing on 80% of suitable days, 94% product collection, daily storage cap3.",
+    "Building capital, animal/fishing gear purchase, prior unlock work, injury, buffs and dialogue are excluded. Reported cashflow is not a complete new-game return-on-investment.",
+    "Processing: four queue slots, batches<=8, real recipe delays, limited supplied raw material quotas/day (wheat6,milk2,carp3,berries2 or winter1,wood2).",
+    "Processing income is incremental realized sale margin vs selling those exact inputs, only for claimed jobs; closing work-in-progress value is separate. It is not extra free source income.",
+    "Ecology: density0-4, maintained fishpen water, source daily weather/storm debris, 95% care adherence, first three water plants and one cycle repair with real ingredient opportunity costs.",
+    "Action times are assumed (farm2s/action, livestock1.8s, fishing1.5-3.1s wait plus7-14s minigame plus2s handling, home processing2s/action), with stated travel allowances.",
+    "One real second=2 game minutes is preserved. Menus pause world time; assumed active seconds do not prove a feasible nine-minute real session or optimal joint stamina allocation."
+  ],
+  "results": {
+    "farming": {
+      "net_gold_per_game_day": {
+        "p10": 93.214,
+        "p50": 164.786,
+        "p90": 289.286
+      },
+      "assumed_active_seconds_per_game_day": {
+        "p10": 48.0,
+        "p50": 65.679,
+        "p90": 98.143
+      },
+      "stamina_per_game_day": {
+        "p10": 12.071,
+        "p50": 21.357,
+        "p90": 39.071
+      }
+    },
+    "fishing": {
+      "net_gold_per_game_day": {
+        "p10": 61.286,
+        "p50": 112.286,
+        "p90": 160.507
+      },
+      "assumed_active_seconds_per_game_day": {
+        "p10": 137.029,
+        "p50": 168.182,
+        "p90": 202.27
+      },
+      "stamina_per_game_day": {
+        "p10": 20.893,
+        "p50": 23.786,
+        "p90": 25.714
+      }
+    },
+    "livestock": {
+      "net_gold_per_game_day": {
+        "p10": 103.857,
+        "p50": 120.0,
+        "p90": 127.214
+      },
+      "assumed_active_seconds_per_game_day": {
+        "p10": 62.1,
+        "p50": 63.193,
+        "p90": 65.121
+      },
+      "stamina_per_game_day": {
+        "p10": 0.964,
+        "p50": 1.179,
+        "p90": 1.429
+      }
+    },
+    "processing": {
+      "net_gold_per_game_day": {
+        "p10": 22.357,
+        "p50": 23.714,
+        "p90": 25.143
+      },
+      "assumed_active_seconds_per_game_day": {
+        "p10": 35.0,
+        "p50": 35.429,
+        "p90": 35.857
+      },
+      "stamina_per_game_day": {
+        "p10": 0.0,
+        "p50": 0.0,
+        "p90": 0.0
+      }
+    },
+    "ecology": {
+      "net_gold_per_game_day": {
+        "p10": -14.0,
+        "p50": -14.0,
+        "p90": -14.0
+      },
+      "assumed_active_seconds_per_game_day": {
+        "p10": 15.75,
+        "p50": 16.393,
+        "p90": 17.25
+      },
+      "stamina_per_game_day": {
+        "p10": 0.5,
+        "p50": 1.357,
+        "p90": 2.5
+      }
+    }
+  },
+  "fishing_detail": {
+    "casts_per_game_day": {
+      "p10": 6.964,
+      "p50": 7.929,
+      "p90": 8.571
+    },
+    "landed_per_game_day": {
+      "p10": 4.857,
+      "p50": 6.071,
+      "p90": 7.357
+    },
+    "income_by_rod": {
+      "1": {
+        "p10": 51.857,
+        "p50": 81.0,
+        "p90": 128.429
+      },
+      "2": {
+        "p10": 79.429,
+        "p50": 123.429,
+        "p90": 166.071
+      },
+      "3": {
+        "p10": 89.571,
+        "p50": 132.536,
+        "p90": 173.986
+      }
+    },
+    "configured_max_casts": 12,
+    "energy_per_cast": 3
+  },
+  "livestock_detail": {
+    "hay_per_day": {
+      "p10": 3.143,
+      "p50": 4.518,
+      "p90": 7.643
+    },
+    "steady_full_manual_feed_margin_per_adult_day": {
+      "chicken": 14.0,
+      "cow": 30.0,
+      "sheep": 12.0
+    }
+  },
+  "processing_detail": {
+    "peak_queue": 4,
+    "claimed_batches_per_day": {
+      "p10": 5.286,
+      "p50": 5.964,
+      "p90": 6.643
+    },
+    "closing_locked_input_value": {
+      "p10": 260.0,
+      "p50": 370.0,
+      "p90": 490.0
+    }
+  },
+  "ecology_detail": {
+    "restoration_day": {
+      "p10": 3.0,
+      "p50": 3.0,
+      "p90": 4.0
+    },
+    "not_restored_within_segment": 0,
+    "closing_health": {
+      "p10": 88.0,
+      "p50": 91.0,
+      "p90": 100.0
+    },
+    "construction_health_cost_per_extra_pen": 3,
+    "minimum_clean_cycle_recovery_with_four_crowded_clean_pens_no_debris": 3
+  },
+  "recipe_audit": [
+    {
+      "group": "kitchen_processing",
+      "id": "flour",
+      "input_opportunity_gold": 22,
+      "output_sale_gold": 24,
+      "margin_gold": 2,
+      "margin_ratio": 0.0909,
+      "large_risk_flag": false
+    },
+    {
+      "group": "kitchen_processing",
+      "id": "cheese",
+      "input_opportunity_gold": 76,
+      "output_sale_gold": 80,
+      "margin_gold": 4,
+      "margin_ratio": 0.0526,
+      "large_risk_flag": false
+    },
+    {
+      "group": "kitchen_processing",
+      "id": "smoked_fish",
+      "input_opportunity_gold": 60,
+      "output_sale_gold": 68,
+      "margin_gold": 8,
+      "margin_ratio": 0.1333,
+      "large_risk_flag": false
+    },
+    {
+      "group": "kitchen_processing",
+      "id": "berry_jam",
+      "input_opportunity_gold": 42,
+      "output_sale_gold": 48,
+      "margin_gold": 6,
+      "margin_ratio": 0.1429,
+      "large_risk_flag": false
+    },
+    {
+      "group": "cooking",
+      "id": "carrot_stew",
+      "input_opportunity_gold": 128,
+      "output_sale_gold": 110,
+      "margin_gold": -18,
+      "margin_ratio": -0.1406,
+      "large_risk_flag": false
+    },
+    {
+      "group": "cooking",
+      "id": "potato_bread",
+      "input_opportunity_gold": 80,
+      "output_sale_gold": 72,
+      "margin_gold": -8,
+      "margin_ratio": -0.1,
+      "large_risk_flag": false
+    },
+    {
+      "group": "cooking",
+      "id": "egg_meal",
+      "input_opportunity_gold": 92,
+      "output_sale_gold": 80,
+      "margin_gold": -12,
+      "margin_ratio": -0.1304,
+      "large_risk_flag": false
+    },
+    {
+      "group": "cooking",
+      "id": "milk_porridge",
+      "input_opportunity_gold": 62,
+      "output_sale_gold": 54,
+      "margin_gold": -8,
+      "margin_ratio": -0.129,
+      "large_risk_flag": false
+    },
+    {
+      "group": "cooking",
+      "id": "fish_feast",
+      "input_opportunity_gold": 184,
+      "output_sale_gold": 172,
+      "margin_gold": -12,
+      "margin_ratio": -0.0652,
+      "large_risk_flag": false
+    },
+    {
+      "group": "lake_processing",
+      "id": "feed",
+      "input_opportunity_gold": 22,
+      "output_sale_gold": 6,
+      "margin_gold": -16,
+      "margin_ratio": -0.7273,
+      "large_risk_flag": false
+    },
+    {
+      "group": "lake_processing",
+      "id": "dried",
+      "input_opportunity_gold": 60,
+      "output_sale_gold": 68,
+      "margin_gold": 8,
+      "margin_ratio": 0.1333,
+      "large_risk_flag": false
+    },
+    {
+      "group": "lake_processing",
+      "id": "soup",
+      "input_opportunity_gold": 78,
+      "output_sale_gold": 66,
+      "margin_gold": -12,
+      "margin_ratio": -0.1538,
+      "large_risk_flag": false
+    },
+    {
+      "group": "lake_processing",
+      "id": "crucian_dried",
+      "input_opportunity_gold": 68,
+      "output_sale_gold": 68,
+      "margin_gold": 0,
+      "margin_ratio": 0.0,
+      "large_risk_flag": false
+    },
+    {
+      "group": "lake_processing",
+      "id": "perch_soup",
+      "input_opportunity_gold": 82,
+      "output_sale_gold": 66,
+      "margin_gold": -16,
+      "margin_ratio": -0.1951,
+      "large_risk_flag": false
+    },
+    {
+      "group": "lake_processing",
+      "id": "golden_soup",
+      "input_opportunity_gold": 146,
+      "output_sale_gold": 132,
+      "margin_gold": -14,
+      "margin_ratio": -0.0959,
+      "large_risk_flag": false
+    },
+    {
+      "group": "lake_processing",
+      "id": "star_soup",
+      "input_opportunity_gold": 252,
+      "output_sale_gold": 198,
+      "margin_gold": -54,
+      "margin_ratio": -0.2143,
+      "large_risk_flag": false
+    }
+  ],
+  "large_recipe_risks": [],
+  "findings": [
+    "Daily cast cap plus bait/stamina costs bounds fishing. Skill rates are assumptions and need real playtest calibration.",
+    "Animal income requires adult growth/unlock/capital outside this segment, each animal has finite daily output and storage; winter removes free grazing.",
+    "All cooking recipes sell below ingredient opportunity cost in current configuration. Processing margins are small and constrained by ingredient sources and queues.",
+    "Eco restoration has a one-time investment; density management, daily cleaning and repeatable plants/cycle avoid permanent resource depletion in tested scenarios.",
+    "No new modeled source produces diamonds; eternal carp has sale_price0 and is not a currency exchange.",
+    "Python models do not prove absence of all exploits. Runtime suites separately test duplicate claims, daily settlement, migration, low-health recovery and actual minigame outcomes."
+  ]
+}

@@ -1,19 +1,19 @@
 extends Node
 ## 统一世界变化视图。原建设分区继续拥有权威进度，记录不再次结算物品/奖励。
 signal changed
-const LABELS := {"bridge":"河湾旧桥已修复","well":"清泉水井建成","warehouse":"种子共仓建成","arbor":"公共茶座建成","lanterns":"庆典风灯长留村庄","trade":"公开矿道贸易规则","community":"社区公共规则","water":"农业用水优先规则","greenhouse_frame":"温室结构恢复","greenhouse_water":"温室水源恢复","greenhouse_core":"温室能源核心恢复","greenhouse_stars":"温室星灯点亮","lake_care":"湖畔共同研究完成"}
+const LABELS := {"bridge":"河湾旧桥已修复","well":"清泉水井建成","warehouse":"种子共仓建成","arbor":"公共茶座建成","lanterns":"庆典风灯长留村庄","trade":"公开矿道贸易规则","community":"社区公共规则","water":"农业用水优先规则","greenhouse_frame":"温室结构恢复","greenhouse_water":"温室水源恢复","greenhouse_core":"温室能源核心恢复","greenhouse_stars":"温室星灯点亮","lake_care":"湖畔共同研究完成","lake_restored":"湖泊生态恢复与水循环修复"}
 var observed: Dictionary = {}
 var restoring: bool = false
 
 func _ready() -> void:
-	for source in [Story,VillageProjects,River,LegendState,Xiaojing,Aquaculture]: source.changed.connect(refresh)
+	for source in [Story,VillageProjects,River,LegendState,Xiaojing,Aquaculture,LakeEcology]: source.changed.connect(refresh)
 
 func features() -> Dictionary:
-	return derive({"story":Story.snapshot(),"village":VillageProjects.snapshot(),"river":River.snapshot(),"legend":LegendState.snapshot(),"xiaojing":Xiaojing.snapshot(),"aquaculture":Aquaculture.snapshot()})
+	return derive({"story":Story.snapshot(),"village":VillageProjects.snapshot(),"river":River.snapshot(),"legend":LegendState.snapshot(),"xiaojing":Xiaojing.snapshot(),"aquaculture":Aquaculture.snapshot(),"ecology":LakeEcology.snapshot()})
 
 static func derive(data: Dictionary) -> Dictionary:
 	# Migration can see malformed old sections before the full schema rejects them.
-	for section in ["story","village","river","legend","aquaculture"]:
+	for section in ["story","village","river","legend","aquaculture","ecology"]:
 		if not data.get(section,{}) is Dictionary: return {}
 	if not data.get("village",{}).get("built",[]) is Array: return {}
 	if not FarmSaveSchema.whole(data.get("story",{}).get("stage",0),0,8): return {}
@@ -24,7 +24,7 @@ static func derive(data: Dictionary) -> Dictionary:
 	var stage: int=int(data.get("story",{}).get("stage",0))
 	var policy: String=data.get("river",{}).get("policy","")
 	var greenhouse: int=int(data.get("legend",{}).get("greenhouse",0))
-	return {"bridge":stage>=5,"well":"well" in built,"warehouse":"cooperative" in built,"arbor":"arbor" in built,"lanterns":stage>=8,"trade":policy=="rotation","community":policy=="commons","water":policy=="water","greenhouse_frame":greenhouse>=2,"greenhouse_water":greenhouse>=3,"greenhouse_core":greenhouse>=4,"greenhouse_stars":greenhouse>=5,"lake_care":data.get("aquaculture",{}).get("xiaojing",{}).get("stage",0)==2}
+	return {"bridge":stage>=5,"well":"well" in built,"warehouse":"cooperative" in built,"arbor":"arbor" in built,"lanterns":stage>=8,"trade":policy=="rotation","community":policy=="commons","water":policy=="water","greenhouse_frame":greenhouse>=2,"greenhouse_water":greenhouse>=3,"greenhouse_core":greenhouse>=4,"greenhouse_stars":greenhouse>=5,"lake_care":data.get("aquaculture",{}).get("xiaojing",{}).get("stage",0)==2,"lake_restored":data.get("ecology",{}).get("restored",false)}
 
 func has_feature(id: String) -> bool:
 	return bool(features().get(id,false))

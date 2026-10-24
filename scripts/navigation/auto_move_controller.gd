@@ -84,6 +84,9 @@ func _physics_process(delta: float) -> void:
 	marker_time = maxf(0,marker_time-delta)
 	queue_redraw()
 	if state not in [State.PATHFINDING,State.MOVING]: return
+	if game.player.action_time>0:
+		game.player.auto_direction=Vector2.ZERO
+		return
 	if GameState.modal or game.backgrounded or GameState.control_mode != "tap" or Input.get_vector("move_left","move_right","move_up","move_down").length() > 0.1:
 		cancel()
 		return
@@ -130,7 +133,7 @@ func _physics_process(delta: float) -> void:
 		state = State.IDLE
 		return
 	var offset: Vector2 = path[cursor]-game.player.global_position
-	game.player.auto_direction = offset.normalized()*minf(1,offset.length()/(game.player.SPEED*delta))
+	game.player.auto_direction = offset.normalized()*minf(1,offset.length()/(game.player.movement_speed()*delta))
 
 func _draw() -> void:
 	if marker_time <= 0: return

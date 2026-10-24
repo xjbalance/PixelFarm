@@ -1,0 +1,33 @@
+{
+  "items": {
+    "wild_berry":{"name":"野莓","sell_price":5,"kind":"ingredient","description":"屋西莓丛每天可采两份，冬季一份；可制作果酱。"},
+    "flour":{"name":"小麦粉","sell_price":24,"kind":"processed","description":"磨坊用小麦加工，次日完成；面包和粥的材料。"},
+    "cheese":{"name":"河湾奶酪","sell_price":80,"kind":"processed","description":"两份牛奶发酵两日；可搭配湖鲜。"},
+    "smoked_fish":{"name":"烟熏鲤鱼","sell_price":68,"kind":"processed","description":"两尾鲤鱼与木材慢熏一天，可制作丰盛湖鲜。"},
+    "berry_jam":{"name":"野莓果酱","sell_price":48,"kind":"processed","description":"野莓与小麦熬制两日，售卖或用于未来节日。"},
+    "carrot_stew":{"name":"暖锅蔬菜炖","sell_price":110,"kind":"food","energy":22,"buff":"","seconds":0,"description":"胡萝卜2、土豆1；恢复22体力，无额外增益。"},
+    "potato_bread":{"name":"土豆软面包","sell_price":72,"kind":"food","energy":18,"buff":"speed","seconds":120,"description":"小麦粉1、土豆1；恢复18体力，移动速度+15%，持续120秒有效游戏时间。"},
+    "egg_meal":{"name":"田园煎蛋盘","sell_price":80,"kind":"food","energy":20,"buff":"thrift","seconds":90,"description":"鸡蛋2、土豆1；恢复20体力，体力费用降至向下取整的75%（至少1），持续90秒。"},
+    "milk_porridge":{"name":"奶香麦粥","sell_price":54,"kind":"food","energy":24,"buff":"mining","seconds":90,"description":"牛奶1、小麦粉1；恢复24体力，每次采矿伤害+1，持续90秒。"},
+    "fish_feast":{"name":"星岸湖鲜餐","sell_price":172,"kind":"food","energy":28,"buff":"fishing","seconds":120,"description":"烟熏鲤鱼1、奶酪1、胡萝卜1；恢复28体力，钓鱼辅助带宽+0.03，持续120秒。"}
+  },
+  "facilities": {
+    "mill":{"name":"手摇磨坊","required":{"wood":8,"stone":6},"coins":80,"description":"把一份小麦磨成一份小麦粉，次日完成。"},
+    "cheese_table":{"name":"奶酪制作台","required":{"wood":10,"stone":4,"copper_bar":1},"coins":120,"description":"两份牛奶发酵成一份奶酪，需要两日。"},
+    "smoker":{"name":"熏鱼炉","required":{"wood":8,"stone":10,"iron_bar":1},"coins":160,"description":"两尾鲤鱼加一份木材制成烟熏鲤鱼，需要一日。"},
+    "jam_pot":{"name":"果酱熬制锅","required":{"wood":6,"stone":8,"copper_bar":1},"coins":100,"description":"四份野莓与一份小麦制成果酱，需要两日。"}
+  },
+  "processing": {
+    "flour":{"name":"研磨小麦粉","facility":"mill","required":{"wheat":1},"rewards":{"flour":1},"days":1},
+    "cheese":{"name":"发酵奶酪","facility":"cheese_table","required":{"milk":2},"rewards":{"cheese":1},"days":2},
+    "smoked_fish":{"name":"烟熏湖鲜","facility":"smoker","required":{"fish_carp":2,"wood":1},"rewards":{"smoked_fish":1},"days":1},
+    "berry_jam":{"name":"熬制野莓酱","facility":"jam_pot","required":{"wild_berry":4,"wheat":1},"rewards":{"berry_jam":1},"days":2}
+  },
+  "recipes": {
+    "carrot_stew":{"name":"暖锅蔬菜炖","required":{"carrot":2,"potato":1},"rewards":{"carrot_stew":1},"facility":"","unlock":"basic","hint":"基础灶台可以制作。"},
+    "potato_bread":{"name":"土豆软面包","required":{"flour":1,"potato":1},"rewards":{"potato_bread":1},"facility":"mill","unlock":"basic","hint":"修好手摇磨坊，用自己准备的小麦粉烘焙。"},
+    "egg_meal":{"name":"田园煎蛋盘","required":{"egg":2,"potato":1},"rewards":{"egg_meal":1},"facility":"","unlock":"chicken","hint":"照料一只成年鸡，经历一次实际产蛋后领会做法。"},
+    "milk_porridge":{"name":"奶香麦粥","required":{"milk":1,"flour":1},"rewards":{"milk_porridge":1},"facility":"mill","unlock":"cow","hint":"修好磨坊，并照料成年牛获得一次实际产奶记录。"},
+    "fish_feast":{"name":"星岸湖鲜餐","required":{"smoked_fish":1,"cheese":1,"carrot":1},"rewards":{"fish_feast":1},"facility":"smoker","unlock":"fishing","hint":"亲手完成一次自由钓鱼，并建成熏鱼炉。"}
+  }
+}

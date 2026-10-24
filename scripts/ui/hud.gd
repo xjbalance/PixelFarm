@@ -26,6 +26,11 @@ var story_panel: PanelContainer
 var river_panel: PanelContainer
 var abyss_panel: PanelContainer
 var star_panel: PanelContainer
+var kitchen_panel: PanelContainer
+var ecology_panel: PanelContainer
+var fishing_panel: PanelContainer
+var livestock_panel: PanelContainer
+var recovery_panel: PanelContainer
 var calendar_panel: PanelContainer
 var aquaculture_panel: PanelContainer
 var mine_panel: PanelContainer
@@ -117,7 +122,7 @@ func build_controls() -> void:
 	safe.add_child(joystick)
 	joystick.direction_changed.connect(func(direction: Vector2): movement.emit(direction))
 	var toolbar := HBoxContainer.new()
-	place(toolbar, Vector2(0.5,1), Vector2(0.5,1), Rect2(-328,-112,656,88))
+	place(toolbar, Vector2(0.5,1), Vector2(0.5,1), Rect2(-368,-112,736,88))
 	toolbar.add_theme_constant_override("separation", 6)
 	safe.add_child(toolbar)
 	for i in range(GameState.tools.size()):
@@ -127,7 +132,7 @@ func build_controls() -> void:
 		var icon := AtlasTexture.new()
 		icon.atlas = preload("res://assets/ui/tools.png")
 		icon.region = Rect2(i*32,0,32,32)
-		button.icon = icon
+		button.icon = load("res://assets/fishing/fishing_rod.png") if i==8 else icon
 		button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
 		button.add_theme_constant_override("icon_max_width",26)
@@ -225,6 +230,26 @@ func build_feedback() -> void:
 	calendar_panel.set_script(preload("res://scripts/seasons/calendar_panel.gd"))
 	place(calendar_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
 	safe.add_child(calendar_panel)
+	recovery_panel=PanelContainer.new()
+	recovery_panel.set_script(preload("res://scripts/recovery/recovery_panel.gd"))
+	place(recovery_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-430,-250,860,500))
+	safe.add_child(recovery_panel)
+	fishing_panel=PanelContainer.new()
+	fishing_panel.set_script(preload("res://scripts/fishing/fishing_panel.gd"))
+	place(fishing_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(fishing_panel)
+	livestock_panel=PanelContainer.new()
+	livestock_panel.set_script(preload("res://scripts/livestock/livestock_panel.gd"))
+	place(livestock_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(livestock_panel)
+	ecology_panel=PanelContainer.new()
+	ecology_panel.set_script(preload("res://scripts/ecology/ecology_panel.gd"))
+	place(ecology_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(ecology_panel)
+	kitchen_panel=PanelContainer.new()
+	kitchen_panel.set_script(preload("res://scripts/kitchen/kitchen_panel.gd"))
+	place(kitchen_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(kitchen_panel)
 	# 提示位于模态层上方，金币不足、奖励和保存反馈不会被遮罩盖住。
 	safe.move_child(toast,-1)
 	Events.modal_changed.connect(func(active: bool):
@@ -299,7 +324,7 @@ func close_active_panel() -> bool:
 	if dialogue.visible:
 		dialogue.close_dialogue()
 		return true
-	for panel in [calendar_panel,aquaculture_panel,river_panel,abyss_panel,star_panel,mine_panel,xiaojing_panel,story_panel,progress_panel,system_panel,inventory_panel]:
+	for panel in [kitchen_panel,ecology_panel,fishing_panel,livestock_panel,recovery_panel,calendar_panel,aquaculture_panel,river_panel,abyss_panel,star_panel,mine_panel,xiaojing_panel,story_panel,progress_panel,system_panel,inventory_panel]:
 		if panel.visible:
 			panel.close_panel()
 			return true

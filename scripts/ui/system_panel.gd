@@ -48,6 +48,7 @@ func open_panel(for_sleep: bool = false) -> void:
 		actions.add_child(row)
 		row.add_child(FarmUIStyle.button("保存进度",func(): close_panel(); save_requested.emit(),150))
 		row.add_child(FarmUIStyle.button("读取进度",func(): close_panel(); load_requested.emit(),150))
+		row.add_child(FarmUIStyle.button("体力恢复",func(): close_panel(); Events.interaction_requested.emit("recovery"),150))
 		actions.add_child(FarmUIStyle.button("音乐与环境声 开 / 关",func(): mute_requested.emit()))
 		control_mode_button = FarmUIStyle.button(mode_text(),func():
 			GameState.set_control_mode("joystick" if GameState.control_mode == "tap" else "tap")

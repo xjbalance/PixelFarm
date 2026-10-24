@@ -45,3 +45,7 @@ assets/aquaculture 下16张PNG由 tools/generate_aquaculture_assets.py 用Pillow
 ## 0.7.0阶段A季节美术
 
 assets/seasons的四套32px地表和树木纹理由tools/generate_season_assets.py在项目原创旧atlas上生成像素变化，春花、夏草、秋叶、冬雪采用独立细节。SeasonLandscape仅替换纹理并绘制稀疏装饰，不改地图格数或水域碰撞。WeatherScreen使用固定绘制预算、delta动画时钟表现九天气，无外部商业素材、动态灯或粒子实例堆叠。
+
+## 0.7.0阶段B
+
+assets/fishing、livestock、kitchen由各自tools/generate_*_assets.py以项目原创色板程序绘制：鱼竿/饵/钩/传说鱼、鸡牛羊/饲料产物、10食材料理图。原六鱼复用养殖素材，无同ID重复定义。生态水草/水样台、厨房设施、畜舍、休息椅由对应world脚本绘制，均不使用商业游戏素材。

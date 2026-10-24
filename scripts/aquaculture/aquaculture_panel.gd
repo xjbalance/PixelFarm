@@ -121,6 +121,7 @@ func show_pen() -> void:
 	if not p.built:
 		var definition: Dictionary=Aquaculture.data.levels["1"]
 		words("周砚留下的鱼栏图纸",23)
+		if context in ["pen_3","pen_4"]: words("新增外围栏施工会短时影响湖泊生态−3，种草与清理可以恢复。",16)
 		words("‘木架靠岸，网箱留在水里。下雨也不用踩进湖水。’\n建造"+definition.name+"："+cost_text(definition.required)+"，"+DiamondPayments.text(int(definition.coins))+"。初始容量12尾。")
 		button("建造鱼栏",func(): ask("建造普通鱼栏，消耗"+cost_text(definition.required)+"与"+DiamondPayments.text(int(definition.coins))+"？",func():
 			DiamondPayments.request(self,int(definition.coins),func(): result(Aquaculture.build(context)))

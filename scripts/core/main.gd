@@ -53,6 +53,19 @@ func _ready() -> void:
 	var lake := AquacultureWorld.new()
 	add_child(lake)
 	lake.attach(self)
+	var kitchen_world := KitchenWorld.new()
+	add_child(kitchen_world);kitchen_world.attach(self)
+	var ecology := LakeEcologyWorld.new()
+	add_child(ecology);ecology.attach(self)
+	var fishing_world := FishingWorld.new()
+	add_child(fishing_world);fishing_world.attach(self)
+	var livestock_world := LivestockWorld.new()
+	add_child(livestock_world);livestock_world.attach(self)
+	Recovery.game=self
+	var rest_point := Node2D.new()
+	rest_point.set_script(preload("res://scripts/recovery/recovery_point.gd"))
+	rest_point.position=Recovery.BENCH
+	world.get_node("Actors").add_child(rest_point)
 	var seasonal := SeasonLandscape.new()
 	add_child(seasonal)
 	seasonal.attach(self)
@@ -100,6 +113,7 @@ func nearest_interactable() -> Node2D:
 	var distance: float = 58.0
 	for object in get_tree().get_nodes_in_group("interactables"):
 		if not object.is_visible_in_tree(): continue
+		if "fish_point_id" in object and GameState.tool()!="fishing_rod": continue
 		if ("mine_id" in object or "abyss_id" in object) and "active" in object and not object.active: continue
 		var current: float = player.global_position.distance_to(object.global_position)
 		if current < distance:
@@ -129,7 +143,13 @@ func resource_target() -> Node2D:
 
 func handle_interaction(kind: String) -> void:
 	if auto_move: auto_move.cancel()
-	if kind=="calendar": hud.calendar_panel.open_panel()
+	if kind=="kitchen": hud.kitchen_panel.open_panel()
+	elif kind=="kitchen:berry": hud.kitchen_panel.open_panel("berry")
+	elif kind=="ecology": hud.ecology_panel.open_panel()
+	elif kind.begins_with("fishing:"): hud.fishing_panel.open_panel(kind.trim_prefix("fishing:"))
+	elif kind.begins_with("livestock:"): hud.livestock_panel.open_panel(kind.trim_prefix("livestock:"))
+	elif kind=="recovery": hud.recovery_panel.open_panel()
+	elif kind=="calendar": hud.calendar_panel.open_panel()
 	elif kind.begins_with("fish:"): hud.aquaculture_panel.open_panel(kind.trim_prefix("fish:"))
 	elif kind.begins_with("river:"): hud.river_panel.open_panel(kind.trim_prefix("river:"))
 	elif kind.begins_with("abyss:"): hud.abyss_panel.open_panel(kind.trim_prefix("abyss:"))
@@ -261,7 +281,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_cancel"):
 		hud.system_panel.open_panel()
 	elif event is InputEventKey and event.pressed and not event.echo:
-		if event.physical_keycode >= KEY_1 and event.physical_keycode <= KEY_8:
+		if event.physical_keycode >= KEY_1 and event.physical_keycode <= KEY_9:
 			var index: int = event.physical_keycode - KEY_1
 			if index < GameState.tools.size(): GameState.select_tool(index)
 
@@ -275,7 +295,7 @@ func context_tool() -> String:
 	return selected
 
 func context_action_name() -> String:
-	return {"hoe":"翻土","water":"浇水","hand":"收获","axe":"砍伐","pickaxe":"采石"}.get(context_tool(),"播种")
+	return {"hoe":"翻土","water":"浇水","hand":"收获","axe":"砍伐","pickaxe":"采石","fishing_rod":"抛竿"}.get(context_tool(),"播种")
 
 func context_hint() -> String:
 	if GameState.location=="greenhouse": return "星光温室 · 左右桌准备仪式 · 星灯下交换约定 · 档案桌安排日常"
@@ -327,6 +347,7 @@ func build_xiaojing_world() -> void:
 		parent.add_child(person)
 		var refresh_person := func():
 			StarWorld.schedule(person,location,self)
+		LakeEcology.changed.connect(refresh_person)
 		Aquaculture.changed.connect(refresh_person)
 		StarStory.changed.connect(refresh_person)
 		Xiaojing.changed.connect(refresh_person)

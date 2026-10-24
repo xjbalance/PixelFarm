@@ -1,0 +1,23 @@
+{
+  "items": {
+    "hay": {"name":"干草饲料","sell_price":1,"price":4,"description":"鸡、羊每天一份，牛每天两份；也可用小麦制备。","kind":"feed"},
+    "egg": {"name":"鸡蛋","sell_price":18,"description":"受照料的成年鸡每日产出，用于料理、节日和委托。","kind":"animal_product"},
+    "milk": {"name":"牛奶","sell_price":38,"description":"成年牛在足食且心情正常时每日产出，可烹饪或制奶酪。","kind":"animal_product"},
+    "wool": {"name":"羊毛","sell_price":48,"description":"成年羊每三个合格照料日长出一份，可用于交易与手作。","kind":"animal_product"}
+  },
+  "species": {
+    "chicken":{"name":"鸡","young_name":"小鸡","growth_days":3,"feed":1,"cycle":1,"product":"egg","price":60,"breed_days":8,"breed_hay":4,"breed_coins":20},
+    "cow":{"name":"牛","young_name":"小牛","growth_days":6,"feed":2,"cycle":1,"product":"milk","price":280,"breed_days":14,"breed_hay":10,"breed_coins":60},
+    "sheep":{"name":"羊","young_name":"小羊","growth_days":5,"feed":1,"cycle":3,"product":"wool","price":220,"breed_days":12,"breed_hay":8,"breed_coins":50}
+  },
+  "buildings": {
+    "coop":{"name":"鸡舍","species":"chicken","position":[176,880],"required":{"wood":12,"stone":6},"coins":160},
+    "barn":{"name":"牛棚","species":"cow","position":[400,912],"required":{"wood":20,"stone":12},"coins":320},
+    "fold":{"name":"羊圈","species":"sheep","position":[816,912],"required":{"wood":18,"stone":10},"coins":280}
+  },
+  "upgrades": {
+    "2":{"name":"加固畜舍","capacity":4,"required":{"wood":18,"stone":12,"copper_bar":2},"coins":240},
+    "3":{"name":"宽敞畜舍","capacity":6,"required":{"wood":26,"stone":16,"iron_bar":3},"coins":480}
+  },
+  "rules":{"capacity":[0,2,4,6],"product_storage":3,"grazing_start":480,"grazing_last_start":840,"return_time":1080,"make_hay":{"wheat":1,"hay":5},"description":"08:00–14:00在晴朗或多云天气开栏，冬季留在门廊吃干草；动物不会因忘记喂食死亡。"}
+}

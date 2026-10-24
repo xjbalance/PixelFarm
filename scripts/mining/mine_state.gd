@@ -89,7 +89,7 @@ func mine(id: String) -> bool:
 		return false
 	var object: Node2D=game.mine_maps[entry.area].objects[id]
 	if not game.auto_move.navigation.line_of_sight(game.player.global_position,object.global_position,object): return false
-	var damage: int=2 if int(state.tool)>int(definition.level) else 1
+	var damage: int=(2 if int(state.tool)>int(definition.level) else 1)+Kitchen.mining_power()
 	var final_hit: bool=int(ore.hp)<=damage
 	var rewards := {}
 	var diamonds := 0

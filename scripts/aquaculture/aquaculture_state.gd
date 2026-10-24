@@ -98,6 +98,7 @@ func build(id: String) -> bool:
 	var p := pen(id)
 	p.built=true
 	p.level=1
+	LakeEcology.facility_added()
 	p.last_settled_day=GameClock.day
 	Events.notice.emit("木桩和护网安好了。先投少量鱼苗，记得留出长大的空间。")
 	commit(true)
@@ -256,6 +257,8 @@ func settle_day() -> void:
 		var comfortable: bool=season in definition.seasons
 		var good: bool=int(p.water)>=int(definition.water) and p.health>=60
 		var growth: int=(4 if comfortable else 3) if fed and good else (2 if fed else 1)
+		if LakeEcology.state.health<35: growth=mini(growth,2)
+		elif LakeEcology.state.health>=90 and fed and good: growth+=1
 		var survivors: Array=[]
 		for c in p.cohorts:
 			c.age+=growth

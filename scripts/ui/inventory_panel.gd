@@ -9,6 +9,7 @@ var quantity: int = 1
 var quantity_label: Label
 var materials_tab: bool = false
 var aquaculture_tab: bool = false
+var life_tab: bool = false
 
 func _ready() -> void:
 	add_to_group("modal_panels")
@@ -28,9 +29,10 @@ func _ready() -> void:
 	var categories := HBoxContainer.new()
 	categories.add_theme_constant_override("separation",10)
 	column.add_child(categories)
-	categories.add_child(FarmUIStyle.button("种子与收获",func(): materials_tab = false; aquaculture_tab = false; refresh(),180))
-	categories.add_child(FarmUIStyle.button("材料与矿物",func(): materials_tab = true; aquaculture_tab = false; refresh(),180))
-	categories.add_child(FarmUIStyle.button("鱼苗与湖鲜",func(): aquaculture_tab = true; refresh(),180))
+	categories.add_child(FarmUIStyle.button("种子与收获",func(): materials_tab = false; aquaculture_tab = false; life_tab = false; refresh(),180))
+	categories.add_child(FarmUIStyle.button("材料与矿物",func(): materials_tab = true; aquaculture_tab = false; life_tab = false; refresh(),180))
+	categories.add_child(FarmUIStyle.button("鱼苗与湖鲜",func(): aquaculture_tab = true; life_tab = false; refresh(),180))
+	categories.add_child(FarmUIStyle.button("生活与料理",func(): life_tab=true;refresh(),160))
 	rows = VBoxContainer.new()
 	rows.add_theme_constant_override("separation",10)
 	var scroll := ScrollContainer.new()
@@ -58,6 +60,7 @@ func open_panel(as_shop: bool) -> void:
 	shop_mode = as_shop
 	materials_tab = false
 	aquaculture_tab = false
+	life_tab = false
 	quantity = 1
 	GameState.set_modal(true)
 	show()
@@ -81,6 +84,9 @@ func refresh() -> void:
 	for child in rows.get_children():
 		rows.remove_child(child)
 		child.queue_free()
+	if life_tab:
+		refresh_life()
+		return
 	if aquaculture_tab:
 		refresh_aquaculture()
 		return
@@ -115,6 +121,10 @@ func refresh() -> void:
 			row.add_child(sell_button)
 		else:
 			row.add_child(FarmUIStyle.button("装备种子",equip.bind(crop_id),132))
+			row.add_child(FarmUIStyle.button("吃1个\n+%d体力" % Recovery.FOOD[crop_id],func():
+				if not Recovery.eat_crop(crop_id): Events.notice.emit("没有食物、今日零食额度已用完或体力已满。")
+				refresh()
+			,100))
 
 func refresh_materials() -> void:
 	for id in Catalog.materials:
@@ -202,3 +212,25 @@ func refresh_aquaculture() -> void:
 	var tip := FarmUIStyle.label("农场东侧湖岸可建鱼栏。投放、照料、加工和稀有鱼培育请到鱼栏边办理；成长按实际游戏日结算。",16)
 	tip.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	rows.add_child(tip)
+
+func refresh_life() -> void:
+	for id in Catalog.items:
+		var definition: Dictionary=Catalog.items[id]
+		var category: String=definition.get("category","")
+		if category not in ["fishing","livestock","kitchen"]: continue
+		var row := HBoxContainer.new();row.custom_minimum_size.y=76;row.add_theme_constant_override("separation",12);rows.add_child(row)
+		var icon := TextureRect.new();icon.custom_minimum_size=Vector2(44,44);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		var path: String="res://assets/"+category+"/"+id+".png"
+		if ResourceLoader.exists(path): icon.texture=load(path)
+		row.add_child(icon)
+		var detail := VBoxContainer.new();detail.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(detail)
+		detail.add_child(FarmUIStyle.label("%s ×%d" % [definition.name,Inventory.count(id)],20,FarmUIStyle.GOLD))
+		var description := FarmUIStyle.label(str(definition.get("description","")),15);description.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;detail.add_child(description)
+		if shop_mode and Catalog.sell_price(id)>0:
+			var sell_button := FarmUIStyle.button("出售全部\n%d金 / 个" % Catalog.sell_price(id),sell.bind(id),132);sell_button.disabled=Inventory.count(id)==0;row.add_child(sell_button)
+		elif not shop_mode and category=="kitchen" and definition.get("kind")=="food":
+			row.add_child(FarmUIStyle.button("食用\n每天一餐",func():
+				if not Kitchen.consume(id): Events.notice.emit("体力已满、今日已用餐、增益尚未结束或缺少料理；物品已保留。")
+				refresh()
+			,132))
+	var hint := FarmUIStyle.label("鱼竿在工具栏第9格；钓点升级与补给、畜舍照料、厨房加工分别在对应设施办理。料理共享每天一份额度。",16);hint.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;rows.add_child(hint)

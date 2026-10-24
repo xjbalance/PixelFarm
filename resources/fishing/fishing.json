@@ -1,0 +1,30 @@
+{
+  "daily_casts":12,
+  "energy_per_cast":3,
+  "bait_price":4,
+  "items":{
+    "fishing_bait":{"name":"湖岸鱼饵","sell_price":1,"description":"每次抛竿消耗一份；小麦可制作，取消钓鱼不退还。","category":"fishing"},
+    "fishing_hook":{"name":"稳流鱼钩","sell_price":0,"description":"装上后可辅助30次抛竿；鱼更容易停留在控制区内。","category":"fishing"},
+    "fish_eternal":{"name":"永恒星鲤","sell_price":0,"description":"高生态流星夜的活体记录。每季最多捕获一尾，不出售、不兑换钻石。","category":"fish"}
+  },
+  "sites":{
+    "farm_lake":{"name":"河湾湖泊 · 西北岸","area":"farm","shore":[976,464],"water":[1040,528],"habitat":"lake"},
+    "village_river":{"name":"河湾村 · 西岸垂钓台","area":"village","shore":[816,624],"water":[880,624],"habitat":"river"},
+    "mine_stream":{"name":"地下水脉 · 西岸石台","area":"mine_b","shore":[784,528],"water":[848,528],"habitat":"cavern"}
+  },
+  "species":{
+    "crucian":{"name":"鲫鱼","item":"fish_crucian","rod":1,"habitats":["lake","river","cavern"],"seasons":[0,1,2,3],"weather":[],"hours":[360,1440],"weight":46,"difficulty":1.0,"xp":3},
+    "carp":{"name":"鲤鱼","item":"fish_carp","rod":1,"habitats":["lake","river"],"seasons":[0,1,2],"weather":[],"hours":[360,1440],"weight":32,"difficulty":1.25,"xp":4},
+    "grass":{"name":"草鱼","item":"fish_grass","rod":1,"habitats":["lake","river"],"seasons":[0,1,2],"weather":[],"hours":[360,1200],"weight":20,"difficulty":1.45,"xp":5},
+    "perch":{"name":"鲈鱼","item":"fish_perch","rod":2,"habitats":["river","cavern"],"seasons":[0,1,2,3],"weather":["clear","cloudy","rain","fog","snow"],"hours":[600,1440],"weight":18,"difficulty":1.9,"xp":7},
+    "golden":{"name":"金鳞鱼","item":"fish_golden","rod":2,"habitats":["lake","cavern"],"seasons":[0,2],"weather":["fog","rain","heavy_rain"],"hours":[360,1200],"weight":8,"difficulty":2.4,"xp":12},
+    "star":{"name":"星辉鱼","item":"fish_star","rod":3,"habitats":["lake","cavern"],"seasons":[1,3],"weather":["clear","snow","meteor"],"hours":[1200,1440],"weight":7,"difficulty":2.9,"xp":16},
+    "eternal":{"name":"永恒星鲤","item":"fish_eternal","rod":3,"habitats":["lake"],"seasons":[0,1,2,3],"weather":["meteor"],"hours":[1200,1440],"weight":12,"difficulty":3.6,"xp":24}
+  },
+  "upgrades":{
+    "2":{"name":"加固鱼竿","required":{"wood":10,"copper_bar":2},"coins":200,"xp":40},
+    "3":{"name":"星纹鱼竿","required":{"wood":20,"iron_bar":4,"crystal":3},"coins":600,"xp":160}
+  },
+  "hook":{"required":{"iron_bar":1,"crystal":1,"wood":2},"charges":30},
+  "achievements":{"first":"第一声水响","five":"五种河湾鱼","hundred":"百尾垂钓手","night":"夜里的星斑","eternal":"星星落进湖里的那天"}
+}

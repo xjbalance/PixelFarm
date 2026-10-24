@@ -6,8 +6,8 @@ const MAX_STAMINA: int = 100
 var stamina: int = MAX_STAMINA
 var modal: bool = false
 var selected: int = 0
-var tools: Array[String] = ["hoe", "water", "hand", "carrot_seed", "potato_seed", "wheat_seed", "axe", "pickaxe"]
-var tool_names: Array[String] = ["锄头", "水壶", "采收", "胡萝卜", "土豆", "小麦", "斧头", "镐"]
+var tools: Array[String] = ["hoe", "water", "hand", "carrot_seed", "potato_seed", "wheat_seed", "axe", "pickaxe", "fishing_rod"]
+var tool_names: Array[String] = ["锄头", "水壶", "采收", "胡萝卜", "土豆", "小麦", "斧头", "镐", "鱼竿"]
 var location: String = "farm"
 var control_mode: String = "tap"
 # 工具栏的明确选择优先用于下一次点击操作；之后恢复状态辅助。
@@ -44,6 +44,7 @@ func tool() -> String:
 	return tools[selected]
 
 func spend_energy(amount: int) -> bool:
+	amount=Kitchen.energy_cost(amount)
 	if stamina < amount:
 		Events.notice.emit("体力不足啦，回小屋睡一觉吧。")
 		return false

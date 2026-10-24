@@ -2,7 +2,7 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,12): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,16): return {}
 	var data: Dictionary = raw.duplicate(true)
 	# 旧路线盘的数字格ID也必须规范，防止JSON浮点枚举失配/重复矿格。
 	if data.get("xiaojing") is Dictionary and data.xiaojing.get("cave") is Dictionary:
@@ -65,6 +65,28 @@ static func normalize(raw: Variant) -> Dictionary:
 		data.calendar=Calendar.migrate(int(data.day))
 		data.world_changes=WorldChanges.migrate(data)
 		data.version=12
+	if int(data.version)==12:
+		if not whole(data.get("day"),1,999999): return {}
+		data.recovery=Recovery.defaults(int(data.day))
+		data.version=13
+	if int(data.version)==13:
+		if not whole(data.get("day"),1,999999): return {}
+		data.fishing=Fishing.defaults()
+		data.livestock=Livestock.defaults(int(data.day))
+		data.version=14
+	if int(data.version)==14:
+		if not whole(data.get("day"),1,999999): return {}
+		data.ecology=LakeEcology.defaults(int(data.day))
+		data.version=15
+	if int(data.version)==15:
+		if not whole(data.get("day"),1,999999): return {}
+		data.kitchen=Kitchen.defaults(int(data.day))
+		data.version=16
+	data.kitchen=AbyssSaveSchema.canonical(data.get("kitchen"))
+	data.ecology=AbyssSaveSchema.canonical(data.get("ecology"))
+	data.fishing=AbyssSaveSchema.canonical(data.get("fishing"))
+	data.livestock=AbyssSaveSchema.canonical(data.get("livestock"))
+	data.recovery=AbyssSaveSchema.canonical(data.get("recovery"))
 	data.calendar=AbyssSaveSchema.canonical(data.get("calendar"))
 	data.world_changes=AbyssSaveSchema.canonical(data.get("world_changes"))
 	data.aquaculture=AbyssSaveSchema.canonical(data.get("aquaculture"))
@@ -120,7 +142,7 @@ static func valid_current(data: Variant) -> bool:
 	if not AbyssSaveSchema.validate(data.get("abyss"),int(data.day)) or not AbyssSaveSchema.legend(data.get("legend"),data.xiaojing,int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),12,12) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),16,16) or not Story.validate(data.get("story")): return false
 	if data.get("control_mode") not in ["tap","joystick"]: return false
 	if not VillageProjects.validate(data.get("village"),data.get("day"),int(data.story.stage)): return false
 	if not whole(data.get("day"),1,999999): return false
@@ -176,5 +198,11 @@ static func valid_current(data: Variant) -> bool:
 	for entry in journal:
 		if entry not in ["翻土","播种","浇水","收获"]: return false
 	if not data.get("muted",false) is bool: return false
+	if not Kitchen.validate(data.get("kitchen"),int(data.day)): return false
+	if data.kitchen.buff.id!="" and data.aquaculture.meal_day==0: return false
+	if not LakeEcology.validate(data.get("ecology"),int(data.day)): return false
+	if data.ecology.xiaojing_seen and (not data.xiaojing.unlocked or data.aquaculture.xiaojing.stage<2): return false
+	if not Fishing.validate(data.get("fishing"),int(data.day)) or not Livestock.validate(data.get("livestock"),int(data.day)): return false
+	if not Recovery.validate(data.get("recovery"),int(data.day)): return false
 	if not Calendar.validate(data.get("calendar"),int(data.day)) or not WorldChanges.validate(data.get("world_changes"),data): return false
 	return true

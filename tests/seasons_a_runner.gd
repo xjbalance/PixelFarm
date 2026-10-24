@@ -138,11 +138,13 @@ func compatibility() -> void:
 	Inventory.coins=4321;Xiaojing.state.diamonds=1427
 	GameState.set_control_mode("joystick",false)
 	var snap := FarmSaveStore.snapshot(game)
-	check(snap.version==12 and FarmSaveStore.valid(snap),"新日历世界分区组成完整合法v12快照")
+	check(snap.version==FarmSaveStore.VERSION and FarmSaveStore.valid(snap),"新日历世界分区组成完整合法v12快照")
 	var raw_json: Dictionary=JSON.parse_string(JSON.stringify(snap))
 	check(FarmSaveStore.restore(game,raw_json),"当前v12经JSON保存恢复仍合法")
 	var old := snap.duplicate(true)
-	old.version=11;old.erase("calendar");old.erase("world_changes")
+	old.version=11
+	# v11夹具只保留v11实际拥有的分区，不伪造尚未存在的开发字段。
+	for field in ["calendar","world_changes","recovery","fishing","livestock","ecology","kitchen"]: old.erase(field)
 	var migrated := FarmSaveSchema.normalize(old)
 	check(not migrated.is_empty(),"既有v11可迁移到v12")
 	if migrated.is_empty(): return

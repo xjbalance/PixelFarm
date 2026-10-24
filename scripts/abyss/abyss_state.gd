@@ -112,12 +112,14 @@ func mine(index: int) -> bool:
 	var id := "%d:%d" % [state.depth,index]
 	var hp: int=state.ores.get(id,3)
 	if hp==0: return false
+	var damage: int=1+Kitchen.mining_power()
+	var final_hit: bool=hp<=damage
 	var deep: bool=state.depth>=16
 	var item: String=layout().ore_items[index]
-	var diamonds: int=(1+(1 if (int(state.diamond_counter)+1)%4==0 else 0)) if item=="diamond" and hp==1 else 0
-	var reward: Dictionary={item:2} if hp==1 and item!="diamond" else {}
+	var diamonds: int=(1+(1 if (int(state.diamond_counter)+1)%4==0 else 0)) if item=="diamond" and final_hit else 0
+	var reward: Dictionary={item:2} if final_hit and item!="diamond" else {}
 	if Xiaojing.state.diamonds+diamonds>999999: return false
-	if Inventory.preview_exchange({},reward,0).is_empty() or GameState.stamina<3 or state.air<2: return false
+	if Inventory.preview_exchange({},reward,0).is_empty() or GameState.stamina<Kitchen.energy_cost(3) or state.air<2: return false
 	if not GameState.spend_energy(3): return false
 	Inventory.exchange({},reward,0)
 	if diamonds>0:
@@ -126,11 +128,11 @@ func mine(index: int) -> bool:
 		state.diamond_counter+=1
 		Xiaojing.changed.emit()
 	state.air-=2
-	state.ores[id]=hp-1
-	if hp==1 and state.depth>20: state.ore_days[id]=GameClock.day+3
-	Events.resource_hit.emit(hp==1)
+	state.ores[id]=maxi(0,hp-damage)
+	if final_hit and state.depth>20: state.ore_days[id]=GameClock.day+3
+	Events.resource_hit.emit(final_hit)
 	commit()
-	if hp==1: Events.navigation_changed.emit()
+	if final_hit: Events.navigation_changed.emit()
 	return true
 func chest() -> bool:
 	var d: int=state.depth

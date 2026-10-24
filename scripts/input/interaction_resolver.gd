@@ -6,11 +6,14 @@ static func resolve(game: Node, point: Vector2) -> Dictionary:
 	var distance := INF
 	for object in game.get_tree().get_nodes_in_group("interactables"):
 		if not object.is_visible_in_tree(): continue
+		if "fish_point_id" in object and GameState.tool()!="fishing_rod": continue
 		if ("mine_id" in object or "abyss_id" in object) and "active" in object and not object.active: continue
 		# 物件上半部也可点选；优先脚下相近的对象，避免门口误选房后 NPC。
 		var offset: Vector2 = point-object.global_position
 		var rect := Rect2(-34,-65,68,88)
 		if "mine_id" in object or "abyss_id" in object: rect = Rect2(-20,-43,40,58)
+		elif "fish_point_id" in object or "livestock_id" in object: rect = object.hit_rect()
+		elif "kind" in object and object.kind=="recovery": rect=object.hit_rect()
 		elif "pen_id" in object: rect = object.hit_rect()
 		elif "person_id" in object: rect = Rect2(-22,-48,44,62)
 		elif "star_id" in object: rect=Rect2(-24,-30,48,42)
@@ -22,6 +25,8 @@ static func resolve(game: Node, point: Vector2) -> Dictionary:
 				distance = score
 				nearest = object
 	if nearest: return {"kind":"object","object":nearest,"point":nearest.global_position}
+	var fishing_target := FishingWorld.resolve_water(game,point)
+	if not fishing_target.is_empty(): return fishing_target
 	if GameState.location == "farm":
 		for object in game.world.resource_field.objects.values():
 			if game.world.resource_field.state[object.resource_id].hp <= 0: continue

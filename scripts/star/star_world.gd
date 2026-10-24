@@ -48,6 +48,9 @@ static func schedule(person: Node, location: String, game: Node) -> void:
 	if Aquaculture.state.xiaojing.stage==1 and minute>=540 and minute<1080 and StarStory.state.wedding_phase not in [1,2,3]:
 		place="farm"
 		if location=="farm": desired={"pen_1":Vector2(944,560),"pen_2":Vector2(1072,752),"pen_3":Vector2(1264,624),"pen_4":Vector2(1136,432)}[Aquaculture.state.xiaojing.pen]
+	if LakeEcology.state.restored and Aquaculture.state.xiaojing.stage>=2 and not LakeEcology.state.xiaojing_seen and minute>=540 and minute<1080 and StarStory.state.wedding_phase not in [1,2,3]:
+		place="farm"
+		if location=="farm": desired=LakeEcology.SHORE+Vector2(32,0)
 	if place=="village" and (GameWeather.is_rainy() or GameWeather.is_snowy()):
 		desired=Vector2(352,464) if location=="village" else desired
 	var active: bool=Xiaojing.state.unlocked and place==location

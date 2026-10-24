@@ -7,6 +7,8 @@ var origin := Vector2.ZERO
 var blocked: bool = false
 var mouse_origin := Vector2.ZERO
 var mouse_down: bool = false
+var pressed_world := Vector2.ZERO
+var mouse_pressed_world := Vector2.ZERO
 
 func setup(owner_game: Node) -> void:
 	game = owner_game
@@ -45,29 +47,34 @@ func _input(event: InputEvent) -> void:
 				blocked = GameState.modal or ui_at(event.position) or event.canceled
 				candidate = event.index
 				origin = event.position
+				pressed_world=world_point(event.position)
 			else: blocked = true
 		else:
 			fingers.erase(event.index)
 			if event.index == candidate:
 				var accept: bool = not blocked and not event.canceled and origin.distance_to(event.position)<12 and not ui_at(event.position)
 				candidate = -1
-				if accept and submit(event.position): get_viewport().set_input_as_handled()
+				if accept and submit_world(pressed_world): get_viewport().set_input_as_handled()
 	elif event is InputEventScreenDrag and event.index == candidate and event.position.distance_to(origin)>12:
 		blocked = true
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			mouse_origin = event.position
+			mouse_pressed_world=world_point(event.position)
 			mouse_down = fingers.is_empty() and not ui_at(event.position) and not GameState.modal
 		else:
 			var accept: bool = mouse_down and event.position.distance_to(mouse_origin)<12 and not ui_at(event.position)
 			mouse_down = false
-			if accept and submit(event.position): get_viewport().set_input_as_handled()
+			if accept and submit_world(mouse_pressed_world): get_viewport().set_input_as_handled()
 	elif event is InputEventMouseMotion and mouse_down and event.position.distance_to(mouse_origin)>12:
 		mouse_down = false
 
 func submit(point: Vector2) -> bool:
+	return submit_world(world_point(point))
+
+func submit_world(point: Vector2) -> bool:
 	if GameState.control_mode != "tap" or GameState.modal or game.backgrounded: return false
-	game.auto_move.request(world_point(point))
+	game.auto_move.request(point)
 	return true
 
 func _notification(what: int) -> void:

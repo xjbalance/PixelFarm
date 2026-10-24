@@ -7,7 +7,7 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="godot/app_userdata/Pixel Farm · 风芽农场"
 config/custom_user_dir_name.windows="Godot/app_userdata/Pixel Farm · 风芽农场"
 config/custom_user_dir_name.macos="Godot/app_userdata/Pixel Farm · 风芽农场"
-config/version="0.7.0-dev-a"
+config/version="0.7.0-dev-b"
 run/main_scene="res://scenes/main/main.tscn"
 run/max_fps=60
 config/features=PackedStringArray("4.3", "GL Compatibility")
@@ -34,7 +34,12 @@ LegendState="*res://scripts/abyss/legend_state.gd"
 River="*res://scripts/river/river_state.gd"
 Playtest="*res://scripts/diagnostics/playtest.gd"
 Aquaculture="*res://scripts/aquaculture/aquaculture_state.gd"
+LakeEcology="*res://scripts/ecology/lake_ecology.gd"
 WorldChanges="*res://scripts/seasons/world_changes.gd"
+Recovery="*res://scripts/recovery/recovery_state.gd"
+Fishing="*res://scripts/fishing/fishing_state.gd"
+Livestock="*res://scripts/livestock/livestock_state.gd"
+Kitchen="*res://scripts/kitchen/kitchen_state.gd"
 
 [display]
 window/size/viewport_width=1280
