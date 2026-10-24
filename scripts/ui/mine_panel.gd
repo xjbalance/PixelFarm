@@ -72,6 +72,7 @@ func open_panel(id: String = "journal") -> void:
 			read(entry.title,entry.text,func():
 				if MineState.near_id(id):
 					ChapterTwo.record(entry.fact)
+					Events.world_inspected.emit(id)
 					StarTrials.observe_note(id)
 			)
 		elif entry.kind=="memory":

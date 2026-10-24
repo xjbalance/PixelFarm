@@ -17,6 +17,7 @@ var autosave_epoch: int = 0
 var schedule_restore_pending: bool = false
 var auto_move: Node2D
 var touch_input: Node
+var life_schedule: Node
 
 func _ready() -> void:
 	get_tree().quit_on_go_back = false
@@ -53,6 +54,12 @@ func _ready() -> void:
 	var lake := AquacultureWorld.new()
 	add_child(lake)
 	lake.attach(self)
+	var housing_world := HousingWorld.new()
+	add_child(housing_world);housing_world.attach(self)
+	var festival_world := FestivalWorld.new()
+	add_child(festival_world);festival_world.attach(self)
+	var social_world := SocialWorld.new()
+	add_child(social_world);social_world.attach(self)
 	var kitchen_world := KitchenWorld.new()
 	add_child(kitchen_world);kitchen_world.attach(self)
 	var ecology := LakeEcologyWorld.new()
@@ -73,6 +80,7 @@ func _ready() -> void:
 	var star_world := StarWorld.new()
 	add_child(star_world)
 	star_world.setup(self)
+	life_schedule=preload("res://scripts/seasons/life_schedule.gd").new();add_child(life_schedule);life_schedule.attach(self)
 	auto_move = Node2D.new()
 	auto_move.set_script(preload("res://scripts/navigation/auto_move_controller.gd"))
 	add_child(auto_move)
@@ -143,7 +151,11 @@ func resource_target() -> Node2D:
 
 func handle_interaction(kind: String) -> void:
 	if auto_move: auto_move.cancel()
-	if kind=="kitchen": hud.kitchen_panel.open_panel()
+	if kind.begins_with("housing:"): hud.housing_panel.open_panel(kind.trim_prefix("housing:"))
+	elif kind.begins_with("festival:"): hud.festival_panel.open_panel(kind.trim_prefix("festival:"))
+	elif kind.begins_with("social_site:"): hud.social_panel.open_site(kind.trim_prefix("social_site:"))
+	elif kind.begins_with("social:"): hud.social_panel.open_panel(kind.trim_prefix("social:"))
+	elif kind=="kitchen": hud.kitchen_panel.open_panel()
 	elif kind=="kitchen:berry": hud.kitchen_panel.open_panel("berry")
 	elif kind=="ecology": hud.ecology_panel.open_panel()
 	elif kind.begins_with("fishing:"): hud.fishing_panel.open_panel(kind.trim_prefix("fishing:"))
@@ -327,6 +339,7 @@ func restore_schedules() -> void:
 			query.collision_mask = 3
 			query.transform = Transform2D(0,person.station)
 			if person.get_world_2d().direct_space_state.intersect_shape(query,1).is_empty(): person.position = person.station
+	if life_schedule: life_schedule.refresh()
 	schedule_restore_pending = false
 
 func build_xiaojing_world() -> void:
@@ -347,6 +360,7 @@ func build_xiaojing_world() -> void:
 		parent.add_child(person)
 		var refresh_person := func():
 			StarWorld.schedule(person,location,self)
+		Social.changed.connect(refresh_person)
 		LakeEcology.changed.connect(refresh_person)
 		Aquaculture.changed.connect(refresh_person)
 		StarStory.changed.connect(refresh_person)

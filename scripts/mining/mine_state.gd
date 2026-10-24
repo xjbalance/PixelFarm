@@ -246,6 +246,7 @@ func claim_job(job_id: int) -> bool:
 		StarTrials.on_claim(job)
 		LegendTrials.claim(job)
 		River.claim(job)
+		Events.processing_claimed.emit("mines",job.recipe,job_id,int(job.batches))
 		state.queue.remove_at(i)
 		Xiaojing.state.diamonds+=diamonds
 		if diamonds>0: Playtest.record("diamonds",{"source":"processing","id":job.recipe,"delta":diamonds})

@@ -75,7 +75,7 @@ static func maps(game: Node) -> Dictionary:
 
 static func region(location: String) -> Rect2i:
 	if location=="farm": return Rect2i(0,0,48,32)
-	if location=="home": return Rect2i(11,7,18,11)
+	if location=="home": return Rect2i(4,7,25,11)
 	return Rect2i(0,0,40,28)
 
 static func entry(location: String) -> Vector2:

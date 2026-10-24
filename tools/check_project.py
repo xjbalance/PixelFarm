@@ -35,6 +35,9 @@ steps = [
     ('livestock-b', ['--fixed-fps','60','res://tests/livestock_b_runner.tscn']),
     ('kitchen-b', ['--fixed-fps','60','res://tests/kitchen_b_runner.tscn']),
     ('ecology-b', ['--fixed-fps','60','res://tests/ecology_b_runner.tscn']),
+    ('festivals-c', ['--fixed-fps','60','res://tests/festivals_c_runner.tscn']),
+    ('social-c', ['--fixed-fps','60','res://tests/social_c_runner.tscn']),
+    ('housing-c', ['--fixed-fps','60','res://tests/housing_c_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),
@@ -80,12 +83,20 @@ steps = [
     ('kitchen-b-restart', ['--fixed-fps', '60', 'res://tests/kitchen_b_persistence.tscn']),
     ('kitchen-b-corrupt', ['--fixed-fps', '60', 'res://tests/kitchen_b_persistence.tscn', '--', '--corrupt-kitchen']),
     ('kitchen-b-backup', ['--fixed-fps', '60', 'res://tests/kitchen_b_persistence.tscn']),
+    ('social-c-write', ['--fixed-fps', '60', 'res://tests/social_c_persistence.tscn', '--', '--write-social']),
+    ('social-c-restart', ['--fixed-fps', '60', 'res://tests/social_c_persistence.tscn']),
+    ('social-c-corrupt', ['--fixed-fps', '60', 'res://tests/social_c_persistence.tscn', '--', '--corrupt-social']),
+    ('social-c-backup', ['--fixed-fps', '60', 'res://tests/social_c_persistence.tscn']),
+    ('life-c-write', ['--fixed-fps', '60', 'res://tests/life_c_persistence.tscn', '--', '--write-life']),
+    ('life-c-restart', ['--fixed-fps', '60', 'res://tests/life_c_persistence.tscn']),
+    ('life-c-corrupt', ['--fixed-fps', '60', 'res://tests/life_c_persistence.tscn', '--', '--corrupt-life']),
+    ('life-c-backup', ['--fixed-fps', '60', 'res://tests/life_c_persistence.tscn']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:
     env = dict(os.environ, XDG_DATA_HOME=profile, APPDATA=profile)
     for name, options in steps:
-        result = subprocess.run([godot,'--headless','--path',str(ROOT),*options],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,encoding='utf-8',errors='replace',timeout=600 if name in ['river','stability'] else 120)
+        result = subprocess.run([godot,'--headless','--path',str(ROOT),*options],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,encoding='utf-8',errors='replace',timeout=600 if name in ['river','stability'] else 180)
         (logs/(name+'.log')).write_text(result.stdout, encoding='utf-8')
         print(result.stdout, end='')
         if result.returncode or any(marker in result.stdout for marker in ['SCRIPT ERROR:','ERROR:','FAIL:','instances leaked']):

@@ -5,6 +5,7 @@ signal control_mode_changed
 const MAX_STAMINA: int = 100
 var stamina: int = MAX_STAMINA
 var modal: bool = false
+var restoring: bool = false
 var selected: int = 0
 var tools: Array[String] = ["hoe", "water", "hand", "carrot_seed", "potato_seed", "wheat_seed", "axe", "pickaxe", "fishing_rod"]
 var tool_names: Array[String] = ["锄头", "水壶", "采收", "胡萝卜", "土豆", "小麦", "斧头", "镐", "鱼竿"]

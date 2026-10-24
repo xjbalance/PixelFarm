@@ -78,6 +78,7 @@ func use_tool(cell: Vector2i, tool: String) -> bool:
 	else:
 		return false
 	Xiaojing.on_farm_commit(action,cell,tool.trim_suffix("_seed") if action == "播种" else original_crop)
+	Events.farm_committed.emit(action,cell,tool.trim_suffix("_seed") if action=="播种" else original_crop,int(Xiaojing.state.plant_serial))
 	changed.emit()
 	Events.farm_action.emit(action)
 	Events.farm_effect.emit(Vector2(cell)*32+Vector2(16,16),action)

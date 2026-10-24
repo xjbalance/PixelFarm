@@ -17,6 +17,7 @@ func _ready() -> void:
 	var caption := FarmUIStyle.label("第 1314 颗星星",25,FarmUIStyle.GOLD)
 	caption.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	header.add_child(caption)
+	header.add_child(FarmUIStyle.button("四季近况",func(): close_panel(); Events.interaction_requested.emit("social:xiaojing"),140))
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,110))
 	DiamondPayments.controls(layout,refresh)
 	var scroll := ScrollContainer.new()

@@ -179,6 +179,7 @@ func land() -> void:
 	state.pending=session.species
 	state.pending_day=GameClock.day
 	session.phase="caught";session.message="钓到了"+data.species[session.species].name+"！"
+	Events.fishing_landed.emit(session.site,session.species,int(state.serial),GameClock.day)
 	busy=false
 	if not claim():
 		session.message+="背包已满，鱼暂留在水桶里。腾出空间后领取，不能重复抛竿。"

@@ -127,7 +127,7 @@ func daily_text() -> String:
 	var result: String=lines[index]+"\n"+SeasonalDialogue.line("xiaojing")+"\n"+data.weather["rain" if GameWeather.is_rainy() else "clear"]+"\n"+data.season_lines[season_index()]
 	if s.married and GameClock.day-int(s.wedding_day)==520: result="今天正好是婚后经过的第520天。我把那封回信放在温室档案桌了。\n"+result
 	elif s.married and GameClock.day>int(s.wedding_day) and (GameClock.day-int(s.wedding_day))%112==0: result="又走完一个四季。想从今年没做成的小事开始聊吗？\n"+result
-	elif (GameClock.day-1)%28==13: result="今天是我的生日。我想早一点收工，去看看上次留的种子。\n"+result
+	elif Social.is_birthday("xiaojing"): result="今天是我的生日。我想早一点收工，去看看上次留的种子。\n"+result
 	if state.gift_mood_day==GameClock.day: result+="\n那份石料我放进了公用箱。礼物不用勉强，先问问就好。"
 	if LegendState.state.choice!="": result+="\n"+{"water_first":"先留好居民的清水，温室的种源慢慢补；我把检修日写在井边。","open_records":"今天又有人来查旧档案。我留了空页，不替后来的人写结论。"}[LegendState.state.choice]
 	if state.repair_pending: result+="\n上次没等到你，我有点失落。愿意的话，先说说发生了什么，再约一个能做到的时间。"

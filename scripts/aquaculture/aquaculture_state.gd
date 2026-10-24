@@ -183,6 +183,7 @@ func harvest(id: String, quantity: int) -> bool:
 	p.adults-=quantity
 	if species not in state.collection: state.collection.append(species)
 	state.harvested[species]=mini(999999,int(state.harvested.get(species,0))+quantity)
+	Events.aquaculture_harvested.emit(species,quantity,int(state.harvested[species]),GameClock.day)
 	if state.xiaojing.stage==1 and state.xiaojing.pen==id:
 		state.xiaojing.harvested=mini(999999,int(state.xiaojing.harvested)+quantity)
 	if summary(id).total==0:

@@ -42,6 +42,11 @@
       "path": "res://resources/kitchen/kitchen.json",
       "section": "items",
       "category": "kitchen"
+    },
+    "festivals": {
+      "path": "res://resources/festivals/festivals.json",
+      "section": "items",
+      "category": "festival"
     }
   }
 }

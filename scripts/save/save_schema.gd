@@ -2,7 +2,7 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,16): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,18): return {}
 	var data: Dictionary = raw.duplicate(true)
 	# 旧路线盘的数字格ID也必须规范，防止JSON浮点枚举失配/重复矿格。
 	if data.get("xiaojing") is Dictionary and data.xiaojing.get("cave") is Dictionary:
@@ -82,6 +82,18 @@ static func normalize(raw: Variant) -> Dictionary:
 		if not whole(data.get("day"),1,999999): return {}
 		data.kitchen=Kitchen.defaults(int(data.day))
 		data.version=16
+	if int(data.version)==16:
+		if not whole(data.get("day"),1,999999): return {}
+		data.festival=Festival.defaults(int(data.day))
+		data.social=Social.migrate(data)
+		data.version=17
+	if int(data.version)==17:
+		if not whole(data.get("day"),1,999999): return {}
+		data.housing=Housing.defaults(int(data.day))
+		data.version=18
+	data.housing=AbyssSaveSchema.canonical(data.get("housing"))
+	data.festival=AbyssSaveSchema.canonical(data.get("festival"))
+	data.social=AbyssSaveSchema.canonical(data.get("social"))
 	data.kitchen=AbyssSaveSchema.canonical(data.get("kitchen"))
 	data.ecology=AbyssSaveSchema.canonical(data.get("ecology"))
 	data.fishing=AbyssSaveSchema.canonical(data.get("fishing"))
@@ -135,6 +147,7 @@ static func valid_current(data: Variant) -> bool:
 	if not Letters.validate(data.get("letters")): return false
 	if data.letters.direction != "" and (not data.get("story") is Dictionary or data.story.get("stage") != 8): return false
 	if not whole(data.get("day"),1,999999) or not Xiaojing.validate(data.get("xiaojing"),int(data.day)): return false
+	if not Housing.validate(data.get("housing"),int(data.day)): return false
 	if not AquacultureSaveSchema.validate(data.get("aquaculture"),int(data.day)): return false
 	if data.aquaculture.xiaojing.stage>0 and not data.xiaojing.unlocked: return false
 	if not RiverSaveSchema.validate(data.get("river"),int(data.day)): return false
@@ -142,7 +155,7 @@ static func valid_current(data: Variant) -> bool:
 	if not AbyssSaveSchema.validate(data.get("abyss"),int(data.day)) or not AbyssSaveSchema.legend(data.get("legend"),data.xiaojing,int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),16,16) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),18,18) or not Story.validate(data.get("story")): return false
 	if data.get("control_mode") not in ["tap","joystick"]: return false
 	if not VillageProjects.validate(data.get("village"),data.get("day"),int(data.story.stage)): return false
 	if not whole(data.get("day"),1,999999): return false
@@ -172,6 +185,10 @@ static func valid_current(data: Variant) -> bool:
 	for axis in pos:
 		if not (axis is int or axis is float) or not is_finite(float(axis)): return false
 	var region := Rect2(10,10,1516,1004) if location == "farm" else Rect2(362,234,556,332)
+	if location=="home" and data.housing.level>=2:
+		var side_room := Rect2(224,384,128,160) if data.housing.level==2 else Rect2(128,256,224,288)
+		if side_room.has_point(Vector2(data.player[0],data.player[1])): region=side_room
+		elif Rect2(336,416,42,96).has_point(Vector2(data.player[0],data.player[1])): region=Rect2(336,416,42,96)
 	if location == "village" or location in MineState.AREAS or location in ["abyss","greenhouse"]: region = Rect2(10,10,1260,876)
 	if not region.has_point(Vector2(pos[0],pos[1])): return false
 	var items = data.get("items")
@@ -198,6 +215,11 @@ static func valid_current(data: Variant) -> bool:
 	for entry in journal:
 		if entry not in ["翻土","播种","浇水","收获"]: return false
 	if not data.get("muted",false) is bool: return false
+	if not data.xiaojing.married:
+		if int(data.housing.owned.get("spouse_desk",0))>0: return false
+		for furnishing in data.housing.placed:
+			if furnishing.kind=="spouse_desk": return false
+	if not Festival.validate(data.get("festival"),int(data.day)) or not Social.validate(data.get("social"),int(data.day)): return false
 	if not Kitchen.validate(data.get("kitchen"),int(data.day)): return false
 	if data.kitchen.buff.id!="" and data.aquaculture.meal_day==0: return false
 	if not LakeEcology.validate(data.get("ecology"),int(data.day)): return false

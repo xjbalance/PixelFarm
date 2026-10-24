@@ -49,3 +49,7 @@ assets/seasons的四套32px地表和树木纹理由tools/generate_season_assets.
 ## 0.7.0阶段B
 
 assets/fishing、livestock、kitchen由各自tools/generate_*_assets.py以项目原创色板程序绘制：鱼竿/饵/钩/传说鱼、鸡牛羊/饲料产物、10食材料理图。原六鱼复用养殖素材，无同ID重复定义。生态水草/水样台、厨房设施、畜舍、休息椅由对应world脚本绘制，均不使用商业游戏素材。
+
+## 0.7.0阶段C
+
+节日7张纪念/装饰图由tools/generate_festival_assets.py原创像素生成；家具与室内地板等15张由tools/generate_housing_assets.py生成。人物继续使用项目原头像与角色，无商业游戏素材。节日绳框/灯会/原村民聚集叠加现有地图；侧间地板、窗户、墙体及装修图形由Housing模块绘制，保留原故事资产。

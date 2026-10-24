@@ -53,6 +53,10 @@ static func schedule(person: Node, location: String, game: Node) -> void:
 		if location=="farm": desired=LakeEcology.SHORE+Vector2(32,0)
 	if place=="village" and (GameWeather.is_rainy() or GameWeather.is_snowy()):
 		desired=Vector2(352,464) if location=="village" else desired
+	if Social.area("xiaojing")!="" and StarStory.state.wedding_phase not in [1,2,3]:
+		place=Social.area("xiaojing")
+		var personal_station: Vector2=Social.station("xiaojing",location)
+		if personal_station!=Vector2.INF: desired=personal_station
 	var active: bool=Xiaojing.state.unlocked and place==location
 	if active and not person.visible:
 		if GameState.location==location and game.player.global_position.distance_to(desired)<30:

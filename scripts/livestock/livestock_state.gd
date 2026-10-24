@@ -232,6 +232,7 @@ func settle_day() -> void:
 				entry.product+=1
 				entry.progress=0
 				entry.product_day=yesterday
+				Events.animal_produced.emit(entry.id,str(data.species[entry.species].product),yesterday)
 	state.last_settled_day=today
 	_commit()
 

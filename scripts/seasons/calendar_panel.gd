@@ -20,6 +20,8 @@ func open_panel() -> void:
 	words(Calendar.label()+" · 绝对第%d天 · %s" % [GameClock.day,GameClock.clock_text()])
 	words("每季28日，每年112日。日期一直连续累计，婚后纪念日仍按结婚后经过的天数计算。")
 	words("今日："+GameWeather.label()+"\n"+GameWeather.description())
+	words("四季节日：春24日播种庆典、夏24日湖畔灯会、秋24日丰收评比、冬24日冬日集市。各有实际活动与时间窗口，午夜仍正常结算。")
+	if Festival.active_id()!="": words("今天的活动："+str(Festival.data.events[Festival.active_id()].name))
 	words("未来七日预报")
 	for offset in range(1,8): words(Calendar.label(GameClock.day+offset)+" · "+GameWeather.label(GameClock.day+offset))
 	words("作物农时：胡萝卜、土豆适合春夏秋；小麦全年。冬季已种的不耐寒作物休眠，转暖后从原进度继续，不会被清空。雪不等于浇水。")

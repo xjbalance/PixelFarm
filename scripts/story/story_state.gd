@@ -104,6 +104,7 @@ func scene_data(id: String) -> Dictionary:
 func complete(id: String, choice: String = "") -> bool:
 	if not data.scenes.has(id):
 		if id in ["linya_daily","zhou_daily","ahe_daily"]: Letters.record("talk:"+id.trim_suffix("_daily"))
+		Events.world_inspected.emit(id)
 		return true
 	var scene: Dictionary = scene_data(id)
 	if scene.has("stage") and int(scene.stage) != stage: return false
@@ -154,6 +155,7 @@ func complete(id: String, choice: String = "") -> bool:
 	if id == "cargo_note": Letters.record("cargo_departure" if choice == "ask_departure" else "cargo_name")
 	if id == "water_help" and choice == "draw": Letters.record("water_help")
 	if id == "supper": Letters.record("talk:ahe")
+	Events.world_inspected.emit(id)
 	changed.emit()
 	Events.progress_committed.emit()
 	return true

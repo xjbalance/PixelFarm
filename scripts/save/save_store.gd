@@ -2,10 +2,11 @@ class_name FarmSaveStore
 extends RefCounted
 ## 写临时文件后重命名；保留上一次存档。先完整校验再修改运行状态。
 const PATH: String = "user://farm_save.json"
-const VERSION: int = 16
+const VERSION: int = 18
 
 static func snapshot(game: Node) -> Dictionary:
 	return {
+		"housing": Housing.snapshot(), "festival": Festival.snapshot(), "social": Social.snapshot(),
 		"kitchen": Kitchen.snapshot(), "ecology": LakeEcology.snapshot(), "fishing": Fishing.snapshot(), "livestock": Livestock.snapshot(),
 		"recovery": Recovery.snapshot(), "calendar": Calendar.snapshot(), "world_changes": WorldChanges.snapshot(),
 		"version": VERSION, "location": GameState.location,
@@ -73,6 +74,8 @@ static func valid(data: Variant) -> bool:
 static func restore(game: Node, raw: Dictionary) -> bool:
 	var data := FarmSaveSchema.normalize(raw)
 	if data.is_empty(): return false
+	GameState.restoring=true
+	WorldChanges.restoring=true
 	game.cancel_pending_save()
 	while game.hud.close_active_panel(): pass
 	game.touch_input.reset()
@@ -84,6 +87,7 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	for id in data["items"]: Inventory.items[id] = int(data["items"][id])
 	GameClock.day = int(data["day"])
 	GameClock.minutes = float(data["minutes"])
+	Festival.restore(data["festival"])
 	Kitchen.restore(data["kitchen"])
 	Fishing.restore(data["fishing"])
 	Livestock.restore(data["livestock"])
@@ -103,6 +107,8 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	AbyssState.restore(data["abyss"])
 	Aquaculture.restore(data["aquaculture"])
 	VillageProjects.restore(data["village"])
+	Housing.restore(data["housing"])
+	Social.restore(data["social"])
 	WorldChanges.restoring=false
 	WorldChanges.restore(data["world_changes"])
 	game.world.resource_field.restore(data["resources"])
@@ -118,6 +124,7 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	game.get_node("Audio").muted = data.get("muted",false)
 	game.change_location(data["location"],Vector2(data["player"][0],data["player"][1]))
 	game.call_deferred("recover_blocked_position")
+	GameState.restoring=false
 	Inventory.changed.emit()
 	GameClock.changed.emit()
 	GameState.changed.emit()

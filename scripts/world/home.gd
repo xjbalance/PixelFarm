@@ -1,5 +1,8 @@
 extends Node2D
 ## 独立室内场景；与农场共享同一玩家，门口和床通过交互信号连接。
+var house_level: int = 1
+var left_walls: Array[Node]=[]
+
 const INTERACTABLE = preload("res://scripts/world/interactable.gd")
 
 func _ready() -> void:
@@ -14,7 +17,7 @@ func _ready() -> void:
 	layer.tile_set = tiles
 	for y in range(7,18):
 		for x in range(11,29): layer.set_cell(Vector2i(x,y),0,Vector2i(7,0))
-	for rect in [Rect2(336,192,16,400),Rect2(928,192,16,400),Rect2(352,192,576,32),Rect2(352,576,576,16),Rect2(800,240,96,128),Rect2(400,244,120,45),Rect2(570,304,100,58)]:
+	for rect in [Rect2(928,192,16,400),Rect2(352,192,576,32),Rect2(352,576,576,16),Rect2(800,240,96,128),Rect2(400,244,120,45),Rect2(570,304,100,58)]:
 		var body := StaticBody2D.new()
 		body.position = rect.get_center()
 		var shape := CollisionShape2D.new()
@@ -23,6 +26,7 @@ func _ready() -> void:
 		shape.shape = box
 		body.add_child(shape)
 		add_child(body)
+	set_house_level(1)
 	add_point("sleep","睡一觉 · 进入下一天",Vector2(786,342))
 	add_point("exit","返回农场",Vector2(640,556))
 	var letter_box := Node2D.new()
@@ -44,7 +48,10 @@ func add_point(kind: String, title: String, pos: Vector2) -> void:
 
 func _draw() -> void:
 	draw_rect(Rect2(320,144,640,80),Color("263c35"))
-	draw_rect(Rect2(320,224,32,384),Color("263c35"))
+	if house_level==1: draw_rect(Rect2(320,224,32,384),Color("263c35"))
+	else:
+		draw_rect(Rect2(320,224,32,192),Color("263c35"))
+		draw_rect(Rect2(320,512,32,96),Color("263c35"))
 	draw_rect(Rect2(928,224,32,384),Color("263c35"))
 	draw_rect(Rect2(320,576,640,32),Color("263c35"))
 	draw_rect(Rect2(336,160,608,64),Color("cfb17d"))
@@ -79,3 +86,16 @@ func _draw() -> void:
 	draw_line(Vector2(644,176),Vector2(644,206),Color("ead9ac"),4)
 	draw_rect(Rect2(610,550,60,26),Color("d5bd85"))
 	draw_rect(Rect2(620,558,40,8),Color("799079"))
+
+func set_house_level(value: int) -> void:
+	if not left_walls.is_empty() and house_level==value: return
+	house_level=value
+	for body in left_walls:
+		remove_child(body);body.queue_free()
+	left_walls.clear()
+	var bounds: Array=[Rect2(336,192,16,400)] if value==1 else [Rect2(336,192,16,224),Rect2(336,512,16,80)]
+	for rect in bounds:
+		var body := StaticBody2D.new();body.position=rect.get_center()
+		var collision := CollisionShape2D.new();var shape := RectangleShape2D.new();shape.size=rect.size;collision.shape=shape
+		body.add_child(collision);add_child(body);left_walls.append(body)
+	queue_redraw();Events.navigation_changed.emit()

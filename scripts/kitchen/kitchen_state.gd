@@ -74,6 +74,7 @@ func cook(id: String, batches: int = 1) -> bool:
 	var recipe: Dictionary=data.recipes[id]
 	if not _exchange(scaled(recipe.required,batches),scaled(recipe.rewards,batches)): return false
 	state.cooked[id]=mini(999999,int(state.cooked.get(id,0))+batches)
+	Events.dish_cooked.emit(id,batches,int(state.cooked[id]),GameClock.day)
 	Events.notice.emit("做好了%s ×%d，食用与鱼汤共享每天一份料理额度。" % [recipe.name,batches])
 	_commit();return true
 
@@ -109,6 +110,7 @@ func claim_job(id: int) -> bool:
 	state.collected[job.recipe]=mini(999999,int(state.collected.get(job.recipe,0))+int(job.batches))
 	state.claimed.append(id)
 	if state.claimed.size()>128: state.claimed.pop_front()
+	Events.processing_claimed.emit("kitchen",job.recipe,id,int(job.batches))
 	state.queue.remove_at(index)
 	_commit();return true
 
@@ -120,6 +122,7 @@ func harvest_berries() -> bool:
 	if not _exchange({},{"wild_berry":amount}): return false
 	GameState.stamina-=cost;state.berry_day=GameClock.day
 	GameState.changed.emit()
+	Events.berry_gathered.emit(GameClock.day,amount)
 	Events.notice.emit("采到野莓%d份。冬季枝上只留一份，明天再来看看。" % amount)
 	_commit();return true
 

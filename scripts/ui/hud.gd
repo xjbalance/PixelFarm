@@ -18,6 +18,7 @@ var toast_time: float = 0.0
 var dialogue: PanelContainer
 var joystick: Control
 var action_button: Button
+var guide_panel: PanelContainer
 var progress_label: Label
 var inventory_panel: PanelContainer
 var system_panel: PanelContainer
@@ -26,6 +27,9 @@ var story_panel: PanelContainer
 var river_panel: PanelContainer
 var abyss_panel: PanelContainer
 var star_panel: PanelContainer
+var housing_panel: PanelContainer
+var festival_panel: PanelContainer
+var social_panel: PanelContainer
 var kitchen_panel: PanelContainer
 var ecology_panel: PanelContainer
 var fishing_panel: PanelContainer
@@ -149,6 +153,7 @@ func build_controls() -> void:
 
 func build_feedback() -> void:
 	var guide := PanelContainer.new()
+	guide_panel=guide
 	place(guide, Vector2(0,0), Vector2(0,0), Rect2(20,94,304,144))
 	guide.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	safe.add_child(guide)
@@ -250,6 +255,18 @@ func build_feedback() -> void:
 	kitchen_panel.set_script(preload("res://scripts/kitchen/kitchen_panel.gd"))
 	place(kitchen_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
 	safe.add_child(kitchen_panel)
+	festival_panel=PanelContainer.new()
+	festival_panel.set_script(preload("res://scripts/festivals/festival_panel.gd"))
+	place(festival_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(festival_panel)
+	social_panel=PanelContainer.new()
+	social_panel.set_script(preload("res://scripts/social/social_panel.gd"))
+	place(social_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
+	safe.add_child(social_panel)
+	housing_panel=PanelContainer.new()
+	housing_panel.set_script(preload("res://scripts/housing/housing_panel.gd"))
+	place(housing_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-470,-290,940,580))
+	safe.add_child(housing_panel)
 	# 提示位于模态层上方，金币不足、奖励和保存反馈不会被遮罩盖住。
 	safe.move_child(toast,-1)
 	Events.modal_changed.connect(func(active: bool):
@@ -288,6 +305,8 @@ func apply_safe_area(area: Rect2, screen: Vector2) -> void:
 		safe.offset_bottom = -(screen.y - area.end.y) * ratio.y
 
 func refresh() -> void:
+	# 起居侧间需要完整点选空间，农场任务卡在屋内收起。
+	guide_panel.visible=GameState.location!="home"
 	refresh_clock()
 	money_label.text = "%d 金" % Inventory.coins
 	stamina_label.text = "体力  %d / %d" % [GameState.stamina,GameState.max_stamina()]
@@ -324,7 +343,7 @@ func close_active_panel() -> bool:
 	if dialogue.visible:
 		dialogue.close_dialogue()
 		return true
-	for panel in [kitchen_panel,ecology_panel,fishing_panel,livestock_panel,recovery_panel,calendar_panel,aquaculture_panel,river_panel,abyss_panel,star_panel,mine_panel,xiaojing_panel,story_panel,progress_panel,system_panel,inventory_panel]:
+	for panel in [housing_panel,festival_panel,social_panel,kitchen_panel,ecology_panel,fishing_panel,livestock_panel,recovery_panel,calendar_panel,aquaculture_panel,river_panel,abyss_panel,star_panel,mine_panel,xiaojing_panel,story_panel,progress_panel,system_panel,inventory_panel]:
 		if panel.visible:
 			panel.close_panel()
 			return true
