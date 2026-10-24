@@ -1,0 +1,314 @@
+{
+  "version": "0.7.1",
+  "source_base": "5323ce2",
+  "save_schema": 22,
+  "baseline_automated": 2964,
+  "baseline_windows": 356,
+  "automated_checks": 3090,
+  "window_checks": 706,
+  "failures": 0,
+  "automated_suites": [
+    {
+      "suite": "SLEEP RESULT",
+      "checks": 29,
+      "failures": 0
+    },
+    {
+      "suite": "RESULT",
+      "checks": 452,
+      "failures": 0
+    },
+    {
+      "suite": "MINING RESULT",
+      "checks": 98,
+      "failures": 0
+    },
+    {
+      "suite": "STAR RESULT",
+      "checks": 125,
+      "failures": 0
+    },
+    {
+      "suite": "LEGEND RESULT",
+      "checks": 252,
+      "failures": 0
+    },
+    {
+      "suite": "STABILITY RESULT",
+      "checks": 264,
+      "failures": 0
+    },
+    {
+      "suite": "RIVER RESULT",
+      "checks": 448,
+      "failures": 0
+    },
+    {
+      "suite": "AQUACULTURE RESULT",
+      "checks": 155,
+      "failures": 0
+    },
+    {
+      "suite": "SEASONS A RESULT",
+      "checks": 87,
+      "failures": 0
+    },
+    {
+      "suite": "CONTROL RECOVERY RESULT",
+      "checks": 52,
+      "failures": 0
+    },
+    {
+      "suite": "FISHING B RESULT",
+      "checks": 84,
+      "failures": 0
+    },
+    {
+      "suite": "LIVESTOCK B RESULT",
+      "checks": 112,
+      "failures": 0
+    },
+    {
+      "suite": "KITCHEN B RESULT",
+      "checks": 100,
+      "failures": 0
+    },
+    {
+      "suite": "ECOLOGY B RESULT",
+      "checks": 65,
+      "failures": 0
+    },
+    {
+      "suite": "FESTIVALS C RESULT",
+      "checks": 87,
+      "failures": 0
+    },
+    {
+      "suite": "SOCIAL C RESULT",
+      "checks": 107,
+      "failures": 0
+    },
+    {
+      "suite": "HOUSING C RESULT",
+      "checks": 105,
+      "failures": 0
+    },
+    {
+      "suite": "EXPLORATION D RESULT",
+      "checks": 106,
+      "failures": 0
+    },
+    {
+      "suite": "WORLD PROGRESS D RESULT",
+      "checks": 170,
+      "failures": 0
+    },
+    {
+      "suite": "QUALITY 070 RESULT",
+      "checks": 39,
+      "failures": 0
+    },
+    {
+      "suite": "PERFORMANCE 070 RESULT",
+      "checks": 3,
+      "failures": 0
+    },
+    {
+      "suite": "FINALE 070 RESULT",
+      "checks": 24,
+      "failures": 0
+    },
+    {
+      "suite": "PALM 071 RESULT",
+      "checks": 28,
+      "failures": 0
+    },
+    {
+      "suite": "RECOVERY 071 RESULT",
+      "checks": 55,
+      "failures": 0
+    },
+    {
+      "suite": "TUTORIAL UI 071 RESULT",
+      "checks": 26,
+      "failures": 0
+    },
+    {
+      "suite": "PERFORMANCE 071 RESULT",
+      "checks": 17,
+      "failures": 0
+    }
+  ],
+  "window_suites": [
+    {
+      "suite": "render_061 :[ 0 ] RENDER 061 RESULT",
+      "checks": 113,
+      "failures": 0
+    },
+    {
+      "suite": "render_062 :[ 0 ] RENDER 062 RESULT",
+      "checks": 32,
+      "failures": 0
+    },
+    {
+      "suite": "render_seasons_a :[ 0 ] RENDER SEASONS A RESULT",
+      "checks": 48,
+      "failures": 0
+    },
+    {
+      "suite": "fishing_b_render :[ 0 ] RENDER FISHING B RESULT",
+      "checks": 23,
+      "failures": 0
+    },
+    {
+      "suite": "livestock_b_render :[ 0 ] LIVESTOCK B RENDER RESULT",
+      "checks": 25,
+      "failures": 0
+    },
+    {
+      "suite": "kitchen_b_render :[ 0 ] KITCHEN B RENDER RESULT",
+      "checks": 22,
+      "failures": 0
+    },
+    {
+      "suite": "life_c_render :[ 0 ] LIFE C RENDER RESULT",
+      "checks": 19,
+      "failures": 0
+    },
+    {
+      "suite": "exploration_d_render :[ 0 ] EXPLORATION D RENDER RESULT",
+      "checks": 39,
+      "failures": 0
+    },
+    {
+      "suite": "world_progress_d_render :[ 0 ] RENDER WORLD PROGRESS D RESULT",
+      "checks": 22,
+      "failures": 0
+    },
+    {
+      "suite": "finale_070_render :[ 0 ] FINALE 070 RENDER RESULT",
+      "checks": 13,
+      "failures": 0
+    },
+    {
+      "suite": "palm_ui_render :[ 0 ] PALM UI RENDER RESULT",
+      "checks": 296,
+      "failures": 0
+    },
+    {
+      "suite": "palm_runner :[ 0 ] PALM 071 RESULT",
+      "checks": 28,
+      "failures": 0
+    },
+    {
+      "suite": "tutorial_071_runner :[ 0 ] TUTORIAL UI 071 RESULT",
+      "checks": 26,
+      "failures": 0
+    }
+  ],
+  "isolated_steps": [
+    "import",
+    "sleep",
+    "integration",
+    "mining",
+    "star",
+    "legend",
+    "stability",
+    "river",
+    "aquaculture",
+    "seasons-a",
+    "control-recovery",
+    "fishing-b",
+    "livestock-b",
+    "kitchen-b",
+    "ecology-b",
+    "festivals-c",
+    "social-c",
+    "housing-c",
+    "exploration-d",
+    "world-progress-d",
+    "quality-070",
+    "performance-070",
+    "finale-070",
+    "palm-071",
+    "recovery-071",
+    "tutorial-ui-071",
+    "performance-071",
+    "persist-write",
+    "persist-restart",
+    "legacy-write",
+    "legacy-restart",
+    "mine-persist-write",
+    "mine-persist-restart",
+    "mine-backup-write",
+    "mine-backup-corrupt",
+    "mine-backup-restart",
+    "star-persist-write",
+    "star-persist-restart",
+    "star-backup-corrupt",
+    "star-backup-restart",
+    "abyss-write",
+    "abyss-restart",
+    "abyss-corrupt",
+    "abyss-backup",
+    "river-write",
+    "river-restart",
+    "river-corrupt",
+    "river-backup",
+    "stability-write",
+    "stability-restart",
+    "stability-corrupt",
+    "stability-backup",
+    "aquaculture-write",
+    "aquaculture-restart",
+    "aquaculture-corrupt",
+    "aquaculture-backup",
+    "seasons-write",
+    "seasons-restart",
+    "seasons-corrupt",
+    "seasons-backup",
+    "fishing-b-write",
+    "fishing-b-restart",
+    "fishing-b-corrupt",
+    "fishing-b-backup",
+    "livestock-b-write",
+    "livestock-b-restart",
+    "livestock-b-corrupt",
+    "livestock-b-backup",
+    "kitchen-b-write",
+    "kitchen-b-restart",
+    "kitchen-b-corrupt",
+    "kitchen-b-backup",
+    "social-c-write",
+    "social-c-restart",
+    "social-c-corrupt",
+    "social-c-backup",
+    "life-c-write",
+    "life-c-restart",
+    "life-c-corrupt",
+    "life-c-backup",
+    "exploration-d-write",
+    "exploration-d-restart",
+    "exploration-d-corrupt",
+    "exploration-d-backup",
+    "world-progress-d-write",
+    "world-progress-d-restart",
+    "world-progress-d-corrupt",
+    "world-progress-d-backup",
+    "palm-write",
+    "palm-restart",
+    "palm-interrupt",
+    "palm-interrupted-restart",
+    "palm-corrupt",
+    "palm-backup",
+    "main-smoke"
+  ],
+  "actual_sigkill_restart": true,
+  "android_device_tested": false,
+  "test_profiles": "Temporary XDG_DATA_HOME / APPDATA; no real player saves read or written",
+  "logs": {
+    "automated": "builds/check-0.7.1-acceptance.log",
+    "windows": "builds/window-0.7.1-acceptance.log",
+    "process_interrupt": "builds/interrupt-0.7.1.log"
+  }
+}

@@ -127,12 +127,17 @@ func harvest_berries() -> bool:
 	_commit();return true
 
 func consume(id: String) -> bool:
+	if not Recovery.available() or GameClock.minutes>=1440: return false
 	if busy or GameClock.settling or not data.items.has(id) or data.items[id].kind!="food" or int(Aquaculture.state.meal_day)>=GameClock.day: return false
 	var item: Dictionary=data.items[id]
 	if GameState.stamina>=GameState.max_stamina(): return false
 	if state.buff.id!="" and float(state.buff.remaining)>0: return false
-	if not _exchange({id:1},{}): return false
+	# 共享额度须在库存信号之前预留，鱼料理的回调也不能再次用餐。
+	var previous_meal: int=int(Aquaculture.state.meal_day)
 	Aquaculture.state.meal_day=GameClock.day
+	if not _exchange({id:1},{}):
+		Aquaculture.state.meal_day=previous_meal
+		return false
 	GameState.stamina=mini(GameState.max_stamina(),GameState.stamina+int(item.energy))
 	state.buff={"id":str(item.buff),"remaining":float(item.seconds)}
 	GameState.changed.emit();Aquaculture.changed.emit()

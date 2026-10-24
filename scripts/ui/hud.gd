@@ -44,6 +44,7 @@ var xiaojing_panel: PanelContainer
 var quest_label: Label
 var scrim: ColorRect
 var completed: Dictionary = {}
+var toolbar_style_selection: int = -1
 
 func _ready() -> void:
 	layer = 10
@@ -93,7 +94,7 @@ func build_top() -> void:
 	var names := VBoxContainer.new()
 	brand.add_child(names)
 	names.add_child(FarmUIStyle.label("像 素 世 界", 21, FarmUIStyle.GOLD))
-	names.add_child(FarmUIStyle.label("Pixel World · 0.7.0", 12, Color("b9c4a5")))
+	names.add_child(FarmUIStyle.label("Pixel World · 0.7.1", 12, Color("b9c4a5")))
 	var time_panel := PanelContainer.new()
 	top.add_child(time_panel)
 	clock_label = FarmUIStyle.label("第 1 天  ·  06:00", 17)
@@ -333,12 +334,14 @@ func refresh() -> void:
 		var id: String = GameState.tools[i]
 		var amount := str(Inventory.count(id)) if id.ends_with("_seed") else str(i + 1)
 		tool_buttons[i].text = "%s\n%s" % [GameState.tool_names[i],amount]
-		var style := FarmUIStyle.box(FarmUIStyle.GREEN if i == GameState.selected else FarmUIStyle.INK,FarmUIStyle.GOLD if i == GameState.selected else Color("6c8265"),6)
-		style.content_margin_left = 6
-		style.content_margin_right = 6
-		style.content_margin_top = 5
-		style.content_margin_bottom = 5
-		tool_buttons[i].add_theme_stylebox_override("normal",style)
+		if toolbar_style_selection != GameState.selected:
+			var style := FarmUIStyle.box(FarmUIStyle.GREEN if i == GameState.selected else FarmUIStyle.INK,FarmUIStyle.GOLD if i == GameState.selected else Color("6c8265"),6)
+			style.content_margin_left = 6
+			style.content_margin_right = 6
+			style.content_margin_top = 5
+			style.content_margin_bottom = 5
+			tool_buttons[i].add_theme_stylebox_override("normal",style)
+	toolbar_style_selection = GameState.selected
 
 func set_prompt(text: String, nearby: bool) -> void:
 	prompt_label.text = text
@@ -367,7 +370,7 @@ func refresh_farm_guide() -> void:
 	var next := "在屋前开垦一块地"
 	if completed.has("翻土"): next = "选种子，播在翻好的土地上"
 	if completed.has("播种"): next = "换水壶，为种子浇水"
-	if completed.has("浇水"): next = "回屋休息，明天继续浇水"
+	if completed.has("浇水"): next = "白天可歇椅恢复，20:00后回屋睡觉"
 	if completed.has("收获"): next = "第一份收获！去种子摊看看吧"
 	progress_label.text = "农场手记  /  " + next
 

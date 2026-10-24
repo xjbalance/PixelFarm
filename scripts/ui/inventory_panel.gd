@@ -10,6 +10,8 @@ var quantity_label: Label
 var materials_tab: bool = false
 var aquaculture_tab: bool = false
 var life_tab: bool = false
+var pending_sale: Dictionary = {}
+var sale_serial: int = 0
 
 func _ready() -> void:
 	add_to_group("modal_panels")
@@ -52,11 +54,12 @@ func _ready() -> void:
 	quantity_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	footer.add_child(quantity_label)
 	footer.add_child(FarmUIStyle.button("+",func(): change_quantity(1),48))
-	footer.add_child(FarmUIStyle.label("浇水后睡觉，作物才会成长。",15))
+	footer.add_child(FarmUIStyle.label("浇水后跨日成长 · 20:00后可睡觉",15))
 	Inventory.changed.connect(refresh)
 
 func open_panel(as_shop: bool) -> void:
 	if GameState.modal: return
+	pending_sale.clear();sale_serial+=1
 	shop_mode = as_shop
 	materials_tab = false
 	aquaculture_tab = false
@@ -68,6 +71,7 @@ func open_panel(as_shop: bool) -> void:
 
 func close_panel() -> void:
 	DiamondPayments.cancel(self)
+	pending_sale.clear();sale_serial+=1
 	hide()
 	GameState.set_modal(false)
 
@@ -84,6 +88,12 @@ func refresh() -> void:
 	for child in rows.get_children():
 		rows.remove_child(child)
 		child.queue_free()
+	if not pending_sale.is_empty():
+		var detail:=FarmUIStyle.label("出售%s ×%d，获得%d金币？\n出售后无法撤回，请先留好委托和修缮所需材料。" % [Catalog.item_name(pending_sale.item),pending_sale.amount,pending_sale.total],20,FarmUIStyle.GOLD)
+		detail.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;rows.add_child(detail)
+		rows.add_child(FarmUIStyle.button("确认出售",confirm_sale.bind(int(pending_sale.token)),180))
+		rows.add_child(FarmUIStyle.button("取消出售",func(): pending_sale.clear();sale_serial+=1;refresh(),180))
+		return
 	if life_tab:
 		refresh_life()
 		return
@@ -116,7 +126,7 @@ func refresh() -> void:
 			row.add_child(FarmUIStyle.button("买 %d 袋\n%s" % [quantity,DiamondPayments.text(FarmEconomy.seed_price(crop_id)*quantity)],buy.bind(crop_id),132))
 			var amount := quantity
 			row.add_child(FarmUIStyle.button("购收获%d个\n%d钻石" % [amount,DiamondPayments.price(int(crop.sell_price)*3*amount)],func(): DiamondPayments.request(self,int(crop.sell_price)*3*amount,func(): DiamondPayments.buy_crop(crop_id,amount); refresh(),true),132))
-			var sell_button := FarmUIStyle.button("出售全部\n%d 金 / 个" % crop.sell_price,sell.bind(crop_id),132)
+			var sell_button := FarmUIStyle.button("出售全部\n%d 金 / 个" % crop.sell_price,request_sale.bind(crop_id),132)
 			sell_button.disabled = Inventory.count(crop_id) == 0
 			row.add_child(sell_button)
 		else:
@@ -144,7 +154,7 @@ func refresh_materials() -> void:
 			if DiamondPayments.good_unlocked(id):
 				var amount := quantity
 				row.add_child(FarmUIStyle.button("钻石购入%d个\n%d钻石" % [amount,int(DiamondPayments.GOODS[id])*amount],func(): DiamondPayments.request(self,int(DiamondPayments.GOODS[id])*amount*100,func(): DiamondPayments.buy_good(id,amount); refresh(),true),150))
-			var button := FarmUIStyle.button("出售全部\n%d 金 / 个" % definition.sell_price,sell.bind(id),150)
+			var button := FarmUIStyle.button("出售全部\n%d 金 / 个" % definition.sell_price,request_sale.bind(id),150)
 			button.disabled = Inventory.count(id) == 0
 			row.add_child(button)
 		else:
@@ -163,6 +173,19 @@ func buy(crop_id: String) -> void:
 
 func sell(crop_id: String) -> void:
 	FarmEconomy.sell(crop_id,Inventory.count(crop_id))
+
+func request_sale(item: String) -> void:
+	if not visible or not shop_mode or Inventory.count(item)<=0 or Catalog.sell_price(item)<=0: return
+	sale_serial+=1
+	pending_sale={"item":item,"amount":Inventory.count(item),"total":Catalog.sell_price(item)*Inventory.count(item),"token":sale_serial}
+	refresh()
+
+func confirm_sale(token: int) -> void:
+	if not visible or not shop_mode or pending_sale.is_empty() or token!=int(pending_sale.token): return
+	var sale:=pending_sale.duplicate()
+	pending_sale.clear();sale_serial+=1
+	FarmEconomy.sell(sale.item,int(sale.amount))
+	refresh()
 
 func equip(crop_id: String) -> void:
 	GameState.select_tool(GameState.tools.find(crop_id+"_seed"))
@@ -201,7 +224,7 @@ func refresh_aquaculture() -> void:
 				var total := cost*amount
 				row.add_child(FarmUIStyle.button("购买%d份\n%s" % [amount,DiamondPayments.text(total)],func(): DiamondPayments.request(self,total,func(): Aquaculture.buy(id,amount);refresh()),132))
 			if int(definition.sell_price)>0:
-				var sell_button := FarmUIStyle.button("出售全部\n%d金/个" % definition.sell_price,sell.bind(id),132)
+				var sell_button := FarmUIStyle.button("出售全部\n%d金/个" % definition.sell_price,request_sale.bind(id),132)
 				sell_button.disabled=Inventory.count(id)==0
 				row.add_child(sell_button)
 		elif definition.kind=="food":
@@ -227,7 +250,7 @@ func refresh_life() -> void:
 		detail.add_child(FarmUIStyle.label("%s ×%d" % [definition.name,Inventory.count(id)],20,FarmUIStyle.GOLD))
 		var description := FarmUIStyle.label(str(definition.get("description","")),15);description.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;detail.add_child(description)
 		if shop_mode and Catalog.sell_price(id)>0:
-			var sell_button := FarmUIStyle.button("出售全部\n%d金 / 个" % Catalog.sell_price(id),sell.bind(id),132);sell_button.disabled=Inventory.count(id)==0;row.add_child(sell_button)
+			var sell_button := FarmUIStyle.button("出售全部\n%d金 / 个" % Catalog.sell_price(id),request_sale.bind(id),132);sell_button.disabled=Inventory.count(id)==0;row.add_child(sell_button)
 		elif not shop_mode and category=="kitchen" and definition.get("kind")=="food":
 			row.add_child(FarmUIStyle.button("食用\n每天一餐",func():
 				if not Kitchen.consume(id): Events.notice.emit("体力已满、今日已用餐、增益尚未结束或缺少料理；物品已保留。")

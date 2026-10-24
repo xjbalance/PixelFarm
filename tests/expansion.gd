@@ -23,6 +23,7 @@ static func gathering(test: Node, game: Node) -> void:
 	GameState.select_tool(6)
 	await test.frames()
 	for _hit in range(3):
+		await test.frames(16) # 三次独立工具动作须经过真实0.24秒，不能只清旧冷却。
 		game.action_cooldown = 0
 		Events.action_requested.emit()
 	await test.frames()
@@ -30,6 +31,7 @@ static func gathering(test: Node, game: Node) -> void:
 	test.check(GameState.stamina == energy-9,"砍树准确扣除每次体力")
 	test.check(field.objects.tree_7_20.collider.disabled,"树木采完解除碰撞")
 	test.check(not field.hit("tree_7_20","axe") and Inventory.count("wood") == 5,"枯竭的树不会重复掉落")
+	await test.frames(16) # 工具动画结束后再验证整段移动距离。
 	Input.action_press("move_up")
 	await test.frames(32)
 	Input.action_release("move_up")

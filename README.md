@@ -1,12 +1,12 @@
 # 像素世界 · Pixel World
 
-**0.7.0《四季万象》**，Godot 4.3 Standard 原创像素经营 RPG。在原工程上整合四季天气、自由钓鱼、湖泊生态、畜牧、厨房加工、四季节日、村民个人事件、家园扩建装修与三张隐藏地图。
+**0.7.1《掌中世界》**，Godot 4.3 Standard 原创像素经营 RPG。在原工程上整合四季天气、自由钓鱼、湖泊生态、畜牧、厨房加工、四季节日、村民个人事件、家园扩建装修与三张隐藏地图。
 
-保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v21**，兼容v1–v20，原应用包名、证书与存档路径保留。
+保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v22**，兼容v1–v21，原应用包名、证书与存档路径保留。
 
-**2,964项自动化检查、356项桌面窗口检查零失败。Android调试APK已构建；没有Android真机验收。**
+本轮在0.7.0内容上完善触控、工具动作、恢复事务、横屏UI、后台安全与新手引导。**3,090项自动化、706项桌面窗口检查零失败**，新增真实SIGKILL后重启验证通过。Android调试APK已生成；[完整报告](docs/REPORT-0.7.1.md)。没有Android真机验收。
 
-[完整开发报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [已知问题](docs/KNOWN-ISSUES-0.7.0.md)
+[当前开发报告](docs/REPORT-0.7.1.md) · [0.7.0内容报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [已知问题](docs/KNOWN-ISSUES-0.7.0.md)
 
 ![春季农场与原湖泊](docs/screenshot-070-farm.png)
 
@@ -18,8 +18,8 @@ Godot **4.3 Standard** 导入`project.godot`，完成素材导入后按F5；不�
 ./.tools/Godot_v4.3-stable_linux.x86_64 --path .
 ```
 
-- [Android调试APK](builds/PixelWorld-0.7.0-debug.apk) · [APK校验和](builds/PixelWorld-0.7.0-debug.apk.sha256)
-- [完整源码包](builds/PixelWorld-0.7.0-source.zip) · [源码校验和](builds/PixelWorld-0.7.0-source.sha256)
+- [Android调试APK](builds/PixelWorld-0.7.1-debug.apk) · [APK校验和](builds/PixelWorld-0.7.1-debug.apk.sha256)
+- [完整源码包](builds/PixelWorld-0.7.1-source.zip) · [源码校验和](builds/PixelWorld-0.7.1-source.sha256)
 
 源码包不含本机引擎、SDK、签名密钥或玩家存档。Android构建必须使用原签名，见[ANDROID.md](docs/ANDROID.md)。本次没有在手机安装或执行覆盖更新。
 
@@ -35,11 +35,13 @@ Godot **4.3 Standard** 导入`project.godot`，完成素材导入后按F5；不�
 | 钓鱼 | 按住追鱼按钮或空格，松开调整 | 长按/松开追鱼按钮 |
 | 装修 | 选择家具、网格落点、确认 | 同样使用原生触屏按钮与滚动 |
 
-浇水时脚底与朝向短暂固定，人物图像不再水平累加偏移；地图点击使用按下时的世界位置，避免跟随相机后释放到另一格。UI、多指、切图、模式切换与后台均有取消/防误触处理。手记“村里的邻居”与地图显示实际活动位置。
+浇水时脚底与朝向短暂固定，人物图像不再水平累加偏移；地图点击使用按下时的世界位置，避免跟随相机后释放到另一格。按下时同时保留NPC/动物身份，释放后不会因它们走动误点地面。目标环区分地面、交互与不可达；UI、多指、混合鼠标触屏、切图、模式切换与后台均有取消/防误触处理。手记“村里的邻居”与地图显示实际活动位置。
 
 ## 每天的安排
 
 现实1秒＝游戏2分钟，一天06:00–24:00，正常约9分钟。20:00前不能主动睡觉，20:00后确认休息；午夜疲劳昏睡恢复六成，每天只结算一次。菜单、对话及后台暂停正常时间。
+
+菜单“操作与生活指南”随时查看八类说明；新玩家轻提示只展示一次，旧存档默认已读。商店“出售全部”现在先确认数量和总价，取消保留物品。
 
 体力不足时可用：屋东休息椅每日3次，每次花20游戏分钟恢复15；背包基础零食每日3份，胡萝卜/土豆/小麦恢复8/12/4；建成茶座后每日热茶40；鱼料理与厨房料理共用每日一餐。满体力不消耗恢复物品或次数，椅子不触发作物/矿石/鱼群跨天。
 
@@ -63,6 +65,7 @@ Godot **4.3 Standard** 导入`project.godot`，完成素材导入后按F5；不�
 ```bash
 python3 tools/check_project.py
 python3 tools/check_windows.py
+python3 tools/check_interrupt_071.py
 python3 tools/simulate_070.py
 python3 tools/build_android.py
 python3 tools/verify_apk_runtime.py
@@ -74,4 +77,4 @@ python3 tools/verify_source_package.py
 
 [经济模型](docs/ECONOMY-0.7.0.md) · [存档迁移](docs/SAVE-MIGRATION.md) · [架构](docs/ARCHITECTURE.md) · [素材溯源](docs/ASSET_PROVENANCE.md) · [变更记录](docs/CHANGELOG.md)
 
-开发分支`development/0.7.0`保留基线3968f07及各阶段提交，未重建项目。[阶段A–E记录](docs/PROGRESS-0.7.0.md)为开发历史；以当前0.7.0报告为准。
+开发分支`development/0.7.1`由5323ce2继续，保留原基线3968f07及各阶段提交，未重建项目。[阶段A–E记录](docs/PROGRESS-0.7.0.md)为开发历史；0.7.0内容和0.7.1修复分别见各版报告。

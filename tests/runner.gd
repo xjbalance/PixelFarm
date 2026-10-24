@@ -103,6 +103,7 @@ func phase_one() -> void:
 	check(game.hud.dialogue.index == 1, "多句对话翻页")
 	game.hud.dialogue.close_dialogue()
 	check(not GameState.modal, "对话关闭后解除暂停")
+	await frames(16) # 上一段农活反馈结束，再独立验证摇杆与第二触点。
 	# 触点 4 持续移动，触点 7 同时按动作键，互不覆盖。
 	game.player.position = Vector2(646,560)
 	var plot_count: int = game.farm.plots.size()

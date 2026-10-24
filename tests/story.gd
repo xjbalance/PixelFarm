@@ -202,6 +202,7 @@ static func weather_and_tools(test: Node,game: Node) -> void:
 	game.farm.plots[key].days = 2
 	test.check(game.context_tool() == "hand","操作辅助识别成熟作物")
 	var carrots: int = Inventory.count("carrot")
+	await test.frames(16) # 浇水动作结束后才能发起收获，断言与经济规则不变。
 	game.action_cooldown = 0
 	game.interact()
 	test.check(Inventory.count("carrot") == carrots+1,"实际情境操作成功收获入包")

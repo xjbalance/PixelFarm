@@ -1,4 +1,5 @@
 extends Node
+var recovery_busy: bool = false
 ## 独立深渊进度；只加载当前楼层，所有采矿/机关/箱子均有稳定ID。
 signal changed
 signal air_changed
@@ -146,19 +147,27 @@ func chest() -> bool:
 	commit()
 	return true
 func ration() -> bool:
-	if GameState.location!="abyss" or state.rations>=3 or state.air>=160 or not Inventory.exchange({"wheat":3,"potato":1},{},0): return false
+	if recovery_busy or GameState.restoring or GameClock.settling or not is_instance_valid(game) or game.backgrounded or game.closing or GameClock.minutes>=1440: return false
+	if GameState.location!="abyss" or state.rations>=3 or state.air>=160: return false
+	recovery_busy=true
+	if not Inventory.exchange({"wheat":3,"potato":1},{},0): recovery_busy=false;return false
 	state.rations+=1
 	state.air=mini(160,int(state.air)+36)
 	commit()
+	recovery_busy=false
 	return true
 func camp() -> bool:
+	if recovery_busy or GameState.restoring or GameClock.settling or not is_instance_valid(game) or game.backgrounded or game.closing or GameClock.minutes>=1440: return false
 	if not near("up") or int(state.depth) not in checkpoints() or state.camp_day==GameClock.day: return false
-	if not Inventory.exchange({"wheat":2,"wood":2},{},0): return false
+	if state.air>=160 and GameState.stamina>=GameState.max_stamina(): return false
+	recovery_busy=true
+	if not Inventory.exchange({"wheat":2,"wood":2},{},0): recovery_busy=false;return false
 	state.air=160
 	state.camp_day=GameClock.day
 	GameState.stamina=mini(GameState.max_stamina(),int(GameState.stamina)+40)
 	GameState.changed.emit()
 	commit()
+	recovery_busy=false
 	return true
 func upgrade() -> bool:
 	if not MineState.near_service("forge") or state.gear>=7: return false
@@ -194,7 +203,7 @@ func rescue(reason: String = "air") -> void:
 	Events.notice.emit("安全绳把你带回升降机。已完成层和检查点保留，可补给后重试。")
 	commit()
 func _process(delta: float) -> void:
-	if GameState.location!="abyss" or GameState.modal or not is_instance_valid(game): return
+	if GameState.location!="abyss" or GameState.modal or not is_instance_valid(game) or game.backgrounded: return
 	tick+=delta
 	if tick<.15: return
 	tick=0

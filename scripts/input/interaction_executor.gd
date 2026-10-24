@@ -2,7 +2,7 @@ class_name TouchInteractionExecutor
 extends RefCounted
 ## 不拥有库存、奖励或剧情状态；到达后仅向原规则系统请求一次。
 static func execute(game: Node, target: Dictionary, navigation: WorldNavigation) -> void:
-	if GameState.modal: return
+	if GameState.modal or game.backgrounded or game.player.action_time > 0: return
 	if target.has("object"):
 		if not is_instance_valid(target.object) or not target.object.is_visible_in_tree(): return
 		target.point = target.object.global_position
@@ -22,4 +22,4 @@ static func execute(game: Node, target: Dictionary, navigation: WorldNavigation)
 			var object: Node2D = target.object
 			var tool: String = GameState.tool() if GameState.manual_tool or not Story.assisted_tools else FarmResourceCatalog.TYPES[object.kind].tool
 			GameState.manual_tool = false
-			game.world.resource_field.hit(object.resource_id,tool)
+			if game.world.resource_field.hit(object.resource_id,tool): game.player.start_action("采集")

@@ -63,10 +63,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	var bounds := Rect2(Livestock.SITES[entry.site]+Vector2(-112,-46),Vector2(224,150))
 	global_position=global_position.clamp(bounds.position,bounds.end-Vector2.ONE)
-	entry.position=[snappedf(global_position.x,.01),snappedf(global_position.y,.01)]
+	# 更新既有两数数组，避免18只动物每物理帧分配新的保存数组。
+	entry.position[0]=snappedf(global_position.x,.01)
+	entry.position[1]=snappedf(global_position.y,.01)
 	if velocity.length()>1:
+		var old_frame: int=int(animation*4)%2
 		animation+=delta
-		queue_redraw()
+		# 节点位移由渲染器同步；只有实际像素帧变化才重建绘制指令。
+		if int(animation*4)%2!=old_frame: queue_redraw()
 
 func _draw() -> void:
 	var entry := Livestock.animal(animal_id)

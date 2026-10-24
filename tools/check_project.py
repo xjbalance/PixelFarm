@@ -43,6 +43,10 @@ steps = [
     ('quality-070', ['--fixed-fps','60','res://tests/quality_070_runner.tscn']),
     ('performance-070', ['--fixed-fps','60','res://tests/performance_070.tscn']),
     ('finale-070', ['--fixed-fps','60','res://tests/finale_070_runner.tscn']),
+    ('palm-071', ['--fixed-fps','60','res://tests/palm_runner.tscn']),
+    ('recovery-071', ['--fixed-fps','60','res://tests/recovery_071_runner.tscn']),
+    ('tutorial-ui-071', ['--fixed-fps','60','res://tests/tutorial_071_runner.tscn']),
+    ('performance-071', ['--fixed-fps','60','res://tests/performance_071.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),
@@ -104,6 +108,12 @@ steps = [
     ('world-progress-d-restart', ['--fixed-fps', '60', 'res://tests/world_progress_d_persistence.tscn']),
     ('world-progress-d-corrupt', ['--fixed-fps', '60', 'res://tests/world_progress_d_persistence.tscn', '--', '--corrupt-world-progress']),
     ('world-progress-d-backup', ['--fixed-fps', '60', 'res://tests/world_progress_d_persistence.tscn']),
+    ('palm-write', ['--fixed-fps','60','res://tests/palm_persistence.tscn','--','--write-palm']),
+    ('palm-restart', ['--fixed-fps','60','res://tests/palm_persistence.tscn']),
+    ('palm-interrupt', ['res://tests/palm_persistence.tscn','--','--interrupt-palm']),
+    ('palm-interrupted-restart', ['--fixed-fps','60','res://tests/palm_persistence.tscn']),
+    ('palm-corrupt', ['res://tests/palm_persistence.tscn','--','--corrupt-palm']),
+    ('palm-backup', ['--fixed-fps','60','res://tests/palm_persistence.tscn']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:

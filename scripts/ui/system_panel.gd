@@ -15,14 +15,23 @@ func _ready() -> void:
 	var column := VBoxContainer.new()
 	column.add_theme_constant_override("separation",16)
 	add_child(column)
-	title = FarmUIStyle.label("像素世界 · 0.7.0 四季万象",26,FarmUIStyle.GOLD)
+	title = FarmUIStyle.label("像素世界 · 0.7.1 掌中世界",26,FarmUIStyle.GOLD)
 	column.add_child(title)
+	var scroll := ScrollContainer.new()
+	scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"))
+	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	column.add_child(scroll)
+	var content := VBoxContainer.new()
+	content.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	content.add_theme_constant_override("separation",16)
+	scroll.add_child(content)
 	body = FarmUIStyle.label("",17)
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	column.add_child(body)
+	content.add_child(body)
 	actions = VBoxContainer.new()
 	actions.add_theme_constant_override("separation",8)
-	column.add_child(actions)
+	content.add_child(actions)
 
 func open_panel(for_sleep: bool = false) -> void:
 	if GameState.modal: return
@@ -30,7 +39,7 @@ func open_panel(for_sleep: bool = false) -> void:
 	sleep_mode = for_sleep
 	GameState.set_modal(true)
 	show()
-	title.text = "让今天好好结束" if for_sleep else "像素世界 · 0.7.0 四季万象"
+	title.text = "让今天好好结束" if for_sleep else "像素世界 · 0.7.1 掌中世界"
 	body.text = "睡到明天早上 06:00，恢复全部体力。\n今天浇过水且适应季节的作物将成长一天。" if for_sleep else "点击地面行走，点击人物或物件靠近后交互。\n工具栏选择优先用于下一次点击；辅助开关仍有效。\nWASD / 方向键移动 · E 操作 · Q / 1—9 工具\n背包 B · 委托 J · 手记 M · 保存 F5 · 读取 F9"
 	for child in actions.get_children():
 		actions.remove_child(child)
@@ -63,6 +72,11 @@ func open_panel(for_sleep: bool = false) -> void:
 			open_panel()
 		)
 		actions.add_child(assist)
+		actions.add_child(FarmUIStyle.button("操作与生活指南",func():
+			body.text=GameTutorial.help_text()
+			for child in actions.get_children(): child.hide()
+			actions.add_child(FarmUIStyle.button("返回设置",func(): close_panel();open_panel()))
+		))
 	if not for_sleep and OS.is_debug_build():
 		var diagnostic := FarmUIStyle.button("本地试玩记录："+("开" if Playtest.enabled else "关")+"（不上传）",func(): Playtest.toggle(); close_panel(); open_panel())
 		actions.add_child(diagnostic)

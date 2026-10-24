@@ -15,6 +15,7 @@ var previous := Vector2.ZERO
 var planned := Vector2.ZERO
 var marker := Vector2.ZERO
 var marker_time: float = 0
+var marker_color := Color("ffe59a")
 var execution_count: int = 0
 
 func setup(owner_game: Node) -> void:
@@ -35,17 +36,23 @@ func cancel() -> void:
 	path.clear()
 	target.clear()
 	marker_time = 0
+	queue_redraw()
 	if game:
 		game.player.auto_direction = Vector2.ZERO
 		game.player.velocity = Vector2.ZERO
 	state = State.IDLE
 
 func request(point: Vector2) -> void:
+	request_target(TouchInteractionResolver.resolve(game,point))
+
+func request_target(intent: Dictionary) -> void:
 	cancel()
 	if GameState.modal or game.backgrounded or GameState.control_mode != "tap": return
-	target = TouchInteractionResolver.resolve(game,point)
+	if intent.is_empty(): return
+	target = intent.duplicate()
 	marker = target.point
 	marker_time = 0.7
+	marker_color = Color("ffe59a") if target.kind=="ground" else Color("a5e3c6")
 	retries = 0
 	elapsed = 0
 	stalled = 0
@@ -76,13 +83,16 @@ func refresh_target() -> bool:
 
 func fail() -> void:
 	Playtest.record("navigation_fail",{"source":GameState.location,"depth":AbyssState.state.depth if GameState.location=="abyss" else 0})
+	var rejected: Vector2=target.get("point",marker)
 	cancel()
 	state = State.FAILED
+	marker=rejected;marker_color=Color("ec9b86");marker_time=.7;queue_redraw()
 	Events.notice.emit("暂时走不到那里，试试附近的空地。")
 
 func _physics_process(delta: float) -> void:
-	marker_time = maxf(0,marker_time-delta)
-	queue_redraw()
+	if marker_time > 0:
+		marker_time = maxf(0,marker_time-delta)
+		queue_redraw()
 	if state not in [State.PATHFINDING,State.MOVING]: return
 	if game.player.action_time>0:
 		game.player.auto_direction=Vector2.ZERO
@@ -98,6 +108,7 @@ func _physics_process(delta: float) -> void:
 		if Engine.get_physics_frames() >= navigation.ready_frame: plan()
 		return
 	if not refresh_target(): return
+	if target.has("object"): marker=target.point
 	since_plan += delta
 	if game.player.global_position.distance_to(previous) < 0.1: stalled += delta
 	else: stalled = 0
@@ -131,11 +142,17 @@ func _physics_process(delta: float) -> void:
 			execution_count += 1
 			TouchInteractionExecutor.execute(game,pending,navigation)
 		state = State.IDLE
+		if marker_time > 0: marker_time = minf(marker_time,0.25)
+		queue_redraw()
 		return
 	var offset: Vector2 = path[cursor]-game.player.global_position
 	game.player.auto_direction = offset.normalized()*minf(1,offset.length()/(game.player.movement_speed()*delta))
+	queue_redraw()
 
 func _draw() -> void:
-	if marker_time <= 0: return
-	draw_arc(marker,11,0,TAU,24,Color(1,.85,.45,marker_time/0.7),2)
-	draw_circle(marker,2,Color("fff0b6"))
+	var active: bool=state in [State.PATHFINDING,State.MOVING]
+	if marker_time <= 0 and not active: return
+	var tint := marker_color
+	tint.a=maxf(.45 if active else 0.0,marker_time/.7)
+	draw_arc(marker,11,0,TAU,24,tint,2)
+	draw_circle(marker,2,tint)

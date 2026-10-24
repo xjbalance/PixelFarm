@@ -22,8 +22,11 @@ func validate(raw: Variant, day: int) -> bool:
 	return FarmSaveSchema.whole(raw.get("day"),1,day) and FarmSaveSchema.whole(raw.get("rests"),0,REST_LIMIT) and FarmSaveSchema.whole(raw.get("snacks"),0,SNACK_LIMIT)
 func near_bench() -> bool:
 	return is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(BENCH)<=54
+func available() -> bool:
+	# 暂停菜单允许吃东西；后台、离场和读档中的旧回调不能提交恢复事务。
+	return not busy and not GameClock.settling and not GameState.restoring and is_instance_valid(game) and not game.backgrounded and not game.closing
 func can_rest() -> bool:
-	return not busy and not GameClock.settling and near_bench() and GameClock.minutes+20<1440 and int(snapshot().rests)<REST_LIMIT and GameState.stamina<GameState.max_stamina()
+	return available() and near_bench() and GameClock.minutes+20<1440 and int(snapshot().rests)<REST_LIMIT and GameState.stamina<GameState.max_stamina()
 func rest(expected_day: int = GameClock.day, expected_used: int = -1) -> bool:
 	if expected_day!=GameClock.day or not can_rest():
 		Events.notice.emit("请到屋东休息椅边；每天可歇三次，午夜前留够20分钟，满体力不消耗次数。")
@@ -38,7 +41,7 @@ func rest(expected_day: int = GameClock.day, expected_used: int = -1) -> bool:
 	busy=false
 	return true
 func eat_crop(id: String) -> bool:
-	if busy or GameClock.settling or not FOOD.has(id) or GameState.stamina>=GameState.max_stamina() or int(snapshot().snacks)>=SNACK_LIMIT: return false
+	if not available() or GameClock.minutes>=1440 or not FOOD.has(id) or GameState.stamina>=GameState.max_stamina() or int(snapshot().snacks)>=SNACK_LIMIT: return false
 	busy=true
 	if not Inventory.exchange({id:1},{},0): busy=false;return false
 	state=snapshot();state.snacks+=1

@@ -35,10 +35,24 @@ func _process(delta: float) -> void:
 	accumulator += delta
 	fade = maxf(0,fade-delta)
 	banner_time = maxf(0,banner_time-delta)
-	if not had_overlay and (not GameClock.running or GameState.modal or GameState.location in INDOORS): return
+	# 转场结束必须再清除一帧；室内或暂停时不能留下最后一层半透明遮罩。
+	if had_overlay and fade<=0 and banner_time<=0:
+		queue_redraw()
+		accumulator=0
+		return
+	if not had_overlay and not animation_active():
+		accumulator=0
+		return
 	if accumulator >= 0.05:
 		accumulator = 0
 		queue_redraw()
+
+func animation_active() -> bool:
+	if not GameClock.running or GameState.modal or GameState.location in INDOORS: return false
+	var weather: String=GameWeather.weather_id()
+	if weather in ["cloudy","rain","heavy_rain","storm","snow","blizzard","fog"]: return true
+	if weather=="meteor": return GameWeather.is_meteor_night()
+	return weather=="clear" and GameClock.minutes>=1140 and Calendar.season()!=3
 
 func _draw() -> void:
 	if size.x<=0 or size.y<=0: return

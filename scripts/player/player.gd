@@ -9,14 +9,21 @@ var animation_time: float = 0.0
 var action_time: float = 0
 var action_facing := Vector2.DOWN
 var action_kind: String=""
+var suspended: bool = false
 
 func _ready() -> void:
 	add_to_group("farm_player")
 	Events.farm_effect.connect(func(_origin: Vector2,_kind: String):
-		action_time=0.24;action_kind=_kind;action_facing=facing;auto_direction=Vector2.ZERO;velocity=Vector2.ZERO
+		start_action(_kind)
 	)
 
+func start_action(kind: String) -> void:
+	action_time=0.24;action_kind=kind;action_facing=facing;auto_direction=Vector2.ZERO;velocity=Vector2.ZERO
+
 func _physics_process(delta: float) -> void:
+	if suspended:
+		velocity=Vector2.ZERO
+		return
 	action_time = maxf(0,action_time-delta)
 	var direction := Vector2.ZERO
 	if not GameState.modal and action_time<=0:

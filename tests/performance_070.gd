@@ -28,6 +28,6 @@ func run() -> void:
 	check(clean_input,"压力切图与模式切换始终清除旧目标和自动输入")
 	transitions.sort();navigation.sort()
 	var report: Dictionary={"version":"0.7.0","platform":"Linux headless Godot4.3","android_measurement":false,"warmup":24,"switches":240,"areas":areas,"nodes_start":nodes_start,"nodes_end":nodes_end,"static_memory_growth_bytes":growth,"change_call_ms_p50":transitions[transitions.size()/2],"change_call_ms_p95":transitions[int(transitions.size()*.95)],"navigation_rebuild_ms_p50":navigation[navigation.size()/2],"navigation_rebuild_ms_p95":navigation[int(navigation.size()*.95)],"limits":"Change-call timing excludes deferred scene presentation; no mobile FPS, GPU, power, thermal or long-session RSS claim."}
-	var file:=FileAccess.open("res://docs/PERFORMANCE-0.7.0.json",FileAccess.WRITE);file.store_string(JSON.stringify(report,"\t"));file.close()
+	var file:=FileAccess.open("res://builds/PERFORMANCE-070-regression.json",FileAccess.WRITE);file.store_string(JSON.stringify(report,"\t"));file.close()
 	print("PERFORMANCE 070 ",JSON.stringify(report));print("PERFORMANCE 070 RESULT: %d checks, %d failures" % [checked,failed])
 	game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(4);get_tree().quit(1 if failed else 0)

@@ -1,0 +1,42 @@
+{
+  "animals": {
+    "count": 18,
+    "physics_hz": 60,
+    "position_arrays_reallocated_per_physics_frame": 0,
+    "sprite_frames_hz": 4
+  },
+  "npc_batch": {
+    "legacy_call_us": 11290,
+    "legacy_full_samples": 12,
+    "requests": 12,
+    "scope": "Linux headless same-frame NPC scheduling CPU calls; not Android FPS",
+    "shared_call_us": 1973,
+    "shared_full_samples": 1
+  },
+  "version": "0.7.1",
+  "android_measurement": false,
+  "lifecycle": {
+    "android_measurement": false,
+    "areas": [
+      "farm",
+      "home",
+      "village",
+      "mist_forest",
+      "lake_ruins",
+      "old_temple"
+    ],
+    "change_call_ms_p50": 0.337,
+    "change_call_ms_p95": 0.441,
+    "limits": "Change-call timing excludes deferred scene presentation; no mobile FPS, GPU, power, thermal or long-session RSS claim.",
+    "navigation_rebuild_ms_p50": 3.494,
+    "navigation_rebuild_ms_p95": 4.006,
+    "nodes_end": 1055,
+    "nodes_start": 1055,
+    "platform": "Linux headless Godot4.3",
+    "static_memory_growth_bytes": 20596,
+    "switches": 240,
+    "warmup": 24,
+    "fixture_version": "0.7.0"
+  },
+  "limits": "Linux CPU samples and Godot static memory only. Not mobile FPS/RSS/GPU/power/thermal or long-session human playtest."
+}

@@ -46,7 +46,7 @@ static func button(text: String, callback: Callable, width: float = 80) -> Butto
 	var node := Button.new()
 	node.set_script(preload("res://scripts/ui/touch_button.gd"))
 	node.text = text
-	node.custom_minimum_size = Vector2(width, 48)
+	node.custom_minimum_size = Vector2(maxf(48, width), 48)
 	node.focus_mode = Control.FOCUS_NONE
 	node.pressed.connect(callback)
 	return node

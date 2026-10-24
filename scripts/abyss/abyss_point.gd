@@ -30,7 +30,7 @@ func interact() -> void:
 			Events.notice.emit("请先选择镐。")
 			return
 		GameState.manual_tool=false
-		AbyssState.mine(symbol)
+		if AbyssState.mine(symbol): Events.farm_effect.emit(global_position,"采矿")
 	elif kind=="utility": AbyssRules.utility(symbol)
 	elif kind=="core": Events.interaction_requested.emit("river:star_core")
 	elif kind=="lever": AbyssState.operate(symbol)

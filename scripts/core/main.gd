@@ -18,6 +18,8 @@ var schedule_restore_pending: bool = false
 var auto_move: Node2D
 var touch_input: Node
 var life_schedule: Node
+var tutorial: GameTutorial
+var prompt_elapsed: float = 0
 
 func _ready() -> void:
 	get_tree().quit_on_go_back = false
@@ -98,6 +100,7 @@ func _ready() -> void:
 	touch_input.set_script(preload("res://scripts/input/touch_input_manager.gd"))
 	add_child(touch_input)
 	touch_input.setup(self)
+	tutorial=GameTutorial.new();add_child(tutorial);tutorial.attach(self)
 	Events.notice.emit("欢迎回家。屋东的信箱里，有一封留给你的信。")
 	if persistence_enabled and (FileAccess.file_exists(FarmSaveStore.PATH) or FileAccess.file_exists(FarmSaveStore.PATH+".bak")):
 		load_game()
@@ -109,7 +112,12 @@ func opening_letter() -> void:
 
 func _process(delta: float) -> void:
 	action_cooldown = maxf(0, action_cooldown - delta)
+	if backgrounded: return
 	if GameState.location == "farm": farm.highlight(player.target_cell())
+	# 提示不是交互判定：10Hz足够跟随，按键/点击执行仍即时查询真实位置。
+	prompt_elapsed+=delta
+	if prompt_elapsed<0.1: return
+	prompt_elapsed=0
 	var resource := resource_target()
 	world.resource_field.highlight(resource)
 	if resource:
@@ -138,13 +146,15 @@ func nearest_interactable() -> Node2D:
 
 func interact() -> void:
 	if auto_move: auto_move.cancel()
-	if GameState.modal or action_cooldown > 0: return
-	action_cooldown = 0.16
+	if backgrounded or GameState.modal or action_cooldown > 0: return
 	var resource := resource_target()
+	var nearest := nearest_interactable() if not resource else null
+	# 工具不能重叠执行，人物/门口交互仍可及时打开原面板或换图。
+	if player.action_time>0 and (resource or nearest==null): return
+	action_cooldown = 0.16
 	if resource:
-		world.resource_field.hit(resource.resource_id,GameState.tool())
+		if world.resource_field.hit(resource.resource_id,GameState.tool()): player.start_action("采集")
 		return
-	var nearest := nearest_interactable()
 	if nearest:
 		nearest.interact()
 	else:
@@ -157,6 +167,7 @@ func resource_target() -> Node2D:
 	return world.resource_field.find_target(player.global_position,player.facing)
 
 func handle_interaction(kind: String) -> void:
+	if backgrounded: return
 	if auto_move: auto_move.cancel()
 	if kind.begins_with("world_development:"): hud.world_development_panel.open_panel(kind.trim_prefix("world_development:"))
 	elif kind.begins_with("exploration:"): hud.exploration_panel.open_panel(kind.trim_prefix("exploration:"))
@@ -246,6 +257,7 @@ func _notification(what: int) -> void:
 	if what in [NOTIFICATION_APPLICATION_FOCUS_OUT,NOTIFICATION_APPLICATION_PAUSED]:
 		if not backgrounded:
 			backgrounded = true
+			player.suspended = true
 			was_running = GameClock.running
 			GameClock.running = false
 			$Audio.in_background = true
@@ -259,8 +271,10 @@ func _notification(what: int) -> void:
 	elif what in [NOTIFICATION_APPLICATION_FOCUS_IN,NOTIFICATION_APPLICATION_RESUMED]:
 		if backgrounded:
 			backgrounded = false
+			player.suspended = false
 			GameClock.running = was_running
 			$Audio.in_background = false
+			hud.update_safe_area()
 			Playtest.record("background",{"value":false})
 	elif what == NOTIFICATION_WM_CLOSE_REQUEST:
 		close_session()
@@ -283,7 +297,7 @@ func show_bag() -> void:
 	hud.inventory_panel.open_panel(false)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if GameState.modal: return
+	if GameState.modal or backgrounded: return
 	if event.is_action_pressed("interact"):
 		interact()
 		get_viewport().set_input_as_handled()
@@ -323,7 +337,7 @@ func context_hint() -> String:
 	if GameState.location=="greenhouse": return "星光温室 · 左右桌准备仪式 · 星灯下交换约定 · 档案桌安排日常"
 	if GameState.location=="abyss": return "深渊%d层 · 空气%d/160 · 检查刻痕、机关和安全绳" % [AbyssState.state.depth,AbyssState.state.air]
 	if GameState.location in MineState.AREAS: return "点击矿脉采一次 · 阶梯返回 · 手记查看矿道任务"
-	if GameState.location == "home": return "床边可以休息 · 下方门口回农场"
+	if GameState.location == "home": return "20:00后床边休息 · 白天可去屋东休息椅 · 下方门口回农场"
 	if GameState.location != "farm": return "沿河慢慢走 · 靠近村民或物件可交互"
 	var plot: Dictionary = farm.plots.get(farm.key(player.target_cell()),{})
 	if not plot.is_empty() and str(plot.crop) != "":
@@ -389,6 +403,7 @@ func on_day_ending(_reason: String) -> void:
 	player.touch_direction=Vector2.ZERO
 	player.auto_direction=Vector2.ZERO
 	player.velocity=Vector2.ZERO
+	player.action_time=0
 	hud.joystick.reset()
 	if touch_input: touch_input.reset()
 	while hud.close_active_panel(): pass
