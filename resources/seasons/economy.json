@@ -47,6 +47,11 @@
       "path": "res://resources/festivals/festivals.json",
       "section": "items",
       "category": "festival"
+    },
+    "exploration": {
+      "path": "res://resources/exploration/exploration.json",
+      "section": "items",
+      "category": "exploration"
     }
   }
 }

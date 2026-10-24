@@ -8,6 +8,9 @@ func refresh() -> void:
 	if (GameState.location in MineState.AREAS or GameState.location=="abyss"):
 		color=Color("74869b") if GameState.location=="abyss" and AbyssState.state.depth>=81 else Color("a6aec0")
 		return
+	if GameState.location in ["lake_ruins","old_temple"]:
+		color=Color("a6b5b8")
+		return
 	if GameState.location in ["home","greenhouse"]:
 		color = Color("fff0d5")
 		return

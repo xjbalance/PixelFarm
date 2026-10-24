@@ -118,14 +118,14 @@ func start(site_id: String) -> bool:
 	if remaining_casts(site_id)<=0:
 		Events.notice.emit("今天的水面需要歇一歇。每个游戏日最多抛竿%d次。" % daily_capacity(site_id))
 		return false
-	if GameState.stamina<int(data.energy_per_cast) or Inventory.count("fishing_bait")<1:
+	if GameState.stamina<Kitchen.energy_cost(int(data.energy_per_cast)) or Inventory.count("fishing_bait")<1:
 		Events.notice.emit("抛竿需要鱼饵1份、体力%d。可以在钓点用小麦制作鱼饵。" % data.energy_per_cast)
 		return false
 	var species := choose_species(site_id,int(state.serial)+1)
 	if species=="": return false
 	busy=true
 	if not Inventory.exchange({"fishing_bait":1},{},0): busy=false; return false
-	GameState.stamina-=int(data.energy_per_cast)
+	GameState.stamina-=Kitchen.energy_cost(int(data.energy_per_cast))
 	GameState.changed.emit()
 	if state.casts_day!=GameClock.day: state.casts_day=GameClock.day;state.casts=0
 	state.casts+=1;state.serial+=1

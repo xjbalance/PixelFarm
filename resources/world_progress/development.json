@@ -1,0 +1,33 @@
+{
+  "board":[752,624],
+  "dock_anchor":[976,720],
+  "community_anchor":[672,720],
+  "lamps":{"west":[560,720],"square":[752,592],"river":[784,752]},
+  "buildings":{
+    "dock":{
+      "1":{"name":"河湾装卸码头","required":{"wood":18,"stone":12,"copper_bar":2},"coins":240,"description":"在东岸加装陆上木台、货箱和系绳，不把河道填成道路。开放两份真实农渔补货单。"},
+      "2":{"name":"岸边交易棚","required":{"wood":26,"stone":16,"iron_bar":3},"coins":480,"description":"完成一笔真实贸易后加设交易棚与保管架。开放料理、畜产和加工品组合订单。"}
+    },
+    "community":{
+      "1":{"name":"三盏归路灯","required":{"wood":16,"stone":12},"coins":180,"description":"立起三盏路灯并整修花坛。傍晚亲自巡灯，再到活动牌交接当天值日。"},
+      "2":{"name":"周末共餐雨棚","required":{"wood":24,"stone":16,"iron_bar":2,"crystal":2},"coins":360,"description":"完成一次巡灯交接后搭起活动桌和雨棚。每周第六天18:00–22:00，村民在这里聚集共餐。"}
+    }
+  },
+  "orders":{
+    "grain_fish":{"name":"林芽的粮鱼车位","level":1,"required":{"wheat":4,"fish_carp":1},"coins":130,"unlock":"basic","description":"报名后新收小麦4份、新得鲤鱼1尾，再带相同实物交货。给农产品留一格车位，也给湖鲜留一格。"},
+    "fresh_baskets":{"name":"阿禾的鲜食篮","level":1,"required":{"carrot":3,"fish_crucian":2},"coins":156,"unlock":"basic","description":"报名后新收胡萝卜3份、新得鲫鱼2尾，现场交付。旧库存可以保留，新产记录不能用购买代替。"},
+    "shared_meal":{"name":"周末便餐补货","level":2,"required":{"potato_bread":2,"fish_carp":2,"egg":2},"coins":260,"unlock":"meal","description":"新烤软面包2份、新得鲤鱼2尾，并照料鸡产生2枚新蛋。把真实食物链装成一张订单。"},
+    "dairy_fish":{"name":"冷柜与河岸晚餐","level":2,"required":{"cheese":1,"milk":2,"fish_grass":1},"coins":218,"unlock":"dairy","description":"接单后新开奶酪加工并领取1份，照料牛产奶2份，再新得草鱼1尾；加工时间按原厨房结算。"}
+  },
+  "trade_cooldown":3,
+  "community":{
+    "lamps":{"name":"归路灯值日","required":{"wood":1,"wheat":1},"items":{"fishing_bait":1},"coins":28,"description":"18:00–22:00走到三盏灯旁各检查一次，再到活动桌交接木材1、小麦1。每点一次1体力，每天只交接一次。"},
+    "supper":{"name":"周末共餐","required":{"potato_bread":1,"fish_soup":1,"milk":1},"items":{"carrot_seed":2},"coins":180,"description":"每周第六天18:00–22:00，检查三盏灯，等至少两位原村民真正来到雨棚旁，再带软面包、鱼汤和牛奶各一份交接。与普通巡灯共享当天额度。"}
+  },
+  "branches":{
+    "trade":{"line":"林芽把农产品车位画在第一行：先走通一张粮鱼订单。村里的灯也会继续修，经营不必只剩一种方向。","recommended":"grain_fish","dock":{"wheat_seed":3},"community":{"carrot_seed":2},"trade_items":{},"trade_coins":8},
+    "explore":{"line":"周砚在码头边留下水位刻度：先把新发现带回来，再决定装多少货。探索得到的记录，也要有大家能坐下来的地方。","recommended":"fresh_baskets","dock":{"fishing_bait":3},"community":{"wild_berry":2},"trade_items":{"fishing_bait":1},"trade_coins":0},
+    "life":{"line":"阿禾给活动桌多留一张凳子：先把归路照亮，再慢慢补货。社区生活和新的贸易路线可以同时长出来。","recommended":"shared_meal","dock":{"hay":3},"community":{"potato_seed":2},"trade_items":{"hay":1},"trade_coins":0},
+    "default":{"line":"发展方向还可以在旧风灯架讨论。先把岸边与归路照料好，两条建设路线都向你开放。","recommended":"grain_fish","dock":{"wheat_seed":1},"community":{"wheat_seed":1},"trade_items":{},"trade_coins":0}
+  }
+}

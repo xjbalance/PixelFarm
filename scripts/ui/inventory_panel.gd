@@ -217,7 +217,7 @@ func refresh_life() -> void:
 	for id in Catalog.items:
 		var definition: Dictionary=Catalog.items[id]
 		var category: String=definition.get("category","")
-		if category not in ["fishing","livestock","kitchen","festival"]: continue
+		if category not in ["fishing","livestock","kitchen","festival","exploration"]: continue
 		var row := HBoxContainer.new();row.custom_minimum_size.y=76;row.add_theme_constant_override("separation",12);rows.add_child(row)
 		var icon := TextureRect.new();icon.custom_minimum_size=Vector2(44,44);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		var path: String="res://assets/"+("festivals" if category=="festival" else category)+"/"+id+".png"

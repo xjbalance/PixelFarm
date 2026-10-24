@@ -1,6 +1,6 @@
 extends Control
 ## 屏幕天气仅呈现。固定绘制预算、无动态光源、不捕获触点；玩法影响由GameWeather控制。
-const INDOORS := ["home","mine_a","mine_b","mine_c","abyss","greenhouse"]
+const INDOORS := ["home","mine_a","mine_b","mine_c","abyss","greenhouse","lake_ruins","old_temple"]
 var time: float = 0
 var accumulator: float = 0
 var fade: float = 0
@@ -28,11 +28,13 @@ func _ready() -> void:
 	)
 
 func _process(delta: float) -> void:
+	var had_overlay: bool=fade>0 or banner_time>0
 	# 钓鱼、对话等模态及后台暂停时，不积累粒子运行时间。
 	if GameClock.running and not GameState.modal: time+=maxf(0,delta)
 	accumulator += delta
 	fade = maxf(0,fade-delta)
 	banner_time = maxf(0,banner_time-delta)
+	if not had_overlay and (not GameClock.running or GameState.modal or GameState.location in INDOORS): return
 	if accumulator >= 0.05:
 		accumulator = 0
 		queue_redraw()

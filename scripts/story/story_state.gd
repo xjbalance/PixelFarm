@@ -9,7 +9,7 @@ var lantern: String = ""
 var seen: Array[String] = []
 var assisted_tools: bool = true
 const SECRET_IDS := ["well","ribbon","post"]
-const NAMES := {"farm":"农场", "home":"你的家", "village":"河湾村","mine_a":"废弃矿道","mine_b":"地下水脉","mine_c":"晶石洞窟","abyss":"深渊勘探","greenhouse":"星光温室"}
+const NAMES := {"farm":"农场", "home":"你的家", "village":"河湾村","mine_a":"废弃矿道","mine_b":"地下水脉","mine_c":"晶石洞窟","abyss":"深渊勘探","greenhouse":"星光温室","mist_forest":"迷雾森林","lake_ruins":"湖底遗迹·排水廊","old_temple":"古老神庙"}
 
 func _ready() -> void:
 	data = JSON.parse_string(FileAccess.get_file_as_string("res://resources/story/wind_lantern.json"))

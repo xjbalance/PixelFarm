@@ -2,7 +2,7 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,18): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,20): return {}
 	var data: Dictionary = raw.duplicate(true)
 	# 旧路线盘的数字格ID也必须规范，防止JSON浮点枚举失配/重复矿格。
 	if data.get("xiaojing") is Dictionary and data.xiaojing.get("cave") is Dictionary:
@@ -91,6 +91,16 @@ static func normalize(raw: Variant) -> Dictionary:
 		if not whole(data.get("day"),1,999999): return {}
 		data.housing=Housing.defaults(int(data.day))
 		data.version=18
+	if int(data.version)==18:
+		if not whole(data.get("day"),1,999999): return {}
+		data.exploration=Exploration.defaults(int(data.day))
+		data.version=19
+	if int(data.version)==19:
+		if not whole(data.get("day"),1,999999): return {}
+		data.world_development=WorldDevelopment.defaults(int(data.day))
+		data.version=20
+	data.world_development=AbyssSaveSchema.canonical(data.get("world_development"))
+	data.exploration=AbyssSaveSchema.canonical(data.get("exploration"))
 	data.housing=AbyssSaveSchema.canonical(data.get("housing"))
 	data.festival=AbyssSaveSchema.canonical(data.get("festival"))
 	data.social=AbyssSaveSchema.canonical(data.get("social"))
@@ -147,6 +157,7 @@ static func valid_current(data: Variant) -> bool:
 	if not Letters.validate(data.get("letters")): return false
 	if data.letters.direction != "" and (not data.get("story") is Dictionary or data.story.get("stage") != 8): return false
 	if not whole(data.get("day"),1,999999) or not Xiaojing.validate(data.get("xiaojing"),int(data.day)): return false
+	if not Exploration.validate(data.get("exploration"),int(data.day)): return false
 	if not Housing.validate(data.get("housing"),int(data.day)): return false
 	if not AquacultureSaveSchema.validate(data.get("aquaculture"),int(data.day)): return false
 	if data.aquaculture.xiaojing.stage>0 and not data.xiaojing.unlocked: return false
@@ -155,7 +166,7 @@ static func valid_current(data: Variant) -> bool:
 	if not AbyssSaveSchema.validate(data.get("abyss"),int(data.day)) or not AbyssSaveSchema.legend(data.get("legend"),data.xiaojing,int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),18,18) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),20,20) or not Story.validate(data.get("story")): return false
 	if data.get("control_mode") not in ["tap","joystick"]: return false
 	if not VillageProjects.validate(data.get("village"),data.get("day"),int(data.story.stage)): return false
 	if not whole(data.get("day"),1,999999): return false
@@ -165,9 +176,10 @@ static func valid_current(data: Variant) -> bool:
 	var minute = data.get("minutes")
 	if not (minute is int or minute is float) or not is_finite(float(minute)) or minute < 360 or minute >= 1440: return false
 	var location = data.get("location")
-	if location not in ["farm","home","village","mine_a","mine_b","mine_c","abyss","greenhouse"]: return false
+	if location not in ["farm","home","village","mine_a","mine_b","mine_c","abyss","greenhouse","mist_forest","lake_ruins","old_temple"]: return false
 	if not MineState.validate(data.get("mines"),int(data.day)) or not ChapterTwo.validate(data.get("chapter_two")): return false
 	if data.abyss.unlocked and ("discussion" not in data.chapter_two.completed or not data.mines.resonance_open or data.mines.tool!=3): return false
+	if location in Exploration.AREAS and location not in data.exploration.unlocked: return false
 	if location=="greenhouse" and (not data.river.venue_used or (not data.xiaojing.married and data.legend.greenhouse<4)): return false
 	if data.river.wedding_step>0 and not data.xiaojing.married: return false
 	if location=="abyss" and not data.abyss.unlocked: return false
@@ -189,7 +201,7 @@ static func valid_current(data: Variant) -> bool:
 		var side_room := Rect2(224,384,128,160) if data.housing.level==2 else Rect2(128,256,224,288)
 		if side_room.has_point(Vector2(data.player[0],data.player[1])): region=side_room
 		elif Rect2(336,416,42,96).has_point(Vector2(data.player[0],data.player[1])): region=Rect2(336,416,42,96)
-	if location == "village" or location in MineState.AREAS or location in ["abyss","greenhouse"]: region = Rect2(10,10,1260,876)
+	if location == "village" or location in MineState.AREAS or location in ["abyss","greenhouse","mist_forest","lake_ruins","old_temple"]: region = Rect2(10,10,1260,876)
 	if not region.has_point(Vector2(pos[0],pos[1])): return false
 	var items = data.get("items")
 	if not items is Dictionary or items.size() > Catalog.items.size(): return false
@@ -219,10 +231,18 @@ static func valid_current(data: Variant) -> bool:
 		if int(data.housing.owned.get("spouse_desk",0))>0: return false
 		for furnishing in data.housing.placed:
 			if furnishing.kind=="spouse_desk": return false
+	if not WorldDevelopment.validate(data.get("world_development"),int(data.day)): return false
+	if (data.world_development.dock>0 or data.world_development.community>0) and (data.story.stage!=8 or data.village.built.size()!=3): return false
 	if not Festival.validate(data.get("festival"),int(data.day)) or not Social.validate(data.get("social"),int(data.day)): return false
+	if not data.xiaojing.unlocked:
+		if data.festival.xiaojing_summer or data.social.active.has("xiaojing"): return false
+		for personal_event in data.social.completed:
+			if personal_event.begins_with("xiaojing_"): return false
 	if not Kitchen.validate(data.get("kitchen"),int(data.day)): return false
 	if data.kitchen.buff.id!="" and data.aquaculture.meal_day==0: return false
 	if not LakeEcology.validate(data.get("ecology"),int(data.day)): return false
+	if "lake_ruins" in data.exploration.unlocked and (not data.ecology.restored or "forest_archive" not in data.exploration.facts or "drain_plate" not in data.exploration.facts): return false
+	if "old_temple" in data.exploration.unlocked and (data.mines.tool!=3 or "mine_c" not in data.mines.unlocked or "forest_archive" not in data.exploration.facts or "lake_archive" not in data.exploration.facts): return false
 	if data.ecology.xiaojing_seen and (not data.xiaojing.unlocked or data.aquaculture.xiaojing.stage<2): return false
 	if not Fishing.validate(data.get("fishing"),int(data.day)) or not Livestock.validate(data.get("livestock"),int(data.day)): return false
 	if not Recovery.validate(data.get("recovery"),int(data.day)): return false

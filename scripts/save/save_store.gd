@@ -2,11 +2,11 @@ class_name FarmSaveStore
 extends RefCounted
 ## 写临时文件后重命名；保留上一次存档。先完整校验再修改运行状态。
 const PATH: String = "user://farm_save.json"
-const VERSION: int = 18
+const VERSION: int = 20
 
 static func snapshot(game: Node) -> Dictionary:
 	return {
-		"housing": Housing.snapshot(), "festival": Festival.snapshot(), "social": Social.snapshot(),
+		"world_development": WorldDevelopment.snapshot(), "exploration": Exploration.snapshot(), "housing": Housing.snapshot(), "festival": Festival.snapshot(), "social": Social.snapshot(),
 		"kitchen": Kitchen.snapshot(), "ecology": LakeEcology.snapshot(), "fishing": Fishing.snapshot(), "livestock": Livestock.snapshot(),
 		"recovery": Recovery.snapshot(), "calendar": Calendar.snapshot(), "world_changes": WorldChanges.snapshot(),
 		"version": VERSION, "location": GameState.location,
@@ -107,6 +107,8 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	AbyssState.restore(data["abyss"])
 	Aquaculture.restore(data["aquaculture"])
 	VillageProjects.restore(data["village"])
+	WorldDevelopment.restore(data["world_development"])
+	Exploration.restore(data["exploration"])
 	Housing.restore(data["housing"])
 	Social.restore(data["social"])
 	WorldChanges.restoring=false

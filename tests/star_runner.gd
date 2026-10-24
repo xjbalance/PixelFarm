@@ -51,6 +51,7 @@ static func fixture(owner_game: Node, married: bool = true) -> void:
 	River.state.legacy_scene=true
 	River.state.old_checkpoints=[5,15]
 	# 该夹具把日期重设到200，新增有日期的节日/个人记录也须属于这个新场景。
+	WorldDevelopment.restore(WorldDevelopment.defaults(GameClock.day))
 	Festival.restore(Festival.defaults(GameClock.day))
 	Social.restore(Social.migrate({"day":GameClock.day,"progress":FarmProgress.snapshot()}))
 	DiamondPayments.selected=false

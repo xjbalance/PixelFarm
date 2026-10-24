@@ -12,6 +12,8 @@ static func resolve(game: Node, point: Vector2) -> Dictionary:
 		var offset: Vector2 = point-object.global_position
 		var rect := Rect2(-34,-65,68,88)
 		if "mine_id" in object or "abyss_id" in object: rect = Rect2(-20,-43,40,58)
+		elif "development_id" in object: rect=object.hit_rect()
+		elif "exploration_id" in object: rect=object.hit_rect()
 		elif "housing_id" in object: rect=object.hit_rect()
 		elif "festival_id" in object: rect=object.hit_rect()
 		elif "site_id" in object: rect=Rect2(-18,-34,36,48)

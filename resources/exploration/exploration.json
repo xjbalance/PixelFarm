@@ -1,0 +1,740 @@
+{
+  "items": {
+    "forest_herb": {
+      "name": "雾林香叶",
+      "sell_price": 8,
+      "kind": "ingredient",
+      "description": "迷雾森林实地采样，可制作叶纹封记；冬季采量较少。"
+    },
+    "rare_fiber": {
+      "name": "韧光纤维",
+      "sell_price": 20,
+      "kind": "material",
+      "description": "林径苇草或神庙织匣保存的耐湿纤维，用于探索手作。"
+    },
+    "ancient_token": {
+      "name": "古水纹片",
+      "sell_price": 0,
+      "kind": "relic",
+      "description": "古代水务档案的编目片，可制作三种纪念封记，不兑换钻石。"
+    },
+    "forest_seal": {
+      "name": "叶纹封记",
+      "sell_price": 0,
+      "kind": "collection",
+      "description": "用雾林香叶和纤维亲手制成的收藏封记。"
+    },
+    "tide_seal": {
+      "name": "潮纹封记",
+      "sell_price": 0,
+      "kind": "collection",
+      "description": "记录湖底排水廊与晶石导流工艺的手作封记。"
+    },
+    "star_seal": {
+      "name": "星纹封记",
+      "sell_price": 0,
+      "kind": "collection",
+      "description": "将星辉矿脉与古神庙归航记录联系起来的手作封记。"
+    }
+  },
+  "areas": {
+    "mist_forest": {
+      "title": "迷雾森林",
+      "theme": "forest",
+      "entry": [
+        7,
+        23
+      ],
+      "exit": "forest_exit",
+      "entrance": "forest_entry",
+      "return_area": "farm",
+      "return_position": [
+        192,
+        304
+      ],
+      "floors": [
+        [
+          3,
+          20,
+          10,
+          5
+        ],
+        [
+          7,
+          12,
+          4,
+          10
+        ],
+        [
+          2,
+          6,
+          10,
+          10
+        ],
+        [
+          12,
+          10,
+          12,
+          9
+        ],
+        [
+          7,
+          13,
+          18,
+          3
+        ],
+        [
+          28,
+          3,
+          9,
+          9
+        ],
+        [
+          24,
+          10,
+          5,
+          3
+        ],
+        [
+          29,
+          18,
+          8,
+          7
+        ],
+        [
+          22,
+          19,
+          9,
+          3
+        ]
+      ],
+      "water": [
+        [
+          31,
+          20,
+          5,
+          3
+        ]
+      ],
+      "gates": [
+        {
+          "id": "forest_trail",
+          "rect": [
+            24,
+            10,
+            2,
+            3
+          ],
+          "kind": "forest"
+        }
+      ]
+    },
+    "lake_ruins": {
+      "title": "湖底遗迹 · 封闭排水廊",
+      "theme": "lake",
+      "entry": [
+        7,
+        23
+      ],
+      "exit": "lake_exit",
+      "entrance": "lake_entry",
+      "return_area": "farm",
+      "return_position": [
+        1264,
+        688
+      ],
+      "floors": [
+        [
+          3,
+          20,
+          9,
+          5
+        ],
+        [
+          7,
+          14,
+          4,
+          9
+        ],
+        [
+          3,
+          5,
+          10,
+          11
+        ],
+        [
+          13,
+          10,
+          11,
+          9
+        ],
+        [
+          10,
+          12,
+          15,
+          3
+        ],
+        [
+          17,
+          17,
+          4,
+          6
+        ],
+        [
+          14,
+          20,
+          8,
+          5
+        ],
+        [
+          29,
+          4,
+          8,
+          10
+        ]
+      ],
+      "water": [
+        [
+          24,
+          2,
+          5,
+          24
+        ]
+      ],
+      "gates": [
+        {
+          "id": "lake_lower_room",
+          "rect": [
+            14,
+            20,
+            8,
+            5
+          ],
+          "kind": "lower_room"
+        },
+        {
+          "id": "lake_stone_bridge",
+          "rect": [
+            24,
+            13,
+            5,
+            2
+          ],
+          "kind": "lake_bridge"
+        }
+      ]
+    },
+    "old_temple": {
+      "title": "古老神庙 · 归航庭",
+      "theme": "temple",
+      "entry": [
+        7,
+        23
+      ],
+      "exit": "temple_exit",
+      "entrance": "temple_entry",
+      "return_area": "village",
+      "return_position": [
+        1168,
+        720
+      ],
+      "floors": [
+        [
+          3,
+          20,
+          8,
+          5
+        ],
+        [
+          7,
+          10,
+          4,
+          13
+        ],
+        [
+          2,
+          3,
+          9,
+          8
+        ],
+        [
+          12,
+          10,
+          12,
+          9
+        ],
+        [
+          10,
+          13,
+          15,
+          3
+        ],
+        [
+          29,
+          3,
+          8,
+          11
+        ],
+        [
+          24,
+          11,
+          5,
+          3
+        ],
+        [
+          15,
+          21,
+          10,
+          4
+        ],
+        [
+          17,
+          17,
+          4,
+          6
+        ]
+      ],
+      "water": [],
+      "gates": [
+        {
+          "id": "temple_light_door",
+          "rect": [
+            11,
+            13,
+            2,
+            3
+          ],
+          "kind": "mirror"
+        },
+        {
+          "id": "temple_archive_door",
+          "rect": [
+            24,
+            11,
+            5,
+            3
+          ],
+          "kind": "temple"
+        }
+      ]
+    }
+  },
+  "entrances": {
+    "forest_entry": {
+      "area": "farm",
+      "position": [
+        208,
+        320
+      ],
+      "title": "西北林径 · 迷雾森林",
+      "destination": "mist_forest",
+      "text": "一排旧木桩沿坡伸进树林。树皮上刻着四种叶纹，仍有人在更深处照料采样架。"
+    },
+    "lake_entry": {
+      "area": "farm",
+      "position": [
+        1296,
+        688
+      ],
+      "title": "湖东旧阶 · 排水检修口",
+      "destination": "lake_ruins",
+      "text": "石阶通向一条封闭拱廊。这里不是潜水入口：先恢复湖泊循环，按森林档案核对排水刻度，旧检修廊才可安全开启。"
+    },
+    "temple_entry": {
+      "area": "village",
+      "position": [
+        1200,
+        688
+      ],
+      "title": "东岸石门 · 古老神庙",
+      "destination": "old_temple",
+      "text": "门柱把矿车、水闸和归航星标刻在一起。带上森林与排水廊的档案，并掌握晶石洞窟和星纹镐的工艺，才能读懂开门的定位线。"
+    }
+  },
+  "points": {
+    "forest_exit": {
+      "area": "mist_forest",
+      "cell": [
+        7,
+        23
+      ],
+      "kind": "exit",
+      "title": "返回农场"
+    },
+    "forest_order": {
+      "area": "mist_forest",
+      "cell": [
+        7,
+        18
+      ],
+      "kind": "note",
+      "title": "四季刻痕",
+      "text": "旧护林员把四枚叶片排在木牌上：嫩芽、繁叶、落穗、霜枝。旁边写着：循四季而行，不是等四季过去。把四处石桩依次点亮，东侧缠枝会松开。"
+    },
+    "forest_spring": {
+      "area": "mist_forest",
+      "cell": [
+        5,
+        10
+      ],
+      "kind": "forest_rune",
+      "symbol": 0,
+      "title": "嫩芽石桩"
+    },
+    "forest_summer": {
+      "area": "mist_forest",
+      "cell": [
+        17,
+        11
+      ],
+      "kind": "forest_rune",
+      "symbol": 1,
+      "title": "繁叶石桩"
+    },
+    "forest_autumn": {
+      "area": "mist_forest",
+      "cell": [
+        20,
+        17
+      ],
+      "kind": "forest_rune",
+      "symbol": 2,
+      "title": "落穗石桩"
+    },
+    "forest_winter": {
+      "area": "mist_forest",
+      "cell": [
+        8,
+        21
+      ],
+      "kind": "forest_rune",
+      "symbol": 3,
+      "title": "霜枝石桩"
+    },
+    "forest_archive": {
+      "area": "mist_forest",
+      "cell": [
+        30,
+        9
+      ],
+      "kind": "note",
+      "required": "forest",
+      "title": "护林员的排水副页",
+      "text": "林径的采样架记录了那场洪水的前夜：有人把湖东检修口留作退路，封闭拱廊原本用于调节灌溉。纸角标着湖东石阶的三道刻线。湖泊循环恢复后，可按这份副页检查旧入口。"
+    },
+    "forest_cache": {
+      "area": "mist_forest",
+      "cell": [
+        34,
+        5
+      ],
+      "kind": "chest",
+      "required": "forest",
+      "title": "护林员的织布匣",
+      "reward": {
+        "rare_fiber": 2,
+        "copper_ore": 3
+      }
+    },
+    "pond_cache": {
+      "area": "mist_forest",
+      "cell": [
+        36,
+        18
+      ],
+      "kind": "chest",
+      "title": "溪石下的小匣",
+      "reward": {
+        "wood": 4,
+        "forest_herb": 2
+      }
+    },
+    "forest_herbs": {
+      "area": "mist_forest",
+      "cell": [
+        4,
+        7
+      ],
+      "kind": "plant",
+      "title": "雾林香叶采样架",
+      "item": "forest_herb",
+      "count": 2,
+      "interval": 2
+    },
+    "forest_reeds": {
+      "area": "mist_forest",
+      "cell": [
+        34,
+        8
+      ],
+      "kind": "plant",
+      "required": "forest",
+      "title": "林径韧苇",
+      "item": "rare_fiber",
+      "count": 1,
+      "interval": 3
+    },
+    "lake_exit": {
+      "area": "lake_ruins",
+      "cell": [
+        7,
+        23
+      ],
+      "kind": "exit",
+      "title": "沿封闭石廊返回湖岸"
+    },
+    "lake_hint": {
+      "area": "lake_ruins",
+      "cell": [
+        7,
+        20
+      ],
+      "kind": "note",
+      "title": "检修廊的三行规程",
+      "text": "拱顶在水面之上，脚下是可排干的检修廊。规程画着三步：先开北闸，露出南室；再转中央分流杆，让水走旁渠；最后开南闸，石桥才露出。旁渠一直保留流水，不能把整条地下河当路。"
+    },
+    "lake_north": {
+      "area": "lake_ruins",
+      "cell": [
+        8,
+        8
+      ],
+      "kind": "valve_north",
+      "title": "北室退水阀"
+    },
+    "lake_flow": {
+      "area": "lake_ruins",
+      "cell": [
+        19,
+        11
+      ],
+      "kind": "flow",
+      "title": "中央旁渠分流杆"
+    },
+    "lake_south": {
+      "area": "lake_ruins",
+      "cell": [
+        18,
+        22
+      ],
+      "kind": "valve_south",
+      "required": "lower_room",
+      "title": "南室石桥阀"
+    },
+    "lake_archive": {
+      "area": "lake_ruins",
+      "cell": [
+        32,
+        7
+      ],
+      "kind": "note",
+      "required": "lake_bridge",
+      "title": "湖务值班原件",
+      "text": "原件没有抹去谁的名字。它记着洪水时的两项选择：先保灌溉水源，随后用矿道空车接人。神庙的归航庭保存着同一套导流图，所谓封矿并不只是为了封住矿石。"
+    },
+    "lake_cache": {
+      "area": "lake_ruins",
+      "cell": [
+        15,
+        23
+      ],
+      "kind": "chest",
+      "required": "lower_room",
+      "title": "南室检修箱",
+      "reward": {
+        "iron_ore": 4,
+        "rare_fiber": 1
+      }
+    },
+    "lake_archive_cache": {
+      "area": "lake_ruins",
+      "cell": [
+        35,
+        10
+      ],
+      "kind": "chest",
+      "required": "lake_bridge",
+      "title": "水务编目匣",
+      "reward": {
+        "ancient_token": 1,
+        "crystal": 3,
+        "rare_fiber": 2
+      }
+    },
+    "temple_exit": {
+      "area": "old_temple",
+      "cell": [
+        7,
+        23
+      ],
+      "kind": "exit",
+      "title": "返回河湾村东岸"
+    },
+    "temple_hint": {
+      "area": "old_temple",
+      "cell": [
+        7,
+        18
+      ],
+      "kind": "note",
+      "title": "归航庭的光谱图",
+      "text": "镜框有朝东、朝顶、朝西三条线；旁边的导流图要求镜面朝西，让光照到麦穗刻线。之后循着真实的运送次序：先麦穗，再水纹，最后星辰。错序会熄灭本轮刻线，但门外的回路可以重新校正。"
+    },
+    "temple_mirror": {
+      "area": "old_temple",
+      "cell": [
+        7,
+        6
+      ],
+      "kind": "mirror",
+      "title": "三向日光镜"
+    },
+    "temple_grain": {
+      "area": "old_temple",
+      "cell": [
+        5,
+        9
+      ],
+      "kind": "temple_rune",
+      "symbol": 0,
+      "title": "麦穗归航台"
+    },
+    "temple_water": {
+      "area": "old_temple",
+      "cell": [
+        19,
+        12
+      ],
+      "kind": "temple_rune",
+      "symbol": 1,
+      "required": "mirror",
+      "title": "水纹归航台"
+    },
+    "temple_star": {
+      "area": "old_temple",
+      "cell": [
+        18,
+        23
+      ],
+      "kind": "temple_rune",
+      "symbol": 2,
+      "required": "mirror",
+      "title": "星辰归航台"
+    },
+    "temple_archive": {
+      "area": "old_temple",
+      "cell": [
+        32,
+        7
+      ],
+      "kind": "note",
+      "required": "temple",
+      "title": "归航庭的最后一页",
+      "text": "星辉晶石的第一份用途是远途归航与水闸联络。旧记录把林地、湖泊和矿道列在同一张维护表里：谁也不能只拿走自己的那一份好处。下一页留着更远山谷的方位，等村庄准备好再继续走。"
+    },
+    "temple_cache": {
+      "area": "old_temple",
+      "cell": [
+        35,
+        10
+      ],
+      "kind": "chest",
+      "required": "temple",
+      "title": "归航档案库",
+      "reward": {
+        "ancient_token": 2,
+        "rare_fiber": 3,
+        "starlight_ore": 2
+      }
+    },
+    "temple_weave": {
+      "area": "old_temple",
+      "cell": [
+        30,
+        5
+      ],
+      "kind": "plant",
+      "required": "temple",
+      "title": "古织匣维护架",
+      "item": "rare_fiber",
+      "count": 1,
+      "interval": 7
+    },
+    "temple_token": {
+      "area": "old_temple",
+      "cell": [
+        34,
+        12
+      ],
+      "kind": "plant",
+      "required": "temple",
+      "title": "水纹片修复台",
+      "item": "ancient_token",
+      "count": 1,
+      "interval": 7
+    }
+  },
+  "recipes": {
+    "forest_seal": {
+      "name": "叶纹封记",
+      "required": {
+        "rare_fiber": 2,
+        "forest_herb": 3,
+        "ancient_token": 1
+      },
+      "reward": {
+        "forest_seal": 1
+      }
+    },
+    "tide_seal": {
+      "name": "潮纹封记",
+      "required": {
+        "rare_fiber": 1,
+        "crystal": 2,
+        "ancient_token": 1
+      },
+      "reward": {
+        "tide_seal": 1
+      }
+    },
+    "star_seal": {
+      "name": "星纹封记",
+      "required": {
+        "rare_fiber": 2,
+        "starlight_ore": 2,
+        "ancient_token": 2
+      },
+      "reward": {
+        "star_seal": 1
+      }
+    }
+  },
+  "fishing_sites": {
+    "forest_pool": {
+      "name": "迷雾林池 · 西岸",
+      "area": "mist_forest",
+      "shore": [
+        976,
+        688
+      ],
+      "water": [
+        1040,
+        688
+      ],
+      "habitat": "lake"
+    },
+    "ruins_channel": {
+      "name": "封闭排水廊 · 西检修台",
+      "area": "lake_ruins",
+      "shore": [
+        720,
+        528
+      ],
+      "water": [
+        816,
+        528
+      ],
+      "habitat": "cavern"
+    }
+  }
+}

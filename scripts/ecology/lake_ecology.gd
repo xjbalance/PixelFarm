@@ -24,7 +24,7 @@ func clean() -> bool:
 	if not GameState.spend_energy(int(data.clean_energy)): busy=false;return false
 	state.clean_day=GameClock.day;state.debris=maxi(0,int(state.debris)-1);state.health=mini(100,int(state.health)+int(data.clean_health));commit();return true
 func plant() -> bool:
-	if busy or GameClock.settling or not near() or state.plant_day>=GameClock.day or state.plants>=data.max_plants or GameState.stamina<int(data.plant_energy): return false
+	if busy or GameClock.settling or not near() or state.plant_day>=GameClock.day or state.plants>=data.max_plants or GameState.stamina<Kitchen.energy_cost(int(data.plant_energy)): return false
 	busy=true
 	if not Inventory.exchange(data.plants_required,{},0): busy=false;return false
 	GameState.spend_energy(int(data.plant_energy));state.plant_day=GameClock.day;state.plants+=1;state.health=mini(100,int(state.health)+int(data.plant_health));commit();return true

@@ -98,7 +98,7 @@ func refresh_gathering() -> void:
 	var gathering := Story.stage == 7 and evening
 	villagers.linya.visible = evening
 	villagers.linya.process_mode = Node.PROCESS_MODE_INHERIT if evening else Node.PROCESS_MODE_DISABLED
-	villagers.linya.set_station(Vector2(610,442) if not VillageProjects.has_project("arbor") else Vector2(704,592))
+	var linya_station := Vector2(610,442) if not VillageProjects.has_project("arbor") else Vector2(704,592)
 	var zhou_station := Vector2(488,480)
 	var ahe_station := Vector2(284,452)
 	if Story.stage == 4: zhou_station = Vector2(752,496)
@@ -109,19 +109,26 @@ func refresh_gathering() -> void:
 		ahe_station = Vector2(592,656)
 	if (GameWeather.is_rainy() or GameWeather.is_snowy()) and not gathering and not ending:
 		# 三位仍留在原地图，改在门廊与木作坊附近，必需人物不消失。
-		villagers.linya.set_station(Vector2(608,432))
+		linya_station=Vector2(608,432)
 		zhou_station=Vector2(488,432)
 		ahe_station=Vector2(272,432)
 	if gathering:
-		villagers.linya.set_station(Vector2(610,442))
+		linya_station=Vector2(610,442)
 		zhou_station = Vector2(548,495)
 		ahe_station = Vector2(713,510)
 	if ending:
-		villagers.linya.set_station(Vector2(700,690))
+		linya_station=Vector2(700,690)
 		zhou_station=Vector2(760,690)
 		ahe_station=Vector2(810,690)
-	villagers.zhou.set_station(zhou_station)
-	villagers.ahe.set_station(ahe_station)
+	var community_linya: Vector2=WorldDevelopment.community_station("linya")
+	if community_linya!=Vector2.INF: linya_station=community_linya
+	villagers.linya.set_station(linya_station)
+	var community_zhou: Vector2=WorldDevelopment.community_station("zhou")
+	if community_zhou!=Vector2.INF: zhou_station=community_zhou
+	var community_ahe: Vector2=WorldDevelopment.community_station("ahe")
+	if community_ahe!=Vector2.INF: ahe_station=community_ahe
+	if villagers.zhou.get_parent()==actors: villagers.zhou.set_station(zhou_station)
+	if villagers.ahe.get_parent()==actors: villagers.ahe.set_station(ahe_station)
 
 func refresh_bridge() -> void:
 	bridge_open = Story.stage >= 5

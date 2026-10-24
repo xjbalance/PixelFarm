@@ -53,3 +53,7 @@ assets/fishing、livestock、kitchen由各自tools/generate_*_assets.py以项目
 ## 0.7.0阶段C
 
 节日7张纪念/装饰图由tools/generate_festival_assets.py原创像素生成；家具与室内地板等15张由tools/generate_housing_assets.py生成。人物继续使用项目原头像与角色，无商业游戏素材。节日绳框/灯会/原村民聚集叠加现有地图；侧间地板、窗户、墙体及装修图形由Housing模块绘制，保留原故事资产。
+
+## 0.7.0阶段D
+
+assets/exploration为三张地图原创地表atlas及6种材料/封记图标，tools/generate_exploration_assets.py程序像素绘制；森林薄雾/季节草叶、排水廊墙体/干道/水桥、神庙光轴与符台均为代码实体呈现。assets/world_progress的招牌/货物等由tools/generate_world_progress_assets.py原创生成，码头/雨棚/灯/花坛按状态绘制。无其他商业游戏素材。

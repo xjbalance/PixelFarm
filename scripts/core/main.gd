@@ -54,6 +54,13 @@ func _ready() -> void:
 	var lake := AquacultureWorld.new()
 	add_child(lake)
 	lake.attach(self)
+	var development_world := WorldDevelopmentWorld.new()
+	add_child(development_world);development_world.attach(self)
+	if not Housing.changed.is_connected(WorldChanges.refresh): Housing.changed.connect(WorldChanges.refresh)
+	if not WorldDevelopment.changed.is_connected(WorldChanges.refresh): WorldDevelopment.changed.connect(WorldChanges.refresh)
+	WorldDevelopment.changed.connect(village.refresh_gathering)
+	var exploration_world := ExplorationWorld.new()
+	add_child(exploration_world);exploration_world.attach(self)
 	var housing_world := HousingWorld.new()
 	add_child(housing_world);housing_world.attach(self)
 	var festival_world := FestivalWorld.new()
@@ -151,7 +158,9 @@ func resource_target() -> Node2D:
 
 func handle_interaction(kind: String) -> void:
 	if auto_move: auto_move.cancel()
-	if kind.begins_with("housing:"): hud.housing_panel.open_panel(kind.trim_prefix("housing:"))
+	if kind.begins_with("world_development:"): hud.world_development_panel.open_panel(kind.trim_prefix("world_development:"))
+	elif kind.begins_with("exploration:"): hud.exploration_panel.open_panel(kind.trim_prefix("exploration:"))
+	elif kind.begins_with("housing:"): hud.housing_panel.open_panel(kind.trim_prefix("housing:"))
 	elif kind.begins_with("festival:"): hud.festival_panel.open_panel(kind.trim_prefix("festival:"))
 	elif kind.begins_with("social_site:"): hud.social_panel.open_site(kind.trim_prefix("social_site:"))
 	elif kind.begins_with("social:"): hud.social_panel.open_panel(kind.trim_prefix("social:"))
@@ -310,6 +319,7 @@ func context_action_name() -> String:
 	return {"hoe":"翻土","water":"浇水","hand":"收获","axe":"砍伐","pickaxe":"采石","fishing_rod":"抛竿"}.get(context_tool(),"播种")
 
 func context_hint() -> String:
+	if GameState.location in Exploration.AREAS: return Story.NAMES[GameState.location]+" · 点击路标和机关，调查提示后再操作，沿入口返回"
 	if GameState.location=="greenhouse": return "星光温室 · 左右桌准备仪式 · 星灯下交换约定 · 档案桌安排日常"
 	if GameState.location=="abyss": return "深渊%d层 · 空气%d/160 · 检查刻痕、机关和安全绳" % [AbyssState.state.depth,AbyssState.state.air]
 	if GameState.location in MineState.AREAS: return "点击矿脉采一次 · 阶梯返回 · 手记查看矿道任务"

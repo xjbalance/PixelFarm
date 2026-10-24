@@ -79,6 +79,7 @@ static func region(location: String) -> Rect2i:
 	return Rect2i(0,0,40,28)
 
 static func entry(location: String) -> Vector2:
+	if location in Exploration.AREAS: return Exploration.entry(location)
 	if location=="greenhouse": return Vector2(640,730)
 	if location=="abyss": return AbyssState.point(AbyssState.layout().entry)
 	if location in MineState.AREAS:
@@ -89,6 +90,9 @@ static func entry(location: String) -> Vector2:
 static func change(game: Node, destination: String, saved_position: Vector2 = Vector2.INF) -> bool:
 	var all_maps := maps(game)
 	if not all_maps.has(destination): return false
+	if destination in Exploration.AREAS and not Exploration.unlocked(destination):
+		Events.notice.emit("遗址尚未开放，请先按入口的调查提示行动。")
+		return false
 	if destination=="greenhouse" and not Xiaojing.state.married and LegendState.state.greenhouse<4: return false
 	if destination=="abyss" and not AbyssState.state.unlocked: return false
 	if destination in MineState.AREAS and destination not in MineState.state.unlocked:

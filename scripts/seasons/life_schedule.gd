@@ -9,9 +9,12 @@ func attach(owner_game: Node) -> void:
 	GameClock.changed.connect(refresh);Festival.changed.connect(refresh);Social.changed.connect(refresh)
 	Story.changed.connect(refresh);StarStory.changed.connect(refresh)
 	refresh()
+static func gathering_summer() -> bool:
+	return Festival.active_id()=="summer" and GameClock.minutes>=1080 and GameClock.minutes<1380 and Story.stage!=7 and not River.gathering() and StarStory.state.wedding_phase not in [1,2,3]
+
 func refresh() -> void:
 	if not is_instance_valid(game) or GameState.restoring: return
-	var gathering: bool=Festival.active_id()=="summer" and GameClock.minutes>=1080 and GameClock.minutes<1380 and Story.stage!=7 and not River.gathering() and StarStory.state.wedding_phase not in [1,2,3]
+	var gathering: bool=gathering_summer()
 	if gathering:
 		for id in ["zhou","ahe"]:
 			var person: Node2D=game.village.villagers[id]
