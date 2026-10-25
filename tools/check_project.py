@@ -47,6 +47,7 @@ steps = [
     ('recovery-071', ['--fixed-fps','60','res://tests/recovery_071_runner.tscn']),
     ('tutorial-ui-071', ['--fixed-fps','60','res://tests/tutorial_071_runner.tscn']),
     ('performance-071', ['--fixed-fps','60','res://tests/performance_071.tscn']),
+    ('touch-polish', ['--fixed-fps','60','res://tests/touch_polish_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),
@@ -114,6 +115,8 @@ steps = [
     ('palm-interrupted-restart', ['--fixed-fps','60','res://tests/palm_persistence.tscn']),
     ('palm-corrupt', ['res://tests/palm_persistence.tscn','--','--corrupt-palm']),
     ('palm-backup', ['--fixed-fps','60','res://tests/palm_persistence.tscn']),
+    ('touch-polish-write', ['--fixed-fps','60','res://tests/touch_polish_persistence.tscn','--','--write-touch-polish']),
+    ('touch-polish-restart', ['--fixed-fps','60','res://tests/touch_polish_persistence.tscn']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:

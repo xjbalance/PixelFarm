@@ -78,6 +78,11 @@ func refresh_target() -> bool:
 		if target.kind == "resource" and game.world.resource_field.state[target.object.resource_id].hp <= 0:
 			fail()
 			return false
+		# 与初次点选的矿脉过滤一致：途中耗尽也立即清理目标与反馈。
+		if ("mine_id" in target.object or "abyss_id" in target.object) and "active" in target.object and not target.object.active:
+			cancel()
+			Events.notice.emit("目标已改变，请重新点选。")
+			return false
 		target.point = target.object.global_position
 	return true
 
@@ -94,11 +99,12 @@ func _physics_process(delta: float) -> void:
 		marker_time = maxf(0,marker_time-delta)
 		queue_redraw()
 	if state not in [State.PATHFINDING,State.MOVING]: return
-	if game.player.action_time>0:
-		game.player.auto_direction=Vector2.ZERO
-		return
 	if GameState.modal or game.backgrounded or GameState.control_mode != "tap" or Input.get_vector("move_left","move_right","move_up","move_down").length() > 0.1:
 		cancel()
+		return
+	if not refresh_target(): return
+	if game.player.action_time>0:
+		game.player.auto_direction=Vector2.ZERO
 		return
 	elapsed += delta
 	if elapsed > 60:
@@ -107,15 +113,23 @@ func _physics_process(delta: float) -> void:
 	if state == State.PATHFINDING:
 		if Engine.get_physics_frames() >= navigation.ready_frame: plan()
 		return
-	if not refresh_target(): return
 	if target.has("object"): marker=target.point
 	since_plan += delta
 	if game.player.global_position.distance_to(previous) < 0.1: stalled += delta
 	else: stalled = 0
 	previous = game.player.global_position
+	# 机关/碰撞变更先等物理同步和重规划，不能用旧网格提前交互。
+	if navigation.dirty:
+		game.player.auto_direction = Vector2.ZERO
+		state = State.PATHFINDING
+		return
+	# 人物/物件一旦满足原距离与视线就停；农田保留原格心站位与脚前格对齐。
+	if target.kind in ["object","resource"] and navigation.legal_interaction(game.player.global_position,target):
+		finish_path()
+		return
 	# NPC 的正常移动不占用卡住重试额度；消失/换图则取消。
 	var moving_target: bool = target.has("object") and target.point.distance_to(planned)>16
-	if navigation.dirty or (since_plan > 0.35 and moving_target) or stalled > 0.65:
+	if (since_plan > 0.35 and moving_target) or stalled > 0.65:
 		if stalled > 0.65:
 			retries += 1
 			navigation.invalidate()
@@ -131,22 +145,25 @@ func _physics_process(delta: float) -> void:
 		if target.kind != "ground" and not navigation.legal_interaction(game.player.global_position,target):
 			state = State.PATHFINDING
 			return
-		game.player.auto_direction = Vector2.ZERO
-		game.player.velocity = Vector2.ZERO
-		state = State.IN_RANGE
-		var pending := target.duplicate()
-		target.clear()
-		path.clear()
-		state = State.INTERACTING
-		if pending.kind != "ground":
-			execution_count += 1
-			TouchInteractionExecutor.execute(game,pending,navigation)
-		state = State.IDLE
-		if marker_time > 0: marker_time = minf(marker_time,0.25)
-		queue_redraw()
+		finish_path()
 		return
 	var offset: Vector2 = path[cursor]-game.player.global_position
 	game.player.auto_direction = offset.normalized()*minf(1,offset.length()/(game.player.movement_speed()*delta))
+	queue_redraw()
+
+func finish_path() -> void:
+	game.player.auto_direction = Vector2.ZERO
+	game.player.velocity = Vector2.ZERO
+	state = State.IN_RANGE
+	var pending := target.duplicate()
+	target.clear()
+	path.clear()
+	state = State.INTERACTING
+	if pending.kind != "ground":
+		execution_count += 1
+		TouchInteractionExecutor.execute(game,pending,navigation)
+	state = State.IDLE
+	if marker_time > 0: marker_time = minf(marker_time,0.25)
 	queue_redraw()
 
 func _draw() -> void:

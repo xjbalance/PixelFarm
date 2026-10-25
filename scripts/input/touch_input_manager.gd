@@ -57,6 +57,8 @@ func _input(event: InputEvent) -> void:
 				origin = event.position
 				pressed_world=world_point(event.position)
 				pressed_target = TouchInteractionResolver.resolve(game,pressed_world) if not blocked else {}
+				# 新目标从按下即接管；等待释放时旧路线不能先抵达并扣除资源。
+				if not blocked and GameState.control_mode=="tap" and not game.backgrounded: game.auto_move.cancel()
 			else: blocked = true
 		else:
 			fingers.erase(event.index)
@@ -74,6 +76,7 @@ func _input(event: InputEvent) -> void:
 			mouse_down = fingers.is_empty() and not ui_at(event.position) and not GameState.modal
 			if not fingers.is_empty(): blocked = true
 			mouse_target = TouchInteractionResolver.resolve(game,mouse_pressed_world) if mouse_down else {}
+			if mouse_down and GameState.control_mode=="tap" and not game.backgrounded: game.auto_move.cancel()
 		else:
 			var accept: bool = mouse_down and fingers.is_empty() and event.position.distance_to(mouse_origin)<12 and not ui_at(event.position)
 			mouse_down = false
