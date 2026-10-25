@@ -4,7 +4,7 @@ func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column := VBoxContainer.new();add_child(column)
 	var header := HBoxContainer.new();column.add_child(header)
-	var title := FarmUIStyle.label("河湾四季历 · 天气与世界记录",24,FarmUIStyle.GOLD)
+	var title := FarmUIStyle.label("河湾四季历 · 天气与世界记录",24,FarmUIStyle.TITLE)
 	title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"))

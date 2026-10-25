@@ -2,11 +2,11 @@ extends Control
 ## 专用长按控制只认一根手指；松开/取消/切后台立即复位。
 var held: bool = false
 var finger: int = -1
-var normal_style: StyleBoxFlat
-var held_style: StyleBoxFlat
+var normal_style: StyleBox
+var held_style: StyleBox
 func _ready() -> void:
-	normal_style=FarmUIStyle.box(FarmUIStyle.GREEN,FarmUIStyle.GOLD,10)
-	held_style=FarmUIStyle.box(FarmUIStyle.GOLD,FarmUIStyle.GOLD,10)
+	normal_style=FarmUIStyle.surface("button")
+	held_style=FarmUIStyle.surface("pressed")
 	mouse_filter=Control.MOUSE_FILTER_STOP
 	custom_minimum_size=Vector2(180,70)
 	Events.modal_changed.connect(func(_active: bool): reset())
@@ -26,6 +26,6 @@ func _input(event: InputEvent) -> void:
 func _draw() -> void:
 	draw_style_box(held_style if held else normal_style,Rect2(Vector2.ZERO,size))
 	var text := "收紧鱼线 ↑" if held else "按住上移 · 松开下移"
-	draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(14,size.y*.5+7),text,HORIZONTAL_ALIGNMENT_CENTER,size.x-28,21,FarmUIStyle.INK if held else FarmUIStyle.CREAM)
+	draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(14,size.y*.5+7),text,HORIZONTAL_ALIGNMENT_CENTER,size.x-28,21,FarmUIStyle.TEXT)
 func _notification(what: int) -> void:
 	if what in [NOTIFICATION_APPLICATION_FOCUS_OUT,NOTIFICATION_APPLICATION_PAUSED]: reset()

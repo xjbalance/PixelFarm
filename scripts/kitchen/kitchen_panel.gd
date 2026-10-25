@@ -9,7 +9,7 @@ func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column := VBoxContainer.new();add_child(column)
 	var header := HBoxContainer.new();column.add_child(header)
-	var title := FarmUIStyle.label("炉火与麦香 · 小屋厨房",24,FarmUIStyle.GOLD);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
+	var title := FarmUIStyle.label("炉火与麦香 · 小屋厨房",24,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	DiamondPayments.controls(column,refresh)
 	var tabs := HBoxContainer.new();column.add_child(tabs)
@@ -60,7 +60,7 @@ func refresh() -> void:
 	if Kitchen.state.buff.id!="": words("当前增益：%s · 剩余%.0f秒有效游戏时间" % [{"speed":"移动+15%","thrift":"体力消耗75%（至少1）","mining":"采矿伤害+1","fishing":"钓鱼带宽+0.03"}[Kitchen.state.buff.id],Kitchen.state.buff.remaining],16)
 	words("持有料理且体力未满时可以继续吃，每次消耗1份；满体力不消耗。已有增益不叠加、不覆盖或延长，菜单和后台暂停计时。",16)
 	var row := HBoxContainer.new();content.add_child(row)
-	row.add_child(FarmUIStyle.label("批数：%d" % quantity,20,FarmUIStyle.GOLD))
+	row.add_child(FarmUIStyle.label("批数：%d" % quantity,20,FarmUIStyle.TEXT))
 	row.add_child(FarmUIStyle.button("−",func(): quantity=maxi(1,quantity-1);refresh(),52));row.add_child(FarmUIStyle.button("+",func(): quantity=mini(8,quantity+1);refresh(),52))
 	match page:
 		"processing": processing()

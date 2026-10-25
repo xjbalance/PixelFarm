@@ -14,7 +14,7 @@ func _ready() -> void:
 	add_child(column)
 	var header := HBoxContainer.new()
 	column.add_child(header)
-	var title := FarmUIStyle.label("湖畔物语 · 岸边养殖",24,FarmUIStyle.GOLD)
+	var title := FarmUIStyle.label("湖畔物语 · 岸边养殖",24,FarmUIStyle.TITLE)
 	title.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	header.add_child(title)
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
@@ -84,7 +84,7 @@ func result(success: bool) -> void:
 func quantities() -> void:
 	var row := HBoxContainer.new()
 	content.add_child(row)
-	row.add_child(FarmUIStyle.label("本次数量：%d" % quantity,20,FarmUIStyle.GOLD))
+	row.add_child(FarmUIStyle.label("本次数量：%d" % quantity,20,FarmUIStyle.TEXT))
 	for amount in [-5,-1,1,5]:
 		row.add_child(FarmUIStyle.button(("+" if amount>0 else "")+str(amount),func(): quantity=clampi(quantity+amount,1,99);refresh(),72))
 

@@ -14,7 +14,7 @@ func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column := VBoxContainer.new();add_child(column)
 	var header := HBoxContainer.new();column.add_child(header)
-	var title := FarmUIStyle.label("河湾垂钓 · 把鱼线交给手心",24,FarmUIStyle.GOLD)
+	var title := FarmUIStyle.label("河湾垂钓 · 把鱼线交给手心",24,FarmUIStyle.TITLE)
 	title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
 	header.add_child(FarmUIStyle.button("收线离开 ×",close_panel,140))
 	DiamondPayments.controls(column,refresh)
@@ -72,7 +72,7 @@ func refresh() -> void:
 		track=Control.new();track.set_script(preload("res://scripts/fishing/fishing_track.gd"));track.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(track)
 		var operation := VBoxContainer.new();operation.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(operation)
 		hold=Control.new();hold.set_script(preload("res://scripts/fishing/fishing_hold.gd"));operation.add_child(hold)
-		operation.add_child(FarmUIStyle.label("按住 ↑\n松开 ↓\n先跟住鱼，别急着一直按。",19,FarmUIStyle.GOLD))
+		operation.add_child(FarmUIStyle.label("按住 ↑\n松开 ↓\n先跟住鱼，别急着一直按。",19,FarmUIStyle.MUTED))
 		update_live();return
 	words(Fishing.sites[context].name+" · "+Calendar.label(),21)
 	words("鱼竿%d级 · 垂钓等级%d · 经验%d · 今天还可抛竿%d次\n鱼饵%d份 · 稳流鱼钩剩%d次 · 体力%d" % [Fishing.state.rod,Fishing.level(),Fishing.state.xp,Fishing.remaining_casts(context),Inventory.count("fishing_bait"),Fishing.state.hook_charges,GameState.stamina],17)

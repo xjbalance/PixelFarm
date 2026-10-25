@@ -9,7 +9,7 @@ func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column := VBoxContainer.new();add_child(column)
 	var header := HBoxContainer.new();column.add_child(header)
-	var title := FarmUIStyle.label("山谷隐径 · 林地、水廊与归航庭",23,FarmUIStyle.GOLD);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	var title := FarmUIStyle.label("山谷隐径 · 林地、水廊与归航庭",23,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	header.add_child(title);header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;column.add_child(scroll)
