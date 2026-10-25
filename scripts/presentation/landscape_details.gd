@@ -35,7 +35,8 @@ func cache_edges() -> void:
 	queue_redraw()
 
 func add_effect(origin: Vector2,kind: String) -> void:
-	effects.append({"origin":origin,"kind":kind,"life":0.8,"total":0.8})
+	var duration: float=0.18 if kind in ["翻土","播种","浇水","收获"] else 0.8
+	effects.append({"origin":origin,"kind":kind,"life":duration,"total":duration})
 
 func _process(delta: float) -> void:
 	clock += delta

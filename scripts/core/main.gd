@@ -159,7 +159,7 @@ func interact() -> void:
 		nearest.interact()
 	else:
 		if GameState.tool() in ["axe","pickaxe"]: Events.notice.emit("面向附近的树木或石堆，再使用工具。")
-		elif GameState.location == "farm": farm.use_tool(player.target_cell(), context_tool())
+		elif GameState.location == "farm": player.begin_farm_action(farm,player.target_cell(),context_tool())
 		else: Events.notice.emit("沿河走走，靠近村民、木牌或长椅再交互。" if GameState.location == "village" else "走到床边休息，或从下方门口返回农场。")
 
 func resource_target() -> Node2D:
@@ -258,6 +258,7 @@ func _notification(what: int) -> void:
 		if not backgrounded:
 			backgrounded = true
 			player.suspended = true
+			player.cancel_farm_action()
 			was_running = GameClock.running
 			GameClock.running = false
 			$Audio.in_background = true

@@ -98,6 +98,9 @@ func _physics_process(delta: float) -> void:
 	if marker_time > 0:
 		marker_time = maxf(0,marker_time-delta)
 		queue_redraw()
+	if state==State.INTERACTING:
+		if game.player.farm_action.is_empty(): state=State.IDLE
+		return
 	if state not in [State.PATHFINDING,State.MOVING]: return
 	if GameState.modal or game.backgrounded or GameState.control_mode != "tap" or Input.get_vector("move_left","move_right","move_up","move_down").length() > 0.1:
 		cancel()
@@ -162,7 +165,7 @@ func finish_path() -> void:
 	if pending.kind != "ground":
 		execution_count += 1
 		TouchInteractionExecutor.execute(game,pending,navigation)
-	state = State.IDLE
+	state = State.IDLE if game.player.farm_action.is_empty() else State.INTERACTING
 	if marker_time > 0: marker_time = minf(marker_time,0.25)
 	queue_redraw()
 

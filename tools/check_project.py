@@ -48,6 +48,7 @@ steps = [
     ('tutorial-ui-071', ['--fixed-fps','60','res://tests/tutorial_071_runner.tscn']),
     ('performance-071', ['--fixed-fps','60','res://tests/performance_071.tscn']),
     ('touch-polish', ['--fixed-fps','60','res://tests/touch_polish_runner.tscn']),
+    ('farming-actions', ['--fixed-fps','60','res://tests/farming_actions_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),
@@ -117,6 +118,10 @@ steps = [
     ('palm-backup', ['--fixed-fps','60','res://tests/palm_persistence.tscn']),
     ('touch-polish-write', ['--fixed-fps','60','res://tests/touch_polish_persistence.tscn','--','--write-touch-polish']),
     ('touch-polish-restart', ['--fixed-fps','60','res://tests/touch_polish_persistence.tscn']),
+    ('farm-windup-write', ['--fixed-fps','60','res://tests/farming_actions_persistence.tscn','--','--write-farm-windup']),
+    ('farm-windup-read', ['--fixed-fps','60','res://tests/farming_actions_persistence.tscn','--','--read-farm-windup']),
+    ('farm-impact-write', ['--fixed-fps','60','res://tests/farming_actions_persistence.tscn','--','--write-farm-impact']),
+    ('farm-impact-read', ['--fixed-fps','60','res://tests/farming_actions_persistence.tscn','--','--read-farm-impact']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:

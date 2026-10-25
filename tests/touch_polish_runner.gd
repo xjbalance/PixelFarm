@@ -225,7 +225,10 @@ func pending_intent_cancellation() -> void:
 	check(game.player.position.distance_to(Vector2(784,496))<1.1 and game.farm.plots.is_empty(),"新触点释放只执行新地面目标，不补旧农活")
 	await fresh(Vector2(624,592))
 	game.farm.plots={"20,18":{"crop":"carrot","days":0,"watered":false}}
-	Touch.tap(self,game,Vector2(656,592));await Touch.finish(self,game)
+	Touch.tap(self,game,Vector2(656,592))
+	for _i in range(12): # 在动作起手时测试取消，而非等待整段农活结束。
+		await frames(1)
+		if game.player.action_time>0: break
 	Touch.tap(self,game,Vector2(784,496))
 	Input.action_press("move_left");await frames(2);Input.action_release("move_left")
 	check(game.auto_move.target.is_empty(),"工具动画等待期间短按键盘也立即取消排队路径")

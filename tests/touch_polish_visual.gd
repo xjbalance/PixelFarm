@@ -36,7 +36,10 @@ func run() -> void:
 	await Touch.place(self,game,"farm",Vector2(624,592))
 	game.farm.plots={"20,18":{"crop":"carrot","days":0,"watered":false}}
 	GameState.manual_tool=false;GameState.stamina=100
-	Touch.tap(self,game,Vector2(656,592));await Touch.finish(self,game)
+	Touch.tap(self,game,Vector2(656,592))
+	for _i in range(12):
+		await frames(1)
+		if game.player.action_time>0: break
 	var at: Vector2=game.player.position
 	var facing: Vector2=game.player.facing
 	var anchored:=true

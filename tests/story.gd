@@ -198,6 +198,7 @@ static func weather_and_tools(test: Node,game: Node) -> void:
 	test.check(game.context_tool() == "water","操作辅助识别已种未浇水的作物")
 	game.action_cooldown = 0
 	game.interact()
+	await test.frames(7)
 	test.check(game.farm.plots[key].watered,"实际交互按键按情境执行浇水")
 	game.farm.plots[key].days = 2
 	test.check(game.context_tool() == "hand","操作辅助识别成熟作物")
@@ -205,6 +206,7 @@ static func weather_and_tools(test: Node,game: Node) -> void:
 	await test.frames(16) # 浇水动作结束后才能发起收获，断言与经济规则不变。
 	game.action_cooldown = 0
 	game.interact()
+	await test.frames(7)
 	test.check(Inventory.count("carrot") == carrots+1,"实际情境操作成功收获入包")
 	Story.assisted_tools = false
 	test.check(game.context_tool() == "carrot_seed","可关闭辅助，保留精确工具选择")

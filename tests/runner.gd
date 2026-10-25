@@ -124,6 +124,7 @@ func phase_one() -> void:
 	second.pressed = false
 	game.action_cooldown = 0
 	get_viewport().push_input(second, true)
+	await frames(7) # 动作生效帧之后验证同一第二触点的翻土结果。
 	check(game.farm.plots.size() == plot_count+1 and joystick.finger == 4, "第二触点完成翻土且不抢占摇杆")
 	touch = touch.duplicate()
 	touch.pressed = false

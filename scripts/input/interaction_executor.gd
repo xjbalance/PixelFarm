@@ -17,7 +17,7 @@ static func execute(game: Node, target: Dictionary, navigation: WorldNavigation)
 			var tool := TouchInteractionResolver.plot_tool(game,target.cell)
 			GameState.manual_tool = false
 			if tool == "": Events.notice.emit("这里暂时无需操作；播种前请在工具栏选种子。")
-			else: game.farm.use_tool(target.cell,tool)
+			else: game.player.begin_farm_action(game.farm,target.cell,tool)
 		"resource":
 			var object: Node2D = target.object
 			var tool: String = GameState.tool() if GameState.manual_tool or not Story.assisted_tools else FarmResourceCatalog.TYPES[object.kind].tool

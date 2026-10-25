@@ -46,14 +46,16 @@ func action_guard() -> void:
 	GameState.select_tool(GameState.tools.find("water"));GameState.manual_tool=false
 	game.farm.plots={"20,18":{"crop":"carrot","days":0,"watered":false},"19,17":{"crop":"carrot","days":0,"watered":false}}
 	game.interact()
+	await frames(7) # 单次农活在0.10秒生效帧后检查结果。
 	check(game.farm.plots["20,18"].watered,"真实交互入口向右完成第一次浇水")
-	await frames(11)
+	await frames(4) # 总共11帧，仍处于原0.24秒动作内。
 	game.farm.plots["20,18"].watered=false
 	var energy: int=GameState.stamina
 	game.interact()
 	check(not game.farm.plots["20,18"].watered and GameState.stamina==energy,"动作尚未结束时再次按交互不重启工具或扣体力")
 	await frames(12)
 	game.interact()
+	await frames(7)
 	check(game.farm.plots["20,18"].watered,"动作结束后再次交互正常恢复，不残留锁定")
 	game.hud.inventory_panel.open_panel(false)
 	energy=GameState.stamina

@@ -27,6 +27,8 @@ static func snapshot(game: Node) -> Dictionary:
 	}
 
 static func write(game: Node, path: String = PATH) -> bool:
+	# 农活生效事务的同步通知尚未结束时，不能把半份跨系统进度写入磁盘。
+	if game.farm.committing: return false
 	var data := snapshot(game)
 	if not valid(data): return false
 	var file := FileAccess.open(path+".tmp",FileAccess.WRITE)
