@@ -3,7 +3,17 @@ extends RefCounted
 const INK := Color("263e38")
 const CREAM := Color("f4e8c9")
 const GREEN := Color("466b52")
-const GOLD := Color("edcc81")
+const GOLD := Color("e7b96b")
+const PAPER := Color("f4e7cd")
+const WOOD := Color("d7b98a")
+const BROWN := Color("754b36")
+const TEXT := Color("35291f")
+const TITLE := Color("66442f")
+const MUTED := Color("705e4c")
+const SUCCESS := Color("496a43")
+const DANGER := Color("984b3e")
+const STAR := Color("66639b")
+const STAR_FILL := Color("7775b4")
 
 static func box(color: Color, border: Color = Color("ae9469"), radius: int = 10) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
@@ -17,24 +27,18 @@ static func box(color: Color, border: Color = Color("ae9469"), radius: int = 10)
 	style.content_margin_bottom = 8
 	return style
 
-static func make_theme() -> Theme:
-	var theme := Theme.new()
-	theme.default_font = load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc")
-	theme.default_font_size = 18
-	theme.set_color("font_color", "Label", CREAM)
-	theme.set_color("font_color", "Button", CREAM)
-	theme.set_color("font_hover_color", "Button", Color.WHITE)
-	theme.set_color("font_pressed_color", "Button", INK)
-	theme.set_color("font_disabled_color", "Button", Color("a3ad9a"))
-	theme.set_stylebox("normal", "Button", box(INK, Color("6c8265")))
-	theme.set_stylebox("hover", "Button", box(GREEN, GOLD))
-	theme.set_stylebox("pressed", "Button", box(GOLD, CREAM))
-	theme.set_stylebox("disabled", "Button", box(Color("394a40"),Color("526353")))
-	theme.set_stylebox("focus", "Button", StyleBoxEmpty.new())
-	theme.set_stylebox("panel", "PanelContainer", box(Color("253e38f5")))
-	return theme
+static func surface(role: String = "paper") -> StyleBoxTexture:
+	var style:=StyleBoxTexture.new()
+	style.texture=load("res://assets/ui/river/"+role+".png")
+	for side in [SIDE_LEFT,SIDE_TOP,SIDE_RIGHT,SIDE_BOTTOM]:
+		style.set_texture_margin(side,8)
+		style.set_content_margin(side,16 if side in [SIDE_LEFT,SIDE_RIGHT] else 8)
+	return style
 
-static func label(text: String, size: int = 18, color: Color = CREAM) -> Label:
+static func make_theme() -> Theme:
+	return load("res://resources/ui/river_theme.tres").duplicate() as Theme
+
+static func label(text: String, size: int = 18, color: Color = TEXT) -> Label:
 	var node := Label.new()
 	node.text = text
 	node.add_theme_font_size_override("font_size", size)

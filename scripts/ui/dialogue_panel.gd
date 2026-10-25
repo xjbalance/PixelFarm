@@ -23,7 +23,7 @@ func _ready() -> void:
 	var content := VBoxContainer.new()
 	content.add_theme_constant_override("separation",10)
 	add_child(content)
-	title_label = FarmUIStyle.label("河湾里的故事",14,Color("a6b7a1"))
+	title_label = FarmUIStyle.label("河湾里的故事",14,FarmUIStyle.MUTED)
 	var title_row := HBoxContainer.new()
 	content.add_child(title_row)
 	title_label.size_flags_horizontal=Control.SIZE_EXPAND_FILL
@@ -43,7 +43,7 @@ func _ready() -> void:
 	words.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	words.add_theme_constant_override("separation",12)
 	row.add_child(words)
-	speaker_label = FarmUIStyle.label("",24,FarmUIStyle.GOLD)
+	speaker_label = FarmUIStyle.label("",24,FarmUIStyle.TITLE)
 	words.add_child(speaker_label)
 	body_label = FarmUIStyle.label("",21)
 	body_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -54,7 +54,7 @@ func _ready() -> void:
 	content.add_child(choices_box)
 	var actions := HBoxContainer.new()
 	content.add_child(actions)
-	hint = FarmUIStyle.label("",14,Color("b0bda6"))
+	hint = FarmUIStyle.label("",14,FarmUIStyle.MUTED)
 	hint.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	actions.add_child(hint)
 	actions.add_child(FarmUIStyle.button("稍后再聊",close_dialogue,120))

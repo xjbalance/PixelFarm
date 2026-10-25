@@ -26,7 +26,7 @@ func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",10);add_child(column)
 	var header:=HBoxContainer.new();column.add_child(header)
-	title=FarmUIStyle.label("背包",26,FarmUIStyle.GOLD);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
+	title=FarmUIStyle.label("背包",26,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
 	header.add_child(FarmUIStyle.button("关闭 ×",close_panel,100))
 	balance=FarmUIStyle.label("",16);balance.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;column.add_child(balance)
 	DiamondPayments.controls(column,refresh);payment_control=column.get_child(column.get_child_count()-1)
@@ -41,7 +41,7 @@ func _ready() -> void:
 	column.add_child(scroll);rows.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(rows)
 	footer=HBoxContainer.new();footer.add_theme_constant_override("separation",12);column.add_child(footer)
 	footer.add_child(FarmUIStyle.label("每次购买",16));footer.add_child(FarmUIStyle.button("−",func(): change_quantity(-1),48))
-	quantity_label=FarmUIStyle.label("1",20,FarmUIStyle.GOLD);quantity_label.custom_minimum_size.x=35;quantity_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;footer.add_child(quantity_label)
+	quantity_label=FarmUIStyle.label("1",20,FarmUIStyle.TITLE);quantity_label.custom_minimum_size.x=35;quantity_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;footer.add_child(quantity_label)
 	footer.add_child(FarmUIStyle.button("+",func(): change_quantity(1),48));footer.add_child(FarmUIStyle.label("每种最多999 · 交易前核对数量",15))
 	Inventory.changed.connect(refresh);GameState.changed.connect(refresh);Xiaojing.changed.connect(refresh)
 	Events.location_changed.connect(func(_id: String):
@@ -227,7 +227,7 @@ func request_sale(item: String) -> void:
 
 func build_sale() -> void:
 	var view:=make_row("sale")
-	var detail:=FarmUIStyle.label("出售%s ×%d，获得%d金币？\n出售后无法撤回，请先留好委托和修缮所需材料。" % [Catalog.item_name(pending_sale.item),pending_sale.amount,pending_sale.total],20,FarmUIStyle.GOLD)
+	var detail:=FarmUIStyle.label("出售%s ×%d，获得%d金币？\n出售后无法撤回，请先留好委托和修缮所需材料。" % [Catalog.item_name(pending_sale.item),pending_sale.amount,pending_sale.total],20,FarmUIStyle.TITLE)
 	detail.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;rows.add_child(detail)
 	add_action(view,"确认出售",confirm_sale.bind(int(pending_sale.token)))
 	add_action(view,"取消出售",func(): pending_sale.clear();sale_serial+=1;refresh())

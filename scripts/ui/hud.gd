@@ -96,8 +96,8 @@ func build_top() -> void:
 	top.add_child(brand)
 	var names := VBoxContainer.new()
 	brand.add_child(names)
-	names.add_child(FarmUIStyle.label("像 素 世 界", 21, FarmUIStyle.GOLD))
-	names.add_child(FarmUIStyle.label("Pixel World · 0.7.1", 12, Color("b9c4a5")))
+	names.add_child(FarmUIStyle.label("像 素 世 界", 21, FarmUIStyle.TITLE))
+	names.add_child(FarmUIStyle.label("Pixel World · 0.7.1", 12, FarmUIStyle.MUTED))
 	var time_panel := PanelContainer.new()
 	top.add_child(time_panel)
 	clock_label = FarmUIStyle.label("第 1 天  ·  06:00", 17)
@@ -118,7 +118,7 @@ func build_top() -> void:
 	var purse := PanelContainer.new()
 	purse.custom_minimum_size.x = 110
 	top.add_child(purse)
-	money_label = FarmUIStyle.label("", 20, FarmUIStyle.GOLD)
+	money_label = FarmUIStyle.label("", 20, FarmUIStyle.TITLE)
 	purse.add_child(money_label)
 	top.add_child(FarmUIStyle.button("背包 B", func(): bag_requested.emit(), 88))
 	top.add_child(FarmUIStyle.button("委托 J",func(): progress_panel.open_panel("journal",false),88))
@@ -151,7 +151,7 @@ func build_controls() -> void:
 	action_button = FarmUIStyle.button("使用\nE", func(): Events.action_requested.emit(), 98)
 	place(action_button, Vector2(1,1), Vector2(1,1), Rect2(-142,-150,116,116))
 	action_button.add_theme_font_size_override("font_size", 23)
-	action_button.add_theme_stylebox_override("normal", FarmUIStyle.box(Color("a37448"),FarmUIStyle.GOLD,50))
+	action_button.add_theme_stylebox_override("normal", FarmUIStyle.surface("nature"))
 	safe.add_child(action_button)
 	var cycle := FarmUIStyle.button("换工具  Q", func(): GameState.select_tool(GameState.selected + 1), 116)
 	place(cycle, Vector2(1,1), Vector2(1,1), Rect2(-142,-212,116,48))
@@ -165,18 +165,18 @@ func build_feedback() -> void:
 	safe.add_child(guide)
 	var content := VBoxContainer.new()
 	guide.add_child(content)
-	content.add_child(FarmUIStyle.label("那些没有寄出的信",16,FarmUIStyle.GOLD))
+	content.add_child(FarmUIStyle.label("那些没有寄出的信",16,FarmUIStyle.TITLE))
 	progress_label = FarmUIStyle.label("农场起步 / 在屋前开垦一块地",12)
 	progress_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(progress_label)
-	quest_label = FarmUIStyle.label("",15,Color("c9d6a1"))
+	quest_label = FarmUIStyle.label("",15,FarmUIStyle.MUTED)
 	quest_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(quest_label)
 	prompt_label = FarmUIStyle.label("",17)
 	prompt_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	place(prompt_label,Vector2(0.5,1),Vector2(0.5,1),Rect2(-320,-150,640,30))
 	safe.add_child(prompt_label)
-	toast = FarmUIStyle.label("",18,FarmUIStyle.GOLD)
+	toast = FarmUIStyle.label("",18,FarmUIStyle.TITLE)
 	toast.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	toast.add_theme_color_override("font_shadow_color",Color("162b26"))
 	toast.add_theme_constant_override("shadow_offset_x",2)
@@ -348,7 +348,7 @@ func refresh_hotbar() -> void:
 		if tool_buttons[i].text!=caption: tool_buttons[i].text=caption
 		tool_buttons[i].tooltip_text="%s · 快捷键%d%s" % [GameState.tool_names[i],i+1," · 种子已用完，请到种子摊补充" if empty_seed else ""]
 		if toolbar_style_selection != GameState.selected:
-			var style := FarmUIStyle.box(FarmUIStyle.GREEN if i == GameState.selected else FarmUIStyle.INK,FarmUIStyle.GOLD if i == GameState.selected else Color("6c8265"),6)
+			var style := FarmUIStyle.surface("selected" if i == GameState.selected else "button")
 			style.content_margin_left = 6
 			style.content_margin_right = 6
 			style.content_margin_top = 5
@@ -395,4 +395,4 @@ func refresh_clock() -> void:
 	var detail: String="%s · %s" % [Story.NAMES[GameState.location],GameWeather.label()]
 	if GameState.location=="abyss": detail="%d层 · 空气%d/160" % [AbyssState.state.depth,AbyssState.state.air]
 	clock_label.text="%s · %s\n%s" % [Calendar.label(),GameClock.clock_text(),detail]
-	clock_label.add_theme_color_override("font_color",Color("efb895") if GameState.location=="abyss" and AbyssState.state.air<30 else FarmUIStyle.CREAM)
+	clock_label.add_theme_color_override("font_color",Color("efb895") if GameState.location=="abyss" and AbyssState.state.air<30 else FarmUIStyle.TEXT)

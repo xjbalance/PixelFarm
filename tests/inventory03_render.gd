@@ -109,8 +109,8 @@ func bag_layout() -> void:
 		legal=legal and button.size.x>=48 and button.size.y>=48 and game.hud.safe.get_global_rect().grow(.5).encloses(button.get_global_rect())
 	check(legal and game.hud.tool_buttons.size()==9,prefix+"九格既有快捷栏可见且保持合法触点尺寸")
 	await tap(game.hud.tool_buttons[3]);await frames(2)
-	var style: StyleBoxFlat=game.hud.tool_buttons[3].get_theme_stylebox("normal")
-	check(GameState.selected==3 and style.border_color==FarmUIStyle.GOLD,prefix+"快捷工具原生选择与高亮对应")
+	var style: StyleBox=game.hud.tool_buttons[3].get_theme_stylebox("normal")
+	check(GameState.selected==3 and style is StyleBoxTexture and style.texture.resource_path.ends_with("/selected.png"),prefix+"快捷工具原生选择与高亮对应")
 
 func capture(category: String) -> void:
 	await RenderingServer.frame_post_draw

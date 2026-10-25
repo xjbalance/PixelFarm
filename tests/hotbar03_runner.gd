@@ -39,8 +39,8 @@ func switching() -> void:
 			touch(game.hud.tool_buttons[index]);await frames(1)
 			selected_correct=selected_correct and GameState.selected==index and game.auto_move.target.is_empty() and game.player.position==at
 			for j in range(9):
-				var style: StyleBoxFlat=game.hud.tool_buttons[j].get_theme_stylebox("normal")
-				styles_correct=styles_correct and style.border_color==(FarmUIStyle.GOLD if j==index else Color("6c8265"))
+				var style: StyleBox=game.hud.tool_buttons[j].get_theme_stylebox("normal")
+				styles_correct=styles_correct and style is StyleBoxTexture and style.texture.resource_path.ends_with("/selected.png" if j==index else "/button.png")
 	check(selected_correct,"36次原生触点切换准确选择同一格，不执行地图移动")
 	check(styles_correct,"快速切换始终只有当前工具具有选中金色边框")
 	var identity:=true
