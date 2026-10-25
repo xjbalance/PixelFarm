@@ -1,0 +1,26 @@
+{
+  "task": "Inventory and hotbar polish 03",
+  "base_commit": "27fdaf2",
+  "schema": 22,
+  "schema_changed": false,
+  "baseline_checks": 3313,
+  "baseline_window": 890,
+  "final_checks": 3395,
+  "final_window": 1049,
+  "new_checks": 82,
+  "new_window": 159,
+  "failures": 0,
+  "production_files": [
+    "scripts/ui/inventory_panel.gd",
+    "scripts/ui/hud.gd",
+    "scripts/ui/item_presentation.gd"
+  ],
+  "capacity_per_id": 999,
+  "hotbar_slots": 9,
+  "android_device_tested": false,
+  "logs": [
+    "builds/inventory03-final-check.log",
+    "builds/inventory03-new-final-check.log",
+    "builds/inventory03-final-window.log"
+  ]
+}

@@ -50,6 +50,8 @@ steps = [
     ('touch-polish', ['--fixed-fps','60','res://tests/touch_polish_runner.tscn']),
     ('farming-actions', ['--fixed-fps','60','res://tests/farming_actions_runner.tscn']),
     ('food-recovery', ['--fixed-fps','60','res://tests/food_recovery_runner.tscn']),
+    ('inventory03', ['--fixed-fps','60','res://tests/inventory03_runner.tscn']),
+    ('hotbar03', ['--fixed-fps','60','res://tests/hotbar03_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),
@@ -123,6 +125,8 @@ steps = [
     ('farm-windup-read', ['--fixed-fps','60','res://tests/farming_actions_persistence.tscn','--','--read-farm-windup']),
     ('farm-impact-write', ['--fixed-fps','60','res://tests/farming_actions_persistence.tscn','--','--write-farm-impact']),
     ('farm-impact-read', ['--fixed-fps','60','res://tests/farming_actions_persistence.tscn','--','--read-farm-impact']),
+    ('inventory03-write', ['--fixed-fps','60','res://tests/inventory03_persistence.tscn','--','--write-inventory03']),
+    ('inventory03-read', ['--fixed-fps','60','res://tests/inventory03_persistence.tscn']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:

@@ -45,6 +45,7 @@ var quest_label: Label
 var scrim: ColorRect
 var completed: Dictionary = {}
 var toolbar_style_selection: int = -1
+var toolbar_signature: Array = []
 
 func _ready() -> void:
 	layer = 10
@@ -62,10 +63,11 @@ func _ready() -> void:
 	build_feedback()
 	Events.notice.connect(show_notice)
 	Events.farm_action.connect(on_farm_action)
-	Events.tool_changed.connect(refresh)
+	Events.tool_changed.connect(refresh_hotbar)
 	GameState.changed.connect(refresh)
 	GameState.control_mode_changed.connect(refresh_controls)
 	Inventory.changed.connect(refresh)
+	Inventory.changed.connect(refresh_hotbar)
 	FarmProgress.changed.connect(refresh)
 	GameClock.changed.connect(refresh)
 	Story.changed.connect(refresh)
@@ -77,6 +79,7 @@ func _ready() -> void:
 	get_viewport().size_changed.connect(update_safe_area)
 	update_safe_area()
 	refresh()
+	refresh_hotbar()
 	refresh_controls()
 
 func refresh_controls() -> void:
@@ -330,10 +333,20 @@ func refresh() -> void:
 		if not next.is_empty(): quest_label.text += "\n"+str(next.title)
 	if Story.stage==8 and not ChapterTwo.current().is_empty():
 		quest_label.text="山谷深处的回声\n"+str(ChapterTwo.current().title)
+
+func refresh_hotbar() -> void:
+	# 工具和库存变化驱动；时钟/体力/剧情刷新无需重复设置九个相同按钮。
+	var signature: Array=[GameState.selected,Inventory.count("carrot_seed"),Inventory.count("potato_seed"),Inventory.count("wheat_seed")]
+	if signature==toolbar_signature: return
+	toolbar_signature=signature
 	for i in range(tool_buttons.size()):
 		var id: String = GameState.tools[i]
 		var amount := str(Inventory.count(id)) if id.ends_with("_seed") else str(i + 1)
-		tool_buttons[i].text = "%s\n%s" % [GameState.tool_names[i],amount]
+		var empty_seed: bool=id.ends_with("_seed") and Inventory.count(id)==0
+		if empty_seed: amount="0 已用完"
+		var caption: String="%s\n%s" % [GameState.tool_names[i],amount]
+		if tool_buttons[i].text!=caption: tool_buttons[i].text=caption
+		tool_buttons[i].tooltip_text="%s · 快捷键%d%s" % [GameState.tool_names[i],i+1," · 种子已用完，请到种子摊补充" if empty_seed else ""]
 		if toolbar_style_selection != GameState.selected:
 			var style := FarmUIStyle.box(FarmUIStyle.GREEN if i == GameState.selected else FarmUIStyle.INK,FarmUIStyle.GOLD if i == GameState.selected else Color("6c8265"),6)
 			style.content_margin_left = 6
