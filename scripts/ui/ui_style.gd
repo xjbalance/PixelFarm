@@ -30,6 +30,9 @@ static func box(color: Color, border: Color = Color("ae9469"), radius: int = 10)
 static func surface(role: String = "paper") -> StyleBoxTexture:
 	var style:=StyleBoxTexture.new()
 	style.texture=load("res://assets/ui/river/"+role+".png")
+	if role=="paper":
+		style.axis_stretch_horizontal=StyleBoxTexture.AXIS_STRETCH_MODE_TILE
+		style.axis_stretch_vertical=StyleBoxTexture.AXIS_STRETCH_MODE_TILE
 	for side in [SIDE_LEFT,SIDE_TOP,SIDE_RIGHT,SIDE_BOTTOM]:
 		style.set_texture_margin(side,8)
 		style.set_content_margin(side,16 if side in [SIDE_LEFT,SIDE_RIGHT] else 8)
@@ -50,7 +53,8 @@ static func button(text: String, callback: Callable, width: float = 80) -> Butto
 	var node := Button.new()
 	node.set_script(preload("res://scripts/ui/touch_button.gd"))
 	node.text = text
-	node.custom_minimum_size = Vector2(maxf(48, width), 48)
+	var target: float=UIMetrics.minimum_target()
+	node.custom_minimum_size = Vector2(maxf(target, width), target)
 	node.focus_mode = Control.FOCUS_NONE
 	node.pressed.connect(callback)
 	if "×" in text or text.begins_with("取消") or text.begins_with("返回"):

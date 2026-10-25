@@ -11,11 +11,20 @@ func run() -> void:
 	if "--theme-only" in OS.get_cmdline_user_args():
 		print("UI 04 THEME RESULT: %d checks, %d failures" % [checked,failed])
 		get_tree().quit(1 if failed else 0);return
-	var configurations: Array=[Vector2i(1280,720),Vector2i(1560,720),Vector2i(1600,720),Vector2i(1280,960)]
-	for size in configurations:
-		await one_configuration(size,false)
-	await one_configuration(Vector2i(1280,720),true)
-	var file:=FileAccess.open("res://builds/ui04-matrix.json",FileAccess.WRITE)
+	var density_only: bool="--density-only" in OS.get_cmdline_user_args()
+	if not density_only:
+		var configurations: Array=[Vector2i(1280,720),Vector2i(1560,720),Vector2i(1600,720),Vector2i(1280,960)]
+		for size in configurations:
+			await one_configuration(size,false)
+		await one_configuration(Vector2i(1280,720),true)
+	UIMetrics.screen_provider=func(): return {"dpi":480.0,"physical":Vector2(2400,1080),"canvas":Vector2(1600,720)}
+	check(UIMetrics.minimum_target()==96,"注入480DPI校准样本后实际控件最小触区为96逻辑像素")
+	await one_configuration(Vector2i(1600,720),false)
+	UIMetrics.screen_provider=func(): return {"dpi":320.0,"physical":Vector2(1920,1080),"canvas":Vector2(1280,720)}
+	check(UIMetrics.minimum_target()==64,"注入320DPI校准样本后实际控件最小触区为64逻辑像素")
+	await one_configuration(Vector2i(1280,720),false,true)
+	UIMetrics.screen_provider=Callable()
+	var file:=FileAccess.open("res://builds/"+("ui04-density-matrix.json" if density_only else "ui04-matrix.json"),FileAccess.WRITE)
 	file.store_string(JSON.stringify({"platform":"Linux Xvfb/Mesa rendered window","android_device_tested":false,"unit":"Godot logical pixels; not physical dp","checks":checked,"failures":failed,"issues":issues},"\t"));file.close()
 	print("UI 04 RESULT: %d checks, %d failures" % [checked,failed])
 	get_tree().quit(1 if failed else 0)
@@ -48,8 +57,11 @@ func theme_materials() -> void:
 		var background: Color=texture.get_pixel(texture.get_width()/2,texture.get_height()/2)
 		states_ok=states_ok and contrast(theme.get_color(state[1],"Button"),background)>=4.5
 	check(states_ok,"按钮普通/悬停/按下三态文字与各自实际材质对比度≥4.5")
+	check(UIMetrics.logical_touch_size(320,Vector2(1920,1080),Vector2(1280,720))==64,"320DPI与1.5倍画布缩放时48dp纯换算为64逻辑像素")
+	check(UIMetrics.logical_touch_size(480,Vector2(2400,1080),Vector2(1600,720))==96,"480DPI与1.5倍画布缩放时48dp纯换算为96逻辑像素")
+	check(UIMetrics.logical_touch_size(0,Vector2(1920,1080),Vector2(1280,720))==48,"缺少设备密度时触区换算安全回退48逻辑像素")
 
-func one_configuration(size: Vector2i, safe_area: bool) -> void:
+func one_configuration(size: Vector2i, safe_area: bool, representative: bool=false) -> void:
 	# 控件初始布局必须面对实际比例，避免只在实例化后拉伸掩盖首帧溢出。
 	get_window().size=size;await frames(3)
 	game=load("res://scenes/main/main.tscn").instantiate();game.persistence_enabled=false;add_child(game)
@@ -59,16 +71,20 @@ func one_configuration(size: Vector2i, safe_area: bool) -> void:
 	Inventory.coins=12345;Inventory.items={"carrot_seed":8,"potato_seed":6,"wheat_seed":4,"carrot":20,"potato":12,"wheat":12,"wood":99,"stone":99,"iron_bar":99,"crystal":99,"fishing_bait":30,"fish_feed":30,"hay":30,"potato_bread":3}
 	Xiaojing.state.diamonds=1400
 	if safe_area: game.hud.apply_safe_area(Rect2(64,0,size.x-128,size.y),Vector2(size))
-	await frames(4);prefix=str(size)+( " safe64" if safe_area else "")
+	await frames(4);prefix=str(size)+( " safe64" if safe_area else "")+(" target%d" % int(UIMetrics.minimum_target()) if UIMetrics.minimum_target()>48 else "")
 	visited.clear()
 	await toolbar()
-	await general_panels()
-	await facility_panels()
-	await married_panels()
+	await task_card()
+	if representative:
+		await density_representatives()
+	else:
+		await general_panels()
+		await facility_panels()
+		await married_panels()
 	var covered:=true;var omitted: Array[String]=[]
 	for panel in get_tree().get_nodes_in_group("modal_panels"):
 		if game.is_ancestor_of(panel) and not visited.has(panel.get_instance_id()): covered=false;omitted.append(panel.get_script().resource_path.get_file())
-	check(covered,prefix+"全部既有模态面板均通过实际公开入口被打开"+str(omitted))
+	if not representative: check(covered,prefix+"全部既有模态面板均通过实际公开入口被打开"+str(omitted))
 	while game.hud.close_active_panel(): pass
 	game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout
 	game.queue_free();await frames(5)
@@ -114,9 +130,10 @@ func audit(panel: Control, title: String) -> void:
 	visited[panel.get_instance_id()]=true
 	check(panel.visible and GameState.modal and game.hud.safe.get_global_rect().grow(.5).encloses(panel.get_global_rect()),prefix+" "+title+"面板在安全区内")
 	var touch_size:=true;var reach:=true;var text_width:=true;var detail: Array[String]=[]
+	var required: float=UIMetrics.minimum_target()
 	var all:=buttons(panel)
 	for button in all:
-		if button.size.x<48 or button.size.y<48: touch_size=false;detail.append("size "+button.text)
+		if button.size.x<required or button.size.y<required: touch_size=false;detail.append("size "+button.text)
 		await reveal(button)
 		if not panel.get_global_rect().grow(.5).encloses(button.get_global_rect()) or not game.hud.safe.get_global_rect().grow(.5).encloses(button.get_global_rect()): reach=false;detail.append("outside "+button.text)
 		if button.has_method("contains_touch") and not button.contains_touch(button.get_global_rect().get_center()): reach=false;detail.append("clip "+button.text)
@@ -125,7 +142,7 @@ func audit(panel: Control, title: String) -> void:
 		# 多行正文可纵向滚动，但不应宽于模态边框或自身容器。
 		var rect: Rect2=label.get_global_rect();var limits: Rect2=panel.get_global_rect()
 		if rect.position.x<limits.position.x-.5 or rect.end.x>limits.end.x+.5: text_width=false;detail.append("label "+label.text.left(25))
-	check(not all.is_empty() and touch_size,prefix+" "+title+"主要按钮至少48逻辑像素")
+	check(not all.is_empty() and touch_size,prefix+" "+title+"主要按钮至少%d逻辑像素" % int(required))
 	check(reach,prefix+" "+title+"全部按钮可滚入并命中合法触区")
 	check(text_width,prefix+" "+title+"中文正文与按钮不横向溢出")
 	if not detail.is_empty(): issues.append({"configuration":prefix,"panel":title,"detail":detail})
@@ -137,13 +154,23 @@ func audit(panel: Control, title: String) -> void:
 func toolbar() -> void:
 	await at("farm",Vector2(656,480))
 	var correct:=true;var dimensions:=true
+	var required: float=UIMetrics.minimum_target()
 	for i in range(game.hud.tool_buttons.size()):
 		var button: Button=game.hud.tool_buttons[i]
-		dimensions=dimensions and button.size.x>=48 and button.size.y>=48 and game.hud.safe.get_global_rect().grow(.5).encloses(button.get_global_rect())
+		dimensions=dimensions and button.size.x>=required and button.size.y>=required and game.hud.safe.get_global_rect().grow(.5).encloses(button.get_global_rect())
 		await tap(button)
 		correct=correct and GameState.selected==i and game.auto_move.target.is_empty()
 	check(dimensions and game.hud.tool_buttons.size()==9,prefix+"九格快捷栏完整可见并有足够触区")
 	check(correct,prefix+"九个快捷工具实际原生触点准确命中")
+
+func task_card() -> void:
+	var proof: Dictionary=FarmSaveStore.snapshot(game)
+	var expanded_height: float=game.hud.guide_panel.size.y
+	await tap(game.hud.guide_toggle)
+	check(game.hud.guide_collapsed and not game.hud.progress_label.visible and not game.hud.quest_label.visible and game.hud.guide_panel.size.y<expanded_height,prefix+"任务卡原生点击可折叠并释放地图空间")
+	check(FarmSaveStore.snapshot(game)==proof,prefix+"折叠任务卡不改变物品、任务、日期或关系进度")
+	await tap(game.hud.guide_toggle)
+	check(not game.hud.guide_collapsed and game.hud.progress_label.visible and game.hud.quest_label.visible and FarmSaveStore.snapshot(game)==proof,prefix+"任务卡原生还原后正文恢复且状态守恒")
 
 func general_panels() -> void:
 	game.hud.inventory_panel.open_panel(false);await audit(game.hud.inventory_panel,"背包");game.hud.inventory_panel.close_panel()
@@ -161,6 +188,16 @@ func general_panels() -> void:
 	game.hud.mine_panel.open_panel("journal");await audit(game.hud.mine_panel,"矿道手记");game.hud.mine_panel.close_panel()
 	game.hud.star_panel.open_panel("overview");await audit(game.hud.star_panel,"星星专属手记");game.hud.star_panel.close_panel()
 	game.hud.social_panel.open_panel("linya");await audit(game.hud.social_panel,"村民个人事件");game.hud.social_panel.close_panel()
+
+func density_representatives() -> void:
+	game.hud.inventory_panel.open_panel(false);await audit(game.hud.inventory_panel,"背包");game.hud.inventory_panel.close_panel()
+	game.hud.inventory_panel.open_panel(true);await audit(game.hud.inventory_panel,"商店");await capture("shop");game.hud.inventory_panel.close_panel()
+	game.hud.dialogue.open_dialogue("林芽",["湖里的鱼和田里的麦子都需要留些余地。今天慢慢来，明天还会有新的收获。你带来的留种笔记，我会替你收好。"])
+	await audit(game.hud.dialogue,"NPC中文长对话");await capture("dialogue")
+	await tap(find_button(game.hud.dialogue,"稍后再聊"));check(not GameState.modal,prefix+"NPC长对话可原生关闭")
+	game.hud.system_panel.open_panel();await audit(game.hud.system_panel,"设置菜单")
+	await tap(find_button(game.hud.system_panel,"操作与生活指南"));await audit(game.hud.system_panel,"生活指南长文")
+	await tap(find_button(game.hud.system_panel,"返回设置"));game.hud.system_panel.close_panel()
 
 func facility_panels() -> void:
 	await at("farm",Recovery.BENCH+Vector2(0,32));game.hud.recovery_panel.open_panel();await audit(game.hud.recovery_panel,"白天休息与食物");game.hud.recovery_panel.close_panel()
@@ -181,7 +218,9 @@ func facility_panels() -> void:
 	if is_instance_valid(game.hud.fishing_panel.hold):
 		var hold: Control=game.hud.fishing_panel.hold;await reveal(hold)
 		var point: Vector2=hold.get_global_rect().get_center();Touch.finger(self,point,true,262)
-		check(hold.held and hold.size.y>=48 and game.hud.safe.get_global_rect().grow(.5).encloses(hold.get_global_rect()),prefix+"小游戏长按控件可达且实际认领触点")
+		var hold_legal: bool=hold.held and hold.size.x>=UIMetrics.minimum_target() and hold.size.y>=UIMetrics.minimum_target() and game.hud.safe.get_global_rect().grow(.5).encloses(hold.get_global_rect())
+		check(hold_legal,prefix+"小游戏长按控件可达且实际认领触点")
+		if not hold_legal: issues.append({"configuration":prefix,"panel":"钓鱼长按","size":str(hold.size),"rect":str(hold.get_global_rect()),"held":hold.held})
 		Touch.finger(self,point,false,262)
 	game.hud.fishing_panel.close_panel()
 
@@ -193,7 +232,7 @@ func married_panels() -> void:
 	game.hud.xiaojing_panel.open_panel();await audit(game.hud.xiaojing_panel,"小京婚后关系");await capture("married");game.hud.xiaojing_panel.close_panel()
 
 func capture(label: String) -> void:
-	if prefix!=str(Vector2i(1280,720)) and not prefix.contains("safe64"): return
+	if prefix!=str(Vector2i(1280,720)) and not prefix.contains("safe64") and not prefix.contains("target"): return
 	await RenderingServer.frame_post_draw
-	var tag: String="safe" if prefix.contains("safe64") else "wide"
+	var tag: String="target%d" % int(UIMetrics.minimum_target()) if prefix.contains("target") else ("safe" if prefix.contains("safe64") else "wide")
 	get_viewport().get_texture().get_image().save_png("res://builds/ui04-"+label+"-"+tag+".png")

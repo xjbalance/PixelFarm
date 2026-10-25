@@ -21,6 +21,7 @@ var payment_control: Control
 var content_key: String=""
 var view_epoch: int=0
 var row_build_count: int=0
+var scrolling_trade_controls: bool=false
 
 func _ready() -> void:
 	add_to_group("modal_panels");hide()
@@ -75,6 +76,9 @@ func category() -> String:
 
 func refresh() -> void:
 	if not visible: return
+	# 高密度触控目标增大时，交易辅助区随内容滚动，保留至少一行物品视野。
+	if UIMetrics.minimum_target()>64 and not scrolling_trade_controls:
+		payment_control.reparent(rows);footer.reparent(rows);scrolling_trade_controls=true
 	title.text="林芽的种子摊" if shop_mode else "随身背包"
 	balance.text="%d 金 · 每种最多%d · 钻石%d" % [Inventory.coins,Inventory.MAX_STACK,Xiaojing.state.diamonds]
 	footer.visible=shop_mode;payment_control.visible=shop_mode;quantity_label.text=str(quantity)
@@ -83,7 +87,9 @@ func refresh() -> void:
 	var key: String=("shop:" if shop_mode else "bag:")+current+(":sale:"+str(pending_sale.token) if not pending_sale.is_empty() else "")
 	if key!=content_key:
 		view_epoch+=1;content_key=key;row_views.clear()
-		for child in rows.get_children(): rows.remove_child(child);child.queue_free()
+		for child in rows.get_children():
+			if scrolling_trade_controls and child in [payment_control,footer]: continue
+			rows.remove_child(child);child.queue_free()
 		if not pending_sale.is_empty(): build_sale()
 		else:
 			match current:
@@ -91,6 +97,8 @@ func refresh() -> void:
 				"fish": refresh_aquaculture()
 				"materials": refresh_materials()
 				_: build_crops()
+	if scrolling_trade_controls:
+		rows.move_child(payment_control,0);rows.move_child(footer,rows.get_child_count()-1)
 	update_rows();update_selection()
 
 func make_row(key: String) -> Dictionary:

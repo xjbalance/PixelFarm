@@ -50,6 +50,7 @@ steps = [
     ('touch-polish', ['--fixed-fps','60','res://tests/touch_polish_runner.tscn']),
     ('farming-actions', ['--fixed-fps','60','res://tests/farming_actions_runner.tscn']),
     ('food-recovery', ['--fixed-fps','60','res://tests/food_recovery_runner.tscn']),
+    ('ui04-theme', ['res://tests/ui04_runner.tscn','--','--theme-only']),
     ('inventory03', ['--fixed-fps','60','res://tests/inventory03_runner.tscn']),
     ('hotbar03', ['--fixed-fps','60','res://tests/hotbar03_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),

@@ -26,33 +26,40 @@ func _ready() -> void:
 	header.add_child(title)
 	header.add_child(FarmUIStyle.button("鱼栏图纸",func(): close_panel(); Events.interaction_requested.emit("fish:guide"),150))
 	header.add_child(FarmUIStyle.button("关闭 ×",close_panel,100))
+	var scroll:=ScrollContainer.new()
+	scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"))
+	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	column.add_child(scroll)
+	var body:=VBoxContainer.new();body.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	body.add_theme_constant_override("separation",12);scroll.add_child(body)
 	subtitle = FarmUIStyle.label("",17)
-	column.add_child(subtitle)
-	DiamondPayments.controls(column,refresh)
+	body.add_child(subtitle)
+	DiamondPayments.controls(body,refresh)
 	tabs = HBoxContainer.new()
 	tabs.add_theme_constant_override("separation",8)
-	column.add_child(tabs)
+	body.add_child(tabs)
 	heading = FarmUIStyle.label("",23,FarmUIStyle.TITLE)
-	column.add_child(heading)
+	body.add_child(heading)
 	description = FarmUIStyle.label("",18)
 	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	description.custom_minimum_size.y = 55
-	column.add_child(description)
+	body.add_child(description)
 	costs = VBoxContainer.new()
 	costs.add_theme_constant_override("separation",6)
 	costs.custom_minimum_size.y = 92
-	column.add_child(costs)
+	body.add_child(costs)
 	reward = FarmUIStyle.label("",17,FarmUIStyle.SUCCESS)
 	reward.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	column.add_child(reward)
+	body.add_child(reward)
 	var space := Control.new()
 	space.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	column.add_child(space)
+	body.add_child(space)
 	action_button = FarmUIStyle.button("",perform_action,160)
-	column.add_child(action_button)
+	body.add_child(action_button)
 	hint = FarmUIStyle.label("",16)
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	column.add_child(hint)
+	body.add_child(hint)
 	FarmProgress.changed.connect(refresh)
 	Inventory.changed.connect(refresh)
 

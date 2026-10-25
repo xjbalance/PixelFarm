@@ -48,6 +48,9 @@ var toolbar_style_selection: int = -1
 var toolbar_signature: Array = []
 var guide_toggle: Button
 var guide_collapsed: bool = false
+var toolbar: GridContainer
+var cycle_button: Button
+var top_cluster: HBoxContainer
 
 func _ready() -> void:
 	layer = 10
@@ -79,6 +82,7 @@ func _ready() -> void:
 	AbyssState.air_changed.connect(refresh_clock)
 	VillageProjects.changed.connect(refresh)
 	get_viewport().size_changed.connect(update_safe_area)
+	safe.resized.connect(reflow_touch_controls)
 	update_safe_area()
 	refresh()
 	refresh_hotbar()
@@ -90,6 +94,7 @@ func refresh_controls() -> void:
 
 func build_top() -> void:
 	var top := HBoxContainer.new()
+	top_cluster=top
 	place(top, Vector2(0,0), Vector2(1,0), Rect2(20,12,-40,60))
 	safe.add_child(top)
 	top.add_theme_constant_override("separation", 6)
@@ -166,9 +171,11 @@ func build_controls() -> void:
 	place(joystick, Vector2(0,1), Vector2(0,1), Rect2(24,-194,166,166))
 	safe.add_child(joystick)
 	joystick.direction_changed.connect(func(direction: Vector2): movement.emit(direction))
-	var toolbar := HBoxContainer.new()
+	toolbar = GridContainer.new()
+	toolbar.columns=9
 	place(toolbar, Vector2(0.5,1), Vector2(0.5,1), Rect2(-368,-112,736,88))
-	toolbar.add_theme_constant_override("separation", 6)
+	toolbar.add_theme_constant_override("h_separation",6)
+	toolbar.add_theme_constant_override("v_separation",8)
 	safe.add_child(toolbar)
 	for i in range(GameState.tools.size()):
 		var button := FarmUIStyle.button("", GameState.select_tool.bind(i), 74)
@@ -189,6 +196,7 @@ func build_controls() -> void:
 	action_button.add_theme_stylebox_override("normal", FarmUIStyle.surface("nature"))
 	safe.add_child(action_button)
 	var cycle := FarmUIStyle.button("换工具  Q", func(): GameState.select_tool(GameState.selected + 1), 116)
+	cycle_button=cycle
 	place(cycle, Vector2(1,1), Vector2(1,1), Rect2(-142,-212,116,48))
 	safe.add_child(cycle)
 
@@ -379,6 +387,34 @@ func update_safe_area() -> void:
 		var area := DisplayServer.get_display_safe_area()
 		var screen := Vector2(DisplayServer.screen_get_size())
 		apply_safe_area(Rect2(area),screen)
+	call_deferred("reflow_touch_controls")
+
+func reflow_touch_controls() -> void:
+	if not is_instance_valid(toolbar) or not is_instance_valid(cycle_button): return
+	var target: float=UIMetrics.minimum_target()
+	var width: float=maxf(74,target)
+	var usable: float=safe.size.x-48
+	var columns: int=mini(9,maxi(1,floori((usable+6)/(width+6))))
+	toolbar.columns=columns
+	var rows: int=ceili(9.0/columns)
+	var bar_width: float=width*columns+6*(columns-1)
+	var height: float=maxf(88,target)*rows+8*(rows-1)
+	place(toolbar,Vector2(.5,1),Vector2(.5,1),Rect2(-bar_width/2,-height-24,bar_width,height))
+	if target>74 or rows>1:
+		var edge: float=maxf(116,target)
+		var action_y: float=-height-40-edge
+		place(action_button,Vector2(1,1),Vector2(1,1),Rect2(-edge-24,action_y,edge,edge))
+		place(cycle_button,Vector2(1,1),Vector2(1,1),Rect2(-edge-24,action_y-14-target,edge,target))
+		place(joystick,Vector2(0,1),Vector2(0,1),Rect2(24,-height-206,166,166))
+		place(prompt_label,Vector2(.5,1),Vector2(.5,1),Rect2(-320,-height-68,640,44))
+	else:
+		place(action_button,Vector2(1,1),Vector2(1,1),Rect2(-142,-150,116,116))
+		place(cycle_button,Vector2(1,1),Vector2(1,1),Rect2(-142,-212,116,48))
+		place(joystick,Vector2(0,1),Vector2(0,1),Rect2(24,-194,166,166))
+	var header_height: float=maxf(60,target)
+	top_cluster.offset_bottom=12+header_height
+	guide_panel.offset_top=header_height+34
+	guide_panel.offset_bottom=guide_panel.offset_top+(64 if guide_collapsed else 144)
 
 func apply_safe_area(area: Rect2, screen: Vector2) -> void:
 	var viewport := get_viewport().get_visible_rect().size

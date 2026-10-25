@@ -50,8 +50,9 @@ static func request(panel: Control, gold: int, callback: Callable, force_diamond
 	dialog.dialog_text="将花费%d颗钻石（当前%d）。材料与解锁条件仍需满足。\n婚礼需要持有1314颗；消费后不足时须继续收集。取消不会扣款。" % [price(gold),Xiaojing.state.diamonds]
 	dialog.ok_button_text="确认支付"
 	dialog.cancel_button_text="取消"
-	dialog.get_ok_button().custom_minimum_size.y=52
-	dialog.get_cancel_button().custom_minimum_size.y=52
+	var touch: float=maxf(52,UIMetrics.minimum_target())
+	dialog.get_ok_button().custom_minimum_size=Vector2(touch,touch)
+	dialog.get_cancel_button().custom_minimum_size=Vector2(touch,touch)
 	panel.add_child(dialog)
 	var currency: bool=true # 此次报价冻结为钻石，其他面板的选择不会改变它。
 	dialog.confirmed.connect(func():

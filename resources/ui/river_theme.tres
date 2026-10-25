@@ -17,6 +17,8 @@
 
 [sub_resource type="StyleBoxTexture" id="paper"]
 texture = ExtResource("paper")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 texture_margin_left = 8.0
 content_margin_left = 16.0
 texture_margin_top = 8.0

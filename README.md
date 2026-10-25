@@ -1,14 +1,14 @@
 # 像素世界 · Pixel World
 
-当前源码已追加[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)和[饮食恢复调整](docs/FOOD-RECOVERY.md)。下方下载包是0.7.1初版制品，后续源码改动尚未重新打包。
+当前源码和调试APK已包含[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)及[全局UI改版](docs/REPORT-UI04.md)。
 
-**0.7.1《掌中世界》**，Godot 4.3 Standard 原创像素经营 RPG。在原工程上整合四季天气、自由钓鱼、湖泊生态、畜牧、厨房加工、四季节日、村民个人事件、家园扩建装修与三张隐藏地图。
+**0.7.1《匠心打磨》**，Godot 4.3 Standard 原创像素经营 RPG。在原工程上整合四季天气、自由钓鱼、湖泊生态、畜牧、厨房加工、四季节日、村民个人事件、家园扩建装修与三张隐藏地图。
 
 保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v22**，兼容v1–v21，原应用包名、证书与存档路径保留。
 
-0.7.1初版在0.7.0内容上完善触控、工具动作、恢复事务、横屏UI、后台安全与新手引导。**3,090项自动化、706项桌面窗口检查零失败**，新增真实SIGKILL后重启验证通过。Android调试APK已生成；[完整报告](docs/REPORT-0.7.1.md)。没有Android真机验收。
+最新源码完整验证：**3,402项自动化、1,899项桌面窗口检查零失败**，包括五横屏/安全区及64/96逻辑触区的密度注入布局检查。Android调试APK已重新生成；没有Android真机验收。
 
-[初版开发报告](docs/REPORT-0.7.1.md) · [0.7.0内容报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [已知问题](docs/KNOWN-ISSUES-0.7.0.md)
+[全局UI改版报告](docs/REPORT-UI04.md) · [初版开发报告](docs/REPORT-0.7.1.md) · [0.7.0内容报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [已知问题](docs/KNOWN-ISSUES-0.7.0.md)
 
 ![春季农场与原湖泊](docs/screenshot-070-farm.png)
 

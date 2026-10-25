@@ -8,7 +8,7 @@ func _ready() -> void:
 	normal_style=FarmUIStyle.surface("button")
 	held_style=FarmUIStyle.surface("pressed")
 	mouse_filter=Control.MOUSE_FILTER_STOP
-	custom_minimum_size=Vector2(180,70)
+	custom_minimum_size=Vector2(maxf(180,UIMetrics.minimum_target()),maxf(70,UIMetrics.minimum_target()))
 	Events.modal_changed.connect(func(_active: bool): reset())
 	GameState.control_mode_changed.connect(reset)
 func reset() -> void:

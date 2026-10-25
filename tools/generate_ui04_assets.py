@@ -18,6 +18,17 @@ def patch(name,fill,edge,shine,pressed=False,transparent=False):
   for x,y in [(3,3),(20,3),(3,20),(20,20)]:d.point((x,y),fill='#'+edge)
   for x in [8,15]:d.point((x,2),fill='#'+fill)
   if pressed:d.line((5,5,18,5),fill='#'+edge)
+ if name=='paper':
+  # 48px纸面中区32px稀疏纤维，按原像素平铺，边带仍只九宫格拉伸。
+  big=Image.new('RGBA',(48,48),'#'+fill)
+  src=[0,8,16,24];dst=[0,8,40,48]
+  for gy in range(3):
+   for gx in range(3):
+    piece=im.crop((src[gx],src[gy],src[gx+1],src[gy+1]))
+    big.paste(piece.resize((dst[gx+1]-dst[gx],dst[gy+1]-dst[gy]),Image.NEAREST),(dst[gx],dst[gy]))
+  grain=ImageDraw.Draw(big)
+  for x,y in [(13,19),(28,12),(35,31),(19,36)]:grain.point((x,y),fill='#EDDFC4')
+  im=big
  im.save(root/f'assets/ui/river/{name}.png')
 patch('paper',palette['paper'],palette['brown'],'ECD7AD')
 patch('secondary','EBD8B5','AA805B','FFF1D5')
@@ -51,6 +62,7 @@ for n in names:lines.append(f'[ext_resource type="Texture2D" path="res://assets/
 lines.append('[ext_resource type="FontFile" path="res://assets/ui/fonts/NotoSansCJK-Regular.ttc" id="font"]')
 for n in names:
  lines+=['',f'[sub_resource type="StyleBoxTexture" id="{n}"]',f'texture = ExtResource("{n}")']
+ if n=='paper': lines+=['axis_stretch_horizontal = 1','axis_stretch_vertical = 1']
  for side in ['left','top','right','bottom']:
   lines.append(f'texture_margin_{side} = 8.0')
   lines.append(f'content_margin_{side} = '+('16.0' if side in ['left','right'] else '8.0'))
