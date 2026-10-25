@@ -46,6 +46,8 @@ var scrim: ColorRect
 var completed: Dictionary = {}
 var toolbar_style_selection: int = -1
 var toolbar_signature: Array = []
+var guide_toggle: Button
+var guide_collapsed: bool = false
 
 func _ready() -> void:
 	layer = 10
@@ -88,42 +90,75 @@ func refresh_controls() -> void:
 
 func build_top() -> void:
 	var top := HBoxContainer.new()
-	place(top, Vector2(0,0), Vector2(1,0), Rect2(20,14,-40,64))
+	place(top, Vector2(0,0), Vector2(1,0), Rect2(20,12,-40,60))
 	safe.add_child(top)
-	top.add_theme_constant_override("separation", 8)
-	var brand := PanelContainer.new()
-	brand.custom_minimum_size.x = 168
+	top.add_theme_constant_override("separation", 6)
+	var brand := status_panel()
+	brand.custom_minimum_size.x = 136
 	top.add_child(brand)
 	var names := VBoxContainer.new()
 	brand.add_child(names)
-	names.add_child(FarmUIStyle.label("像 素 世 界", 21, FarmUIStyle.TITLE))
+	names.add_child(FarmUIStyle.label("像 素 世 界", 18, FarmUIStyle.TITLE))
 	names.add_child(FarmUIStyle.label("Pixel World · 0.7.1", 12, FarmUIStyle.MUTED))
-	var time_panel := PanelContainer.new()
+	var time_panel := status_panel()
 	top.add_child(time_panel)
-	clock_label = FarmUIStyle.label("第 1 天  ·  06:00", 17)
-	time_panel.add_child(clock_label)
-	var energy := PanelContainer.new()
+	var time_row := HBoxContainer.new()
+	time_row.add_theme_constant_override("separation",6)
+	time_panel.add_child(time_row)
+	var time_icons := VBoxContainer.new()
+	time_icons.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	time_icons.add_theme_constant_override("separation",4)
+	time_icons.add_child(status_icon("date"));time_icons.add_child(status_icon("weather"))
+	time_row.add_child(time_icons)
+	clock_label = FarmUIStyle.label("第 1 天  ·  06:00", 16)
+	time_row.add_child(clock_label)
+	var energy := status_panel()
 	energy.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	top.add_child(energy)
+	var energy_row := HBoxContainer.new()
+	energy_row.add_theme_constant_override("separation",6)
+	energy.add_child(energy_row)
+	energy_row.add_child(status_icon("stamina"))
 	var energy_column := VBoxContainer.new()
-	energy.add_child(energy_column)
-	stamina_label = FarmUIStyle.label("体力",14)
+	energy_column.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	energy_row.add_child(energy_column)
+	stamina_label = FarmUIStyle.label("体力",15)
 	energy_column.add_child(stamina_label)
 	stamina_bar = ProgressBar.new()
-	stamina_bar.custom_minimum_size = Vector2(100,12)
+	stamina_bar.custom_minimum_size = Vector2(76,10)
 	stamina_bar.show_percentage = false
-	stamina_bar.add_theme_stylebox_override("background", FarmUIStyle.box(Color("162f2b"), Color("162f2b"), 4))
-	stamina_bar.add_theme_stylebox_override("fill", FarmUIStyle.box(Color("b4c47b"), Color("b4c47b"), 4))
 	energy_column.add_child(stamina_bar)
-	var purse := PanelContainer.new()
-	purse.custom_minimum_size.x = 110
+	var purse := status_panel()
 	top.add_child(purse)
-	money_label = FarmUIStyle.label("", 20, FarmUIStyle.TITLE)
-	purse.add_child(money_label)
+	var money_row := HBoxContainer.new()
+	money_row.add_theme_constant_override("separation",6)
+	purse.add_child(money_row)
+	money_row.add_child(status_icon("coin"))
+	money_label = FarmUIStyle.label("", 17, FarmUIStyle.TITLE)
+	money_row.add_child(money_label)
 	top.add_child(FarmUIStyle.button("背包 B", func(): bag_requested.emit(), 88))
 	top.add_child(FarmUIStyle.button("委托 J",func(): progress_panel.open_panel("journal",false),88))
 	top.add_child(FarmUIStyle.button("手记 M",func(): story_panel.open_panel(),88))
 	top.add_child(FarmUIStyle.button("菜单", func(): system_panel.open_panel(), 72))
+
+func status_panel() -> PanelContainer:
+	var panel := PanelContainer.new()
+	var style:=FarmUIStyle.surface("paper")
+	style.content_margin_left=10;style.content_margin_right=10
+	style.content_margin_top=6;style.content_margin_bottom=6
+	panel.add_theme_stylebox_override("panel",style)
+	return panel
+
+func status_icon(id: String) -> TextureRect:
+	var icon:=TextureRect.new()
+	icon.texture=load("res://assets/ui/river/icon_"+id+".png")
+	icon.expand_mode=TextureRect.EXPAND_IGNORE_SIZE
+	icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	icon.custom_minimum_size=Vector2(16,16)
+	icon.size_flags_vertical=Control.SIZE_SHRINK_CENTER
+	icon.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	icon.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	return icon
 
 func build_controls() -> void:
 	joystick = Control.new()
@@ -142,7 +177,7 @@ func build_controls() -> void:
 		var icon := AtlasTexture.new()
 		icon.atlas = load("res://assets/ui/tools.png")
 		icon.region = Rect2(i*32,0,32,32)
-		button.icon = load("res://assets/fishing/fishing_rod.png") if i==8 else icon
+		button.icon = tool_badge(load("res://assets/fishing/fishing_rod.png") if i==8 else icon)
 		button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
 		button.add_theme_constant_override("icon_max_width",26)
@@ -157,6 +192,19 @@ func build_controls() -> void:
 	place(cycle, Vector2(1,1), Vector2(1,1), Rect2(-142,-212,116,48))
 	safe.add_child(cycle)
 
+func tool_badge(source: Texture2D) -> Texture2D:
+	# 原工具贴图保持不变，只在一次性显示纹理中衬深色底，提高浅色工具对比。
+	var original: Image=source.atlas.get_image() if source is AtlasTexture else source.get_image()
+	if original.is_compressed(): original.decompress()
+	if source is AtlasTexture: original=original.get_region(Rect2i(source.region))
+	if original.get_format()!=Image.FORMAT_RGBA8: original.convert(Image.FORMAT_RGBA8)
+	var badge:=Image.create(32,32,false,Image.FORMAT_RGBA8)
+	badge.fill(Color("425b4b"))
+	for point in range(32):
+		for edge in [Vector2i(point,0),Vector2i(point,31),Vector2i(0,point),Vector2i(31,point)]: badge.set_pixelv(edge,Color("81765c"))
+	badge.blend_rect(original,Rect2i(0,0,32,32),Vector2i.ZERO)
+	return ImageTexture.create_from_image(badge)
+
 func build_feedback() -> void:
 	var guide := PanelContainer.new()
 	guide_panel=guide
@@ -164,24 +212,34 @@ func build_feedback() -> void:
 	guide.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	safe.add_child(guide)
 	var content := VBoxContainer.new()
+	content.add_theme_constant_override("separation",2)
 	guide.add_child(content)
-	content.add_child(FarmUIStyle.label("那些没有寄出的信",16,FarmUIStyle.TITLE))
-	progress_label = FarmUIStyle.label("农场起步 / 在屋前开垦一块地",12)
+	guide_toggle=FarmUIStyle.button("任务手记 ▾",toggle_guide,180)
+	guide_toggle.icon=load("res://assets/ui/river/icon_task.png")
+	guide_toggle.expand_icon=true
+	guide_toggle.add_theme_constant_override("icon_max_width",18)
+	guide_toggle.add_theme_font_size_override("font_size",14)
+	guide_toggle.add_theme_stylebox_override("normal",FarmUIStyle.surface("secondary"))
+	content.add_child(guide_toggle)
+	progress_label = FarmUIStyle.label("农场起步 / 在屋前开垦一块地",14)
 	progress_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(progress_label)
-	quest_label = FarmUIStyle.label("",15,FarmUIStyle.MUTED)
+	quest_label = FarmUIStyle.label("",13,FarmUIStyle.MUTED)
 	quest_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(quest_label)
-	prompt_label = FarmUIStyle.label("",17)
+	prompt_label = FarmUIStyle.label("",15)
 	prompt_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	place(prompt_label,Vector2(0.5,1),Vector2(0.5,1),Rect2(-320,-150,640,30))
+	prompt_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	prompt_label.max_lines_visible=2
+	prompt_label.add_theme_stylebox_override("normal",bubble_style())
+	place(prompt_label,Vector2(0.5,1),Vector2(0.5,1),Rect2(-320,-178,640,52))
 	safe.add_child(prompt_label)
-	toast = FarmUIStyle.label("",18,FarmUIStyle.TITLE)
+	toast = FarmUIStyle.label("",16,FarmUIStyle.TITLE)
 	toast.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	toast.add_theme_color_override("font_shadow_color",Color("162b26"))
-	toast.add_theme_constant_override("shadow_offset_x",2)
-	toast.add_theme_constant_override("shadow_offset_y",2)
-	place(toast,Vector2(0.5,0),Vector2(0.5,0),Rect2(-400,108,800,40))
+	toast.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
+	toast.max_lines_visible=2
+	toast.add_theme_stylebox_override("normal",bubble_style())
+	place(toast,Vector2(0.5,0),Vector2(0.5,0),Rect2(-400,108,800,56))
 	safe.add_child(toast)
 	scrim = ColorRect.new()
 	scrim.color = Color(0.04,0.10,0.08,0.42)
@@ -284,9 +342,22 @@ func build_feedback() -> void:
 	# 提示位于模态层上方，金币不足、奖励和保存反馈不会被遮罩盖住。
 	safe.move_child(toast,-1)
 	Events.modal_changed.connect(func(active: bool):
-		if active: place(toast,Vector2(0.5,1),Vector2(0.5,1),Rect2(-440,-65,880,40))
-		else: place(toast,Vector2(0.5,0),Vector2(0.5,0),Rect2(-400,108,800,40))
+		if active: place(toast,Vector2(0.5,1),Vector2(0.5,1),Rect2(-440,-70,880,56))
+		else: place(toast,Vector2(0.5,0),Vector2(0.5,0),Rect2(-400,108,800,56))
 	)
+
+func bubble_style() -> StyleBoxTexture:
+	var style:=FarmUIStyle.surface("paper")
+	style.content_margin_left=12;style.content_margin_right=12
+	style.content_margin_top=5;style.content_margin_bottom=5
+	return style
+
+func toggle_guide() -> void:
+	guide_collapsed=not guide_collapsed
+	guide_toggle.text="任务手记 ▸" if guide_collapsed else "任务手记 ▾"
+	progress_label.visible=not guide_collapsed
+	quest_label.visible=not guide_collapsed
+	guide_panel.offset_bottom=guide_panel.offset_top+(64 if guide_collapsed else 144)
 
 func place(node: Control, start: Vector2, end: Vector2, offsets: Rect2) -> void:
 	node.anchor_left = start.x
@@ -358,6 +429,7 @@ func refresh_hotbar() -> void:
 
 func set_prompt(text: String, nearby: bool) -> void:
 	prompt_label.text = text
+	prompt_label.visible=not text.is_empty()
 	action_button.text = "交互\nE" if nearby else "使用\nE"
 
 func show_notice(text: String) -> void:
@@ -390,9 +462,10 @@ func refresh_farm_guide() -> void:
 func _process(delta: float) -> void:
 	toast_time = maxf(0, toast_time - delta)
 	toast.visible = toast_time > 0
+	prompt_label.visible = not GameState.modal
 
 func refresh_clock() -> void:
 	var detail: String="%s · %s" % [Story.NAMES[GameState.location],GameWeather.label()]
 	if GameState.location=="abyss": detail="%d层 · 空气%d/160" % [AbyssState.state.depth,AbyssState.state.air]
 	clock_label.text="%s · %s\n%s" % [Calendar.label(),GameClock.clock_text(),detail]
-	clock_label.add_theme_color_override("font_color",Color("efb895") if GameState.location=="abyss" and AbyssState.state.air<30 else FarmUIStyle.TEXT)
+	clock_label.add_theme_color_override("font_color",FarmUIStyle.DANGER if GameState.location=="abyss" and AbyssState.state.air<30 else FarmUIStyle.TEXT)

@@ -23,7 +23,7 @@ func _ready() -> void:
 	var content := VBoxContainer.new()
 	content.add_theme_constant_override("separation",10)
 	add_child(content)
-	title_label = FarmUIStyle.label("河湾里的故事",14,FarmUIStyle.MUTED)
+	title_label = FarmUIStyle.label("河湾里的故事",16,FarmUIStyle.MUTED)
 	var title_row := HBoxContainer.new()
 	content.add_child(title_row)
 	title_label.size_flags_horizontal=Control.SIZE_EXPAND_FILL
@@ -44,6 +44,7 @@ func _ready() -> void:
 	words.add_theme_constant_override("separation",12)
 	row.add_child(words)
 	speaker_label = FarmUIStyle.label("",24,FarmUIStyle.TITLE)
+	speaker_label.add_theme_stylebox_override("normal",FarmUIStyle.surface("secondary"))
 	words.add_child(speaker_label)
 	body_label = FarmUIStyle.label("",21)
 	body_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -54,7 +55,7 @@ func _ready() -> void:
 	content.add_child(choices_box)
 	var actions := HBoxContainer.new()
 	content.add_child(actions)
-	hint = FarmUIStyle.label("",14,FarmUIStyle.MUTED)
+	hint = FarmUIStyle.label("",16,FarmUIStyle.MUTED)
 	hint.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	actions.add_child(hint)
 	actions.add_child(FarmUIStyle.button("稍后再聊",close_dialogue,120))
@@ -111,6 +112,7 @@ func refresh() -> void:
 		speaker_label.text = legacy_speaker
 		body_label.text = str(line)
 		portrait.person = "linya"
+	speaker_label.add_theme_color_override("font_color",FarmUIStyle.STAR if portrait.person=="xiaojing" else FarmUIStyle.TITLE)
 	revealed = 0
 	body_label.visible_characters = -1 if scene_id == "" else 0
 	hint.text = "%02d / %02d   ·   E 继续 / 再按一次显示全文" % [index+1,lines.size()]

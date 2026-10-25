@@ -53,4 +53,8 @@ static func button(text: String, callback: Callable, width: float = 80) -> Butto
 	node.custom_minimum_size = Vector2(maxf(48, width), 48)
 	node.focus_mode = Control.FOCUS_NONE
 	node.pressed.connect(callback)
+	if "×" in text or text.begins_with("取消") or text.begins_with("返回"):
+		node.add_theme_stylebox_override("normal",surface("secondary"))
+	elif text.begins_with("确认"):
+		node.add_theme_stylebox_override("normal",surface("selected"))
 	return node

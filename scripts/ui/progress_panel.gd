@@ -21,7 +21,7 @@ func _ready() -> void:
 	add_child(column)
 	var header := HBoxContainer.new()
 	column.add_child(header)
-	title = FarmUIStyle.label("",26,FarmUIStyle.GOLD)
+	title = FarmUIStyle.label("",26,FarmUIStyle.TITLE)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
 	header.add_child(FarmUIStyle.button("鱼栏图纸",func(): close_panel(); Events.interaction_requested.emit("fish:guide"),150))
@@ -32,7 +32,7 @@ func _ready() -> void:
 	tabs = HBoxContainer.new()
 	tabs.add_theme_constant_override("separation",8)
 	column.add_child(tabs)
-	heading = FarmUIStyle.label("",23,FarmUIStyle.GOLD)
+	heading = FarmUIStyle.label("",23,FarmUIStyle.TITLE)
 	column.add_child(heading)
 	description = FarmUIStyle.label("",18)
 	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -42,7 +42,7 @@ func _ready() -> void:
 	costs.add_theme_constant_override("separation",6)
 	costs.custom_minimum_size.y = 92
 	column.add_child(costs)
-	reward = FarmUIStyle.label("",17,Color("c9d6a1"))
+	reward = FarmUIStyle.label("",17,FarmUIStyle.SUCCESS)
 	reward.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	column.add_child(reward)
 	var space := Control.new()
@@ -50,7 +50,7 @@ func _ready() -> void:
 	column.add_child(space)
 	action_button = FarmUIStyle.button("",perform_action,160)
 	column.add_child(action_button)
-	hint = FarmUIStyle.label("",14)
+	hint = FarmUIStyle.label("",16)
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	column.add_child(hint)
 	FarmProgress.changed.connect(refresh)
@@ -93,7 +93,7 @@ func refresh() -> void:
 		var done: bool = FarmProgress.has_upgrade(id) if mode == "workshop" else FarmProgress.quest_status(id) == "completed"
 		var button := FarmUIStyle.button(("✓ " if done else "")+name_text,select.bind(id),160)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		if id == selected_id: button.add_theme_stylebox_override("normal",FarmUIStyle.box(FarmUIStyle.GREEN,FarmUIStyle.GOLD))
+		if id == selected_id: button.add_theme_stylebox_override("normal",FarmUIStyle.surface("selected"))
 		tabs.add_child(button)
 	if mode == "workshop": refresh_upgrade()
 	else: refresh_quest()
@@ -101,7 +101,7 @@ func refresh() -> void:
 func add_cost(id: String, amount: int) -> void:
 	var held: int = Inventory.coins if id == "coins" else Inventory.count(id)
 	var name_text: String = "金币" if id == "coins" else Catalog.item_name(id)
-	costs.add_child(FarmUIStyle.label("%s  ·  需要 %d / 持有 %d" % [name_text,amount,held],18,Color("cad5a4") if held >= amount else Color("efb895")))
+	costs.add_child(FarmUIStyle.label("%s  ·  需要 %d / 持有 %d" % [name_text,amount,held],18,FarmUIStyle.SUCCESS if held >= amount else FarmUIStyle.DANGER))
 
 func refresh_upgrade() -> void:
 	var definition: Dictionary = FarmProgress.upgrades[selected_id]

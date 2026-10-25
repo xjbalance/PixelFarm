@@ -104,6 +104,7 @@ func add_selector(view: Dictionary,id: String,width: int=200) -> void:
 		if visible and token==view_epoch: select_item(id)
 	,width)
 	button.toggle_mode=true;button.icon=ItemPresentation.texture(id);button.expand_icon=true;button.add_theme_constant_override("icon_max_width",32)
+	button.add_theme_stylebox_override("normal",FarmUIStyle.surface("secondary"))
 	button.add_theme_font_size_override("font_size",17);button.tooltip_text=ItemPresentation.description(id)
 	button.set_meta("inventory_item",id);button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	view.row.add_child(button);view.selectors.append(button)
@@ -188,7 +189,9 @@ func select_item(id: String) -> void:
 
 func update_selection() -> void:
 	for view in row_views.values():
-		for button in view.selectors: button.set_pressed_no_signal(str(button.get_meta("inventory_item"))==selected_item)
+		for button in view.selectors:
+			var selected: bool=str(button.get_meta("inventory_item"))==selected_item
+			button.set_pressed_no_signal(selected)
 	selected_detail.text="%s ×%d · %s" % [Catalog.item_name(selected_item),Inventory.count(selected_item),ItemPresentation.description(selected_item)] if selected_item!="" else "轻点物品图标或名称查看；使用与装备需点对应按钮。"
 
 func use_item(id: String) -> void:

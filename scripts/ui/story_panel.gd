@@ -15,7 +15,7 @@ func _ready() -> void:
 	add_child(column)
 	var header := HBoxContainer.new()
 	column.add_child(header)
-	title = FarmUIStyle.label("那些没有寄出的信",25,FarmUIStyle.GOLD)
+	title = FarmUIStyle.label("那些没有寄出的信",25,FarmUIStyle.TITLE)
 	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	header.add_child(title)
 	header.add_child(FarmUIStyle.button("四季历",func(): close_panel(); Events.interaction_requested.emit("calendar"),100))
@@ -62,7 +62,7 @@ func select_page(index: int) -> void:
 	page = index
 	refresh()
 
-func text_row(text: String, font_size: int = 17, tint: Color = FarmUIStyle.CREAM) -> Label:
+func text_row(text: String, font_size: int = 17, tint: Color = FarmUIStyle.TEXT) -> Label:
 	var label := FarmUIStyle.label(text,font_size,tint)
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(label)
@@ -74,7 +74,7 @@ func refresh() -> void:
 		content.remove_child(child)
 		child.queue_free()
 	for i in range(tabs.size()):
-		tabs[i].add_theme_stylebox_override("normal",FarmUIStyle.box(FarmUIStyle.GREEN if i == page else FarmUIStyle.INK))
+		tabs[i].add_theme_stylebox_override("normal",FarmUIStyle.surface("selected" if i == page else "button"))
 	match page:
 		0: build_story()
 		1: build_map()
@@ -82,11 +82,11 @@ func refresh() -> void:
 		3: build_memories()
 
 func build_story() -> void:
-	text_row(Story.chapter().title,23,FarmUIStyle.GOLD)
+	text_row(Story.chapter().title,23,FarmUIStyle.TITLE)
 	text_row(Story.chapter().goal)
 	var requirements := Story.requirement_text()
-	if requirements != "": text_row(requirements,16,Color("b7ce99"))
-	text_row("公共设施 %d / 3   ·   %d 金   ·   明日%s" % [VillageProjects.built.size(),Inventory.coins,GameWeather.tomorrow()],16,Color("b7c6ab"))
+	if requirements != "": text_row(requirements,16,FarmUIStyle.MUTED)
+	text_row("公共设施 %d / 3   ·   %d 金   ·   明日%s" % [VillageProjects.built.size(),Inventory.coins,GameWeather.tomorrow()],16,FarmUIStyle.MUTED)
 	for id in VillageProjects.definitions:
 		var definition: Dictionary = VillageProjects.definitions[id]
 		var row := HBoxContainer.new()
@@ -96,27 +96,27 @@ func build_story() -> void:
 		words.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(words)
 		var built := VillageProjects.has_project(id)
-		words.add_child(FarmUIStyle.label(("✓ " if built else "○ ")+definition.name+" · "+definition.owner,19,FarmUIStyle.GOLD))
+		words.add_child(FarmUIStyle.label(("✓ " if built else "○ ")+definition.name+" · "+definition.owner,19,FarmUIStyle.TITLE))
 		var detail := FarmUIStyle.label(definition.benefit,15)
 		detail.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		words.add_child(detail)
 		var costs: Array[String] = []
 		for item in definition.materials: costs.append("%s %d/%d" % [Catalog.item_name(item),Inventory.count(item),definition.materials[item]])
-		words.add_child(FarmUIStyle.label("  ·  ".join(costs)+"  ·  %d 金" % definition.coins,14,Color("afc29e")))
+		words.add_child(FarmUIStyle.label("  ·  ".join(costs)+"  ·  %d 金" % definition.coins,16,FarmUIStyle.MUTED))
 		var button := FarmUIStyle.button("已建成" if built else "一起建造",func(): DiamondPayments.request(self,int(definition.coins),func(): VillageProjects.build(id); refresh()),138)
 		button.disabled = built or not at_board or Story.stage < 6
 		row.add_child(button)
-	text_row("读过风车建设簿后，可在村中共建板交付材料。" if Story.stage < 6 else ("大家出手艺，你来备材料。建设完成立即生效并保存。" if at_board else "到广场南边的共建板交付材料；手记随时可查看。"),14,Color("b7c6ab"))
+	text_row("读过风车建设簿后，可在村中共建板交付材料。" if Story.stage < 6 else ("大家出手艺，你来备材料。建设完成立即生效并保存。" if at_board else "到广场南边的共建板交付材料；手记随时可查看。"),16,FarmUIStyle.MUTED)
 
 
-	text_row("剧情任务与线索",22,FarmUIStyle.GOLD)
+	text_row("剧情任务与线索",22,FarmUIStyle.TITLE)
 	if Letters.legacy_review:
 		text_row("旧版建设与奖励已保留。小屋信箱可回顾新故事，桥边、木作坊和茶屋可重访线索。",16)
 	if Story.stage == 8:
 		text_row("下一步优先："+Letters.DIRECTIONS.get(Letters.direction,"在风灯架商量")+"；三个方向的起步任务均开放。",17)
 	for definition in Letters.definitions:
 		if not Letters.conditions_met(definition.unlock) and definition.id not in Letters.completed: continue
-		text_row(definition.title,19,FarmUIStyle.GOLD)
+		text_row(definition.title,19,FarmUIStyle.TITLE)
 		text_row(definition.description+"\n"+Letters.progress(definition),16)
 
 func build_map() -> void:
@@ -150,26 +150,26 @@ func build_people() -> void:
 		var words := VBoxContainer.new()
 		words.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(words)
-		words.add_child(FarmUIStyle.label(definition.name+" · "+definition.role,23,FarmUIStyle.GOLD))
+		words.add_child(FarmUIStyle.label(definition.name+" · "+definition.role,23,FarmUIStyle.TITLE))
 		var current: Dictionary=preload("res://scripts/seasons/life_schedule.gd").locate(id)
-		words.add_child(FarmUIStyle.label("现在："+str(current.get("description",definition.place)),16,Color("b6c69e")))
+		words.add_child(FarmUIStyle.label("现在："+str(current.get("description",definition.place)),16,FarmUIStyle.MUTED))
 		var about := FarmUIStyle.label(definition.about,18)
 		about.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		words.add_child(about)
 		if Social.near_person(id): words.add_child(FarmUIStyle.button("近况、礼物与个人计划",func(): close_panel();Events.interaction_requested.emit("social:"+id),240))
 		var bond := "你们还在慢慢认识彼此。" if Story.stage < 5 else "共同修好的桥，让相聚少了一段绕路。"
 		if Story.stage == 8: bond = "共同建成的村庄，已经有了你的位置。"
-		words.add_child(FarmUIStyle.label(bond,16,Color("b6c69e")))
+		words.add_child(FarmUIStyle.label(bond,16,FarmUIStyle.MUTED))
 
 func build_memories() -> void:
-	text_row("村庄的未来，也长在这些小事上。",21,FarmUIStyle.GOLD)
+	text_row("村庄的未来，也长在这些小事上。",21,FarmUIStyle.TITLE)
 	for id in Story.SECRET_IDS:
 		var entry: Dictionary = Story.data.scenes[id]
-		text_row(entry.title if id in Story.seen else "尚未遇见的一件小事",20,FarmUIStyle.GOLD)
+		text_row(entry.title if id in Story.seen else "尚未遇见的一件小事",20,FarmUIStyle.TITLE)
 		text_row(entry.lines[0].text if id in Story.seen else {"well":"去井边看看旧刻痕。","ribbon":"过桥后，留意树上的蓝丝带。","post":"茶屋西南边的木牌夹着一张明信片。"}[id])
-	if Story.stage == 8: text_row("风灯持续亮着。下一页："+Letters.DIRECTIONS.get(Letters.direction,"在风灯架商量新的方向"),18,Color("b6c69e"))
+	if Story.stage == 8: text_row("风灯持续亮着。下一页："+Letters.DIRECTIONS.get(Letters.direction,"在风灯架商量新的方向"),18,FarmUIStyle.MUTED)
 	for id in ["bridge_survey","repair_record","guestbook","cargo_note"]:
-		text_row(Story.data.scenes[id].title if Letters.knows(id) else "待发现的线索",19,FarmUIStyle.GOLD)
+		text_row(Story.data.scenes[id].title if Letters.knows(id) else "待发现的线索",19,FarmUIStyle.TITLE)
 		text_row(Story.data.scenes[id].lines[0].text if Letters.knows(id) else {"bridge_survey":"旧桥西侧的水位牌。","repair_record":"木作坊檐下的铁盒。","guestbook":"和阿禾谈茶屋留言册。","cargo_note":"河东风车旁的旧货箱。"}[id],16)
 
 func _unhandled_input(event: InputEvent) -> void:

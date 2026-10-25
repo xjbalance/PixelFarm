@@ -6,18 +6,18 @@ palette={'paper':'F4E7CD','wood':'D7B98A','brown':'754B36','green':'789C79','gol
 (root/'resources/ui/river_palette.json').write_text(json.dumps({'theme':'河湾手作 · 星辉田园','palette':palette,'type':{'title':24,'body':18,'caption':16,'number':19},'touch_design_px':48,'nine_patch_margin':8},ensure_ascii=False,indent=2)+'\n')
 def patch(name,fill,edge,shine,pressed=False,transparent=False):
  im=Image.new('RGBA',(24,24));d=ImageDraw.Draw(im)
- d.rectangle((2,0,21,23),fill='#'+edge);d.rectangle((0,2,23,21),fill='#'+edge)
- d.rectangle((2,2,21,21),fill=(0,0,0,0) if transparent else '#'+fill)
- d.line((3,2,20,2),fill='#'+shine);d.line((2,3,2,20),fill='#'+shine)
- d.line((3,21,20,21),fill='#'+edge);d.line((21,3,21,20),fill='#'+edge)
- if not transparent:
-  # 稀疏像素木纹留在边带，九宫格中心保持清爽纸色。
-  for x in [5,14]:d.point((x,1),fill='#'+shine)
-  d.point((1,14),fill='#'+shine)
-  if name=='paper':
-   d.point((5,5),fill='#E8D7B5');d.point((18,18),fill='#E8D7B5')
- if pressed:
-  d.line((3,3,20,3),fill='#'+edge)
+ # 阶梯角、三层木框与稀疏铆点；边带通过九宫格保留原像素宽度。
+ d.polygon([(3,0),(20,0),(20,1),(22,1),(22,3),(23,3),(23,20),(22,20),(22,22),(20,22),(20,23),(3,23),(3,22),(1,22),(1,20),(0,20),(0,3),(1,3),(1,1),(3,1)],fill='#'+edge)
+ d.rectangle((3,2,20,21),fill='#'+shine);d.rectangle((2,3,21,20),fill='#'+shine)
+ d.rectangle((4,4,19,19),fill='#'+edge)
+ d.rectangle((5,5,18,18),fill=(0,0,0,0) if transparent else '#'+fill)
+ if transparent:
+  d.rectangle((4,4,19,19),fill=(0,0,0,0))
+ else:
+  d.line((5,5,18,5),fill='#'+shine)
+  for x,y in [(3,3),(20,3),(3,20),(20,20)]:d.point((x,y),fill='#'+edge)
+  for x in [8,15]:d.point((x,2),fill='#'+fill)
+  if pressed:d.line((5,5,18,5),fill='#'+edge)
  im.save(root/f'assets/ui/river/{name}.png')
 patch('paper',palette['paper'],palette['brown'],'ECD7AD')
 patch('secondary','EBD8B5','AA805B','FFF1D5')
