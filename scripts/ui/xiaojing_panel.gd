@@ -9,12 +9,13 @@ var confirmation: String = "读完并记下"
 
 func _ready() -> void:
 	add_to_group("modal_panels")
+	add_theme_stylebox_override("panel",FarmUIStyle.surface("star"))
 	hide()
 	var layout := VBoxContainer.new()
 	add_child(layout)
 	var header := HBoxContainer.new()
 	layout.add_child(header)
-	var caption := FarmUIStyle.label("第 1314 颗星星",25,FarmUIStyle.GOLD)
+	var caption := FarmUIStyle.label("第 1314 颗星星",25,FarmUIStyle.STAR)
 	caption.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	header.add_child(caption)
 	header.add_child(FarmUIStyle.button("四季近况",func(): close_panel(); Events.interaction_requested.emit("social:xiaojing"),140))
@@ -51,12 +52,16 @@ func close_panel() -> void:
 	GameState.set_modal(false)
 
 func label_row(text: String, size: int = 18) -> void:
-	var label := FarmUIStyle.label(text,size)
+	var label := FarmUIStyle.label(text,size,FarmUIStyle.STAR if size>=22 else FarmUIStyle.TEXT)
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(label)
 
 func button(text: String, callback: Callable) -> Button:
 	var result := FarmUIStyle.button(text,callback,160)
+	if "确认婚礼" in text or text.begins_with("放弃本轮"):
+		result.add_theme_stylebox_override("normal",FarmUIStyle.surface("danger"))
+	elif text.begins_with("求婚") or text.begins_with("开始温室仪式"):
+		result.add_theme_stylebox_override("normal",FarmUIStyle.surface("star"))
 	content.add_child(result)
 	return result
 

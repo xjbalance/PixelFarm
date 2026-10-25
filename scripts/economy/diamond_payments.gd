@@ -34,6 +34,14 @@ static func request(panel: Control, gold: int, callback: Callable, force_diamond
 		if child is ConfirmationDialog and child.visible: return
 	var dialog := ConfirmationDialog.new()
 	dialog.theme=FarmUIStyle.make_theme()
+	var frame:=FarmUIStyle.surface("paper")
+	frame.expand_margin_top=28
+	dialog.theme.set_stylebox("embedded_border","Window",frame)
+	dialog.theme.set_stylebox("panel","AcceptDialog",FarmUIStyle.surface("paper"))
+	dialog.theme.set_color("title_color","Window",FarmUIStyle.TITLE)
+	dialog.get_label().add_theme_color_override("font_color",FarmUIStyle.TEXT)
+	dialog.get_ok_button().add_theme_stylebox_override("normal",FarmUIStyle.surface("danger"))
+	dialog.get_cancel_button().add_theme_stylebox_override("normal",FarmUIStyle.surface("secondary"))
 	dialog.get_label().autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	dialog.get_label().custom_minimum_size.x=600
 	for button in [dialog.get_ok_button(),dialog.get_cancel_button()]:

@@ -14,7 +14,7 @@ func _ready() -> void:
 	add_child(layout)
 	var header := HBoxContainer.new()
 	layout.add_child(header)
-	var title := FarmUIStyle.label("星辉矿脉 · 山谷深处的回声",24,FarmUIStyle.GOLD)
+	var title := FarmUIStyle.label("星辉矿脉 · 山谷深处的回声",24,FarmUIStyle.TITLE)
 	title.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	header.add_child(title)
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
@@ -30,12 +30,14 @@ func _ready() -> void:
 	scroll.add_child(content)
 
 func words(text: String, size: int = 18) -> void:
-	var label := FarmUIStyle.label(text,size)
+	var label := FarmUIStyle.label(text,size,FarmUIStyle.TITLE if size>=22 else FarmUIStyle.TEXT)
 	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(label)
 
 func button(text: String, callback: Callable) -> Button:
 	var result := FarmUIStyle.button(text,callback,160)
+	if text.begins_with("最终确认") or text.begins_with("取消本轮试炼"):
+		result.add_theme_stylebox_override("normal",FarmUIStyle.surface("danger"))
 	content.add_child(result)
 	return result
 
