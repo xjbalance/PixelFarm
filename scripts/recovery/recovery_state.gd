@@ -3,10 +3,11 @@ extends Node
 signal changed
 const BENCH := Vector2(784,464)
 const REST_LIMIT := 3
-const SNACK_LIMIT := 3
+const SNACK_LIMIT := 3 # 仅为旧存档snacks字段的饱和值，不再是食用额度。
 const FOOD := {"carrot":8,"potato":12,"wheat":4}
 var state: Dictionary={"day":1,"rests":0,"snacks":0}
 var busy: bool=false
+var food_busy: bool=false
 var game: Node
 func _ready() -> void:
 	state=defaults(GameClock.day)
@@ -16,7 +17,7 @@ func defaults(day: int = GameClock.day) -> Dictionary:
 func snapshot() -> Dictionary:
 	return state.duplicate(true) if state.day==GameClock.day else defaults()
 func restore(raw: Dictionary) -> void:
-	state=AbyssSaveSchema.canonical(raw).duplicate(true);busy=false;changed.emit()
+	state=AbyssSaveSchema.canonical(raw).duplicate(true);busy=false;food_busy=false;changed.emit()
 func validate(raw: Variant, day: int) -> bool:
 	if not raw is Dictionary or raw.size()!=3: return false
 	return FarmSaveSchema.whole(raw.get("day"),1,day) and FarmSaveSchema.whole(raw.get("rests"),0,REST_LIMIT) and FarmSaveSchema.whole(raw.get("snacks"),0,SNACK_LIMIT)
@@ -24,7 +25,14 @@ func near_bench() -> bool:
 	return is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(BENCH)<=54
 func available() -> bool:
 	# 暂停菜单允许吃东西；后台、离场和读档中的旧回调不能提交恢复事务。
-	return not busy and not GameClock.settling and not GameState.restoring and is_instance_valid(game) and not game.backgrounded and not game.closing
+	return not busy and not food_busy and not GameClock.settling and not GameState.restoring and is_instance_valid(game) and not game.backgrounded and not game.closing
+func begin_food() -> bool:
+	# 原料、鱼料理和厨房料理共享提交锁；独立的下一次点击不受每日次数限制。
+	if not available() or GameClock.minutes>=1440 or GameState.stamina>=GameState.max_stamina(): return false
+	food_busy=true
+	return true
+func end_food() -> void:
+	food_busy=false
 func can_rest() -> bool:
 	return available() and near_bench() and GameClock.minutes+20<1440 and int(snapshot().rests)<REST_LIMIT and GameState.stamina<GameState.max_stamina()
 func rest(expected_day: int = GameClock.day, expected_used: int = -1) -> bool:
@@ -41,11 +49,11 @@ func rest(expected_day: int = GameClock.day, expected_used: int = -1) -> bool:
 	busy=false
 	return true
 func eat_crop(id: String) -> bool:
-	if not available() or GameClock.minutes>=1440 or not FOOD.has(id) or GameState.stamina>=GameState.max_stamina() or int(snapshot().snacks)>=SNACK_LIMIT: return false
-	busy=true
-	if not Inventory.exchange({id:1},{},0): busy=false;return false
-	state=snapshot();state.snacks+=1
+	if not FOOD.has(id) or not begin_food(): return false
+	if not Inventory.exchange({id:1},{},0): end_food();return false
+	state=snapshot();state.snacks=mini(SNACK_LIMIT,int(state.snacks)+1)
+	var restored: int=mini(GameState.max_stamina()-GameState.stamina,int(FOOD[id]))
 	GameState.stamina=mini(GameState.max_stamina(),GameState.stamina+int(FOOD[id]))
 	GameState.changed.emit();changed.emit();Events.progress_committed.emit()
-	Events.notice.emit("吃了%s，恢复%d体力。今天还可吃%d份零食。" % [Catalog.item_name(id),FOOD[id],SNACK_LIMIT-int(state.snacks)])
-	busy=false;return true
+	Events.notice.emit("吃了%s ×1，恢复%d体力。" % [Catalog.item_name(id),restored])
+	end_food();return true

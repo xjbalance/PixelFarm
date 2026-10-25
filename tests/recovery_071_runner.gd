@@ -91,21 +91,21 @@ func meal_transactions() -> void:
 		var committed: bool=Kitchen.consume("carrot_stew") if first=="kitchen" else Aquaculture.consume_food("fish_soup")
 		Inventory.changed.disconnect(attempt)
 		check(committed and called[0],first+"在库存信号内触发跨模块重复料理测试")
-		check(not nested[0] and Inventory.count("carrot_stew")== (2 if first=="kitchen" else 3) and Inventory.count("fish_soup")== (3 if first=="kitchen" else 2),first+"先食用时共享每日料理额度预留到事务提交")
+		check(not nested[0] and Inventory.count("carrot_stew")== (2 if first=="kitchen" else 3) and Inventory.count("fish_soup")== (3 if first=="kitchen" else 2),first+"先食用时共享事务锁防止同次信号再次扣物")
 		check(GameState.stamina== (32 if first=="kitchen" else 40) and Aquaculture.state.meal_day==GameClock.day,"共享料理仅恢复一份并记录当天")
-		check(not Kitchen.consume("carrot_stew") and not Aquaculture.consume_food("fish_soup"),"同日另一个料理入口不能绕过每日一餐")
+		check(Kitchen.consume("carrot_stew") and Aquaculture.consume_food("fish_soup") and GameState.stamina==(84 if first=="kitchen" else 92),"前一事务结束后可独立继续吃料理，准确扣物恢复体力")
 	Kitchen.restore(Kitchen.defaults(GameClock.day));Aquaculture.state.meal_day=0;GameState.stamina=10
 	Inventory.items.erase("fish_soup");Inventory.items.erase("carrot_stew")
-	check(not Kitchen.consume("carrot_stew") and not Aquaculture.consume_food("fish_soup") and Aquaculture.state.meal_day==0,"缺少料理时预留额度回滚，不吞当天机会")
+	check(not Kitchen.consume("carrot_stew") and not Aquaculture.consume_food("fish_soup") and Aquaculture.state.meal_day==0,"缺少料理时共享事务释放，记录与资源不改变")
 	Inventory.items.potato_bread=2
 	check(Kitchen.consume("potato_bread") and Kitchen.speed_multiplier()==1.15,"正常料理增益保持原数值")
 	var buff: Dictionary=Kitchen.snapshot().buff.duplicate(true)
-	check(not Kitchen.consume("potato_bread") and Kitchen.state.buff==buff and Inventory.count("potato_bread")==1,"连点不能叠加或刷新料理时长")
+	check(Kitchen.consume("potato_bread") and Kitchen.state.buff==buff and Inventory.count("potato_bread")==0 and GameState.stamina==46,"同日再次吃面包恢复18体力，但不能叠加或刷新增益时长")
 	Kitchen._process(50)
 	check(Kitchen.state.buff==buff,"暂停的游戏时钟不会消耗或重复生成增益")
 	Kitchen.restore(Kitchen.defaults(GameClock.day));Aquaculture.state.meal_day=0
 	Inventory.items.carrot_stew=1;Inventory.items.fish_soup=1;GameState.stamina=GameState.max_stamina()
-	check(not Kitchen.consume("carrot_stew") and not Aquaculture.consume_food("fish_soup") and Aquaculture.state.meal_day==0 and Inventory.count("carrot_stew")==1 and Inventory.count("fish_soup")==1,"满体力不扣料理或日限")
+	check(not Kitchen.consume("carrot_stew") and not Aquaculture.consume_food("fish_soup") and Aquaculture.state.meal_day==0 and Inventory.count("carrot_stew")==1 and Inventory.count("fish_soup")==1,"满体力不扣料理或改变食用记录")
 	VillageProjects.built.assign(["arbor"]);VillageProjects.tea_day=0;GameState.stamina=10
 	var tea_nested := [false]
 	var tea_called := [false]

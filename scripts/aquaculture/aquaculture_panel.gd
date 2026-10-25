@@ -189,7 +189,7 @@ func show_shop() -> void:
 
 func show_craft() -> void:
 	words("湖岸加工与料理",23)
-	words("用已建鱼栏旁的工具制作；加工立即完成，需要相应设施与材料。料理每天最多吃一份，满体力时不消耗。",16)
+	words("用已建鱼栏旁的工具制作；加工立即完成，需要相应设施与材料。持有料理且体力未满时可以继续吃，每次消耗1份，满体力时不消耗。",16)
 	quantities()
 	for id in Aquaculture.data.recipes:
 		var recipe: Dictionary=Aquaculture.data.recipes[id]

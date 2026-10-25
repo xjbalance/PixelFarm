@@ -169,9 +169,10 @@ func daytime_recovery() -> void:
 	check(recovery.eat_crop("potato") and GameState.stamina==40 and Inventory.count("potato")==4,"土豆零食消耗一份恢复12")
 	check(recovery.eat_crop("wheat") and GameState.stamina==44 and Inventory.count("wheat")==4,"小麦零食消耗一份恢复4")
 	var inventory_before: Dictionary=Inventory.items.duplicate(true)
-	check(not recovery.eat_crop("carrot") and Inventory.items==inventory_before and GameState.stamina==44,"三次零食共享日限，额外点击不扣食材")
+	check(recovery.eat_crop("carrot") and Inventory.count("carrot")==int(inventory_before.carrot)-1 and GameState.stamina==52,"体力未满时第四份零食仍消耗一份并恢复8体力")
+	inventory_before=Inventory.items.duplicate(true)
 	saved=FarmSaveStore.snapshot(game)
-	check(FarmSaveStore.restore(game,JSON.parse_string(JSON.stringify(saved))) and recovery.snapshot().snacks==3,"读档保留零食日限")
+	check(FarmSaveStore.restore(game,JSON.parse_string(JSON.stringify(saved))) and recovery.snapshot().snacks==3,"读档保留旧零食兼容字段，该字段不再限制食用")
 	recovery.restore(recovery.defaults(GameClock.day));GameState.stamina=GameState.max_stamina()
 	check(not recovery.eat_crop("carrot") and Inventory.items==inventory_before and recovery.snapshot().snacks==0,"满体力食用不消耗食材和次数")
 	GameState.stamina=40
@@ -179,7 +180,7 @@ func daytime_recovery() -> void:
 	Inventory.items.erase("carrot")
 	check(not recovery.eat_crop("carrot") and recovery.snapshot().snacks==0,"缺少食材不凭空恢复体力")
 	GameClock.minutes=1200
-	check(GameClock.request_sleep(day) and days_advanced[0]==1 and recovery.snapshot().rests==0 and recovery.snapshot().snacks==0,"合法睡眠唯一跨日后刷新恢复额度")
+	check(GameClock.request_sleep(day) and days_advanced[0]==1 and recovery.snapshot().rests==0 and recovery.snapshot().snacks==0,"合法睡眠唯一跨日后刷新休息次数与兼容记录")
 	GameClock.day_advanced.disconnect(on_day)
 	var old := FarmSaveStore.snapshot(game)
 	old.version=12;old.erase("recovery")

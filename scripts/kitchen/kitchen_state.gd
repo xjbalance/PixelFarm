@@ -75,7 +75,7 @@ func cook(id: String, batches: int = 1) -> bool:
 	if not _exchange(scaled(recipe.required,batches),scaled(recipe.rewards,batches)): return false
 	state.cooked[id]=mini(999999,int(state.cooked.get(id,0))+batches)
 	Events.dish_cooked.emit(id,batches,int(state.cooked[id]),GameClock.day)
-	Events.notice.emit("做好了%s ×%d，食用与鱼汤共享每天一份料理额度。" % [recipe.name,batches])
+	Events.notice.emit("做好了%s ×%d，体力未满时可食用；已有增益不会叠加或延长。" % [recipe.name,batches])
 	_commit();return true
 
 func enqueue(id: String, batches: int = 1) -> bool:
@@ -127,21 +127,20 @@ func harvest_berries() -> bool:
 	_commit();return true
 
 func consume(id: String) -> bool:
-	if not Recovery.available() or GameClock.minutes>=1440: return false
-	if busy or GameClock.settling or not data.items.has(id) or data.items[id].kind!="food" or int(Aquaculture.state.meal_day)>=GameClock.day: return false
+	if busy or not data.items.has(id) or data.items[id].kind!="food" or not Recovery.begin_food(): return false
 	var item: Dictionary=data.items[id]
-	if GameState.stamina>=GameState.max_stamina(): return false
-	if state.buff.id!="" and float(state.buff.remaining)>0: return false
-	# 共享额度须在库存信号之前预留，鱼料理的回调也不能再次用餐。
-	var previous_meal: int=int(Aquaculture.state.meal_day)
-	Aquaculture.state.meal_day=GameClock.day
 	if not _exchange({id:1},{}):
-		Aquaculture.state.meal_day=previous_meal
+		Recovery.end_food()
 		return false
+	Aquaculture.state.meal_day=GameClock.day
+	var restored: int=mini(GameState.max_stamina()-GameState.stamina,int(item.energy))
 	GameState.stamina=mini(GameState.max_stamina(),GameState.stamina+int(item.energy))
-	state.buff={"id":str(item.buff),"remaining":float(item.seconds)}
+	# 食物可连续恢复体力；已有增益保持原ID和剩余秒数，不叠层、不刷新。
+	var active_buff: bool=state.buff.id!="" and float(state.buff.remaining)>0
+	if not active_buff: state.buff={"id":str(item.buff),"remaining":float(item.seconds)}
 	GameState.changed.emit();Aquaculture.changed.emit()
-	_commit();return true
+	Events.notice.emit("吃了%s ×1，恢复%d体力。%s" % [Catalog.item_name(id),restored,"已有增益继续计时，不叠加或延长。" if active_buff else ""])
+	_commit();Recovery.end_food();return true
 
 func _process(delta: float) -> void:
 	if busy or state.is_empty() or state.buff.id=="" or GameState.modal or not GameClock.running: return

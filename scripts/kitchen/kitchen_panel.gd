@@ -58,7 +58,7 @@ func refresh() -> void:
 		return
 	words("第%d天 · %d金 · 钻石%d · 体力%d/%d" % [GameClock.day,Inventory.coins,Xiaojing.state.diamonds,GameState.stamina,GameState.max_stamina()],16)
 	if Kitchen.state.buff.id!="": words("当前增益：%s · 剩余%.0f秒有效游戏时间" % [{"speed":"移动+15%","thrift":"体力消耗75%（至少1）","mining":"采矿伤害+1","fishing":"钓鱼带宽+0.03"}[Kitchen.state.buff.id],Kitchen.state.buff.remaining],16)
-	words("所有料理与原鱼汤/鱼干共享每天一份额度；满体力不吃掉物品。增益不叠加，菜单和后台暂停计时。",16)
+	words("持有料理且体力未满时可以继续吃，每次消耗1份；满体力不消耗。已有增益不叠加、不覆盖或延长，菜单和后台暂停计时。",16)
 	var row := HBoxContainer.new();content.add_child(row)
 	row.add_child(FarmUIStyle.label("批数：%d" % quantity,20,FarmUIStyle.GOLD))
 	row.add_child(FarmUIStyle.button("−",func(): quantity=maxi(1,quantity-1);refresh(),52));row.add_child(FarmUIStyle.button("+",func(): quantity=mini(8,quantity+1);refresh(),52))

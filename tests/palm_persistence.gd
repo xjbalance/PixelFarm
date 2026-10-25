@@ -70,7 +70,13 @@ func run() -> void:
 		var restored: Dictionary=AbyssSaveSchema.canonical(FarmSaveStore.snapshot(game))
 		for key in proof:
 			if restored.get(key)!=proof[key]: print("PALM MISMATCH ",key);ok=false
-		ok=Recovery.snapshot().rests==2 and Recovery.snapshot().snacks==3 and not Recovery.eat_crop("potato") and ok
+		var food_snapshot:=FarmSaveStore.snapshot(game)
+		var potatoes: int=Inventory.count("potato");var stamina: int=GameState.stamina
+		ok=Recovery.snapshot().rests==2 and Recovery.snapshot().snacks==3 and Recovery.eat_crop("potato") and Inventory.count("potato")==potatoes-1 and GameState.stamina==mini(GameState.max_stamina(),stamina+12) and ok
+		# 只还原本段食用探针的字段，不重新进矿层触发额外探索采样。
+		Inventory.items=food_snapshot.items.duplicate(true)
+		GameState.stamina=int(food_snapshot.stamina)
+		Recovery.restore(food_snapshot.recovery)
 		ok=not Recovery.rest(GameClock.day,0) and GameState.location=="abyss" and AbyssState.state.depth==12 and AbyssState.state.checkpoint==10 and ok
 		ok=Xiaojing.state.married and Xiaojing.state.diamonds==37 and GameState.control_mode=="joystick" and ok
 		var before := FarmSaveStore.snapshot(game)

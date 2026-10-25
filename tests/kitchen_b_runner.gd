@@ -121,9 +121,9 @@ func effects() -> void:
 		GameState.stamina=10
 		check(Kitchen.consume(pair[0]) and GameState.stamina==10+pair[1],"料理恢复明确体力："+pair[0])
 		var before := stamp()
-		check(not Kitchen.consume(pair[0]) and stamp()==before,"同日重复料理不消耗物品或叠加增益："+pair[0])
+		check(Kitchen.consume(pair[0]) and Inventory.count(pair[0])==int(before.items[pair[0]])-1 and GameState.stamina==10+2*pair[1] and Kitchen.state.buff==before.state.buff,"同日独立再次食用消耗物品恢复体力，不叠加或延长增益："+pair[0])
 		Inventory.items.fish_soup=2
-		check(not Aquaculture.consume_food("fish_soup"),"新料理与原鱼汤共享每日额度："+pair[0])
+		check(Aquaculture.consume_food("fish_soup") and Inventory.count("fish_soup")==1 and GameState.stamina==10+2*pair[1]+30,"厨房料理后仍可吃原鱼汤，按份恢复且扣物："+pair[0])
 		if pair[0]=="potato_bread": check(is_equal_approx(Kitchen.speed_multiplier(),1.15),"面包提供15%移速查询，不叠加")
 		if pair[0]=="egg_meal": check(Kitchen.energy_cost(4)==3 and Kitchen.energy_cost(3)==2 and Kitchen.energy_cost(1)==1,"省力料理向下取整75%且每次正费用至少1")
 		if pair[0]=="milk_porridge": check(Kitchen.mining_power()==1,"奶粥提供一次采矿伤害+1")
@@ -145,9 +145,9 @@ func effects() -> void:
 			GameClock.running=false
 		await next_day()
 	GameState.stamina=GameState.max_stamina()
-	var before := stamp();check(not Kitchen.consume("carrot_stew") and stamp()==before,"满体力不白耗料理或每日额度")
+	var before := stamp();check(not Kitchen.consume("carrot_stew") and stamp()==before,"满体力不白耗料理或改变增益")
 	GameState.stamina=20;Inventory.items.dried_fish=1
-	check(Aquaculture.consume_food("dried_fish") and not Kitchen.consume("potato_bread"),"原鱼干先吃后新料理也受同一个日限")
+	check(Aquaculture.consume_food("dried_fish") and Kitchen.consume("potato_bread") and GameState.stamina==56,"原鱼干后仍可独立吃面包，恢复18加18体力")
 
 func persistence_and_navigation() -> void:
 	await reset();await home();Kitchen.build("mill");Kitchen.enqueue("flour",3)

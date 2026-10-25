@@ -319,7 +319,7 @@ func economy_expansion() -> void:
 	GameState.stamina=20
 	check(Aquaculture.consume_food("fish_soup") and GameState.stamina==50,"鱼汤正确消耗并恢复30体力")
 	before=transaction()
-	check(not Aquaculture.consume_food("dried_fish") and transaction()==before and GameState.stamina==50,"料理共享每日使用额度，不能连续刷体力")
+	check(Aquaculture.consume_food("dried_fish") and Inventory.count("dried_fish")==0 and GameState.stamina==68,"体力未满时鱼汤后仍可吃一份鱼干，正确扣物恢复18")
 	check(not Aquaculture.species_unlocked("golden"),"收齐普通鱼仍需真实地下水脉探索前置")
 	# 本套独立验证养殖接口，矿区完整主线与进入流程由原mining套件实走。
 	MineState.state.unlocked=["mine_a","mine_b"]

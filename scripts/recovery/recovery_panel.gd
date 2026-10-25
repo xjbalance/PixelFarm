@@ -19,7 +19,7 @@ func open_panel() -> void:
 	pending_day=-1;GameState.set_modal(true);show();refresh()
 func refresh() -> void:
 	for child in content.get_children(): content.remove_child(child);child.queue_free()
-	words("体力 %d / %d · 今天休息%d/3，零食%d/3" % [GameState.stamina,GameState.max_stamina(),Recovery.snapshot().rests,Recovery.snapshot().snacks])
+	words("体力 %d / %d · 今天休息%d/3" % [GameState.stamina,GameState.max_stamina(),Recovery.snapshot().rests])
 	if pending_day>=0:
 		words("坐20游戏分钟，恢复15体力，使用今天的一次休息机会？日期、作物、矿石与鱼群不会跨天结算。")
 		button("确认休息",func():
@@ -31,10 +31,10 @@ func refresh() -> void:
 	button("坐一会儿 · 20分钟 / +15体力",func(): pending_day=GameClock.day;pending_used=int(Recovery.snapshot().rests);refresh()).disabled=not Recovery.can_rest()
 	for item in Recovery.FOOD:
 		button("吃%s ×1 · +%d体力（持有%d）" % [Catalog.item_name(item),Recovery.FOOD[item],Inventory.count(item)],func():
-			if not Recovery.eat_crop(item): Events.notice.emit("缺少食物、今天零食已够三份或体力已满，物品未消耗。")
+			if not Recovery.eat_crop(item): Events.notice.emit("缺少食物、体力已满或暂时不能食用，物品未消耗。")
 			refresh()
 		).disabled=Inventory.count(item)==0
-	words("其他恢复：建成公共茶座后，每天热茶恢复40体力；鱼干恢复18、鱼汤恢复30，每天最多一份料理。20:00后睡眠全恢复，24:00疲劳醒来恢复六成。")
+	words("持有食物且体力未满时可以继续吃，每次消耗1份并恢复至多到体力上限。料理的已有增益不叠加或延长。建成公共茶座后，每天热茶恢复40体力；鱼干恢复18、鱼汤恢复30。20:00后睡眠全恢复，24:00疲劳醒来恢复六成。")
 func close_panel() -> void:
 	pending_day=-1;hide();GameState.set_modal(false)
 func _unhandled_input(event: InputEvent) -> void:

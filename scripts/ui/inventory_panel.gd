@@ -132,7 +132,7 @@ func refresh() -> void:
 		else:
 			row.add_child(FarmUIStyle.button("装备种子",equip.bind(crop_id),132))
 			row.add_child(FarmUIStyle.button("吃1个\n+%d体力" % Recovery.FOOD[crop_id],func():
-				if not Recovery.eat_crop(crop_id): Events.notice.emit("没有食物、今日零食额度已用完或体力已满。")
+				if not Recovery.eat_crop(crop_id): Events.notice.emit("缺少食物、体力已满或暂时不能食用，物品已保留。")
 				refresh()
 			,100))
 
@@ -228,8 +228,8 @@ func refresh_aquaculture() -> void:
 				sell_button.disabled=Inventory.count(id)==0
 				row.add_child(sell_button)
 		elif definition.kind=="food":
-			row.add_child(FarmUIStyle.button("食用\n每日一份",func():
-				if not Aquaculture.consume_food(id): Events.notice.emit("今天已用餐、体力充足或没有这份料理。")
+			row.add_child(FarmUIStyle.button("食用1份\n恢复体力",func():
+				if not Aquaculture.consume_food(id): Events.notice.emit("体力已满、没有这份料理或暂时不能食用，物品已保留。")
 				refresh()
 			,132))
 	var tip := FarmUIStyle.label("农场东侧湖岸可建鱼栏。投放、照料、加工和稀有鱼培育请到鱼栏边办理；成长按实际游戏日结算。",16)
@@ -252,8 +252,8 @@ func refresh_life() -> void:
 		if shop_mode and Catalog.sell_price(id)>0:
 			var sell_button := FarmUIStyle.button("出售全部\n%d金 / 个" % Catalog.sell_price(id),request_sale.bind(id),132);sell_button.disabled=Inventory.count(id)==0;row.add_child(sell_button)
 		elif not shop_mode and category=="kitchen" and definition.get("kind")=="food":
-			row.add_child(FarmUIStyle.button("食用\n每天一餐",func():
-				if not Kitchen.consume(id): Events.notice.emit("体力已满、今日已用餐、增益尚未结束或缺少料理；物品已保留。")
+			row.add_child(FarmUIStyle.button("食用1份\n恢复体力",func():
+				if not Kitchen.consume(id): Events.notice.emit("体力已满、缺少料理或暂时不能食用；物品已保留。")
 				refresh()
 			,132))
-	var hint := FarmUIStyle.label("鱼竿在工具栏第9格；钓点升级与补给、畜舍照料、厨房加工分别在对应设施办理。料理共享每天一份额度。",16);hint.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;rows.add_child(hint)
+	var hint := FarmUIStyle.label("鱼竿在工具栏第9格；钓点升级与补给、畜舍照料、厨房加工分别在对应设施办理。食物每次消耗1份，体力未满可继续食用；已有料理增益不叠加或延长。",16);hint.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;rows.add_child(hint)

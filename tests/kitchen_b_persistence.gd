@@ -23,7 +23,12 @@ func run() -> void:
 		var current: Dictionary=AbyssSaveSchema.canonical(FarmSaveStore.snapshot(game))
 		for key in ["kitchen","coins","items","aquaculture","stamina","day","control_mode"]:
 			if current.get(key)!=proof.get(key): print("KITCHEN PERSISTENCE MISMATCH: ",key);ok=false
-		ok=ok and Kitchen.state.queue.size()==1 and not Kitchen.claim_job(1) and Kitchen.speed_multiplier()==1.15 and not Kitchen.consume("potato_bread")
+		ok=ok and Kitchen.state.queue.size()==1 and not Kitchen.claim_job(1) and Kitchen.speed_multiplier()==1.15
+		var before_buff: Dictionary=Kitchen.snapshot().buff.duplicate(true)
+		var bread: int=Inventory.count("potato_bread");var stamina: int=GameState.stamina
+		ok=Kitchen.consume("potato_bread") and Inventory.count("potato_bread")==bread-1 and GameState.stamina==mini(GameState.max_stamina(),stamina+18) and Kitchen.state.buff==before_buff and ok
+		# 独立检验同日继续食用后恢复证明夹具，后续备份仍逐字段核对。
+		ok=FarmSaveStore.restore(game,proof) and ok
 		GameState.set_control_mode("tap",false);game.change_location("home",Vector2(640,500))
 		for i in range(5): await get_tree().physics_frame
 		game.auto_move.request(Vector2(848,410))

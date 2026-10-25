@@ -49,6 +49,7 @@ steps = [
     ('performance-071', ['--fixed-fps','60','res://tests/performance_071.tscn']),
     ('touch-polish', ['--fixed-fps','60','res://tests/touch_polish_runner.tscn']),
     ('farming-actions', ['--fixed-fps','60','res://tests/farming_actions_runner.tscn']),
+    ('food-recovery', ['--fixed-fps','60','res://tests/food_recovery_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),

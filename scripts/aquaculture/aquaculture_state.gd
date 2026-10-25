@@ -227,16 +227,17 @@ func process(recipe: String, batches: int = 1) -> bool:
 	return true
 
 func consume_food(item: String) -> bool:
-	if not Recovery.available() or GameClock.minutes>=1440: return false
-	if busy or GameClock.settling or item not in ["dried_fish","fish_soup"] or state.meal_day>=GameClock.day or GameState.stamina>=GameState.max_stamina(): return false
-	var previous_meal: int=int(state.meal_day)
-	state.meal_day=GameClock.day
+	if busy or item not in ["dried_fish","fish_soup"] or not Recovery.begin_food(): return false
 	if not _exchange({item:1},{},0):
-		state.meal_day=previous_meal
+		Recovery.end_food()
 		return false
+	state.meal_day=GameClock.day
+	var restored: int=mini(GameState.max_stamina()-GameState.stamina,int(data.items[item].energy))
 	GameState.stamina=mini(GameState.max_stamina(),int(GameState.stamina)+int(data.items[item].energy))
 	GameState.changed.emit()
+	Events.notice.emit("吃了%s ×1，恢复%d体力。" % [Catalog.item_name(item),restored])
 	commit()
+	Recovery.end_food()
 	return true
 
 func settle_day() -> void:
