@@ -32,7 +32,7 @@ func fresh() -> void:
 	await Touch.place(self,game,"farm",Vector2(656,480));notices.clear()
 
 func stamp() -> Dictionary:
-	return {"items":Inventory.items.duplicate(true),"coins":Inventory.coins,"diamonds":Xiaojing.state.diamonds,"stamina":GameState.stamina,"plants":Xiaojing.state.plants}
+	return {"items":Inventory.items.duplicate(true),"coins":Inventory.coins,"diamonds":Xiaojing.state.diamonds,"stamina":GameState.stamina,"plants":Xiaojing.state.plants,"selected_tool":GameState.selected}
 
 func find_button(node: Node, caption: String) -> Button:
 	for child in node.get_children():
@@ -57,7 +57,7 @@ func touch_button(control: Button, index: int=151) -> void:
 
 func row_ids() -> Array:
 	var result: Array=[]
-	for child in panel.rows.get_children(): result.append(child.get_instance_id())
+	for view in panel.row_views.values(): result.append(view.row.get_instance_id())
 	return result
 
 func opening_and_updates() -> void:
@@ -76,6 +76,7 @@ func opening_and_updates() -> void:
 
 func use_safety() -> void:
 	await fresh();panel.open_panel(false);await frames(4)
+	panel.select_item("carrot");await frames(2)
 	var eat:=find_button(panel,"吃1个\n+8体力")
 	check(eat!=null,"基础食物仍使用明确食用按钮")
 	if not eat: return
@@ -103,6 +104,7 @@ func use_safety() -> void:
 	await frames(2)
 	check(stamp()==before,"背包关闭后旧按钮回调不继续食用")
 	panel.open_panel(false);await frames(4)
+	panel.select_item("carrot");await frames(2)
 	var carrot:=find_button(panel,"吃1个\n+8体力")
 	await reveal(carrot)
 	before=stamp()
@@ -179,6 +181,7 @@ func hotbar_and_farming() -> void:
 	var correct:=true
 	for i in range(18):
 		var index: int=i%9
+		await Touch.expand_hotbar(self,game)
 		await touch_button(game.hud.tool_buttons[index],180+i)
 		correct=correct and GameState.selected==index and game.player.position==at and game.auto_move.target.is_empty()
 	check(correct,"连续18次原生快捷栏切换准确且不穿透地图")
@@ -201,12 +204,14 @@ func lifecycle() -> void:
 	for mode in ["tap","joystick"]:
 		GameState.set_control_mode(mode,false)
 		panel.open_panel(false);await frames(3)
+		panel.select_item("carrot");await frames(2)
 		var at: Vector2=game.player.position;var before:=stamp()
 		Touch.tap(self,game,Vector2(656,592));await frames(3)
 		check(game.player.position==at and game.auto_move.target.is_empty() and stamp()==before,"背包模态期间不误触农田或地图："+mode)
 		panel.close_panel();await frames(2)
 		check(GameState.control_mode==mode and not GameState.modal and game.hud.joystick.visible==(mode=="joystick"),"关闭背包恢复原操作方式："+mode)
 	panel.open_panel(false);await frames(3)
+	panel.select_item("carrot");await frames(2)
 	var old:=find_button(panel,"吃1个\n+8体力")
 	var before:=stamp();game.change_location("home");await frames(3)
 	if is_instance_valid(old): old.pressed.emit()

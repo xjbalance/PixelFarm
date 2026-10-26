@@ -10,7 +10,7 @@ const TOOL_ICON: int = 24
 const BODY_FONT: int = 18
 const TITLE_FONT: int = 24
 const CAPTION_FONT: int = 16
-const POPUP_MAX_WIDTH: float = 1040.0
+const POPUP_MAX_WIDTH: float = 960.0
 const CAMERA_RETURN_SPEED: float = 12.0
 const DRAG_THRESHOLD_DP: float = 12.0
 const DRAG_SENSITIVITY: float = 1.0
@@ -21,9 +21,14 @@ static func slot_size() -> float:
 static func panel_size(canvas: Vector2, kind: String = "default") -> Vector2:
 	var width: float=minf(POPUP_MAX_WIDTH,canvas.x-4*SAFE_EDGE)
 	var height: float=minf(600,canvas.y-4*SAFE_EDGE)
-	if kind=="inventory": width=minf(1100,canvas.x-4*SAFE_EDGE)
+	if kind=="inventory":
+		width=minf(1040,canvas.x-4*SAFE_EDGE);height=minf(540,canvas.y-4*SAFE_EDGE)
+	elif kind=="journal": width=minf(1000,canvas.x-4*SAFE_EDGE)
+	elif kind=="reading": width=minf(880,canvas.x-4*SAFE_EDGE)
 	elif kind=="dialogue":
 		width=minf(1020,canvas.x-4*SAFE_EDGE)
 		height=minf(canvas.y-4*SAFE_EDGE,240+maxf(0,UIMetrics.minimum_target()-48)*2)
-	elif kind=="system": width=minf(680,canvas.x-4*SAFE_EDGE)
+	elif kind=="system":
+		width=minf(680,canvas.x-4*SAFE_EDGE);height=minf(540,canvas.y-4*SAFE_EDGE)
+	else: height=minf(560,canvas.y-4*SAFE_EDGE)
 	return Vector2(width,height)

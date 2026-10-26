@@ -1,4 +1,5 @@
 extends PanelContainer
+var section: VBoxContainer
 var content: VBoxContainer
 var context: String = "board"
 var pending := Callable()
@@ -21,9 +22,9 @@ func open_panel(id: String = "board") -> void:
 func close_panel() -> void:
 	pending=Callable();question="";DiamondPayments.cancel(self);hide();GameState.set_modal(false)
 func words(text: String, size: int = 18) -> void:
-	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;content.add_child(label)
+	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;(section if is_instance_valid(section) else content).add_child(label)
 func button(text: String, callback: Callable) -> Button:
-	var control := FarmUIStyle.button(text,callback,180);content.add_child(control);return control
+	var control := FarmUIStyle.button(text,callback,180);(section if is_instance_valid(section) else content).add_child(control);return control
 func outcome(ok: bool) -> void:
 	if not ok: Events.notice.emit("现场条件、资源、新产记录或间隔还未满足；本次没有追加扣费。")
 	refresh()
@@ -39,6 +40,7 @@ func cost_text(required: Dictionary) -> String:
 	for item in required: parts.append("%s%d（持有%d）" % [Catalog.item_name(item),int(required[item]),Inventory.count(item)])
 	return "、".join(parts)
 func refresh() -> void:
+	section=null
 	if not visible: return
 	for toggle in get_tree().get_nodes_in_group("payment_toggle"):
 		if is_ancestor_of(toggle): toggle.disabled=pending.is_valid()
@@ -57,7 +59,9 @@ func build_projects() -> void:
 	if Story.stage!=8 or not VillageProjects.all_built():
 		words("先完成河水带走的名字，并保留水井、共仓和茶座。新工程会接在大家已经建成的生活上。")
 		return
+	var grid:=FarmUIStyle.section_grid(content)
 	for id in WorldDevelopment.TYPES:
+		section=FarmUIStyle.section(grid)
 		var level: int=WorldDevelopment.state[id]
 		words(("东岸码头" if id=="dock" else "社区归路")+" · 已建%d/2阶段" % level,22)
 		if level<2:
@@ -69,6 +73,7 @@ func build_projects() -> void:
 		if WorldDevelopment.state.parcels.has(id):
 			words("首次建设补给已保留："+cost_text(WorldDevelopment.state.parcels[id].items),16)
 			button("领取建设补给",func(): outcome(WorldDevelopment.claim_parcel(id)))
+	section=null
 	words("施工在这块牌前办理。贸易：河东岸976,720；值日：广场南侧672,720。都走原地图真实道路，不改变河流与旧桥通行规则。",16)
 func build_trade() -> void:
 	words("农渔货物装卸",22)

@@ -1,4 +1,5 @@
 extends PanelContainer
+var section: VBoxContainer
 var content: VBoxContainer
 var context: String="kitchen"
 var page: String="recipes"
@@ -21,9 +22,9 @@ func _ready() -> void:
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;column.add_child(scroll)
 	content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;content.add_theme_constant_override("separation",12);scroll.add_child(content)
 func words(text: String, size: int=18) -> void:
-	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;content.add_child(label)
+	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;(section if is_instance_valid(section) else content).add_child(label)
 func button(text: String, callback: Callable) -> Button:
-	var b := FarmUIStyle.button(text,callback,180);content.add_child(b);return b
+	var b := FarmUIStyle.button(text,callback,180);(section if is_instance_valid(section) else content).add_child(b);return b
 func open_panel(id: String="kitchen") -> void:
 	if GameState.modal or (not Kitchen.near_berry() if id=="berry" else not Kitchen.near_kitchen()): return
 	context=id;page="recipes";quantity=1;pending=Callable();message=""
@@ -45,6 +46,7 @@ func cost(items: Dictionary) -> String:
 	for id in items: text.append("%s%d（持有%d）" % [Catalog.item_name(id),int(items[id]),Inventory.count(id)])
 	return "、".join(text)
 func refresh() -> void:
+	section=null
 	if not visible: return
 	for node in get_tree().get_nodes_in_group("payment_toggle"):
 		if is_ancestor_of(node): node.disabled=pending.is_valid()
@@ -67,18 +69,23 @@ func refresh() -> void:
 		"queue": jobs()
 		_: recipes()
 func recipes() -> void:
+	var grid:=FarmUIStyle.section_grid(content)
 	for id in Kitchen.data.recipes:
 		var recipe: Dictionary=Kitchen.data.recipes[id]
+		section=FarmUIStyle.section(grid)
 		words(recipe.name+" · "+("已掌握" if Kitchen.recipe_unlocked(id) else "尚待领会"),21)
 		words(recipe.hint+"\n每批："+cost(recipe.required)+"\n"+Kitchen.data.items[id].description,16)
 		words("已做%d份 · 背包%d份" % [int(Kitchen.state.cooked.get(id,0)),Inventory.count(id)],16)
 		var amount := quantity
 		button("制作%s ×%d" % [recipe.name,amount],func(): ask("制作%d批%s，消耗：%s？" % [amount,recipe.name,cost(Kitchen.scaled(recipe.required,amount))],func(): result(Kitchen.cook(id,amount)))).disabled=not Kitchen.recipe_unlocked(id)
 		button("食用一份"+recipe.name,func(): result(Kitchen.consume(id))).disabled=Inventory.count(id)<1
+	section=null
 	words("原湖岸鱼汤、鱼干继续使用原配方和物品；厨房不会复制另一个同名物品。",16)
 func processing() -> void:
 	words("设备可同时保留四笔加工，每笔最多八批。材料下单时扣一次，次日或两日后领取；背包满则保留成品。")
+	var grid:=FarmUIStyle.section_grid(content)
 	for id in Kitchen.data.facilities:
+		section=FarmUIStyle.section(grid)
 		var facility: Dictionary=Kitchen.data.facilities[id]
 		words(facility.name+" · "+("已建成" if id in Kitchen.state.built else "待建"),21)
 		words(facility.description,16)
@@ -92,11 +99,15 @@ func processing() -> void:
 				var amount := quantity
 				words("每批："+cost(recipe.required)+" · %d日后完成" % recipe.days,16)
 				button("开始%s ×%d" % [recipe.name,amount],func(): ask("加工%d批，消耗%s；第%d天后领取？" % [amount,cost(Kitchen.scaled(recipe.required,amount)),GameClock.day+int(recipe.days)],func(): result(Kitchen.enqueue(recipe_id,amount))))
+	section=null
 func jobs() -> void:
 	if Kitchen.state.queue.is_empty(): words("加工设备里还没有待领取订单。")
+	var grid:=FarmUIStyle.section_grid(content)
 	for job in Kitchen.state.queue:
+		section=FarmUIStyle.section(grid)
 		words("#%d %s ×%d · %s" % [job.id,Kitchen.data.processing[job.recipe].name,job.batches,"已完成" if job.ready else "第%d天完成" % job.ready_day],20)
 		var serial: int=job.id
 		button("领取这一笔成品",func(): result(Kitchen.claim_job(serial))).disabled=not job.ready
+	section=null
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed("ui_cancel"): close_panel();get_viewport().set_input_as_handled()

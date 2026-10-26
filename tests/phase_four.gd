@@ -7,6 +7,7 @@ static func run(test: Node, game: Node) -> void:
 	for resolution in [Vector2i(1280,720),Vector2i(1600,720),Vector2i(1280,960)]:
 		test.get_window().size = resolution
 		await test.frames(4)
+		await load("res://tests/touch_navigation.gd").expand_hotbar(test,game)
 		var bounds: Rect2 = game.hud.safe.get_global_rect()
 		var controls: Array = [game.hud.joystick,game.hud.action_button]
 		controls.append_array(game.hud.tool_buttons)

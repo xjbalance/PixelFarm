@@ -94,6 +94,7 @@ func _ready() -> void:
 	VillageProjects.changed.connect(refresh)
 	get_viewport().size_changed.connect(update_safe_area)
 	safe.resized.connect(reflow_touch_controls)
+	safe.resized.connect(reflow_panels)
 	update_safe_area()
 	refresh()
 	refresh_hotbar()
@@ -358,9 +359,30 @@ func build_feedback() -> void:
 	# 提示位于模态层上方，金币不足、奖励和保存反馈不会被遮罩盖住。
 	safe.move_child(toast,-1)
 	Events.modal_changed.connect(func(active: bool):
+		call_deferred("reflow_panels")
 		if active: place(toast,Vector2(0.5,1),Vector2(0.5,1),Rect2(-440,-70,880,56))
 		else: place(toast,Vector2(0.5,0),Vector2(0.5,0),Rect2(-400,108,800,56))
 	)
+
+func reflow_panels() -> void:
+	if not is_instance_valid(dialogue): return
+	for panel in get_tree().get_nodes_in_group("modal_panels"):
+		if not safe.is_ancestor_of(panel): continue
+		var kind: String="default"
+		if panel==inventory_panel: kind="inventory"
+		elif panel==system_panel: kind="system"
+		elif panel==progress_panel or panel==story_panel: kind="journal"
+		elif panel==dialogue: kind="dialogue"
+		elif panel==recovery_panel: kind="reading"
+		var extent:=UILayout.panel_size(safe.size,kind)
+		# 内容的最小尺寸优先；长正文在原有滚动容器中滚动。
+		# 对话首次换行前的高度可能按旧窄宽计算；先给目标宽高，让Container稳定正文。
+		if panel!=dialogue: extent=extent.max(panel.get_combined_minimum_size())
+		extent=extent.min(safe.size-Vector2.ONE*UILayout.SAFE_EDGE*2)
+		if panel==dialogue:
+			place(panel,Vector2(.5,1),Vector2(.5,1),Rect2(Vector2(-extent.x/2,-UILayout.SAFE_EDGE-extent.y),extent))
+		else:
+			place(panel,Vector2(.5,.5),Vector2(.5,.5),Rect2(-extent/2,extent))
 
 func bubble_style() -> StyleBoxTexture:
 	var style:=FarmUIStyle.surface("paper")
@@ -396,6 +418,7 @@ func update_safe_area() -> void:
 		var screen := Vector2(DisplayServer.screen_get_size())
 		apply_safe_area(Rect2(area),screen)
 	call_deferred("reflow_touch_controls")
+	call_deferred("reflow_panels")
 
 func reflow_touch_controls() -> void:
 	if not is_instance_valid(toolbar) or not is_instance_valid(cycle_button): return

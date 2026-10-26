@@ -36,11 +36,13 @@ func switching() -> void:
 	var styles_correct:=true
 	for cycle in range(4):
 		for index in range(9):
+			await Touch.expand_hotbar(self,game)
 			touch(game.hud.tool_buttons[index]);await frames(1)
 			selected_correct=selected_correct and GameState.selected==index and game.auto_move.target.is_empty() and game.player.position==at
 			for j in range(9):
 				var style: StyleBox=game.hud.tool_buttons[j].get_theme_stylebox("normal")
-				styles_correct=styles_correct and style is StyleBoxTexture and style.texture.resource_path.ends_with("/selected.png" if j==index else "/button.png")
+				var expected: String="selected" if j==index else "button"
+				styles_correct=styles_correct and style is StyleBoxTexture and (str(style.texture.get_meta("ui_role",""))==expected or style.texture.resource_path.ends_with("/"+expected+".png"))
 	check(selected_correct,"36次原生触点切换准确选择同一格，不执行地图移动")
 	check(styles_correct,"快速切换始终只有当前工具具有选中金色边框")
 	var identity:=true
@@ -61,13 +63,13 @@ func quantities() -> void:
 	check(game.player.begin_farm_action(game.farm,Vector2i(20,18),"carrot_seed"),"使用现有农活动作生效入口消耗最后一份种子")
 	await frames(18)
 	check(Inventory.count("carrot_seed")==0 and not Inventory.items.has("carrot_seed") and game.farm.plots["20,18"].crop=="carrot","最后一粒成功播种后库存原规则移除零项")
-	check(game.hud.tool_buttons[seed_index].text.contains("已用完"),"种子耗尽时快捷栏有明确已用完文字")
+	check(game.hud.tool_buttons[seed_index].text=="0" and game.hud.tool_name_label.text.contains("已用完"),"种子耗尽时独立数量和当前工具名称明确显示已用完")
 	var energy: int=GameState.stamina
 	game.farm.plots["21,18"]={"crop":"","days":0,"watered":false}
 	game.player.position=Vector2(656,592)
 	check(not game.player.begin_farm_action(game.farm,Vector2i(21,18),"carrot_seed") and GameState.stamina==energy and game.farm.plots["21,18"].crop=="","耗尽种子仍由原规则拒绝，不扣体力或错误种植")
 	Inventory.items.carrot_seed=3;Inventory.changed.emit()
-	check(game.hud.tool_buttons[seed_index].text.contains("3") and not game.hud.tool_buttons[seed_index].text.contains("已用完"),"补充种子后数量与耗尽状态即时恢复")
+	check(game.hud.tool_buttons[seed_index].text.contains("3") and not game.hud.tool_name_label.text.contains("已用完"),"补充种子后数量与耗尽状态即时恢复")
 	var style_ids: Array=[]
 	for b in game.hud.tool_buttons: style_ids.append(b.get_theme_stylebox("normal").get_instance_id())
 	var texts: Array=[]
@@ -80,6 +82,7 @@ func quantities() -> void:
 func safe_modes() -> void:
 	await fresh()
 	game.auto_move.request(Vector2(784,496));await frames(4)
+	await Touch.expand_hotbar(self,game)
 	touch(game.hud.tool_buttons[2]);await frames(2)
 	check(game.auto_move.target.is_empty() and game.player.auto_direction==Vector2.ZERO,"切工具继续取消旧自动路径和待交互")
 	game.hud.inventory_panel.open_panel(false)
@@ -90,6 +93,7 @@ func safe_modes() -> void:
 	GameState.set_control_mode("joystick",false)
 	var joy: Control=game.hud.joystick
 	Touch.finger(self,joy.get_global_rect().get_center()+Vector2(38,0),true,62)
+	await Touch.expand_hotbar(self,game)
 	touch(game.hud.tool_buttons[1],63);await frames(2)
 	check(GameState.selected==1 and joy.finger==62 and game.player.touch_direction.x>.5,"备用摇杆与另一手指切工具兼容，不抢摇杆触点")
 	Touch.finger(self,joy.get_global_rect().get_center(),false,62)
@@ -99,16 +103,20 @@ func safe_modes() -> void:
 	GameState.select_tool(3)
 	check(game.player.begin_farm_action(game.farm,Vector2i(20,18),"carrot_seed"),"切工具取消回归开始一次未生效播种")
 	var plants: int=Xiaojing.state.plants;var seeds: int=Inventory.count("carrot_seed")
+	await Touch.expand_hotbar(self,game)
 	touch(game.hud.tool_buttons[1]);await frames(20)
 	check(game.player.farm_action.is_empty() and game.player.action_time==0 and game.farm.plots["20,18"].crop=="" and Inventory.count("carrot_seed")==seeds and Xiaojing.state.plants==plants,"起手时切快捷工具取消未生效农活，不扣种/刷520或残留动画")
 	var diamonds: int=Xiaojing.state.diamonds
-	for i in range(9): touch(game.hud.tool_buttons[i])
+	for i in range(9):
+		await Touch.expand_hotbar(self,game)
+		touch(game.hud.tool_buttons[i])
 	check(Xiaojing.state.diamonds==diamonds,"所有快捷栏操作不改变小京钻石数量")
 
 func layout() -> void:
 	for resolution in [Vector2i(1280,720),Vector2i(1600,720),Vector2i(1280,960)]:
 		get_window().size=resolution;await frames(4)
 		game.hud.update_safe_area()
+		await Touch.expand_hotbar(self,game)
 		var legal:=true
 		for button in game.hud.tool_buttons:
 			legal=legal and button.size.x>=48 and button.size.y>=48 and game.hud.safe.get_global_rect().grow(.5).encloses(button.get_global_rect())
@@ -116,6 +124,7 @@ func layout() -> void:
 		check(legal,"九格快捷栏完整位于横屏安全区且至少48×48："+str(resolution))
 	get_window().size=Vector2i(1280,720);await frames(4)
 	game.hud.apply_safe_area(Rect2(64,0,1152,720),Vector2(1280,720));await frames(3)
+	await Touch.expand_hotbar(self,game)
 	var safe_layout:=true
 	for button in game.hud.tool_buttons: safe_layout=safe_layout and game.hud.safe.get_global_rect().grow(.5).encloses(button.get_global_rect())
 	check(safe_layout,"模拟左右安全区后九格快捷栏仍可完整触达")

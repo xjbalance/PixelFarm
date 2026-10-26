@@ -1,5 +1,6 @@
 extends PanelContainer
 var context: String = "spring"
+var section: VBoxContainer
 var content: VBoxContainer
 var page: String = "activity"
 var pending := Callable()
@@ -24,9 +25,9 @@ func _ready() -> void:
 	column.add_child(scroll);content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	content.add_theme_constant_override("separation",12);scroll.add_child(content)
 func words(text: String, size: int = 18) -> void:
-	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;content.add_child(label)
+	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;(section if is_instance_valid(section) else content).add_child(label)
 func button(text: String, callback: Callable) -> Button:
-	var control := FarmUIStyle.button(text,callback,180);content.add_child(control);return control
+	var control := FarmUIStyle.button(text,callback,180);(section if is_instance_valid(section) else content).add_child(control);return control
 func open_panel(id: String = "spring") -> void:
 	if GameState.modal or not Festival.near_board(id): return
 	context=id;page="activity";pending=Callable();exhibit={}
@@ -44,6 +45,7 @@ func outcome(ok: bool) -> void:
 	if not ok: Events.notice.emit("时间、现场条件或物品尚未满足；已完成的进度与材料仍保留。")
 	refresh()
 func refresh() -> void:
+	section=null
 	if not visible: return
 	for toggle in get_tree().get_nodes_in_group("payment_toggle"):
 		if is_ancestor_of(toggle): toggle.disabled=pending.is_valid()
@@ -121,12 +123,15 @@ func build_shop() -> void:
 	words("限定摊位 · %d金 / 钻石%d" % [Inventory.coins,Xiaojing.state.diamonds],20)
 	words("每个年份、每个节日有各自限购。加工品和料理保留原设施/食谱前置，不用节日绕过解锁。",16)
 	if not Festival.is_open(context): words("摊位尚未开门或已经收摊。");return
+	var grid:=FarmUIStyle.section_grid(content)
 	for offer in Festival.data.shops[context]:
+		section=FarmUIStyle.section(grid)
 		var item: String=offer.item
 		var held: int=int(Festival.state.purchases.get(Festival.key(context),{}).get(item,0))
 		words("%s · %s / 个 · 本年剩余%d" % [Catalog.item_name(item),DiamondPayments.text(int(offer.price)),int(offer.limit)-held],18)
 		var cost: int=offer.price
 		button("购买1个",func(): ask("购买"+Catalog.item_name(item)+"，花费"+DiamondPayments.text(cost)+"？",func(): DiamondPayments.request(self,cost,func(): outcome(Festival.shop(item,1))))).disabled=held>=int(offer.limit) or not Festival.shop_unlocked(offer)
+	section=null
 func build_history() -> void:
 	for id in Festival.IDS:
 		var event: Dictionary=Festival.data.events[id]

@@ -25,6 +25,12 @@ static func place(test: Node, game: Node, location: String, at: Vector2) -> void
 	game.change_location(location,at)
 	await test.frames(5)
 
+static func expand_hotbar(test: Node, game: Node) -> void:
+	# UI05保留九个旧索引，但默认只显示相邻三个；选中后会收起。
+	if not game.hud.hotbar_expanded and not GameState.modal:
+		load("res://tests/story.gd").touch(test,game.hud.cycle_button)
+		await test.frames(2)
+
 static func run(test: Node, game: Node) -> void:
 	var saved := FarmSaveStore.snapshot(game)
 	# 前一套旧摇杆测试模拟按住后打开面板；补齐该手指的系统释放。
@@ -224,6 +230,7 @@ static func input_and_mode(test: Node, game: Node) -> void:
 	test.check(game.player.position.distance_to(Vector2(592,496))<1.1,"途中新点击立即替换原目标")
 	var executions: int=game.auto_move.execution_count
 	var at: Vector2=game.player.position
+	await expand_hotbar(test,game)
 	load("res://tests/story.gd").touch(test,game.hud.tool_buttons[0])
 	await test.frames(4)
 	test.check(game.auto_move.state==game.auto_move.State.IDLE and game.player.position==at and game.auto_move.execution_count==executions,"点击工具栏不穿透地图")

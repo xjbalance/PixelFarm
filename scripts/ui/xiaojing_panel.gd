@@ -9,7 +9,7 @@ var confirmation: String = "读完并记下"
 
 func _ready() -> void:
 	add_to_group("modal_panels")
-	add_theme_stylebox_override("panel",FarmUIStyle.surface("star"))
+	add_theme_stylebox_override("panel",FarmUIStyle.surface("paper"))
 	hide()
 	var layout := VBoxContainer.new()
 	add_child(layout)
@@ -28,7 +28,7 @@ func _ready() -> void:
 	layout.add_child(scroll)
 	content = VBoxContainer.new()
 	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	content.add_theme_constant_override("separation",12)
+	content.add_theme_constant_override("separation",8)
 	scroll.add_child(content)
 
 func open_panel(kind: String = "xiaojing") -> void:
@@ -88,13 +88,17 @@ func refresh() -> void:
 		var portrait := FarmPortrait.new()
 		portrait.person = "xiaojing"
 		content.add_child(portrait)
+		portrait.custom_minimum_size=Vector2(88,96)
 		label_row(text_title,22)
 		label_row(story_text,21)
 		button(confirmation,finish_story)
 		button("稍后再读",close_panel)
 		return
 	var state: Dictionary = Xiaojing.state
-	label_row("好感 %d · 信任 %d · 羁绊 %d / 100\n专属任务 %d/12 · 记忆 %d/7 · 试炼 %d/5\n钻石 %d / 1314 · 稀有原矿 %d" % [state.affection,state.trust,state.bond,state.quests.size(),state.memories.size(),state.trials.size(),state.diamonds,state.ore])
+	var summary:=HBoxContainer.new();summary.add_theme_constant_override("separation",12);content.add_child(summary)
+	var portrait:=FarmPortrait.new();portrait.person="xiaojing";summary.add_child(portrait);portrait.custom_minimum_size=Vector2(88,96)
+	var attributes:=FarmUIStyle.label("好感 %d · 信任 %d · 羁绊 %d / 100\n专属任务 %d/12 · 记忆 %d/7 · 试炼 %d/5\n钻石 %d / 1314 · 稀有原矿 %d" % [state.affection,state.trust,state.bond,state.quests.size(),state.memories.size(),state.trials.size(),state.diamonds,state.ore],16)
+	attributes.size_flags_horizontal=Control.SIZE_EXPAND_FILL;attributes.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;summary.add_child(attributes)
 	if page == "wedding":
 		label_row("确认举行婚礼，将消耗1314颗钻石点亮已修复温室的全部星灯。取消不会扣除资源。",21)
 		button("确认婚礼 · 消耗1314钻石",func():

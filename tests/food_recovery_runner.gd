@@ -131,7 +131,8 @@ func find_inventory_button(node: Node, caption: String) -> Button:
 	return null
 
 func tap_inventory_food() -> bool:
-	# 每次消费都会重建背包行，不能重复调用已移除按钮的旧回调。
+	# UI05明确选择后才展示该物品的使用动作，查看与消费分离。
+	game.hud.inventory_panel.select_item("carrot")
 	var button:=find_inventory_button(game.hud.inventory_panel,"吃1个\n+8体力")
 	if not is_instance_valid(button): return false
 	var ancestor: Node=button.get_parent()

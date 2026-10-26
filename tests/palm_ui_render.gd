@@ -92,6 +92,7 @@ func toolbar() -> void:
 	var clicked := true
 	var before: Vector2=game.player.global_position
 	for i in range(game.hud.tool_buttons.size()):
+		await Touch.expand_hotbar(self,game)
 		var control: Button=game.hud.tool_buttons[i]
 		legal=legal and control.size.y>=48 and game.hud.safe.get_global_rect().grow(.5).encloses(control.get_global_rect())
 		StoryTouch.touch(self,control);await frames(1)
@@ -195,13 +196,15 @@ func sale_confirmation() -> void:
 	Inventory.items.carrot=5
 	var offered_items: Dictionary=Inventory.items.duplicate(true)
 	panel.refresh();await frames(3)
-	var sale: Button=find_button(panel.rows,"出售全部")
+	panel.select_item("carrot");await frames(2)
+	var sale: Button=find_button(panel,"出售全部")
 	await tap_button(sale)
 	check(panel.pending_sale.get("item","")=="carrot" and Inventory.items==offered_items and Inventory.coins==coins,prefix+" · 原生出售点击仅打开确认，尚未移除五个胡萝卜")
 	await audit_panel(panel,"出售不可撤回确认")
 	await tap_button(find_button(panel,"取消出售"))
 	check(panel.pending_sale.is_empty() and Inventory.items==offered_items and Inventory.coins==coins,prefix+" · 原生取消出售保留全部作物金币")
-	await tap_button(find_button(panel.rows,"出售全部"))
+	panel.select_item("carrot");await frames(2)
+	await tap_button(find_button(panel,"出售全部"))
 	await tap_button(find_button(panel,"确认出售"))
 	check(panel.pending_sale.is_empty() and Inventory.count("carrot")==0 and Inventory.coins==coins+5*Catalog.sell_price("carrot"),prefix+" · 原生确认出售只扣五个胡萝卜并按原价结算一次")
 	Inventory.items=saved_items;Inventory.coins=coins;Inventory.changed.emit()

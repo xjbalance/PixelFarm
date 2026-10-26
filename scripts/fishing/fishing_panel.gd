@@ -2,6 +2,7 @@ extends PanelContainer
 ## 岸边抛竿、实操小游戏和供给。确认回调取出一次，关闭时收线。
 var context: String = "farm_lake"
 var page: String = "cast"
+var section: VBoxContainer
 var content: VBoxContainer
 var pending := Callable()
 var question: String = ""
@@ -39,9 +40,9 @@ func close_panel() -> void:
 	if is_instance_valid(hold): hold.reset()
 	hide();GameState.set_modal(false)
 func words(text: String,size: int = 18) -> Label:
-	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;content.add_child(label);return label
+	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;(section if is_instance_valid(section) else content).add_child(label);return label
 func button(text: String,callback: Callable) -> Button:
-	var control := FarmUIStyle.button(text,callback,180);content.add_child(control);return control
+	var control := FarmUIStyle.button(text,callback,180);(section if is_instance_valid(section) else content).add_child(control);return control
 func feedback(ok: bool) -> void:
 	if not ok: Events.notice.emit("条件、背包空间或材料尚未满足，没有追加扣费。")
 	refresh()
@@ -53,6 +54,7 @@ func accept() -> void:
 	if visible and Fishing.near_site(context) and callback.is_valid(): callback.call()
 	refresh()
 func refresh() -> void:
+	section=null
 	if not visible: return
 	var active: bool=Fishing.active()
 	for control in navigation_buttons: control.disabled=active or pending.is_valid()
@@ -125,7 +127,9 @@ func build_gear() -> void:
 			button("用"+Fishing.data.species[species].name+"培育鱼苗",func(): ask("使用一尾亲鱼与上方所列材料培育同种鱼苗？",func(): feedback(Fishing.breeding_fry(species,1))))
 func build_book() -> void:
 	words("垂钓记录 · 只计亲自完成的钓获",22)
+	var grid:=FarmUIStyle.section_grid(content)
 	for species in Fishing.data.species:
+		section=FarmUIStyle.section(grid)
 		var definition: Dictionary=Fishing.data.species[species]
 		words("%s · %s · 钓获%d尾 · 需要鱼竿%d级" % [definition.name,Fishing.rarity(species),int(Fishing.state.counts.get(species,0)),definition.rod],20)
 		var seasons: Array[String]=[]
@@ -133,6 +137,7 @@ func build_book() -> void:
 		words("季节："+"、".join(seasons)+" · 时段%02d:00–%02d:00" % [int(definition.hours[0])/60,int(definition.hours[1])/60],16)
 		if species=="eternal": words("生态健康度90、流星夜20:00后、完成小京湖畔共同照料、星纹竿。符合条件第4次抛竿保底遇到，仍需完成实操；每季最多捕一尾，不出售。",16)
 		elif species in ["golden","star"]: words("需要原养殖鱼谱已开放该鱼，并遇到合适天气；旧研究条件不会被钓鱼跳过。",16)
+	section=null
 	words("成就",22)
 	for id in Fishing.data.achievements: words(("✓ " if id in Fishing.state.achievements else "○ ")+Fishing.data.achievements[id],17)
 func _process(delta: float) -> void:

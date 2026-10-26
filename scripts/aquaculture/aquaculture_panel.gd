@@ -1,5 +1,6 @@
 extends PanelContainer
 ## 湖岸事务面板：确认只保留一个回调，关闭/加载立即丢弃待办。
+var section: VBoxContainer
 var content: VBoxContainer
 var context: String = "pen_1"
 var page: String = "pen"
@@ -39,11 +40,11 @@ func _ready() -> void:
 func words(text: String, size: int = 18) -> void:
 	var label := FarmUIStyle.label(text,size)
 	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	content.add_child(label)
+	(section if is_instance_valid(section) else content).add_child(label)
 
 func button(text: String, callback: Callable) -> Button:
 	var control := FarmUIStyle.button(text,callback,160)
-	content.add_child(control)
+	(section if is_instance_valid(section) else content).add_child(control)
 	return control
 
 func open_panel(id: String = "pen_1") -> void:
@@ -94,6 +95,7 @@ func cost_text(required: Dictionary) -> String:
 	return "、".join(parts)
 
 func refresh() -> void:
+	section=null
 	if not visible: return
 	lock_payment(pending.is_valid())
 	for child in content.get_children(): content.remove_child(child);child.queue_free()
@@ -165,13 +167,15 @@ func show_shop() -> void:
 	words("林芽的湖岸补给 · 鱼谱",23)
 	words("普通鱼苗与饲料可用金币或钻石购买；珍稀鱼苗需要实际养殖和矿区探索后培育，材料条件不因支付方式改变。",16)
 	quantities()
+	var grid:=FarmUIStyle.section_grid(content)
 	for species in Aquaculture.data.species:
+		section=FarmUIStyle.section(grid)
 		var fish: Dictionary=Aquaculture.data.species[species]
 		var icon := TextureRect.new()
 		icon.texture=load("res://assets/aquaculture/fish_"+species+".png")
 		icon.custom_minimum_size=Vector2(64,48)
 		icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		content.add_child(icon)
+		section.add_child(icon)
 		words("%s · %s · %d天 · 售价%d金" % [fish.name,fish.rarity,fish.growth_days,fish.sell_price],20)
 		words(fish.feature+"\n来源："+fish.source+"\n用途："+fish.use+"\n收藏："+("已亲手收获" if species in Aquaculture.state.collection else "尚未收获"),16)
 		if int(fish.fry_price)>0:
@@ -183,6 +187,7 @@ func show_shop() -> void:
 		var held: int=Inventory.count("fish_"+species)
 		if held>0:
 			button("出售全部%s ×%d" % [fish.name,held],func(): ask("出售%s ×%d，获得%d金？" % [fish.name,held,held*int(fish.sell_price)],func(): result(FarmEconomy.sell("fish_"+species,held))))
+	section=null
 	var amount := quantity
 	var cost: int=int(Aquaculture.data.items.fish_feed.price)*amount
 	button("购买饲料%d份 · %s" % [amount,DiamondPayments.text(cost)],func(): ask("购买%d份饲料？花费%s。" % [amount,DiamondPayments.text(cost)],func(): DiamondPayments.request(self,cost,func(): result(Aquaculture.buy("fish_feed",amount)))))
@@ -191,11 +196,14 @@ func show_craft() -> void:
 	words("湖岸加工与料理",23)
 	words("用已建鱼栏旁的工具制作；加工立即完成，需要相应设施与材料。持有料理且体力未满时可以继续吃，每次消耗1份，满体力时不消耗。",16)
 	quantities()
+	var grid:=FarmUIStyle.section_grid(content)
 	for id in Aquaculture.data.recipes:
+		section=FarmUIStyle.section(grid)
 		var recipe: Dictionary=Aquaculture.data.recipes[id]
 		words(recipe.name+" · "+recipe.description+"\n每批："+cost_text(recipe.required)+" · 需要等级%d" % recipe.level)
 		var amount := quantity
 		button("制作%d批" % amount,func(): ask("制作%d批%s？消耗每批所列材料。背包不足则不加工。" % [amount,recipe.name],func(): result(Aquaculture.process(id,amount))))
+	section=null
 	for item in ["dried_fish","fish_soup"]:
 		button("食用"+Catalog.item_name(item)+"（持有%d）" % Inventory.count(item),func(): result(Aquaculture.consume_food(item)))
 

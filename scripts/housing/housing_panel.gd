@@ -1,5 +1,6 @@
 extends PanelContainer
 ## 网格触点预览与明确提交，不依赖复杂拖拽；关闭、读档、切换操作模式清空待确认。
+var section: VBoxContainer
 var content: VBoxContainer
 var context: String="home"
 var area: String="home"
@@ -30,9 +31,9 @@ func _ready() -> void:
 		pending=Callable();confirm_text="";selected_cell=Vector2i(-1,-1);DiamondPayments.cancel(self);refresh()
 	)
 func words(text: String, size: int = 18) -> void:
-	var control := FarmUIStyle.label(text,size);control.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;content.add_child(control)
+	var control := FarmUIStyle.label(text,size);control.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;(section if is_instance_valid(section) else content).add_child(control)
 func button(text: String, action: Callable) -> Button:
-	var control := FarmUIStyle.button(text,action,160);content.add_child(control);return control
+	var control := FarmUIStyle.button(text,action,160);(section if is_instance_valid(section) else content).add_child(control);return control
 func open_panel(id: String="home") -> void:
 	if GameState.modal: return
 	if id.begins_with("item:"):
@@ -65,6 +66,7 @@ func costs(required: Dictionary) -> String:
 	for item in required: parts.append("%s%d（有%d）" % [Catalog.item_name(item),int(required[item]),Inventory.count(item)])
 	return "、".join(parts)
 func refresh() -> void:
+	section=null
 	if not visible: return
 	lock_payment(pending.is_valid())
 	for child in content.get_children(): content.remove_child(child);child.queue_free()
@@ -133,17 +135,20 @@ func show_catalog() -> void:
 		var definition: Dictionary=Housing.data.levels[str(expected+1)]
 		words(definition.name+"\n"+definition.description+"\n"+costs(definition.required)+"、"+DiamondPayments.text(int(definition.coins)))
 		button("确认房屋扩建",func(): ask("扩建消耗"+costs(definition.required)+"与"+DiamondPayments.text(int(definition.coins))+"，原家具布局与床门不动。继续？",func(): DiamondPayments.request(self,int(definition.coins),func(): result(Housing.upgrade(expected)))))
+	var grid:=FarmUIStyle.section_grid(content)
 	for kind in Housing.data.furniture:
 		var entry: Dictionary=Housing.data.furniture[kind]
 		if entry.area not in [area,"style"]: continue
 		if entry.area=="style" and area!="home": continue
-		var icon := TextureRect.new();icon.texture=load("res://assets/housing/"+kind+".png");icon.custom_minimum_size=Vector2(48,48);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;content.add_child(icon)
+		section=FarmUIStyle.section(grid)
+		var icon := TextureRect.new();icon.texture=load("res://assets/housing/"+kind+".png");icon.custom_minimum_size=Vector2(48,48);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;section.add_child(icon)
 		words(entry.name+" · 家具库%d\n%s\n%s、%s" % [Housing.state.owned.get(kind,0),entry.description,costs(entry.required),DiamondPayments.text(int(entry.coins))])
 		if not Housing.unlocked(kind): words("需要住宅等级%d%s" % [entry.level,"且已结婚" if entry.get("married",false) else ""],16)
 		button("制作一件 · "+entry.name,func(): ask("消耗"+costs(entry.required)+"与"+DiamondPayments.text(int(entry.coins))+"制作一件"+entry.name+"？",func(): DiamondPayments.request(self,int(entry.coins),func(): result(Housing.buy(kind))))).disabled=not Housing.unlocked(kind)
 		if entry.area=="style":
 			button("应用"+entry.name,func(): result(Housing.apply_style(kind))).disabled=not Housing.has_furniture(kind)
 			button("还原原"+("墙纸" if kind=="wallpaper" else "地板"),func(): result(Housing.clear_style(kind))).disabled=Housing.state.appearance[kind]=="plain"
+	section=null
 func show_storage() -> void:
 	if area!="home" or not Housing.near("home"): words("储物柜在屋内装修台旁办理，请回小屋。不能远程搬运。",18);return
 	words("储物各物品仍最多999，容量按种类计数。取出满包时整笔取消，不会丢掉柜中物品。",16)

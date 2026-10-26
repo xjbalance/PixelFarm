@@ -177,6 +177,7 @@ func input_lifecycle() -> void:
 	await fresh()
 	var count: int=game.auto_move.execution_count
 	var at: Vector2=game.player.position
+	await Touch.expand_hotbar(self,game)
 	load("res://tests/story.gd").touch(self,game.hud.tool_buttons[0]);await frames(4)
 	check(game.player.position==at and game.auto_move.target.is_empty() and game.auto_move.execution_count==count,"UI工具栏真实触点不穿透到地图")
 	var point: Vector2=game.player.get_canvas_transform()*Vector2(784,496)

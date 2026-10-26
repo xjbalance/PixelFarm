@@ -9,6 +9,9 @@ func run() -> void:
 	GameClock.running=false;GameWeather.enabled=false;game.get_node("Audio").muted=true
 	await frames(8);game.tutorial.restore(GameTutorial.defaults(true));panel=game.hud.inventory_panel
 	Inventory.items={"carrot_seed":8,"carrot":20,"potato_seed":6,"potato":12,"wood":12,"stone":11,"fish_feed":8,"fishing_bait":7,"fish_soup":4,"potato_bread":3}
+	# UI05背包只展示实际持有物。使用真实现有生活物品构造需要滚动的库存。
+	for id in Catalog.items:
+		if Catalog.items[id].get("category","") in ["fishing","livestock","kitchen","festival","exploration"] and not Inventory.items.has(id): Inventory.items[id]=1
 	Xiaojing.state.diamonds=1400;Inventory.coins=12345
 	for spec in [[Vector2i(1280,720),false],[Vector2i(1600,720),false],[Vector2i(1280,960),false],[Vector2i(1280,720),true]]:
 		get_window().size=spec[0];await frames(5);game.hud.update_safe_area()
@@ -103,6 +106,7 @@ func bag_layout() -> void:
 	check(absi(scroll.scroll_vertical-offset)<=1,prefix+"数量局部更新保留当前滚动位置")
 	await tap(find_button("关闭 ×"));await frames(2)
 	check(not panel.visible and not GameState.modal and str(panel.selected_item)=="",prefix+"关闭后没有旧选中或悬浮菜单")
+	await Touch.expand_hotbar(self,game)
 	var legal:=true
 	for i in range(game.hud.tool_buttons.size()):
 		var button: Button=game.hud.tool_buttons[i]
@@ -110,7 +114,7 @@ func bag_layout() -> void:
 	check(legal and game.hud.tool_buttons.size()==9,prefix+"九格既有快捷栏可见且保持合法触点尺寸")
 	await tap(game.hud.tool_buttons[3]);await frames(2)
 	var style: StyleBox=game.hud.tool_buttons[3].get_theme_stylebox("normal")
-	check(GameState.selected==3 and style is StyleBoxTexture and style.texture.resource_path.ends_with("/selected.png"),prefix+"快捷工具原生选择与高亮对应")
+	check(GameState.selected==3 and style is StyleBoxTexture and (str(style.texture.get_meta("ui_role",""))=="selected" or style.texture.resource_path.ends_with("/selected.png")),prefix+"快捷工具原生选择与高亮对应")
 
 func capture(category: String) -> void:
 	await RenderingServer.frame_post_draw

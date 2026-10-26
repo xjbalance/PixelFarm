@@ -47,8 +47,8 @@ func theme_materials() -> void:
 	check(theme.get_stylebox("panel","PanelContainer") is StyleBoxTexture and theme.get_stylebox("normal","Button") is StyleBoxTexture,"公共纸面与按钮实际使用可拉伸纹理主题")
 	var paper: StyleBoxTexture=theme.get_stylebox("panel","PanelContainer")
 	var image: Image=paper.texture.get_image();var worst: float=INF
-	for y in range(8,image.get_height()-8):
-		for x in range(8,image.get_width()-8): worst=minf(worst,contrast(FarmUIStyle.TEXT,image.get_pixel(x,y)))
+	for y in range(int(paper.get_texture_margin(SIDE_TOP)),image.get_height()-int(paper.get_texture_margin(SIDE_BOTTOM))):
+		for x in range(int(paper.get_texture_margin(SIDE_LEFT)),image.get_width()-int(paper.get_texture_margin(SIDE_RIGHT))): worst=minf(worst,contrast(FarmUIStyle.TEXT,image.get_pixel(x,y)))
 	check(worst>=4.5,"主正文与真实纸面纹理每个中心像素的最低对比度≥4.5（实测%.2f）" % worst)
 	var states_ok:=true
 	for state in [["normal","font_color"],["hover","font_hover_color"],["pressed","font_pressed_color"]]:
@@ -156,6 +156,7 @@ func toolbar() -> void:
 	var correct:=true;var dimensions:=true
 	var required: float=UIMetrics.minimum_target()
 	for i in range(game.hud.tool_buttons.size()):
+		await Touch.expand_hotbar(self,game)
 		var button: Button=game.hud.tool_buttons[i]
 		dimensions=dimensions and button.size.x>=required and button.size.y>=required and game.hud.safe.get_global_rect().grow(.5).encloses(button.get_global_rect())
 		await tap(button)
@@ -164,6 +165,7 @@ func toolbar() -> void:
 	check(correct,prefix+"九个快捷工具实际原生触点准确命中")
 
 func task_card() -> void:
+	if game.hud.guide_collapsed: await tap(game.hud.guide_toggle)
 	var proof: Dictionary=FarmSaveStore.snapshot(game)
 	var expanded_height: float=game.hud.guide_panel.size.y
 	await tap(game.hud.guide_toggle)
