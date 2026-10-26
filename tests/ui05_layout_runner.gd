@@ -132,6 +132,7 @@ func bottom_dialogue() -> void:
 	await capture("dialogue-choices");panel.close_dialogue()
 
 func remaining_public_panels() -> void:
+	await at("home",game.home_rest.SOFA+Vector2(0,36));check(game.home_rest.open(),prefix+"真实靠近沙发打开确认");await audit(game.home_rest.panel,"沙发小睡确认");game.home_rest.close_panel()
 	await at("farm",Vector2(656,480))
 	for entry in [[game.hud.story_panel,[],"村庄手记"],[game.hud.calendar_panel,[],"四季日历"],[game.hud.mine_panel,["journal"],"矿道手记"],[game.hud.star_panel,["overview"],"星星手记"],[game.hud.social_panel,["linya"],"村民近况"],[game.hud.abyss_panel,["legend"],"深渊试炼"],[game.hud.river_panel,["journal"],"河湾剧情"]]:
 		await show_panel(entry[0],entry[1],entry[2])

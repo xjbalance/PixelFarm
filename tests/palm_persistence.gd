@@ -1,4 +1,5 @@
 extends Node
+const Home=preload("res://tests/home05_runner.gd")
 ## 调用者必须使用隔离XDG目录。写入/断电残留/独立进程/备份的整合状态守恒。
 func _ready() -> void: call_deferred("run")
 func frames(count: int=4) -> void:
@@ -33,6 +34,7 @@ func run() -> void:
 		load("res://tests/star_runner.gd").fixture(game,true)
 		Inventory.coins=20000
 		for id in ["wood","stone","iron_bar","crystal","hay","fry_crucian","fish_feed"]: Inventory.items[id]=100
+		ok=await Home.finish_upgrade(self,game,1) and ok;await frames()
 		game.change_location("farm",Recovery.BENCH+Vector2(0,32));await frames()
 		GameState.stamina=10
 		ok=Recovery.rest(GameClock.day,0) and Recovery.rest(GameClock.day,1) and ok
@@ -46,7 +48,6 @@ func run() -> void:
 		game.player.position=Vector2(animal.position[0],animal.position[1])+Vector2(0,32)
 		ok=Livestock.feed(animal.id) and Livestock.pet(animal.id) and ok
 		game.change_location("home",Housing.HOME+Vector2(32,0));await frames()
-		ok=Housing.upgrade(1) and ok;await frames()
 		ok=Housing.buy("chair") and Housing.place("chair","home",Vector2i(8,13)) and Housing.deposit("wood",7) and ok
 		var chapter := ChapterTwo.defaults();chapter.policy="rotation"
 		for q in ChapterTwo.definitions.slice(0,8):

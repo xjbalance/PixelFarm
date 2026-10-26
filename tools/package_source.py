@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 version = re.search(r'^config/version="([^"]+)"', (ROOT/'project.godot').read_text(),re.MULTILINE).group(1)
 out = ROOT/f'builds/PixelWorld-{version}-source.zip'
 out.parent.mkdir(exist_ok=True)
-excluded = {'.git','.tools','.godot','builds','__pycache__'}
+excluded = {'.git','.tools','.godot','builds','__pycache__','need'}
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as package:
     package.writestr('PixelWorld/builds/.gitkeep','')
     for path in sorted(ROOT.rglob('*')):

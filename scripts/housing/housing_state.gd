@@ -3,11 +3,12 @@ extends Node
 signal changed
 const HOME := Vector2(384,496)
 const YARD := Vector2(464,752)
-const SLOTS := [0,2,4,8]
-const HOME_RECTS := [Rect2i(),Rect2i(12,10,2,4),Rect2i(12,10,4,4),Rect2i(12,10,4,6)]
-const EXTENSION_RECTS := [Rect2i(),Rect2i(),Rect2i(8,13,2,3),Rect2i(5,9,5,7)]
+const SLOTS := [0,2,4,8,16]
+const HOME_RECTS := [Rect2i(),Rect2i(12,10,2,4),Rect2i(12,10,4,4),Rect2i(12,10,4,6),Rect2i(12,10,4,6)]
+const EXTENSION_RECTS := [Rect2i(),Rect2i(),Rect2i(8,13,2,3),Rect2i(5,9,5,7),Rect2i(3,8,7,9)]
 const YARD_RECT := Rect2i(10,20,4,4)
 const MAX_PLACED: int=40
+const LEGACY_FIELDS := ["level","owned","placed","serial","storage","appearance","flowers"]
 var data: Dictionary={}
 var state: Dictionary={}
 var game: Node
@@ -16,15 +17,54 @@ var busy: bool=false
 func _ready() -> void:
 	data=AbyssSaveSchema.canonical(JSON.parse_string(FileAccess.get_file_as_string("res://resources/housing/housing.json")))
 	state=defaults()
-	GameClock.day_advanced.connect(func(): changed.emit())
+	GameClock.day_advanced.connect(settle_day)
 	GameState.control_mode_changed.connect(func(): changed.emit())
 
-func defaults(_day: int = GameClock.day) -> Dictionary:
-	return {"level":1,"owned":{},"placed":[],"serial":0,"storage":{},"appearance":{"wallpaper":"plain","floor":"plain"},"flowers":{}}
+func defaults(day: int = GameClock.day) -> Dictionary:
+	return {"level":1,"owned":{},"placed":[],"serial":0,"storage":{},"appearance":{"wallpaper":"plain","floor":"plain"},"flowers":{},"construction":{},"upgrade_serial":0,"completed_jobs":[],"last_settled_day":day,"recovered":[]}
 func snapshot() -> Dictionary: return state.duplicate(true)
 func restore(raw: Dictionary) -> void:
 	state=AbyssSaveSchema.canonical(raw).duplicate(true);busy=false;changed.emit();Events.navigation_changed.emit()
 func slot_count() -> int: return SLOTS[int(state.level)]
+func level_name(level: int = -1) -> String:
+	return str(data.levels[str(int(state.level) if level<0 else clampi(level,1,4))].name)
+func near_builder() -> bool:
+	if not is_instance_valid(game) or GameState.location!="village": return false
+	if MineState.near_service("forge"): return true
+	for person in get_tree().get_nodes_in_group("interactables"):
+		if "person_id" not in person or person.person_id!="zhou" or not person.is_visible_in_tree(): continue
+		if game.player.global_position.distance_to(person.global_position)<=76 and game.auto_move.navigation.line_of_sight(game.player.global_position,person.global_position,person): return true
+	return false
+func preview_upgrade() -> Dictionary:
+	if int(state.level)>=4: return {}
+	var target: int=int(state.level)+1
+	var result: Dictionary=data.levels[str(target)].duplicate(true)
+	result.current_level=int(state.level);result.from_level=int(state.level);result.target_level=target;result.days=2
+	result.pending=not state.construction.is_empty()
+	result.affordable=Inventory.coins>=int(result.coins) and not Inventory.diamond_payment
+	for item in result.required:
+		result.affordable=result.affordable and Inventory.count(item)>=int(result.required[item])
+	result.can_request=not busy and not GameClock.settling and not result.pending and near_builder() and result.affordable and GameClock.day<=999997
+	return result
+func construction_progress() -> Dictionary:
+	if state.construction.is_empty(): return {"active":false,"current_level":int(state.level),"name":level_name()}
+	var result: Dictionary=state.construction.duplicate(true)
+	result.active=true;result.current_level=int(state.level);result.name=level_name(int(result.target_level))
+	result.days=2;result.elapsed_days=clampi(GameClock.day-int(result.started_day),0,2)
+	result.remaining_days=maxi(0,int(result.ready_day)-GameClock.day)
+	return result
+func settle_day() -> void:
+	# 日信号在GameClock.settling期间发出；本层不再次推进日期。
+	if busy or GameClock.day<=int(state.last_settled_day): return
+	busy=true;state.last_settled_day=GameClock.day
+	var completed: bool=not state.construction.is_empty() and GameClock.day>=int(state.construction.ready_day)
+	if completed:
+		var job: Dictionary=state.construction
+		state.level=int(job.target_level);state.completed_jobs.append(int(job.job_id));state.construction={}
+		var layout:=reconciled_furniture(state)
+		state.placed=layout.placed;state.recovered=layout.recovered
+	_commit(completed)
+	if completed: Events.notice.emit("周砚完成了住宅改建：%s。家具和柜中物品已保留。" % level_name())
 func near(area: String = GameState.location) -> bool:
 	if not is_instance_valid(game): return false
 	if area=="home": return GameState.location=="home" and game.player.global_position.distance_to(HOME)<=54
@@ -70,10 +110,80 @@ func _commit(nav: bool = false) -> void:
 	if nav: Events.navigation_changed.emit()
 	Events.progress_committed.emit();busy=false
 func upgrade(expected_level: int = -1) -> bool:
-	if busy or not near("home") or state.level>=3 or (expected_level!=-1 and state.level!=expected_level): return false
+	if busy or GameClock.settling or Inventory.diamond_payment or not near_builder() or state.level>=4 or not state.construction.is_empty() or GameClock.day>999997 or (expected_level!=-1 and state.level!=expected_level): return false
 	var entry: Dictionary=data.levels[str(int(state.level)+1)]
+	# 住宅只收金币，不借用其他商店同步交易中的钻石支付开关。
+	if Inventory.coins<int(entry.coins): return false
 	if not _exchange(entry.required,{},-int(entry.coins)): return false
-	state.level+=1;_commit();return true
+	state.upgrade_serial+=1
+	state.construction={"from_level":int(state.level),"target_level":int(state.level)+1,"started_day":GameClock.day,"ready_day":GameClock.day+2,"job_id":int(state.upgrade_serial)}
+	_commit();return true
+func recovery_items() -> Array:
+	return state.recovered.duplicate(true)
+func _home_obstacles(level: int) -> Array[Rect2]:
+	var obstacles: Array[Rect2]=HomeLayout.blocked_rects(level)
+	obstacles.append(Rect2(HomeLayout.SOFA+Vector2(-36,-20),Vector2(72,24)))
+	for anchor in ["sleep","kitchen","exit","mail"]:
+		obstacles.append(Rect2(HomeLayout.ANCHORS[anchor]-Vector2(16,16),Vector2(32,32)))
+	return obstacles
+func _home_cell_safe(kind: String, cell: Vector2i, level: int, occupied: Array[Rect2i], obstacles: Array[Rect2]) -> bool:
+	var rect:=footprint(kind,cell)
+	if not allowed_rect(rect,"home",level) or rect.has_point(Vector2i(12,15)): return false
+	var world_rect:=Rect2(Vector2(rect.position)*32,Vector2(rect.size)*32)
+	for obstacle in obstacles:
+		if world_rect.intersects(obstacle): return false
+	for old in occupied:
+		if old.intersects(rect): return false
+	return true
+func reconciled_furniture(raw: Dictionary) -> Dictionary:
+	# 纯数据迁移，不查询当前活动地图的物理世界，村庄施工完工也能安全整理室内。
+	var level: int=int(raw.level)
+	var obstacles:=_home_obstacles(level)
+	var occupied: Array[Rect2i]=[]
+	var resolved: Dictionary={}
+	var conflicts: Array[Dictionary]=[]
+	var recovered: Array=raw.recovered.duplicate(true)
+	# 先保留所有原位可用家具；迁走的家具不能抢占后面那件本来安全的位置。
+	for entry in raw.placed:
+		var cell:=Vector2i(entry.cell[0],entry.cell[1])
+		if entry.area!="home": resolved[entry.id]=entry.duplicate(true)
+		elif _home_cell_safe(entry.kind,cell,level,occupied,obstacles):
+			resolved[entry.id]=entry.duplicate(true);occupied.append(footprint(entry.kind,cell))
+		else: conflicts.append(entry)
+	var areas: Array[Rect2i]=[HOME_RECTS[level]]
+	if level>=2: areas.append(EXTENSION_RECTS[level])
+	for entry in conflicts:
+		var origin:=Vector2i(entry.cell[0],entry.cell[1])
+		var nearest:=Vector2i(-1,-1)
+		var best_distance: int=2147483647
+		for area in areas:
+			for y in range(area.position.y,area.end.y):
+				for x in range(area.position.x,area.end.x):
+					var candidate:=Vector2i(x,y)
+					if not _home_cell_safe(entry.kind,candidate,level,occupied,obstacles): continue
+					var distance: int=origin.distance_squared_to(candidate)
+					if distance<best_distance: nearest=candidate;best_distance=distance
+		if nearest.x>=0:
+			var moved: Dictionary=entry.duplicate(true);moved.cell=[nearest.x,nearest.y]
+			resolved[entry.id]=moved;occupied.append(footprint(entry.kind,nearest))
+		else: recovered.append(entry.duplicate(true))
+	var placed: Array=[]
+	for entry in raw.placed:
+		if resolved.has(entry.id): placed.append(resolved[entry.id])
+	return {"placed":placed,"recovered":recovered}
+func reconcile_layout() -> bool:
+	if busy or GameClock.settling: return false
+	var layout:=reconciled_furniture(state)
+	if layout.placed==state.placed and layout.recovered==state.recovered: return false
+	busy=true;state.placed=layout.placed;state.recovered=layout.recovered;_commit(true);return true
+func recover_furniture(id: String) -> bool:
+	if busy or GameClock.settling or not near("home"): return false
+	for entry in state.recovered:
+		if entry.id!=id: continue
+		if int(state.owned.get(entry.kind,0))>=99: return false
+		busy=true;state.owned[entry.kind]=int(state.owned.get(entry.kind,0))+1
+		state.recovered.erase(entry);_commit();return true
+	return false
 func buy(kind: String, quantity: int = 1) -> bool:
 	if busy or not (near("home") or near("farm")) or not unlocked(kind) or quantity<1 or quantity>20 or int(state.owned.get(kind,0))+quantity>99: return false
 	var entry: Dictionary=data.furniture[kind]
@@ -89,6 +199,7 @@ func can_place(kind: String, area: String, cell: Vector2i, except_id: String = "
 	if not allowed_rect(rect,area): return false
 	# 管理台周围留白；原床/门/厨房/木盒不在允许区，永不能放置。
 	if area=="home" and rect.has_point(Vector2i(12,15)): return false
+	if area=="home" and not _home_cell_safe(kind,cell,int(state.level),[],_home_obstacles(int(state.level))): return false
 	for entry in state.placed:
 		if entry.area!=area or entry.id==except_id: continue
 		if footprint(entry.kind,Vector2i(entry.cell[0],entry.cell[1])).intersects(rect): return false
@@ -136,8 +247,46 @@ func withdraw(item: String, quantity: int) -> bool:
 	state.storage[item]-=quantity
 	if state.storage[item]==0: state.storage.erase(item)
 	_commit();return true
+func migrate_legacy(raw: Variant, day: int) -> Dictionary:
+	# 旧布置区与新布局兼容，原家具的ID和格坐标原样保留。非法旧记录不能借迁移洗入家具库。
+	if not FarmSaveSchema.whole(day,1,999999) or not raw is Dictionary or not FarmSaveSchema.whole(raw.get("level"),1,3): return {}
+	var result: Dictionary=AbyssSaveSchema.canonical(raw).duplicate(true)
+	if AquacultureSaveSchema.exact(result,LEGACY_FIELDS):
+		for key in defaults(day):
+			if not result.has(key): result[key]=defaults(day)[key]
+	elif AquacultureSaveSchema.exact(result,defaults(day).keys()):
+		# v17及更早版本在同一次迁移中先创建默认住宅，此处仅允许尚未施工的新字段。
+		for key in ["construction","upgrade_serial","completed_jobs","last_settled_day","recovered"]:
+			if result[key]!=defaults(day)[key]: return {}
+	else: return {}
+	if not validate(result,day): return {}
+	var layout:=reconciled_furniture(result)
+	result.placed=layout.placed;result.recovered=layout.recovered
+	return result if validate(result,day) else {}
+func _valid_furniture(entry: Variant, raw: Dictionary, seen: Dictionary, require_placeable: bool = true) -> bool:
+	if not AquacultureSaveSchema.exact(entry,["id","kind","area","cell"]) or not entry.id is String or not entry.id.begins_with("furniture_"): return false
+	var suffix: String=entry.id.trim_prefix("furniture_")
+	if not suffix.is_valid_int() or not FarmSaveSchema.whole(int(suffix),1,int(raw.serial)) or entry.id!="furniture_%06d" % int(suffix) or seen.has(entry.id): return false
+	seen[entry.id]=true
+	if not entry.kind is String or not data.furniture.has(entry.kind) or entry.area not in ["home","farm"] or data.furniture[entry.kind].area!=entry.area or data.furniture[entry.kind].level>raw.level: return false
+	if not entry.cell is Array or entry.cell.size()!=2 or not FarmSaveSchema.whole(entry.cell[0],0,47) or not FarmSaveSchema.whole(entry.cell[1],0,31): return false
+	# 暂存保留的是冲突前的原记录；坐标不再可摆放也不能丢失整件家具。
+	if not require_placeable: return true
+	var rect := footprint(entry.kind,Vector2i(entry.cell[0],entry.cell[1]))
+	return allowed_rect(rect,entry.area,int(raw.level)) and not (entry.area=="home" and rect.has_point(Vector2i(12,15)))
 func validate(raw: Variant, _day: int) -> bool:
-	if not AquacultureSaveSchema.exact(raw,defaults().keys()) or not FarmSaveSchema.whole(raw.level,1,3) or not FarmSaveSchema.whole(raw.serial,0,999999): return false
+	if not AquacultureSaveSchema.exact(raw,defaults().keys()) or not FarmSaveSchema.whole(raw.level,1,4) or not FarmSaveSchema.whole(raw.serial,0,999999): return false
+	if not FarmSaveSchema.whole(raw.last_settled_day,1,_day) or not FarmSaveSchema.whole(raw.upgrade_serial,0,3): return false
+	if not raw.completed_jobs is Array or raw.completed_jobs.size()>int(raw.level)-1 or not raw.construction is Dictionary: return false
+	for i in range(raw.completed_jobs.size()):
+		if not FarmSaveSchema.whole(raw.completed_jobs[i],i+1,i+1): return false
+	if int(raw.upgrade_serial)!=raw.completed_jobs.size()+(0 if raw.construction.is_empty() else 1): return false
+	if not raw.construction.is_empty():
+		var job: Dictionary=raw.construction
+		if not AquacultureSaveSchema.exact(job,["from_level","target_level","started_day","ready_day","job_id"]): return false
+		if int(raw.level)>=4 or not FarmSaveSchema.whole(job.from_level,int(raw.level),int(raw.level)) or not FarmSaveSchema.whole(job.target_level,int(raw.level)+1,int(raw.level)+1): return false
+		if not FarmSaveSchema.whole(job.started_day,1,mini(_day,999997)) or not FarmSaveSchema.whole(job.ready_day,int(job.started_day)+2,int(job.started_day)+2): return false
+		if int(job.ready_day)<=int(raw.last_settled_day) or not FarmSaveSchema.whole(job.job_id,int(raw.upgrade_serial),int(raw.upgrade_serial)): return false
 	if not raw.owned is Dictionary or raw.owned.size()>data.furniture.size() or not raw.storage is Dictionary or raw.storage.size()>SLOTS[int(raw.level)]: return false
 	for kind in raw.owned:
 		if not data.furniture.has(kind) or not FarmSaveSchema.whole(raw.owned[kind],1,99) or data.furniture[kind].level>raw.level: return false
@@ -149,17 +298,14 @@ func validate(raw: Variant, _day: int) -> bool:
 	if not raw.placed is Array or raw.placed.size()>MAX_PLACED: return false
 	var seen := {};var occupied := {"home":[],"farm":[]}
 	for entry in raw.placed:
-		if not AquacultureSaveSchema.exact(entry,["id","kind","area","cell"]) or not entry.id is String or not entry.id.begins_with("furniture_"): return false
-		var suffix: String=entry.id.trim_prefix("furniture_")
-		if not suffix.is_valid_int() or not FarmSaveSchema.whole(int(suffix),1,int(raw.serial)) or entry.id!="furniture_%06d" % int(suffix) or seen.has(entry.id): return false
-		seen[entry.id]=true
-		if not data.furniture.has(entry.kind) or entry.area not in occupied or data.furniture[entry.kind].area!=entry.area or data.furniture[entry.kind].level>raw.level: return false
-		if not entry.cell is Array or entry.cell.size()!=2 or not FarmSaveSchema.whole(entry.cell[0],0,47) or not FarmSaveSchema.whole(entry.cell[1],0,31): return false
+		if not _valid_furniture(entry,raw,seen): return false
 		var rect := footprint(entry.kind,Vector2i(entry.cell[0],entry.cell[1]))
-		if not allowed_rect(rect,entry.area,int(raw.level)) or (entry.area=="home" and rect.has_point(Vector2i(12,15))): return false
 		for old in occupied[entry.area]:
 			if old.intersects(rect): return false
 		occupied[entry.area].append(rect)
+	if not raw.recovered is Array or raw.recovered.size()>MAX_PLACED*3: return false
+	for entry in raw.recovered:
+		if not _valid_furniture(entry,raw,seen,false) or entry.area!="home": return false
 	if not raw.flowers is Dictionary or raw.flowers.size()>MAX_PLACED: return false
 	for id in raw.flowers:
 		if not id is String or not FarmSaveSchema.whole(raw.flowers[id],1,_day): return false

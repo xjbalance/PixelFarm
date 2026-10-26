@@ -35,10 +35,7 @@ func setup(owner_game: Node) -> void:
 
 func map_rect() -> Rect2:
 	if GameState.location=="farm": return Rect2(0,0,1536,1024)
-	if GameState.location=="home":
-		# 原房间和既有扩建的实际绘制边界，外围使用室内背景填充。
-		var left: float=320 if Housing.state.level==1 else (212 if Housing.state.level==2 else 116)
-		return Rect2(left,144,960-left,464)
+	if GameState.location=="home": return HomeLayout.map_rect(int(Housing.state.level))
 	return Rect2(0,0,1280,896)
 
 func map_bounds() -> Rect2:

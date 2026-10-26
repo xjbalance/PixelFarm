@@ -19,11 +19,11 @@ func _ready() -> void:
 	header.add_child(title);header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	DiamondPayments.controls(column,refresh)
 	var tabs := HBoxContainer.new();column.add_child(tabs)
-	for entry in [["layout","布置与移动"],["catalog","家具与扩建"],["storage","柜中储物"]]:
+	for entry in [["layout","布置与移动"],["catalog","家具与扩建"],["storage","柜中储物"],["upgrade","住宅成长"]]:
 		var target: String=entry[0]
 		tabs.add_child(FarmUIStyle.button(entry[1],func():
 			if not pending.is_valid(): page=target;refresh()
-		,220))
+		,180))
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;column.add_child(scroll)
 	content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;content.add_theme_constant_override("separation",12);scroll.add_child(content)
@@ -36,7 +36,9 @@ func button(text: String, action: Callable) -> Button:
 	var control := FarmUIStyle.button(text,action,160);(section if is_instance_valid(section) else content).add_child(control);return control
 func open_panel(id: String="home") -> void:
 	if GameState.modal: return
-	if id.begins_with("item:"):
+	if id in ["upgrade","builder"]:
+		area="home";selected_id="";selected_kind="chair"
+	elif id.begins_with("item:"):
 		selected_id=id.trim_prefix("item:")
 		if not Housing.near_item(selected_id): return
 		var entry: Dictionary=Housing.placement(selected_id);area=entry.area;selected_kind=entry.kind
@@ -44,7 +46,7 @@ func open_panel(id: String="home") -> void:
 		area="farm" if id=="yard" else "home"
 		if not Housing.near(area): return
 		selected_id="";selected_kind="road" if area=="farm" else "chair"
-	context=id;page="layout";quantity=1;selected_cell=Vector2i(-1,-1);pending=Callable();confirm_text=""
+	context=id;page="upgrade" if id in ["upgrade","builder"] else "layout";quantity=1;selected_cell=Vector2i(-1,-1);pending=Callable();confirm_text=""
 	GameState.set_modal(true);show();refresh()
 func close_panel() -> void:
 	pending=Callable();confirm_text="";selected_cell=Vector2i(-1,-1);lock_payment(false);DiamondPayments.cancel(self);hide();GameState.set_modal(false)
@@ -73,9 +75,10 @@ func refresh() -> void:
 	if pending.is_valid():
 		words("确认本次操作",23);words(confirm_text,21)
 		button("确认",accept);button("取消",func(): pending=Callable();confirm_text="";refresh());return
-	words("%s · 储物%d/%d种 · %d金" % [{1:"基础小屋",2:"扩建小屋",3:"高级住宅"}[int(Housing.state.level)],Housing.state.storage.size(),Housing.slot_count(),Inventory.coins],18)
+	words("%s · 储物%d/%d种 · %d金" % [Housing.level_name(),Housing.state.storage.size(),Housing.slot_count(),Inventory.coins],18)
 	if page=="catalog": show_catalog()
 	elif page=="storage": show_storage()
+	elif page=="upgrade": show_upgrade()
 	else: show_layout()
 func show_layout() -> void:
 	words("庭院布置" if area=="farm" else "小屋起居布置",23)
@@ -122,6 +125,10 @@ func show_layout() -> void:
 			if ok: selected_id="";selected_cell=Vector2i(-1,-1)
 			result(ok)
 		))
+	for entry in Housing.state.get("recovered",[]):
+		if area!="home": continue
+		var recovered_id: String=entry.id
+		button("恢复收纳家具 · "+Housing.data.furniture[entry.kind].name,func(): result(Housing.recover_furniture(recovered_id)))
 	for entry in Housing.state.placed:
 		if entry.area!=area: continue
 		var id: String=entry.id
@@ -130,11 +137,7 @@ func show_layout() -> void:
 			else: result(false)
 		)
 func show_catalog() -> void:
-	if area=="home" and Housing.state.level<3:
-		var expected: int=Housing.state.level
-		var definition: Dictionary=Housing.data.levels[str(expected+1)]
-		words(definition.name+"\n"+definition.description+"\n"+costs(definition.required)+"、"+DiamondPayments.text(int(definition.coins)))
-		button("确认房屋扩建",func(): ask("扩建消耗"+costs(definition.required)+"与"+DiamondPayments.text(int(definition.coins))+"，原家具布局与床门不动。继续？",func(): DiamondPayments.request(self,int(definition.coins),func(): result(Housing.upgrade(expected)))))
+	if area=="home": button("查看住宅成长与施工进度",func(): page="upgrade";refresh())
 	var grid:=FarmUIStyle.section_grid(content)
 	for kind in Housing.data.furniture:
 		var entry: Dictionary=Housing.data.furniture[kind]
@@ -160,5 +163,33 @@ func show_storage() -> void:
 	for item in Inventory.items:
 		var amount: int=mini(quantity,int(Inventory.items[item]))
 		button("存入%s%d（背包%d）" % [Catalog.item_name(item),amount,Inventory.items[item]],func(): result(Housing.deposit(item,amount)))
+func show_upgrade() -> void:
+	words("周砚的住宅改建 · "+Housing.level_name(),23)
+	var job: Dictionary=Housing.state.get("construction",{})
+	if not job.is_empty():
+		words("正在施工 → "+Housing.level_name(int(job.target_level)),22)
+		words("第%d天开工，第%d天早晨完工；还需%d个游戏日。" % [int(job.started_day),int(job.ready_day),maxi(0,int(job.ready_day)-GameClock.day)])
+		words("施工期间继续使用当前住宅，床、沙发、厨房与储物照常开放。材料已支付，不会再扣除。",17)
+		return
+	if Housing.state.level>=4:
+		words("星光庄园已落成",23)
+		words("四个住宅阶段已完成。原家具、柜中物品与厨房配方仍在，可以继续安排自己的生活空间。")
+		return
+	var expected: int=int(Housing.state.level)
+	var target: int=expected+1
+	var entry: Dictionary=Housing.data.levels[str(target)]
+	words("下一阶段 · "+entry.name,22)
+	words(entry.description,18)
+	var preview:=Control.new();preview.set_script(preload("res://scripts/housing/home_upgrade_preview.gd"));preview.level=target;content.add_child(preview)
+	words("空间布局示意 · 床、厨房与入口继续可用；已有家具优先保留原位",16)
+	for item in entry.required:
+		var amount: int=int(entry.required[item]);var held: int=Inventory.count(item)
+		var line:=FarmUIStyle.label("%s  %d / %d" % [Catalog.item_name(item),held,amount],18,FarmUIStyle.SUCCESS if held>=amount else FarmUIStyle.DANGER);content.add_child(line)
+	words("金币  %d / %d · 施工2个游戏日" % [Inventory.coins,int(entry.coins)],18)
+	var allowed: bool=Housing.near_builder() and Inventory.coins>=int(entry.coins)
+	for item in entry.required: allowed=allowed and Inventory.count(item)>=int(entry.required[item])
+	button("请周砚开始改建",func(): ask("升级为%s，支付%s及%d金币；第%d天早晨完工。施工中可照常回家，确认前不会扣费。" % [entry.name,costs(entry.required),int(entry.coins),GameClock.day+2],func(): result(Housing.upgrade(expected)))).disabled=not allowed
+	words("请到周砚的工台旁办理；屋内仅查看图纸。" if not Housing.near_builder() else "确认后只扣除一次材料和金币，完成时不额外发放资源。",16)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed("ui_cancel"): close_panel();get_viewport().set_input_as_handled()

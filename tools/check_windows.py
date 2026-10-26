@@ -4,7 +4,7 @@ import argparse,os,subprocess,tempfile,time,re
 ROOT=Path(__file__).resolve().parents[1]
 VERSION=re.search(r'^config/version="([^"]+)"',(ROOT/'project.godot').read_text(),re.M).group(1)
 TAG=VERSION.replace('.','')
-SUITES=['render_061','render_062','render_seasons_a','fishing_b_render','livestock_b_render','kitchen_b_render','life_c_render','exploration_d_render','world_progress_d_render','finale_070_render','palm_ui_render','palm_runner','tutorial_071_runner','touch_polish_runner','touch_polish_visual','farming_visual_runner','food_recovery_runner','inventory03_render','hotbar03_runner','ui04_runner','ui05_camera_runner','ui05_hotbar_runner','ui05_layout_runner']
+SUITES=['render_061','render_062','render_seasons_a','fishing_b_render','livestock_b_render','kitchen_b_render','life_c_render','exploration_d_render','world_progress_d_render','finale_070_render','palm_ui_render','palm_runner','tutorial_071_runner','touch_polish_runner','touch_polish_visual','farming_visual_runner','food_recovery_runner','inventory03_render','hotbar03_runner','ui04_runner','ui05_camera_runner','ui05_hotbar_runner','ui05_layout_runner','home05_render']
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('--display');p.add_argument('--suite',action='append',choices=SUITES);args=p.parse_args()
 engine=ROOT/'.tools/Godot_v4.3-stable_linux.x86_64';server=None
 history={path:path.read_bytes() for pattern in ['screenshot*.png'] for path in (ROOT/'docs').glob(pattern)}

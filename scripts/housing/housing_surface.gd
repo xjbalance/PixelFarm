@@ -1,29 +1,29 @@
 extends Node2D
-## 房型/墙纸叠加仅影响外观；原家中所有家具、故事物件与碰撞保留。
+## 仅替换原地板/墙纸外观和稀疏室内光影，不改布置记录或碰撞。
 var game: Node
 var original_floor: Texture2D
+var sunlight: Texture2D
 func _ready() -> void:
-	var floor: TileMapLayer=game.home.get_node("Floor")
-	var atlas: TileSetAtlasSource=floor.tile_set.get_source(0)
-	original_floor=atlas.texture
-	refresh()
+	z_index=0
+	var atlas: TileSetAtlasSource=game.home.get_node("Floor").tile_set.get_source(0)
+	original_floor=atlas.texture;sunlight=load("res://assets/housing/interior/sunbeam.png")
+	GameClock.changed.connect(queue_redraw);refresh()
 func refresh() -> void:
-	var floor: TileMapLayer=game.home.get_node("Floor")
-	var atlas: TileSetAtlasSource=floor.tile_set.get_source(0)
-	atlas.texture=load("res://assets/housing/floor_texture.png") if Housing.state.appearance.floor=="floor" else original_floor
+	var atlas: TileSetAtlasSource=game.home.get_node("Floor").tile_set.get_source(0)
+	if Housing.state.appearance.floor=="floor": atlas.texture=load("res://assets/housing/floor_texture.png")
+	elif int(Housing.state.level)>=4: atlas.texture=load("res://assets/housing/interior/floor_estate_atlas.png")
+	elif int(Housing.state.level)>=3: atlas.texture=load("res://assets/housing/interior/floor_polished_atlas.png")
+	else: atlas.texture=original_floor
 	queue_redraw()
 func _draw() -> void:
+	if GameClock.minutes<1140 and GameClock.minutes>=420 and sunlight:
+		for point in [Vector2(644,214),Vector2(828,214)]:
+			var clipped:=Rect2(point,sunlight.get_size()).intersection(Rect2(352,224,576,352))
+			draw_texture_rect_region(sunlight,clipped,Rect2(clipped.position-point,clipped.size))
 	if Housing.state.appearance.wallpaper=="wallpaper":
-		draw_rect(Rect2(344,165,584,48),Color("a9b095"))
-		for x in range(355,926,24):
-			draw_line(Vector2(x,177),Vector2(x+8,201),Color("749174"),2)
-			draw_line(Vector2(x+7,189),Vector2(x+13,183),Color("d0c99c"),2)
-	if Housing.state.level>=2:
-		draw_rect(Rect2(356,248,24,104),Color("6b5845"))
-		for y in [255,286,317]:
-			draw_rect(Rect2(359,y,18,25),Color("a88d66"))
-			for x in [361,367,373]: draw_rect(Rect2(x,y+2,4,19),Color("799782") if x!=367 else Color("c1ab7d"))
-	if Housing.state.level>=3:
-		for x in [376,900]:
-			draw_rect(Rect2(x,228,12,116),Color("b6a17c"));draw_rect(Rect2(x+2,231,8,108),Color("ccbb94"))
-		draw_line(Vector2(384,232),Vector2(896,232),Color("d6bd8e"),3)
+		# 背景墙纸在房间墙面同坐标绘制，窗口与家具单独分层。
+		draw_texture(load("res://assets/housing/interior/wallpaper_sage.png"),Vector2(336,160))
+	if GameClock.minutes>=1140:
+		# 手绘低强度暖光，不增加移动端实时灯光节点。
+		for at in [Vector2(584,264),Vector2(912,290),Vector2(716,490)]:
+			draw_circle(at,42,Color(1,.68,.30,.025));draw_circle(at,27,Color(1,.75,.40,.035))

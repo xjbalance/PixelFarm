@@ -1,4 +1,5 @@
 extends PanelContainer
+var selected_recipe: String="carrot_stew"
 var section: VBoxContainer
 var content: VBoxContainer
 var context: String="kitchen"
@@ -27,7 +28,7 @@ func button(text: String, callback: Callable) -> Button:
 	var b := FarmUIStyle.button(text,callback,180);(section if is_instance_valid(section) else content).add_child(b);return b
 func open_panel(id: String="kitchen") -> void:
 	if GameState.modal or (not Kitchen.near_berry() if id=="berry" else not Kitchen.near_kitchen()): return
-	context=id;page="recipes";quantity=1;pending=Callable();message=""
+	context=id;page="recipes";selected_recipe="carrot_stew";quantity=1;pending=Callable();message=""
 	GameState.set_modal(true);show();refresh()
 func close_panel() -> void:
 	pending=Callable();message="";DiamondPayments.cancel(self);hide();GameState.set_modal(false)
@@ -69,18 +70,27 @@ func refresh() -> void:
 		"queue": jobs()
 		_: recipes()
 func recipes() -> void:
-	var grid:=FarmUIStyle.section_grid(content)
+	var layout:=HBoxContainer.new();layout.add_theme_constant_override("separation",16);content.add_child(layout)
+	var choices:=VBoxContainer.new();choices.custom_minimum_size.x=180;layout.add_child(choices)
 	for id in Kitchen.data.recipes:
-		var recipe: Dictionary=Kitchen.data.recipes[id]
-		section=FarmUIStyle.section(grid)
-		words(recipe.name+" · "+("已掌握" if Kitchen.recipe_unlocked(id) else "尚待领会"),21)
-		words(recipe.hint+"\n每批："+cost(recipe.required)+"\n"+Kitchen.data.items[id].description,16)
-		words("已做%d份 · 背包%d份" % [int(Kitchen.state.cooked.get(id,0)),Inventory.count(id)],16)
-		var amount := quantity
-		button("制作%s ×%d" % [recipe.name,amount],func(): ask("制作%d批%s，消耗：%s？" % [amount,recipe.name,cost(Kitchen.scaled(recipe.required,amount))],func(): result(Kitchen.cook(id,amount)))).disabled=not Kitchen.recipe_unlocked(id)
-		button("食用一份"+recipe.name,func(): result(Kitchen.consume(id))).disabled=Inventory.count(id)<1
+		var recipe_id: String=id
+		var selector:=FarmUIStyle.button(Kitchen.data.recipes[id].name,func():
+			if not pending.is_valid(): selected_recipe=recipe_id;refresh()
+		,180)
+		selector.add_theme_stylebox_override("normal",FarmUIStyle.surface("selected" if id==selected_recipe else "secondary"));choices.add_child(selector)
+	if not Kitchen.data.recipes.has(selected_recipe): selected_recipe=str(Kitchen.data.recipes.keys()[0])
+	var recipe: Dictionary=Kitchen.data.recipes[selected_recipe]
+	section=FarmUIStyle.section(layout)
+	words(recipe.name+" · "+("已掌握" if Kitchen.recipe_unlocked(selected_recipe) else "尚待领会"),21)
+	words(recipe.hint+"\n每批："+cost(recipe.required)+"\n"+Kitchen.data.items[selected_recipe].description,16)
+	words("已做%d份 · 背包%d份" % [int(Kitchen.state.cooked.get(selected_recipe,0)),Inventory.count(selected_recipe)],16)
+	var amount: int=quantity
+	var id: String=selected_recipe
+	button("制作%s ×%d" % [recipe.name,amount],func(): ask("制作%d批%s，消耗：%s？" % [amount,recipe.name,cost(Kitchen.scaled(recipe.required,amount))],func(): result(Kitchen.cook(id,amount)))).disabled=not Kitchen.recipe_unlocked(id)
+	button("食用一份"+recipe.name,func(): result(Kitchen.consume(id))).disabled=Inventory.count(id)<1
 	section=null
 	words("原湖岸鱼汤、鱼干继续使用原配方和物品；厨房不会复制另一个同名物品。",16)
+
 func processing() -> void:
 	words("设备可同时保留四笔加工，每笔最多八批。材料下单时扣一次，次日或两日后领取；背包满则保留成品。")
 	var grid:=FarmUIStyle.section_grid(content)

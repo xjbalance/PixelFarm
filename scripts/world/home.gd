@@ -1,101 +1,90 @@
 extends Node2D
-## 独立室内场景；与农场共享同一玩家，门口和床通过交互信号连接。
-var house_level: int = 1
+## 可行走的温馨小屋：统一静态碰撞、原交互坐标、原创纹理家具与四级空间。
+const INTERACTABLE=preload("res://scripts/world/interactable.gd")
+var house_level: int=1
 var left_walls: Array[Node]=[]
-
-const INTERACTABLE = preload("res://scripts/world/interactable.gd")
+var collision_root: Node2D
+var art_root: Node2D
+var art_token: String=""
+var wall_texture: Texture2D
 
 func _ready() -> void:
-	var layer: TileMapLayer = $Floor
-	var tiles := TileSet.new()
-	tiles.tile_size = Vector2i(32,32)
-	var atlas := TileSetAtlasSource.new()
-	atlas.texture = load("res://assets/tilesets/ground.png")
-	atlas.texture_region_size = Vector2i(32,32)
-	atlas.create_tile(Vector2i(7,0))
-	tiles.add_source(atlas,0)
-	layer.tile_set = tiles
-	for y in range(7,18):
-		for x in range(11,29): layer.set_cell(Vector2i(x,y),0,Vector2i(7,0))
-	for rect in [Rect2(928,192,16,400),Rect2(352,192,576,32),Rect2(352,576,576,16),Rect2(800,240,96,128),Rect2(400,244,120,45),Rect2(570,304,100,58)]:
-		var body := StaticBody2D.new()
-		body.position = rect.get_center()
-		var shape := CollisionShape2D.new()
-		var box := RectangleShape2D.new()
-		box.size = rect.size
-		shape.shape = box
-		body.add_child(shape)
-		add_child(body)
+	y_sort_enabled=true
+	var layer: TileMapLayer=$Floor;layer.z_index=-5
+	var tiles:=TileSet.new();tiles.tile_size=Vector2i(32,32)
+	var atlas:=TileSetAtlasSource.new();atlas.texture=load("res://assets/housing/interior/floor_oak_atlas.png");atlas.texture_region_size=Vector2i(32,32);atlas.create_tile(Vector2i(7,0));tiles.add_source(atlas,0);layer.tile_set=tiles
+	var cells:=HomeLayout.main_cells()
+	for y in range(cells.position.y,cells.end.y):
+		for x in range(cells.position.x,cells.end.x): layer.set_cell(Vector2i(x,y),0,Vector2i(7,0))
+	collision_root=Node2D.new();collision_root.name="HomeStaticGeometry";add_child(collision_root)
+	art_root=Node2D.new();art_root.name="InteriorArtwork";art_root.y_sort_enabled=true;add_child(art_root)
 	set_house_level(1)
-	add_point("sleep","睡一觉 · 进入下一天",Vector2(786,342))
-	add_point("exit","返回农场",Vector2(640,556))
-	var letter_box := Node2D.new()
-	letter_box.set_script(preload("res://scripts/world/story_point.gd"))
-	letter_box.actor_id = "mail"
-	letter_box.title = "读窗下木盒里的旧信"
-	letter_box.position = Vector2(720,274)
-	add_child(letter_box)
-	FarmProgress.changed.connect(queue_redraw)
-	queue_redraw()
+	add_point("sleep","睡一觉 · 20:00后休息",HomeLayout.ANCHORS.sleep)
+	add_point("exit","返回农场",HomeLayout.ANCHORS.exit)
+	var letter_box:=Node2D.new();letter_box.set_script(preload("res://scripts/world/story_point.gd"));letter_box.actor_id="mail";letter_box.title="读窗下书桌上的旧信";letter_box.position=HomeLayout.ANCHORS.mail;add_child(letter_box)
+	FarmProgress.changed.connect(refresh_art)
 
-func add_point(kind: String, title: String, pos: Vector2) -> void:
-	var point := Node2D.new()
-	point.set_script(INTERACTABLE)
-	point.kind = kind
-	point.label = title
-	point.position = pos
-	add_child(point)
-
-func _draw() -> void:
-	draw_rect(Rect2(320,144,640,80),Color("263c35"))
-	if house_level==1: draw_rect(Rect2(320,224,32,384),Color("263c35"))
-	else:
-		draw_rect(Rect2(320,224,32,192),Color("263c35"))
-		draw_rect(Rect2(320,512,32,96),Color("263c35"))
-	draw_rect(Rect2(928,224,32,384),Color("263c35"))
-	draw_rect(Rect2(320,576,640,32),Color("263c35"))
-	draw_rect(Rect2(336,160,608,64),Color("cfb17d"))
-	for x in range(344,940,32):
-		draw_line(Vector2(x,160),Vector2(x,222),Color("ad8b63"),2)
-	draw_rect(Rect2(336,216,608,8),Color("5f4c3c"))
-	# 地毯、床、桌椅与窗户均为原创像素几何，不使用外部素材。
-	draw_rect(Rect2(520,394,240,126),Color("7b6660"))
-	draw_rect(Rect2(528,402,224,110),Color("bb9268"))
-	draw_rect(Rect2(536,410,208,94),Color("bba478"),false,4)
-	draw_rect(Rect2(800,240,96,128),Color("5e493e"))
-	draw_rect(Rect2(806,250,84,108),Color("ded3a7"))
-	draw_rect(Rect2(814,256,68,24),Color("f0e5c4"))
-	draw_rect(Rect2(806,290,84,68),Color("658777"))
-	for y in range(298,354,16):draw_rect(Rect2(812,y,72,6),Color("87a08b"))
-	if FarmProgress.has_upgrade("bedding"):
-		draw_rect(Rect2(806,290,84,68),Color("9a777b"))
-		for y in range(294,355,14): draw_rect(Rect2(810,y,76,5),Color("d6b694"))
-		draw_rect(Rect2(898,250,16,38),Color("a58259"))
-		draw_rect(Rect2(898,242,16,12),Color("e7cc83"))
-	draw_rect(Rect2(400,244,120,45),Color("72563e"))
-	draw_rect(Rect2(406,248,108,31),Color("b58a55"))
-	for x in range(414,510,19):draw_rect(Rect2(x,252,11,20),Color("788d6e"))
-	draw_rect(Rect2(570,304,100,58),Color("74523f"))
-	draw_rect(Rect2(566,298,108,48),Color("bc975f"))
-	draw_rect(Rect2(594,310,38,22),Color("ded0a0"))
-	draw_circle(Vector2(646,318),7,Color("6d8f79"))
-	draw_rect(Rect2(708,254,24,16),Color("947451"))
-	draw_rect(Rect2(711,252,18,7),Color("e5d5ae"))
-	draw_rect(Rect2(612,172,64,38),Color("665343"))
-	draw_rect(Rect2(616,176,56,30),Color("9bc5bc"))
-	draw_line(Vector2(644,176),Vector2(644,206),Color("ead9ac"),4)
-	draw_rect(Rect2(610,550,60,26),Color("d5bd85"))
-	draw_rect(Rect2(620,558,40,8),Color("799079"))
+func add_point(kind: String,title: String,pos: Vector2) -> void:
+	var point:=Node2D.new();point.set_script(INTERACTABLE);point.kind=kind;point.label=title;point.position=pos;add_child(point)
 
 func set_house_level(value: int) -> void:
-	if not left_walls.is_empty() and house_level==value: return
+	value=clampi(value,1,4)
+	if not is_instance_valid(collision_root): return
+	if not left_walls.is_empty() and house_level==value:
+		refresh_art();return
 	house_level=value
-	for body in left_walls:
-		remove_child(body);body.queue_free()
+	for old in collision_root.get_children(): collision_root.remove_child(old);old.queue_free()
 	left_walls.clear()
-	var bounds: Array=[Rect2(336,192,16,400)] if value==1 else [Rect2(336,192,16,224),Rect2(336,512,16,80)]
-	for rect in bounds:
-		var body := StaticBody2D.new();body.position=rect.get_center()
-		var collision := CollisionShape2D.new();var shape := RectangleShape2D.new();shape.size=rect.size;collision.shape=shape
-		body.add_child(collision);add_child(body);left_walls.append(body)
-	queue_redraw();Events.navigation_changed.emit()
+	for rect in HomeLayout.blocked_rects(value):
+		var body:=StaticBody2D.new();body.position=rect.get_center();body.collision_layer=1;body.collision_mask=0
+		var collision:=CollisionShape2D.new();var shape:=RectangleShape2D.new();shape.size=rect.size;collision.shape=shape;body.add_child(collision);collision_root.add_child(body);left_walls.append(body)
+	wall_texture=load("res://assets/housing/interior/walls_"+str(value)+".png")
+	art_token="";refresh_art();queue_redraw();Events.navigation_changed.emit()
+
+func prop(id: String,at: Vector2,sort_y: float,layer: int=0) -> void:
+	var texture: Texture2D=load("res://assets/housing/interior/"+id+".png")
+	var sprite:=Sprite2D.new();sprite.name=id.to_pascal_case();sprite.texture=texture;sprite.centered=false;sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	sprite.position=Vector2(at.x+texture.get_width()/2.0,sort_y);sprite.offset=Vector2(-texture.get_width()/2.0,at.y-sort_y);sprite.z_index=layer
+	sprite.set_meta("home_art_id",id);sprite.add_to_group("home_interior_art");art_root.add_child(sprite)
+
+func refresh_art() -> void:
+	if not is_instance_valid(art_root): return
+	var token: String="%d:%s" % [house_level,FarmProgress.has_upgrade("bedding")]
+	if token==art_token: return
+	art_token=token
+	for child in art_root.get_children(): art_root.remove_child(child);child.queue_free()
+	prop("main_rug",Vector2(520,394),520,-3)
+	prop("dining_rug",Vector2(540,280),384,-3)
+	prop("kitchen_tiles",Vector2(784,368),448,-4)
+	prop("bed_rug",Vector2(790,232),376,-3)
+	prop("dresser",Vector2(392,216),289)
+	prop("fireplace_grand" if house_level>=3 else "fireplace",Vector2(536,156),254)
+	prop("window_estate" if house_level>=4 else ("window_cottage" if house_level>=2 else "window"),Vector2(632,154),224)
+	prop("window_estate" if house_level>=4 else ("window_cottage" if house_level>=2 else "window"),Vector2(824,154),224)
+	prop("bed_quilt" if FarmProgress.has_upgrade("bedding") or house_level>=3 else "bed",Vector2(800,240),368)
+	prop("dining_table",Vector2(560,288),362)
+	prop("chair_left",Vector2(540,312),350)
+	prop("chair_right",Vector2(672,312),350)
+	prop("mail_desk",Vector2(684,224),258)
+	prop("storage_slim",Vector2(352,432),478)
+	prop("kitchen_estate" if house_level>=4 else "kitchen",Vector2(792,368),418)
+	prop("sofa_estate" if house_level>=4 else ("sofa_cottage" if house_level>=2 else "sofa"),Vector2(660,448),496)
+	prop("lamp",Vector2(896,238),284)
+	prop("plant",Vector2(880,504),568)
+	if house_level>=3: prop("bedroom_divider",Vector2(744,220),304)
+	if house_level>=4:
+		prop("star_map",Vector2(442,158),224)
+		prop("star_lantern",Vector2(728,154),224)
+	if house_level>=2:
+		var room:=HomeLayout.extension_cells(house_level)
+		var start:=Vector2(room.position)*32
+		prop("study_desk_"+str(house_level),start+Vector2(8,-16),start.y+24)
+		prop("window_estate" if house_level>=4 else "window_cottage",start+Vector2(Vector2(room.size).x*16-44,-48),start.y)
+		prop("study_rug_2" if house_level==2 else ("study_rug_4" if house_level==4 else "study_rug"),start+Vector2(24 if house_level<4 else 32,40),start.y+216,-3)
+		prop("plant",start+Vector2(-2,Vector2(room.size).y*32-64),start.y+Vector2(room.size).y*32)
+		if house_level>=3: prop("bookcase",start+Vector2(24,Vector2(room.size).y*32-48),start.y+Vector2(room.size).y*32)
+		if house_level>=4: prop("bookcase",start+Vector2(184,Vector2(room.size).y*32-48),start.y+Vector2(room.size).y*32)
+	queue_redraw()
+
+func _draw() -> void:
+	if wall_texture: draw_texture(wall_texture,Vector2(320,144))

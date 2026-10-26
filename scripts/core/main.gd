@@ -11,6 +11,7 @@ var home: Node2D
 var village: Node2D
 var was_running: bool = true
 var backgrounded: bool = false
+var home_rest: HomeRestController
 var closing: bool = false
 var autosave_pending: bool = false
 var autosave_epoch: int = 0
@@ -66,6 +67,7 @@ func _ready() -> void:
 	add_child(exploration_world);exploration_world.attach(self)
 	var housing_world := HousingWorld.new()
 	add_child(housing_world);housing_world.attach(self)
+	var house_exterior:=HouseExterior.new();add_child(house_exterior);house_exterior.attach(self)
 	var festival_world := FestivalWorld.new()
 	add_child(festival_world);festival_world.attach(self)
 	var social_world := SocialWorld.new()
@@ -97,6 +99,7 @@ func _ready() -> void:
 	auto_move.setup(self)
 	auto_move.navigation.invalidate()
 	camera_rig=WorldCameraRig.new();add_child(camera_rig);camera_rig.setup(self)
+	home_rest=HomeRestController.new();add_child(home_rest);home_rest.setup(self)
 	# 最后添加，_input 先于现有原生触点按钮记录归属。
 	touch_input = Node.new()
 	touch_input.set_script(preload("res://scripts/input/touch_input_manager.gd"))
@@ -177,6 +180,7 @@ func handle_interaction(kind: String) -> void:
 	elif kind.begins_with("festival:"): hud.festival_panel.open_panel(kind.trim_prefix("festival:"))
 	elif kind.begins_with("social_site:"): hud.social_panel.open_site(kind.trim_prefix("social_site:"))
 	elif kind.begins_with("social:"): hud.social_panel.open_panel(kind.trim_prefix("social:"))
+	elif kind=="home:nap": home_rest.open()
 	elif kind=="kitchen": hud.kitchen_panel.open_panel()
 	elif kind=="kitchen:berry": hud.kitchen_panel.open_panel("berry")
 	elif kind=="ecology": hud.ecology_panel.open_panel()
@@ -340,7 +344,7 @@ func context_hint() -> String:
 	if GameState.location=="greenhouse": return "星光温室 · 左右桌准备仪式 · 星灯下交换约定 · 档案桌安排日常"
 	if GameState.location=="abyss": return "深渊%d层 · 空气%d/160 · 检查刻痕、机关和安全绳" % [AbyssState.state.depth,AbyssState.state.air]
 	if GameState.location in MineState.AREAS: return "点击矿脉采一次 · 阶梯返回 · 手记查看矿道任务"
-	if GameState.location == "home": return "20:00后床边休息 · 白天可去屋东休息椅 · 下方门口回农场"
+	if GameState.location == "home": return "沙发可小睡1小时 · 灶台做饭 · 20:00后床上睡到明早"
 	if GameState.location != "farm": return "沿河慢慢走 · 靠近村民或物件可交互"
 	var plot: Dictionary = farm.plots.get(farm.key(player.target_cell()),{})
 	if not plot.is_empty() and str(plot.crop) != "":

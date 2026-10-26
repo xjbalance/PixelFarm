@@ -183,7 +183,7 @@ func scenes_and_storage() -> void:
 	check(FarmSaveStore.restore(game,saved),"查看状态中读取原存档正常恢复")
 	await frames(8)
 	check(game.camera_rig.mode==game.camera_rig.Mode.FOLLOW and Inventory.items==items and Xiaojing.state.diamonds==diamonds,"读取存档回跟，不改物品或钻石，不恢复陈旧查看任务")
-	check(FarmSaveStore.VERSION==22 and not saved.has("camera_rig"),"相机状态不加入原存档结构")
+	check(saved.version==FarmSaveStore.VERSION and not saved.has("camera_rig"),"相机状态不加入原存档结构")
 	load("res://tests/star_runner.gd").fixture(game,true)
 	for area in ["village","mine_a","mine_b","mine_c","greenhouse"]:
 		game.change_location(area,WorldTravel.entry(area));await frames(6)

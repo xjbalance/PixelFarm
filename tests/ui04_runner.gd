@@ -202,6 +202,7 @@ func density_representatives() -> void:
 	await tap(find_button(game.hud.system_panel,"返回设置"));game.hud.system_panel.close_panel()
 
 func facility_panels() -> void:
+	await at("home",game.home_rest.SOFA+Vector2(0,36));check(game.home_rest.open(),prefix+"真实靠近沙发打开确认");await audit(game.home_rest.panel,"沙发小睡确认");game.home_rest.close_panel()
 	await at("farm",Recovery.BENCH+Vector2(0,32));game.hud.recovery_panel.open_panel();await audit(game.hud.recovery_panel,"白天休息与食物");game.hud.recovery_panel.close_panel()
 	await at("farm",Aquaculture.SITES.pen_1+Vector2(-32,0));game.hud.aquaculture_panel.open_panel("pen_1");await audit(game.hud.aquaculture_panel,"湖泊鱼栏");game.hud.aquaculture_panel.close_panel()
 	await at("farm",LakeEcology.SHORE+Vector2(0,32));game.hud.ecology_panel.open_panel();await audit(game.hud.ecology_panel,"湖泊生态");game.hud.ecology_panel.close_panel()

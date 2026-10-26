@@ -1,4 +1,5 @@
 extends Node
+const Home=preload("res://tests/home05_runner.gd")
 ## C新增三分区真正跨进程与备份；测试只使用外部隔离目录。
 func _ready() -> void: call_deferred("run")
 func frames(count: int=4) -> void:
@@ -13,10 +14,12 @@ func run() -> void:
 	GameClock.running=false;game.get_node("Audio").muted=true;await frames(6);game.persistence_enabled=false
 	var ok: bool=true
 	if writing:
-		GameClock.day=24;GameClock.minutes=600;Calendar.restore(Calendar.snapshot());GameClock.changed.emit()
+		GameClock.day=22;GameClock.minutes=600;Calendar.restore(Calendar.snapshot());GameClock.changed.emit()
 		Inventory.coins=10000;Inventory.items={"wood":200,"stone":200,"carrot":5,"wheat_seed":9,"carrot_seed":9,"iron_bar":8,"crystal":8}
+		ok=await Home.finish_upgrade(self,game,1) and ok
+		game.change_location("farm",Vector2(656,480));GameClock.minutes=600;GameClock.changed.emit();await frames()
 		var linya: Node2D=Social.person_node("linya");game.player.position=linya.global_position+Vector2(0,36)
-		ok=Social.talk("linya") and Social.accept("linya")
+		ok=Social.talk("linya") and Social.accept("linya") and ok
 		game.player.position=Vector2(880,528)
 		ok=Festival.begin("spring") and ok
 		var cells: Array=Festival.state.runs.spring.cells.duplicate(true)
@@ -27,7 +30,6 @@ func run() -> void:
 			if not game.farm.plots[key].watered: ok=game.farm.use_tool(cell,"water") and ok
 		ok=Festival.claim("spring") and ok
 		game.change_location("home",Housing.HOME+Vector2(32,0));await frames()
-		ok=Housing.upgrade(1) and ok;await frames()
 		ok=Housing.buy("chair") and Housing.place("chair","home",Vector2i(8,13)) and Housing.deposit("wood",12) and ok
 		await frames();game.player.position=Vector2(272,496)
 		var proof: Dictionary=AbyssSaveSchema.canonical(FarmSaveStore.snapshot(game));var file:=FileAccess.open("user://life-proof.json",FileAccess.WRITE)

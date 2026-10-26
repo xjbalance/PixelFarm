@@ -23,6 +23,7 @@ func _ready() -> void:
 	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",10);add_child(column)
 	var header:=HBoxContainer.new();column.add_child(header)
 	title=FarmUIStyle.label("",24,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
+	header.add_child(FarmUIStyle.button("住宅改建",func(): close_panel();Events.interaction_requested.emit("housing:upgrade"),130))
 	header.add_child(FarmUIStyle.button("鱼栏图纸",func(): close_panel();Events.interaction_requested.emit("fish:guide"),150))
 	header.add_child(FarmUIStyle.button("关闭 ×",close_panel,100))
 	body=BoxContainer.new();body.size_flags_vertical=Control.SIZE_EXPAND_FILL;body.add_theme_constant_override("separation",16);column.add_child(body)

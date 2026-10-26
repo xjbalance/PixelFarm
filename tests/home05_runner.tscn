@@ -1,0 +1,4 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://tests/home05_runner.gd" id="1"]
+[node name="Home05Tests" type="Node"]
+script = ExtResource("1")

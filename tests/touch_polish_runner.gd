@@ -75,8 +75,9 @@ func ground_and_corners() -> void:
 	check(game.player.position.distance_to(Vector2(720,336))<1.1,"点击桌后地面绕过拐角抵达目标格")
 	await frames(3);stopped("拐角抵达")
 	var count: int=game.auto_move.execution_count
-	Touch.tap(self,game,Vector2(850,300));await Touch.finish(self,game)
-	check(game.auto_move.state==game.auto_move.State.FAILED and game.auto_move.execution_count==count,"不可达区域有限失败，不执行任何交互")
+	# 床现为可点击交互目标；不可达探针改用无交互的实体柜体内部。
+	Touch.tap(self,game,Vector2(464,272));await Touch.finish(self,game)
+	check(game.auto_move.state==game.auto_move.State.FAILED and game.auto_move.execution_count==count,"不可通行柜体内部有限失败，不执行任何交互")
 	await fresh(Vector2(656,480))
 	Touch.tap(self,game,Vector2(784,496));await frames(6)
 	Touch.tap(self,game,Vector2(592,496));await Touch.finish(self,game)

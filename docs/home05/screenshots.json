@@ -1,0 +1,122 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    {
+      "day": 1,
+      "level": 1,
+      "minutes": 360,
+      "name": "level_1",
+      "path": "res://builds/home05-level_1.png",
+      "file": "docs/home05/level_1.png"
+    },
+    {
+      "day": 1,
+      "level": 1,
+      "minutes": 360,
+      "name": "upgrade_1",
+      "path": "res://builds/home05-upgrade_1.png",
+      "file": "docs/home05/upgrade_1.png"
+    },
+    {
+      "day": 3,
+      "level": 2,
+      "minutes": 360,
+      "name": "level_2",
+      "path": "res://builds/home05-level_2.png",
+      "file": "docs/home05/level_2.png"
+    },
+    {
+      "day": 3,
+      "level": 2,
+      "minutes": 360,
+      "name": "upgrade_2",
+      "path": "res://builds/home05-upgrade_2.png",
+      "file": "docs/home05/upgrade_2.png"
+    },
+    {
+      "day": 5,
+      "level": 3,
+      "minutes": 360,
+      "name": "level_3",
+      "path": "res://builds/home05-level_3.png",
+      "file": "docs/home05/level_3.png"
+    },
+    {
+      "day": 5,
+      "level": 3,
+      "minutes": 360,
+      "name": "upgrade_3",
+      "path": "res://builds/home05-upgrade_3.png",
+      "file": "docs/home05/upgrade_3.png"
+    },
+    {
+      "day": 7,
+      "level": 4,
+      "minutes": 360,
+      "name": "level_4",
+      "path": "res://builds/home05-level_4.png",
+      "file": "docs/home05/level_4.png"
+    },
+    {
+      "day": 7,
+      "level": 4,
+      "minutes": 600,
+      "name": "sofa_before",
+      "path": "res://builds/home05-sofa_before.png",
+      "file": "docs/home05/sofa_before.png"
+    },
+    {
+      "day": 7,
+      "level": 4,
+      "minutes": 660,
+      "name": "sofa_transition",
+      "path": "res://builds/home05-sofa_transition.png",
+      "file": "docs/home05/sofa_transition.png"
+    },
+    {
+      "day": 7,
+      "level": 4,
+      "minutes": 660,
+      "name": "sofa_after",
+      "path": "res://builds/home05-sofa_after.png",
+      "file": "docs/home05/sofa_after.png"
+    },
+    {
+      "day": 7,
+      "level": 4,
+      "minutes": 660,
+      "name": "kitchen",
+      "path": "res://builds/home05-kitchen.png",
+      "file": "docs/home05/kitchen.png"
+    },
+    {
+      "day": 7,
+      "level": 4,
+      "minutes": 1200,
+      "name": "bed_confirmation",
+      "path": "res://builds/home05-bed_confirmation.png",
+      "file": "docs/home05/bed_confirmation.png"
+    },
+    {
+      "day": 7,
+      "level": 4,
+      "minutes": 1200,
+      "name": "level_4_wide",
+      "path": "res://builds/home05-level_4_wide.png",
+      "file": "docs/home05/level_4_wide.png"
+    },
+    {
+      "day": 1,
+      "level": 1,
+      "minutes": 360,
+      "name": "legacy_v22",
+      "path": "res://builds/home05-legacy_v22.png",
+      "file": "docs/home05/legacy_v22.png"
+    }
+  ],
+  "checks": 44,
+  "failures": 0,
+  "baseline_commit": "6c904f0",
+  "platform": "Linux Godot 4.3 Xvfb/Mesa",
+  "gif_note": "Three actual rendered state frames; not an Android recording or FPS sample."
+}

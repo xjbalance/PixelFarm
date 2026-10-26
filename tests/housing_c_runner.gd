@@ -1,5 +1,6 @@
 extends "res://tests/runner.gd"
 const Touch=preload("res://tests/touch_navigation.gd")
+const Home=preload("res://tests/home05_runner.gd")
 var original: Dictionary
 func run() -> void:
 	game=load("res://scenes/main/main.tscn").instantiate();game.persistence_enabled=false;add_child(game)
@@ -15,7 +16,7 @@ func reset() -> void:
 	while game.hud.close_active_panel(): pass
 	FarmSaveStore.restore(game,original);GameClock.running=false;GameWeather.enabled=false;GameState.set_control_mode("tap",false)
 	Housing.restore(Housing.defaults());Inventory.coins=100000
-	Inventory.items={"wood":999,"stone":999,"wheat":999,"iron_bar":99,"crystal":99,"carrot":99}
+	Inventory.items={"wood":999,"stone":999,"wheat":999,"iron_bar":99,"crystal":99,"star_fragment":99,"carrot":99}
 	await frames(5)
 func at_home() -> void:
 	while game.hud.close_active_panel(): pass
@@ -29,20 +30,20 @@ func required_routes() -> bool:
 	game.auto_move.navigation.invalidate();await frames(4);game.auto_move.navigation.rebuild()
 	for point in get_tree().get_nodes_in_group("interactables"):
 		if not point.is_visible_in_tree(): continue
-		var important: bool=("kind" in point and point.kind in ["sleep","exit"]) or ("actor_id" in point and point.actor_id=="mail") or ("kitchen_id" in point and point.kitchen_id=="kitchen")
+		var important: bool=("home_action" in point and point.home_action in ["sleep","nap"]) or ("housing_id" in point and point.housing_id=="home") or ("kind" in point and point.kind in ["sleep","exit"]) or ("actor_id" in point and point.actor_id=="mail") or ("kitchen_id" in point and point.kitchen_id=="kitchen")
 		if important and game.auto_move.navigation.path_to({"kind":"object","object":point,"point":point.global_position}).is_empty(): return false
 	return true
 func construction_and_rooms() -> void:
 	await reset()
 	var before := transaction()
-	check(not Housing.upgrade() and transaction()==before,"远离小屋不能远程升级住宅")
-	await at_home()
+	check(not Housing.upgrade() and transaction()==before,"远离周砚服务点不能远程升级住宅")
+	await Home.visit_builder(self,game)
 	Inventory.coins=0;before=transaction()
 	check(not Housing.upgrade() and transaction()==before,"房屋扩建余额不足不部分扣材料")
 	Inventory.coins=100000;Inventory.items.wood=0;before=transaction()
 	check(not Housing.upgrade() and transaction()==before,"房屋扩建缺木材不扣其他资源")
 	Inventory.items.wood=999
-	check(Housing.upgrade(1) and Housing.state.level==2 and Housing.slot_count()==4,"真实扩建二级住宅与储物容量")
+	check(await Home.finish_upgrade(self,game,1) and Housing.state.level==2 and Housing.slot_count()==4,"真实扩建二级住宅与储物容量")
 	await frames(5)
 	before=transaction()
 	check(not Housing.upgrade(1) and transaction()==before,"旧一级确认不能重放成二级扣费")
@@ -51,15 +52,16 @@ func construction_and_rooms() -> void:
 	game.auto_move.request(Vector2(272,464));await Touch.finish(self,game,500)
 	check(game.player.global_position.distance_to(Vector2(272,464))<4,"实际自动行走能从原小屋走到新增侧间")
 	await at_home()
-	check(Housing.upgrade(2) and Housing.state.level==3 and Housing.slot_count()==8,"高级住宅新增更大侧间与八种储物")
+	check(await Home.finish_upgrade(self,game,2) and Housing.state.level==3 and Housing.slot_count()==8,"高级住宅新增更大侧间与八种储物")
 	await frames(5);game.auto_move.navigation.rebuild()
 	check(not game.auto_move.navigation.path_to({"kind":"ground","point":Vector2(176,304)}).is_empty(),"三级新增空间真正可达而不是改名称")
-	before=transaction()
-	check(not Housing.upgrade() and transaction()==before,"满级住宅不可继续扣材料")
 	check(game.home.get_node("Floor").get_used_cells().size()==198,"原室内地板198格与旧地图内容保留")
-	check(await required_routes(),"住宅三级仍能抵达原床、门、故事木盒和厨房")
+	check(await required_routes(),"住宅三级仍能抵达原床、门、故事木盒、厨房和沙发")
+	check(await Home.finish_upgrade(self,game,3) and Housing.state.level==4 and Housing.slot_count()==16,"第四级住宅真实施工后开放16种储物")
+	await Home.visit_builder(self,game);before=transaction()
+	check(not Housing.upgrade() and transaction()==before,"四级满级住宅不可继续扣材料")
 func furniture_rules() -> void:
-	await reset();await at_home();Housing.upgrade(1);Housing.upgrade(2);await frames(5)
+	await reset();check(await Home.finish_upgrade(self,game,1) and await Home.finish_upgrade(self,game,2),"家具夹具通过真实四日施工取得三级住宅");await frames(5)
 	for kind in ["bed","table","chair","cabinet","rug","lamp","plant"]:
 		check(Housing.buy(kind),"正常材料制作独立家具："+kind)
 		check(Housing.place(kind,"home",Vector2i(12,10)),"按真实尺寸放置家具："+kind)
@@ -96,7 +98,7 @@ func storage_rules() -> void:
 	check(Housing.deposit("stone",8) and Housing.state.storage.size()==2,"基础小屋支持两种实际储物")
 	var before := transaction()
 	check(not Housing.deposit("wheat",1) and transaction()==before,"超过储物种类限制整笔不扣背包")
-	check(Housing.upgrade(1) and Housing.state.storage.wood==12 and Housing.state.storage.stone==8,"房屋升级保留已存物品")
+	check(await Home.finish_upgrade(self,game,1) and Housing.state.storage.wood==12 and Housing.state.storage.stone==8,"房屋升级保留已存物品")
 	Inventory.items.wood=999;before=transaction()
 	check(not Housing.withdraw("wood",1) and transaction()==before,"背包满时取物失败不丢柜中材料")
 	Inventory.items.wood=900
@@ -105,7 +107,7 @@ func storage_rules() -> void:
 	check(not Housing.withdraw("wood",1) and transaction()==before,"已取空物品不能重复领取")
 	check(not Housing.deposit("diamonds",1),"储物不伪造独立钻石账户或未知物品")
 func appearances_and_spouse() -> void:
-	await reset();await at_home();Housing.upgrade(1);await frames(5)
+	await reset();check(await Home.finish_upgrade(self,game,1),"样式夹具通过真实两日施工取得二级住宅");await frames(5)
 	var floor: TileMapLayer=game.home.get_node("Floor")
 	var atlas: TileSetAtlasSource=floor.tile_set.get_source(0)
 	var original: String=atlas.texture.resource_path
@@ -124,7 +126,7 @@ func appearances_and_spouse() -> void:
 	check(Housing.buy("spouse_desk") and Housing.place("spouse_desk","home",Vector2i(12,10)) and Housing.has_furniture("spouse_desk"),"已婚可主动摆放小京水样桌，不覆盖原布局")
 	await frames(4)
 func saving_and_controls() -> void:
-	await reset();await at_home();Housing.upgrade(1);Housing.upgrade(2)
+	await reset();check(await Home.finish_upgrade(self,game,1) and await Home.finish_upgrade(self,game,2),"保存夹具通过真实四日施工取得三级住宅")
 	Housing.buy("chair");Housing.place("chair","home",Vector2i(5,9));Housing.deposit("wood",12)
 	await frames(5)
 	var saved := FarmSaveStore.snapshot(game)

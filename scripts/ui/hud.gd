@@ -377,10 +377,13 @@ func reflow_panels() -> void:
 		elif panel==dialogue: kind="dialogue"
 		elif panel==recovery_panel: kind="reading"
 		var extent:=UILayout.panel_size(safe.size,kind)
+		var home_confirm: bool=panel.get_meta("home_confirmation",false) or (panel==system_panel and system_panel.sleep_mode and GameState.location=="home")
+		if home_confirm: extent=Vector2(minf(620,safe.size.x-48),minf(float(panel.get_meta("home_confirmation_height",300+maxf(0,UIMetrics.minimum_target()-48)*2)),safe.size.y-48))
+		if panel==kitchen_panel and GameState.location=="home": extent=Vector2(minf(880,safe.size.x-48),minf(520,safe.size.y-48))
 		# 内容的最小尺寸优先；长正文在原有滚动容器中滚动。
 		# 对话首次换行前的高度可能按旧窄宽计算；先给目标宽高，让Container稳定正文。
-		if panel!=dialogue: extent=extent.max(panel.get_combined_minimum_size())
-		elif absf(panel.size.x-extent.x)<1 and dialogue.body_label.size.x>300:
+		if panel!=dialogue and not home_confirm: extent=extent.max(panel.get_combined_minimum_size())
+		elif panel==dialogue and absf(panel.size.x-extent.x)<1 and dialogue.body_label.size.x>300:
 			# 宽度稳定后才采用正文/后出现的选项高度，重新向上扩展而非溢出底边。
 			extent.y=maxf(extent.y,panel.get_combined_minimum_size().y)
 		extent=extent.min(safe.size-Vector2.ONE*UILayout.SAFE_EDGE*2)
@@ -548,8 +551,8 @@ func refresh_hotbar() -> void:
 	arrange_hotbar()
 
 func set_prompt(text: String, nearby: bool) -> void:
-	prompt_label.text = text
-	prompt_label.visible=not text.is_empty() and not text.begins_with("对准脚前亮框")
+	prompt_label.text = "" if GameState.location=="home" and not nearby else text
+	prompt_label.visible=not prompt_label.text.is_empty() and not prompt_label.text.begins_with("对准脚前亮框")
 	action_button.text = "交互\nE" if nearby else "使用\nE"
 
 func show_notice(text: String) -> void:
@@ -557,6 +560,10 @@ func show_notice(text: String) -> void:
 	toast_time = 4.0
 
 func close_active_panel() -> bool:
+	var owner_game:=get_parent()
+	if "home_rest" in owner_game and is_instance_valid(owner_game.home_rest) and is_instance_valid(owner_game.home_rest.panel) and owner_game.home_rest.panel.visible:
+		owner_game.home_rest.close_panel()
+		return true
 	# Android 系统返回键先关闭当前面板，游戏本身不意外退出。
 	if dialogue.visible:
 		dialogue.close_dialogue()

@@ -1,10 +1,12 @@
 extends "res://tests/runner.gd"
 const Touch=preload("res://tests/touch_navigation.gd")
+const Home=preload("res://tests/home05_runner.gd")
 func run() -> void:
 	game=load("res://scenes/main/main.tscn").instantiate();game.persistence_enabled=false;add_child(game);GameClock.running=false;game.get_node("Audio").muted=true;await frames(6)
+	GameClock.day=20;Calendar.restore(Calendar.snapshot());GameClock.changed.emit()
 	Inventory.coins=30000;Inventory.items={"wood":500,"stone":500,"iron_bar":20,"crystal":20}
 	game.change_location("home",Housing.HOME+Vector2(32,0));await frames(5)
-	check(Housing.upgrade(1) and Housing.upgrade(2),"窗口实际扩建到三级而不移动原床门")
+	check(await Home.finish_upgrade(self,game,1) and await Home.finish_upgrade(self,game,2),"窗口实际扩建到三级而不移动原床门")
 	await frames(5);check(Housing.buy("chair") and Housing.place("chair","home",Vector2i(5,9)),"窗口真实制作并在新增侧间摆椅")
 	await frames(5)
 	for resolution in [Vector2i(1280,720),Vector2i(1600,720),Vector2i(1280,960)]:

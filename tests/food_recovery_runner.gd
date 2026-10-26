@@ -112,7 +112,7 @@ func lifecycle_and_storage() -> void:
 	GameState.set_modal(false)
 	Recovery.state.snacks=3;Aquaculture.state.meal_day=GameClock.day
 	var saved:=FarmSaveStore.snapshot(game)
-	check(FarmSaveStore.valid(saved) and saved.version==22,"达到旧食品日限的记录仍是原v22合法存档，无schema变更")
+	check(FarmSaveStore.valid(saved) and saved.version==FarmSaveStore.VERSION,"达到旧食品日限的记录仍是当前格式合法存档")
 	check(FarmSaveStore.restore(game,JSON.parse_string(JSON.stringify(saved))),"旧snacks与meal_day字段可以完整保存恢复")
 	await frames(4)
 	check(Recovery.eat_crop("carrot") and Kitchen.consume("carrot_stew") and GameState.stamina==90,"重新加载旧额度已满记录后仍允许正常食用")

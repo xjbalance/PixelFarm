@@ -69,9 +69,10 @@ static func run(test: Node, game: Node) -> void:
 		collision_free = collision_free and game.player.get_world_2d().direct_space_state.intersect_shape(query,1).is_empty()
 		if game.auto_move.state==game.auto_move.State.IDLE: break
 	test.check(game.player.position.distance_to(Vector2(720,336))<1.1 and collision_free,"玩家沿路线真实绕过桌子，全程未穿墙")
-	game.auto_move.request(Vector2(850,300))
+	# 床现为可点击交互目标；不可达探针改用无交互的实体柜体内部。
+	game.auto_move.request(Vector2(464,272))
 	await finish(test,game)
-	test.check(game.auto_move.state==game.auto_move.State.FAILED and game.player.auto_direction==Vector2.ZERO,"不可通行床铺有限失败并停止")
+	test.check(game.auto_move.state==game.auto_move.State.FAILED and game.player.auto_direction==Vector2.ZERO,"不可通行柜体内部有限失败并停止")
 	game.auto_move.request(Vector2(-20,300))
 	await finish(test,game)
 	test.check(game.auto_move.state==game.auto_move.State.FAILED,"地图外目标立即失败")

@@ -1,8 +1,15 @@
 {
   "levels": {
+    "1": {
+      "name": "温馨小屋",
+      "coins": 0,
+      "required": {},
+      "slots": 2,
+      "description": "原有床铺、厨房、故事木盒和起居区。"
+    },
     "2": {
-      "name": "扩建小屋",
-      "coins": 400,
+      "name": "舒适农舍",
+      "coins": 2500,
       "required": {
         "wood": 30,
         "stone": 20
@@ -11,15 +18,26 @@
       "description": "打开与起居室相连的左侧小间，增加布置区与四种储物空间；原床、门、厨房与木盒的位置保留。"
     },
     "3": {
-      "name": "高级住宅",
-      "coins": 900,
+      "name": "河湾大屋",
+      "coins": 7500,
       "required": {
-        "wood": 50,
-        "stone": 30,
-        "iron_bar": 3
+        "wood": 60,
+        "stone": 40,
+        "iron_bar": 12
       },
       "slots": 8,
       "description": "将左侧扩为宽敞工作间，增加窗户、内饰与八种储物空间；玩家已有家具继续保留。"
+    },
+    "4": {
+      "name": "星光庄园",
+      "coins": 18000,
+      "required": {
+        "wood": 100,
+        "stone": 70,
+        "star_fragment": 20
+      },
+      "slots": 16,
+      "description": "扩建宽阔的星光侧厅，开放十六种储物空间；星辉残晶用于庄园的窗饰和结构，原家具与厨房完整保留。"
     }
   },
   "furniture": {

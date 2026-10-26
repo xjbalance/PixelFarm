@@ -133,7 +133,7 @@ func migration() -> void:
 	var old:=latest.duplicate(true);old.version=21;old.erase("tutorial")
 	var serialized: Dictionary=JSON.parse_string(JSON.stringify(old))
 	var clean:=FarmSaveSchema.normalize(serialized)
-	check(not clean.is_empty() and clean.version==22 and clean.tutorial==GameTutorial.defaults(true),"实际v21档只增加教学已读，不给老玩家重新弹引导")
+	check(not clean.is_empty() and clean.version==FarmSaveStore.VERSION and clean.tutorial==GameTutorial.defaults(true),"实际v21档只增加教学已读，不给老玩家重新弹引导")
 	var kept:=not clean.is_empty()
 	for id in serialized:
 		if id!="version" and AbyssSaveSchema.canonical(clean.get(id))!=AbyssSaveSchema.canonical(serialized[id]):
@@ -144,7 +144,7 @@ func migration() -> void:
 	check(FarmSaveStore.restore(game,latest) and game.tutorial.snapshot()==latest.tutorial,"新教学已读状态存读档保持")
 	var bad:=latest.duplicate(true);bad.tutorial={"seen":["tap_move","tap_move"]}
 	check(not FarmSaveStore.valid(bad),"拒绝重复教学事件ID的损坏存档")
-	bad=latest.duplicate(true);bad.version=23
+	bad=latest.duplicate(true);bad.version=FarmSaveStore.VERSION+1
 	check(not FarmSaveStore.restore(game,bad),"未来存档版本被拒绝，当前运行数据保持")
 
 func sale_safety() -> void:

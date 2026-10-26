@@ -15,7 +15,7 @@ func run() -> void:
 		panel.open_panel(false);panel.select_item("carrot_seed")
 		check(FarmSaveStore.write(game),"背包打开且选中物品时能写入原v22存档")
 		var proof:=FarmSaveStore.snapshot(game)
-		check(proof.version==22 and not proof.has("selected_item") and proof.items==Inventory.items,"临时背包选中不写入存档，库存与原结构保持")
+		check(proof.version==FarmSaveStore.VERSION and not proof.has("selected_item") and proof.items==Inventory.items,"临时背包选中不写入存档，库存与原结构保持")
 		var file:=FileAccess.open("user://inventory03-proof.json",FileAccess.WRITE);file.store_string(JSON.stringify(proof));file.close()
 	else:
 		var proof: Dictionary=AbyssSaveSchema.canonical(JSON.parse_string(FileAccess.get_file_as_string("user://inventory03-proof.json")))

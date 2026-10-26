@@ -146,6 +146,7 @@ func costs(required: Dictionary) -> String:
 	return " · ".join(parts)
 
 func build_forge() -> void:
+	button("周砚 · 住宅改建",func(): close_panel(); Events.interaction_requested.emit("housing:upgrade"))
 	button("第二章分流器装配",func(): close_panel(); Events.interaction_requested.emit("river:forge"))
 	button("深渊护具升级与勘探计划",func(): close_panel(); Events.interaction_requested.emit("abyss:forge"))
 	words("周砚的矿物工台 · "+{1:"普通镐",2:"强化镐",3:"星纹镐"}[int(MineState.state.tool)],23)

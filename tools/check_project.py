@@ -56,6 +56,7 @@ steps = [
     ('ui05-camera', ['--fixed-fps','60','res://tests/ui05_camera_runner.tscn']),
     ('ui05-hotbar', ['--fixed-fps','60','res://tests/ui05_hotbar_runner.tscn']),
     ('ui05-layout', ['--fixed-fps','60','res://tests/ui05_layout_runner.tscn']),
+    ('home05', ['--fixed-fps','60','res://tests/home05_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),
@@ -131,6 +132,13 @@ steps = [
     ('farm-impact-read', ['--fixed-fps','60','res://tests/farming_actions_persistence.tscn','--','--read-farm-impact']),
     ('inventory03-write', ['--fixed-fps','60','res://tests/inventory03_persistence.tscn','--','--write-inventory03']),
     ('inventory03-read', ['--fixed-fps','60','res://tests/inventory03_persistence.tscn']),
+    ('home05-pending-write', ['--fixed-fps','60','res://tests/home05_persistence.tscn','--','--write-home05-pending']),
+    ('home05-pending-read', ['--fixed-fps','60','res://tests/home05_persistence.tscn','--','--read-home05-pending']),
+    ('home05-finished-read', ['--fixed-fps','60','res://tests/home05_persistence.tscn']),
+    ('home05-corrupt', ['--fixed-fps','60','res://tests/home05_persistence.tscn','--','--corrupt-home05']),
+    ('home05-backup-read', ['--fixed-fps','60','res://tests/home05_persistence.tscn']),
+    ('home05-sofa-write', ['--fixed-fps','60','res://tests/home05_persistence.tscn','--','--write-home05-sofa']),
+    ('home05-sofa-read', ['--fixed-fps','60','res://tests/home05_persistence.tscn','--','--read-home05-sofa']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:

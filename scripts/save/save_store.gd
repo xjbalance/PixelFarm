@@ -2,7 +2,7 @@ class_name FarmSaveStore
 extends RefCounted
 ## 写临时文件后重命名；保留上一次存档。先完整校验再修改运行状态。
 const PATH: String = "user://farm_save.json"
-const VERSION: int = 22
+const VERSION: int = 23
 
 static func snapshot(game: Node) -> Dictionary:
 	return {
@@ -28,7 +28,7 @@ static func snapshot(game: Node) -> Dictionary:
 
 static func write(game: Node, path: String = PATH) -> bool:
 	# 农活生效事务的同步通知尚未结束时，不能把半份跨系统进度写入磁盘。
-	if game.farm.committing: return false
+	if game.farm.committing or Housing.busy: return false
 	var data := snapshot(game)
 	if not valid(data): return false
 	var file := FileAccess.open(path+".tmp",FileAccess.WRITE)
@@ -131,6 +131,9 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	game.change_location(data["location"],Vector2(data["player"][0],data["player"][1]))
 	game.call_deferred("recover_blocked_position")
 	GameState.restoring=false
+	# 恢复日结算中断时留下的到期工单；不重收材料，也不重放其他系统的跨天逻辑。
+	if not Housing.state.construction.is_empty() and int(Housing.state.construction.ready_day)<=GameClock.day:
+		Housing.settle_day()
 	Inventory.changed.emit()
 	GameClock.changed.emit()
 	GameState.changed.emit()

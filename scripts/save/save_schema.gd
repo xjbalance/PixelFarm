@@ -2,7 +2,7 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,22): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,23): return {}
 	var data: Dictionary = raw.duplicate(true)
 	# 旧路线盘的数字格ID也必须规范，防止JSON浮点枚举失配/重复矿格。
 	if data.get("xiaojing") is Dictionary and data.xiaojing.get("cave") is Dictionary:
@@ -107,6 +107,11 @@ static func normalize(raw: Variant) -> Dictionary:
 		# 旧档已熟悉玩法，不重置原农场教学，也不补发任何资源或事件。
 		data.tutorial=GameTutorial.normalize(data.get("tutorial"),true)
 		data.version=22
+	if int(data.version)==22:
+		if not whole(data.get("day"),1,999999): return {}
+		data.housing=Housing.migrate_legacy(data.get("housing"),int(data.day))
+		if data.housing.is_empty(): return {}
+		data.version=23
 	data.world_development=AbyssSaveSchema.canonical(data.get("world_development"))
 	data.exploration=AbyssSaveSchema.canonical(data.get("exploration"))
 	data.housing=AbyssSaveSchema.canonical(data.get("housing"))
@@ -174,7 +179,7 @@ static func valid_current(data: Variant) -> bool:
 	if not AbyssSaveSchema.validate(data.get("abyss"),int(data.day)) or not AbyssSaveSchema.legend(data.get("legend"),data.xiaojing,int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),22,22) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),23,23) or not Story.validate(data.get("story")): return false
 	if not data.get("tutorial") is Dictionary or GameTutorial.normalize(data.tutorial).is_empty(): return false
 	if data.get("control_mode") not in ["tap","joystick"]: return false
 	if not VillageProjects.validate(data.get("village"),data.get("day"),int(data.story.stage)): return false
@@ -208,6 +213,9 @@ static func valid_current(data: Variant) -> bool:
 	var region := Rect2(10,10,1516,1004) if location == "farm" else Rect2(362,234,556,332)
 	if location=="home" and data.housing.level>=2:
 		var side_room := Rect2(224,384,128,160) if data.housing.level==2 else Rect2(128,256,224,288)
+		if data.housing.level==4:
+			var cells:=HomeLayout.extension_cells(4)
+			side_room=Rect2(Vector2(cells.position)*32,Vector2(cells.size)*32)
 		if side_room.has_point(Vector2(data.player[0],data.player[1])): region=side_room
 		elif Rect2(336,416,42,96).has_point(Vector2(data.player[0],data.player[1])): region=Rect2(336,416,42,96)
 	if location == "village" or location in MineState.AREAS or location in ["abyss","greenhouse","mist_forest","lake_ruins","old_temple"]: region = Rect2(10,10,1260,876)
@@ -239,6 +247,8 @@ static func valid_current(data: Variant) -> bool:
 	if not data.xiaojing.married:
 		if int(data.housing.owned.get("spouse_desk",0))>0: return false
 		for furnishing in data.housing.placed:
+			if furnishing.kind=="spouse_desk": return false
+		for furnishing in data.housing.recovered:
 			if furnishing.kind=="spouse_desk": return false
 	if not WorldDevelopment.validate(data.get("world_development"),int(data.day)): return false
 	if (data.world_development.dock>0 or data.world_development.community>0) and (data.story.stage!=8 or data.village.built.size()!=3): return false
