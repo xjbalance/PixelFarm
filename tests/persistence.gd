@@ -55,7 +55,17 @@ func _ready() -> void:
 		game.persistence_enabled=true
 		game.hud.system_panel.open_panel()
 		await get_tree().process_frame
-		load("res://tests/story.gd").touch(self,game.hud.system_panel.control_mode_button)
+		for _i in range(2): await get_tree().physics_frame
+		var mode_button: Button=game.hud.system_panel.control_mode_button
+		print("PERSISTENCE MODE BUTTON BEFORE SCROLL reachable=",mode_button.contains_touch(mode_button.get_global_rect().get_center()))
+		# UI05设置正文可滚动；仍真实点击原按钮，先把它滚入可命中区域。
+		var ancestor: Node=mode_button.get_parent()
+		while ancestor:
+			if ancestor is ScrollContainer: ancestor.ensure_control_visible(mode_button)
+			ancestor=ancestor.get_parent()
+		for _i in range(2): await get_tree().physics_frame
+		print("PERSISTENCE MODE BUTTON AFTER SCROLL reachable=",mode_button.contains_touch(mode_button.get_global_rect().get_center()))
+		load("res://tests/story.gd").touch(self,mode_button)
 		for _i in range(4): await get_tree().physics_frame
 		var automatic := FarmSaveStore.read()
 		success = automatic.get("control_mode")=="joystick" and automatic.get("xiaojing",{}).get("married",false)

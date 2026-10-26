@@ -2,6 +2,7 @@ extends Node
 ## 实际窗口对照与常驻HUD占位。只写builds；不向正式存档写入，不提交剧情结算。
 var game: Node
 var phase: String="before"
+var extra_only: bool=false
 var shots: Array=[]
 var failures: int=0
 var resolution:=Vector2i(1280,720)
@@ -17,6 +18,7 @@ func run() -> void:
 		get_tree().quit(1);return
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--phase="): phase=argument.trim_prefix("--phase=")
+		if argument=="--extra": extra_only=true
 	if phase.is_empty() or phase.length()>32 or phase.validate_filename()!=phase or "/" in phase or "\\" in phase:
 		push_error("UI05 phase必须是安全的单文件名标签。")
 		get_tree().quit(1);return
@@ -33,7 +35,8 @@ func run() -> void:
 	Xiaojing.restore(x)
 	for size in [Vector2i(1280,720),Vector2i(1600,720)]:
 		resolution=size;get_window().size=size;await frames(6);game.hud.update_safe_area();await frames(4)
-		await capture_set()
+		if extra_only: await capture_extras()
+		else: await capture_set()
 	var file:=FileAccess.open("res://builds/ui05-"+phase+"-manifest.json",FileAccess.WRITE)
 	file.store_string(JSON.stringify({"phase":phase,"platform":"Linux actual Godot window, not Android","hud_metric":"Union of visible non-IGNORE persistent HUD control rectangles, clipped to viewport/ancestors. Excludes root/safe/scrim and modal panel subtrees; not alpha-pixel coverage.","captures":shots,"failures":failures},"\t"));file.close()
 	print("UI05 CAPTURE ",phase,": ",shots.size()," frames, ",failures," failures")
@@ -70,6 +73,21 @@ func capture_set() -> void:
 	await place("farm",Aquaculture.SITES.pen_1+Vector2(-32,0))
 	game.hud.aquaculture_panel.open_panel("pen_1")
 	await capture("fishpen",game.hud.aquaculture_panel);game.hud.aquaculture_panel.close_panel()
+
+func capture_extras() -> void:
+	await place("farm",Vector2(656,480))
+	game.hud.xiaojing_panel.open_panel("xiaojing_memory:"+str(Xiaojing.data.memories[0].id))
+	await capture("important-story",game.hud.xiaojing_panel);game.hud.xiaojing_panel.close_panel()
+	game.hud.system_panel.open_panel()
+	await capture("menu",game.hud.system_panel);game.hud.system_panel.close_panel()
+	game.hud.social_panel.open_panel("linya")
+	await capture("social",game.hud.social_panel);game.hud.social_panel.close_panel()
+	await place("home",Housing.HOME+Vector2(32,0))
+	game.hud.housing_panel.open_panel("home");game.hud.housing_panel.page="catalog";game.hud.housing_panel.refresh()
+	await capture("furniture",game.hud.housing_panel);game.hud.housing_panel.close_panel()
+	await place("farm",Fishing.point("farm_lake")+Vector2(-32,0))
+	game.hud.fishing_panel.open_panel("farm_lake");game.hud.fishing_panel.page="book";game.hud.fishing_panel.refresh()
+	await capture("fishing-book",game.hud.fishing_panel);game.hud.fishing_panel.close_panel()
 
 func capture(label: String, control: Control) -> void:
 	game.hud.toast_time=0

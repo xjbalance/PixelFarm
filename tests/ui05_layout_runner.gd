@@ -119,6 +119,17 @@ func bottom_dialogue() -> void:
 	check(rect.position.y>=safe_bounds.position.y+safe_bounds.size.y*.45 and safe_bounds.end.y-rect.end.y<=maxf(48,UIMetrics.minimum_target()) and rect.end.y<=safe_bounds.end.y+.5,prefix+"对话锚定下方且不跑到屏幕中央或越过底边")
 	check(panel.portrait.size.x<=112 and panel.body_label.text.length()>70,prefix+"长正文与较小头像共享下方对话区")
 	await capture("dialogue-bottom");panel.close_dialogue()
+	panel.open_story("festival")
+	for i in range(20):
+		if panel.choices_box.visible: break
+		panel.advance()
+	await frames(4)
+	check(panel.choices_box.visible and panel.choices_box.get_child_count()==3 and game.hud.safe.get_global_rect().grow(.5).encloses(panel.get_global_rect()),prefix+"剧情末尾三个选项出现后向上扩展，仍完整位于安全区")
+	var options_reachable:=true
+	for option in panel.choices_box.get_children():
+		options_reachable=options_reachable and game.hud.safe.get_global_rect().encloses(option.get_global_rect()) and option.size.y>=UIMetrics.minimum_target()
+	check(options_reachable,prefix+"后出现的三个剧情选项均可见且保持触区")
+	await capture("dialogue-choices");panel.close_dialogue()
 
 func remaining_public_panels() -> void:
 	await at("farm",Vector2(656,480))

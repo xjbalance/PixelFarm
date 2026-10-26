@@ -263,8 +263,10 @@ func build_feedback() -> void:
 	Events.modal_changed.connect(func(active: bool): scrim.visible = active)
 	dialogue = PanelContainer.new()
 	dialogue.set_script(preload("res://scripts/ui/dialogue_panel.gd"))
+	dialogue.grow_vertical=Control.GROW_DIRECTION_BEGIN
 	place(dialogue,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-480,-145,960,340))
 	safe.add_child(dialogue)
+	dialogue.minimum_size_changed.connect(func(): call_deferred("reflow_panels"))
 	inventory_panel = PanelContainer.new()
 	inventory_panel.set_script(preload("res://scripts/ui/inventory_panel.gd"))
 	place(inventory_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-430,-265,860,530))
@@ -378,6 +380,9 @@ func reflow_panels() -> void:
 		# 内容的最小尺寸优先；长正文在原有滚动容器中滚动。
 		# 对话首次换行前的高度可能按旧窄宽计算；先给目标宽高，让Container稳定正文。
 		if panel!=dialogue: extent=extent.max(panel.get_combined_minimum_size())
+		elif absf(panel.size.x-extent.x)<1 and dialogue.body_label.size.x>300:
+			# 宽度稳定后才采用正文/后出现的选项高度，重新向上扩展而非溢出底边。
+			extent.y=maxf(extent.y,panel.get_combined_minimum_size().y)
 		extent=extent.min(safe.size-Vector2.ONE*UILayout.SAFE_EDGE*2)
 		if panel==dialogue:
 			place(panel,Vector2(.5,1),Vector2(.5,1),Rect2(Vector2(-extent.x/2,-UILayout.SAFE_EDGE-extent.y),extent))
@@ -582,6 +587,7 @@ func _process(delta: float) -> void:
 
 func refresh_clock() -> void:
 	clock_label.text=GameClock.clock_text()
+	if GameState.location=="abyss": clock_label.text+=" · %d层 空气%d/160" % [int(AbyssState.state.depth),int(AbyssState.state.air)]
 	clock_label.tooltip_text=Calendar.label()+" · "+Story.NAMES[GameState.location]
 	date_label.text="%s%d日" % [Calendar.SEASON_NAMES[Calendar.season()],Calendar.day_of_season()]
 	date_label.tooltip_text=Calendar.label()

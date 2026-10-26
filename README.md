@@ -1,16 +1,18 @@
 # 像素世界 · Pixel World
 
-当前源码和调试APK已包含[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)及[全局UI改版](docs/REPORT-UI04.md)。
+当前源码和调试APK已包含[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)及[UI05沉浸式视野](docs/REPORT-UI05.md)。
 
 **0.7.1《匠心打磨》**，Godot 4.3 Standard 原创像素经营 RPG。在原工程上整合四季天气、自由钓鱼、湖泊生态、畜牧、厨房加工、四季节日、村民个人事件、家园扩建装修与三张隐藏地图。
 
 保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v22**，兼容v1–v21，原应用包名、证书与存档路径保留。
 
-最新源码完整验证：**3,402项自动化、1,899项桌面窗口检查零失败**，包括五横屏/安全区及64/96逻辑触区的密度注入布局检查。Android调试APK已重新生成；没有Android真机验收。
+最新源码完整验证见[UI05机器记录](docs/TEST-UI05.json)：**3,794项自动化、2,291项桌面窗口检查零失败**，包括五横屏/安全区及64/96逻辑触区的密度注入布局检查。Android调试APK已重新生成；没有Android真机验收。
 
-[全局UI改版报告](docs/REPORT-UI04.md) · [初版开发报告](docs/REPORT-0.7.1.md) · [0.7.0内容报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [已知问题](docs/KNOWN-ISSUES-0.7.0.md)
+[UI05报告与前后截图](docs/REPORT-UI05.md) · [布局规范](docs/UI05-LAYOUT.md) · [UI04报告](docs/REPORT-UI04.md) · [初版开发报告](docs/REPORT-0.7.1.md) · [0.7.0内容报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [UI05验收边界](docs/KNOWN-ISSUES-UI05.md)
 
-![春季农场与原湖泊](docs/screenshot-070-farm.png)
+![UI05紧凑HUD与居中跟随](docs/ui05/after-1280-hud.png)
+
+空闲时拖动画面自由观察，松手保留视野；点击“回中”或开始移动恢复跟随。右下工具区可展开为原九格，任务默认收起。[查看前后对照](docs/ui05/compare-hud.png)。
 
 ## 运行与下载
 
