@@ -11,6 +11,13 @@ var pressed_world := Vector2.ZERO
 var mouse_pressed_world := Vector2.ZERO
 var pressed_target: Dictionary = {}
 var mouse_target: Dictionary = {}
+var drag_allowed: bool=false
+var dragging_world: bool=false
+var drag_last:=Vector2.ZERO
+var gesture_threshold: float=12
+var mouse_drag_allowed: bool=false
+var mouse_dragging: bool=false
+var mouse_dragged: bool=false
 
 func setup(owner_game: Node) -> void:
 	game = owner_game
@@ -20,6 +27,8 @@ func setup(owner_game: Node) -> void:
 	Events.tool_changed.connect(reset)
 
 func reset() -> void:
+	if is_instance_valid(game) and is_instance_valid(game.camera_rig): game.camera_rig.end_free_look()
+	drag_allowed=false;dragging_world=false;mouse_drag_allowed=false;mouse_dragging=false;mouse_dragged=false
 	candidate = -1
 	blocked = true
 	mouse_down = false
@@ -30,6 +39,8 @@ func ui_at(point: Vector2, root: Node = null) -> bool:
 	if root == null: root = game.hud.root
 	if root is Control:
 		if not root.is_visible_in_tree(): return false
+		# 摇杆用原生_input处理，虽IGNORE鼠标也属于UI手势区。
+		if root==game.hud.joystick and root.get_global_rect().has_point(point): return true
 		if root.clip_contents and not root.get_global_rect().has_point(point): return false
 		if root.mouse_filter != Control.MOUSE_FILTER_IGNORE and root.get_global_rect().has_point(point): return true
 	for child in root.get_children():
@@ -46,44 +57,75 @@ func _input(event: InputEvent) -> void:
 			# 触屏与鼠标交错也属于多指输入，不允许一边释放一边提交旧目标。
 			var mixed: bool = mouse_down
 			mouse_down = false
+			if mouse_dragging:
+				mouse_dragging=false;mouse_drag_allowed=false;game.camera_rig.end_free_look()
 			# 同索引的重复 pressed 不能重启一次手势。
 			if fingers.has(event.index):
 				blocked = true
+				dragging_world=false;game.camera_rig.end_free_look()
 				return
 			fingers[event.index] = event.position
 			if fingers.size() == 1:
 				blocked = mixed or GameState.modal or ui_at(event.position) or event.canceled
 				candidate = event.index
 				origin = event.position
+				drag_last=origin;gesture_threshold=UIMetrics.drag_threshold()
+				drag_allowed=not blocked and game.camera_rig.can_free_look()
+				dragging_world=false
 				pressed_world=world_point(event.position)
 				pressed_target = TouchInteractionResolver.resolve(game,pressed_world) if not blocked else {}
 				# 新目标从按下即接管；等待释放时旧路线不能先抵达并扣除资源。
 				if not blocked and GameState.control_mode=="tap" and not game.backgrounded: game.auto_move.cancel()
-			else: blocked = true
+			else:
+				blocked=true;dragging_world=false;drag_allowed=false;game.camera_rig.end_free_look()
 		else:
 			fingers.erase(event.index)
 			if event.index == candidate:
-				var accept: bool = not blocked and not event.canceled and origin.distance_to(event.position)<12 and not ui_at(event.position)
+				var accept: bool = not blocked and not dragging_world and not event.canceled and origin.distance_to(event.position)<gesture_threshold and not ui_at(event.position)
 				candidate = -1
+				if dragging_world:
+					game.camera_rig.end_free_look();get_viewport().set_input_as_handled()
+				dragging_world=false;drag_allowed=false
 				if accept and submit_target(pressed_target): get_viewport().set_input_as_handled()
 				pressed_target.clear()
-	elif event is InputEventScreenDrag and event.index == candidate and event.position.distance_to(origin)>12:
-		blocked = true
+	elif event is InputEventScreenDrag and event.index == candidate:
+		if dragging_world or event.position.distance_to(origin)>gesture_threshold:
+			blocked=true
+			if drag_allowed and not dragging_world:
+				drag_allowed=false;dragging_world=game.camera_rig.begin_free_look()
+			if dragging_world:
+				game.camera_rig.pan_screen(event.position-drag_last)
+				get_viewport().set_input_as_handled()
+			drag_last=event.position
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 			mouse_origin = event.position
+			drag_last=mouse_origin;gesture_threshold=UIMetrics.drag_threshold()
+			mouse_dragged=false;mouse_dragging=false
 			mouse_pressed_world=world_point(event.position)
 			mouse_down = fingers.is_empty() and not ui_at(event.position) and not GameState.modal
-			if not fingers.is_empty(): blocked = true
+			mouse_drag_allowed=mouse_down and game.camera_rig.can_free_look()
+			if not fingers.is_empty():
+				blocked=true;dragging_world=false;drag_allowed=false;game.camera_rig.end_free_look()
 			mouse_target = TouchInteractionResolver.resolve(game,mouse_pressed_world) if mouse_down else {}
 			if mouse_down and GameState.control_mode=="tap" and not game.backgrounded: game.auto_move.cancel()
 		else:
-			var accept: bool = mouse_down and fingers.is_empty() and event.position.distance_to(mouse_origin)<12 and not ui_at(event.position)
+			var accept: bool = mouse_down and not mouse_dragged and fingers.is_empty() and event.position.distance_to(mouse_origin)<gesture_threshold and not ui_at(event.position)
 			mouse_down = false
+			if mouse_dragging:
+				game.camera_rig.end_free_look();get_viewport().set_input_as_handled()
+			mouse_dragging=false;mouse_drag_allowed=false
 			if accept and submit_target(mouse_target): get_viewport().set_input_as_handled()
 			mouse_target.clear()
-	elif event is InputEventMouseMotion and mouse_down and event.position.distance_to(mouse_origin)>12:
-		mouse_down = false
+	elif event is InputEventMouseMotion and mouse_down:
+		if mouse_dragged or event.position.distance_to(mouse_origin)>gesture_threshold:
+			mouse_dragged=true
+			if mouse_drag_allowed and not mouse_dragging:
+				mouse_drag_allowed=false;mouse_dragging=game.camera_rig.begin_free_look()
+			if mouse_dragging:
+				game.camera_rig.pan_screen(event.position-drag_last)
+				get_viewport().set_input_as_handled()
+			drag_last=event.position
 
 func submit(point: Vector2) -> bool:
 	return submit_world(world_point(point))

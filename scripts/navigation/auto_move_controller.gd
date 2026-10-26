@@ -49,6 +49,7 @@ func request_target(intent: Dictionary) -> void:
 	cancel()
 	if GameState.modal or game.backgrounded or GameState.control_mode != "tap": return
 	if intent.is_empty(): return
+	if is_instance_valid(game.camera_rig): game.camera_rig.follow_now()
 	target = intent.duplicate()
 	marker = target.point
 	marker_time = 0.7

@@ -17,6 +17,7 @@ var autosave_epoch: int = 0
 var schedule_restore_pending: bool = false
 var auto_move: Node2D
 var touch_input: Node
+var camera_rig: WorldCameraRig
 var life_schedule: Node
 var tutorial: GameTutorial
 var prompt_elapsed: float = 0
@@ -33,7 +34,7 @@ func _ready() -> void:
 	village.hide()
 	village.get_node("Ground").enabled = false
 	village.process_mode = Node.PROCESS_MODE_DISABLED
-	player.get_node("Camera2D").position.y = -60
+	player.get_node("Camera2D").position=Vector2.ZERO
 	var atmosphere := CanvasLayer.new()
 	atmosphere.layer = 4
 	add_child(atmosphere)
@@ -95,6 +96,7 @@ func _ready() -> void:
 	add_child(auto_move)
 	auto_move.setup(self)
 	auto_move.navigation.invalidate()
+	camera_rig=WorldCameraRig.new();add_child(camera_rig);camera_rig.setup(self)
 	# 最后添加，_input 先于现有原生触点按钮记录归属。
 	touch_input = Node.new()
 	touch_input.set_script(preload("res://scripts/input/touch_input_manager.gd"))

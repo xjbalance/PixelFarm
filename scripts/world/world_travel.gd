@@ -121,9 +121,7 @@ static func change(game: Node, destination: String, saved_position: Vector2 = Ve
 	game.player.position=saved_position if saved_position!=Vector2.INF else entry(destination)
 	var camera: Camera2D=game.player.get_node("Camera2D")
 	camera.zoom=Vector2.ONE if destination in ["home","greenhouse"] else Vector2(1.35,1.35)
-	camera.position.y=0 if destination in ["home","greenhouse"] else -60
-	camera.limit_right=1536 if destination=="farm" else 1280
-	camera.limit_bottom={"farm":1024,"home":720}.get(destination,896)
+	camera.position=Vector2.ZERO
 	camera.reset_smoothing()
 	game.player.get_node("CaveLamp").energy=.55 if destination=="abyss" and AbyssState.state.depth>=81 else .8
 	game.player.get_node("CaveLamp").enabled=destination in MineState.AREAS or destination=="abyss"
