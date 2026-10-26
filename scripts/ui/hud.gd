@@ -47,10 +47,17 @@ var completed: Dictionary = {}
 var toolbar_style_selection: int = -1
 var toolbar_signature: Array = []
 var guide_toggle: Button
-var guide_collapsed: bool = false
+var guide_collapsed: bool = true
 var toolbar: GridContainer
 var cycle_button: Button
 var top_cluster: HBoxContainer
+var top_right: HBoxContainer
+var date_label: Label
+var weather_label: Label
+var tool_name_label: Label
+var hotbar_expanded: bool = false
+var camera_return_button: Button
+var menu_button: Button
 
 func _ready() -> void:
 	layer = 10
@@ -66,9 +73,13 @@ func _ready() -> void:
 	build_top()
 	build_controls()
 	build_feedback()
+	Events.modal_changed.connect(func(active: bool):
+		if active: collapse_hotbar()
+	)
+	Events.location_changed.connect(func(_id: String): collapse_hotbar())
 	Events.notice.connect(show_notice)
 	Events.farm_action.connect(on_farm_action)
-	Events.tool_changed.connect(refresh_hotbar)
+	Events.tool_changed.connect(on_tool_changed)
 	GameState.changed.connect(refresh)
 	GameState.control_mode_changed.connect(refresh_controls)
 	Inventory.changed.connect(refresh)
@@ -91,66 +102,45 @@ func _ready() -> void:
 func refresh_controls() -> void:
 	joystick.reset()
 	joystick.visible = GameState.control_mode == "joystick"
+	if is_instance_valid(toolbar): collapse_hotbar()
 
 func build_top() -> void:
-	var top := HBoxContainer.new()
-	top_cluster=top
-	place(top, Vector2(0,0), Vector2(1,0), Rect2(20,12,-40,60))
-	safe.add_child(top)
-	top.add_theme_constant_override("separation", 6)
-	var brand := status_panel()
-	brand.custom_minimum_size.x = 136
-	top.add_child(brand)
-	var names := VBoxContainer.new()
-	brand.add_child(names)
-	names.add_child(FarmUIStyle.label("像 素 世 界", 18, FarmUIStyle.TITLE))
-	names.add_child(FarmUIStyle.label("Pixel World · 0.7.1", 12, FarmUIStyle.MUTED))
-	var time_panel := status_panel()
-	top.add_child(time_panel)
-	var time_row := HBoxContainer.new()
-	time_row.add_theme_constant_override("separation",6)
-	time_panel.add_child(time_row)
-	var time_icons := VBoxContainer.new()
-	time_icons.size_flags_vertical=Control.SIZE_SHRINK_CENTER
-	time_icons.add_theme_constant_override("separation",4)
-	time_icons.add_child(status_icon("date"));time_icons.add_child(status_icon("weather"))
-	time_row.add_child(time_icons)
-	clock_label = FarmUIStyle.label("第 1 天  ·  06:00", 16)
-	time_row.add_child(clock_label)
-	var energy := status_panel()
-	energy.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	top.add_child(energy)
-	var energy_row := HBoxContainer.new()
-	energy_row.add_theme_constant_override("separation",6)
-	energy.add_child(energy_row)
-	energy_row.add_child(status_icon("stamina"))
-	var energy_column := VBoxContainer.new()
-	energy_column.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	energy_row.add_child(energy_column)
-	stamina_label = FarmUIStyle.label("体力",15)
-	energy_column.add_child(stamina_label)
-	stamina_bar = ProgressBar.new()
-	stamina_bar.custom_minimum_size = Vector2(76,10)
-	stamina_bar.show_percentage = false
+	# 状态只占两个角落，不再让一条全宽HBox挡住地图顶边。
+	top_cluster=HBoxContainer.new();top_cluster.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	top_cluster.add_theme_constant_override("separation",4)
+	place(top_cluster,Vector2.ZERO,Vector2.ZERO,Rect2(12,12,260,48));safe.add_child(top_cluster)
+	var calendar_panel:=status_panel();top_cluster.add_child(calendar_panel)
+	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",0);calendar_panel.add_child(column)
+	var day_row:=HBoxContainer.new();day_row.add_theme_constant_override("separation",4);column.add_child(day_row)
+	day_row.add_child(status_icon("date"));date_label=FarmUIStyle.label("春1日",15);day_row.add_child(date_label)
+	var weather_row:=HBoxContainer.new();weather_row.add_theme_constant_override("separation",4);column.add_child(weather_row)
+	weather_row.add_child(status_icon("weather"));weather_label=FarmUIStyle.label("晴朗",14,FarmUIStyle.MUTED);weather_row.add_child(weather_label)
+	var energy:=status_panel();top_cluster.add_child(energy)
+	var energy_column:=VBoxContainer.new();energy_column.add_theme_constant_override("separation",1);energy.add_child(energy_column)
+	var energy_row:=HBoxContainer.new();energy_row.add_theme_constant_override("separation",4);energy_column.add_child(energy_row)
+	energy_row.add_child(status_icon("stamina"));stamina_label=FarmUIStyle.label("100 / 100",14);energy_row.add_child(stamina_label)
+	stamina_bar=ProgressBar.new();stamina_bar.custom_minimum_size=Vector2(84,7);stamina_bar.show_percentage=false
 	energy_column.add_child(stamina_bar)
-	var purse := status_panel()
-	top.add_child(purse)
-	var money_row := HBoxContainer.new()
-	money_row.add_theme_constant_override("separation",6)
-	purse.add_child(money_row)
-	money_row.add_child(status_icon("coin"))
-	money_label = FarmUIStyle.label("", 17, FarmUIStyle.TITLE)
-	money_row.add_child(money_label)
-	top.add_child(FarmUIStyle.button("背包 B", func(): bag_requested.emit(), 88))
-	top.add_child(FarmUIStyle.button("委托 J",func(): progress_panel.open_panel("journal",false),88))
-	top.add_child(FarmUIStyle.button("手记 M",func(): story_panel.open_panel(),88))
-	top.add_child(FarmUIStyle.button("菜单", func(): system_panel.open_panel(), 72))
+	top_right=HBoxContainer.new();top_right.mouse_filter=Control.MOUSE_FILTER_IGNORE
+	top_right.alignment=BoxContainer.ALIGNMENT_END
+	top_right.add_theme_constant_override("separation",4)
+	place(top_right,Vector2(1,0),Vector2(1,0),Rect2(-264,12,252,48));safe.add_child(top_right)
+	var time_panel:=status_panel();top_right.add_child(time_panel)
+	clock_label=FarmUIStyle.label("06:00",16);time_panel.add_child(clock_label)
+	var purse:=status_panel();top_right.add_child(purse)
+	var money_row:=HBoxContainer.new();money_row.add_theme_constant_override("separation",4);purse.add_child(money_row)
+	money_row.add_child(status_icon("coin"));money_label=FarmUIStyle.label("0",15,FarmUIStyle.TITLE);money_row.add_child(money_label)
+	var menu:=FarmUIStyle.button("菜单",func(): system_panel.open_panel(),48)
+	menu_button=menu
+	menu.add_theme_font_size_override("font_size",14)
+	var menu_style:=FarmUIStyle.surface("button");menu_style.content_margin_left=6;menu_style.content_margin_right=6
+	menu.add_theme_stylebox_override("normal",menu_style);top_right.add_child(menu)
 
 func status_panel() -> PanelContainer:
 	var panel := PanelContainer.new()
 	var style:=FarmUIStyle.surface("paper")
-	style.content_margin_left=10;style.content_margin_right=10
-	style.content_margin_top=6;style.content_margin_bottom=6
+	style.content_margin_left=6;style.content_margin_right=6
+	style.content_margin_top=4;style.content_margin_bottom=4
 	panel.add_theme_stylebox_override("panel",style)
 	return panel
 
@@ -172,22 +162,23 @@ func build_controls() -> void:
 	safe.add_child(joystick)
 	joystick.direction_changed.connect(func(direction: Vector2): movement.emit(direction))
 	toolbar = GridContainer.new()
-	toolbar.columns=9
+	toolbar.columns=3
 	place(toolbar, Vector2(0.5,1), Vector2(0.5,1), Rect2(-368,-112,736,88))
-	toolbar.add_theme_constant_override("h_separation",6)
-	toolbar.add_theme_constant_override("v_separation",8)
+	toolbar.add_theme_constant_override("h_separation",4)
+	toolbar.add_theme_constant_override("v_separation",4)
 	safe.add_child(toolbar)
 	for i in range(GameState.tools.size()):
-		var button := FarmUIStyle.button("", GameState.select_tool.bind(i), 74)
+		var button := FarmUIStyle.button("", GameState.select_tool.bind(i), 48)
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		button.add_theme_font_size_override("font_size", 13)
+		button.add_theme_font_size_override("font_size", 12)
 		var icon := AtlasTexture.new()
 		icon.atlas = load("res://assets/ui/tools.png")
 		icon.region = Rect2(i*32,0,32,32)
 		button.icon = tool_badge(load("res://assets/fishing/fishing_rod.png") if i==8 else icon)
 		button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		button.vertical_icon_alignment = VERTICAL_ALIGNMENT_TOP
-		button.add_theme_constant_override("icon_max_width",26)
+		button.expand_icon=true
+		button.add_theme_constant_override("icon_max_width",UILayout.TOOL_ICON)
 		toolbar.add_child(button)
 		tool_buttons.append(button)
 	action_button = FarmUIStyle.button("使用\nE", func(): Events.action_requested.emit(), 98)
@@ -195,10 +186,18 @@ func build_controls() -> void:
 	action_button.add_theme_font_size_override("font_size", 23)
 	action_button.add_theme_stylebox_override("normal", FarmUIStyle.surface("nature"))
 	safe.add_child(action_button)
-	var cycle := FarmUIStyle.button("换工具  Q", func(): GameState.select_tool(GameState.selected + 1), 116)
+	var cycle := FarmUIStyle.button("＋",toggle_hotbar,48)
 	cycle_button=cycle
 	place(cycle, Vector2(1,1), Vector2(1,1), Rect2(-142,-212,116,48))
 	safe.add_child(cycle)
+	tool_name_label=FarmUIStyle.label("",12,FarmUIStyle.TEXT)
+	tool_name_label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER
+	tool_name_label.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+	var name_style:=FarmUIStyle.surface("paper")
+	name_style.content_margin_left=4;name_style.content_margin_right=4
+	name_style.content_margin_top=0;name_style.content_margin_bottom=0
+	tool_name_label.add_theme_stylebox_override("normal",name_style)
+	safe.add_child(tool_name_label)
 
 func tool_badge(source: Texture2D) -> Texture2D:
 	# 原工具贴图保持不变，只在一次性显示纹理中衬深色底，提高浅色工具对比。
@@ -216,16 +215,21 @@ func tool_badge(source: Texture2D) -> Texture2D:
 func build_feedback() -> void:
 	var guide := PanelContainer.new()
 	guide_panel=guide
+	guide.grow_vertical=Control.GROW_DIRECTION_BEGIN
+	var guide_style:=FarmUIStyle.surface("paper")
+	guide_style.content_margin_left=4;guide_style.content_margin_right=4
+	guide_style.content_margin_top=4;guide_style.content_margin_bottom=4
+	guide.add_theme_stylebox_override("panel",guide_style)
 	place(guide, Vector2(0,0), Vector2(0,0), Rect2(20,94,304,144))
 	guide.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	safe.add_child(guide)
 	var content := VBoxContainer.new()
 	content.add_theme_constant_override("separation",2)
 	guide.add_child(content)
-	guide_toggle=FarmUIStyle.button("任务手记 ▾",toggle_guide,180)
+	guide_toggle=FarmUIStyle.button("任务 ▸",toggle_guide,120)
 	guide_toggle.icon=load("res://assets/ui/river/icon_task.png")
 	guide_toggle.expand_icon=true
-	guide_toggle.add_theme_constant_override("icon_max_width",18)
+	guide_toggle.add_theme_constant_override("icon_max_width",16)
 	guide_toggle.add_theme_font_size_override("font_size",14)
 	guide_toggle.add_theme_stylebox_override("normal",FarmUIStyle.surface("secondary"))
 	content.add_child(guide_toggle)
@@ -235,6 +239,7 @@ func build_feedback() -> void:
 	quest_label = FarmUIStyle.label("",13,FarmUIStyle.MUTED)
 	quest_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(quest_label)
+	progress_label.hide();quest_label.hide()
 	prompt_label = FarmUIStyle.label("",15)
 	prompt_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	prompt_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
@@ -271,6 +276,9 @@ func build_feedback() -> void:
 	system_panel.load_requested.connect(func(): load_requested.emit())
 	system_panel.sleep_requested.connect(func(expected_day: int): sleep_requested.emit(expected_day))
 	system_panel.mute_requested.connect(func(): mute_requested.emit())
+	system_panel.bag_requested.connect(func(): bag_requested.emit())
+	system_panel.journal_requested.connect(func(): progress_panel.open_panel("journal",false))
+	system_panel.story_requested.connect(func(): story_panel.open_panel())
 	progress_panel = PanelContainer.new()
 	progress_panel.set_script(preload("res://scripts/ui/progress_panel.gd"))
 	place(progress_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-450,-270,900,540))
@@ -362,10 +370,10 @@ func bubble_style() -> StyleBoxTexture:
 
 func toggle_guide() -> void:
 	guide_collapsed=not guide_collapsed
-	guide_toggle.text="任务手记 ▸" if guide_collapsed else "任务手记 ▾"
+	guide_toggle.text="任务 ▸" if guide_collapsed else "任务手记 ▾"
 	progress_label.visible=not guide_collapsed
 	quest_label.visible=not guide_collapsed
-	guide_panel.offset_bottom=guide_panel.offset_top+(64 if guide_collapsed else 144)
+	reflow_touch_controls()
 
 func place(node: Control, start: Vector2, end: Vector2, offsets: Rect2) -> void:
 	node.anchor_left = start.x
@@ -391,30 +399,77 @@ func update_safe_area() -> void:
 
 func reflow_touch_controls() -> void:
 	if not is_instance_valid(toolbar) or not is_instance_valid(cycle_button): return
-	var target: float=UIMetrics.minimum_target()
-	var width: float=maxf(74,target)
-	var usable: float=safe.size.x-48
-	var columns: int=mini(9,maxi(1,floori((usable+6)/(width+6))))
-	toolbar.columns=columns
-	var rows: int=ceili(9.0/columns)
-	var bar_width: float=width*columns+6*(columns-1)
-	var height: float=maxf(88,target)*rows+8*(rows-1)
-	place(toolbar,Vector2(.5,1),Vector2(.5,1),Rect2(-bar_width/2,-height-24,bar_width,height))
-	if target>74 or rows>1:
-		var edge: float=maxf(116,target)
-		var action_y: float=-height-40-edge
-		place(action_button,Vector2(1,1),Vector2(1,1),Rect2(-edge-24,action_y,edge,edge))
-		place(cycle_button,Vector2(1,1),Vector2(1,1),Rect2(-edge-24,action_y-14-target,edge,target))
-		place(joystick,Vector2(0,1),Vector2(0,1),Rect2(24,-height-206,166,166))
-		place(prompt_label,Vector2(.5,1),Vector2(.5,1),Rect2(-320,-height-68,640,44))
+	var edge: float=UILayout.SAFE_EDGE
+	var slot: float=UILayout.slot_size()
+	var grid_width: float=slot*3+8
+	var grid_height: float=slot*3+8 if hotbar_expanded else slot
+	for button in tool_buttons: button.custom_minimum_size=Vector2(slot,slot)
+	toolbar.columns=3
+	place(toolbar,Vector2(1,1),Vector2(1,1),Rect2(-edge-slot-4-grid_width,-edge-grid_height,grid_width,grid_height))
+	place(cycle_button,Vector2(1,1),Vector2(1,1),Rect2(-edge-slot,-edge-slot,slot,slot))
+	cycle_button.custom_minimum_size=Vector2(slot,slot)
+	var action_edge: float=maxf(64,slot)
+	place(action_button,Vector2(1,1),Vector2(1,1),Rect2(-edge-slot-4-grid_width-8-action_edge,-edge-action_edge,action_edge,action_edge))
+	action_button.custom_minimum_size=Vector2(action_edge,action_edge)
+	action_button.add_theme_font_size_override("font_size",16)
+	place(tool_name_label,Vector2(1,1),Vector2(1,1),Rect2(-edge-slot-4-grid_width,-edge-grid_height-24,grid_width,20))
+	place(joystick,Vector2(0,1),Vector2(0,1),Rect2(edge,-edge-166,166,166))
+	place(prompt_label,Vector2(.5,1),Vector2(.5,1),Rect2(-200,-edge-slot-68,400,40))
+	var header_height: float=maxf(48,slot)
+	menu_button.custom_minimum_size=Vector2(slot,slot)
+	place(top_cluster,Vector2.ZERO,Vector2.ZERO,Rect2(edge,edge,228,header_height))
+	var right_width: float=maxf(248,200+slot)
+	place(top_right,Vector2(1,0),Vector2(1,0),Rect2(-edge-right_width,edge,right_width,header_height))
+	var guide_height: float=slot+8 if guide_collapsed else maxf(156,slot+88)
+	place(guide_panel,Vector2(0,1),Vector2(0,1),Rect2(edge,-edge-guide_height,124 if guide_collapsed else 304,guide_height))
+	guide_toggle.custom_minimum_size=Vector2(100,slot)
+	if GameState.control_mode=="joystick":
+		guide_panel.offset_top-=178;guide_panel.offset_bottom-=178
+	position_camera_return(true)
+
+func toggle_hotbar() -> void:
+	if hotbar_expanded: collapse_hotbar()
+	else: expand_hotbar()
+
+func expand_hotbar() -> void:
+	hotbar_expanded=true
+	arrange_hotbar()
+
+func collapse_hotbar() -> void:
+	hotbar_expanded=false
+	arrange_hotbar()
+
+func arrange_hotbar() -> void:
+	if not is_instance_valid(toolbar): return
+	var order: Array[int]=[]
+	if hotbar_expanded:
+		for i in range(tool_buttons.size()): order.append(i)
 	else:
-		place(action_button,Vector2(1,1),Vector2(1,1),Rect2(-142,-150,116,116))
-		place(cycle_button,Vector2(1,1),Vector2(1,1),Rect2(-142,-212,116,48))
-		place(joystick,Vector2(0,1),Vector2(0,1),Rect2(24,-194,166,166))
-	var header_height: float=maxf(60,target)
-	top_cluster.offset_bottom=12+header_height
-	guide_panel.offset_top=header_height+34
-	guide_panel.offset_bottom=guide_panel.offset_top+(64 if guide_collapsed else 144)
+		order=[posmod(GameState.selected-1,tool_buttons.size()),GameState.selected,posmod(GameState.selected+1,tool_buttons.size())]
+	for i in range(tool_buttons.size()): tool_buttons[i].visible=i in order
+	for place_index in range(order.size()): toolbar.move_child(tool_buttons[order[place_index]],place_index)
+	cycle_button.text="−" if hotbar_expanded else "＋"
+	cycle_button.tooltip_text="收起工具" if hotbar_expanded else "展开全部九个工具（1—9 / Q仍可切换）"
+	if is_instance_valid(tool_name_label): tool_name_label.text=GameState.tool_names[GameState.selected]+(" · 已用完" if GameState.tool().ends_with("_seed") and Inventory.count(GameState.tool())==0 else "")
+	reflow_touch_controls()
+
+func on_tool_changed() -> void:
+	collapse_hotbar()
+	refresh_hotbar()
+
+func position_camera_return(force: bool = false) -> void:
+	var owner_game:=get_parent()
+	if not "camera_rig" in owner_game or not is_instance_valid(owner_game.camera_rig): return
+	var button: Button=owner_game.camera_rig.return_button
+	if not is_instance_valid(button) or (not force and button==camera_return_button): return
+	camera_return_button=button
+	var slot: float=UILayout.slot_size()
+	button.text="回中";button.custom_minimum_size=Vector2(slot,slot)
+	button.add_theme_font_size_override("font_size",14)
+	var style:=FarmUIStyle.surface("secondary");style.content_margin_left=4;style.content_margin_right=4
+	button.add_theme_stylebox_override("normal",style)
+	var height: float=slot*3+8 if hotbar_expanded else slot
+	place(button,Vector2(1,1),Vector2(1,1),Rect2(-UILayout.SAFE_EDGE-slot,-UILayout.SAFE_EDGE-height-8-slot,slot,slot))
 
 func apply_safe_area(area: Rect2, screen: Vector2) -> void:
 	var viewport := get_viewport().get_visible_rect().size
@@ -430,7 +485,7 @@ func refresh() -> void:
 	guide_panel.visible=GameState.location not in ["home","mist_forest","lake_ruins","old_temple"]
 	refresh_clock()
 	money_label.text = "%d 金" % Inventory.coins
-	stamina_label.text = "体力  %d / %d" % [GameState.stamina,GameState.max_stamina()]
+	stamina_label.text = "%d / %d" % [GameState.stamina,GameState.max_stamina()]
 	stamina_bar.max_value = GameState.max_stamina()
 	stamina_bar.value = GameState.stamina
 	quest_label.text = Story.chapter().title+"\n"+Story.chapter().goal
@@ -450,22 +505,23 @@ func refresh_hotbar() -> void:
 		var id: String = GameState.tools[i]
 		var amount := str(Inventory.count(id)) if id.ends_with("_seed") else str(i + 1)
 		var empty_seed: bool=id.ends_with("_seed") and Inventory.count(id)==0
-		if empty_seed: amount="0 已用完"
-		var caption: String="%s\n%s" % [GameState.tool_names[i],amount]
+		if empty_seed: amount="0"
+		var caption: String=amount
 		if tool_buttons[i].text!=caption: tool_buttons[i].text=caption
 		tool_buttons[i].tooltip_text="%s · 快捷键%d%s" % [GameState.tool_names[i],i+1," · 种子已用完，请到种子摊补充" if empty_seed else ""]
 		if toolbar_style_selection != GameState.selected:
 			var style := FarmUIStyle.surface("selected" if i == GameState.selected else "button")
-			style.content_margin_left = 6
-			style.content_margin_right = 6
-			style.content_margin_top = 5
-			style.content_margin_bottom = 5
+			style.content_margin_left = 4
+			style.content_margin_right = 4
+			style.content_margin_top = 4
+			style.content_margin_bottom = 4
 			tool_buttons[i].add_theme_stylebox_override("normal",style)
 	toolbar_style_selection = GameState.selected
+	arrange_hotbar()
 
 func set_prompt(text: String, nearby: bool) -> void:
 	prompt_label.text = text
-	prompt_label.visible=not text.is_empty()
+	prompt_label.visible=not text.is_empty() and not text.begins_with("对准脚前亮框")
 	action_button.text = "交互\nE" if nearby else "使用\nE"
 
 func show_notice(text: String) -> void:
@@ -498,10 +554,14 @@ func refresh_farm_guide() -> void:
 func _process(delta: float) -> void:
 	toast_time = maxf(0, toast_time - delta)
 	toast.visible = toast_time > 0
-	prompt_label.visible = not GameState.modal
+	prompt_label.visible = not GameState.modal and not prompt_label.text.is_empty() and not prompt_label.text.begins_with("对准脚前亮框")
+	position_camera_return()
 
 func refresh_clock() -> void:
-	var detail: String="%s · %s" % [Story.NAMES[GameState.location],GameWeather.label()]
-	if GameState.location=="abyss": detail="%d层 · 空气%d/160" % [AbyssState.state.depth,AbyssState.state.air]
-	clock_label.text="%s · %s\n%s" % [Calendar.label(),GameClock.clock_text(),detail]
+	clock_label.text=GameClock.clock_text()
+	clock_label.tooltip_text=Calendar.label()+" · "+Story.NAMES[GameState.location]
+	date_label.text="%s%d日" % [Calendar.SEASON_NAMES[Calendar.season()],Calendar.day_of_season()]
+	date_label.tooltip_text=Calendar.label()
+	weather_label.text=GameWeather.label()
+	weather_label.tooltip_text=Story.NAMES[GameState.location]+" · "+GameWeather.label()
 	clock_label.add_theme_color_override("font_color",FarmUIStyle.DANGER if GameState.location=="abyss" and AbyssState.state.air<30 else FarmUIStyle.TEXT)

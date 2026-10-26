@@ -54,6 +54,7 @@ steps = [
     ('inventory03', ['--fixed-fps','60','res://tests/inventory03_runner.tscn']),
     ('hotbar03', ['--fixed-fps','60','res://tests/hotbar03_runner.tscn']),
     ('ui05-camera', ['--fixed-fps','60','res://tests/ui05_camera_runner.tscn']),
+    ('ui05-hotbar', ['--fixed-fps','60','res://tests/ui05_hotbar_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),

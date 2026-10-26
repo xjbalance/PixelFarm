@@ -3,6 +3,9 @@ signal save_requested
 signal load_requested
 signal sleep_requested(expected_day: int)
 signal mute_requested
+signal bag_requested
+signal journal_requested
+signal story_requested
 var title: Label
 var body: Label
 var actions: VBoxContainer
@@ -52,6 +55,12 @@ func open_panel(for_sleep: bool = false) -> void:
 			sleep_requested.emit(opened_day)
 		))
 	else:
+		var navigation := HBoxContainer.new()
+		navigation.add_theme_constant_override("separation",8)
+		actions.add_child(navigation)
+		navigation.add_child(FarmUIStyle.button("背包 B",func(): close_panel();bag_requested.emit(),150))
+		navigation.add_child(FarmUIStyle.button("委托 J",func(): close_panel();journal_requested.emit(),150))
+		navigation.add_child(FarmUIStyle.button("手记 M",func(): close_panel();story_requested.emit(),150))
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation",10)
 		actions.add_child(row)
