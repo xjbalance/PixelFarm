@@ -34,11 +34,13 @@ static func resolve(game: Node, point: Vector2) -> Dictionary:
 	if nearest: return {"kind":"object","object":nearest,"point":nearest.global_position}
 	var fishing_target := FishingWorld.resolve_water(game,point)
 	if not fishing_target.is_empty(): return fishing_target
-	if GameState.location == "farm":
-		for object in game.world.resource_field.objects.values():
-			if game.world.resource_field.state[object.resource_id].hp <= 0: continue
+	var field: Node2D=game.resource_world.active_field()
+	if field:
+		for object in field.objects.values():
+			if field.state[object.resource_id].hp <= 0: continue
 			var rect := Rect2(-25,-80,50,96) if object.kind == "tree" else Rect2(-25,-35,50,48)
 			if rect.has_point(point-object.global_position): return {"kind":"resource","object":object,"point":object.global_position}
+	if GameState.location == "farm":
 		var cell := Vector2i((point/32).floor())
 		if game.farm.BOUNDS.has_point(cell): return {"kind":"plot","cell":cell,"point":Vector2(cell)*32+Vector2(16,16)}
 	return {"kind":"ground","point":point}

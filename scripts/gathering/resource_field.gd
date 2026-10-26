@@ -1,12 +1,14 @@
 extends Node2D
 ## 采集规则集中在此，防止重复掉落；存档包括剩余耐久和再生日期。
 const RESOURCE_NODE = preload("res://scripts/gathering/resource_node.gd")
+var area_id: String = "farm"
 var state: Dictionary = {}
 var objects: Dictionary = {}
+var busy: bool = false
 
 func _ready() -> void:
 	y_sort_enabled = true
-	var placements := FarmResourceCatalog.placements()
+	var placements := FarmResourceCatalog.placements(area_id)
 	for id in placements:
 		var entry: Dictionary = placements[id]
 		state[id] = {"hp":int(FarmResourceCatalog.TYPES[entry.kind].hits),"ready_day":0}
@@ -35,7 +37,7 @@ func highlight(target: Node2D) -> void:
 	for object in objects.values(): object.set_highlight(object == target)
 
 func hit(id: String, tool: String) -> bool:
-	if not objects.has(id): return false
+	if busy or not objects.has(id): return false
 	var data: Dictionary = state[id]
 	var definition: Dictionary = FarmResourceCatalog.TYPES[objects[id].kind]
 	if data.hp == 0:
@@ -48,7 +50,9 @@ func hit(id: String, tool: String) -> bool:
 	if data.hp <= damage and Inventory.count(definition.item)+int(definition.amount) > Inventory.MAX_STACK:
 		Events.notice.emit("材料背包已满，先去摊位出售一些吧。")
 		return false
-	if not GameState.spend_energy(definition.energy): return false
+	# 体力与背包通知会同步回调UI，同一次工具提交期间不接受嵌套采集。
+	busy=true
+	if not GameState.spend_energy(definition.energy): busy=false;return false
 	data.hp = maxi(0,int(data.hp)-damage)
 	if data.hp == 0:
 		data.ready_day = GameClock.day+int(definition.regrow)
@@ -57,6 +61,7 @@ func hit(id: String, tool: String) -> bool:
 		Events.notice.emit("获得%s ×%d；%d 天后这里会恢复。" % [Catalog.item_name(definition.item),definition.amount,definition.regrow])
 	Events.resource_hit.emit(data.hp == 0)
 	objects[id].hit_feedback()
+	busy=false
 	return true
 
 func advance_day() -> void:
@@ -68,6 +73,7 @@ func advance_day() -> void:
 			objects[id].refresh()
 
 func restore(data: Dictionary) -> void:
+	busy=false
 	for id in state:
 		var maximum: int = FarmResourceCatalog.TYPES[objects[id].kind].hits
 		var record: Dictionary = data.get(id,{"hp":maximum,"ready_day":0})

@@ -12,6 +12,7 @@ var village: Node2D
 var was_running: bool = true
 var backgrounded: bool = false
 var home_rest: HomeRestController
+var resource_world: ResourceWorld
 var closing: bool = false
 var autosave_pending: bool = false
 var autosave_epoch: int = 0
@@ -65,6 +66,7 @@ func _ready() -> void:
 	WorldDevelopment.changed.connect(village.refresh_gathering)
 	var exploration_world := ExplorationWorld.new()
 	add_child(exploration_world);exploration_world.attach(self)
+	resource_world=ResourceWorld.new();add_child(resource_world);resource_world.attach(self)
 	var housing_world := HousingWorld.new()
 	add_child(housing_world);housing_world.attach(self)
 	var house_exterior:=HouseExterior.new();add_child(house_exterior);house_exterior.attach(self)
@@ -124,10 +126,11 @@ func _process(delta: float) -> void:
 	if prompt_elapsed<0.1: return
 	prompt_elapsed=0
 	var resource := resource_target()
-	world.resource_field.highlight(resource)
+	var field: Node2D=resource_world.active_field()
+	if field: field.highlight(resource)
 	if resource:
 		var definition: Dictionary = FarmResourceCatalog.TYPES[resource.kind]
-		hud.set_prompt("%s · %s  ·  耐久 %d" % [GameState.tool_names[GameState.selected],definition.name,world.resource_field.state[resource.resource_id].hp],false)
+		hud.set_prompt("%s · %s  ·  耐久 %d" % [GameState.tool_names[GameState.selected],definition.name,resource.field.state[resource.resource_id].hp],false)
 		return
 	var nearest := nearest_interactable()
 	if nearest:
@@ -158,7 +161,7 @@ func interact() -> void:
 	if player.action_time>0 and (resource or nearest==null): return
 	action_cooldown = 0.16
 	if resource:
-		if world.resource_field.hit(resource.resource_id,GameState.tool()): player.start_action("采集")
+		if resource.field.hit(resource.resource_id,GameState.tool()): player.start_action("采集")
 		return
 	if nearest:
 		nearest.interact()
@@ -168,8 +171,9 @@ func interact() -> void:
 		else: Events.notice.emit("沿河走走，靠近村民、木牌或长椅再交互。" if GameState.location == "village" else "走到床边休息，或从下方门口返回农场。")
 
 func resource_target() -> Node2D:
-	if GameState.location != "farm" or GameState.tool() not in ["axe","pickaxe"]: return null
-	return world.resource_field.find_target(player.global_position,player.facing)
+	if GameState.tool() not in ["axe","pickaxe"]: return null
+	var field: Node2D=resource_world.active_field()
+	return field.find_target(player.global_position,player.facing) if field else null
 
 func handle_interaction(kind: String) -> void:
 	if backgrounded: return

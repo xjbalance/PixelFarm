@@ -22,4 +22,4 @@ static func execute(game: Node, target: Dictionary, navigation: WorldNavigation)
 			var object: Node2D = target.object
 			var tool: String = GameState.tool() if GameState.manual_tool or not Story.assisted_tools else FarmResourceCatalog.TYPES[object.kind].tool
 			GameState.manual_tool = false
-			if game.world.resource_field.hit(object.resource_id,tool): game.player.start_action("采集")
+			if object.field==game.resource_world.active_field() and object.field.hit(object.resource_id,tool): game.player.start_action("采集")

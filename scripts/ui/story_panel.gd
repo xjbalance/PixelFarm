@@ -11,7 +11,7 @@ func _ready() -> void:
 	add_to_group("modal_panels")
 	hide()
 	var column := VBoxContainer.new()
-	column.add_theme_constant_override("separation",8)
+	column.add_theme_constant_override("separation",12)
 	add_child(column)
 	var header := HBoxContainer.new()
 	column.add_child(header)
@@ -37,7 +37,7 @@ func _ready() -> void:
 	column.add_child(scroll)
 	content = VBoxContainer.new()
 	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	content.add_theme_constant_override("separation",10)
+	content.add_theme_constant_override("separation",12)
 	scroll.add_child(content)
 	Story.changed.connect(refresh)
 	Letters.changed.connect(refresh)
@@ -130,7 +130,6 @@ func build_map() -> void:
 	var map := FarmRiverMap.new()
 	map.location = map_location
 	row.add_child(map)
-	map.custom_minimum_size=Vector2(460,280)
 	var caption := FarmUIStyle.label("白点：你的位置\n金环：当前主线目标\n\n农场北面的路牌通往村庄；村庄南边可回农场。\n\n河东要修好旧桥才能通行。\n\n第 %d 天 · %s\n今日%s，明日%s" % [GameClock.day,GameClock.clock_text(),GameWeather.label(),GameWeather.tomorrow()],17)
 	caption.custom_minimum_size.x = 250
 	caption.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -143,12 +142,11 @@ func build_people() -> void:
 	for id in people:
 		var definition: Dictionary = Story.data.people[id] if id!="xiaojing" else {"name":"小京","role":"水样与温室记录者","place":"按季节、约定和自己的研究计划出行。","about":"她会照看水样、整理温室记录，也会独自出门。靠近后可以查看四季近况与共同计划。"}
 		var row := HBoxContainer.new()
-		row.add_theme_constant_override("separation",14)
+		row.add_theme_constant_override("separation",20)
 		content.add_child(row)
 		var portrait := FarmPortrait.new()
 		portrait.person = id
 		row.add_child(portrait)
-		portrait.custom_minimum_size=Vector2(88,96)
 		var words := VBoxContainer.new()
 		words.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		row.add_child(words)

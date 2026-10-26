@@ -1,13 +1,13 @@
 # 像素世界0.7.1 Android构建与待真机验收
 
-本次住宅05已重新导出，含四级住宅、两日施工、沙发小睡、室内厨房与原UI05。当前交付`builds/PixelWorld-0.7.1-debug.apk`，68,125,714字节。SHA256：`c70499da764b2eeadbbd824d274e5d430ea5e6069ddd47c31f71f41420e89308`。原0.7.0记录见[历史说明](ANDROID-0.7.0.md)。
+本次已重新导出，含原完整布局恢复及128个三图树石点，同时保留四级住宅与沙发厨房。当前交付`builds/PixelWorld-0.7.1-debug.apk`，68,125,897字节。SHA256：`ae006d571a3c91c53da554b66ed768a097cc71b3f8763f66291820245b6b4e28`。原0.7.0记录见[历史说明](ANDROID-0.7.0.md)。
 
 已实际导出，原证书验证、清单/双ABI、ZIP对齐/CRC、全部JSON与许可验证通过；提取最终APK实际资源在隔离桌面Godot启动180帧，检查v23/住宅休息/庄园家具资源/教学/出售确认及UI05相机/展开工具栏的包内代码接口通过。这些不等于在Android运行。
 
 | 项目 | 当前配置 |
 |---|---|
 | applicationId | org.pixelfarm.windbud，保持不变 |
-| 版本 | 0.7.1 / versionCode 14 |
+| 版本 | 0.7.1 / versionCode 15 |
 | 引擎 | Godot4.3 Standard / Compatibility GLES3 |
 | ABI | ARM64 + ARMv7 |
 | 最低/目标SDK | 21 / 34 |
@@ -27,7 +27,11 @@ python3 tools/verify_apk_runtime.py
 
 Linux入口使用本机`.tools/android`内JDK17、SDK34、4.3模板与原keystore；隔离编辑器/XDG/ADB15037，不修改全局SDK、不重新生成签名。先写pending，签名/清单/对齐/CRC/JSON/许可全部验证后才替换交付APK。密钥不打进源码包，仍保留本机原路径。Windows/macOS可导入Godot工程，但本轮没有这些平台构建/实机结果。
 
-## 住宅05验收
+## 布局恢复与资源森林
+
+[当前报告](RESTORED-LAYOUT-RESOURCES.md)：4064自动化、2448真实窗口、127个计划进程通过。三图资源状态同v23扁平字段保存，原19ID不变；新目录128节点已在最终APK中检查。原全宽界面与完整九格保留DPI换算，手机真机仍待验收。
+
+## 住宅05历史验收
 
 [完整报告与截图](REPORT-HOME05.md)。3926项自动化、2375项桌面窗口、120个计划进程全过。v22旧住宅不降级，家具/柜存/配方/婚姻保留；新工单跨两日唯一完工，沙发午夜走原疲劳结算一次。51张原创住宅资源已导出，need参考目录排除。Android真机仍未验收。
 

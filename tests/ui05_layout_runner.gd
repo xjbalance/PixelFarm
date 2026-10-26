@@ -1,5 +1,5 @@
 extends "res://tests/ui04_runner.gd"
-## UI05布局契约：复用旧公开入口/滚动辅助，只检查新布局，不重复主题与全业务矩阵。
+## 经典布局恢复契约：完整九格、原背包条目和居中大面板；保留原生输入与资源守恒检查。
 var samples: Array=[]
 var screenshot_paths: Array[String]=[]
 var configuration: String=""
@@ -33,11 +33,11 @@ func layout_configuration(size: Vector2i,target: int,inset: bool,all_panels: boo
 	await frames(4)
 	configuration="%dx%d-target%d%s" % [size.x,size.y,target,"-safe64" if inset else ""]
 	prefix=configuration;visited.clear()
-	await compact_toolbar()
+	await classic_toolbar()
 	await inventory_layout(false)
 	await inventory_layout(true)
 	await quest_layout()
-	await bottom_dialogue()
+	await classic_dialogue()
 	await show_panel(game.hud.system_panel,[],"设置菜单")
 	await show_panel(game.hud.xiaojing_panel,[],"小京关系")
 	await at("home",Kitchen.ANCHOR+Vector2(0,32));await show_panel(game.hud.kitchen_panel,[],"厨房")
@@ -79,52 +79,58 @@ func audit(panel: Control,title: String) -> void:
 	samples.append({"configuration":configuration,"panel":title,"rect":[bounds.position.x,bounds.position.y,bounds.size.x,bounds.size.y],"button_count":active.size(),"reachable":reachable,"readable":readable})
 	if not reasons.is_empty(): issues.append({"configuration":configuration,"panel":title,"reasons":reasons})
 
-func compact_toolbar() -> void:
+func classic_toolbar() -> void:
 	await at("farm",Vector2(656,480));game.hud.collapse_hotbar();await frames(3)
 	var visible:=0
 	for control in game.hud.tool_buttons:
 		if control.is_visible_in_tree(): visible+=1
-	check(visible==3 and not game.hud.hotbar_expanded,prefix+"地图常驻工具仅三个邻槽")
-	game.hud.expand_hotbar();await frames(3)
+	check(visible==9 and game.hud.hotbar_expanded,prefix+"经典地图工具栏九格完整常驻")
+	var selected: int=GameState.selected;game.hud.expand_hotbar();await frames(3)
 	var legal:=true
 	for control in game.hud.tool_buttons: legal=legal and control.is_visible_in_tree() and game.hud.safe.get_global_rect().grow(.5).encloses(control.get_global_rect()) and control.size.x>=UIMetrics.minimum_target() and control.size.y>=UIMetrics.minimum_target()
-	check(legal and game.hud.toolbar.columns==3,prefix+"完整工具为可触达的原九格3×3，不因比例降触区")
+	check(legal and GameState.selected==selected,prefix+"旧布局接口不换工具，九格仍按原触区完整可达")
 	game.hud.collapse_hotbar()
 
 func inventory_layout(shop: bool) -> void:
 	var panel: PanelContainer=game.hud.inventory_panel
-	panel.open_panel(shop);await frames(4);panel.select_item("carrot");await audit(panel,"商店" if shop else "背包")
-	var grid: Rect2=panel.scroll.get_global_rect();var details: Rect2=panel.details_scroll.get_global_rect()
-	check(panel.item_grid.columns>=2 and grid.end.x<=details.position.x+.5 and details.size.x>=240,prefix+" "+("商店" if shop else "背包")+"多列网格在左、详情在右且互不叠压")
-	check(panel.selected_item=="carrot" and panel.selected_detail.text.contains(Catalog.item_name("carrot")) and panel.selected_detail.text.contains(str(Inventory.count("carrot"))) and panel.selected_icon.texture!=null,prefix+"选中项图标/名称/数量进入独立详情区")
-	await capture("shop-grid" if shop else "inventory-grid")
+	panel.open_panel(shop);await frames(4);var before: Dictionary=FarmSaveStore.snapshot(game)
+	panel.select_item("carrot");await audit(panel,"商店" if shop else "背包")
+	var rows_horizontal: bool=not panel.row_views.is_empty();var selected_icon_present:=false;var selected_count:=0
+	for view in panel.row_views.values():
+		rows_horizontal=rows_horizontal and view.row is HBoxContainer
+		for selector in view.selectors:
+			if selector.get_meta("inventory_item","")=="carrot": selected_icon_present=selector.icon!=null
+			if selector.button_pressed: selected_count+=1
+	check(rows_horizontal and panel.selected_detail.get_global_rect().end.y<=panel.scroll.get_global_rect().position.y+.5,prefix+" "+("商店" if shop else "背包")+"恢复全宽横向物品条目，顶部说明与列表不重叠")
+	check(panel.selected_item=="carrot" and panel.selected_detail.text.contains(Catalog.item_name("carrot")) and panel.selected_detail.text.contains(str(Inventory.count("carrot"))) and selected_icon_present and selected_count==1 and FarmSaveStore.snapshot(game)==before,prefix+"真实物品图标/名称/数量/唯一选中保持，查看不消耗物品")
+	await capture("shop-classic" if shop else "inventory-classic")
 	panel.close_panel()
 
 func quest_layout() -> void:
 	var panel: PanelContainer=game.hud.progress_panel
 	panel.open_panel("journal",false);await audit(panel,"任务日志")
-	check(panel.tabs is VBoxContainer and not panel.body.vertical and panel.list_scroll.get_global_rect().end.x<=panel.detail_scroll.get_global_rect().position.x+.5,prefix+"任务采用左侧纵向列表与右侧详情")
+	check(panel.tabs is HBoxContainer and panel.tabs.get_global_rect().end.y<=panel.heading.get_global_rect().position.y+.5,prefix+"任务恢复顶部横向页签与下方完整正文，不保留双列缩窄")
 	var ids: Array=panel.tab_buttons.keys()
 	if ids.size()>1:
 		var next_id: String=str(ids[1]);var before: Dictionary=FarmSaveStore.snapshot(game)
 		await tap(panel.tab_buttons[next_id])
-		check(panel.selected_id==next_id and panel.heading.text.length()>0 and FarmSaveStore.snapshot(game)==before,prefix+"点左列表更新右详情，查看不会提交任务或消耗")
-	await capture("quest-columns");panel.close_panel()
+		check(panel.selected_id==next_id and panel.heading.text.length()>0 and FarmSaveStore.snapshot(game)==before,prefix+"点击任务页签更新正文，查看不会提交任务或消耗")
+	await capture("quest-classic");panel.close_panel()
 
-func bottom_dialogue() -> void:
+func classic_dialogue() -> void:
 	Events.dialogue_requested.emit("阿禾",[{"who":"阿禾","portrait":"ahe","text":"窗台的第一盆花开了。留言册不用换新本，旧页后面还有空白。等你把今天的收获放好，我们再一起核对河岸的记号。每一页都留给亲自走过这些路的人，不必赶着把故事翻完。"}])
 	var panel: PanelContainer=game.hud.dialogue
-	await audit(panel,"底部中文长对话")
+	await audit(panel,"经典居中中文长对话")
 	var rect: Rect2=panel.get_global_rect();var safe_bounds: Rect2=game.hud.safe.get_global_rect()
-	check(rect.position.y>=safe_bounds.position.y+safe_bounds.size.y*.45 and safe_bounds.end.y-rect.end.y<=maxf(48,UIMetrics.minimum_target()) and rect.end.y<=safe_bounds.end.y+.5,prefix+"对话锚定下方且不跑到屏幕中央或越过底边")
-	check(panel.portrait.size.x<=112 and panel.body_label.text.length()>70,prefix+"长正文与较小头像共享下方对话区")
-	await capture("dialogue-bottom");panel.close_dialogue()
+	check(absf(rect.get_center().x-safe_bounds.get_center().x)<1 and absf(rect.get_center().y-safe_bounds.get_center().y)<=25.5 and safe_bounds.grow(.5).encloses(rect),prefix+"对话恢复经典居中大面板且不越安全区")
+	check(panel.portrait.size.x>=132 and panel.portrait.size.y>=148 and panel.body_label.text.length()>70,prefix+"经典完整像素头像与原长正文可同时显示")
+	await capture("dialogue-classic");panel.close_dialogue()
 	panel.open_story("festival")
 	for i in range(20):
 		if panel.choices_box.visible: break
 		panel.advance()
 	await frames(4)
-	check(panel.choices_box.visible and panel.choices_box.get_child_count()==3 and game.hud.safe.get_global_rect().grow(.5).encloses(panel.get_global_rect()),prefix+"剧情末尾三个选项出现后向上扩展，仍完整位于安全区")
+	check(panel.choices_box.visible and panel.choices_box.get_child_count()==3 and game.hud.safe.get_global_rect().grow(.5).encloses(panel.get_global_rect()),prefix+"剧情末尾三个选项出现后重算居中尺寸，仍完整位于安全区")
 	var options_reachable:=true
 	for option in panel.choices_box.get_children():
 		options_reachable=options_reachable and game.hud.safe.get_global_rect().encloses(option.get_global_rect()) and option.size.y>=UIMetrics.minimum_target()

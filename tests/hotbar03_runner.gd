@@ -63,13 +63,13 @@ func quantities() -> void:
 	check(game.player.begin_farm_action(game.farm,Vector2i(20,18),"carrot_seed"),"使用现有农活动作生效入口消耗最后一份种子")
 	await frames(18)
 	check(Inventory.count("carrot_seed")==0 and not Inventory.items.has("carrot_seed") and game.farm.plots["20,18"].crop=="carrot","最后一粒成功播种后库存原规则移除零项")
-	check(game.hud.tool_buttons[seed_index].text=="0" and game.hud.tool_name_label.text.contains("已用完"),"种子耗尽时独立数量和当前工具名称明确显示已用完")
+	check(game.hud.tool_buttons[seed_index].text.contains("0") and game.hud.tool_buttons[seed_index].text.contains("已用完"),"种子耗尽时原工具格内名称和数量明确显示已用完")
 	var energy: int=GameState.stamina
 	game.farm.plots["21,18"]={"crop":"","days":0,"watered":false}
 	game.player.position=Vector2(656,592)
 	check(not game.player.begin_farm_action(game.farm,Vector2i(21,18),"carrot_seed") and GameState.stamina==energy and game.farm.plots["21,18"].crop=="","耗尽种子仍由原规则拒绝，不扣体力或错误种植")
 	Inventory.items.carrot_seed=3;Inventory.changed.emit()
-	check(game.hud.tool_buttons[seed_index].text.contains("3") and not game.hud.tool_name_label.text.contains("已用完"),"补充种子后数量与耗尽状态即时恢复")
+	check(game.hud.tool_buttons[seed_index].text.contains("3") and not game.hud.tool_buttons[seed_index].text.contains("已用完"),"补充种子后数量与耗尽状态即时恢复")
 	var style_ids: Array=[]
 	for b in game.hud.tool_buttons: style_ids.append(b.get_theme_stylebox("normal").get_instance_id())
 	var texts: Array=[]

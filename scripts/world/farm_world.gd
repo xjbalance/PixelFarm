@@ -93,7 +93,7 @@ func build_river_life() -> void:
 			"bush":[Vector2(560,402),Vector2(755,373),Vector2(910,310),Vector2(305,690),Vector2(1260,690),Vector2(900,770)],
 			"flowers":[Vector2(580,414),Vector2(726,416),Vector2(920,375),Vector2(870,748),Vector2(490,765)],
 			"lantern":[Vector2(514,419),Vector2(900,438),Vector2(455,715)],
-			"cart":[Vector2(262,418)]
+			"cart":[Vector2(248,496)] # 给旧rock_8_13保留可达采集面，不移动旧资源ID
 		}[kind]
 		for origin in placements:
 			var prop := RiverScenery.new()

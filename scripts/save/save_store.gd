@@ -17,7 +17,7 @@ static func snapshot(game: Node) -> Dictionary:
 		"stamina": GameState.stamina, "selected": GameState.selected,
 		"control_mode": GameState.control_mode,
 		"plots": game.farm.plots.duplicate(true),
-		"progress": FarmProgress.snapshot(), "resources": game.world.resource_field.state.duplicate(true),
+		"progress": FarmProgress.snapshot(), "resources": game.resource_world.snapshot(),
 		"story": Story.snapshot(),
 		"letters": Letters.snapshot(), "xiaojing": Xiaojing.snapshot(),
 		"mines": MineState.snapshot(), "chapter_two": ChapterTwo.snapshot(), "star_story": StarStory.snapshot(), "abyss": AbyssState.snapshot(), "legend": LegendState.snapshot(), "river": River.snapshot(),
@@ -28,7 +28,7 @@ static func snapshot(game: Node) -> Dictionary:
 
 static func write(game: Node, path: String = PATH) -> bool:
 	# 农活生效事务的同步通知尚未结束时，不能把半份跨系统进度写入磁盘。
-	if game.farm.committing or Housing.busy: return false
+	if game.farm.committing or Housing.busy or game.resource_world.committing(): return false
 	var data := snapshot(game)
 	if not valid(data): return false
 	var file := FileAccess.open(path+".tmp",FileAccess.WRITE)
@@ -117,7 +117,7 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	Social.restore(data["social"])
 	WorldChanges.restoring=false
 	WorldChanges.restore(data["world_changes"])
-	game.world.resource_field.restore(data["resources"])
+	game.resource_world.restore(data["resources"])
 	GameState.stamina = int(data["stamina"])
 	GameState.selected = int(data["selected"])
 	game.farm.plots = data["plots"].duplicate(true)

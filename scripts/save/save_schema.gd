@@ -149,7 +149,7 @@ static func valid_progress(data: Variant, day: Variant) -> bool:
 
 static func valid_resources(data: Variant, day: Variant) -> bool:
 	if not data is Dictionary or not whole(day,1,999999): return false
-	var placements := FarmResourceCatalog.placements()
+	var placements := FarmResourceCatalog.all_placements()
 	if data.size() > placements.size(): return false
 	for id in data:
 		if not id is String or not placements.has(id): return false

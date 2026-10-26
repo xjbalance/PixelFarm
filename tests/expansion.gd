@@ -131,12 +131,12 @@ static func save_compatibility(test: Node, game: Node) -> void:
 	test.check(FarmSaveStore.valid(data) and data.version == FarmSaveStore.VERSION,"包含材料、设施、好感与采集状态的新存档有效")
 	var original: Dictionary = data.duplicate(true)
 	FarmProgress.restore({})
-	game.world.resource_field.restore({})
+	game.resource_world.restore({})
 	Inventory.items.clear()
 	test.check(FarmSaveStore.restore(game,data),"新版本完整状态可恢复")
 	await test.frames()
 	test.check(FarmProgress.built.size() == 3 and FarmProgress.quest_status("valley_table") == "completed" and FarmProgress.friendship == 64,"恢复设施、完整任务链和好感")
-	test.check(game.world.resource_field.state == original.resources and Inventory.items == original.items,"恢复采集物与材料库存")
+	test.check(game.resource_world.snapshot() == original.resources and Inventory.items == original.items,"恢复采集物与材料库存")
 	for mutation in [
 		{"progress":{"built":["unknown"],"quests":{},"friendship":0,"last_talk_day":0}},
 		{"progress":{"built":["toolrack","toolrack"],"quests":{},"friendship":0,"last_talk_day":0}},

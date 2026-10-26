@@ -76,7 +76,7 @@ func refresh_target() -> bool:
 		if not is_instance_valid(target.object) or not target.object.is_visible_in_tree() or not navigation.active_collider(target.object):
 			fail()
 			return false
-		if target.kind == "resource" and game.world.resource_field.state[target.object.resource_id].hp <= 0:
+		if target.kind == "resource" and target.object.field.state[target.object.resource_id].hp <= 0:
 			fail()
 			return false
 		# 与初次点选的矿脉过滤一致：途中耗尽也立即清理目标与反馈。

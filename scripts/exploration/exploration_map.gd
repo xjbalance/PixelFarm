@@ -9,6 +9,8 @@ var objects: Dictionary={}
 var floors: Dictionary={}
 var gates: Dictionary={}
 var fog_time: float=0
+var forest_background: PackedVector2Array=PackedVector2Array()
+var forest_tree_texture: Texture2D
 func _ready() -> void:
 	layout=Exploration.data.areas[area_id];name=area_id
 	ground=TileMapLayer.new();ground.name="Ground";ground.z_index=-5;add_child(ground)
@@ -30,12 +32,25 @@ func _ready() -> void:
 			var cell := Vector2i(x,y)
 			ground.set_cell(cell,0,Vector2i(0 if floors.has(cell) else 1,0))
 	for rect in layout.water: paint(rect,2)
+	if area_id=="mist_forest": cache_forest_background()
 	for id in Exploration.data.points:
 		var record: Dictionary=Exploration.data.points[id]
 		if record.area!=area_id: continue
 		var point := Node2D.new();point.set_script(preload("res://scripts/exploration/exploration_point.gd"));point.exploration_id=id;point.position=Exploration.point(id)
 		actors.add_child(point);objects[id]=point
 	Exploration.changed.connect(refresh);Calendar.changed.connect(queue_redraw);refresh()
+func cache_forest_background() -> void:
+	# 林壁已有地形碰撞；少量背景树只缓存绘制位置，不创建AI/额外物理节点。
+	forest_tree_texture=load("res://assets/tilesets/tree.png")
+	forest_background.clear()
+	for y in range(2,27,3):
+		for x in range(1,39,3):
+			if floors.has(Vector2i(x,y)) or (x+y)%5==0: continue
+			var at:=Vector2(x*32+16,y*32+16)
+			var protected: bool=at.distance_to(Exploration.entry(area_id))<90
+			for id in Exploration.data.points:
+				if Exploration.data.points[id].area==area_id and at.distance_to(Exploration.point(id))<80: protected=true;break
+			if not protected: forest_background.append(at)
 func paint(rect: Array, tile: int) -> void:
 	for y in range(rect[1],rect[1]+rect[3]):
 		for x in range(rect[0],rect[0]+rect[2]): ground.set_cell(Vector2i(x,y),0,Vector2i(tile,0))
@@ -59,6 +74,8 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	if not layout: return
 	if area_id=="mist_forest":
+		for at in forest_background:
+			draw_texture(forest_tree_texture,at-Vector2(forest_tree_texture.get_width()*.5,forest_tree_texture.get_height()-6),Color(.80,.88,.78,.96))
 		# 稀疏低透明雾带，不另加屏幕级大雾；保持32px通路边界能看清。
 		for i in range(7):
 			var p := Vector2(fposmod(float(i)*233+fog_time*3,1400)-140,float(i%4)*190+120)

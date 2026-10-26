@@ -57,6 +57,7 @@ steps = [
     ('ui05-hotbar', ['--fixed-fps','60','res://tests/ui05_hotbar_runner.tscn']),
     ('ui05-layout', ['--fixed-fps','60','res://tests/ui05_layout_runner.tscn']),
     ('home05', ['--fixed-fps','60','res://tests/home05_runner.tscn']),
+    ('resource-rich', ['--fixed-fps','60','res://tests/resource_rich_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),
@@ -139,6 +140,12 @@ steps = [
     ('home05-backup-read', ['--fixed-fps','60','res://tests/home05_persistence.tscn']),
     ('home05-sofa-write', ['--fixed-fps','60','res://tests/home05_persistence.tscn','--','--write-home05-sofa']),
     ('home05-sofa-read', ['--fixed-fps','60','res://tests/home05_persistence.tscn','--','--read-home05-sofa']),
+    ('resource-rich-legacy-write', ['--fixed-fps','60','res://tests/resource_rich_persistence.tscn','--','--write-resource-rich-legacy']),
+    ('resource-rich-legacy-read', ['--fixed-fps','60','res://tests/resource_rich_persistence.tscn','--','--read-resource-rich-legacy']),
+    ('resource-rich-write', ['--fixed-fps','60','res://tests/resource_rich_persistence.tscn','--','--write-resource-rich']),
+    ('resource-rich-read', ['--fixed-fps','60','res://tests/resource_rich_persistence.tscn','--','--read-resource-rich']),
+    ('resource-rich-corrupt', ['--fixed-fps','60','res://tests/resource_rich_persistence.tscn','--','--corrupt-resource-rich']),
+    ('resource-rich-backup', ['--fixed-fps','60','res://tests/resource_rich_persistence.tscn','--','--read-resource-rich-backup']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:

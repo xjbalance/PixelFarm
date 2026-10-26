@@ -30,12 +30,9 @@ static func box(color: Color, border: Color = Color("ae9469"), radius: int = 10)
 
 static func surface(role: String = "paper") -> StyleBoxTexture:
 	var style:=StyleBoxTexture.new()
-	# 原创UI04素材仅在首次使用时最近邻缩半，细化边框；不处理字体/世界纹理。
+	# 按素材原尺寸复用像素边框，避免运行时缩小整套界面视觉。
 	if not surface_textures.has(role):
-		var source: Texture2D=load("res://assets/ui/river/"+role+".png")
-		var pixels: Image=source.get_image()
-		pixels.resize(pixels.get_width()/2,pixels.get_height()/2,Image.INTERPOLATE_NEAREST)
-		var texture:=ImageTexture.create_from_image(pixels)
+		var texture: Texture2D=load("res://assets/ui/river/"+role+".png")
 		texture.set_meta("ui_role",role)
 		surface_textures[role]=texture
 	style.texture=surface_textures[role]
@@ -43,7 +40,7 @@ static func surface(role: String = "paper") -> StyleBoxTexture:
 		style.axis_stretch_horizontal=StyleBoxTexture.AXIS_STRETCH_MODE_TILE
 		style.axis_stretch_vertical=StyleBoxTexture.AXIS_STRETCH_MODE_TILE
 	for side in [SIDE_LEFT,SIDE_TOP,SIDE_RIGHT,SIDE_BOTTOM]:
-		style.set_texture_margin(side,4)
+		style.set_texture_margin(side,8)
 		style.set_content_margin(side,UILayout.PANEL_PADDING if side in [SIDE_LEFT,SIDE_RIGHT] else 8)
 	return style
 
@@ -82,7 +79,8 @@ static func button(text: String, callback: Callable, width: float = 80) -> Butto
 
 static func section_grid(parent: Node) -> GridContainer:
 	var grid:=GridContainer.new()
-	grid.set_script(preload("res://scripts/ui/section_grid.gd"))
+	grid.columns=1
+	grid.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	parent.add_child(grid)
 	return grid
 

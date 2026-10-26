@@ -4,8 +4,6 @@ var site: String=""
 var content: VBoxContainer
 var pending := Callable()
 var text: String=""
-var presentation_target: VBoxContainer
-var relation_body: BoxContainer
 func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column := VBoxContainer.new();add_child(column)
@@ -13,15 +11,11 @@ func _ready() -> void:
 	var title := FarmUIStyle.label("河湾近况 · 每个人的生活",24,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;column.add_child(scroll)
-	content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;content.add_theme_constant_override("separation",8);scroll.add_child(content)
-	presentation_target=content
-	resized.connect(adapt_relation_layout)
+	content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;content.add_theme_constant_override("separation",12);scroll.add_child(content)
 func words(line: String,size: int=18) -> void:
-	var label := FarmUIStyle.label(line,size,FarmUIStyle.TITLE if size>=22 else FarmUIStyle.TEXT);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	(presentation_target if is_instance_valid(presentation_target) else content).add_child(label)
+	var label := FarmUIStyle.label(line,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;content.add_child(label)
 func button(caption: String,callback: Callable) -> Button:
-	var control := FarmUIStyle.button(caption,callback,160)
-	(presentation_target if is_instance_valid(presentation_target) else content).add_child(control);return control
+	var control := FarmUIStyle.button(caption,callback,160);content.add_child(control);return control
 func open_panel(id: String="linya") -> void:
 	if GameState.modal or id not in Social.PEOPLE: return
 	person=id;site="";pending=Callable();GameState.set_modal(true);show();refresh()
@@ -39,12 +33,8 @@ func finish_read() -> void:
 func outcome(ok: bool) -> void:
 	if not ok: Events.notice.emit("还缺现场行动、时间、关系或材料；已完成记录保留，不会因此永久失去结局。")
 	refresh()
-func adapt_relation_layout() -> void:
-	if is_instance_valid(relation_body): relation_body.vertical=size.x<820
-
 func refresh() -> void:
 	if not visible: return
-	presentation_target=content
 	for child in content.get_children(): content.remove_child(child);child.queue_free()
 	if pending.is_valid():
 		words(text,21);button("确认并继续",finish_read);button("稍后再说",func(): pending=Callable();refresh());return
@@ -54,23 +44,15 @@ func refresh() -> void:
 		button("完成这次现场观察",func(): outcome(Social.observe_site(site)))
 		return
 	var data: Dictionary=Social.data.people[person]
-	var summary:=HBoxContainer.new();summary.add_theme_constant_override("separation",12);content.add_child(summary)
-	var portrait := FarmPortrait.new();portrait.person=person;summary.add_child(portrait);portrait.custom_minimum_size=Vector2(88,96)
-	var overview:=VBoxContainer.new();overview.size_flags_horizontal=Control.SIZE_EXPAND_FILL;overview.add_theme_constant_override("separation",8);summary.add_child(overview)
-	presentation_target=overview
+	var portrait := FarmPortrait.new();portrait.person=person;content.add_child(portrait)
 	words("%s · 好感%d/100 · 生日%s%d日" % [data.name,Social.friendship(person),Calendar.SEASON_NAMES[data.birthday[0]],data.birthday[1]],23)
 	words(Social.daily_line(person))
-	relation_body=BoxContainer.new();relation_body.size_flags_horizontal=Control.SIZE_EXPAND_FILL;relation_body.add_theme_constant_override("separation",16);content.add_child(relation_body)
-	var relation_actions:=VBoxContainer.new();relation_actions.add_theme_constant_override("separation",8);relation_body.add_child(relation_actions)
-	var details:=VBoxContainer.new();details.size_flags_horizontal=Control.SIZE_EXPAND_FILL;details.add_theme_constant_override("separation",8);relation_body.add_child(details)
-	presentation_target=relation_actions;adapt_relation_layout()
 	var nearby: bool=Social.near_person(person)
 	if not nearby: words("现在可以读近况和目标；交谈、赠礼、接取与完成约定需要走到本人身边。",16)
 	button("聊聊今天",func(): ask(Social.daily_line(person),func(): outcome(Social.talk(person)))).disabled=not nearby
 	var gift_ids: Array=data.likes.duplicate();gift_ids.append_array(data.dislikes)
 	for item in gift_ids:
 		button("赠送%s ×1 · %s（持有%d）" % [Catalog.item_name(item),Social.taste(person,item),Inventory.count(item)],func(): ask("赠送一份"+Catalog.item_name(item)+"？与此人的其他赠礼入口共享每日额度，最近重复的礼物不反复加好感。",func(): outcome(Social.gift(person,item)))).disabled=not nearby or Inventory.count(item)<1
-	presentation_target=details
 	var quest: Dictionary=Social.current(person)
 	if quest.is_empty(): words("个人三章已完成。你们说过的选择仍在日常对白里，生活会继续。",20)
 	else:
@@ -85,7 +67,6 @@ func refresh() -> void:
 			if Social.state.active[person].missed: button("带着新行动重新约定时间",func(): outcome(Social.rebook())).disabled=not nearby
 			for choice in quest.choices:
 				button(quest.choices[choice],func(): ask(quest.reply+"\n选择："+quest.choices[choice]+"\n完成要求与材料会在确认时再次检查。",func(): outcome(Social.finish(person,choice)))).disabled=not nearby or not Social.ready(person)
-	presentation_target=relation_actions
 	var festival := get_node_or_null("/root/Festival")
 	if festival and festival.has_method("active_id") and festival.active_id()!="":
 		button("聊聊今天的节日",func(): outcome(festival.talk(person))).disabled=not nearby

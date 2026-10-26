@@ -1,0 +1,282 @@
+{
+  "baseline_commit": "536e30e",
+  "platform": "Linux Godot4.3 Xvfb/Mesa",
+  "android_device_tested": false,
+  "captures": [
+    {
+      "name": "hud",
+      "file": "docs/classic-resources/classic-1280-hud.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "panel": [
+        0,
+        0,
+        1280,
+        720
+      ],
+      "safe": true
+    },
+    {
+      "name": "hotbar-expanded",
+      "file": "docs/classic-resources/classic-1280-hotbar-expanded.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "panel": [
+        283,
+        608,
+        714,
+        96
+      ],
+      "safe": true
+    },
+    {
+      "name": "inventory",
+      "file": "docs/classic-resources/classic-1280-inventory.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "panel": [
+        210,
+        12,
+        860,
+        696
+      ],
+      "safe": true
+    },
+    {
+      "name": "dialogue",
+      "file": "docs/classic-resources/classic-1280-dialogue.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "panel": [
+        160,
+        215,
+        960,
+        340
+      ],
+      "safe": true
+    },
+    {
+      "name": "shop",
+      "file": "docs/classic-resources/classic-1280-shop.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "panel": [
+        210,
+        95,
+        860,
+        530
+      ],
+      "safe": true
+    },
+    {
+      "name": "quests",
+      "file": "docs/classic-resources/classic-1280-quests.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "panel": [
+        190,
+        90,
+        900,
+        540
+      ],
+      "safe": true
+    },
+    {
+      "name": "xiaojing",
+      "file": "docs/classic-resources/classic-1280-xiaojing.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "panel": [
+        180,
+        80,
+        920,
+        560
+      ],
+      "safe": true
+    },
+    {
+      "name": "kitchen",
+      "file": "docs/classic-resources/classic-1280-kitchen.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "panel": [
+        180,
+        80,
+        920,
+        560
+      ],
+      "safe": true
+    },
+    {
+      "name": "fishpen",
+      "file": "docs/classic-resources/classic-1280-fishpen.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "panel": [
+        180,
+        80,
+        920,
+        560
+      ],
+      "safe": true
+    },
+    {
+      "name": "hud",
+      "file": "docs/classic-resources/classic-1600-hud.png",
+      "resolution": [
+        1600,
+        720
+      ],
+      "panel": [
+        0,
+        0,
+        1600,
+        720
+      ],
+      "safe": true
+    },
+    {
+      "name": "dialogue",
+      "file": "docs/classic-resources/classic-1600-dialogue.png",
+      "resolution": [
+        1600,
+        720
+      ],
+      "panel": [
+        320,
+        215,
+        960,
+        340
+      ],
+      "safe": true
+    },
+    {
+      "location": "farm",
+      "name": "farm_1280x720",
+      "path": "res://builds/resource-rich-farm_1280x720.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "resource_nodes": 42,
+      "file": "docs/classic-resources/farm_1280x720.png"
+    },
+    {
+      "location": "village",
+      "name": "village_1280x720",
+      "path": "res://builds/resource-rich-village_1280x720.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "resource_nodes": 16,
+      "file": "docs/classic-resources/village_1280x720.png"
+    },
+    {
+      "location": "mist_forest",
+      "name": "mist_forest_1280x720",
+      "path": "res://builds/resource-rich-mist_forest_1280x720.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "resource_nodes": 70,
+      "file": "docs/classic-resources/mist_forest_1280x720.png"
+    },
+    {
+      "location": "farm",
+      "name": "farm_1600x720",
+      "path": "res://builds/resource-rich-farm_1600x720.png",
+      "resolution": [
+        1600,
+        720
+      ],
+      "resource_nodes": 42,
+      "file": "docs/classic-resources/farm_1600x720.png"
+    },
+    {
+      "location": "village",
+      "name": "village_1600x720",
+      "path": "res://builds/resource-rich-village_1600x720.png",
+      "resolution": [
+        1600,
+        720
+      ],
+      "resource_nodes": 16,
+      "file": "docs/classic-resources/village_1600x720.png"
+    },
+    {
+      "location": "mist_forest",
+      "name": "mist_forest_1600x720",
+      "path": "res://builds/resource-rich-mist_forest_1600x720.png",
+      "resolution": [
+        1600,
+        720
+      ],
+      "resource_nodes": 70,
+      "file": "docs/classic-resources/mist_forest_1600x720.png"
+    },
+    {
+      "location": "farm",
+      "name": "farm_1280x960",
+      "path": "res://builds/resource-rich-farm_1280x960.png",
+      "resolution": [
+        1280,
+        960
+      ],
+      "resource_nodes": 42,
+      "file": "docs/classic-resources/farm_1280x960.png"
+    },
+    {
+      "location": "village",
+      "name": "village_1280x960",
+      "path": "res://builds/resource-rich-village_1280x960.png",
+      "resolution": [
+        1280,
+        960
+      ],
+      "resource_nodes": 16,
+      "file": "docs/classic-resources/village_1280x960.png"
+    },
+    {
+      "location": "mist_forest",
+      "name": "mist_forest_1280x960",
+      "path": "res://builds/resource-rich-mist_forest_1280x960.png",
+      "resolution": [
+        1280,
+        960
+      ],
+      "resource_nodes": 70,
+      "file": "docs/classic-resources/mist_forest_1280x960.png"
+    },
+    {
+      "location": "mist_forest",
+      "name": "forest_open",
+      "path": "res://builds/resource-rich-forest_open.png",
+      "resolution": [
+        1280,
+        960
+      ],
+      "resource_nodes": 70,
+      "file": "docs/classic-resources/forest_open.png"
+    }
+  ]
+}

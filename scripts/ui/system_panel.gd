@@ -16,7 +16,7 @@ func _ready() -> void:
 	add_to_group("modal_panels")
 	hide()
 	var column := VBoxContainer.new()
-	column.add_theme_constant_override("separation",10)
+	column.add_theme_constant_override("separation",16)
 	add_child(column)
 	title = FarmUIStyle.label("像素世界 · 0.7.1 匠心打磨",26,FarmUIStyle.TITLE)
 	column.add_child(title)
@@ -27,7 +27,7 @@ func _ready() -> void:
 	column.add_child(scroll)
 	var content := VBoxContainer.new()
 	content.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	content.add_theme_constant_override("separation",12)
+	content.add_theme_constant_override("separation",16)
 	scroll.add_child(content)
 	body = FarmUIStyle.label("",17)
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -47,7 +47,6 @@ func open_panel(for_sleep: bool = false) -> void:
 	for child in actions.get_children():
 		actions.remove_child(child)
 		child.queue_free()
-	var help_row: HBoxContainer
 	if for_sleep:
 		var opened_day: int=GameClock.day
 		actions.add_child(FarmUIStyle.button("休息到明天",func():
@@ -56,20 +55,16 @@ func open_panel(for_sleep: bool = false) -> void:
 			sleep_requested.emit(opened_day)
 		))
 	else:
-		var navigation := HBoxContainer.new()
-		navigation.add_theme_constant_override("separation",8)
-		actions.add_child(navigation)
-		navigation.add_child(FarmUIStyle.button("背包 B",func(): close_panel();bag_requested.emit(),150))
-		navigation.add_child(FarmUIStyle.button("委托 J",func(): close_panel();journal_requested.emit(),150))
-		navigation.add_child(FarmUIStyle.button("手记 M",func(): close_panel();story_requested.emit(),150))
+		actions.add_child(FarmUIStyle.button("背包 B",func(): close_panel();bag_requested.emit(),150))
+		actions.add_child(FarmUIStyle.button("委托 J",func(): close_panel();journal_requested.emit(),150))
+		actions.add_child(FarmUIStyle.button("手记 M",func(): close_panel();story_requested.emit(),150))
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation",10)
 		actions.add_child(row)
 		row.add_child(FarmUIStyle.button("保存进度",func(): close_panel(); save_requested.emit(),150))
 		row.add_child(FarmUIStyle.button("读取进度",func(): close_panel(); load_requested.emit(),150))
 		row.add_child(FarmUIStyle.button("体力恢复",func(): close_panel(); Events.interaction_requested.emit("recovery"),150))
-		var setting_row:=HBoxContainer.new();setting_row.add_theme_constant_override("separation",8);actions.add_child(setting_row)
-		var sound_button:=FarmUIStyle.button("音乐与环境声 开 / 关",func(): mute_requested.emit());sound_button.size_flags_horizontal=Control.SIZE_EXPAND_FILL;setting_row.add_child(sound_button)
+		actions.add_child(FarmUIStyle.button("音乐与环境声 开 / 关",func(): mute_requested.emit()))
 		control_mode_button = FarmUIStyle.button(mode_text(),func():
 			GameState.set_control_mode("joystick" if GameState.control_mode == "tap" else "tap")
 			control_mode_button.text = mode_text()
@@ -82,16 +77,15 @@ func open_panel(for_sleep: bool = false) -> void:
 			close_panel()
 			open_panel()
 		)
-		assist.size_flags_horizontal=Control.SIZE_EXPAND_FILL;setting_row.add_child(assist)
-		help_row=HBoxContainer.new();help_row.add_theme_constant_override("separation",8);actions.add_child(help_row)
-		help_row.add_child(FarmUIStyle.button("操作与生活指南",func():
+		actions.add_child(assist)
+		actions.add_child(FarmUIStyle.button("操作与生活指南",func():
 			body.text=GameTutorial.help_text()
 			for child in actions.get_children(): child.hide()
 			actions.add_child(FarmUIStyle.button("返回设置",func(): close_panel();open_panel()))
 		))
 	if not for_sleep and OS.is_debug_build():
 		var diagnostic := FarmUIStyle.button("本地试玩记录："+("开" if Playtest.enabled else "关")+"（不上传）",func(): Playtest.toggle(); close_panel(); open_panel())
-		diagnostic.size_flags_horizontal=Control.SIZE_EXPAND_FILL;help_row.add_child(diagnostic)
+		actions.add_child(diagnostic)
 	if for_sleep: body.text += "\n明天的河湾村："+GameWeather.tomorrow()+"。"
 	actions.add_child(FarmUIStyle.button("继续农场生活",close_panel))
 

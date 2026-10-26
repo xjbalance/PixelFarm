@@ -26,7 +26,10 @@ static func place(test: Node, game: Node, location: String, at: Vector2) -> void
 	await test.frames(5)
 
 static func expand_hotbar(test: Node, game: Node) -> void:
-	# UI05保留九个旧索引，但默认只显示相邻三个；选中后会收起。
+	# 经典布局九格已经常驻时不点循环按钮，避免把“展开”误当成换工具。
+	var all_visible: bool=game.hud.tool_buttons.size()==9
+	for button in game.hud.tool_buttons: all_visible=all_visible and button.is_visible_in_tree()
+	if all_visible: return
 	if not game.hud.hotbar_expanded and not GameState.modal:
 		load("res://tests/story.gd").touch(test,game.hud.cycle_button)
 		await test.frames(2)

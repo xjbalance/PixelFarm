@@ -39,6 +39,8 @@ func hit_feedback() -> void:
 	refresh()
 
 func can_regrow() -> bool:
+	# 三张地图共用World2D；离图时别图同坐标玩家不能拖延这片林地恢复。
+	if field.area_id!=GameState.location: return true
 	# 再生时检查玩家脚下，避免在角色位置生成新的障碍物。
 	var query := PhysicsShapeQueryParameters2D.new()
 	var shape := CircleShape2D.new()
@@ -46,7 +48,9 @@ func can_regrow() -> bool:
 	query.shape = shape
 	query.transform = Transform2D(0,global_position)
 	query.collision_mask = 2
-	return get_world_2d().direct_space_state.intersect_shape(query,1).is_empty()
+	for hit in get_world_2d().direct_space_state.intersect_shape(query,64):
+		if field.get_parent().is_ancestor_of(hit.collider): return false
+	return true
 
 func set_highlight(active: bool) -> void:
 	if highlighted != active:
