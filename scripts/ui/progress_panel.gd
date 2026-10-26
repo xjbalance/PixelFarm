@@ -5,63 +5,48 @@ var at_board: bool = false
 var selected_id: String = ""
 var title: Label
 var subtitle: Label
-var tabs: HBoxContainer
+var tabs: BoxContainer
 var heading: Label
 var description: Label
 var costs: VBoxContainer
 var reward: Label
 var action_button: Button
 var hint: Label
+var body: BoxContainer
+var list_scroll: ScrollContainer
+var detail_scroll: ScrollContainer
+var tab_mode: String=""
+var tab_buttons: Dictionary={}
 
 func _ready() -> void:
-	add_to_group("modal_panels")
-	hide()
-	var column := VBoxContainer.new()
-	column.add_theme_constant_override("separation",12)
-	add_child(column)
-	var header := HBoxContainer.new()
-	column.add_child(header)
-	title = FarmUIStyle.label("",26,FarmUIStyle.TITLE)
-	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	header.add_child(title)
-	header.add_child(FarmUIStyle.button("鱼栏图纸",func(): close_panel(); Events.interaction_requested.emit("fish:guide"),150))
+	add_to_group("modal_panels");hide()
+	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",10);add_child(column)
+	var header:=HBoxContainer.new();column.add_child(header)
+	title=FarmUIStyle.label("",24,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
+	header.add_child(FarmUIStyle.button("鱼栏图纸",func(): close_panel();Events.interaction_requested.emit("fish:guide"),150))
 	header.add_child(FarmUIStyle.button("关闭 ×",close_panel,100))
-	var scroll:=ScrollContainer.new()
-	scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"))
-	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
-	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
-	column.add_child(scroll)
-	var body:=VBoxContainer.new();body.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	body.add_theme_constant_override("separation",12);scroll.add_child(body)
-	subtitle = FarmUIStyle.label("",17)
-	body.add_child(subtitle)
-	DiamondPayments.controls(body,refresh)
-	tabs = HBoxContainer.new()
-	tabs.add_theme_constant_override("separation",8)
-	body.add_child(tabs)
-	heading = FarmUIStyle.label("",23,FarmUIStyle.TITLE)
-	body.add_child(heading)
-	description = FarmUIStyle.label("",18)
-	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	description.custom_minimum_size.y = 55
-	body.add_child(description)
-	costs = VBoxContainer.new()
-	costs.add_theme_constant_override("separation",6)
-	costs.custom_minimum_size.y = 92
-	body.add_child(costs)
-	reward = FarmUIStyle.label("",17,FarmUIStyle.SUCCESS)
-	reward.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	body.add_child(reward)
-	var space := Control.new()
-	space.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	body.add_child(space)
-	action_button = FarmUIStyle.button("",perform_action,160)
-	body.add_child(action_button)
-	hint = FarmUIStyle.label("",16)
-	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	body.add_child(hint)
-	FarmProgress.changed.connect(refresh)
-	Inventory.changed.connect(refresh)
+	body=BoxContainer.new();body.size_flags_vertical=Control.SIZE_EXPAND_FILL;body.add_theme_constant_override("separation",16);column.add_child(body)
+	list_scroll=ScrollContainer.new();list_scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));list_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;body.add_child(list_scroll)
+	tabs=VBoxContainer.new();tabs.size_flags_horizontal=Control.SIZE_EXPAND_FILL;tabs.add_theme_constant_override("separation",8);list_scroll.add_child(tabs)
+	detail_scroll=ScrollContainer.new();detail_scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));detail_scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;detail_scroll.size_flags_horizontal=Control.SIZE_EXPAND_FILL;detail_scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;body.add_child(detail_scroll)
+	var detail:=VBoxContainer.new();detail.size_flags_horizontal=Control.SIZE_EXPAND_FILL;detail.add_theme_constant_override("separation",10);detail_scroll.add_child(detail)
+	subtitle=FarmUIStyle.label("",17);subtitle.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;detail.add_child(subtitle)
+	DiamondPayments.controls(detail,refresh)
+	heading=FarmUIStyle.label("",23,FarmUIStyle.TITLE);heading.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;detail.add_child(heading)
+	description=FarmUIStyle.label("",18);description.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;description.custom_minimum_size.y=55;detail.add_child(description)
+	costs=VBoxContainer.new();costs.add_theme_constant_override("separation",6);costs.custom_minimum_size.y=92;detail.add_child(costs)
+	reward=FarmUIStyle.label("",17,FarmUIStyle.SUCCESS);reward.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;detail.add_child(reward)
+	action_button=FarmUIStyle.button("",perform_action,160);detail.add_child(action_button)
+	hint=FarmUIStyle.label("",16,FarmUIStyle.MUTED);hint.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;detail.add_child(hint)
+	FarmProgress.changed.connect(refresh);Inventory.changed.connect(refresh)
+	resized.connect(update_layout);update_layout()
+
+func update_layout() -> void:
+	if not is_instance_valid(body): return
+	var narrow: bool=size.x<740
+	body.vertical=narrow
+	list_scroll.custom_minimum_size=Vector2(0,maxf(96,UIMetrics.minimum_target())) if narrow else Vector2(maxf(210,UIMetrics.minimum_target()+48),0)
+	list_scroll.size_flags_vertical=Control.SIZE_FILL if narrow else Control.SIZE_EXPAND_FILL
 
 func open_panel(requested_mode: String, editable: bool) -> void:
 	if GameState.modal: return
@@ -76,6 +61,7 @@ func open_panel(requested_mode: String, editable: bool) -> void:
 	GameState.set_modal(true)
 	show()
 	refresh()
+	list_scroll.scroll_vertical=0;detail_scroll.scroll_vertical=0
 
 func close_panel() -> void:
 	DiamondPayments.cancel(self)
@@ -85,25 +71,29 @@ func close_panel() -> void:
 func select(id: String) -> void:
 	selected_id = id
 	refresh()
+	detail_scroll.scroll_vertical=0
 
 func refresh() -> void:
 	if not visible: return
-	for child in tabs.get_children():
-		tabs.remove_child(child)
-		child.queue_free()
-	for child in costs.get_children():
-		costs.remove_child(child)
-		child.queue_free()
-	var definitions: Dictionary = FarmProgress.upgrades if mode == "workshop" else FarmProgress.quests
+	for child in costs.get_children(): costs.remove_child(child);child.queue_free()
+	var definitions: Dictionary=FarmProgress.upgrades if mode=="workshop" else FarmProgress.quests
+	if tab_mode!=mode:
+		tab_mode=mode;tab_buttons.clear()
+		for child in tabs.get_children(): tabs.remove_child(child);child.queue_free()
+		for id in definitions:
+			var button:=FarmUIStyle.button("",select.bind(id),180)
+			button.size_flags_horizontal=Control.SIZE_EXPAND_FILL;button.clip_text=true;button.text_overrun_behavior=TextServer.OVERRUN_TRIM_ELLIPSIS
+			tabs.add_child(button);tab_buttons[id]=button
 	for id in definitions:
-		var name_text: String = definitions[id].name if mode == "workshop" else definitions[id].title
-		var done: bool = FarmProgress.has_upgrade(id) if mode == "workshop" else FarmProgress.quest_status(id) == "completed"
-		var button := FarmUIStyle.button(("✓ " if done else "")+name_text,select.bind(id),160)
-		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		if id == selected_id: button.add_theme_stylebox_override("normal",FarmUIStyle.surface("selected"))
-		tabs.add_child(button)
-	if mode == "workshop": refresh_upgrade()
+		var name_text: String=definitions[id].name if mode=="workshop" else definitions[id].title
+		var done: bool=FarmProgress.has_upgrade(id) if mode=="workshop" else FarmProgress.quest_status(id)=="completed"
+		var button: Button=tab_buttons[id]
+		button.text=("✓ " if done else "")+name_text
+		button.tooltip_text=name_text
+		button.add_theme_stylebox_override("normal",FarmUIStyle.surface("selected" if id==selected_id else "button"))
+	if mode=="workshop": refresh_upgrade()
 	else: refresh_quest()
+	update_layout()
 
 func add_cost(id: String, amount: int) -> void:
 	var held: int = Inventory.coins if id == "coins" else Inventory.count(id)
