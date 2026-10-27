@@ -5,12 +5,45 @@ var person: String = "letter":
 	set(value):
 		person = value
 		queue_redraw()
+var avatar_missing: bool=false
+var _avatar_path: String=""
+var _avatar_texture: Texture2D
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	custom_minimum_size = Vector2(132,148)
+	var appearance:=get_node_or_null("/root/Appearance")
+	if appearance and appearance.has_signal("changed"): appearance.changed.connect(refresh_avatar)
+
+func refresh_avatar() -> void:
+	_avatar_path="";_avatar_texture=null;queue_redraw()
+
+func current_avatar_path() -> String:
+	var role: String="player" if person in ["player","you","farmer"] else "xiaojing" if person in ["xiaojing","companion"] else ""
+	var appearance:=get_node_or_null("/root/Appearance")
+	return str(appearance.portrait_asset(role)) if role!="" and appearance and appearance.has_method("portrait_asset") else ""
+
+func draw_character_avatar() -> void:
+	var path:=current_avatar_path()
+	if path!=_avatar_path or (_avatar_texture==null and path!="" and ResourceLoader.exists(path)):
+		_avatar_path=path;_avatar_texture=load(path) if path!="" and ResourceLoader.exists(path) else null
+	avatar_missing=_avatar_texture==null
+	draw_rect(Rect2(Vector2.ZERO,size),Color("ead8ae"))
+	draw_rect(Rect2(Vector2(2,2),size-Vector2(4,4)),Color("b68a59"),false,1)
+	if _avatar_texture:
+		var factor:=minf((size.x-8)/_avatar_texture.get_width(),(size.y-8)/_avatar_texture.get_height())
+		var extent: Vector2=(_avatar_texture.get_size()*factor).floor()
+		draw_texture_rect(_avatar_texture,Rect2(((size-extent)*.5).floor(),extent),false)
+	else:
+		# 缺少正式头像时明确留空，不绘制另一性别或旧小京来冒充。
+		var center:=size*.5
+		draw_line(center-Vector2(5,5),center+Vector2(5,5),FarmUIStyle.MUTED,2)
+		draw_line(center+Vector2(-5,5),center+Vector2(5,-5),FarmUIStyle.MUTED,2)
 
 func _draw() -> void:
+	if person in ["player","you","farmer","xiaojing","companion"]:
+		draw_character_avatar();return
 	var zoom := minf(size.x/44.0,size.y/48.0)
 	draw_set_transform(Vector2((size.x-44*zoom)/2,(size.y-48*zoom)/2),0,Vector2(zoom,zoom))
 	draw_rect(Rect2(0,0,44,48),Color("344c49"))

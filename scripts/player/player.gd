@@ -18,6 +18,10 @@ var farm_visual: Node2D
 
 func _ready() -> void:
 	add_to_group("farm_player")
+	Appearance.changed.connect(refresh_appearance)
+	Events.location_changed.connect(func(_area: String): refresh_appearance())
+	StarStory.changed.connect(refresh_appearance)
+	refresh_appearance()
 	farm_visual=preload("res://scripts/farming/tool_action_visual.gd").new()
 	add_child(farm_visual)
 	Events.farm_effect.connect(func(_origin: Vector2,_kind: String):
@@ -52,7 +56,15 @@ func cancel_farm_action() -> void:
 	farm_action.clear()
 	action_time=0;auto_direction=Vector2.ZERO;velocity=Vector2.ZERO
 	if is_instance_valid(farm_visual): farm_visual.clear()
-	if is_instance_valid(sprite): sprite.position=Vector2(0,-18)
+	if is_instance_valid(sprite): sprite.position=visual_offset()
+
+func visual_offset() -> Vector2:
+	return CharacterVisuals.OFFSET if sprite.get_meta("scheme_c",false) else Vector2(0,-18)
+
+func refresh_appearance() -> void:
+	if not is_instance_valid(sprite): return
+	var ceremony: bool=GameState.location=="greenhouse" and StarStory.state.wedding_phase in [1,2,3]
+	CharacterVisuals.apply(sprite,"player",ceremony)
 
 func advance_farm_action(delta: float) -> void:
 	if GameState.modal or GameState.restoring or GameState.location!="farm" or GameClock.day!=int(farm_action.day) or global_position.distance_to(farm_action.origin)>.1:
@@ -100,9 +112,11 @@ func _physics_process(delta: float) -> void:
 	if velocity.length() < 1.0:
 		frame_index = 0 if frame_index < 2 else 2
 	if action_time>0: frame_index=0
+	if sprite.get_meta("scheme_c",false):
+		frame_index=int(animation_time*CharacterVisuals.WALK_FPS)%4 if velocity.length()>1 and action_time<=0 else 0
 	sprite.frame = row * 4 + frame_index
 	# 待机呼吸使用整数像素位移，避免像素贴图因子像素运动变模糊。
-	sprite.position = Vector2(0,-17.0 if velocity.length() < 1.0 and frame_index == 2 else -18.0)
+	sprite.position = visual_offset()+Vector2(0,1 if velocity.length()<1.0 and frame_index==2 and action_time<=0 else 0)
 	# 从固定原点计算反馈，不能逐帧累加水平偏移。工具动作期间朝向与脚底保持稳定。
 	if action_time > 0 and action_kind not in FARM_KINDS: sprite.position += action_facing*sin(action_time/0.24*PI)*3
 

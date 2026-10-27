@@ -44,7 +44,7 @@ func refresh() -> void:
 	button("观察今晚湖面星痕",func(): outcome(LakeEcology.observe_meteor())).disabled=not GameWeather.is_meteor_night() or LakeEcology.state.meteor_seen
 	ecology_section=FacilityLayout.card(content,"lake_research")
 	words("共同研究",21)
-	words("小京的后续水样：原三日湖畔合作完成且生态恢复后，在她09–18点做水样时交流；独立信任/羁绊小幅奖励只一次。",16)
+	words("小京的后续水样：原三日湖畔合作完成且生态恢复后，在小京09–18点做水样时交流；独立信任/羁绊小幅奖励只一次。",16)
 	button("和小京比较新旧水样",func(): outcome(LakeEcology.xiaojing_after()))
 	words("修复记录是继续调查湖底排水设施的线索；高生态、流星夜与原小京共同照料也是永恒星鲤的条件。",16)
 	button("收起水样册",close_panel)

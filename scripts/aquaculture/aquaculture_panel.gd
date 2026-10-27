@@ -219,10 +219,10 @@ func show_quests() -> void:
 	words("小京 · 湖面留下的刻度",23)
 	var event: Dictionary=Aquaculture.state.xiaojing
 	if event.stage==0:
-		words("好感50、信任40后，可以邀请小京一起照料有鱼的栏位。她想比较湖水和温室旧水管里的微光；这是一份可选研究。")
+		words("好感50、信任40后，可以邀请小京一起照料有鱼的栏位。小京想比较湖水和温室旧水管里的微光；这是一份可选研究。")
 		button("邀请一起照料这个鱼栏",func(): result(Aquaculture.invite_xiaojing(context)))
 	elif event.stage==1:
-		words("小京：‘我上午会来做水样。你照料网箱，我记下天气；如果今天没空，明天接着做就好。’\n09:00–18:00可在约定鱼栏的岸边见到她。需在约定鱼栏的3个不同日期各完成投喂与清理，并在邀请后收获至少2尾鱼。")
+		words("小京：‘我上午会来做水样。你照料网箱，我记下天气；如果今天没空，明天接着做就好。’\n09:00–18:00可在约定鱼栏的岸边见到小京。需在约定鱼栏的3个不同日期各完成投喂与清理，并在邀请后收获至少2尾鱼。")
 		words("已共同照料%d / 3天 · 约定鱼栏：%s" % [event.care_days.size(),event.pen])
 		button("一起记录今天的水样",func(): result(Aquaculture.observe_xiaojing()))
 		button("交流观察并完成湖畔研究",func(): result(Aquaculture.complete_xiaojing()))

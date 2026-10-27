@@ -56,6 +56,7 @@ var hotbar_expanded: bool = true
 var camera_return_button: Button
 var atlas_panel: PanelContainer
 var atlas_button: Button
+var character_select_panel: PanelContainer
 
 func _ready() -> void:
 	layer = 10
@@ -383,6 +384,8 @@ func reflow_panels() -> void:
 			panel.controller.layout_panel();continue
 		if panel.get_meta("parchment_atlas",false):
 			panel.layout_panel();continue
+		if panel.get_meta("character_select",false):
+			panel.layout_panel();continue
 		if panel.get_meta("journal_map_open",false):
 			var extent: Vector2=(safe.size-Vector2(24,24)).min(Vector2(1440,900))
 			place(panel,Vector2(.5,.5),Vector2(.5,.5),Rect2(-extent/2,extent));continue
@@ -564,6 +567,8 @@ func show_notice(text: String) -> void:
 	toast_time = 4.0
 
 func close_active_panel() -> bool:
+	if is_instance_valid(character_select_panel) and character_select_panel.visible:
+		character_select_panel.close_panel();return true
 	if is_instance_valid(atlas_panel) and atlas_panel.visible:
 		atlas_panel.close_panel();return true
 	var owner_game:=get_parent()

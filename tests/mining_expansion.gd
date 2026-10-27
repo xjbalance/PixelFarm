@@ -148,7 +148,7 @@ static func input_and_trials(test: Node, game: Node) -> void:
 static func saves(test: Node, game: Node) -> void:
 	var snapshot := FarmSaveStore.snapshot(game)
 	var v6 := snapshot.duplicate(true)
-	v6.version=6
+	v6.version=6;v6.erase("appearance")
 	v6.location="farm"
 	v6.player=[656,440]
 	v6.erase("mines")

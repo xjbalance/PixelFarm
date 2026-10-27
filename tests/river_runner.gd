@@ -235,7 +235,7 @@ func compatibility() -> void:
 	var current := FarmSaveStore.snapshot(game)
 	check(FarmSaveStore.valid(current),"完整0.6百层、章节、婚礼、婚后状态可保存")
 	var old: Dictionary=current.duplicate(true)
-	old.version=9;old.erase("river");old.location="farm";old.player=[1360,816]
+	old.version=9;old.erase("appearance");old.erase("river");old.location="farm";old.player=[1360,816]
 	old.chapter_two=prefix_chapter()
 	old.items.erase("ancient_shard");old.items.erase("star_fragment")
 	var a: Dictionary=old.abyss

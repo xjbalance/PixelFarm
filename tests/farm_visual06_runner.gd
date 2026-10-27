@@ -18,9 +18,9 @@ func run() -> void:
 	check(FarmSaveStore.restore(game,original),"视觉样板后原完整存档可恢复")
 	await frames(6)
 	check(game.farm.plots==original.plots and game.resource_world.snapshot()==original.resources and Housing.snapshot()==original.housing,"旧农田ID、资源耐久/再生和住宅进度完全保留")
-	check(FarmSaveStore.valid(FarmSaveStore.snapshot(game)),"仍为原v24有效存档，无视觉专属进度字段")
+	check(FarmSaveStore.valid(FarmSaveStore.snapshot(game)),"仍为当前有效存档，无视觉专属进度字段")
 	var report:=FileAccess.open("res://builds/farm06-"+("render" if capture_mode else "state")+"-evidence.json",FileAccess.WRITE)
-	report.store_string(JSON.stringify({"checks":checked,"failures":failed,"platform":DisplayServer.get_name(),"android_device_tested":false,"captures":captures,"farm_cells":1536,"plots":60,"farm_resources":42,"save_version":24},"\t"));report.close()
+	report.store_string(JSON.stringify({"checks":checked,"failures":failed,"platform":DisplayServer.get_name(),"android_device_tested":false,"captures":captures,"farm_cells":1536,"plots":60,"farm_resources":42,"save_version":FarmSaveStore.VERSION},"\t"));report.close()
 	print("FARM VISUAL 06 "+("RENDER" if capture_mode else "STATE")+" RESULT: %d checks, %d failures" % [checked,failed])
 	game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(4);get_tree().quit(1 if failed else 0)
 

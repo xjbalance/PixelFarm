@@ -6,11 +6,16 @@ signal mute_requested
 signal bag_requested
 signal journal_requested
 signal story_requested
+signal new_game_requested
 var title: Label
 var body: Label
 var actions: VBoxContainer
 var sleep_mode: bool = false
 var control_mode_button: Button
+var player_avatar: FarmPortrait
+var appearance_hint: Label
+var _new_game_pending: bool=false
+var _view_token: int=0
 
 func _ready() -> void:
 	add_to_group("modal_panels")
@@ -19,7 +24,10 @@ func _ready() -> void:
 	column.add_theme_constant_override("separation",16)
 	add_child(column)
 	var header:=HBoxContainer.new();column.add_child(header)
+	player_avatar=FarmPortrait.new();player_avatar.person="player";player_avatar.set_meta("appearance_role","player")
+	header.add_child(player_avatar);player_avatar.custom_minimum_size=Vector2(44,52)
 	title = FarmUIStyle.heading(header,"像素世界 · 0.7.1 匠心打磨","house_1")
+	appearance_hint=FarmUIStyle.label("形象未加载",15,FarmUIStyle.DANGER);header.add_child(appearance_hint)
 	var scroll := ScrollContainer.new()
 	scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"))
 	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
@@ -34,11 +42,20 @@ func _ready() -> void:
 	FarmUIStyle.card(content).add_child(body)
 	actions = FarmUIStyle.card(content)
 	actions.add_theme_constant_override("separation",8)
+	var appearance:=get_node_or_null("/root/Appearance")
+	if appearance and appearance.has_signal("changed"): appearance.changed.connect(refresh_identity)
+
+func refresh_identity() -> void:
+	var path: String=player_avatar.current_avatar_path()
+	appearance_hint.visible=not sleep_mode and (path=="" or not ResourceLoader.exists(path))
+	player_avatar.visible=not sleep_mode
 
 func open_panel(for_sleep: bool = false) -> void:
 	if GameState.modal: return
 	if for_sleep and not GameClock.can_sleep(true): return
+	_view_token+=1;_new_game_pending=false
 	sleep_mode = for_sleep
+	refresh_identity()
 	GameState.set_modal(true)
 	show()
 	title.text = "让今天好好结束" if for_sleep else "像素世界 · 0.7.1 匠心打磨"
@@ -87,6 +104,9 @@ func open_panel(for_sleep: bool = false) -> void:
 		actions.add_child(diagnostic)
 	if not for_sleep and GameState.location=="home":
 		actions.add_child(FarmUIStyle.button("布置房间",func(): close_panel();Events.interaction_requested.emit("home:arrange")))
+	if not for_sleep:
+		var restart:=FarmUIStyle.button("新游戏 · 重新开始",ask_new_game,180)
+		restart.add_theme_stylebox_override("normal",FarmUIStyle.surface("danger"));actions.add_child(restart)
 	if for_sleep: body.text += "\n明天的河湾村："+GameWeather.tomorrow()+"。"
 	actions.add_child(FarmUIStyle.button("继续农场生活",close_panel))
 
@@ -94,8 +114,24 @@ func mode_text() -> String:
 	return "操作方式：点击移动 → 切换虚拟摇杆" if GameState.control_mode == "tap" else "操作方式：虚拟摇杆 → 切换点击移动"
 
 func close_panel() -> void:
+	_view_token+=1;_new_game_pending=false
 	hide()
 	GameState.set_modal(false)
+
+func ask_new_game() -> void:
+	if not visible or sleep_mode or _new_game_pending: return
+	_new_game_pending=true;_view_token+=1
+	var token: int=_view_token
+	title.text="开始新的田园生活？"
+	body.text="新游戏会从新的农场开始。当前进度会先保留备份。\n接下来可以选择主角；确认角色前不会覆盖当前进度。"
+	for child in actions.get_children(): actions.remove_child(child);child.queue_free()
+	var accept:=FarmUIStyle.button("确认进入角色选择",confirm_new_game.bind(token),200)
+	accept.add_theme_stylebox_override("normal",FarmUIStyle.surface("danger"));actions.add_child(accept)
+	actions.add_child(FarmUIStyle.button("取消，继续当前游戏",func(): close_panel();open_panel(),200))
+
+func confirm_new_game(token: int) -> void:
+	if not visible or sleep_mode or not _new_game_pending or token!=_view_token: return
+	close_panel();new_game_requested.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed("ui_cancel"):

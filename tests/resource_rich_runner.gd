@@ -114,7 +114,7 @@ func catalogs_and_legacy() -> void:
 	var kept:=true
 	for id in LEGACY_IDS: kept=kept and FarmResourceCatalog.placements().has(id)
 	check(kept,"原14树5石坐标ID全部保留")
-	var old:=FarmSaveStore.snapshot(game);old.version=23;old.housing.erase("builtins");old.resources=legacy_resources(old.resources)
+	var old:=FarmSaveStore.snapshot(game);old.version=23;old.erase("appearance");old.housing.erase("builtins");old.resources=legacy_resources(old.resources)
 	old.resources.tree_7_20={"hp":0,"ready_day":GameClock.day+3};old.resources.rock_11_19={"hp":1,"ready_day":0}
 	var normalized:=FarmSaveSchema.normalize(JSON.parse_string(JSON.stringify(old)))
 	check(not normalized.is_empty() and normalized.version==FarmSaveStore.VERSION,"只含旧19节点的真实v23资源快照仍可迁入当前版本")

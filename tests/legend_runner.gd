@@ -242,7 +242,7 @@ func saves() -> void:
 	check(FarmSaveStore.restore(game,saved) and LegendState.state.greenhouse==5 and AbyssState.state.max_clear==20,"传说终局完整恢复")
 	await frames(5)
 	var old: Dictionary=saved.duplicate(true)
-	old.version=8
+	old.version=8;old.erase("appearance")
 	old.erase("legend")
 	old.erase("abyss")
 	var migrated := FarmSaveSchema.normalize(old)
@@ -262,7 +262,7 @@ func saves() -> void:
 	var promised := FarmSaveSchema.normalize(unconfirmed)
 	check(not promised.is_empty() and promised.legend.legacy_vow and promised.xiaojing.diamonds==1314,"旧已求婚承诺保留条件，迁移不扣钻")
 	var board: Dictionary=saved.duplicate(true)
-	board.version=6
+	board.version=6;board.erase("appearance")
 	board.location="farm"
 	board.xiaojing.cave={"x":3,"y":1,"air":50,"hard":false,"visited":[10,11,12],"mined":[12]}
 	var board_json: Dictionary=JSON.parse_string(JSON.stringify(board))

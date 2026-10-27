@@ -107,7 +107,7 @@ func boost(affection: int, trust: int, bond: int, source: String = "legacy") -> 
 
 func talk() -> bool:
 	if not state.unlocked or not nearby() or state.talk_day >= GameClock.day:
-		Events.notice.emit("今天已经聊过了。她还要继续自己的工作，明天再交换见闻。")
+		Events.notice.emit("今天已经聊过了。小京还要继续自己的工作，明天再交换见闻。")
 		return false
 	state.talk_day = GameClock.day
 	boost(1,0,0,"daily_talk")

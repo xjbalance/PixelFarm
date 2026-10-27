@@ -32,6 +32,10 @@ func _ready() -> void:
 	content.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	content.add_theme_constant_override("separation",12)
 	scroll.add_child(content)
+	Appearance.changed.connect(refresh_character_preview)
+
+func refresh_character_preview() -> void:
+	if visible: refresh()
 
 func open_panel(kind: String = "xiaojing") -> void:
 	if GameState.modal: return
@@ -105,12 +109,23 @@ func refresh() -> void:
 		button("稍后再读",close_panel)
 		return
 	var state: Dictionary = Xiaojing.state
-	label_row("好感 %d · 信任 %d · 羁绊 %d / 100\n专属任务 %d/12 · 记忆 %d/7 · 试炼 %d/5\n钻石 %d / 1314 · 稀有原矿 %d" % [state.affection,state.trust,state.bond,state.quests.size(),state.memories.size(),state.trials.size(),state.diamonds,state.ore])
+	var summary: String="好感 %d · 信任 %d · 羁绊 %d / 100\n专属任务 %d/12 · 记忆 %d/7 · 试炼 %d/5\n钻石 %d / 1314 · 稀有原矿 %d" % [state.affection,state.trust,state.bond,state.quests.size(),state.memories.size(),state.trials.size(),state.diamonds,state.ore]
+	if page=="main":
+		content_section=FarmUIStyle.card(content)
+		var identity:=HBoxContainer.new();identity.add_theme_constant_override("separation",16);content_section.add_child(identity)
+		var image:=TextureRect.new();var path: String=Appearance.standing_asset("xiaojing")
+		image.texture=load(path) if ResourceLoader.exists(path) else null
+		image.custom_minimum_size=Vector2(112,224);image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;image.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		image.mouse_filter=Control.MOUSE_FILTER_IGNORE;image.set_meta("appearance_standing",Appearance.companion_variant());identity.add_child(image)
+		var notes:=VBoxContainer.new();notes.size_flags_horizontal=Control.SIZE_EXPAND_FILL;identity.add_child(notes)
+		FarmUIStyle.heading(notes,"小京 · 星辉旅人")
+		var stats:=FarmUIStyle.label(summary,18);stats.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;notes.add_child(stats)
+	else: label_row(summary)
 	if page == "wedding":
 		label_row("确认举行婚礼，将消耗1314颗钻石点亮已修复温室的全部星灯。取消不会扣除资源。",21)
 		button("确认婚礼 · 消耗1314钻石",func():
 			if Xiaojing.confirm_wedding(true):
-				read_story("星灯为两个人留光","小京没有站在灯架中央。她把两张研究桌并排放好，给彼此留了一条走动的过道。你们各自点亮一半星灯，最后一盏一起合上木闸。\n“明天我还要去河岸。”她说。“好，晚饭时交换见闻。”你回答。")
+				read_story("星灯为两个人留光","小京没有站在灯架中央，而是把两张研究桌并排放好，给彼此留了一条走动的过道。你们各自点亮一半星灯，最后一盏一起合上木闸。\n“明天我还要去河岸。”小京说。“好，晚饭时交换见闻。”你回答。")
 			else: label_row("条件尚未全部满足；没有扣除资源。")
 		)
 		button("取消，继续商量",func(): page="main"; refresh())
@@ -130,7 +145,7 @@ func refresh() -> void:
 func build_main() -> void:
 	var state: Dictionary = Xiaojing.state
 	if not Xiaojing.nearby():
-		label_row("现在："+str(preload("res://scripts/seasons/life_schedule.gd").locate("xiaojing").get("description","暂未找到她的活动记录"))+"。靠近后可以交谈、赠礼和查看共同计划。")
+		label_row("现在："+str(preload("res://scripts/seasons/life_schedule.gd").locate("xiaojing").get("description","暂未找到小京的活动记录"))+"。靠近后可以交谈、赠礼和查看共同计划。")
 	else:
 		button("每日交谈",func():
 			read_story("今天各自做了什么",StarStory.daily_text(),func(): Xiaojing.talk())
@@ -226,7 +241,7 @@ func build_cave() -> void:
 	button("返回小京",func(): page="main"; refresh())
 
 func post_text(id: String) -> String:
-	return {"separate_desks":"她把两张桌子之间的路又让宽了一点：你做账时，我不会把标本放到你的账本上。今天的约定很小，却可以每天做到。","field_trip":"你从农场回来，她从河东回来。两只沾泥的杯子摆在一起，你们各说一件没能做成的事，也各说一件明天还想试的事。","day520":"这次的信有收件人。小京写：我们没有把五百二十天过成同一天。谢谢你记得我想去的地方，也把自己的愿望说给我听。信的背面画着两条路，在家的窗前相遇。"}[id]
+	return {"separate_desks":"小京把两张桌子之间的路又让宽了一点：你做账时，我不会把标本放到你的账本上。今天的约定很小，却可以每天做到。","field_trip":"你从农场回来，小京从河东回来。两只沾泥的杯子摆在一起，你们各说一件没能做成的事，也各说一件明天还想试的事。","day520":"这次的信有收件人。小京写：我们没有把五百二十天过成同一天。谢谢你记得我想去的地方，也把自己的愿望说给我听。信的背面画着两条路，在家的窗前相遇。"}[id]
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed("ui_cancel"):

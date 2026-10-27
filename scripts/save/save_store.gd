@@ -2,10 +2,11 @@ class_name FarmSaveStore
 extends RefCounted
 ## 写临时文件后重命名；保留上一次存档。先完整校验再修改运行状态。
 const PATH: String = "user://farm_save.json"
-const VERSION: int = 24
+const VERSION: int = 25
 
 static func snapshot(game: Node) -> Dictionary:
 	return {
+		"appearance": Appearance.snapshot(),
 		"tutorial": game.tutorial.snapshot(),
 		"world_development": WorldDevelopment.snapshot(), "exploration": Exploration.snapshot(), "housing": Housing.snapshot(), "festival": Festival.snapshot(), "social": Social.snapshot(),
 		"kitchen": Kitchen.snapshot(), "ecology": LakeEcology.snapshot(), "fishing": Fishing.snapshot(), "livestock": Livestock.snapshot(),
@@ -27,6 +28,8 @@ static func snapshot(game: Node) -> Dictionary:
 	}
 
 static func write(game: Node, path: String = PATH) -> bool:
+	# 新开局外观尚未确认时不能让自动保存替换已有进度。
+	if game.get("awaiting_character_choice")==true: return false
 	# 农活生效事务的同步通知尚未结束时，不能把半份跨系统进度写入磁盘。
 	if game.farm.committing or Housing.busy or game.resource_world.committing(): return false
 	var data := snapshot(game)
@@ -56,6 +59,29 @@ static func write(game: Node, path: String = PATH) -> bool:
 	Playtest.record("save",{"backup":FileAccess.file_exists(path+".bak")})
 	return true
 
+static func backup_before_new_game(path: String = PATH) -> bool:
+	# 原字节另存，保留旧版结构与最后一份有效进度；已有备份永不覆盖。
+	var exists: bool=false
+	for source in [path,path+".bak"]:
+		if not FileAccess.file_exists(source): continue
+		exists=true
+		var file:=FileAccess.open(source,FileAccess.READ)
+		if file==null or file.get_length()>8388608: continue
+		var bytes: PackedByteArray=file.get_buffer(file.get_length());file.close()
+		var parser:=JSON.new()
+		if parser.parse(bytes.get_string_from_utf8())!=OK or not valid(parser.data): continue
+		var target: String=path+".before_new_game.bak"
+		var sequence: int=1
+		while FileAccess.file_exists(target):
+			target=path+".before_new_game.%d.bak" % sequence;sequence+=1
+		var copy:=FileAccess.open(target,FileAccess.WRITE)
+		if copy==null: return false
+		copy.store_buffer(bytes);copy.flush();var error: Error=copy.get_error();copy.close()
+		if error!=OK or FileAccess.get_file_as_bytes(target)!=bytes:
+			DirAccess.remove_absolute(target);return false
+		return true
+	return not exists
+
 static func read(path: String = PATH) -> Dictionary:
 	for candidate in [path,path+".bak"]:
 		if not FileAccess.file_exists(candidate): continue
@@ -78,11 +104,13 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	var data := FarmSaveSchema.normalize(raw)
 	if data.is_empty(): return false
 	GameState.restoring=true
+	if game.has_method("cancel_character_creation"): game.cancel_character_creation(false)
 	WorldChanges.restoring=true
 	game.cancel_pending_save()
 	while game.hud.close_active_panel(): pass
 	game.touch_input.reset()
 	game.auto_move.cancel()
+	Appearance.restore(data.appearance)
 	GameState.set_control_mode(data.control_mode, false)
 	GameState.manual_tool = false
 	Inventory.coins = int(data["coins"])

@@ -58,7 +58,7 @@ func run() -> void:
 	get_window().size=Vector2i(1600,720);await frames(5);game.hud.update_safe_area();await frames(4)
 	await capture("level_4_wide")
 	get_window().size=Vector2i(1280,720);await frames(5);game.hud.update_safe_area();await frames(4)
-	var legacy:=fresh.duplicate(true);legacy.version=22;legacy.housing=Home.legacy_housing(legacy.housing)
+	var legacy:=fresh.duplicate(true);legacy.version=22;legacy.erase("appearance");legacy.housing=Home.legacy_housing(legacy.housing)
 	legacy.location="home";legacy.player=[640.0,500.0]
 	check(FarmSaveStore.restore(game,legacy),"窗口可以读取真实v22旧住宅布局")
 	await frames(8);await capture("legacy_v22")

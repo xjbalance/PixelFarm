@@ -10,11 +10,14 @@ var retries: int = 0
 var previous := Vector2.ZERO
 var animation_time: float = 0
 var speaker: String = "林芽 · 种子收集师"
+var visual_facing:=Vector2.DOWN
 @export var person_id: String = "linya"
 
 func _ready() -> void:
 	add_to_group("interactables")
 	if person_id == "xiaojing": add_to_group("xiaojing")
+	if person_id=="xiaojing":
+		Appearance.changed.connect(refresh_appearance);refresh_appearance()
 	var data = JSON.parse_string(FileAccess.get_file_as_string("res://resources/dialogue/linya.json"))
 	if data is Dictionary:
 		lines = data.get("lines", [])
@@ -46,6 +49,7 @@ func set_station(point: Vector2) -> void:
 func _physics_process(delta: float) -> void:
 	if GameState.modal or not GameClock.running or not is_visible_in_tree():
 		velocity = Vector2.ZERO
+		if person_id=="xiaojing": CharacterVisuals.animate(get_node("Sprite2D"),visual_facing,false,animation_time)
 		return
 	if needs_route:
 		route = VillagerNavigation.route(self,station)
@@ -55,6 +59,7 @@ func _physics_process(delta: float) -> void:
 	while cursor < route.size() and global_position.distance_to(route[cursor]) < 2: cursor += 1
 	if cursor >= route.size():
 		velocity = Vector2.ZERO
+		if person_id=="xiaojing": CharacterVisuals.animate(get_node("Sprite2D"),visual_facing,false,animation_time)
 		return
 	var offset := route[cursor]-global_position
 	velocity = offset.normalized()*minf(48,offset.length()/delta)
@@ -68,7 +73,13 @@ func _physics_process(delta: float) -> void:
 		if not needs_route: route.clear()
 	animation_time += delta
 	# 原有 NPC 只有单张站姿，整数像素的步幅表现复用素材。
-	get_node("Sprite2D").position.y = -18+int(sin(animation_time*10))
+	if person_id=="xiaojing":
+		visual_facing=velocity
+		CharacterVisuals.animate(get_node("Sprite2D"),visual_facing,true,animation_time)
+	else: get_node("Sprite2D").position.y = -18+int(sin(animation_time*10))
+
+func refresh_appearance() -> void:
+	if person_id=="xiaojing": CharacterVisuals.apply(get_node("Sprite2D"),"xiaojing")
 
 func reset_station() -> void:
 	# 读档按日期、建设与时段重建日程；不保存一条可能已经失效的路线。

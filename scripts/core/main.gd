@@ -24,6 +24,12 @@ var camera_rig: WorldCameraRig
 var life_schedule: Node
 var tutorial: GameTutorial
 var prompt_elapsed: float = 0
+var character_select: PanelContainer
+var save_path: String=FarmSaveStore.PATH
+var awaiting_character_choice: bool=false
+var new_game_seed: Dictionary={}
+var _reset_after_character_choice: bool=false
+var _new_game_backup_done: bool=false
 
 func _ready() -> void:
 	get_tree().quit_on_go_back = false
@@ -111,11 +117,67 @@ func _ready() -> void:
 	home_arrange=HomeArrangeController.new();add_child(home_arrange);home_arrange.setup(self)
 	hud.atlas_panel.setup(self)
 	tutorial=GameTutorial.new();add_child(tutorial);tutorial.attach(self)
+	character_select=PanelContainer.new();character_select.set_script(preload("res://scripts/appearance/character_select_panel.gd"))
+	hud.safe.add_child(character_select);character_select.setup(self);hud.character_select_panel=character_select
+	character_select.confirmed.connect(confirm_character_creation)
+	character_select.cancelled.connect(cancel_character_creation)
+	hud.system_panel.new_game_requested.connect(begin_character_creation)
+	# 默认新档在读取现有进度之前保留；选择确认前不重置任何旧游戏数据。
+	new_game_seed=FarmSaveStore.snapshot(self)
 	Events.notice.emit("欢迎回家。屋东的信箱里，有一封留给你的信。")
-	if persistence_enabled and (FileAccess.file_exists(FarmSaveStore.PATH) or FileAccess.file_exists(FarmSaveStore.PATH+".bak")):
+	if persistence_enabled and (FileAccess.file_exists(save_path) or FileAccess.file_exists(save_path+".bak")):
 		load_game()
 	elif persistence_enabled:
-		call_deferred("opening_letter")
+		begin_character_creation(false)
+
+func begin_character_creation(reset_progress: bool=true) -> bool:
+	if awaiting_character_choice or GameState.modal or GameState.restoring or backgrounded or closing: return false
+	if player.action_time>0: return false
+	cancel_pending_save();auto_move.cancel();player.velocity=Vector2.ZERO;player.touch_direction=Vector2.ZERO
+	awaiting_character_choice=true;_reset_after_character_choice=reset_progress;_new_game_backup_done=false
+	if character_select.open_panel(str(Appearance.state.player_gender)): return true
+	awaiting_character_choice=false;return false
+
+func confirm_character_creation(gender: String) -> void:
+	if not awaiting_character_choice or gender not in CharacterAppearance.GENDERS or backgrounded or closing: return
+	var paths:=CharacterAppearance.preview_paths(gender)
+	for key in ["player_asset","companion_asset","player_portrait","companion_portrait","player_standing","companion_standing"]:
+		if not ResourceLoader.exists(str(paths[key])):
+			character_select.open_panel(gender);character_select.status_label.text="角色资源未能完整载入，请稍后再试。";return
+	if persistence_enabled and _reset_after_character_choice and not _new_game_backup_done:
+		if not FarmSaveStore.backup_before_new_game(save_path):
+			character_select.open_panel(gender);character_select.status_label.text="未能备份当前存档，原进度已保留。";return
+		_new_game_backup_done=true
+	var previous: Dictionary=FarmSaveStore.snapshot(self)
+	var resetting: bool=_reset_after_character_choice
+	awaiting_character_choice=false
+	var accepted: bool=true
+	if resetting:
+		var seed: Dictionary=new_game_seed.duplicate(true)
+		seed.control_mode=GameState.control_mode;seed.muted=$Audio.muted
+		accepted=FarmSaveStore.restore(self,seed)
+	accepted=accepted and Appearance.set_player_gender(gender)
+	if accepted and persistence_enabled: accepted=FarmSaveStore.write(self,save_path)
+	if not accepted:
+		FarmSaveStore.restore(self,previous)
+		awaiting_character_choice=true;_reset_after_character_choice=resetting
+		character_select.open_panel(gender);character_select.status_label.text="未能保存新角色，原有进度已保留。";return
+	_reset_after_character_choice=false;_new_game_backup_done=false
+	touch_input.fingers.clear();touch_input.reset();GameState.set_modal(false)
+	Events.notice.emit("新的生活开始了。先回小屋，读一读留给你的旧信。")
+	call_deferred("opening_letter")
+
+func cancel_character_creation(user_cancel: bool=true) -> void:
+	if not awaiting_character_choice: return
+	var returning: bool=_reset_after_character_choice
+	awaiting_character_choice=false;_reset_after_character_choice=false;_new_game_backup_done=false
+	if is_instance_valid(character_select) and character_select.visible: character_select.finish_view()
+	if not user_cancel: return
+	if returning: hud.system_panel.open_panel()
+	else:
+		# 未确认的新旅程没有可保存的角色；退出不能把默认男主写成新档。
+		persistence_enabled=false
+		close_session()
 
 func opening_letter() -> void:
 	if Story.stage == 0 and not GameState.modal: Events.notice.emit("先回小屋看看。窗下木盒里有一封旧信和半张地图。")
@@ -244,12 +306,13 @@ func recover_blocked_position() -> void:
 		player.get_node("Camera2D").reset_smoothing()
 
 func save_game() -> void:
+	if awaiting_character_choice: return
 	cancel_pending_save()
-	if FarmSaveStore.write(self): Events.notice.emit("进度已保存。下次回来会继续这一天。")
+	if FarmSaveStore.write(self,save_path): Events.notice.emit("进度已保存。下次回来会继续这一天。")
 	else: Events.notice.emit("保存失败，原有存档仍保留。")
 
 func load_game() -> void:
-	var data := FarmSaveStore.read()
+	var data := FarmSaveStore.read(save_path)
 	if data.is_empty():
 		Events.notice.emit("没有找到有效存档，当前进度保持不变。")
 		return
@@ -261,7 +324,7 @@ func cancel_pending_save() -> void:
 	autosave_pending=false
 
 func queue_autosave() -> void:
-	if not persistence_enabled or closing or autosave_pending: return
+	if not persistence_enabled or closing or autosave_pending or awaiting_character_choice: return
 	autosave_pending=true
 	call_deferred("flush_autosave",autosave_epoch)
 
@@ -272,8 +335,9 @@ func flush_autosave(epoch: int) -> void:
 
 func autosave() -> void:
 	cancel_pending_save()
+	if awaiting_character_choice: return
 	# 成功时静默保存，保留刚领取的奖励提示；只有失败才打断通知。
-	if persistence_enabled and not FarmSaveStore.write(self):
+	if persistence_enabled and not FarmSaveStore.write(self,save_path):
 		Events.notice.emit("自动保存失败，请在菜单中重试保存。")
 
 func toggle_audio() -> void:
@@ -409,7 +473,7 @@ func build_xiaojing_world() -> void:
 		var person := preload("res://scenes/npc/linya.tscn").instantiate()
 		person.person_id = "xiaojing"
 		person.position = {"farm":Vector2(1232,800),"village":Vector2(1120,624),"home":Vector2(720,452)}[location]
-		person.get_node("Sprite2D").texture = load("res://assets/characters/xiaojing.png")
+		CharacterVisuals.apply(person.get_node("Sprite2D"),"xiaojing")
 		var parent: Node = {"farm":world.get_node("Actors"),"home":home,"village":village.get_node("Actors")}[location]
 		parent.add_child(person)
 		var refresh_person := func():

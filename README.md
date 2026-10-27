@@ -1,20 +1,28 @@
 # 像素世界 · Pixel World
 
-当前源码和调试APK已包含[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)、[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)、[按数量出售](docs/SALE-QUANTITY.md)、[农场视觉样板06](docs/FARM-VISUAL-06.md)及[羊皮纸冒险图纸](docs/PARCHMENT-MAP.md)。
+当前源码和调试APK已包含[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)、[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)、[按数量出售](docs/SALE-QUANTITY.md)、[农场视觉样板06](docs/FARM-VISUAL-06.md)、[羊皮纸冒险图纸](docs/PARCHMENT-MAP.md)、[UI07全界面收口](docs/REPORT-UI07.md)及[方案C角色选择](docs/SCHEME-C-SELECTION.md)。
 
 **0.7.1《匠心打磨》**，Godot 4.3 Standard 原创像素经营 RPG。在原工程上整合四季天气、自由钓鱼、湖泊生态、畜牧、厨房加工、四季节日、村民个人事件、家园扩建装修与三张隐藏地图。
 
-保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v24**，兼容v1–v23，原应用包名、证书与存档路径保留。
+保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v25**，兼容v1–v24，原应用包名、证书与存档路径保留。
 
-最新整合验收：**4,598项自动化、2,869项桌面窗口检查零失败，142个计划进程全部通过**，见[地图06机器记录](docs/TEST-MAP06.json)。本轮包含出售数量选择、仅农场的四季地面/树冠视觉样板，以及按M展开的羊皮纸地图；存档仍为v24，完整九格和既有玩法规则保留。原签名Android调试APK已重新生成（versionCode 17）；没有Android真机验收。住宅布置阶段的4,251项自动化、2,534项桌面窗口及134进程记录保留为[历史验收](docs/TEST-HOME-ARRANGE.json)。
+当前采用方案C“温暖田园 × 星辉旅人”：开局可选男女主角，小京自动使用对应形象，世界精灵、头像、菜单和剧情显示共用外观解析。完整整合验收：**6,087项自动化、3,425项桌面窗口、159个计划进程全部通过**，见[方案C机器记录](docs/TEST-SCHEME-C.json)；原签名Android调试APK已构建（versionCode 19），没有Android真机验收。上一轮[UI07风格收口](docs/REPORT-UI07.md)已完成，`94f18cd`记录5,062项自动化、3,335项桌面窗口及146个进程通过，属于v24/code18历史基线。
 
-[当前图纸报告](docs/PARCHMENT-MAP.md) · [农场视觉样板](docs/FARM-VISUAL-06.md) · [数量出售](docs/SALE-QUANTITY.md) · [住宅改造与摆放报告](docs/HOME-ARRANGE.md) · [布局与森林报告](docs/RESTORED-LAYOUT-RESOURCES.md) · [住宅05报告与四级截图](docs/REPORT-HOME05.md) · [UI05报告与前后截图](docs/REPORT-UI05.md) · [布局规范](docs/UI05-LAYOUT.md) · [UI04报告](docs/REPORT-UI04.md) · [初版开发报告](docs/REPORT-0.7.1.md) · [0.7.0内容报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [UI05验收边界](docs/KNOWN-ISSUES-UI05.md)
+[方案C完整报告](docs/REPORT-SCHEME-C.md) · [角色选择与菜单](docs/SCHEME-C-SELECTION.md) · [角色资源与来源](docs/SCHEME-C-ASSETS.md) · [UI07收口报告](docs/REPORT-UI07.md) · [当前图纸报告](docs/PARCHMENT-MAP.md) · [农场视觉样板](docs/FARM-VISUAL-06.md) · [数量出售](docs/SALE-QUANTITY.md) · [住宅改造与摆放报告](docs/HOME-ARRANGE.md) · [布局与森林报告](docs/RESTORED-LAYOUT-RESOURCES.md) · [住宅05报告与四级截图](docs/REPORT-HOME05.md) · [UI05报告与前后截图](docs/REPORT-UI05.md) · [布局规范](docs/UI05-LAYOUT.md) · [UI04报告](docs/REPORT-UI04.md) · [初版开发报告](docs/REPORT-0.7.1.md) · [0.7.0内容报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [UI05验收边界](docs/KNOWN-ISSUES-UI05.md)
 
-![新农场样板与完整九格布局](docs/farm06/layout_1280x720.png)
+首次无存档时先选择角色：男主对应女小京，女主对应男小京；可以反复预选，最后确认才创建新档。已有存档直接读取，原经营、任务和婚姻进度保留。菜单“新游戏 · 重新开始”先显示覆盖确认；确认角色时先备份旧档，取消保留当前进度。首次选择返回不保存默认性别，后台保留预选。
+
+![方案C角色选择实际窗口](docs/scheme-c-selection/female.png)
+
+选择页采用用户原参考的纸面立绘卡，世界角色使用透明四方向像素图；仪式衣装为配色派生，资源边界见[来源说明](docs/SCHEME-C-ASSETS.md)。角色选择页支持触屏、键鼠和手柄事件；实体手柄及Android设备仍待验收。
+
+UI07已经把原手记中的旧地图替换为同一套可交互羊皮纸图纸，常用、剧情与经营面板共享新纸卡和标题；建筑与人物材质也完成上一阶段统一。完整九格HUD保持原尺寸。
+
+![农场视觉样板06历史画面](docs/farm06/layout_1280x720.png)
 
 当前保留完整顶栏与底部九格工具栏。新农场样板统一草块、路缘、池岸和四季树冠，仅替换农场视觉；地形、农田、资源位置和碰撞保持原样。农场42、村庄外围16、迷雾森林70个可再生树石点保留；森林从农场西北的“西北林径”进入。村庄、森林和矿洞本轮未做同级美术重绘。[同镜头前后对比](docs/farm06/comparison.png) · [四季样板](docs/farm06/four-seasons.png)。
 
-按 **M** 或点击HUD的小折叠地图图标展开原创羊皮纸图纸；查看世界总览和已发现区域，拖动/双指或滚轮缩放，定位当前人物。图纸读取真实桥梁、住宅、探索状态，保留未知区域遮蔽，只供查看，不传送、不自动导航。
+按 **M**、点击HUD的小折叠地图图标，或打开手记“河谷地图”查看同一套原创羊皮纸图纸；查看世界总览和已发现区域，拖动/双指或滚轮缩放，定位当前人物。图纸读取真实桥梁、住宅、探索状态，保留未知区域遮蔽，只供查看，不传送、不自动导航。
 
 ![羊皮纸世界总览实际窗口](docs/parchment-map/world_1280x720.png)
 
@@ -58,6 +66,7 @@ Godot **4.3 Standard** 导入`project.godot`，完成素材导入后按F5；不�
 | 保存/读取/菜单 | F5/F9/Esc | 菜单与系统返回 |
 | 钓鱼 | 按住追鱼按钮或空格，松开调整 | 长按/松开追鱼按钮 |
 | 家内布置 | 家内菜单→布置房间，点选/拖动、确认 | 同样点选/拖动家具预览，确认才提交 |
+| 角色选择 | 左右/鼠标预选，Enter确认，Esc返回 | 点男女主角卡，确认后开始；返回保留原进度 |
 
 浇水时脚底与朝向短暂固定，人物图像不再水平累加偏移；地图点击使用按下时的世界位置，避免跟随相机后释放到另一格。按下时同时保留NPC/动物身份，释放后不会因它们走动误点地面。目标环区分地面、交互与不可达；UI、多指、混合鼠标触屏、切图、模式切换与后台均有取消/防误触处理。手记“村里的邻居”与地图显示实际活动位置。
 

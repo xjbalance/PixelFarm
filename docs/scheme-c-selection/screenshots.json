@@ -1,0 +1,18 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    "res://builds/character-select-male.png",
+    "res://builds/character-select-female.png",
+    "res://builds/character-select-menu_male.png",
+    "res://builds/character-select-menu_female.png",
+    "res://builds/character-select-new_game_confirmation.png",
+    "res://builds/character-select-layout_1280x720.png",
+    "res://builds/character-select-layout_1560x720.png",
+    "res://builds/character-select-layout_1600x720.png",
+    "res://builds/character-select-layout_1280x960.png",
+    "res://builds/character-select-dpi_480.png"
+  ],
+  "checks": 36,
+  "failures": 0,
+  "platform": "X11"
+}

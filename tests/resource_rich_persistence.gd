@@ -16,7 +16,7 @@ func run() -> void:
 	if legacy_write:
 		Inventory.items={"wood":37,"stone":23,"carrot_seed":17};Inventory.coins=7821;Xiaojing.state.diamonds=1314
 		GameState.set_control_mode("joystick",false)
-		var old:=FarmSaveStore.snapshot(game);old.version=23;old.housing.erase("builtins");old.resources=Rich.legacy_resources(old.resources)
+		var old:=FarmSaveStore.snapshot(game);old.version=23;old.erase("appearance");old.housing.erase("builtins");old.resources=Rich.legacy_resources(old.resources)
 		old.resources.tree_7_20={"hp":0,"ready_day":GameClock.day+3};old.resources.rock_11_19={"hp":1,"ready_day":0}
 		check(old.version==23 and old.resources.size()==19 and FarmSaveStore.valid(old),"独立旧档仅包含实际v23原19资源节点")
 		write_json("user://resource-rich-legacy-proof.json",old)

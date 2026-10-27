@@ -51,13 +51,13 @@ func null_and_malformed() -> void:
 		var bad := rich.duplicate(true);bad[entry[0]][entry[1]]=[null]
 		if not FarmSaveSchema.normalize(bad).is_empty(): queue_ok=false
 	check(queue_ok,"加工订单/动物/家具数组中的null实体不进入恢复遍历")
-	var old := rich.duplicate(true);old.version=11
+	var old := rich.duplicate(true);old.version=11;old.erase("appearance")
 	for section in NEW_SECTIONS: old.erase(section)
 	var old_bad := old.duplicate(true);old_bad.legend="broken legacy object"
 	refuse(old_bad,"v11迁移早期观察世界时损坏legend不会抛错")
 	old_bad=old.duplicate(true);old_bad.aquaculture.xiaojing=null
 	refuse(old_bad,"v11迁移早期观察湖畔子状态为null仍安全拒绝")
-	old_bad=rich.duplicate(true);old_bad.version=16;old_bad.progress=null
+	old_bad=rich.duplicate(true);old_bad.version=16;old_bad.erase("appearance");old_bad.progress=null
 	for section in ["festival","social","housing","exploration","world_development"]: old_bad.erase(section)
 	refuse(old_bad,"v16社交迁移的旧progress损坏时不读取非法好感字段")
 func cross_partition_rules() -> void:
@@ -83,7 +83,7 @@ func cross_partition_rules() -> void:
 	bad=fresh.duplicate(true);bad.festival.xiaojing_summer=true
 	refuse(bad,"未解锁小京的档案不能宣称已领取夏季独有关系事件")
 func real_legacy_migration() -> void:
-	var old := rich.duplicate(true);old.version=11
+	var old := rich.duplicate(true);old.version=11;old.erase("appearance")
 	for section in NEW_SECTIONS: old.erase(section)
 	var migrated := FarmSaveSchema.normalize(JSON.parse_string(JSON.stringify(old)))
 	check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION,"只含实际v11原分区的已婚矿洞档可跨完整迁移链")
@@ -98,14 +98,14 @@ func real_legacy_migration() -> void:
 	check(FarmSaveStore.restore(game,migrated) and Inventory.coins==old_money and Xiaojing.state.diamonds==old_diamonds and Xiaojing.state.wedding_day==190,"实际恢复v11不补婚礼奖励、不重新扣1314且保留结婚日起点")
 	await frames(8)
 func expanded_room_restore() -> void:
-	var old := FarmSaveStore.snapshot(game);old.version=18
+	var old := FarmSaveStore.snapshot(game);old.version=18;old.erase("appearance")
 	old.erase("exploration");old.erase("world_development")
 	old.housing=load("res://tests/home05_runner.gd").legacy_housing(Housing.defaults(GameClock.day));old.housing.level=2
 	old.location="home";old.player=[272.0,464.0]
 	check(not FarmSaveSchema.normalize(old).is_empty() and FarmSaveStore.restore(game,old),"v18二级扩建侧间位置可迁移至当前版本")
 	await frames(12)
 	check(GameState.location=="home" and game.player.global_position.distance_to(Vector2(272,464))<.1,"恢复侧间坐标不误判为旧小屋边界并传回门口")
-	old=FarmSaveStore.snapshot(game);old.version=18;old.erase("exploration");old.erase("world_development")
+	old=FarmSaveStore.snapshot(game);old.version=18;old.erase("appearance");old.erase("exploration");old.erase("world_development")
 	old.housing=load("res://tests/home05_runner.gd").legacy_housing(old.housing);old.housing.level=3;old.player=[176.0,336.0]
 	check(FarmSaveStore.restore(game,old),"v18高级住宅更宽侧间可读取")
 	await frames(12)

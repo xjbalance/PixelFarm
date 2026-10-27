@@ -76,7 +76,7 @@ func action_case(tool: String,label: String,facing: Vector2) -> void:
 	for i in range(28):
 		await step()
 		if game.player.action_time>0:
-			steady=steady and game.player.position==at and game.player.facing==facing and game.player.sprite.position==Vector2(0,-18)
+			steady=steady and game.player.position==at and game.player.facing==facing and game.player.sprite.position==game.player.visual_offset()
 			tool_aligned=tool_aligned and visual.visible and visual.direction==facing and visual.tool_position()==visual.tool_position().round()
 			if tool=="hand": tool_aligned=tool_aligned and Vector2.UP.rotated(visual.tool_angle()).dot(facing)>.99
 		if commits>before_commits and effect_frame<0:

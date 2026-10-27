@@ -23,7 +23,7 @@ func run() -> void:
 		check(current.items==proof.items and current.coins==proof.coins and current.stamina==proof.stamina,"独立重启原物品、金币和体力逐字段恢复")
 		check(Xiaojing.state.diamonds==1314 and GameState.control_mode=="joystick" and game.hud.joystick.visible,"独立重启保留1314钻石与备用摇杆选择")
 		check(not panel.visible and str(panel.selected_item)=="" and not GameState.modal and game.auto_move.target.is_empty(),"独立重启不恢复旧选中菜单、物品回调和路径")
-		var old:=proof.duplicate(true);old.version=21;old.erase("tutorial");old.housing=load("res://tests/home05_runner.gd").legacy_housing(old.housing)
+		var old:=proof.duplicate(true);old.version=21;old.erase("appearance");old.erase("tutorial");old.housing=load("res://tests/home05_runner.gd").legacy_housing(old.housing)
 		var migrated:=FarmSaveSchema.normalize(old)
 		check(not migrated.is_empty() and migrated.items==proof.items and migrated.xiaojing.diamonds==1314,"真实v21字段迁移保留全部物品及婚礼钻石")
 		panel.open_panel(false);await frames(3);panel.select_item("carrot")

@@ -83,3 +83,11 @@ assets/ui/river下13款九宫格材质与5个16px状态图标由tools/generate_u
 参考访问范围：五个参考链接中的四个HTML页面访问成功，Stonebit素材参考页因TLS失败未打开；实际查看的参考图片只有Cainos Basic预览。页面可访问不等于已经查看其中全部图片。未下载商业瓦片包；预览只在本地构建目录供研究，不导入游戏，不随源码或APK分发。
 
 `docs/farm06/`与`docs/parchment-map/`来自实际Linux Godot4.3 Xvfb/Mesa窗口。前后/四季拼图仅整理真实渲染帧；图纸截图包括总览、区域、展开过程与桥梁修复前后状态，不能代表Android真机性能或真人长线游玩。
+
+## 方案C：用户提供参考与动画资源
+
+输入来自用户的`PixelWorld_SchemeC_Codex_Reference_Pack`。该包声明动画由原会话的内置图像生成工具制作；本轮没有再次调用图像生成API，也没有把这些输入声称为本轮从零手绘。实际核验129项源文件SHA，正常精灵与SpriteFrames逐字节复制，四位角色各自使用对应资源。
+
+新增`assets/characters/scheme_c/`含28张PNG、16份SpriteFrames及清单。头像、纸面立绘卡从同一角色参考图的独立人物区域提取；仪式版为原角色精灵的奶油白/蓝紫/暖金配色派生，透明轮廓与面容保留。`tools/import_scheme_c_assets.py`提供导入与无源包验证入口。具体裁切、来源及制作边界见[资源记录](SCHEME-C-ASSETS.md)。
+
+用户原`need/`目录未改动、未提交或打包；实际游戏所需导出资源已复制到工程。`docs/scheme-c-selection/`和`docs/scheme-c-game/`为实际Godot窗口帧，剧情画面使用明确夹具，不代表新档已自动解锁小京或完成婚礼。

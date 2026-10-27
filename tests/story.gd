@@ -268,7 +268,7 @@ static func save_and_ui(test: Node,game: Node) -> void:
 	invalid.village.tea_day = GameClock.day+1
 	test.check(not FarmSaveStore.valid(invalid),"拒绝未来日期的每日茶座额度")
 	var legacy: Dictionary = saved.duplicate(true)
-	legacy.version = 2
+	legacy.version = 2;legacy.erase("appearance")
 	legacy.location = "farm"
 	legacy.player = [700,500]
 	legacy.erase("story")

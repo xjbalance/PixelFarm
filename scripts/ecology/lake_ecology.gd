@@ -46,7 +46,7 @@ func observe_meteor() -> bool:
 func xiaojing_after() -> bool:
 	if busy or not near() or not state.restored or state.xiaojing_seen or Aquaculture.state.xiaojing.stage<2 or not Xiaojing.state.unlocked or not companion_present(): return false
 	busy=true;state.xiaojing_seen=true;Xiaojing.boost(0,1,1,"lake_restored");commit()
-	Events.notice.emit("小京把新旧水样并排放下：不是湖水记得谁，是有人愿意把这里照料好。她在温室笔记里画下一尾长尾星鲤；信任与羁绊各+1，只记录一次。")
+	Events.notice.emit("小京把新旧水样并排放下：不是湖水记得谁，是有人愿意把这里照料好。小京在温室笔记里画下一尾长尾星鲤；信任与羁绊各+1，只记录一次。")
 	return true
 func companion_present() -> bool:
 	if GameClock.minutes<540 or GameClock.minutes>=1080: return false

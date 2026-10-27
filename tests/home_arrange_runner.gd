@@ -162,7 +162,7 @@ func routes() -> bool:
 
 func defaults_and_moves() -> void:
 	await fresh()
-	check(Housing.state.builtins.size()>=16 and FarmSaveStore.VERSION==24,"新房保留至少16件原室内家具并进入v24")
+	check(Housing.state.builtins.size()>=16 and FarmSaveStore.snapshot(game).version==FarmSaveStore.VERSION,"新房保留至少16件原室内家具并使用当前存档格式")
 	check(Housing.can_arrange() and await routes(),"默认起居布局可编辑且六处必要功能有路")
 	for id in ["bed","sofa","kitchen","storage","mail_desk","dining_table","dresser","lamp","plant"]:
 		await fresh()
@@ -351,10 +351,10 @@ func dynamic_functions() -> void:
 
 func migration_and_construction() -> void:
 	await fresh();check(await setup_married_home(self,game),"迁移夹具以真实施工得到三级住宅及既有自制家具柜存")
-	var old:=FarmSaveStore.snapshot(game);old.version=23;old.housing=legacy_v23(old.housing)
+	var old:=FarmSaveStore.snapshot(game);old.version=23;old.erase("appearance");old.housing=legacy_v23(old.housing)
 	var canonical_old: Dictionary=AbyssSaveSchema.canonical(JSON.parse_string(JSON.stringify(old)))
 	var migrated:=FarmSaveSchema.normalize(JSON.parse_string(JSON.stringify(old)))
-	check(not migrated.is_empty() and migrated.version==24,"真实v23字段可以迁入可布置住宅v24")
+	check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION,"真实v23字段可以迁入当前可布置住宅格式")
 	if migrated.is_empty(): return
 	var kept:=true;var normalized_migrated: Dictionary=AbyssSaveSchema.canonical(migrated)
 	for key in canonical_old:

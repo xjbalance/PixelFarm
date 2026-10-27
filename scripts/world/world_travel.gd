@@ -107,7 +107,7 @@ static func change(game: Node, destination: String, saved_position: Vector2 = Ve
 	game.player.auto_direction=Vector2.ZERO
 	game.player.velocity=Vector2.ZERO
 	game.player.action_time=0
-	game.player.get_node("Sprite2D").position=Vector2(0,-18)
+	game.player.get_node("Sprite2D").position=game.player.visual_offset()
 	game.hud.joystick.reset()
 	var active: Node2D=all_maps[destination]
 	var actors: Node=active.get_node_or_null("Actors")

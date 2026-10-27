@@ -248,7 +248,7 @@ func build_people() -> void:
 	var people: Array=Story.data.people.keys()
 	if Xiaojing.state.unlocked: people.append("xiaojing")
 	for id in people:
-		var definition: Dictionary = Story.data.people[id] if id!="xiaojing" else {"name":"小京","role":"水样与温室记录者","place":"按季节、约定和自己的研究计划出行。","about":"她会照看水样、整理温室记录，也会独自出门。靠近后可以查看四季近况与共同计划。"}
+		var definition: Dictionary = Story.data.people[id] if id!="xiaojing" else {"name":"小京","role":"水样与温室记录者","place":"按季节、约定和自己的研究计划出行。","about":"小京会照看水样、整理温室记录，也会独自出门。靠近后可以查看四季近况与共同计划。"}
 		var card:=FarmUIStyle.section(content)
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation",20)

@@ -46,20 +46,20 @@ func write_fixture() -> void:
 	check(Inventory.count("carrot")==held-7 and Inventory.coins==money+7*Catalog.sell_price("carrot"),"写盘前真实按数量卖七件，一次结算且保留其余库存")
 	inventory.close_panel();await frames(3)
 	var before:=snapshot()
-	check(FarmSaveStore.valid(before) and before.version==24 and before.housing.level==3 and not before.housing.construction.is_empty(),"形成合法v24完整存档，包含已付款未完成工单")
+	check(FarmSaveStore.valid(before) and before.version==FarmSaveStore.VERSION and before.housing.level==3 and not before.housing.construction.is_empty(),"形成合法当前完整存档，包含已付款未完成工单")
 	check(panel.open_panel(),"写进程实际展开新版图纸")
 	panel.show_current();panel.map_canvas.zoom_by(2);panel.map_canvas.pan_by(Vector2(140,65));await frames(5)
 	check(panel.visible and panel.map_canvas.zoom>1 and panel.map_canvas.region_id=="home" and snapshot()==before,"打开、缩放与拖动家内图纸不写资源、相机或地图持久状态")
 	write_json(token_path(),{"token":token,"sold":7,"remaining":Inventory.count("carrot"),"coins":Inventory.coins})
 	if legacy:
-		var old: Dictionary=before.duplicate(true);old.version=23;old.housing.erase("builtins")
+		var old: Dictionary=before.duplicate(true);old.version=23;old.erase("appearance");old.housing.erase("builtins")
 		check(FarmSaveStore.valid(old) and not old.housing.has("builtins"),"旧写进程使用真实v23字段结构，明确移除现代builtins")
 		write_json(proof_path(),old);write_json(FarmSaveStore.PATH,old);write_json(FarmSaveStore.PATH+".bak",old)
 		var disk:=read_json(FarmSaveStore.PATH)
-		check(disk==old and disk.version==23 and FarmSaveStore.read().version==24,"v23原始主档和备份落盘，读取器可规范迁移为v24")
+		check(disk==old and disk.version==23 and FarmSaveStore.read().version==FarmSaveStore.VERSION,"v23原始主档和备份落盘，读取器可规范迁移为当前格式")
 	else:
 		write_json(proof_path(),before)
-		check(FarmSaveStore.write(game) and FarmSaveStore.write(game),"图纸仍打开时完整v24主档和备份成功写入磁盘")
+		check(FarmSaveStore.write(game) and FarmSaveStore.write(game),"图纸仍打开时完整当前主档和备份成功写入磁盘")
 		check(read_json(FarmSaveStore.PATH)==before,"磁盘只有原完整游戏字段，没有展开、缩放、选点或出售确认字段")
 	panel.close_panel()
 
@@ -72,8 +72,8 @@ func read_fixture() -> void:
 	if legacy:
 		for field in proof.housing:
 			if proof.housing[field]!=now.housing.get(field): same=false;print("ATLAS LEGACY HOUSING MISMATCH ",field)
-	check(same and now.version==24,"独立重启逐字段恢复钱物、住宅、探索、婚姻和全部其他游戏进度")
-	if legacy: check(proof.version==23 and not proof.housing.has("builtins") and now.housing.has("builtins"),"真实v23磁盘档仅补家具位置与版本，不降级或重建住宅")
+	check(same and now.version==FarmSaveStore.VERSION,"独立重启逐字段恢复钱物、住宅、探索、婚姻和全部其他游戏进度")
+	if legacy: check(proof.version==23 and not proof.housing.has("builtins") and now.housing.has("builtins"),"真实v23磁盘档仅补家具位置、角色外观与版本，不降级或重建住宅")
 	check(not panel.visible and not GameState.modal and panel.map_canvas.zoom==1 and game.auto_move.target.is_empty(),"重启地图默认收起，不恢复旧缩放、模态、路径或待执行交互")
 	check(GameState.control_mode=="joystick" and game.hud.joystick.visible,"独立重启保留原备用摇杆操作设置")
 	var token:=read_json(token_path());var inventory: PanelContainer=game.hud.inventory_panel
@@ -96,4 +96,4 @@ func read_fixture() -> void:
 	for _i in range(2):
 		stable=FarmSaveStore.restore(game,before) and stable;await frames(4)
 	check(stable and snapshot()==before and not panel.visible,"同日重复读取不复制物品、柜存或已付款施工奖励")
-	check(FarmSaveStore.write(game) and FarmSaveStore.read().version==24,"验收后仍能沿原主档备份机制保存为有效v24")
+	check(FarmSaveStore.write(game) and FarmSaveStore.read().version==FarmSaveStore.VERSION,"验收后仍能沿原主档备份机制保存为有效当前格式")

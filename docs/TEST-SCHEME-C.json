@@ -1,0 +1,930 @@
+{
+  "version": "0.7.1",
+  "save_version": 25,
+  "baseline_commit": "94f18cd",
+  "design_scheme": "C",
+  "linkage": {
+    "player_male": "xiaojing_female",
+    "player_female": "xiaojing_male"
+  },
+  "headless": {
+    "checks": 6087,
+    "failures": 0,
+    "process_steps": 159,
+    "suites": [
+      {
+        "suite": "SLEEP RESULT",
+        "checks": 29,
+        "failures": 0
+      },
+      {
+        "suite": "RESULT",
+        "checks": 452,
+        "failures": 0
+      },
+      {
+        "suite": "MINING RESULT",
+        "checks": 98,
+        "failures": 0
+      },
+      {
+        "suite": "STAR RESULT",
+        "checks": 125,
+        "failures": 0
+      },
+      {
+        "suite": "LEGEND RESULT",
+        "checks": 252,
+        "failures": 0
+      },
+      {
+        "suite": "STABILITY RESULT",
+        "checks": 264,
+        "failures": 0
+      },
+      {
+        "suite": "RIVER RESULT",
+        "checks": 446,
+        "failures": 0
+      },
+      {
+        "suite": "AQUACULTURE RESULT",
+        "checks": 155,
+        "failures": 0
+      },
+      {
+        "suite": "SEASONS A RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "CONTROL RECOVERY RESULT",
+        "checks": 52,
+        "failures": 0
+      },
+      {
+        "suite": "FISHING B RESULT",
+        "checks": 84,
+        "failures": 0
+      },
+      {
+        "suite": "LIVESTOCK B RESULT",
+        "checks": 112,
+        "failures": 0
+      },
+      {
+        "suite": "KITCHEN B RESULT",
+        "checks": 100,
+        "failures": 0
+      },
+      {
+        "suite": "ECOLOGY B RESULT",
+        "checks": 65,
+        "failures": 0
+      },
+      {
+        "suite": "FESTIVALS C RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "SOCIAL C RESULT",
+        "checks": 107,
+        "failures": 0
+      },
+      {
+        "suite": "HOUSING C RESULT",
+        "checks": 109,
+        "failures": 0
+      },
+      {
+        "suite": "EXPLORATION D RESULT",
+        "checks": 106,
+        "failures": 0
+      },
+      {
+        "suite": "WORLD PROGRESS D RESULT",
+        "checks": 170,
+        "failures": 0
+      },
+      {
+        "suite": "QUALITY 070 RESULT",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 070 RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FINALE 070 RESULT",
+        "checks": 24,
+        "failures": 0
+      },
+      {
+        "suite": "PALM 071 RESULT",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "suite": "RECOVERY 071 RESULT",
+        "checks": 55,
+        "failures": 0
+      },
+      {
+        "suite": "TUTORIAL UI 071 RESULT",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 071 RESULT",
+        "checks": 17,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH RESULT",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS RESULT",
+        "checks": 110,
+        "failures": 0
+      },
+      {
+        "suite": "FOOD RECOVERY RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "UI 04 THEME RESULT",
+        "checks": 7,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 RESULT",
+        "checks": 51,
+        "failures": 0
+      },
+      {
+        "suite": "HOTBAR 03 RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "UI 05 CAMERA RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "UI05 HOTBAR RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "UI05 LAYOUT RESULT",
+        "checks": 308,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 RESULT",
+        "checks": 103,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE RESULT",
+        "checks": 159,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH RESULT",
+        "checks": 117,
+        "failures": 0
+      },
+      {
+        "suite": "SALE QUANTITY STATE RESULT",
+        "checks": 35,
+        "failures": 0
+      },
+      {
+        "suite": "FARM VISUAL 06 STATE RESULT",
+        "checks": 139,
+        "failures": 0
+      },
+      {
+        "suite": "ATLAS CORE RESULT",
+        "checks": 74,
+        "failures": 0
+      },
+      {
+        "suite": "ATLAS UI STATE RESULT",
+        "checks": 51,
+        "failures": 0
+      },
+      {
+        "suite": "JOURNAL ATLAS STATE RESULT",
+        "checks": 42,
+        "failures": 0
+      },
+      {
+        "suite": "STORY UI07 RESULT",
+        "checks": 68,
+        "failures": 0
+      },
+      {
+        "suite": "FACILITY UI07 AFTER RESULT",
+        "checks": 316,
+        "failures": 0
+      },
+      {
+        "suite": "WORLD STYLE07 STATE RESULT",
+        "checks": 38,
+        "failures": 0
+      },
+      {
+        "suite": "APPEARANCE STATE RESULT",
+        "checks": 44,
+        "failures": 0
+      },
+      {
+        "suite": "CHARACTER SELECT STATE RESULT",
+        "checks": 36,
+        "failures": 0
+      },
+      {
+        "suite": "SCHEME C GAME STATE RESULT",
+        "checks": 54,
+        "failures": 0
+      },
+      {
+        "suite": "SCHEME C CANCEL RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "STAR RESULT",
+        "checks": 125,
+        "failures": 0
+      },
+      {
+        "suite": "SCHEME C FEMALE STAR EVIDENCE RESULT",
+        "checks": 10,
+        "failures": 0
+      },
+      {
+        "suite": "LEGEND RESULT",
+        "checks": 252,
+        "failures": 0
+      },
+      {
+        "suite": "SCHEME C FEMALE LEGEND EVIDENCE RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "RIVER RESULT",
+        "checks": 446,
+        "failures": 0
+      },
+      {
+        "suite": "SCHEME C FEMALE RIVER EVIDENCE RESULT",
+        "checks": 10,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 PERSISTENCE RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 7,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "ATLAS PERSISTENCE RESULT",
+        "checks": 8,
+        "failures": 0
+      },
+      {
+        "suite": "ATLAS PERSISTENCE RESULT",
+        "checks": 14,
+        "failures": 0
+      },
+      {
+        "suite": "ATLAS PERSISTENCE RESULT",
+        "checks": 8,
+        "failures": 0
+      },
+      {
+        "suite": "ATLAS PERSISTENCE RESULT",
+        "checks": 15,
+        "failures": 0
+      },
+      {
+        "suite": "APPEARANCE PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "APPEARANCE PERSISTENCE RESULT",
+        "checks": 10,
+        "failures": 0
+      },
+      {
+        "suite": "APPEARANCE PERSISTENCE RESULT",
+        "checks": 10,
+        "failures": 0
+      },
+      {
+        "suite": "APPEARANCE PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "APPEARANCE PERSISTENCE RESULT",
+        "checks": 11,
+        "failures": 0
+      }
+    ]
+  },
+  "window": {
+    "checks": 3425,
+    "failures": 0,
+    "suite_count": 36,
+    "suites": [
+      {
+        "suite": "render_061 :[ 0 ] RENDER 061 RESULT",
+        "checks": 113,
+        "failures": 0
+      },
+      {
+        "suite": "render_062 :[ 0 ] RENDER 062 RESULT",
+        "checks": 32,
+        "failures": 0
+      },
+      {
+        "suite": "render_seasons_a :[ 0 ] RENDER SEASONS A RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "fishing_b_render :[ 0 ] RENDER FISHING B RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "livestock_b_render :[ 0 ] LIVESTOCK B RENDER RESULT",
+        "checks": 25,
+        "failures": 0
+      },
+      {
+        "suite": "kitchen_b_render :[ 0 ] KITCHEN B RENDER RESULT",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "life_c_render :[ 0 ] LIFE C RENDER RESULT",
+        "checks": 19,
+        "failures": 0
+      },
+      {
+        "suite": "exploration_d_render :[ 0 ] EXPLORATION D RENDER RESULT",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "world_progress_d_render :[ 0 ] RENDER WORLD PROGRESS D RESULT",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "finale_070_render :[ 0 ] FINALE 070 RENDER RESULT",
+        "checks": 13,
+        "failures": 0
+      },
+      {
+        "suite": "palm_ui_render :[ 0 ] PALM UI RENDER RESULT",
+        "checks": 296,
+        "failures": 0
+      },
+      {
+        "suite": "palm_runner :[ 0 ] PALM 071 RESULT",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "suite": "tutorial_071_runner :[ 0 ] TUTORIAL UI 071 RESULT",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "suite": "touch_polish_runner :[ 0 ] TOUCH POLISH RESULT",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "suite": "touch_polish_visual :[ 0 ] TOUCH POLISH VISUAL RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "farming_visual_runner :[ 0 ] FARMING VISUAL RESULT",
+        "checks": 82,
+        "failures": 0
+      },
+      {
+        "suite": "food_recovery_runner :[ 0 ] FOOD RECOVERY RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "inventory03_render :[ 0 ] INVENTORY 03 RENDER RESULT",
+        "checks": 136,
+        "failures": 0
+      },
+      {
+        "suite": "hotbar03_runner :[ 0 ] HOTBAR 03 RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "ui04_runner :[ 0 ] UI 04 RESULT",
+        "checks": 916,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_camera_runner :[ 0 ] UI 05 CAMERA RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_hotbar_runner :[ 0 ] UI05 HOTBAR RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_layout_runner :[ 0 ] UI05 LAYOUT RESULT",
+        "checks": 308,
+        "failures": 0
+      },
+      {
+        "suite": "home05_render :[ 0 ] HOME 05 RENDER RESULT",
+        "checks": 44,
+        "failures": 0
+      },
+      {
+        "suite": "resource_rich_render :[ 0 ] RESOURCE RICH RENDER RESULT",
+        "checks": 73,
+        "failures": 0
+      },
+      {
+        "suite": "home_arrange_render :[ 0 ] HOME ARRANGE RENDER RESULT",
+        "checks": 86,
+        "failures": 0
+      },
+      {
+        "suite": "sale_quantity_render :[ 0 ] SALE QUANTITY WINDOW RESULT",
+        "checks": 24,
+        "failures": 0
+      },
+      {
+        "suite": "farm_visual06_render :[ 0 ] FARM VISUAL 06 RENDER RESULT",
+        "checks": 147,
+        "failures": 0
+      },
+      {
+        "suite": "atlas_core_runner :[ 0 ] ATLAS CORE RESULT",
+        "checks": 80,
+        "failures": 0
+      },
+      {
+        "suite": "atlas_ui_render :[ 0 ] ATLAS UI RENDER RESULT",
+        "checks": 51,
+        "failures": 0
+      },
+      {
+        "suite": "journal_atlas_render :[ 0 ] JOURNAL ATLAS RENDER RESULT",
+        "checks": 42,
+        "failures": 0
+      },
+      {
+        "suite": "story_ui07_runner :[ 0 ] STORY UI07 RESULT",
+        "checks": 68,
+        "failures": 0
+      },
+      {
+        "suite": "facility_ui07_render :[ 0 ] FACILITY UI07 AFTER RESULT",
+        "checks": 316,
+        "failures": 0
+      },
+      {
+        "suite": "world_style07_render :[ 0 ] WORLD STYLE07 RENDER RESULT",
+        "checks": 40,
+        "failures": 0
+      },
+      {
+        "suite": "character_select_runner :[ 0 ] CHARACTER SELECT RENDER RESULT",
+        "checks": 36,
+        "failures": 0
+      },
+      {
+        "suite": "scheme_c_game_render :[ 0 ] SCHEME C GAME RENDER RESULT",
+        "checks": 54,
+        "failures": 0
+      }
+    ],
+    "platform": "Linux Godot 4.3 Xvfb/Mesa"
+  },
+  "new_suites": [
+    {
+      "suite": "APPEARANCE STATE RESULT",
+      "checks": 44,
+      "failures": 0
+    },
+    {
+      "suite": "CHARACTER SELECT STATE RESULT",
+      "checks": 36,
+      "failures": 0
+    },
+    {
+      "suite": "SCHEME C GAME STATE RESULT",
+      "checks": 54,
+      "failures": 0
+    },
+    {
+      "suite": "SCHEME C CANCEL RESULT",
+      "checks": 2,
+      "failures": 0
+    },
+    {
+      "suite": "SCHEME C FEMALE STAR EVIDENCE RESULT",
+      "checks": 10,
+      "failures": 0
+    },
+    {
+      "suite": "SCHEME C FEMALE LEGEND EVIDENCE RESULT",
+      "checks": 6,
+      "failures": 0
+    },
+    {
+      "suite": "SCHEME C FEMALE RIVER EVIDENCE RESULT",
+      "checks": 10,
+      "failures": 0
+    },
+    {
+      "suite": "APPEARANCE PERSISTENCE RESULT",
+      "checks": 4,
+      "failures": 0
+    },
+    {
+      "suite": "APPEARANCE PERSISTENCE RESULT",
+      "checks": 10,
+      "failures": 0
+    },
+    {
+      "suite": "APPEARANCE PERSISTENCE RESULT",
+      "checks": 10,
+      "failures": 0
+    },
+    {
+      "suite": "APPEARANCE PERSISTENCE RESULT",
+      "checks": 5,
+      "failures": 0
+    },
+    {
+      "suite": "APPEARANCE PERSISTENCE RESULT",
+      "checks": 11,
+      "failures": 0
+    },
+    {
+      "suite": "character_select_runner :[ 0 ] CHARACTER SELECT RENDER RESULT",
+      "checks": 36,
+      "failures": 0
+    },
+    {
+      "suite": "scheme_c_game_render :[ 0 ] SCHEME C GAME RENDER RESULT",
+      "checks": 54,
+      "failures": 0
+    }
+  ],
+  "female_deep_regression": {
+    "source_assertions": 823,
+    "evidence_checks": 26,
+    "total_checks": 849,
+    "failures": 0,
+    "suites": [
+      {
+        "suite": "star",
+        "source_assertions": 125,
+        "evidence_checks": 10,
+        "failures": 0,
+        "observed_events": 52,
+        "maximum_companion_sprites": 4,
+        "female_categories": {
+          "legacy_save_probe": 9,
+          "letter_519": 1,
+          "letter_520": 2,
+          "letter_521": 1,
+          "memories": 15,
+          "postlife": 17,
+          "trials": 9,
+          "wedding": 2
+        },
+        "explicit_legacy_default_observations": []
+      },
+      {
+        "suite": "legend",
+        "source_assertions": 252,
+        "evidence_checks": 6,
+        "failures": 0,
+        "observed_events": 54,
+        "maximum_companion_sprites": 4,
+        "female_categories": {
+          "legacy_save_probe": 28,
+          "memories": 1,
+          "trials": 10,
+          "wedding": 12
+        },
+        "explicit_legacy_default_observations": [
+          {
+            "title": "旧JSON路线可实际恢复",
+            "appearance": {
+              "player_gender": "male",
+              "scheme": "C",
+              "xiaojing_gender": "female"
+            }
+          },
+          {
+            "title": "旧路线读档后同矿不能因数字类型变化再采一次",
+            "appearance": {
+              "player_gender": "male",
+              "scheme": "C",
+              "xiaojing_gender": "female"
+            }
+          },
+          {
+            "title": "混合数字类型的重复旧矿格整档拒绝",
+            "appearance": {
+              "player_gender": "male",
+              "scheme": "C",
+              "xiaojing_gender": "female"
+            }
+          }
+        ]
+      },
+      {
+        "suite": "river",
+        "source_assertions": 446,
+        "evidence_checks": 10,
+        "failures": 0,
+        "observed_events": 36,
+        "maximum_companion_sprites": 4,
+        "female_categories": {
+          "legacy_save_probe": 6,
+          "letter_519": 1,
+          "letter_520": 1,
+          "memories": 8,
+          "postlife": 7,
+          "trials": 7,
+          "wedding": 9
+        },
+        "explicit_legacy_default_observations": []
+      }
+    ]
+  },
+  "apk": {
+    "file": "PixelWorld-0.7.1-debug.apk",
+    "bytes": 71044092,
+    "sha256": "d2140dbff060dfb4114ba4c2143902045fc7b68dbb15c379ef75f177cea59e12",
+    "version_code": 19,
+    "package": "org.pixelfarm.windbud"
+  },
+  "android_device_tested": false,
+  "physical_gamepad_tested": false,
+  "interrupt_restart_passed": true,
+  "apk_desktop_resources_passed": true,
+  "tested_production_sha256": {
+    "assets/characters/scheme_c/asset_manifest.json": "ea5d5df3e0a720113479f49e22abebc6a5e38eeefcc1ec6001d93e461618c968",
+    "assets/characters/scheme_c/player_female/ceremony.png": "1f4b57aa048e7580f7a83593684691dd6945fab88137785427cb2124d66558a8",
+    "assets/characters/scheme_c/player_female/ceremony.png.import": "ac5e2a21dd7fe2a55d46a29f36c2b0891bea2b9ad0623e1fdff06a295f3408f1",
+    "assets/characters/scheme_c/player_female/ceremony_frames.tres": "5dd306178ad1c0584119bb65d456d99aebd12b2108429063273e83486822bc9b",
+    "assets/characters/scheme_c/player_female/compact_32x48/ceremony.png": "5fc9918ab95b40cac0353d95efdfceaf776ddd9b859ddd789565fcc1e953bfd8",
+    "assets/characters/scheme_c/player_female/compact_32x48/ceremony.png.import": "34a6a1762067f88b511c147eba77ecaae381fc3dd1869021ece1fa9d181721a4",
+    "assets/characters/scheme_c/player_female/compact_32x48/ceremony_frames.tres": "96f6fe02c8ad940302834ce81a675737c031801451d2da899684228dd9514bc1",
+    "assets/characters/scheme_c/player_female/compact_32x48/sprite_frames.tres": "ac7e18554cf39723d12d2ab4c6e8a9ed5728ac510b3660f97ad4ed9f47225c96",
+    "assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png": "e597b16edfef22dfc0930bc26a8a5ad5df3d4ce133371458303af4cc4231f361",
+    "assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png.import": "e1c0142be8b6c1eeed7a452e8c426d0cab60f4bdd3e728e845cf8445abebb3e5",
+    "assets/characters/scheme_c/player_female/portrait.png": "e7efaaa0bd4dc14aae086405b22a80617943f74bb7ba84a67a5f221a74b5c9e7",
+    "assets/characters/scheme_c/player_female/portrait.png.import": "4159cbc2f2c70513af2fff5db3605d7ec695a8d326ab512a9ecef2606e0c9111",
+    "assets/characters/scheme_c/player_female/preview_pixel.png": "5a8662bdcbad211ba33a39331375fc0830a94c7991958c49c3a854fbc44d2e66",
+    "assets/characters/scheme_c/player_female/preview_pixel.png.import": "af41e5bec7679960475e21818ad1994ded0b646f808b2b409c1af9f393df559d",
+    "assets/characters/scheme_c/player_female/sprite_frames.tres": "d6e65370e8dc09ec751ee73804874c8d415fd557b78c433bca62ce0c8bb6376a",
+    "assets/characters/scheme_c/player_female/spritesheet.png": "af779c5ef7d6e19924388e6bf984f61df8588904c31c3e2aafa6d28e6480366e",
+    "assets/characters/scheme_c/player_female/spritesheet.png.import": "a77181b11c43eef96c209ec3f5c7fe5692cb35b26af4cf0a256e6c6cd4c966c6",
+    "assets/characters/scheme_c/player_female/standing.png": "4392ff92c5e731d2e258eff3cd9a1235045c3cdb350ffdb7b82eb1d055212a49",
+    "assets/characters/scheme_c/player_female/standing.png.import": "ea651c240ffe4701326a5fdbe654d42bb391a63499026aca19f626b2781229c5",
+    "assets/characters/scheme_c/player_male/ceremony.png": "5471b60f6237c1fb0f30f55c53f1ef83bc33fb0fe7f5264aea67e428db0a18e3",
+    "assets/characters/scheme_c/player_male/ceremony.png.import": "d575b8973a6ea3d3a5f50d6ef2b7dc0ebd4c6d1de3dbe42faaded1cfa40e3578",
+    "assets/characters/scheme_c/player_male/ceremony_frames.tres": "69e93e5609ff80d6e62ce3580a7bdd051337cba148b30f45559edebdd51a1808",
+    "assets/characters/scheme_c/player_male/compact_32x48/ceremony.png": "42d708991767b62a5975200e029732bc2e29809d7da42ec1573d7c7001afffca",
+    "assets/characters/scheme_c/player_male/compact_32x48/ceremony.png.import": "fa920a74697308418c4059d3ad1c43be73fad3ed23eec1fe981852ae20e24917",
+    "assets/characters/scheme_c/player_male/compact_32x48/ceremony_frames.tres": "9e99111dff1107018a340ad660a71173a3561eaebd074d3a228d11a763598d55",
+    "assets/characters/scheme_c/player_male/compact_32x48/sprite_frames.tres": "a53911f99f8808f7c34a9f17e0ced02b931a999c8d6b38d78e38d01e90cb7ec6",
+    "assets/characters/scheme_c/player_male/compact_32x48/spritesheet.png": "a222b1140caaad44c458d5ae3b05f110de7e246903673ee4449284c745c1e7a9",
+    "assets/characters/scheme_c/player_male/compact_32x48/spritesheet.png.import": "a1eb43a95fc87f7bed28d8ac6533f729f471cda1a7dfbad7a1d080b64c2ad44a",
+    "assets/characters/scheme_c/player_male/portrait.png": "ebd2630e74a35cd9177e2d9b7f13491112b4bb7f2753f9c81c27d474b47e0839",
+    "assets/characters/scheme_c/player_male/portrait.png.import": "d7df8750e2cf5e6d08d8c6fad3b713a4cb6827e3d0471ef56cc2f0595b618ff2",
+    "assets/characters/scheme_c/player_male/preview_pixel.png": "00782b569b9a5104f467ccf6d6e2fb40a8c82c72ca0631c262ab51b7993146a5",
+    "assets/characters/scheme_c/player_male/preview_pixel.png.import": "7fce0c8e5a158b6ff56d5694a3e21a4e7e33e78dc72bab21ef6cf8f4723a1938",
+    "assets/characters/scheme_c/player_male/sprite_frames.tres": "a5ffdddb35e5288c7df57cc703efc3965de62b2dcac07eb9e36f63bf950fb268",
+    "assets/characters/scheme_c/player_male/spritesheet.png": "988904095ae6a606fc0ba8a65fb7fe67a91485b1d3265be874773906183e2648",
+    "assets/characters/scheme_c/player_male/spritesheet.png.import": "d73349c33ef342ab7d282d6030a21fbf3c9f687580ddb59ccbd318bc80f6c15b",
+    "assets/characters/scheme_c/player_male/standing.png": "7e4c54da1b08d8fbb311971908b8b37c1f57bcbf46c7d7dee99d8e846ff5543c",
+    "assets/characters/scheme_c/player_male/standing.png.import": "cdc4e2a323e2c9a3cd942f639a9e1cd8e3e1a145aae345d0337234412f6c5dce",
+    "assets/characters/scheme_c/xiaojing_female/ceremony.png": "27f07b10a5d363285906b557251c7043032ba4dc0c41b8e9b724334c3e6a13e1",
+    "assets/characters/scheme_c/xiaojing_female/ceremony.png.import": "b2c078f3b129de21c937045d979ca516128780263387d39ecd4745aec739fa7d",
+    "assets/characters/scheme_c/xiaojing_female/ceremony_frames.tres": "f53e61c7db760875a4b5e921f018091ff1376d96053ccf7d1fd0b5ff8258e442",
+    "assets/characters/scheme_c/xiaojing_female/compact_32x48/ceremony.png": "802a061655425a851f4321cf6f8550333aaa9f867d4978545203849341b4f2d3",
+    "assets/characters/scheme_c/xiaojing_female/compact_32x48/ceremony.png.import": "f91e3e5a6ce59efd004bd0f65209a0ce57507e9e366254ec8447578cd0107f47",
+    "assets/characters/scheme_c/xiaojing_female/compact_32x48/ceremony_frames.tres": "4e5b224d9467e5fef3545d2129f17a74f0fa3cbbfc57072a85aeeb9aaaa0ee06",
+    "assets/characters/scheme_c/xiaojing_female/compact_32x48/sprite_frames.tres": "0fb00fc5ee84d69096fa8e61d57dad5170fcca4a392d1cd3d3dcbf5188b4b337",
+    "assets/characters/scheme_c/xiaojing_female/compact_32x48/spritesheet.png": "c2c8a28ff852e35e0c767ed5d2f1f580493d8076b63446905ae6a43ef043d39e",
+    "assets/characters/scheme_c/xiaojing_female/compact_32x48/spritesheet.png.import": "343712ce69a87dd5bcc0f001f96342b3f2130f8c62283f9de74006f6c3623844",
+    "assets/characters/scheme_c/xiaojing_female/portrait.png": "b2d7fd1a72eaa3a0e2f9740cd3deb4718e913a9b7762cfc46ec07b30d69311b1",
+    "assets/characters/scheme_c/xiaojing_female/portrait.png.import": "b3c6a1624222df2b1c7bfb1ff1a2ea6459d156d320b19112302ccfb8e304d574",
+    "assets/characters/scheme_c/xiaojing_female/preview_pixel.png": "77eb7ecb6620f42783cd7c829f82137ad6576ac03c839e17df97c3d882dbff59",
+    "assets/characters/scheme_c/xiaojing_female/preview_pixel.png.import": "799d771acc3e5f721772ffcb0d027b5551561956c93bf3c3079c9f44fbbd034b",
+    "assets/characters/scheme_c/xiaojing_female/sprite_frames.tres": "916213d9cdc6891af675116b13142c8f92b008785df76b9fb9aa0663d98cfbc7",
+    "assets/characters/scheme_c/xiaojing_female/spritesheet.png": "4151ac4ff710470e79d00f27af405e1c11003b6784204e818c4ab7e19a036a71",
+    "assets/characters/scheme_c/xiaojing_female/spritesheet.png.import": "36d2a7cc532f6f0a04997d52e93f72507bb7d30f176a08c6a12bce89b1262b52",
+    "assets/characters/scheme_c/xiaojing_female/standing.png": "28d51a8f4b2f588fe1159c46c9061914319127122578b18914afc88db1687807",
+    "assets/characters/scheme_c/xiaojing_female/standing.png.import": "2a084a04f220fa801224a75f0fcae40d103d6d84242fa67cf80558cc2e20fbb6",
+    "assets/characters/scheme_c/xiaojing_male/ceremony.png": "b4d14cfe2903aaa5b6e9b58715dbc3d9292240b2a7a65296ff3c68016203054b",
+    "assets/characters/scheme_c/xiaojing_male/ceremony.png.import": "0aff934fda4cd95bad441bd8416755158159696246831f98fd08e2f33a0df7fa",
+    "assets/characters/scheme_c/xiaojing_male/ceremony_frames.tres": "ac4d573a3fe2b781f1f695804001f02dbf277da9344c977f02eda9e23ad9c49d",
+    "assets/characters/scheme_c/xiaojing_male/compact_32x48/ceremony.png": "74f9a04560d9d6241b6291366bdbab2d2232caed4da0f5bd6bc6eb8318dba9bb",
+    "assets/characters/scheme_c/xiaojing_male/compact_32x48/ceremony.png.import": "057d51f598572f14dbe38a765d3d7f52f507424c352241a0e5fb1ae841532cf8",
+    "assets/characters/scheme_c/xiaojing_male/compact_32x48/ceremony_frames.tres": "bf00cbae6d2f86e55f2b6bf1afa89adee8274bacc2358360e25cd1dd5645bb32",
+    "assets/characters/scheme_c/xiaojing_male/compact_32x48/sprite_frames.tres": "60d0c44086ca21c0e1e987b60e5a26c862127ddee4e85c51808c8719ee144ec1",
+    "assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png": "2e7b483ce5fb6e9e075309e57338e8cc5216fded89ac8fa0740678d453a79412",
+    "assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png.import": "65bb2f88885e38a790ad814448e87852daa3bfab8bfd407ec47405a7ad043616",
+    "assets/characters/scheme_c/xiaojing_male/portrait.png": "9c6177558a4b2e8b808f55125f5216aaa2efe9dedb71f07d3a2c11e2187d1d1d",
+    "assets/characters/scheme_c/xiaojing_male/portrait.png.import": "2cc0ae13c86ef36fb5776b4b27d16aa3ceab28aa0ea3eb369d639f74d05af683",
+    "assets/characters/scheme_c/xiaojing_male/preview_pixel.png": "b8c162769c6b62f1f71ff0407b82395d35be501240cf464b90f9c516bca80f95",
+    "assets/characters/scheme_c/xiaojing_male/preview_pixel.png.import": "86870318868f93cb6e828a00b6ffd3aeb9852e79d82fb2a0dccf2155e36121dc",
+    "assets/characters/scheme_c/xiaojing_male/sprite_frames.tres": "f4651be4cf67c11de3bfda1fa62edb5f97e8dd26584788fdc8942ae36ea6c741",
+    "assets/characters/scheme_c/xiaojing_male/spritesheet.png": "015592e86b03b7b6dcfb4d1e4582164d4319d175fac2c55bf661c99208e80d97",
+    "assets/characters/scheme_c/xiaojing_male/spritesheet.png.import": "05a9724d39f0ff2ef2bb1329500a13c17351e11d4798d639a94a52f4c0dc1831",
+    "assets/characters/scheme_c/xiaojing_male/standing.png": "2321c8e664928372cd18f41c2f6f5596519b77b384f8d2138f7fa5f5d6b13cda",
+    "assets/characters/scheme_c/xiaojing_male/standing.png.import": "5d69d37239d6180d02a2a00c989d27bf6657880b2f30470cefb8175aaad23ab9",
+    "export_presets.cfg": "e26323082cb6e3766289bb0fd9811ed736af4c87ddd199810acf51497e332e07",
+    "project.godot": "58cd1506b859209b0f81e85c0f4ea5c2d9d2cdc57efa84f1ca9c84b7fed7d9d4",
+    "resources/river/river.json": "9e24c6e5536ce96dbf0be18a79df84b9814117ad3cec2228d63d93b790884afd",
+    "resources/social/people.json": "bc2961d0130d90bf830e931f0a871d3de47b65a0bad828d1c2cadc6e4c5f0cb4",
+    "resources/story/star1314.json": "725908e67b8d35b4e83a08a394baccfa71d86f1778ef06c0bae56786e1cb0a33",
+    "resources/story/xiaojing.json": "b2c0ce84b629d00387d9887f4abd671ef32252164f0be3f52290cc74435793a3",
+    "scenes/player/player.tscn": "608a216b90fc56dfec1575752f73fd57b576478b309ac51b3f09403ad9a2e652",
+    "scripts/appearance/character_appearance.gd": "661faab91ea45a62d0664bd03a6c6a4854d1b4fa6894267349a5e85b8aa0b477",
+    "scripts/appearance/character_select_panel.gd": "2378e623bd3a38288cb3e7f50b4c4742affed074ff08dcf9a2037bbdc8bad65a",
+    "scripts/appearance/character_visuals.gd": "10cbef2b52cf77fd5512b84e70121ad507157c9c21e28880464f3f7eb3f06b4c",
+    "scripts/aquaculture/aquaculture_panel.gd": "c4485c9bf9da2358a8edc5777bf5e2d6a19771cd528f3590eb67df2cc171ef9b",
+    "scripts/core/main.gd": "c8465142aff677d0fd592a95d0d6f540185b012acf223859b4d5a2da2ee328e4",
+    "scripts/ecology/ecology_panel.gd": "932202b59485aecaf75ebeeb3e0aa85b948654528658219fc1f4e63d90f53bc0",
+    "scripts/ecology/lake_ecology.gd": "dcc2c3c8f5dc611609e99251ecf26b861210ff6ebbed09733c288893ca3aadff",
+    "scripts/kitchen/kitchen_world.gd": "979de210d93157b2380991f247771597881db53b63f5fa188b1c91cb2fa2b8b4",
+    "scripts/npc/villager.gd": "d613bb62ae9635cceab7d2f88662c2626a210629ae5569322ab4a58502931720",
+    "scripts/player/player.gd": "d0bb26117bae38c0a123080aeb6c402bbccd31bf08004b687bf1d9e810f3ced2",
+    "scripts/river/greenhouse_scene.gd": "4da14662b7412e317fbcc5348767d7d3d15fc7d2e9fd70dea0c2d50ca06d54ff",
+    "scripts/save/save_schema.gd": "6b08a1bbcc041586169298a21af6e38db284458e3febbdd985e066158ca71d74",
+    "scripts/save/save_store.gd": "be9da037edadf8175f8d7d4402a8f3c50182502dec11e7a00be19fea1b08bcab",
+    "scripts/star/star_panel.gd": "4cf760754b38bf6687827cf2b55eedfe89a2297e4026e8e4d869abb1d2f902db",
+    "scripts/story/xiaojing_state.gd": "b6a82e108af514217877f4423bdb648d734eb5828a4add3d578cafb365b4e045",
+    "scripts/ui/dialogue_panel.gd": "0e082e31005afb078ca8bc5149fb649ca1211003bf6b430cdb1934c3e2ff0f07",
+    "scripts/ui/hud.gd": "d1842447c81924dc2ab63c46d25d1f0a355331c1aa43a4eb764bbf2573b7188d",
+    "scripts/ui/mine_panel.gd": "c01f3537012ee947018e6c3de75463b7162523a07e9778497b7ae11ce635a85b",
+    "scripts/ui/portrait.gd": "9effaa5ce472ef9cb66cbad8fb87b816383665ad5a4b60e42fda6e8b1f5f2b6c",
+    "scripts/ui/story_panel.gd": "ca3996b6cd42d199ef08bb1214b675cb09044b2440e645bae7599a4e47ca1ff0",
+    "scripts/ui/system_panel.gd": "94e86b51895e48887aa0ceb5ff479adc57ac8c6afca5e5b5e8a32186a7f97038",
+    "scripts/ui/xiaojing_panel.gd": "ad5a91d0315a2b87b9f232fe8e2164d2a6cb343e49db34ef659183bef47a35d5",
+    "scripts/world/world_travel.gd": "03cc051883dff90a57ad0f5586ef9d95465394be14e495918f5e46ed25db1006"
+  },
+  "logs": [
+    "builds/scheme-c-final-check.log",
+    "builds/scheme-c-final-window.log",
+    "builds/scheme-c-final-build.log",
+    "builds/scheme-c-final-apk-runtime.log",
+    "builds/scheme-c-final-interrupt.log"
+  ]
+}

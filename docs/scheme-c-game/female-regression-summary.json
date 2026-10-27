@@ -1,0 +1,85 @@
+{
+  "source_assertions": 823,
+  "evidence_checks": 26,
+  "total_checks": 849,
+  "failures": 0,
+  "suites": [
+    {
+      "suite": "star",
+      "source_assertions": 125,
+      "evidence_checks": 10,
+      "failures": 0,
+      "observed_events": 52,
+      "maximum_companion_sprites": 4,
+      "female_categories": {
+        "legacy_save_probe": 9,
+        "letter_519": 1,
+        "letter_520": 2,
+        "letter_521": 1,
+        "memories": 15,
+        "postlife": 17,
+        "trials": 9,
+        "wedding": 2
+      },
+      "explicit_legacy_default_observations": []
+    },
+    {
+      "suite": "legend",
+      "source_assertions": 252,
+      "evidence_checks": 6,
+      "failures": 0,
+      "observed_events": 54,
+      "maximum_companion_sprites": 4,
+      "female_categories": {
+        "legacy_save_probe": 28,
+        "memories": 1,
+        "trials": 10,
+        "wedding": 12
+      },
+      "explicit_legacy_default_observations": [
+        {
+          "title": "旧JSON路线可实际恢复",
+          "appearance": {
+            "player_gender": "male",
+            "scheme": "C",
+            "xiaojing_gender": "female"
+          }
+        },
+        {
+          "title": "旧路线读档后同矿不能因数字类型变化再采一次",
+          "appearance": {
+            "player_gender": "male",
+            "scheme": "C",
+            "xiaojing_gender": "female"
+          }
+        },
+        {
+          "title": "混合数字类型的重复旧矿格整档拒绝",
+          "appearance": {
+            "player_gender": "male",
+            "scheme": "C",
+            "xiaojing_gender": "female"
+          }
+        }
+      ]
+    },
+    {
+      "suite": "river",
+      "source_assertions": 446,
+      "evidence_checks": 10,
+      "failures": 0,
+      "observed_events": 36,
+      "maximum_companion_sprites": 4,
+      "female_categories": {
+        "legacy_save_probe": 6,
+        "letter_519": 1,
+        "letter_520": 1,
+        "memories": 8,
+        "postlife": 7,
+        "trials": 7,
+        "wedding": 9
+      },
+      "explicit_legacy_default_observations": []
+    }
+  ]
+}

@@ -67,6 +67,13 @@ steps = [
     ('story-ui07', ['--fixed-fps','60','res://tests/story_ui07_runner.tscn']),
     ('facility-ui07', ['--fixed-fps','60','res://tests/facility_ui07_runner.tscn']),
     ('world-style07', ['--fixed-fps','60','res://tests/world_style07_runner.tscn']),
+    ('appearance', ['--fixed-fps','60','res://tests/appearance_runner.tscn']),
+    ('character-select', ['--fixed-fps','60','res://tests/character_select_runner.tscn']),
+    ('scheme-c-game', ['--fixed-fps','60','res://tests/scheme_c_game_runner.tscn']),
+    ('scheme-c-cancel', ['--fixed-fps','60','res://tests/scheme_c_cancel_runner.tscn']),
+    ('scheme-c-star-female', ['--fixed-fps','60','res://tests/scheme_c_star_regression.tscn']),
+    ('scheme-c-legend-female', ['--fixed-fps','60','res://tests/scheme_c_legend_regression.tscn']),
+    ('scheme-c-river-female', ['--fixed-fps','60','res://tests/scheme_c_river_regression.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),
@@ -165,12 +172,18 @@ steps = [
     ('atlas-read', ['--fixed-fps','60','res://tests/atlas_persistence.tscn','--','--read-atlas']),
     ('atlas-v23-write', ['--fixed-fps','60','res://tests/atlas_persistence.tscn','--','--write-atlas-v23']),
     ('atlas-v23-read', ['--fixed-fps','60','res://tests/atlas_persistence.tscn','--','--read-atlas-v23']),
+    ('appearance-write', ['--fixed-fps','60','res://tests/appearance_persistence.tscn','--','--write-appearance']),
+    ('appearance-read', ['--fixed-fps','60','res://tests/appearance_persistence.tscn','--','--read-appearance']),
+    ('appearance-corrupt', ['--fixed-fps','60','res://tests/appearance_persistence.tscn','--','--corrupt-appearance']),
+    ('appearance-backup', ['--fixed-fps','60','res://tests/appearance_persistence.tscn','--','--read-appearance']),
+    ('appearance-v24-write', ['--fixed-fps','60','res://tests/appearance_persistence.tscn','--','--write-appearance-v24']),
+    ('appearance-v24-read', ['--fixed-fps','60','res://tests/appearance_persistence.tscn','--','--read-appearance-v24']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:
     env = dict(os.environ, XDG_DATA_HOME=profile, APPDATA=profile)
     for name, options in steps:
-        result = subprocess.run([godot,'--headless','--path',str(ROOT),*options],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,encoding='utf-8',errors='replace',timeout=600 if name in ['river','stability'] else 180)
+        result = subprocess.run([godot,'--headless','--path',str(ROOT),*options],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,encoding='utf-8',errors='replace',timeout=600 if name in ['river','stability','scheme-c-river-female'] else 180)
         (logs/(name+'.log')).write_text(result.stdout, encoding='utf-8')
         print(result.stdout, end='')
         if result.returncode or any(marker in result.stdout for marker in ['SCRIPT ERROR:','ERROR:','FAIL:','instances leaked']):

@@ -113,7 +113,7 @@ func refresh() -> void:
 	else:
 		speaker_label.text = legacy_speaker
 		body_label.text = str(line)
-		portrait.person = "linya"
+		portrait.person = "xiaojing" if legacy_speaker=="小京" else ("player" if legacy_speaker in ["你","主角"] else "linya")
 	speaker_label.add_theme_color_override("font_color",FarmUIStyle.STAR if portrait.person=="xiaojing" else FarmUIStyle.TITLE)
 	revealed = 0
 	body_label.visible_characters = -1 if scene_id == "" else 0

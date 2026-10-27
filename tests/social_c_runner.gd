@@ -183,7 +183,7 @@ func xiaojing_dates() -> void:
 func saves_and_controls() -> void:
 	await reset()
 	var old := FarmSaveStore.snapshot(game)
-	old.version=16;old.erase("social");old.erase("festival");old.erase("housing")
+	old.version=16;old.erase("appearance");old.erase("social");old.erase("festival");old.erase("housing")
 	old.progress.friendship=31
 	var migrated := FarmSaveSchema.normalize(old)
 	check(not migrated.is_empty() and migrated.social.friendship.linya==31 and migrated.social.friendship.zhou==0,"旧档林芽好感迁移至私交起点而不推算其他人")

@@ -89,7 +89,7 @@ func open_panel(id: String = "journal") -> void:
 			var text := "这张副页记着河水与星辉晶石的对照。小京还未和你分享这些笔记。"
 			for memory in Xiaojing.data.memories:
 				if memory.id==entry.memory and Xiaojing.state.unlocked:
-					text=memory.text+"\n\n"+{"b_memory":"小京在副页上画了一条高出水面的退路，旁边留着两种脚印。她没有写‘跟着我’，只写‘各自确认好出口，再一起出发’。河岸的旧约定在这里有了刻度。","c_memory":"晶石底座夹着两份不同的测量计划。小京在自己的归期旁留出一个空格：不是要你跟她走同一条路，而是回来后可以交换发现。你把风车簿上的水位抄在空格外。"}[id]
+					text=memory.text+"\n\n"+{"b_memory":"小京在副页上画了一条高出水面的退路，旁边留着两种脚印。没有写‘跟着我’，只写‘各自确认好出口，再一起出发’。河岸的旧约定在这里有了刻度。","c_memory":"晶石底座夹着两份不同的测量计划。小京在自己的归期旁留出一个空格：不是要你走同一条路，而是回来后可以交换发现。你把风车簿上的水位抄在空格外。"}[id]
 			read(entry.title,text,func(): MineState.memory_at(id))
 	GameState.set_modal(true)
 	show()

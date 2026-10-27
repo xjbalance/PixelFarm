@@ -18,7 +18,7 @@ func run() -> void:
 	if legacy_write:
 		check(await Arrange.setup_married_home(self,game),"v23写进程真实三级施工、自制椅与柜存")
 		await Home.visit_builder(self,game);check(Housing.upgrade(3),"旧已婚住宅仍有真实进行中的四级施工单")
-		var old:=FarmSaveStore.snapshot(game);old.version=23;old.housing=Arrange.legacy_v23(old.housing)
+		var old:=FarmSaveStore.snapshot(game);old.version=23;old.erase("appearance");old.housing=Arrange.legacy_v23(old.housing)
 		check(FarmSaveStore.valid(old) and not old.housing.has("builtins") and old.stamina==130 and old.xiaojing.married,"写入严格真实v23格式，保留130体力与旧婚姻")
 		write_json("user://home-arrange-v23-proof.json",old);write_json(FarmSaveStore.PATH,old);write_json(FarmSaveStore.PATH+".bak",old)
 		check(not FarmSaveStore.read().is_empty(),"真实v23结构保存到磁盘且能规范读取")
@@ -28,7 +28,7 @@ func run() -> void:
 			if key not in ["version","housing"] and old[key]!=now.get(key): kept=false;print("HOME ARRANGE V23 MISMATCH ",key)
 		for key in old.housing:
 			if old.housing[key]!=now.housing.get(key): kept=false;print("HOME ARRANGE V23 HOUSING MISMATCH ",key)
-		check(kept and now.version==24 and not now.housing.builtins.is_empty(),"独立重启迁移逐旧字段保留，仅补builtins与版本")
+		check(kept and now.version==FarmSaveStore.VERSION and not now.housing.builtins.is_empty(),"独立重启迁移逐旧字段保留，仅补家具位置、角色外观与版本")
 		check(Xiaojing.state.married and Xiaojing.state.diamonds==1314 and GameState.max_stamina()==130 and Housing.state.storage.wood==12 and Housing.state.placed.size()==1,"旧婚姻钻石、自制家具与柜存不会因布置更新重置")
 		var layout: Dictionary=Housing.state.builtins.duplicate(true);var items: Dictionary=Inventory.items.duplicate(true);var coins: int=Inventory.coins
 		for _i in range(2): GameClock.minutes=1200;check(GameClock.request_sleep(GameClock.day),"已付费旧施工单在迁移后合法经过一晚");await frames(5)

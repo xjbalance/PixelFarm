@@ -1,0 +1,64 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    {
+      "name": "select_female",
+      "path": "res://builds/scheme-c-game-select_female.png",
+      "file": "docs/scheme-c-game/select_female.png"
+    },
+    {
+      "name": "menu_male",
+      "path": "res://builds/scheme-c-game-menu_male.png",
+      "file": "docs/scheme-c-game/menu_male.png"
+    },
+    {
+      "name": "world_male",
+      "path": "res://builds/scheme-c-game-world_male.png",
+      "file": "docs/scheme-c-game/world_male.png"
+    },
+    {
+      "name": "companion_world_male",
+      "path": "res://builds/scheme-c-game-companion_world_male.png",
+      "file": "docs/scheme-c-game/companion_world_male.png"
+    },
+    {
+      "name": "companion_standing_male",
+      "path": "res://builds/scheme-c-game-companion_standing_male.png",
+      "file": "docs/scheme-c-game/companion_standing_male.png"
+    },
+    {
+      "name": "companion_dialogue_male",
+      "path": "res://builds/scheme-c-game-companion_dialogue_male.png",
+      "file": "docs/scheme-c-game/companion_dialogue_male.png"
+    },
+    {
+      "name": "menu_female",
+      "path": "res://builds/scheme-c-game-menu_female.png",
+      "file": "docs/scheme-c-game/menu_female.png"
+    },
+    {
+      "name": "world_female",
+      "path": "res://builds/scheme-c-game-world_female.png",
+      "file": "docs/scheme-c-game/world_female.png"
+    },
+    {
+      "name": "companion_world_female",
+      "path": "res://builds/scheme-c-game-companion_world_female.png",
+      "file": "docs/scheme-c-game/companion_world_female.png"
+    },
+    {
+      "name": "companion_standing_female",
+      "path": "res://builds/scheme-c-game-companion_standing_female.png",
+      "file": "docs/scheme-c-game/companion_standing_female.png"
+    },
+    {
+      "name": "companion_dialogue_female",
+      "path": "res://builds/scheme-c-game-companion_dialogue_female.png",
+      "file": "docs/scheme-c-game/companion_dialogue_female.png"
+    }
+  ],
+  "checks": 54,
+  "failures": 0,
+  "platform": "X11",
+  "note": "Actual Linux Godot4.3 window frames. Companion display fixtures meet the existing 520-plant unlock state; they do not claim a new-player story shortcut."
+}

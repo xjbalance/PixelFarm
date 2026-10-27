@@ -158,7 +158,7 @@ func saved_world() -> void:
 	var before := transaction();LakeEcology.settle_day()
 	check(transaction()==before,"读取和再次进入地图不会补一次生态日结算")
 	var old := snapshot.duplicate(true)
-	old.version=14;old.erase("ecology");old.erase("kitchen")
+	old.version=14;old.erase("appearance");old.erase("ecology");old.erase("kitchen")
 	old.world_changes.observed.erase("lake_restored")
 	var migrated := FarmSaveSchema.normalize(old)
 	check(not migrated.is_empty() and migrated.ecology.health==70 and not migrated.ecology.restored,"旧v14添加初始生态，不凭空领取恢复奖励")
