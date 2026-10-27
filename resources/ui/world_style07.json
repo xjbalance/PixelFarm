@@ -1,0 +1,118 @@
+{
+  "baseline": "96a9667",
+  "direction": "warm oak / cream / moss, upper-left light",
+  "assets": {
+    "assets/characters/player.png": {
+      "size": [
+        128,
+        192
+      ],
+      "alpha_sha256": "07b9200b707180a481243f8c1735ce04641684e2e7b2a26568d2471c68aceb86",
+      "sha256": "33b81c9d3a5a27372a72d82c6d2407cc3b87bd9619d527f57ebddb7eeab27e07"
+    },
+    "assets/characters/linya.png": {
+      "size": [
+        32,
+        48
+      ],
+      "alpha_sha256": "15c42e4c02e6d725c8d749d8c2993b735b46171419b9ee2dcb630673726c29ca",
+      "sha256": "f23a2777ce9a552e6d37cbcec522e19a9ba2fb4bb7850b11418d8c25dbed90f5"
+    },
+    "assets/characters/zhou.png": {
+      "size": [
+        32,
+        48
+      ],
+      "alpha_sha256": "da97865e20a23cba26cb872d19cf3f4e26b5d62ff6728dabcbe2f2d76bbb7f89",
+      "sha256": "456f9a4eac0de72427622786de38e3824efdfe51e4d54c893cb9a9f2a768ab65"
+    },
+    "assets/characters/ahe.png": {
+      "size": [
+        32,
+        48
+      ],
+      "alpha_sha256": "25f3dc9652c5ad61882a939d3a07bff2fa40514469d4f0dbd03564205abb3e0b",
+      "sha256": "12bf9402924f32f6444ced8bfad88440905d0d49655ffed3221f1fbfdeba7369"
+    },
+    "assets/characters/xiaojing.png": {
+      "size": [
+        32,
+        48
+      ],
+      "alpha_sha256": "a253a9d8a8c112b14d21800e1be3de6cef2a32bb9315c13360dc1d440b7be36e",
+      "sha256": "c00100d379d4ab2b48b8a38d25ce1bd5cee4255f79d83012a6811f1a52e7d23b"
+    },
+    "assets/characters/xiaojing_wedding.png": {
+      "size": [
+        32,
+        48
+      ],
+      "alpha_sha256": "ea6c24b660cfad578d47064fecfe93e4677fa943b00d834d2f96f6e0275c5dac",
+      "sha256": "9ed55cb340a9fb69b23e7d86773c7bc2358785b0757c98abf661a6b5bfa74075"
+    },
+    "assets/buildings/house.png": {
+      "size": [
+        192,
+        168
+      ],
+      "alpha_sha256": "277fb5a2beec16253ea153dc5d9ed02c520a071b86ff9623f3634ef3b3fbaa37",
+      "sha256": "bfe711027cae3a05a1c8bef413a49041d8f68b9e96e2c56406c81a3481a7a8ae"
+    },
+    "assets/buildings/market.png": {
+      "size": [
+        128,
+        96
+      ],
+      "alpha_sha256": "7cc29282f529211dd3958fa54ada4b0a787d36d80d9020d1f6980f331009299b",
+      "sha256": "4f51bd86cc3d0ef97556c8a1163d54348664cb51807489554c2d6908c8765ff5"
+    },
+    "assets/buildings/tea_house.png": {
+      "size": [
+        192,
+        168
+      ],
+      "alpha_sha256": "277fb5a2beec16253ea153dc5d9ed02c520a071b86ff9623f3634ef3b3fbaa37",
+      "sha256": "69cf2f08aa7d18c0e1c57d448dd79bc6561e4b30471efc28d5f8ad0969246afe"
+    },
+    "assets/buildings/workshop.png": {
+      "size": [
+        192,
+        168
+      ],
+      "alpha_sha256": "277fb5a2beec16253ea153dc5d9ed02c520a071b86ff9623f3634ef3b3fbaa37",
+      "sha256": "3bdaa48e20aa6b77e88728341addd1624681dbc3ba2a65d0e7eb5419f7a19a88"
+    },
+    "assets/housing/interior/exterior_1.png": {
+      "size": [
+        192,
+        168
+      ],
+      "alpha_sha256": "277fb5a2beec16253ea153dc5d9ed02c520a071b86ff9623f3634ef3b3fbaa37",
+      "sha256": "6cda7b97e7aeb785dba8aebc9ba00e464bbd6cb134bbe984c682cf5c20fca1d3"
+    },
+    "assets/housing/interior/exterior_2.png": {
+      "size": [
+        192,
+        168
+      ],
+      "alpha_sha256": "277fb5a2beec16253ea153dc5d9ed02c520a071b86ff9623f3634ef3b3fbaa37",
+      "sha256": "abc717b43155179a09abe02e9a5574f9ed5402ffd7374a7e2d72a1139a019c21"
+    },
+    "assets/housing/interior/exterior_3.png": {
+      "size": [
+        192,
+        168
+      ],
+      "alpha_sha256": "277fb5a2beec16253ea153dc5d9ed02c520a071b86ff9623f3634ef3b3fbaa37",
+      "sha256": "6f2e6e2e841e4d4ade1a073714d7aff1602ab1c12f232641cd3fb0744a495b96"
+    },
+    "assets/housing/interior/exterior_4.png": {
+      "size": [
+        192,
+        168
+      ],
+      "alpha_sha256": "277fb5a2beec16253ea153dc5d9ed02c520a071b86ff9623f3634ef3b3fbaa37",
+      "sha256": "204f1667d13add03010a0bba84d80f14f846b11cd92bf3901ec7356ae942bc16"
+    }
+  }
+}
