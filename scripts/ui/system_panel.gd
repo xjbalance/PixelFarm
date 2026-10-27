@@ -86,6 +86,8 @@ func open_panel(for_sleep: bool = false) -> void:
 	if not for_sleep and OS.is_debug_build():
 		var diagnostic := FarmUIStyle.button("本地试玩记录："+("开" if Playtest.enabled else "关")+"（不上传）",func(): Playtest.toggle(); close_panel(); open_panel())
 		actions.add_child(diagnostic)
+	if not for_sleep and GameState.location=="home":
+		actions.add_child(FarmUIStyle.button("布置房间",func(): close_panel();Events.interaction_requested.emit("home:arrange")))
 	if for_sleep: body.text += "\n明天的河湾村："+GameWeather.tomorrow()+"。"
 	actions.add_child(FarmUIStyle.button("继续农场生活",close_panel))
 

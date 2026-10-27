@@ -139,7 +139,7 @@ func migration() -> void:
 	var old:=FarmSaveStore.snapshot(game);old.version=22;old.housing=legacy_housing(old.housing)
 	var original: Dictionary=AbyssSaveSchema.canonical(JSON.parse_string(JSON.stringify(old)))
 	var migrated: Dictionary=FarmSaveSchema.normalize(JSON.parse_string(JSON.stringify(old)))
-	check(not migrated.is_empty() and migrated.version==23,"真实v22格式可以迁入住宅v23")
+	check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION,"真实v22格式可以迁入当前住宅版本")
 	if migrated.is_empty(): return
 	var preserved:=not migrated.is_empty()
 	for key in original:
@@ -151,8 +151,8 @@ func migration() -> void:
 	check(FarmSaveSchema.normalize(migrated)==migrated and old.version==22 and not old.housing.has("construction"),"住宅迁移幂等且不原地改写旧档")
 	check(FarmSaveStore.restore(game,migrated) and Inventory.coins==54321 and Xiaojing.state.diamonds==1314,"真实恢复旧档不重扣婚礼钻石和住宅材料")
 	await frames(6)
-	var invalid:=FarmSaveStore.snapshot(game);invalid.version=24
-	check(not FarmSaveStore.restore(game,invalid),"未来v24存档仍被整份拒绝")
+	var invalid:=FarmSaveStore.snapshot(game);invalid.version=FarmSaveStore.VERSION+1
+	check(not FarmSaveStore.restore(game,invalid),"未来版本存档仍被整份拒绝")
 
 func furnished_legacy_migration() -> void:
 	await fresh()
@@ -168,7 +168,7 @@ func furnished_legacy_migration() -> void:
 	var old:=FarmSaveStore.snapshot(game);old.version=22;old.housing=legacy_housing(old.housing)
 	var canonical: Dictionary=AbyssSaveSchema.canonical(JSON.parse_string(JSON.stringify(old)))
 	var migrated: Dictionary=FarmSaveSchema.normalize(JSON.parse_string(JSON.stringify(old)))
-	check(not migrated.is_empty(),"已有婚姻、家具ID和装饰的真实v22存档可迁入v23")
+	check(not migrated.is_empty(),"已有婚姻、家具ID和装饰的真实v22存档可迁入当前版本")
 	if migrated.is_empty(): return
 	var preserved:=true
 	for key in canonical:
@@ -206,25 +206,36 @@ func construction_safety() -> void:
 
 func furniture_recovery() -> void:
 	await fresh();await near_sofa()
-	var raw:=Housing.defaults();raw.serial=9
-	for y in range(10,14):
-		for x in range(12,14):
-			var serial: int=raw.placed.size()+1
-			raw.placed.append({"id":"furniture_%06d" % serial,"kind":"chair","area":"home","cell":[x,y]})
-	var conflict: Dictionary={"id":"furniture_000009","kind":"chair","area":"home","cell":[25,10]}
-	raw.placed.append(conflict.duplicate(true));raw.owned={"chair":99};raw.storage={"wood":12}
+	# 全屋现在都允许自由布置；以间隔一格的2×2地毯真实用完“还能摆一块地毯”的空间，不能沿用旧8格小区满位夹具。
+	var raw:=Housing.defaults();raw.owned={"rug":99};raw.storage={"wood":12};Housing.restore(raw)
+	for region in HomeLayout.placement_regions(int(raw.level)):
+		for y in range(region.position.y,region.end.y-1,3):
+			for x in range(region.position.x,region.end.x-1,3):
+				if raw.placed.size()>=Housing.MAX_PLACED-1: break
+				var cell:=Vector2i(x,y)
+				if not Housing.can_place("rug","home",cell,"",false): continue
+				raw.serial+=1;raw.placed.append({"id":"furniture_%06d" % int(raw.serial),"kind":"rug","area":"home","cell":[x,y]});Housing.restore(raw)
+	var room_left:=false
+	for region in HomeLayout.placement_regions(int(raw.level)):
+		for y in range(region.position.y,region.end.y):
+			for x in range(region.position.x,region.end.x):
+				if Housing.can_place("rug","home",Vector2i(x,y),"",false): room_left=true
+	check(not raw.placed.is_empty() and not room_left,"全屋自由摆放夹具已实际用完一块2×2地毯所需的合法空间，原关键路线仍保留")
+	var count: int=raw.placed.size();raw.serial+=1
+	var conflict: Dictionary={"id":"furniture_%06d" % int(raw.serial),"kind":"rug","area":"home","cell":[25,10]}
+	raw.placed.append(conflict.duplicate(true))
 	var original: Dictionary=raw.duplicate(true)
 	var resolved: Dictionary=Housing.reconciled_furniture(raw)
-	check(raw==original and resolved.placed.size()==8 and resolved.recovered==[conflict],"布置区占满时冲突家具保留原ID完整进入暂存，不改输入")
+	check(raw==original and resolved.placed.size()==count and resolved.recovered==[conflict],"真实布置空间不足时冲突家具保留原ID完整进入暂存，不改输入")
 	var no_space:=raw.duplicate(true);no_space.placed=resolved.placed;no_space.recovered=resolved.recovered
-	Housing.restore(no_space);game.change_location("home",Housing.HOME+Vector2(32,0));await frames(5)
+	Housing.restore(no_space);game.change_location("home",Housing.anchor("storage")+Vector2(0,32));await frames(5)
 	check(Housing.validate(no_space,GameClock.day),"保留原冲突坐标的暂存记录仍可正常存档")
 	var before:=state()
 	check(not Housing.recover_furniture(conflict.id) and state()==before,"家具库存99满时取回整笔失败，暂存家具不丢失")
-	Housing.state.owned.chair=98;var serial: int=Housing.state.serial
-	check(Housing.recover_furniture(conflict.id) and Housing.state.owned.chair==99 and Housing.state.recovered.is_empty() and Housing.state.serial==serial and Housing.state.storage.wood==12,"取回仅恢复一件家具，保留储物与ID序号")
+	Housing.state.owned.rug=98;var serial: int=Housing.state.serial
+	check(Housing.recover_furniture(conflict.id) and Housing.state.owned.rug==99 and Housing.state.recovered.is_empty() and Housing.state.serial==serial and Housing.state.storage.wood==12,"取回仅恢复一件家具，保留储物与ID序号")
 	before=state();check(not Housing.recover_furniture(conflict.id) and state()==before,"暂存家具取回一次，迟到回调不重复返还")
-	var with_room:=original.duplicate(true);var removed: Dictionary=with_room.placed.pop_front()
+	var with_room:=original.duplicate(true);with_room.placed.pop_front()
 	var partial: Dictionary=Housing.reconciled_furniture(with_room)
 	var moved: Dictionary={}
 	for entry in partial.placed:
@@ -233,7 +244,7 @@ func furniture_recovery() -> void:
 	for entry in with_room.placed:
 		if entry.id==conflict.id: continue
 		if entry not in partial.placed: stable=false
-	check(partial.recovered.is_empty() and not moved.is_empty() and moved.cell==removed.cell and stable,"冲突家具移到唯一最近空位，安全原位家具全部保持不动")
+	check(partial.recovered.is_empty() and not moved.is_empty() and moved.cell!=conflict.cell and stable,"释放完整地毯位置后冲突家具迁到合法空位，安全原位家具全部保持不动")
 	with_room.placed=partial.placed;with_room.recovered=partial.recovered;Housing.restore(with_room)
 	before=state();check(not Housing.reconcile_layout() and state()==before,"已经协调好的布局再次调用不移动、不复制、不退款")
 

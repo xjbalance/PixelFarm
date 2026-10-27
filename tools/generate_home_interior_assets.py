@@ -305,28 +305,256 @@ d.polygon([(16,13),(18,18),(23,18),(19,21),(21,25),(16,23),(11,25),(13,21),(9,18
 d.polygon([(16,16),(18,20),(16,23),(14,20)],fill='#f4dfaa');d.point((16,19),fill='#fff0c6')
 save(im,'star_lantern')
 
-# Exterior variants use the original exact canvas/silhouette and doorway alignment.
+# Exterior finish matches the cream-and-oak interior, preserving the exact original alpha.
+# Recolor/draw on native integer pixels; walls, roof silhouette and doorstep never move.
 original=Image.open(R/'assets/buildings/house.png').convert('RGBA')
-for level in range(1,5):
- im=original.copy();px=im.load()
- for y in range(im.height):
-  for x in range(im.width):
-   rr,gg,bb,aa=px[x,y]
-   if not aa:continue
-   if level>=3 and y<79 and rr>gg*1.15 and gg>bb:
-    if level==3:px[x,y]=(int(rr*.64),min(255,int(gg*1.04)+15),int(bb*.92)+12,aa)
-    else:px[x,y]=(int(rr*.65)+8,int(gg*.90)+10,min(255,int(bb*1.50)+28),aa)
+roof_palettes=[('#aa7e59','#c59b6e','#896344'),('#9d7b56','#c2a071','#7e603f'),('#7d8764','#a4ad80','#5f6e4e'),('#6f805f','#9eae7d','#52684b')]
+for level,(roof_base,roof_light,roof_dark) in enumerate(roof_palettes,1):
+ im=original.resize((96,84),Image.NEAREST);pixels=im.load()
+ recolor={
+  '#b76449':roof_base,'#cf8058':roof_light,'#995039':roof_dark,
+  '#e0c58b':'#eadebd','#c9a675':'#cdb48b',
+  '#815b46':'#86633f','#946b48':'#b48b59','#805a42':'#947047',
+  '#a17c59':'#b69a73','#a49375':'#c0b397','#b19b75':'#d0b997',
+  '#a18157':'#a27d50','#c4a271':'#dfbd88','#78583f':'#8a653f',
+  '#704c3e':'#73513a','#e0aa6e':'#dbc193',
+  '#758267':'#8d9c78','#4f6e59':'#667a5b',
+  '#89bcc0':'#a8c6ba','#d7d9ab':'#e6e0bf','#cae1cb':'#e8ebd2',
+  '#776353':'#8b7b63','#a28b6b':'#c1ac83'
+ }
+ lookup={tuple(bytes.fromhex(key[1:])):tuple(bytes.fromhex(value[1:])) for key,value in recolor.items()}
+ for y in range(84):
+  for x in range(96):
+   color=pixels[x,y]
+   if color[3]==255 and color[:3] in lookup:pixels[x,y]=lookup[color[:3]]+(255,)
  draw=ImageDraw.Draw(im)
+ # Limewash is framed by real timber uprights; the house remains the same size.
+ for x in [14,80]:
+  draw.line((x,41,x,64),fill='#8b6945');draw.line((x+1,42,x+1,63),fill='#d1ac77')
+ for x in [17,77]:
+  draw.polygon([(x,40),(x+3,40),(x+3,41),(x+1,44),(x,44)],fill='#a68153')
+  draw.line((x,40,x+3,40),fill='#d3af7b')
+ for x in [41,57]:draw.line((x,49,x,73),fill='#86613e')
+ draw.line((43,49,55,49),fill='#d6b680');draw.line((44,51,44,70),fill='#c9a371')
+ draw.rectangle((51,60,53,62),fill='#d9bd86');draw.point((52,61),fill='#f3dfad')
+ # Four stages add joinery, a few plants and warm light, without purple repainting.
  if level>=2:
-  for x in [39,129]:draw.line((x,92,x+28,92),fill='#e1c38e',width=2);draw.line((x,124,x+28,124),fill='#8b6548',width=2)
-  for x in [24,164]:draw.line((x,85,x,143),fill='#78503c',width=2);draw.line((x+1,86,x+1,142),fill='#b68a5a')
+  for x in [19,63]:
+   draw.line((x,42,x+16,42),fill='#ddc293');draw.line((x,61,x+16,61),fill='#9c794f')
+   draw.rectangle((x+1,59,x+15,61),fill='#af8a59');draw.line((x+2,59,x+14,59),fill='#ddbd88')
  if level>=3:
-  for x in [45,135]:
-   draw.rectangle((x,119,x+20,124),fill='#725137')
-   for j in range(4):draw.rectangle((x+2+j*5,116,x+4+j*5,120),fill='#819a5d');draw.point((x+3+j*5,115),fill='#d6b085')
+  for x in [23,67]:
+   for offset in [0,5,9]:
+    draw.rectangle((x+offset,56,x+offset+2,58),fill='#7b9467');draw.point((x+offset+1,55),fill='#cad2a2')
+   draw.point((x+5,56),fill='#e0c093')
  if level>=4:
-  for x in [29,161]:
-   draw.rectangle((x,101,x+4,111),fill='#6a533c');draw.rectangle((x+1,103,x+3,108),fill='#ebcc83');draw.point((x+2,104),fill='#fff1bb')
-  for x,y in [(61,52),(124,49),(101,29)]:draw.line((x-2,y,x+2,y),fill='#d6c6a0');draw.line((x,y-2,x,y+2),fill='#d6c6a0')
- im.putalpha(original.getchannel('A'));im.save(D/('exterior_'+str(level)+'.png'))
+  for x in [16,79]:
+   draw.line((x+1,46,x+1,49),fill='#896c45')
+   draw.rectangle((x,49,x+2,54),fill='#9f8353');draw.rectangle((x,50,x+2,52),fill='#ead399');draw.point((x+1,51),fill='#fff0bf')
+  for x,y in [(33,22),(62,23)]:
+   draw.point((x,y-1),fill='#c5cda0');draw.line((x-1,y,x+1,y),fill='#c5cda0');draw.point((x,y+1),fill='#c5cda0');draw.point((x,y),fill='#eee6b9')
+ im=im.resize(original.size,Image.NEAREST);im.putalpha(original.getchannel('A'));im.save(D/('exterior_'+str(level)+'.png'))
 print('Original home interior assets:',len(list(D.glob('*.png'))),'PNG files; no extracted reference pixels.')
+
+# Warm-country remaster: native two-pixel silhouettes, linen cloth and restrained oak.
+# These original pixels are drawn from geometry, never sampled from the references.
+CREAM='#eee2c2'; HONEY='#bb8859'; MOSS='#6e8264'; SEAM='#a7b38a'
+def rounded(d,box,fill,outline=O,radius=2,width=1):
+ d.rounded_rectangle(box,radius=radius,fill=fill,outline=outline,width=width)
+def textile(d,box,base=MOSS):
+ x,y,xx,yy=box;rounded(d,box,base,'#4c624d',2)
+ d.line((x+2,y+1,xx-2,y+1),fill='#b1bd91');d.line((x+2,yy-1,xx-2,yy-1),fill='#526950')
+ for px,py in [(x+4,y+5),(xx-5,y+9),(x+9,yy-5)]:d.line((px,py,px+2,py),fill='#92a27d')
+def pillow(d,box,color=CREAM):
+ x,y,xx,yy=box;rounded(d,box,'#c4bea0','#839077',2);rounded(d,(x+1,y,xx-1,yy-1),color,'#d3cfaf',2)
+ d.line((x+3,y+2,xx-3,y+2),fill='#fff1d2');d.line((x+2,yy-2,xx-2,yy-2),fill='#b9b99a')
+# Quiet staggered planks: eight column tiles, long grain marks on only a few boards.
+for name,palette in [('floor_oak_atlas',['#a47d54','#ac8359','#b38a60','#ad845a']),('floor_polished_atlas',['#ad865d','#b68e63','#bd9669','#b78f64']),('floor_estate_atlas',['#b28a5f','#ba9266','#c09a6e','#b68e63']),('floor_pale_atlas',['#bda17b','#c4aa85','#cab18e','#c3a681'])]:
+ atlas=Image.new('RGBA',(256,32))
+ for variant in range(8):
+  tile=Image.new('RGBA',(16,16));d=ImageDraw.Draw(tile)
+  for row in range(2):
+   y=row*8;d.rectangle((0,y,15,y+7),fill=palette[(variant+row)%len(palette)])
+   d.line((0,y,15,y),fill='#876444' if name!='floor_pale_atlas' else '#a08864');d.line((0,y+1,15,y+1),fill='#c7a477' if name!='floor_pale_atlas' else '#ddc5a1')
+   if (variant+row)%4==0:
+    joint=4 if variant<4 else 12;d.line((joint,y+1,joint,y+7),fill='#926e49')
+   if variant in [1,5]:d.line((3,y+5,11,y+5),fill=palette[(variant+row+1)%4])
+  atlas.paste(tile.resize((32,32),Image.NEAREST),(variant*32,0))
+ atlas.save(D/(name+'.png'))
+# Cream limewash above short oak wainscot, with cutaway wall/door geometry unchanged.
+for level in range(1,5):
+ im,d=canvas(640,464)
+ d.rectangle((0,0,319,39),fill='#4e3d30');d.rectangle((7,6,312,37),fill='#e3d1ac')
+ d.rectangle((9,8,310,25),fill='#ebddbd')
+ for x,y in [(35,13),(87,19),(132,11),(206,18),(270,13)]:d.line((x,y,x+3,y),fill='#e1d1ae')
+ d.rectangle((9,26,310,36),fill='#b58e62')
+ for x in range(11,311,14):
+  d.line((x,27,x,35),fill='#9d764e');d.line((x+1,27,x+1,34),fill='#c8a576')
+ for y,color in [(3,'#715035'),(5,'#bd966a'),(25,'#b38c60'),(26,'#d8b98b'),(37,'#6b4f35'),(38,'#ab8055')]:d.line((3,y,316,y),fill=color,width=2)
+ for x in [2,14,304,316]:
+  d.rectangle((x,4,x+3,43),fill='#6e5036');d.line((x+1,6,x+1,39),fill='#bb9563')
+ for x in [0,304]:
+  spans=[(40,215)] if x!=0 or level==1 else [(40,135),(184,215)]
+  for a,b in spans:
+   d.rectangle((x,a,x+15,b),fill='#4e3c2d');d.rectangle((x+2,a,x+11,b),fill='#a48258');d.line((x+3,a,x+3,b),fill='#cfad7a')
+ for a,b in [(0,145),(175,319)]:
+  d.rectangle((a,216,b,231),fill='#4e3b2d');d.rectangle((a+2,217,b-2,226),fill='#b28b5b');d.line((a+2,218,b-2,218),fill='#dbb987')
+ d.rectangle((146,215,174,231),fill='#5b4331')
+ for y in [218,222,226,230]:d.rectangle((147,y,173,y+2),fill='#bb945f');d.line((148,y,172,y),fill='#e6c390')
+ save(im,'walls_'+str(level))
+# Bed: curved headboard, two separate piped pillows and a weighted quilt edge.
+for quilt in [False,True]:
+ im,d=canvas(96,128);shadow(d,(2,6,43,55))
+ rounded(d,(3,2,44,60),'#a7764d',O,4);rounded(d,(4,1,43,18),'#a97c50',O,4)
+ rounded(d,(8,4,39,15),'#c49a67','#815a3c',3);d.line((10,5,37,5),fill='#e1be87');d.line((11,12,36,12),fill='#ae8255')
+ rounded(d,(5,17,42,59),'#c8bc98','#70553b',3);d.line((6,19,41,19),fill='#f3e4bf')
+ pillow(d,(8,18,22,29));pillow(d,(25,18,39,29),'#e4e3c5')
+ textile(d,(6,31,41,58),'#687d61' if not quilt else '#76866a')
+ rounded(d,(6,30,41,35),'#bdc49a','#99aa80',2);d.line((8,31,39,31),fill='#e0dfba')
+ if quilt:
+  for x,y in [(13,40),(29,40),(21,49),(36,51)]:
+   d.polygon([(x,y-3),(x+3,y),(x,y+3),(x-3,y)],fill='#b9bb91');d.point((x,y),fill='#dfd6ae')
+ else:
+  d.line((11,37,11,54),fill='#879a75');d.line((36,38,36,55),fill='#566e54');d.line((12,55,33,55),fill='#9baa82')
+ rounded(d,(4,56,43,61),'#b68b58','#674b34',2);d.line((7,57,40,57),fill='#d9b47c')
+ for x in [3,41]:
+  d.rectangle((x,9,x+3,62),fill='#765337');d.line((x+1,11,x+1,60),fill='#c59b62');rounded(d,(x-1,6,x+4,10),'#d9b17b','#7e5b3a',2)
+ save(im,'bed_quilt' if quilt else 'bed')
+# Rounded upholstery and individual cushion/arm shapes at the unchanged native size.
+for name,base in [('sofa','#7e906d'),('sofa_cottage','#71876b'),('sofa_estate','#617e71')]:
+ im,d=canvas(88,56);shadow(d,(1,10,42,15));rounded(d,(2,8,41,25),'#75563b',O,3)
+ rounded(d,(3,2,40,20),'#4e6652',O,4);rounded(d,(5,3,38,16),base,'#92a381',3)
+ d.line((8,4,35,4),fill='#b9c49b');d.line((21,6,21,14),fill='#617757')
+ for x in [6,23]:
+  rounded(d,(x,15,x+15,23),'#91a27f','#5a7258',2);d.line((x+2,16,x+13,16),fill='#bfca9e');d.line((x+2,22,x+13,22),fill='#6c835f')
+ for x in [0,38]:
+  rounded(d,(x,10,x+5,25),'#78916d','#47624d',2);d.line((x+1,11,x+4,11),fill='#c0c69f')
+ pillow(d,(7,6,14,14));pillow(d,(29,6,36,14),'#c5b48c')
+ for x in [5,36]:d.rectangle((x,25,x+2,27),fill='#5c4430')
+ if name=='sofa_estate':d.line((16,8,19,11),fill='#dcc69b');d.line((16,11,19,8),fill='#dcc69b')
+ save(im,name)
+# Dressers and bookcase: timber framing, varied ceramics, calm dark shelf recesses.
+im,d=canvas(136,80);shadow(d,(3,8,62,29));wood(d,(3,4,62,32),74)
+rounded(d,(2,2,65,7),'#c49b68','#725137',2);d.line((4,3,62,3),fill='#e3bf89')
+for yy in [9,19]:
+ d.rectangle((7,yy,60,yy+7),fill='#5d4b38')
+ for j,x in enumerate(range(10,57,9)):
+  if yy==9:
+   d.ellipse((x,yy+1,x+5,yy+5),fill=['#e5ddbb','#9bae98','#c9b696'][j%3]);d.line((x+1,yy+1,x+4,yy+1),fill='#fff0cc')
+  else:book(d,x,yy+1,5,5,['#6d8471','#b28c69','#94957b'][j%3])
+ d.line((7,yy+7,60,yy+7),fill='#d1aa74')
+for x in [7,34]:
+ rounded(d,(x,29,x+25,35),'#ac8054','#725039',1);d.line((x+2,30,x+23,30),fill='#c99f69');d.rectangle((x+11,31,x+13,32),fill='#ead19a')
+for x in [5,60]:d.rectangle((x,35,x+2,39),fill='#62472f')
+d.ellipse((48,0,57,4),fill='#dcd3b2');d.ellipse((50,0,55,2),fill='#fbedd1');save(im,'dresser')
+im,d=canvas(64,48);shadow(d,(2,3,28,19));wood(d,(1,0,30,22),83)
+for yy in [3,12]:
+ d.rectangle((4,yy,27,yy+7),fill='#574934')
+ for i,x in enumerate(range(5,27,4)):
+  height=5 if i%2 else 6;d.rectangle((x,yy+7-height,x+2,yy+6),fill=['#6d8c78','#a98265','#c0ad7e','#8d9490'][i%4]);d.point((x+1,yy+2),fill='#dfcf9f')
+ d.line((3,yy+7,28,yy+7),fill='#caa371')
+save(im,'bookcase')
+# Farmhouse table with soft corners and linen runner; carved chairs keep their footprints.
+im,d=canvas(120,84);shadow(d,(5,13,50,26))
+for x in [10,46]:d.rectangle((x,24,x+3,40),fill='#6b4c33');d.line((x+1,27,x+1,38),fill='#b38958')
+rounded(d,(5,5,54,34),'#805b3b',O,4);rounded(d,(6,4,53,31),'#b58a59','#785337',4)
+for yy in [6,14,23,30]:d.line((10,yy,49,yy),fill='#c59b69' if yy in [6,23] else '#9b7049')
+d.rectangle((24,5,35,32),fill='#b7c09a');d.line((25,6,25,31),fill='#e5ddbb');d.line((34,6,34,31),fill='#7d9672')
+d.ellipse((20,12,39,25),fill='#73543a');d.ellipse((21,12,38,23),fill='#d5b77d');d.ellipse((23,14,36,21),fill='#738254')
+for x,y,c in [(26,16,'#d3a05d'),(31,16,'#b77250'),(28,19,'#e5c37e')]:d.ellipse((x,y,x+3,y+3),fill=c)
+d.ellipse((42,8,49,14),fill='#e5ddbf');d.ellipse((43,9,48,12),fill='#88745a');save(im,'dining_table')
+for name,flip in [('chair_left',False),('chair_right',True)]:
+ im,d=canvas(28,48);shadow(d,(1,13,12,9));rounded(d,(2,1,11,18),'#a17b50','#604a33',2)
+ rounded(d,(4,4,9,14),'#82926e','#637953',1);d.line((5,5,8,5),fill='#c4c79c')
+ rounded(d,(1,15,12,20),'#a2ae87','#6d784e',2)
+ for x in [2,10]:d.rectangle((x,20,x+1,23),fill='#62452f')
+ if flip:im=im.transpose(Image.FLIP_LEFT_RIGHT)
+ save(im,name)
+# Cream cabinetry and warm grey limestone rather than the old all-brown slab.
+for estate in [False,True]:
+ im,d=canvas(128,72);shadow(d,(1,10,62,24));d.rectangle((1,1,62,14),fill='#d6d5b9')
+ for y in [2,8]:
+  d.line((2,y,61,y),fill='#eee4c9')
+  for x in range(5+(3 if y==8 else 0),61,10):d.line((x,y,x,y+5),fill='#c0c1a9')
+ rounded(d,(2,16,61,33),'#d2c29e','#84705a',1)
+ for x in [5,24,43]:
+  rounded(d,(x,20,x+15,30),'#e3d6b2','#ad9a7a',1);d.line((x+2,21,x+13,21),fill='#f7e9c8');d.rectangle((x+6,23,x+9,24),fill='#ad8a53')
+ rounded(d,(1,13,62,18),'#c3c5b0','#8e9787',1);d.line((2,13,61,13),fill='#f3ebd4')
+ d.rectangle((4,9,24,15),fill='#59605a');d.ellipse((8,8,17,14),fill='#3d4942');d.ellipse((9,8,16,12),fill='#7d8a7b');d.line((17,10,21,8),fill='#3c4840',width=2)
+ rounded(d,(31,10,52,16),'#778e83','#566f67',2);d.rectangle((33,11,50,14),fill='#a9c0ad');d.line((34,11,49,11),fill='#d9e2c8')
+ d.line((41,10,41,5),fill='#b79867',width=2);d.line((41,5,46,5),fill='#e7c993',width=2);d.line((46,5,46,8),fill='#927b56')
+ d.rectangle((7,23,17,29),fill='#53594d');d.rectangle((9,24,15,27),fill='#b98a51');d.line((8,22,16,22),fill='#d9c79e')
+ d.ellipse((55,7,61,12),fill='#ba9b6e');d.rectangle((56,4,60,9),fill='#d7c5a0');d.ellipse((56,3,60,5),fill='#84966f')
+ if estate:
+  for x in [27,29]:d.line((x,2,x,7),fill='#9d8967');d.ellipse((x-1,6,x+1,9),fill='#c3c7af')
+ save(im,'kitchen_estate' if estate else 'kitchen')
+# Less blanket coverage: inset woven rugs retain original transparent canvas dimensions.
+def country_rug(width,height,name,base='#819275',accent='#c9b88b',inset=8):
+ im,d=canvas(width,height);w=im.width;h=im.height;left=min(inset,max(1,w//6));top=min(inset,max(1,h//6))
+ rounded(d,(left,top,w-left-1,h-top-1),'#7a7055','#6c634e',3)
+ rounded(d,(left+1,top+1,w-left-2,h-top-2),accent,accent,3)
+ rounded(d,(left+3,top+3,w-left-4,h-top-4),base,base,2)
+ d.rectangle((left+5,top+5,w-left-6,h-top-6),outline=accent)
+ for x in range(left+6,w-left-6,6):d.line((x,top-1,x,top),fill='#d9c8a3');d.line((x,h-top-1,x,h-top),fill='#d9c8a3')
+ cx=w//2;cy=h//2
+ for ox,oy in [(-9,-3),(9,3),(0,0)]:
+  d.line((cx+ox,cy+oy-3,cx+ox,cy+oy+3),fill=accent);d.line((cx+ox-2,cy+oy-1,cx+ox+2,cy+oy+1),fill=accent)
+ save(im,name)
+country_rug(240,126,'main_rug',inset=17);country_rug(176,104,'dining_rug','#a28d70',inset=9)
+country_rug(96,144,'bed_rug','#a18e78',inset=5);country_rug(80,104,'study_rug_2',inset=5)
+country_rug(176,176,'study_rug','#81907a',inset=19);country_rug(224,224,'study_rug_4','#758d7a',inset=25)
+# Writing surfaces and storage add a notebook, rounded drawer fronts and woven baskets.
+im,d=canvas(88,56);shadow(d,(2,11,39,14));wood(d,(4,6,36,16),132)
+rounded(d,(2,4,41,18),'#be9666','#705136',2);d.line((4,5,39,5),fill='#dfbd89')
+book(d,7,8,11,7,'#7f987a');d.rectangle((22,7,32,14),fill='#ede1bb')
+for y in [9,11,13]:d.line((24,y,30,y),fill='#a6a486')
+d.ellipse((34,7,38,11),fill='#7b664d');d.line((36,7,39,2),fill='#ded6b7');d.line((38,4,40,3),fill='#b0bda0')
+for x in [5,37]:d.rectangle((x,20,x+2,27),fill='#715136');d.line((x+1,21,x+1,25),fill='#bd9965')
+rounded(d,(7,19,20,23),'#a17b50','#7c593d',1);d.rectangle((12,20,14,21),fill='#e1c593');save(im,'mail_desk')
+for level,width in [(2,104),(3,192),(4,256)]:
+ im,d=canvas(width,64);w=width//2;shadow(d,(1,12,w-2,17))
+ for x in [4,w-8]:d.rectangle((x,21,x+3,31),fill='#765339');d.line((x+1,23,x+1,29),fill='#bc9465')
+ wood(d,(3,12,w-6,13),level*27);rounded(d,(1,8,w-2,20),'#bd9665','#735137',2);d.line((4,9,w-5,9),fill='#dfbd8a')
+ book(d,7,10,12,7,'#829579');book(d,22,11,10,6,'#a78266')
+ if w>70:
+  d.rectangle((w//2-10,10,w//2+9,18),fill='#ede0bb')
+  for y in [12,15,17]:d.line((w//2-7,y,w//2+6,y),fill='#a4a182')
+ for x in [w-17,w-9]:d.rectangle((x,8,x+3,12),fill='#b5a480');d.ellipse((x,7,x+3,9),fill='#e7dcbc')
+ for x in [7,w-25]:
+  rounded(d,(x,22,x+17,27),'#ad8657','#7a583c',1);d.rectangle((x+8,23,x+10,24),fill='#dfc18a')
+ save(im,'study_desk_'+str(level))
+im,d=canvas(32,64);shadow(d,(1,10,14,19));rounded(d,(1,7,14,29),'#a78355','#6b4e34',2)
+rounded(d,(0,5,15,11),'#c29c69','#765338',2);d.line((2,6,13,6),fill='#e3c28c')
+for y in [13,21]:
+ rounded(d,(3,y,12,y+6),'#b99767','#87623f',1);d.line((4,y+1,11,y+1),fill='#d2b17c');d.rectangle((7,y+3,9,y+3),fill='#e3cb96')
+for x in [2,12]:d.rectangle((x,28,x+1,31),fill='#684b34')
+save(im,'storage_slim')
+# Side rooms receive the same cream limewash and oak dado, without changing any opening.
+for level,w,h in [(2,128,160),(3,224,288),(4,288,352)]:
+ im,d=canvas(w+24,h+60);ww=im.width;hh=im.height
+ d.rectangle((0,0,ww-1,23),fill='#5a4230');d.rectangle((5,5,ww-7,16),fill='#e8d9b7');d.rectangle((5,17,ww-7,22),fill='#b68f61')
+ for x in range(8,ww-7,14):d.line((x,18,x,22),fill='#97724a');d.line((x+1,18,x+1,21),fill='#c9a979')
+ for y,color in [(2,'#9b744d'),(4,'#d2ae7d'),(16,'#c4a06d'),(22,'#7b593b')]:d.line((2,y,ww-3,y),fill=color,width=2)
+ d.rectangle((0,22,5,hh-1),fill='#5b4230');d.rectangle((2,24,4,hh-4),fill='#bc9663')
+ d.rectangle((4,hh-7,ww-1,hh-1),fill='#5b4430');d.rectangle((5,hh-6,ww-1,hh-3),fill='#b78f5c');d.line((5,hh-6,ww-1,hh-6),fill='#dfbf8d')
+ save(im,'extension_walls_'+str(level))
+# Placed furniture is drawn at its true footprint; no runtime stretching.
+im,d=canvas(32,64);shadow(d,(1,4,13,27));rounded(d,(1,1,14,30),'#ad8454','#684b32',2);rounded(d,(3,3,12,10),'#c6a06c','#8b6642',2)
+pillow(d,(3,11,12,16));textile(d,(3,17,12,28));d.line((4,18,11,18),fill='#c4c7a0');d.rectangle((2,28,13,30),fill='#b89360');save(im,'placeable_bed')
+im,d=canvas(64,32);shadow(d,(1,5,30,10));rounded(d,(1,1,30,12),'#b78d5c','#735236',2);d.line((3,2,28,2),fill='#dfbd88');d.rectangle((14,2,19,12),fill='#aeb891')
+for x in [3,27]:d.rectangle((x,12,x+1,15),fill='#674b34')
+d.ellipse((13,4,20,9),fill='#d4bc86');d.ellipse((15,5,18,7),fill='#8a956b');save(im,'placeable_table')
+im,d=canvas(32,32);shadow(d,(3,6,10,9));rounded(d,(4,1,11,11),'#b08a59','#6d5036',2);d.rectangle((6,3,9,8),fill='#829871');rounded(d,(2,9,13,13),'#b1bd90','#6c7957',2)
+for x in [3,11]:d.rectangle((x,13,x+1,15),fill='#705139')
+save(im,'placeable_chair')
+im,d=canvas(32,32);shadow(d,(1,5,14,10));rounded(d,(1,3,14,14),'#b18a58','#77573b',1);d.rectangle((3,6,7,12),fill='#c6a06c');d.rectangle((8,6,12,12),fill='#c6a06c');d.line((3,7,6,7),fill='#e1be87');d.rectangle((6,9,9,9),fill='#eed3a2');d.line((1,3,14,3),fill='#e0bd89');save(im,'placeable_cabinet')
+country_rug(64,64,'placeable_rug',inset=1)
+im,d=canvas(32,32);d.ellipse((4,13,11,15),fill='#886943');d.line((8,6,8,13),fill='#a18053');d.polygon([(3,6),(5,1),(11,1),(13,6),(11,8),(5,8)],fill='#e5d7b2');d.line((5,2,11,2),fill='#fff1d0');d.line((4,7,12,7),fill='#b8ae86');save(im,'placeable_lamp')
+im,d=canvas(32,32);d.polygon([(5,11),(11,11),(10,15),(6,15)],fill='#b48a61');d.rectangle((4,10,12,11),fill='#d1ab7b')
+for x,y in [(3,7),(8,3),(13,6),(6,8)]:
+ d.line((8,10,x,y),fill='#576e46');d.ellipse((x-2,y-2,x+1,y+1),fill='#829b64');d.point((x-1,y-1),fill='#a9b67e')
+save(im,'placeable_plant')
+im,d=canvas(64,32);wood(d,(2,3,28,9),17);d.line((3,4,28,4),fill='#dfbd8a');d.rectangle((15,4,24,9),fill='#ede2bf');d.line((17,6,22,6),fill='#9ba38a');book(d,5,5,7,4,'#7d9676')
+for x in [3,27]:d.rectangle((x,12,x+1,15),fill='#715037')
+save(im,'placeable_spouse_desk')
+print('Warm-country remaster complete; native crisp furnishings and eight floor variants.')

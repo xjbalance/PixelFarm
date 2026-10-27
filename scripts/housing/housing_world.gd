@@ -16,6 +16,11 @@ func attach(owner_game: Node) -> void:
 	Housing.changed.connect(refresh);refresh()
 func refresh() -> void:
 	if game.home.has_method("set_house_level"): game.home.set_house_level(Housing.state.level)
+	for point in game.home.get_children():
+		if "housing_id" in point and point.housing_id=="home": point.position=Housing.anchor("storage")
+		elif "actor_id" in point and point.actor_id=="mail":
+			point.builtin_id="mail_desk";point.position=Housing.anchor("mail")
+
 	var wanted := {}
 	for entry in Housing.state.placed:
 		wanted[entry.id]=true

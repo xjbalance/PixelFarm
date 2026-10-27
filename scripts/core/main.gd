@@ -12,6 +12,7 @@ var village: Node2D
 var was_running: bool = true
 var backgrounded: bool = false
 var home_rest: HomeRestController
+var home_arrange: HomeArrangeController
 var resource_world: ResourceWorld
 var closing: bool = false
 var autosave_pending: bool = false
@@ -107,6 +108,7 @@ func _ready() -> void:
 	touch_input.set_script(preload("res://scripts/input/touch_input_manager.gd"))
 	add_child(touch_input)
 	touch_input.setup(self)
+	home_arrange=HomeArrangeController.new();add_child(home_arrange);home_arrange.setup(self)
 	tutorial=GameTutorial.new();add_child(tutorial);tutorial.attach(self)
 	Events.notice.emit("欢迎回家。屋东的信箱里，有一封留给你的信。")
 	if persistence_enabled and (FileAccess.file_exists(FarmSaveStore.PATH) or FileAccess.file_exists(FarmSaveStore.PATH+".bak")):
@@ -140,6 +142,20 @@ func _process(delta: float) -> void:
 		hud.action_button.text = context_action_name()+"\n使用" if GameState.location == "farm" else "交互"
 
 func nearest_interactable() -> Node2D:
+	# 家具搬动后可能靠近旧剧情点；在家中优先交互面向且确实可触及的功能家具。
+	if GameState.location=="home" and is_instance_valid(auto_move):
+		var faced: Node2D
+		var best: float=INF
+		for object in get_tree().get_nodes_in_group("interactables"):
+			if not object.is_visible_in_tree() or not home.is_ancestor_of(object) or not "builtin_id" in object or object.builtin_id=="": continue
+			var offset: Vector2=object.global_position-player.global_position
+			var distance_to_target: float=offset.length()
+			if distance_to_target>54 or distance_to_target<.01: continue
+			var alignment: float=player.facing.normalized().dot(offset.normalized())
+			if alignment<.7 or not auto_move.navigation.line_of_sight(player.global_position,object.global_position,object): continue
+			var score: float=(1-alignment)*64+distance_to_target*.1
+			if score<best: best=score;faced=object
+		if faced: return faced
 	var found: Node2D = null
 	var distance: float = 58.0
 	for object in get_tree().get_nodes_in_group("interactables"):
@@ -185,6 +201,7 @@ func handle_interaction(kind: String) -> void:
 	elif kind.begins_with("social_site:"): hud.social_panel.open_site(kind.trim_prefix("social_site:"))
 	elif kind.begins_with("social:"): hud.social_panel.open_panel(kind.trim_prefix("social:"))
 	elif kind=="home:nap": home_rest.open()
+	elif kind=="home:arrange": home_arrange.start_blank()
 	elif kind=="kitchen": hud.kitchen_panel.open_panel()
 	elif kind=="kitchen:berry": hud.kitchen_panel.open_panel("berry")
 	elif kind=="ecology": hud.ecology_panel.open_panel()
@@ -267,6 +284,7 @@ func _notification(what: int) -> void:
 	if what in [NOTIFICATION_APPLICATION_FOCUS_OUT,NOTIFICATION_APPLICATION_PAUSED]:
 		if not backgrounded:
 			backgrounded = true
+			if is_instance_valid(home_arrange): home_arrange.cancel()
 			player.suspended = true
 			player.cancel_farm_action()
 			was_running = GameClock.running

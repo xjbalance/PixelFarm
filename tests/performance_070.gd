@@ -9,7 +9,7 @@ func run() -> void:
 	for id in Exploration.data.points:
 		if Exploration.data.points[id].kind=="note": exploration.facts.append(id)
 	exploration.facts.append("drain_plate");exploration.facts.append("lake_lower_opened");Exploration.restore(exploration)
-	var housing: Dictionary=Housing.defaults();housing.level=3;Housing.restore(housing);await frames(6)
+	var housing: Dictionary=Housing.defaults();housing.level=3;housing.builtins=HomeLayout.default_builtins(3);Housing.restore(housing);await frames(6)
 	check(FarmSaveStore.valid(FarmSaveStore.snapshot(game)),"性能夹具为完整合法新存档，不用矛盾状态绕过区域前置")
 	var areas: Array[String]=["farm","home","village","mist_forest","lake_ruins","old_temple"]
 	var transitions: Array[float]=[];var navigation: Array[float]=[]

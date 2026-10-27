@@ -16,7 +16,7 @@ func run() -> void:
 	if legacy_write:
 		Inventory.items={"wood":37,"stone":23,"carrot_seed":17};Inventory.coins=7821;Xiaojing.state.diamonds=1314
 		GameState.set_control_mode("joystick",false)
-		var old:=FarmSaveStore.snapshot(game);old.resources=Rich.legacy_resources(old.resources)
+		var old:=FarmSaveStore.snapshot(game);old.version=23;old.housing.erase("builtins");old.resources=Rich.legacy_resources(old.resources)
 		old.resources.tree_7_20={"hp":0,"ready_day":GameClock.day+3};old.resources.rock_11_19={"hp":1,"ready_day":0}
 		check(old.version==23 and old.resources.size()==19 and FarmSaveStore.valid(old),"独立旧档仅包含实际v23原19资源节点")
 		write_json("user://resource-rich-legacy-proof.json",old)
@@ -26,7 +26,9 @@ func run() -> void:
 		var old:=read_json("user://resource-rich-legacy-proof.json")
 		var now: Dictionary=AbyssSaveSchema.canonical(FarmSaveStore.snapshot(game));var preserved:=true
 		for key in old:
-			if key!="resources" and old[key]!=now.get(key): preserved=false;print("RESOURCE LEGACY MISMATCH ",key)
+			if key not in ["version","housing","resources"] and old[key]!=now.get(key): preserved=false;print("RESOURCE LEGACY MISMATCH ",key)
+		for field in old.housing:
+			if old.housing[field]!=now.housing.get(field): preserved=false;print("RESOURCE LEGACY HOUSING MISMATCH ",field)
 		check(preserved,"旧档独立重启逐字段保留原金币背包婚礼钻石与操作模式")
 		var kept:=true
 		for id in old.resources: kept=kept and now.resources[id]==old.resources[id]
@@ -35,7 +37,7 @@ func run() -> void:
 		for id in all:
 			if not old.resources.has(id): full=full and now.resources[id]=={"hp":int(FarmResourceCatalog.TYPES[all[id].kind].hits),"ready_day":0}
 		check(full,"新图与新增节点按各自默认耐久初始化，无物品补发")
-		check(FarmSaveStore.write(game) and FarmSaveStore.read().resources.size()==128,"旧档升级后安全写回同v23格式扩展资源集合")
+		check(FarmSaveStore.write(game) and FarmSaveStore.read().resources.size()==128,"旧档升级后安全写回当前格式扩展资源集合")
 	elif writing:
 		Inventory.items={"wood":4,"stone":3,"carrot_seed":17};Inventory.coins=7921;Xiaojing.state.diamonds=1314;GameState.rest()
 		await Rich.visit(self,game,"farm")

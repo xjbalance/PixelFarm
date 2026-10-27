@@ -38,6 +38,9 @@ func open_panel(id: String="home") -> void:
 	if GameState.modal: return
 	if id in ["upgrade","builder"]:
 		area="home";selected_id="";selected_kind="chair"
+	elif id in ["room","arrange"]:
+		if not Housing.can_arrange(): return
+		area="home";selected_id="";selected_kind="chair"
 	elif id.begins_with("item:"):
 		selected_id=id.trim_prefix("item:")
 		if not Housing.near_item(selected_id): return
@@ -81,6 +84,8 @@ func refresh() -> void:
 	elif page=="upgrade": show_upgrade()
 	else: show_layout()
 func show_layout() -> void:
+	if area=="home":
+		show_home_layout();return
 	words("庭院布置" if area=="farm" else "小屋起居布置",23)
 	words("选择家具，再点网格查看落点预览，最后确认放置。灰格不能放；床、门、故事木盒、厨房和穿行走廊都在保护区。已摆家具可移动或回收到家具库，不返还材料也不会复制。",16)
 	if selected_id!="":
@@ -136,6 +141,45 @@ func show_layout() -> void:
 			if Housing.can_manage(area,id): selected_id=id;selected_kind=entry.kind;selected_cell=Vector2i(-1,-1);refresh()
 			else: result(false)
 		)
+func _room_editor() -> Node:
+	return Housing.game.home_arrange
+func _edit_builtin(id: String) -> void:
+	if not visible or not Housing.can_arrange(): return
+	close_panel();_room_editor().start_builtin(id)
+func _edit_item(id: String) -> void:
+	if not visible or not Housing.can_arrange(): return
+	close_panel();_room_editor().start_item(id)
+func _edit_owned(kind: String) -> void:
+	if not visible or not Housing.can_arrange(): return
+	close_panel();_room_editor().start_owned(kind)
+func show_home_layout() -> void:
+	words("自己安排家的样子",23)
+	words("进入房间布置后，点选或拖动家具预览新位置，再确认摆放。床、沙发、厨房与收纳会跟着移动，门口和必要通路需要留空。",17)
+	button("直接在房间里布置",func():
+		if not visible: return
+		close_panel();_room_editor().start_blank()
+	).set_meta("home_arrange_entry",true)
+	words("家里的家具",21)
+	for item in Housing.builtin_layout():
+		var id: String=item.id
+		var control:=button("移动"+str(item.name)+(" · 待安放" if item.stored else ""),_edit_builtin.bind(id))
+		control.set_meta("home_builtin_id",id)
+		control.tooltip_text="只移动家具，不扣材料。" if id not in HomeLayout.ESSENTIAL else "移动后功能仍可使用；请为它留出能走近的位置。"
+	var owned_any:=false
+	for kind in Housing.data.furniture:
+		if Housing.data.furniture[kind].area!="home" or int(Housing.state.owned.get(kind,0))<1: continue
+		if not owned_any: words("家具库",21);owned_any=true
+		button("摆放"+str(Housing.data.furniture[kind].name)+" ×%d" % int(Housing.state.owned[kind]),_edit_owned.bind(str(kind)))
+	if not Housing.state.placed.is_empty(): words("已摆放的自制家具",21)
+	for entry in Housing.state.placed:
+		if entry.area!="home": continue
+		var id: String=entry.id
+		button("移动"+str(Housing.data.furniture[entry.kind].name),_edit_item.bind(id)).set_meta("home_custom_id",id)
+		button("收回家具库 · "+str(Housing.data.furniture[entry.kind].name),func(): ask("收回家具库，之后可以重新摆放，不返还制作材料。继续？",func(): result(Housing.recycle(id))))
+	for entry in Housing.state.get("recovered",[]):
+		var id: String=entry.id
+		button("取回暂存家具 · "+str(Housing.data.furniture[entry.kind].name),func(): result(Housing.recover_furniture(id)))
+
 func show_catalog() -> void:
 	if area=="home": button("查看住宅成长与施工进度",func(): page="upgrade";refresh())
 	var grid:=FarmUIStyle.section_grid(content)
@@ -144,7 +188,7 @@ func show_catalog() -> void:
 		if entry.area not in [area,"style"]: continue
 		if entry.area=="style" and area!="home": continue
 		section=FarmUIStyle.section(grid)
-		var icon := TextureRect.new();icon.texture=load("res://assets/housing/"+kind+".png");icon.custom_minimum_size=Vector2(48,48);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;section.add_child(icon)
+		var icon := TextureRect.new();var preferred: String="res://assets/housing/interior/placeable_"+str(kind)+".png";icon.texture=load(preferred if entry.area=="home" and ResourceLoader.exists(preferred) else "res://assets/housing/"+str(kind)+".png");icon.custom_minimum_size=Vector2(48,48);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;section.add_child(icon)
 		words(entry.name+" · 家具库%d\n%s\n%s、%s" % [Housing.state.owned.get(kind,0),entry.description,costs(entry.required),DiamondPayments.text(int(entry.coins))])
 		if not Housing.unlocked(kind): words("需要住宅等级%d%s" % [entry.level,"且已结婚" if entry.get("married",false) else ""],16)
 		button("制作一件 · "+entry.name,func(): ask("消耗"+costs(entry.required)+"与"+DiamondPayments.text(int(entry.coins))+"制作一件"+entry.name+"？",func(): DiamondPayments.request(self,int(entry.coins),func(): result(Housing.buy(kind))))).disabled=not Housing.unlocked(kind)

@@ -27,7 +27,7 @@ func restore(raw: Dictionary) -> void:
 	state=AbyssSaveSchema.canonical(raw).duplicate(true);busy=false;changed.emit()
 
 func near_kitchen() -> bool:
-	return is_instance_valid(game) and GameState.location=="home" and game.player.global_position.distance_to(ANCHOR)<=54
+	return is_instance_valid(game) and GameState.location=="home" and game.player.global_position.distance_to(Housing.anchor("kitchen"))<=54
 
 func near_berry() -> bool:
 	return is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(BERRY)<=54

@@ -4,6 +4,8 @@ extends Node
 const SOFA:=Vector2(704,492)
 var game: Node
 var sofa_point: Node2D
+var bed_point: Node2D
+var opened_anchor:=Vector2.ZERO
 var panel: PanelContainer
 var confirm_button: Button
 var cancel_button: Button
@@ -20,15 +22,15 @@ var confirmation_callback:=Callable()
 func setup(owner_game: Node) -> void:
 	game=owner_game
 	var point:=Node2D.new();point.name="SofaNap"
-	point.set_script(preload("res://scripts/housing/home_action_point.gd"));point.home_action="nap";point.position=SOFA;sofa_point=point
-	var obstacle:=StaticBody2D.new();obstacle.position=Vector2(0,-8)
-	var shape:=CollisionShape2D.new();var box:=RectangleShape2D.new();box.size=Vector2(72,24);shape.shape=box;obstacle.add_child(shape);point.add_child(obstacle)
+	point.set_script(preload("res://scripts/housing/home_action_point.gd"));point.home_action="nap";point.builtin_id="sofa";point.position=Housing.anchor("sofa");sofa_point=point
+
 	game.home.add_child(point)
 	# 原床保留坐标/业务，仅换为整张床可点的命中框。
 	for object in game.home.get_children():
 		if "kind" in object and object.kind=="sleep":
 			object.remove_from_group("interactables");object.queue_free()
-	var bed:=Node2D.new();bed.name="BedRest";bed.set_script(preload("res://scripts/housing/home_action_point.gd"));bed.home_action="sleep";bed.position=Vector2(786,342);game.home.add_child(bed)
+	var bed:=Node2D.new();bed.name="BedRest";bed.set_script(preload("res://scripts/housing/home_action_point.gd"));bed.home_action="sleep";bed.builtin_id="bed";bed.position=Housing.anchor("sleep");bed_point=bed;game.home.add_child(bed)
+	Housing.changed.connect(sync_layout)
 	panel=PanelContainer.new();panel.set_script(preload("res://scripts/housing/home_rest_panel.gd"));panel.controller=self;panel.name="HomeNapConfirmation";panel.add_to_group("modal_panels");panel.set_meta("home_confirmation",true)
 	panel.hide();game.hud.safe.add_child(panel)
 	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",12);panel.add_child(column)
@@ -42,13 +44,19 @@ func setup(owner_game: Node) -> void:
 	GameState.control_mode_changed.connect(cancel)
 	panel.minimum_size_changed.connect(func(): game.hud.call_deferred("reflow_panels"))
 
+func sync_layout() -> void:
+	var changed_anchor: bool=is_instance_valid(sofa_point) and sofa_point.position!=Housing.anchor("sofa")
+	if is_instance_valid(sofa_point): sofa_point.position=Housing.anchor("sofa")
+	if is_instance_valid(bed_point): bed_point.position=Housing.anchor("sleep")
+	if changed_anchor and is_instance_valid(panel) and panel.visible: cancel()
+
 func available() -> bool:
-	return is_instance_valid(game) and not game.backgrounded and not game.closing and not GameState.restoring and not GameClock.settling and GameState.location=="home" and not game.player.suspended and game.player.action_time<=0 and GameClock.minutes<1440 and GameClock.day<999999 and game.player.global_position.distance_to(SOFA)<=54 and game.auto_move.navigation.line_of_sight(game.player.global_position,SOFA,sofa_point)
+	return is_instance_valid(game) and not game.backgrounded and not game.closing and not GameState.restoring and not GameClock.settling and GameState.location=="home" and not game.player.suspended and game.player.action_time<=0 and GameClock.minutes<1440 and GameClock.day<999999 and game.player.global_position.distance_to(Housing.anchor("sofa"))<=54 and game.auto_move.navigation.line_of_sight(game.player.global_position,Housing.anchor("sofa"),sofa_point)
 
 func open() -> bool:
 	if busy or GameState.modal or not available(): return false
 	game.auto_move.cancel();game.player.velocity=Vector2.ZERO
-	serial+=1;pending_token=serial;opened_day=GameClock.day;opened_minute=GameClock.minutes
+	serial+=1;pending_token=serial;opened_day=GameClock.day;opened_minute=GameClock.minutes;opened_anchor=Housing.anchor("sofa")
 	var amount: int=ceili(GameState.max_stamina()*.5)
 	var full: bool=GameState.stamina>=GameState.max_stamina()
 	body.text="小睡1小时，恢复最大体力的50%%（%d点）。\n不超过上限，不占屋东休息椅次数。" % amount
@@ -63,7 +71,7 @@ func open() -> bool:
 	return true
 
 func confirm(token: int) -> bool:
-	if busy or token<0 or token!=pending_token or not panel.visible or not GameState.modal or not available() or opened_day!=GameClock.day or absf(opened_minute-GameClock.minutes)>.01: return false
+	if opened_anchor.distance_to(Housing.anchor("sofa"))>.01 or busy or token<0 or token!=pending_token or not panel.visible or not GameState.modal or not available() or opened_day!=GameClock.day or absf(opened_minute-GameClock.minutes)>.01: return false
 	# 先使旧按钮无效，再一次性提交时间与体力；所有保存信号都在完整状态之后。
 	pending_token=-1;serial+=1;busy=true;panel.hide();confirm_button.disabled=true
 	var fatigue: bool=GameClock.minutes+60>=1440

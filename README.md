@@ -1,14 +1,14 @@
 # 像素世界 · Pixel World
 
-当前源码和调试APK已包含[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)及[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)。
+当前源码和调试APK已包含[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)及[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)。
 
 **0.7.1《匠心打磨》**，Godot 4.3 Standard 原创像素经营 RPG。在原工程上整合四季天气、自由钓鱼、湖泊生态、畜牧、厨房加工、四季节日、村民个人事件、家园扩建装修与三张隐藏地图。
 
-保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v23**，兼容v1–v22，原应用包名、证书与存档路径保留。
+保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v24**，兼容v1–v23，原应用包名、证书与存档路径保留。
 
-最新源码完整验证见[布局与资源机器记录](docs/TEST-CLASSIC-RESOURCES.json)：**4,064项自动化、2,448项桌面窗口检查零失败**，包括五横屏/安全区及64/96逻辑触区的密度注入布局检查。Android调试APK已重新生成；没有Android真机验收。
+最新源码完整验证见[住宅布置机器记录](docs/TEST-HOME-ARRANGE.json)：**4,251项自动化、2,534项桌面窗口检查零失败**，134个计划进程、26套窗口检查全部通过，包括原移动/农活/背包/多比例及安全区回归。原签名Android调试APK已重新生成（versionCode 16）；没有Android真机验收。
 
-[当前布局与森林报告](docs/RESTORED-LAYOUT-RESOURCES.md) · [住宅05报告与四级截图](docs/REPORT-HOME05.md) · [UI05报告与前后截图](docs/REPORT-UI05.md) · [布局规范](docs/UI05-LAYOUT.md) · [UI04报告](docs/REPORT-UI04.md) · [初版开发报告](docs/REPORT-0.7.1.md) · [0.7.0内容报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [UI05验收边界](docs/KNOWN-ISSUES-UI05.md)
+[当前住宅改造与摆放报告](docs/HOME-ARRANGE.md) · [布局与森林报告](docs/RESTORED-LAYOUT-RESOURCES.md) · [住宅05报告与四级截图](docs/REPORT-HOME05.md) · [UI05报告与前后截图](docs/REPORT-UI05.md) · [布局规范](docs/UI05-LAYOUT.md) · [UI04报告](docs/REPORT-UI04.md) · [初版开发报告](docs/REPORT-0.7.1.md) · [0.7.0内容报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [UI05验收边界](docs/KNOWN-ISSUES-UI05.md)
 
 ![恢复的完整九格布局](docs/classic-resources/classic-1280-hud.png)
 
@@ -16,11 +16,13 @@
 
 ![资源丰富的迷雾森林](docs/classic-resources/mist_forest_1280x720.png)
 
-以下为住宅05历史界面截图，住宅外观与功能仍保留：
+住宅已统一为暖木、奶油墙面与苔绿软装，床、沙发、厨房和其他家具可自行移动，四级成长与原完整九格大小保留。
 
-![四阶段住宅实际窗口](docs/home05/four-levels.png)
+![四阶段温馨田园住宅实际窗口](docs/home-arrange/four-levels.png)
 
-住宅可通过周砚进行两日改建；沙发小睡一小时恢复最大体力50%，午夜仍优先正常昏睡。[小睡演示](docs/home05/sofa-demo.gif) · [室内前后对照](docs/home05/compare-interior.png)。
+在家打开菜单选择“布置房间”，或点击收纳柜→“布置与移动”→“直接在房间里布置”；点选/拖动家具预览，点击“确认摆放”才提交。家具外观、碰撞与功能位置同步更新，出口和生活通路受保护。[摆放演示](docs/home-arrange/arrange-demo.gif) · [室内前后对照](docs/home-arrange/compare-interior.png)。
+
+住宅仍通过周砚进行两日改建；所有等级保留室内厨房。沙发小睡一小时恢复最大体力50%，午夜仍优先正常昏睡。[原小睡演示](docs/home05/sofa-demo.gif)。
 
 UI05紧凑版已恢复为上方的完整布局；[旧界面仅作历史对照](docs/ui05/compare-hud.png)。
 
@@ -49,7 +51,7 @@ Godot **4.3 Standard** 导入`project.godot`，完成素材导入后按F5；不�
 | 背包/委托/手记 | B/J/M | 右上对应按钮 |
 | 保存/读取/菜单 | F5/F9/Esc | 菜单与系统返回 |
 | 钓鱼 | 按住追鱼按钮或空格，松开调整 | 长按/松开追鱼按钮 |
-| 装修 | 选择家具、网格落点、确认 | 同样使用原生触屏按钮与滚动 |
+| 家内布置 | 家内菜单→布置房间，点选/拖动、确认 | 同样点选/拖动家具预览，确认才提交 |
 
 浇水时脚底与朝向短暂固定，人物图像不再水平累加偏移；地图点击使用按下时的世界位置，避免跟随相机后释放到另一格。按下时同时保留NPC/动物身份，释放后不会因它们走动误点地面。目标环区分地面、交互与不可达；UI、多指、混合鼠标触屏、切图、模式切换与后台均有取消/防误触处理。手记“村里的邻居”与地图显示实际活动位置。
 
@@ -67,8 +69,8 @@ Godot **4.3 Standard** 导入`project.godot`，完成素材导入后按F5；不�
 
 - 农场东湖：原四岸鱼栏，水样台管理全湖生态；装备鱼竿点水开始实操钓鱼。村河、地下水脉与两处隐图水域也有钓点。
 - 农场南侧：鸡舍、牛棚、羊圈建造牌。动物真实活动，雨雪/冬季回到可见暖舍，晴日可放牧。
-- 小屋东侧：厨房与四加工设备，五种新料理、跨日加工队列和有期限增益；屋西野莓灌木提供果酱原料。
-- 小屋西侧图纸台：三级住宅与真实侧间、家具网格布置、储物；庭院布置牌开放专用区域。春庆的春铃花种在实体花坛栽培，三日后可收花。
+- 家内厨房：灶台提供原有料理功能；屋外四加工设备保留跨日加工队列和原有增益，屋西野莓灌木提供果酱原料。
+- 周砚建造服务：温馨小屋→舒适农舍→河湾大屋→星光庄园，两日施工期间可照常回家；家内收纳柜提供储物与家具布置，庭院布置牌保留原专用区域。春庆的春铃花种在实体花坛栽培，三日后可收花。
 - NPC对话标题“近况与礼物”，小京面板“四季近况”：生日/喜恶/个人任务与共同活动，原剧情仍可继续。
 - 每季24日：春播比赛、夏湖畔灯会、秋丰收展篮、冬集市送暖锅；原第一章风灯庆典独立保留。
 - 农场西北林门：迷雾森林；森林档案和生态修复后去湖东旧阶开放封闭排水廊；两区档案与高级矿洞工艺后去村东岸古神庙。

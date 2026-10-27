@@ -17,7 +17,9 @@ func refresh() -> void:
 	size=Vector2(definition.size[0],definition.size[1])*32
 	position=Housing.center(entry.kind,Vector2i(entry.cell[0],entry.cell[1]))
 	label=definition.name;solid=definition.solid
-	texture=load("res://assets/housing/"+entry.kind+".png")
+	var preferred: String="res://assets/housing/interior/placeable_"+str(entry.kind)+".png"
+	texture=load(preferred if entry.area=="home" and ResourceLoader.exists(preferred) else "res://assets/housing/"+entry.kind+".png")
+	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	z_index=0 if solid else -2
 	var key: String="%s:%s" % [solid,size]
 	if key!=geometry_key:

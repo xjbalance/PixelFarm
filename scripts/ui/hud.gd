@@ -369,6 +369,8 @@ func reflow_panels() -> void:
 	if not is_instance_valid(dialogue): return
 	for panel in get_tree().get_nodes_in_group("modal_panels"):
 		if not safe.is_ancestor_of(panel): continue
+		if panel.get_meta("home_editor",false):
+			panel.controller.layout_panel();continue
 		var kind: String="default"
 		if panel==inventory_panel: kind="inventory"
 		elif panel==system_panel: kind="system"
@@ -544,6 +546,8 @@ func show_notice(text: String) -> void:
 
 func close_active_panel() -> bool:
 	var owner_game:=get_parent()
+	if "home_arrange" in owner_game and is_instance_valid(owner_game.home_arrange) and owner_game.home_arrange.active:
+		owner_game.home_arrange.cancel();return true
 	if "home_rest" in owner_game and is_instance_valid(owner_game.home_rest) and is_instance_valid(owner_game.home_rest.panel) and owner_game.home_rest.panel.visible:
 		owner_game.home_rest.close_panel()
 		return true

@@ -21,7 +21,8 @@ func refresh() -> void:
 	if cells.has_area():
 		room=Rect2(Vector2(cells.position)*32,Vector2(cells.size)*32)
 		for y in range(cells.position.y,cells.end.y):
-			for x in range(cells.position.x,cells.end.x): floor.set_cell(Vector2i(x,y),0,Vector2i(7,0))
+			for x in range(cells.position.x,cells.end.x):
+				var cell:=Vector2i(x,y);floor.set_cell(cell,0,game.home.floor_variant(cell))
 		walls_texture=load("res://assets/housing/interior/extension_walls_"+str(previous_level)+".png")
 	queue_redraw();Events.navigation_changed.emit()
 func _draw() -> void:

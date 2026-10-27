@@ -65,3 +65,10 @@ assets/exploration为三张地图原创地表atlas及6种材料/封记图标，t
 ## 0.7.1全局UI04原创资源
 
 assets/ui/river下13款九宫格材质与5个16px状态图标由tools/generate_ui04_assets.py使用Pillow基础像素绘制原创生成；纸面48px稀疏纤维平铺，其余24px。未使用商业游戏纹理/图标/字体或截图采样。参考文档缺失，两官方参考URL访问超时，遵循用户提供的颜色和可读性规范。中文继续使用原合法授权Noto Sans CJK，许可证路径不变。ui04对照图为本工程真实窗口截图，不是第三方美术。
+
+
+## 0.7.1温馨田园住宅
+
+`assets/housing/interior/`当前60张PNG由既有`tools/generate_home_interior_assets.py`使用Pillow程序像素绘制维护，本轮在51张原资源基础上新增浅色地板图集与8张`placeable_*`家具图。木床、沙发、奶油厨柜、陈设和四级墙地板统一为暖木/奶油/苔绿材质；四张192×168屋外贴图保留原透明轮廓、比例和入口。没有调用AI图像生成服务，也未将商业游戏截图或用户`need/`参考原图打入工程交付资源。
+
+`docs/home-arrange/`图片来自真实Linux Godot4.3 Xvfb/Mesa窗口；前后拼图、四级汇总与GIF由`tools/capture_home_arrange_artifacts.py`整理。GIF组合的是实际窗口状态帧，不是连续手机录像，也不代表手机帧率。字体仍使用原Noto Sans CJK及原许可。

@@ -1,5 +1,7 @@
 extends Node2D
 var kitchen_id: String="kitchen"
+var builtin_id: String:
+	get: return "kitchen" if kitchen_id=="kitchen" else ""
 func _ready() -> void:
 	add_to_group("interactables")
 	Kitchen.changed.connect(queue_redraw)
@@ -7,7 +9,11 @@ func _ready() -> void:
 
 func prompt() -> String:
 	return "采摘野莓 · 每日一次" if kitchen_id=="berry" else "做饭 · 家庭厨房"
-func hit_rect() -> Rect2: return Rect2(-56,-64,112,76)
+func hit_rect() -> Rect2: return HomeBuiltinTarget.hit_rect(self,"kitchen") if kitchen_id=="kitchen" else Rect2(-20,-36,40,48)
+func interaction_colliders() -> Array[CollisionObject2D]:
+	var result: Array[CollisionObject2D]=[]
+	if kitchen_id=="kitchen": result=HomeBuiltinTarget.colliders(self,"kitchen")
+	return result
 func interact() -> void:
 	Events.interaction_requested.emit("kitchen:berry" if kitchen_id=="berry" else "kitchen")
 func _draw() -> void:

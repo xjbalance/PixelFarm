@@ -120,6 +120,9 @@ func walkable(id: Vector2i) -> bool:
 func collider_rids(node: Node) -> Array[RID]:
 	var result: Array[RID] = []
 	if node is CollisionObject2D: result.append(node.get_rid())
+	if node.has_method("interaction_colliders"):
+		for body in node.interaction_colliders():
+			if is_instance_valid(body) and body is CollisionObject2D and not result.has(body.get_rid()): result.append(body.get_rid())
 	for child in node.get_children(): result.append_array(collider_rids(child))
 	return result
 

@@ -130,12 +130,16 @@ func migration() -> void:
 	await reset_world()
 	game.tutorial.restore({"seen":["tap_move","farm_basics"]})
 	var latest:=FarmSaveStore.snapshot(game)
-	var old:=latest.duplicate(true);old.version=21;old.erase("tutorial")
+	var old:=latest.duplicate(true);old.version=21;old.erase("tutorial");old.housing=load("res://tests/home05_runner.gd").legacy_housing(old.housing)
 	var serialized: Dictionary=JSON.parse_string(JSON.stringify(old))
 	var clean:=FarmSaveSchema.normalize(serialized)
 	check(not clean.is_empty() and clean.version==FarmSaveStore.VERSION and clean.tutorial==GameTutorial.defaults(true),"实际v21档只增加教学已读，不给老玩家重新弹引导")
 	var kept:=not clean.is_empty()
 	for id in serialized:
+		if id=="housing":
+			for field in serialized.housing:
+				if AbyssSaveSchema.canonical(clean.get("housing",{}).get(field))!=AbyssSaveSchema.canonical(serialized.housing[field]): kept=false
+			continue
 		if id!="version" and AbyssSaveSchema.canonical(clean.get(id))!=AbyssSaveSchema.canonical(serialized[id]):
 			kept=false
 			print("MIGRATION DIFFERENCE ",id," old ",serialized[id]," new ",clean.get(id))

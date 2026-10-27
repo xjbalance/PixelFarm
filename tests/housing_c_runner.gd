@@ -80,9 +80,9 @@ func furniture_rules() -> void:
 	check(Housing.buy("table"),"备一张桌用于碰撞保护测试")
 	var before := transaction()
 	check(not Housing.place("table","home",Vector2i(5,9)) and transaction()==before,"不能叠放覆盖已放家具")
-	for cell in [Vector2i(24,10),Vector2i(20,17),Vector2i(22,8),Vector2i(26,13),Vector2i(12,15)]:
+	for cell in [Vector2i(24,10),Vector2i(20,17),Vector2i(22,8),Vector2i(26,13),Vector2i(11,14)]:
 		before=transaction()
-		check(not Housing.place("table","home",cell) and transaction()==before,"保护原床门木盒厨房与装修台格："+str(cell))
+		check(not Housing.place("table","home",cell) and transaction()==before,"保护原床门木盒厨房与收纳实体格："+str(cell))
 	await at_yard()
 	for kind in ["road","flower","yard_lamp","water_basin"]:
 		check(Housing.buy(kind) and Housing.place(kind,"farm",Vector2i(10,20)),"庭院道路花坛灯与小设施真实可摆："+kind)

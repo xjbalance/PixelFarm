@@ -92,7 +92,7 @@ func spring_flowers() -> void:
 	var restored := true
 	for i in range(3): restored=FarmSaveStore.restore(game,JSON.parse_string(JSON.stringify(saved))) and restored;await frames(4)
 	check(restored and AbyssSaveSchema.canonical(stamp())==proof,"反复JSON保存读取不加种子、不早熟或重复采收")
-	var old := saved.duplicate(true);old.version=20;old.housing.erase("flowers")
+	var old := saved.duplicate(true);old.version=20;old.housing=load("res://tests/home05_runner.gd").legacy_housing(old.housing);old.housing.erase("flowers")
 	var migrated := FarmSaveSchema.normalize(old)
 	var preserved: bool=not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION and migrated.housing.flowers.is_empty()
 	if preserved:

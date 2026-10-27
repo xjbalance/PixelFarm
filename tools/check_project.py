@@ -57,6 +57,7 @@ steps = [
     ('ui05-hotbar', ['--fixed-fps','60','res://tests/ui05_hotbar_runner.tscn']),
     ('ui05-layout', ['--fixed-fps','60','res://tests/ui05_layout_runner.tscn']),
     ('home05', ['--fixed-fps','60','res://tests/home05_runner.tscn']),
+    ('home-arrange', ['--fixed-fps','60','res://tests/home_arrange_runner.tscn']),
     ('resource-rich', ['--fixed-fps','60','res://tests/resource_rich_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
@@ -146,6 +147,12 @@ steps = [
     ('resource-rich-read', ['--fixed-fps','60','res://tests/resource_rich_persistence.tscn','--','--read-resource-rich']),
     ('resource-rich-corrupt', ['--fixed-fps','60','res://tests/resource_rich_persistence.tscn','--','--corrupt-resource-rich']),
     ('resource-rich-backup', ['--fixed-fps','60','res://tests/resource_rich_persistence.tscn','--','--read-resource-rich-backup']),
+    ('home-arrange-v23-write', ['--fixed-fps','60','res://tests/home_arrange_persistence.tscn','--','--write-home-arrange-v23']),
+    ('home-arrange-v23-read', ['--fixed-fps','60','res://tests/home_arrange_persistence.tscn','--','--read-home-arrange-v23']),
+    ('home-arrange-write', ['--fixed-fps','60','res://tests/home_arrange_persistence.tscn','--','--write-home-arrange']),
+    ('home-arrange-read', ['--fixed-fps','60','res://tests/home_arrange_persistence.tscn','--','--read-home-arrange']),
+    ('home-arrange-corrupt', ['--fixed-fps','60','res://tests/home_arrange_persistence.tscn','--','--corrupt-home-arrange']),
+    ('home-arrange-backup', ['--fixed-fps','60','res://tests/home_arrange_persistence.tscn','--','--read-home-arrange-backup']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:

@@ -64,7 +64,7 @@ func cross_partition_rules() -> void:
 	var bad := fresh.duplicate(true)
 	bad.kitchen.buff={"id":"speed","remaining":20.0};bad.aquaculture.meal_day=0
 	refuse(bad,"没有任何食用日证明的增益不能从存档凭空恢复")
-	bad=fresh.duplicate(true);bad.housing.level=3;bad.housing.owned={"spouse_desk":1}
+	bad=fresh.duplicate(true);bad.housing.level=3;bad.housing.builtins=HomeLayout.default_builtins(3);bad.housing.owned={"spouse_desk":1}
 	refuse(bad,"未婚档不能靠新增住房分区获得婚后专属家具")
 	bad=fresh.duplicate(true);bad.exploration.unlocked.append("lake_ruins")
 	bad.exploration.forest={"step":4,"open":true};bad.exploration.facts=["forest_order","forest_archive","drain_plate"]
@@ -100,13 +100,13 @@ func real_legacy_migration() -> void:
 func expanded_room_restore() -> void:
 	var old := FarmSaveStore.snapshot(game);old.version=18
 	old.erase("exploration");old.erase("world_development")
-	old.housing=Housing.defaults(GameClock.day);old.housing.level=2
+	old.housing=load("res://tests/home05_runner.gd").legacy_housing(Housing.defaults(GameClock.day));old.housing.level=2
 	old.location="home";old.player=[272.0,464.0]
 	check(not FarmSaveSchema.normalize(old).is_empty() and FarmSaveStore.restore(game,old),"v18二级扩建侧间位置可迁移至当前版本")
 	await frames(12)
 	check(GameState.location=="home" and game.player.global_position.distance_to(Vector2(272,464))<.1,"恢复侧间坐标不误判为旧小屋边界并传回门口")
 	old=FarmSaveStore.snapshot(game);old.version=18;old.erase("exploration");old.erase("world_development")
-	old.housing.level=3;old.player=[176.0,336.0]
+	old.housing=load("res://tests/home05_runner.gd").legacy_housing(old.housing);old.housing.level=3;old.player=[176.0,336.0]
 	check(FarmSaveStore.restore(game,old),"v18高级住宅更宽侧间可读取")
 	await frames(12)
 	check(game.player.global_position.distance_to(Vector2(176,336))<.1,"三级侧间原玩家位置经过碰撞同步仍正确保留")
