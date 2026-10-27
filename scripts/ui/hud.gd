@@ -5,6 +5,7 @@ signal save_requested
 signal load_requested
 signal sleep_requested(expected_day: int)
 signal mute_requested
+signal home_return_requested
 var root: Control
 var safe: Control
 var clock_label: Label
@@ -57,6 +58,7 @@ var camera_return_button: Button
 var atlas_panel: PanelContainer
 var atlas_button: Button
 var character_select_panel: PanelContainer
+var home_return_button: Button
 
 func _ready() -> void:
 	layer = 10
@@ -159,6 +161,14 @@ func build_top() -> void:
 	atlas_button.icon=load("res://assets/ui/map_fold.svg")
 	atlas_button.expand_icon=true;atlas_button.add_theme_constant_override("icon_max_width",24)
 	safe.add_child(atlas_button)
+	home_return_button=FarmUIStyle.button("回家",func(): home_return_requested.emit(),80)
+	home_return_button.name="HomeReturnButton";home_return_button.icon=load("res://assets/ui/home_return.svg")
+	home_return_button.add_theme_constant_override("icon_max_width",18);home_return_button.add_theme_font_size_override("font_size",17)
+	home_return_button.expand_icon=true
+	for spec in [["normal","button"],["hover","hover"],["pressed","pressed"],["disabled","disabled"],["focus","focus"]]:
+		var style:=FarmUIStyle.surface(spec[1]);style.content_margin_left=8;style.content_margin_right=8
+		home_return_button.add_theme_stylebox_override(spec[0],style)
+	safe.add_child(home_return_button)
 
 func status_panel() -> PanelContainer:
 	var panel := PanelContainer.new()
@@ -488,6 +498,10 @@ func layout_header_dependents() -> void:
 		var target: float=UIMetrics.minimum_target()
 		atlas_button.custom_minimum_size=Vector2(target,target)
 		place(atlas_button,Vector2(1,0),Vector2(1,0),Rect2(-target-12,bottom+8,target,target))
+		if is_instance_valid(home_return_button):
+			var width: float=maxf(80,target)
+			home_return_button.custom_minimum_size=Vector2(width,target)
+			place(home_return_button,Vector2(1,0),Vector2(1,0),Rect2(-width-target-20,bottom+8,width,target))
 	position_camera_return(true)
 
 func expand_hotbar() -> void:
@@ -508,7 +522,7 @@ func position_camera_return(force: bool = false) -> void:
 	var height: float=UIMetrics.minimum_target()
 	var width: float=maxf(120,height)
 	var top: float=top_cluster.position.y+maxf(top_cluster.size.y,top_cluster.get_combined_minimum_size().y)+8
-	place(button,Vector2(1,0),Vector2(1,0),Rect2(-width-height-20,top,width,height))
+	place(button,Vector2(1,0),Vector2(1,0),Rect2(-width-height-maxf(80,height)-28,top,width,height))
 
 func apply_safe_area(area: Rect2, screen: Vector2) -> void:
 	var viewport := get_viewport().get_visible_rect().size

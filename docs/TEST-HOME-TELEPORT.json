@@ -1,0 +1,26 @@
+{
+  "baseline": "69ca84e",
+  "save_version": 25,
+  "new_state_checks": 109,
+  "new_window_checks": 109,
+  "related_existing_state_checks": 265,
+  "related_existing_window_checks": 173,
+  "failures": 0,
+  "android_device_tested": false,
+  "desktop_platform": "Linux Godot4.3 Xvfb/Mesa",
+  "apk": {
+    "version_code": 20,
+    "package": "org.pixelfarm.windbud",
+    "bytes": 71052682,
+    "sha256": "848c3aa70c7678c509eec462ad67470631f29af5c20928a38a3029a1467b49ce"
+  },
+  "tested_production_sha256": {
+    "assets/ui/home_return.svg": "2465dcba89599c688a9734f00fa13669145d549d1f6eb300bb1eeb1d2c36490a",
+    "assets/ui/home_return.svg.import": "f75a0a2d3db37bcd009e7e867f3aff322200dcc2f09415ddc6655389da1884d2",
+    "export_presets.cfg": "b154ed96bac418671cc9c9bb05117ff8e1ca6ad47d241f314edc7d223be8b0d2",
+    "scripts/core/main.gd": "e80be662599333b087ca282c6e0b2b7cdd032b4e1b890365d89e314b18139a01",
+    "scripts/ui/hud.gd": "689819814091c58e3cd6ee02b6a2b5d2be1cee81c20150cee26edd624e0cb5b4",
+    "scripts/world/home_return_controller.gd": "3503e6b4b1997259c35b8801d73dcf124a4cd4c518014e815e3e329e7b8eac3b"
+  },
+  "note": "Targeted feature tests and relevant existing regressions; not a rerun of all 6087 historical assertions."
+}

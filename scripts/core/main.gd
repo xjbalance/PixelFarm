@@ -25,6 +25,7 @@ var life_schedule: Node
 var tutorial: GameTutorial
 var prompt_elapsed: float = 0
 var character_select: PanelContainer
+var home_return: HomeReturnController
 var save_path: String=FarmSaveStore.PATH
 var awaiting_character_choice: bool=false
 var new_game_seed: Dictionary={}
@@ -115,6 +116,7 @@ func _ready() -> void:
 	add_child(touch_input)
 	touch_input.setup(self)
 	home_arrange=HomeArrangeController.new();add_child(home_arrange);home_arrange.setup(self)
+	home_return=HomeReturnController.new();add_child(home_return);home_return.setup(self)
 	hud.atlas_panel.setup(self)
 	tutorial=GameTutorial.new();add_child(tutorial);tutorial.attach(self)
 	character_select=PanelContainer.new();character_select.set_script(preload("res://scripts/appearance/character_select_panel.gd"))

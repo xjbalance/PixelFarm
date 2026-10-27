@@ -6,7 +6,9 @@
 
 保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v25**，兼容v1–v24，原应用包名、证书与存档路径保留。
 
-当前采用方案C“温暖田园 × 星辉旅人”：开局可选男女主角，小京自动使用对应形象，世界精灵、头像、菜单和剧情显示共用外观解析。完整整合验收：**6,087项自动化、3,425项桌面窗口、159个计划进程全部通过**，见[方案C机器记录](docs/TEST-SCHEME-C.json)；原签名Android调试APK已构建（versionCode 19），没有Android真机验收。上一轮[UI07风格收口](docs/REPORT-UI07.md)已完成，`94f18cd`记录5,062项自动化、3,335项桌面窗口及146个进程通过，属于v24/code18历史基线。
+右上角地图图标旁新增[一键回家](docs/HOME-TELEPORT.md)，免费传送至屋内安全位置；本次新增109项状态/109项窗口与相关265项状态/173项窗口回归通过。
+
+当前采用方案C“温暖田园 × 星辉旅人”：开局可选男女主角，小京自动使用对应形象，世界精灵、头像、菜单和剧情显示共用外观解析。方案C阶段完整整合验收：**6,087项自动化、3,425项桌面窗口、159个计划进程全部通过**，见[方案C机器记录](docs/TEST-SCHEME-C.json)；原签名Android调试APK已构建（versionCode 20），没有Android真机验收。上一轮[UI07风格收口](docs/REPORT-UI07.md)已完成，`94f18cd`记录5,062项自动化、3,335项桌面窗口及146个进程通过，属于v24/code18历史基线。
 
 [方案C完整报告](docs/REPORT-SCHEME-C.md) · [角色选择与菜单](docs/SCHEME-C-SELECTION.md) · [角色资源与来源](docs/SCHEME-C-ASSETS.md) · [UI07收口报告](docs/REPORT-UI07.md) · [当前图纸报告](docs/PARCHMENT-MAP.md) · [农场视觉样板](docs/FARM-VISUAL-06.md) · [数量出售](docs/SALE-QUANTITY.md) · [住宅改造与摆放报告](docs/HOME-ARRANGE.md) · [布局与森林报告](docs/RESTORED-LAYOUT-RESOURCES.md) · [住宅05报告与四级截图](docs/REPORT-HOME05.md) · [UI05报告与前后截图](docs/REPORT-UI05.md) · [布局规范](docs/UI05-LAYOUT.md) · [UI04报告](docs/REPORT-UI04.md) · [初版开发报告](docs/REPORT-0.7.1.md) · [0.7.0内容报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [UI05验收边界](docs/KNOWN-ISSUES-UI05.md)
 

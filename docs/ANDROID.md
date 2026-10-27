@@ -1,13 +1,15 @@
 # 像素世界0.7.1 Android构建与待真机验收
 
-本次已重新导出，含方案C角色选择、男女主角与小京联动、统一头像及四方向像素动画，同时包含已收口的UI07和全部原经营功能。当前交付`builds/PixelWorld-0.7.1-debug.apk`，71,044,092字节。SHA256：`d2140dbff060dfb4114ba4c2143902045fc7b68dbb15c379ef75f177cea59e12`。原0.7.0记录见[历史说明](ANDROID-0.7.0.md)。
+当前APK增加一键回家，code20，保持原包名/签名及v25存档；新增109项状态/109项窗口和相关265项状态/173项窗口通过，实际包内资源桌面启动通过，无Android真机。详见[回家报告](HOME-TELEPORT.md)。
 
-已实际导出，原证书验证、清单/双ABI、ZIP对齐/CRC与导出数据检查通过。当前全量与包内运行结果以[TEST-SCHEME-C.json](TEST-SCHEME-C.json)为准；桌面资源启动不能替代Android运行。纸面立绘卡保留原参考纸底，透明像素角色与仪式配色派生的边界见[资源报告](SCHEME-C-ASSETS.md)。
+本次已重新导出，含方案C角色选择、男女主角与小京联动、统一头像及四方向像素动画，同时包含已收口的UI07和全部原经营功能。当前交付`builds/PixelWorld-0.7.1-debug.apk`，71,052,682字节。SHA256：`848c3aa70c7678c509eec462ad67470631f29af5c20928a38a3029a1467b49ce`。原0.7.0记录见[历史说明](ANDROID-0.7.0.md)。
+
+已实际导出，原证书验证、清单/双ABI、ZIP对齐/CRC与导出数据检查通过。方案C历史完整回归见[TEST-SCHEME-C.json](TEST-SCHEME-C.json)，当前回家功能与code20构建记录见[TEST-HOME-TELEPORT.json](TEST-HOME-TELEPORT.json)；桌面资源启动不能替代Android运行。纸面立绘卡保留原参考纸底，透明像素角色与仪式配色派生的边界见[资源报告](SCHEME-C-ASSETS.md)。
 
 | 项目 | 当前配置 |
 |---|---|
 | applicationId | org.pixelfarm.windbud，保持不变 |
-| 版本 | 0.7.1 / versionCode 19 |
+| 版本 | 0.7.1 / versionCode 20 |
 | 引擎 | Godot4.3 Standard / Compatibility GLES3 |
 | ABI | ARM64 + ARMv7 |
 | 最低/目标SDK | 21 / 34 |
