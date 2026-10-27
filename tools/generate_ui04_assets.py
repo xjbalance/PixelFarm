@@ -2,22 +2,22 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 import json
 root=Path(__file__).resolve().parents[1]
-palette={'paper':'F4E7CD','wood':'D7B98A','brown':'754B36','green':'789C79','gold':'E7B96B','star':'7775B4','text':'35291F','muted':'705E4C','title':'66442F','danger':'984B3E'}
+palette={'paper':'F2E4C5','wood':'D7B98A','brown':'754B36','green':'789C79','gold':'E7B96B','star':'7775B4','text':'35291F','muted':'705E4C','title':'66442F','danger':'984B3E'}
 (root/'resources/ui/river_palette.json').write_text(json.dumps({'theme':'河湾手作 · 星辉田园','palette':palette,'type':{'title':24,'body':18,'caption':16,'number':19},'touch_design_px':48,'nine_patch_margin':8},ensure_ascii=False,indent=2)+'\n')
 def patch(name,fill,edge,shine,pressed=False,transparent=False):
  im=Image.new('RGBA',(24,24));d=ImageDraw.Draw(im)
- # 阶梯角、三层木框与稀疏铆点；边带通过九宫格保留原像素宽度。
- d.polygon([(3,0),(20,0),(20,1),(22,1),(22,3),(23,3),(23,20),(22,20),(22,22),(20,22),(20,23),(3,23),(3,22),(1,22),(1,20),(0,20),(0,3),(1,3),(1,1),(3,1)],fill='#'+edge)
- d.rectangle((3,2,20,21),fill='#'+shine);d.rectangle((2,3,21,20),fill='#'+shine)
- d.rectangle((4,4,19,19),fill='#'+edge)
- d.rectangle((5,5,18,18),fill=(0,0,0,0) if transparent else '#'+fill)
+ # 原尺寸九宫格：细暖木边、纸面内衬和左上方的柔和亮边。
+ # 控件触区与布局不缩小，去掉旧三重重框和铆点。
+ d.polygon([(2,0),(21,0),(21,1),(23,1),(23,21),(22,21),(22,23),(2,23),(2,22),(0,22),(0,2),(2,2)],fill='#'+edge)
+ d.rectangle((2,2,21,21),fill='#'+shine)
+ d.rectangle((3,3,20,20),fill='#'+fill)
+ d.line((3,3,20,3),fill='#'+shine)
+ d.line((3,20,20,20),fill='#'+edge)
+ if pressed:
+  d.line((3,3,20,3),fill='#'+edge)
+  d.line((3,4,20,4),fill='#'+fill)
  if transparent:
-  d.rectangle((4,4,19,19),fill=(0,0,0,0))
- else:
-  d.line((5,5,18,5),fill='#'+shine)
-  for x,y in [(3,3),(20,3),(3,20),(20,20)]:d.point((x,y),fill='#'+edge)
-  for x in [8,15]:d.point((x,2),fill='#'+fill)
-  if pressed:d.line((5,5,18,5),fill='#'+edge)
+  d.rectangle((3,3,20,20),fill=(0,0,0,0))
  if name=='paper':
   # 48px纸面中区32px稀疏纤维，按原像素平铺，边带仍只九宫格拉伸。
   big=Image.new('RGBA',(48,48),'#'+fill)
@@ -27,18 +27,18 @@ def patch(name,fill,edge,shine,pressed=False,transparent=False):
     piece=im.crop((src[gx],src[gy],src[gx+1],src[gy+1]))
     big.paste(piece.resize((dst[gx+1]-dst[gx],dst[gy+1]-dst[gy]),Image.NEAREST),(dst[gx],dst[gy]))
   grain=ImageDraw.Draw(big)
-  for x,y in [(13,19),(28,12),(35,31),(19,36)]:grain.point((x,y),fill='#EDDFC4')
+  for x,y in [(13,19),(28,12),(35,31),(19,36)]:grain.point((x,y),fill='#E7D6B5')
   im=big
  im.save(root/f'assets/ui/river/{name}.png')
-patch('paper',palette['paper'],palette['brown'],'ECD7AD')
-patch('secondary','EBD8B5','AA805B','FFF1D5')
-patch('button','E3C89F',palette['brown'],'F9E6BE')
-patch('hover','EED8B4','93623E','FFF1D0')
+patch('paper',palette['paper'],'8C6B4C','F8EDD4')
+patch('secondary','EADAB8','B69A73','F7EACD')
+patch('button','DFC69C','8C6B4C','F7E4BD')
+patch('hover','EED8B0','997653','FFF0CD')
 patch('pressed',palette['gold'],palette['brown'],'F2D698',True)
-patch('disabled','D7CBB4','A99A81','E4D9C2')
+patch('disabled','D9CDB4','B0A184','EADFCA')
 patch('focus',palette['paper'],palette['star'],'B8ADDB',transparent=True)
-patch('selected','EAC78B','97683B','FFF0BD')
-patch('nature','C0D2AC','657D56','E1EBD1')
+patch('selected','E8C68B','927249','FFF0C6')
+patch('nature','C2D0AC','6E8260','E6ECD7')
 patch('star','DDD8ED','7775B4','F4EEFC')
 patch('danger','E4B69D','984B3E','F8DAC1')
 patch('track','D4C3A5','AB8C67','E8D7B5')

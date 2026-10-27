@@ -4,7 +4,7 @@ const INK := Color("263e38")
 const CREAM := Color("f4e8c9")
 const GREEN := Color("466b52")
 const GOLD := Color("e7b96b")
-const PAPER := Color("f4e7cd")
+const PAPER := Color("f2e4c5")
 const WOOD := Color("d7b98a")
 const BROWN := Color("754b36")
 const TEXT := Color("35291f")
@@ -85,16 +85,32 @@ static func section_grid(parent: Node) -> GridContainer:
 	return grid
 
 static func section(parent: Node) -> VBoxContainer:
+	return card(parent)
+
+static func card(parent: Node, role: String = "secondary") -> VBoxContainer:
 	var panel:=PanelContainer.new()
+	panel.set_meta("ui07_card",true)
 	panel.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	var style:=StyleBoxFlat.new()
-	style.bg_color=Color("efe0c1")
-	style.border_color=Color("d7b98a")
-	style.border_width_bottom=1
+	var style:=surface(role)
 	for side in [SIDE_LEFT,SIDE_TOP,SIDE_RIGHT,SIDE_BOTTOM]: style.set_content_margin(side,12)
 	panel.add_theme_stylebox_override("panel",style)
 	parent.add_child(panel)
 	var column:=VBoxContainer.new()
+	column.set_meta("ui07_card",true)
 	column.add_theme_constant_override("separation",8)
+	column.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	panel.add_child(column)
 	return column
+
+static func heading(parent: Node, text: String, icon: String = "") -> Label:
+	var host: Node=parent
+	if icon!="":
+		var row:=HBoxContainer.new();row.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_theme_constant_override("separation",8);parent.add_child(row);host=row
+		var path: String="res://assets/maps/icon_"+icon+".png"
+		if ResourceLoader.exists(path):
+			var image:=TextureRect.new();image.texture=load(path);image.expand_mode=TextureRect.EXPAND_IGNORE_SIZE;image.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+			image.custom_minimum_size=Vector2(28,28);image.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;image.mouse_filter=Control.MOUSE_FILTER_IGNORE;row.add_child(image)
+	var title:=label(text,20,TITLE)
+	title.set_meta("ui07_heading",true);title.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;title.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	host.add_child(title)
+	return title
