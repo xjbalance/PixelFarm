@@ -11,6 +11,8 @@ func _ready() -> void:
 	build_tiles()
 	build_props()
 	build_river_life()
+	var visual:=FarmVisual06.new()
+	add_child(visual)
 	GameClock.changed.connect(refresh_linya)
 	Story.changed.connect(refresh_linya)
 	GameWeather.changed.connect(refresh_linya)
@@ -133,6 +135,8 @@ func add_interaction(kind: String, title: String, origin: Vector2) -> void:
 	add_child(point)
 
 func _draw() -> void:
+	# 地面草花由缓存GroundDetail06按季节绘制；避免旧版散点叠成噪声。
+	if has_node("GroundDetail06"): return
 	# 小花与草丛使用固定种子，加载时地图外观不变化。
 	var random := RandomNumberGenerator.new()
 	random.seed = 909

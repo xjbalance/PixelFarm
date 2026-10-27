@@ -50,6 +50,7 @@ func _process(delta: float) -> void:
 func _draw() -> void:
 	if not ground: return
 	for i in range(sprouts.size()):
+		if not village and get_parent().has_node("GroundDetail06"): break
 		var p := sprouts[i]
 		var sway := roundf(sin(clock*1.1+p.x)*1.0)
 		draw_line(p,p+Vector2(-3+sway,-6),Color("5d8055"),2)
@@ -57,7 +58,9 @@ func _draw() -> void:
 		if i%5==0:
 			draw_rect(Rect2(p+Vector2(1+sway,-9),Vector2(4,4)),Color("e7cea3") if i%2 else Color("c99a98"))
 	# 接壤地块加一圈细边，避免整片草地与道路像平铺的色块。
-	for edge in edges: draw_line(edge.a,edge.b,edge.color,3)
+	for edge in edges:
+		if not village and get_parent().has_node("GroundDetail06"): break
+		draw_line(edge.a,edge.b,edge.color,3)
 	for i in range(28):
 		var p := Vector2(845+(i%4)*20,64+(i/4)*117) if village else Vector2(1010+(i%4)*32,492+(i/4)*28)
 		if ground.get_cell_atlas_coords(Vector2i(p/32)).x not in [5,6]: continue

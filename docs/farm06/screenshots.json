@@ -1,0 +1,201 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    {
+      "house_level": 1,
+      "name": "home",
+      "path": "res://builds/farm06-after-home.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/home.png"
+    },
+    {
+      "house_level": 1,
+      "name": "plots",
+      "path": "res://builds/farm06-after-plots.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/plots.png"
+    },
+    {
+      "house_level": 1,
+      "name": "road",
+      "path": "res://builds/farm06-after-road.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/road.png"
+    },
+    {
+      "house_level": 1,
+      "name": "panorama",
+      "path": "res://builds/farm06-after-panorama.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/panorama.png"
+    },
+    {
+      "house_level": 1,
+      "name": "season_spring",
+      "path": "res://builds/farm06-after-season_spring.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/season_spring.png"
+    },
+    {
+      "house_level": 1,
+      "name": "season_summer",
+      "path": "res://builds/farm06-after-season_summer.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 1,
+      "file": "docs/farm06/season_summer.png"
+    },
+    {
+      "house_level": 1,
+      "name": "season_autumn",
+      "path": "res://builds/farm06-after-season_autumn.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 2,
+      "file": "docs/farm06/season_autumn.png"
+    },
+    {
+      "house_level": 1,
+      "name": "season_winter",
+      "path": "res://builds/farm06-after-season_winter.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 3,
+      "file": "docs/farm06/season_winter.png"
+    },
+    {
+      "house_level": 1,
+      "name": "crops_detail",
+      "path": "res://builds/farm06-after-crops_detail.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/crops_detail.png"
+    },
+    {
+      "house_level": 1,
+      "name": "house_level_1",
+      "path": "res://builds/farm06-after-house_level_1.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/house_level_1.png"
+    },
+    {
+      "house_level": 2,
+      "name": "house_level_2",
+      "path": "res://builds/farm06-after-house_level_2.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/house_level_2.png"
+    },
+    {
+      "house_level": 3,
+      "name": "house_level_3",
+      "path": "res://builds/farm06-after-house_level_3.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/house_level_3.png"
+    },
+    {
+      "house_level": 4,
+      "name": "house_level_4",
+      "path": "res://builds/farm06-after-house_level_4.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/house_level_4.png"
+    },
+    {
+      "house_level": 4,
+      "name": "layout_1280x720",
+      "path": "res://builds/farm06-after-layout_1280x720.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/layout_1280x720.png"
+    },
+    {
+      "house_level": 4,
+      "name": "layout_1560x720",
+      "path": "res://builds/farm06-after-layout_1560x720.png",
+      "resolution": [
+        1560,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/layout_1560x720.png"
+    },
+    {
+      "house_level": 4,
+      "name": "layout_1600x720",
+      "path": "res://builds/farm06-after-layout_1600x720.png",
+      "resolution": [
+        1600,
+        720
+      ],
+      "season": 0,
+      "file": "docs/farm06/layout_1600x720.png"
+    },
+    {
+      "house_level": 4,
+      "name": "layout_1280x960",
+      "path": "res://builds/farm06-after-layout_1280x960.png",
+      "resolution": [
+        1280,
+        960
+      ],
+      "season": 0,
+      "file": "docs/farm06/layout_1280x960.png"
+    }
+  ],
+  "checks": 147,
+  "failures": 0,
+  "farm_cells": 1536,
+  "farm_resources": 42,
+  "platform": "X11",
+  "plots": 60,
+  "save_version": 24,
+  "baseline_commit": "0ac1b78369a5cc8b4db647f218d76870b1ef139d",
+  "image_note": "Actual Godot window frames. Crop-stage images use a fixture. Panorama zoom 0.7 is test-only; the production camera is unchanged."
+}

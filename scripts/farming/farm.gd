@@ -4,6 +4,8 @@ signal changed
 const BOUNDS := Rect2i(17, 16, 10, 6)
 const IRRIGATION := Rect2i(17,16,4,3)
 var CROP_TEXTURE = load("res://assets/crops/crops.png")
+var SOIL_DRY: Texture2D=preload("res://assets/farm06/soil_dry.png")
+var SOIL_WET: Texture2D=preload("res://assets/farm06/soil_wet.png")
 var plots: Dictionary = {}
 var last_growth_day: int = 1
 var highlighted := Vector2i(-1, -1)
@@ -128,9 +130,7 @@ func _draw() -> void:
 		var origin := Vector2(int(parts[0]), int(parts[1])) * 32.0
 		var plot: Dictionary = plots[id]
 		var wet: bool = plot["watered"]
-		draw_rect(Rect2(origin + Vector2.ONE, Vector2(30, 30)), Color("614b3b") if wet else Color("a4724c"))
-		for y in [7, 15, 23]:
-			draw_line(origin + Vector2(4, y), origin + Vector2(27, y), Color("493f35") if wet else Color("855a40"), 2)
+		draw_texture(SOIL_WET if wet else SOIL_DRY,origin)
 		var crop_id: String = plot["crop"]
 		if not crop_id.is_empty():
 			var crop: CropDefinition = Catalog.crops[crop_id]

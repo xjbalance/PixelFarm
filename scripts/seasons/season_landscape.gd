@@ -56,6 +56,8 @@ func attach(owner_game: Node) -> void:
 		layer.name="SeasonGroundDetails"
 		map.add_child(layer)
 		layer.prepare(terrain,1536 if id=="farm" else 1280,1024 if id=="farm" else 896)
+		# 农场样板已有统一四季草花底图，不重复叠加旧版散点装饰。
+		if id=="farm" and map.has_node("GroundDetail06"): layer.visible=false
 		layers[id]=layer
 		for node in map.find_children("*","Sprite2D",true,false):
 			if node.texture and node.texture.resource_path==ORIGINAL_TREE: trees.append(node)
