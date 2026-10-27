@@ -6,6 +6,7 @@ var page: String = "activity"
 var pending := Callable()
 var question: String = ""
 var exhibit: Dictionary = {}
+var tab_bar: HBoxContainer
 func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column := VBoxContainer.new();add_child(column)
@@ -14,18 +15,21 @@ func _ready() -> void:
 	title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	DiamondPayments.controls(column,refresh)
-	var tabs := HBoxContainer.new();column.add_child(tabs)
+	tab_bar=HBoxContainer.new();column.add_child(tab_bar)
 	for entry in [["activity","参加活动"],["shop","节日摊位"],["history","四季记录"]]:
 		var target: String=entry[0]
-		tabs.add_child(FarmUIStyle.button(entry[1],func():
+		var tab:=FarmUIStyle.button(entry[1],func():
 			if not pending.is_valid(): page=target;refresh()
-		,220))
+		,220)
+		tab.set_meta("facility_tab",target);tab_bar.add_child(tab)
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"))
 	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
 	column.add_child(scroll);content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	content.add_theme_constant_override("separation",12);scroll.add_child(content)
+	FacilityLayout.decorate(self,"festival","四季相聚，把一年里的好时光记在纸上。")
+
 func words(text: String, size: int = 18) -> void:
-	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;(section if is_instance_valid(section) else content).add_child(label)
+	FacilityLayout.text(section if is_instance_valid(section) else content,text,size)
 func button(text: String, callback: Callable) -> Button:
 	var control := FarmUIStyle.button(text,callback,180);(section if is_instance_valid(section) else content).add_child(control);return control
 func open_panel(id: String = "spring") -> void:
@@ -47,6 +51,7 @@ func outcome(ok: bool) -> void:
 func refresh() -> void:
 	section=null
 	if not visible: return
+	FacilityLayout.tabs(tab_bar,page)
 	for toggle in get_tree().get_nodes_in_group("payment_toggle"):
 		if is_ancestor_of(toggle): toggle.disabled=pending.is_valid()
 	for child in content.get_children(): content.remove_child(child);child.queue_free()

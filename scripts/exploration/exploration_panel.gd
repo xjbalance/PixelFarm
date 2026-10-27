@@ -14,8 +14,10 @@ func _ready() -> void:
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;column.add_child(scroll)
 	content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;content.add_theme_constant_override("separation",12);scroll.add_child(content)
+	FacilityLayout.decorate(self,"exploration","读懂刻线与水纹，再向隐径深处走一步。")
+
 func words(text: String, size: int = 18) -> void:
-	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;content.add_child(label)
+	FacilityLayout.text(content,text,size)
 func button(text: String, callback: Callable) -> Button:
 	var control := FarmUIStyle.button(text,callback,160);content.add_child(control);return control
 func open_panel(id: String) -> void:

@@ -7,6 +7,7 @@ var page: String="recipes"
 var quantity: int=1
 var pending := Callable()
 var message: String=""
+var tab_bar: HBoxContainer
 func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column := VBoxContainer.new();add_child(column)
@@ -14,16 +15,19 @@ func _ready() -> void:
 	var title := FarmUIStyle.label("炉火与麦香 · 小屋厨房",24,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	DiamondPayments.controls(column,refresh)
-	var tabs := HBoxContainer.new();column.add_child(tabs)
+	tab_bar=HBoxContainer.new();column.add_child(tab_bar)
 	for row in [["recipes","料理与图鉴"],["processing","加工设备"],["queue","领取成品"]]:
 		var id: String=row[0]
-		tabs.add_child(FarmUIStyle.button(row[1],func():
+		var tab:=FarmUIStyle.button(row[1],func():
 			if not pending.is_valid(): page=id;refresh()
-		,200))
+		,200)
+		tab.set_meta("facility_tab",id);tab_bar.add_child(tab)
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;column.add_child(scroll)
 	content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;content.add_theme_constant_override("separation",12);scroll.add_child(content)
+	FacilityLayout.decorate(self,"kitchen","挑一份家常料理，炉火与麦香都在这里。")
+
 func words(text: String, size: int=18) -> void:
-	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;(section if is_instance_valid(section) else content).add_child(label)
+	FacilityLayout.text(section if is_instance_valid(section) else content,text,size)
 func button(text: String, callback: Callable) -> Button:
 	var b := FarmUIStyle.button(text,callback,180);(section if is_instance_valid(section) else content).add_child(b);return b
 func open_panel(id: String="kitchen") -> void:
@@ -49,6 +53,7 @@ func cost(items: Dictionary) -> String:
 func refresh() -> void:
 	section=null
 	if not visible: return
+	FacilityLayout.tabs(tab_bar,page)
 	for node in get_tree().get_nodes_in_group("payment_toggle"):
 		if is_ancestor_of(node): node.disabled=pending.is_valid()
 	for child in content.get_children(): content.remove_child(child);child.queue_free()
@@ -80,14 +85,20 @@ func recipes() -> void:
 		selector.add_theme_stylebox_override("normal",FarmUIStyle.surface("selected" if id==selected_recipe else "secondary"));choices.add_child(selector)
 	if not Kitchen.data.recipes.has(selected_recipe): selected_recipe=str(Kitchen.data.recipes.keys()[0])
 	var recipe: Dictionary=Kitchen.data.recipes[selected_recipe]
-	section=FarmUIStyle.section(layout)
-	words(recipe.name+" · "+("已掌握" if Kitchen.recipe_unlocked(selected_recipe) else "尚待领会"),21)
-	words(recipe.hint+"\n每批："+cost(recipe.required)+"\n"+Kitchen.data.items[selected_recipe].description,16)
-	words("已做%d份 · 背包%d份" % [int(Kitchen.state.cooked.get(selected_recipe,0)),Inventory.count(selected_recipe)],16)
+	section=FacilityLayout.card(layout,"recipe_detail")
+	var recipe_header:=HBoxContainer.new();recipe_header.add_theme_constant_override("separation",12);section.add_child(recipe_header)
+	FacilityLayout.item_preview(recipe_header,selected_recipe,48)
+	var recipe_heading:=VBoxContainer.new();recipe_heading.size_flags_horizontal=Control.SIZE_EXPAND_FILL;recipe_header.add_child(recipe_heading)
+	FacilityLayout.text(recipe_heading,recipe.name,22)
+	FacilityLayout.text(recipe_heading,("已掌握" if Kitchen.recipe_unlocked(selected_recipe) else "尚待领会")+" · 已做%d份 · 背包%d份" % [int(Kitchen.state.cooked.get(selected_recipe,0)),Inventory.count(selected_recipe)],16)
+	words(recipe.hint,16)
+	words("每批食材",21);words(cost(recipe.required),17)
+	words(Kitchen.data.items[selected_recipe].description,16)
 	var amount: int=quantity
 	var id: String=selected_recipe
-	button("制作%s ×%d" % [recipe.name,amount],func(): ask("制作%d批%s，消耗：%s？" % [amount,recipe.name,cost(Kitchen.scaled(recipe.required,amount))],func(): result(Kitchen.cook(id,amount)))).disabled=not Kitchen.recipe_unlocked(id)
-	button("食用一份"+recipe.name,func(): result(Kitchen.consume(id))).disabled=Inventory.count(id)<1
+	var actions:=FacilityLayout.actions(section)
+	var cook:=FarmUIStyle.button("制作%s ×%d" % [recipe.name,amount],func(): ask("制作%d批%s，消耗：%s？" % [amount,recipe.name,cost(Kitchen.scaled(recipe.required,amount))],func(): result(Kitchen.cook(id,amount))),200);actions.add_child(cook);cook.disabled=not Kitchen.recipe_unlocked(id)
+	var eat:=FarmUIStyle.button("食用一份"+recipe.name,func(): result(Kitchen.consume(id)),200);actions.add_child(eat);eat.disabled=Inventory.count(id)<1
 	section=null
 	words("原湖岸鱼汤、鱼干继续使用原配方和物品；厨房不会复制另一个同名物品。",16)
 

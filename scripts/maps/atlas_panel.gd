@@ -92,7 +92,7 @@ func close_panel() -> void:
 func show_world() -> void:
 	map_canvas.show_world();selected_place.clear();detail_button.disabled=true
 	title_label.text="河湾冒险图纸 · 世界总览"
-	info_label.text="图纸按地区组织，室内与矿层各有独立坐标。拖动查看，点击地点读说明。"
+	info_label.text="沿河找到想去的地方。拖动查看，点击地点了解详情。"
 
 func show_current() -> void:
 	map_canvas.show_region();selected_place.clear();detail_button.disabled=true

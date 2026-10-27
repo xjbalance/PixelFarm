@@ -23,9 +23,7 @@ func _ready() -> void:
 	add_child(column)
 	var header := HBoxContainer.new()
 	column.add_child(header)
-	title = FarmUIStyle.label("",26,FarmUIStyle.TITLE)
-	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	header.add_child(title)
+	title = FarmUIStyle.heading(header,"","sign")
 	header.add_child(FarmUIStyle.button("住宅改建",func(): close_panel(); Events.interaction_requested.emit("housing:upgrade"),130))
 	header.add_child(FarmUIStyle.button("鱼栏图纸",func(): close_panel(); Events.interaction_requested.emit("fish:guide"),150))
 	header.add_child(FarmUIStyle.button("关闭 ×",close_panel,100))
@@ -42,27 +40,27 @@ func _ready() -> void:
 	tabs = HBoxContainer.new()
 	tabs.add_theme_constant_override("separation",8)
 	body.add_child(tabs)
-	heading = FarmUIStyle.label("",23,FarmUIStyle.TITLE)
-	body.add_child(heading)
+	var detail:=FarmUIStyle.card(body)
+	heading = FarmUIStyle.heading(detail,"")
 	description = FarmUIStyle.label("",18)
 	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	description.custom_minimum_size.y = 55
-	body.add_child(description)
+	detail.add_child(description)
 	costs = VBoxContainer.new()
 	costs.add_theme_constant_override("separation",6)
-	costs.custom_minimum_size.y = 92
-	body.add_child(costs)
+	detail.add_child(costs)
 	reward = FarmUIStyle.label("",17,FarmUIStyle.SUCCESS)
 	reward.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	body.add_child(reward)
+	detail.add_child(reward)
 	var space := Control.new()
 	space.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	body.add_child(space)
+	detail.add_child(space)
 	action_button = FarmUIStyle.button("",perform_action,160)
-	body.add_child(action_button)
-	hint = FarmUIStyle.label("",16)
+	action_button.size_flags_horizontal=Control.SIZE_SHRINK_END
+	detail.add_child(action_button)
+	hint = FarmUIStyle.label("",16,FarmUIStyle.MUTED)
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	body.add_child(hint)
+	detail.add_child(hint)
 	FarmProgress.changed.connect(refresh)
 	Inventory.changed.connect(refresh)
 
@@ -100,6 +98,7 @@ func refresh() -> void:
 		for child in tabs.get_children(): tabs.remove_child(child);child.queue_free()
 		for id in definitions:
 			var button:=FarmUIStyle.button("",select.bind(id),160)
+			button.toggle_mode=true
 			button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 			tabs.add_child(button);tab_buttons[id]=button
 	for id in definitions:
@@ -107,6 +106,7 @@ func refresh() -> void:
 		var done: bool = FarmProgress.has_upgrade(id) if mode == "workshop" else FarmProgress.quest_status(id) == "completed"
 		var button: Button=tab_buttons[id]
 		button.text=("✓ " if done else "")+name_text
+		button.set_pressed_no_signal(id==selected_id)
 		button.add_theme_stylebox_override("normal",FarmUIStyle.surface("selected" if id==selected_id else "button"))
 	if mode == "workshop": refresh_upgrade()
 	else: refresh_quest()

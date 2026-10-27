@@ -6,17 +6,19 @@ var pending := Callable()
 var story_title: String = ""
 var story_text: String = ""
 var reading: bool = false
+var content_cards: bool=true
+var content_section: VBoxContainer
+var panel_title: Label
 
 func _ready() -> void:
 	add_to_group("modal_panels")
 	hide()
 	var layout := VBoxContainer.new()
+	layout.add_theme_constant_override("separation",12)
 	add_child(layout)
 	var header := HBoxContainer.new()
 	layout.add_child(header)
-	var title := FarmUIStyle.label("星辉矿脉 · 山谷深处的回声",24,FarmUIStyle.TITLE)
-	title.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	header.add_child(title)
+	panel_title = FarmUIStyle.heading(header,"星辉矿脉 · 山谷深处的回声")
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	DiamondPayments.controls(layout,refresh)
 	var scroll := ScrollContainer.new()
@@ -29,16 +31,22 @@ func _ready() -> void:
 	content.add_theme_constant_override("separation",12)
 	scroll.add_child(content)
 
+func content_group() -> VBoxContainer:
+	if not content_cards: return content
+	if not is_instance_valid(content_section) or not content_section.is_inside_tree(): content_section=FarmUIStyle.card(content)
+	return content_section
+
 func words(text: String, size: int = 18) -> void:
+	if content_cards and size>=22: content_section=FarmUIStyle.card(content)
 	var label := FarmUIStyle.label(text,size,FarmUIStyle.TITLE if size>=22 else FarmUIStyle.TEXT)
 	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	content.add_child(label)
+	content_group().add_child(label)
 
 func button(text: String, callback: Callable) -> Button:
 	var result := FarmUIStyle.button(text,callback,160)
 	if text.begins_with("最终确认") or text.begins_with("取消本轮试炼"):
 		result.add_theme_stylebox_override("normal",FarmUIStyle.surface("danger"))
-	content.add_child(result)
+	content_group().add_child(result)
 	return result
 
 func read(title: String, text: String, callback: Callable) -> void:
@@ -173,7 +181,7 @@ func build_forge() -> void:
 		var recipe: Dictionary=MineState.data.recipes[id]
 		words(recipe.name+" · "+costs(recipe.required)+" · 镐等级%d" % recipe.level,16)
 		var row := HBoxContainer.new()
-		content.add_child(row)
+		content_group().add_child(row)
 		for batches in [1,5]:
 			row.add_child(FarmUIStyle.button("加工%d批" % batches,func():
 				if not MineState.enqueue(id,batches): Events.notice.emit("材料、工具、矿区进度或队列容量不满足；没有扣费。")

@@ -1,4 +1,7 @@
 extends "res://scripts/ui/mine_panel.gd"
+func _ready() -> void:
+	super._ready()
+	panel_title.text="河湾档案 · 温室与归路"
 func open_panel(id: String = "journal") -> void:
 	if GameState.modal: return
 	context=id;reading=false;pending=Callable()

@@ -8,6 +8,7 @@ var quantity: int = 1
 var pending := Callable()
 var confirm_text: String = ""
 
+var tab_bar: HBoxContainer
 func _ready() -> void:
 	add_to_group("modal_panels")
 	hide()
@@ -20,13 +21,14 @@ func _ready() -> void:
 	header.add_child(title)
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	DiamondPayments.controls(column,refresh)
-	var tabs := HBoxContainer.new()
-	column.add_child(tabs)
+	tab_bar=HBoxContainer.new()
+	column.add_child(tab_bar)
 	for entry in [["pen","鱼栏管理"],["shop","补给与鱼谱"],["craft","加工料理"],["quests","湖畔委托"]]:
 		var target: String=entry[0]
-		tabs.add_child(FarmUIStyle.button(entry[1],func():
+		var tab:=FarmUIStyle.button(entry[1],func():
 			if not pending.is_valid(): page=target; refresh()
-		,180))
+		,180)
+		tab.set_meta("facility_tab",target);tab_bar.add_child(tab)
 	var scroll := ScrollContainer.new()
 	scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"))
 	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
@@ -36,11 +38,10 @@ func _ready() -> void:
 	content.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	content.add_theme_constant_override("separation",12)
 	scroll.add_child(content)
+	FacilityLayout.decorate(self,"fishpen","照料四岸鱼栏，留意鱼群成长与水质。")
 
 func words(text: String, size: int = 18) -> void:
-	var label := FarmUIStyle.label(text,size)
-	label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
-	(section if is_instance_valid(section) else content).add_child(label)
+	FacilityLayout.text(section if is_instance_valid(section) else content,text,size)
 
 func button(text: String, callback: Callable) -> Button:
 	var control := FarmUIStyle.button(text,callback,160)
@@ -97,6 +98,7 @@ func cost_text(required: Dictionary) -> String:
 func refresh() -> void:
 	section=null
 	if not visible: return
+	FacilityLayout.tabs(tab_bar,page)
 	lock_payment(pending.is_valid())
 	for child in content.get_children(): content.remove_child(child);child.queue_free()
 	if pending.is_valid():
@@ -131,7 +133,8 @@ func show_pen() -> void:
 		return
 	var s: Dictionary=Aquaculture.summary(context)
 	words("%s · %s" % [{"pen_1":"西岸","pen_2":"南岸","pen_3":"东岸","pen_4":"北岸"}[context],Aquaculture.data.levels[str(int(p.level))].name],23)
-	words("%s · 鱼苗%d / 成年%d / 容量%d\n水质%d / 健康%d · 储备饲料%d" % ["空鱼栏" if p.species=="" else Aquaculture.data.species[p.species].name,s.fry,p.adults,s.capacity,p.water,p.health,p.feed_stock])
+	FacilityLayout.metrics(content,[["鱼苗",str(s.fry)],["成年鱼",str(p.adults)],["水质",str(p.water)],["健康",str(p.health),FarmUIStyle.SUCCESS]])
+	words("%s · 容量%d · 储备饲料%d" % ["空鱼栏" if p.species=="" else Aquaculture.data.species[p.species].name,s.capacity,p.feed_stock],17)
 	if p.species!="":
 		var fish: Dictionary=Aquaculture.data.species[p.species]
 		words("正常照料%d天成熟；本栏按每批鱼苗独立长大。推荐水质≥%d，至少%d尾成年鱼才会繁殖。\n今天%s；下次结算需饲料%d份。饥饿会慢长，不会突然失去鱼群。" % [fish.growth_days,fish.water,fish.min_adults,"已投喂" if p.last_feed_day==GameClock.day else "尚未投喂",s.feed_needed],16)

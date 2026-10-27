@@ -16,13 +16,15 @@ func _ready() -> void:
 	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
 	column.add_child(scroll);content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	content.add_theme_constant_override("separation",12);scroll.add_child(content)
+	FacilityLayout.decorate(self,"development","从一盏归路灯，到岸边的一张交货单。")
+
 func open_panel(id: String = "board") -> void:
 	if GameState.modal or id not in ["board","dock","community"] or not WorldDevelopment.near(id): return
 	context=id;pending=Callable();question="";GameState.set_modal(true);show();refresh()
 func close_panel() -> void:
 	pending=Callable();question="";DiamondPayments.cancel(self);hide();GameState.set_modal(false)
 func words(text: String, size: int = 18) -> void:
-	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;(section if is_instance_valid(section) else content).add_child(label)
+	FacilityLayout.text(section if is_instance_valid(section) else content,text,size)
 func button(text: String, callback: Callable) -> Button:
 	var control := FarmUIStyle.button(text,callback,180);(section if is_instance_valid(section) else content).add_child(control);return control
 func outcome(ok: bool) -> void:

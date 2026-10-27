@@ -11,6 +11,7 @@ var track: Control
 var live_status: Label
 var display_mode: String = ""
 var navigation_buttons: Array[Button] = []
+var tab_bar: HBoxContainer
 func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column := VBoxContainer.new();add_child(column)
@@ -19,18 +20,20 @@ func _ready() -> void:
 	title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
 	header.add_child(FarmUIStyle.button("收线离开 ×",close_panel,140))
 	DiamondPayments.controls(column,refresh)
-	var tabs := HBoxContainer.new();column.add_child(tabs)
+	tab_bar=HBoxContainer.new();column.add_child(tab_bar)
 	for entry in [["cast","抛竿与收获"],["gear","鱼竿与补给"],["book","垂钓图鉴"]]:
 		var destination: String=entry[0]
 		var tab := FarmUIStyle.button(entry[1],func():
 			if not Fishing.active() and not pending.is_valid(): page=destination;refresh()
 		,220)
-		tabs.add_child(tab);navigation_buttons.append(tab)
+		tab.set_meta("facility_tab",destination);tab_bar.add_child(tab);navigation_buttons.append(tab)
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"))
 	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
 	column.add_child(scroll);content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	content.add_theme_constant_override("separation",12);scroll.add_child(content)
 	Fishing.changed.connect(refresh)
+	FacilityLayout.decorate(self,"fishing","选择钓点、准备鱼饵，等浮标带来动静。")
+
 func open_panel(site_id: String = "farm_lake") -> void:
 	if GameState.modal or not Fishing.near_site(site_id): return
 	context=site_id;page="cast";pending=Callable();display_mode=""
@@ -40,7 +43,7 @@ func close_panel() -> void:
 	if is_instance_valid(hold): hold.reset()
 	hide();GameState.set_modal(false)
 func words(text: String,size: int = 18) -> Label:
-	var label := FarmUIStyle.label(text,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;(section if is_instance_valid(section) else content).add_child(label);return label
+	return FacilityLayout.text(section if is_instance_valid(section) else content,text,size)
 func button(text: String,callback: Callable) -> Button:
 	var control := FarmUIStyle.button(text,callback,180);(section if is_instance_valid(section) else content).add_child(control);return control
 func feedback(ok: bool) -> void:
@@ -56,6 +59,7 @@ func accept() -> void:
 func refresh() -> void:
 	section=null
 	if not visible: return
+	FacilityLayout.tabs(tab_bar,page)
 	var active: bool=Fishing.active()
 	for control in navigation_buttons: control.disabled=active or pending.is_valid()
 	for control in get_tree().get_nodes_in_group("payment_toggle"):

@@ -100,7 +100,7 @@ func _clamp_pan() -> void:
 			origin=clampf(origin,size[axis]-extent[axis]-12,12)
 			pan[axis]=origin-size[axis]*.5+extent[axis]*.5
 func _draw() -> void:
-	draw_rect(Rect2(Vector2.ZERO,size),Color("35291f"))
+	draw_rect(Rect2(Vector2.ZERO,size),Color("d2bd96"))
 	if not _picture: return
 	draw_texture_rect(_picture,Rect2(map_origin().round(),FarmAtlasData.PAPER_SIZE*map_scale()),false)
 	if layer_id=="region": _draw_changes()

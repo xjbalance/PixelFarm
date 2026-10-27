@@ -1,4 +1,7 @@
 extends "res://scripts/ui/mine_panel.gd"
+func _ready() -> void:
+	super._ready()
+	panel_title.text="百层深渊 · 探索与试炼"
 func open_panel(id: String = "legend") -> void:
 	if GameState.modal: return
 	context=id

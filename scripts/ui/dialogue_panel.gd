@@ -23,11 +23,11 @@ func _ready() -> void:
 	var content := VBoxContainer.new()
 	content.add_theme_constant_override("separation",10)
 	add_child(content)
-	title_label = FarmUIStyle.label("河湾里的故事",16,FarmUIStyle.MUTED)
 	var title_row := HBoxContainer.new()
 	content.add_child(title_row)
-	title_label.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	title_row.add_child(title_label)
+	title_label = FarmUIStyle.heading(title_row,"河湾里的故事","lantern")
+	title_label.add_theme_font_size_override("font_size",16)
+	title_label.add_theme_color_override("font_color",FarmUIStyle.MUTED)
 	social_button=FarmUIStyle.button("近况与礼物",func():
 		var person := social_person
 		close_dialogue()
@@ -37,14 +37,16 @@ func _ready() -> void:
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation",24)
 	content.add_child(row)
+	var portrait_frame:=PanelContainer.new()
+	portrait_frame.add_theme_stylebox_override("panel",FarmUIStyle.surface("secondary"))
+	portrait_frame.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
+	row.add_child(portrait_frame)
 	portrait = FarmPortrait.new()
-	row.add_child(portrait)
-	var words := VBoxContainer.new()
+	portrait_frame.add_child(portrait)
+	var words := FarmUIStyle.card(row)
 	words.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	words.add_theme_constant_override("separation",12)
-	row.add_child(words)
 	speaker_label = FarmUIStyle.label("",24,FarmUIStyle.TITLE)
-	speaker_label.add_theme_stylebox_override("normal",FarmUIStyle.surface("secondary"))
 	words.add_child(speaker_label)
 	body_label = FarmUIStyle.label("",21)
 	body_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART

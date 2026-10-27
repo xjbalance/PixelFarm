@@ -11,6 +11,7 @@ var selected_cell := Vector2i(-1,-1)
 var quantity: int=1
 var pending := Callable()
 var confirm_text: String=""
+var tab_bar: HBoxContainer
 func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column := VBoxContainer.new();add_child(column)
@@ -18,20 +19,23 @@ func _ready() -> void:
 	var title := FarmUIStyle.label("家园手作 · 一格一处生活",24,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL
 	header.add_child(title);header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	DiamondPayments.controls(column,refresh)
-	var tabs := HBoxContainer.new();column.add_child(tabs)
+	tab_bar=HBoxContainer.new();column.add_child(tab_bar)
 	for entry in [["layout","布置与移动"],["catalog","家具与扩建"],["storage","柜中储物"],["upgrade","住宅成长"]]:
 		var target: String=entry[0]
-		tabs.add_child(FarmUIStyle.button(entry[1],func():
+		var tab:=FarmUIStyle.button(entry[1],func():
 			if not pending.is_valid(): page=target;refresh()
-		,180))
+		,180)
+		tab.set_meta("facility_tab",target);tab_bar.add_child(tab)
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
 	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;column.add_child(scroll)
 	content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;content.add_theme_constant_override("separation",12);scroll.add_child(content)
 	GameState.control_mode_changed.connect(func():
 		pending=Callable();confirm_text="";selected_cell=Vector2i(-1,-1);DiamondPayments.cancel(self);refresh()
 	)
+	FacilityLayout.decorate(self,"housing","安排家具与收纳，让家更像自己的样子。")
+
 func words(text: String, size: int = 18) -> void:
-	var control := FarmUIStyle.label(text,size);control.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;(section if is_instance_valid(section) else content).add_child(control)
+	FacilityLayout.text(section if is_instance_valid(section) else content,text,size)
 func button(text: String, action: Callable) -> Button:
 	var control := FarmUIStyle.button(text,action,160);(section if is_instance_valid(section) else content).add_child(control);return control
 func open_panel(id: String="home") -> void:
@@ -73,6 +77,7 @@ func costs(required: Dictionary) -> String:
 func refresh() -> void:
 	section=null
 	if not visible: return
+	FacilityLayout.tabs(tab_bar,page)
 	lock_payment(pending.is_valid())
 	for child in content.get_children(): content.remove_child(child);child.queue_free()
 	if pending.is_valid():

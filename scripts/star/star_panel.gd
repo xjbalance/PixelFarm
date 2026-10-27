@@ -1,6 +1,9 @@
 extends "res://scripts/ui/xiaojing_panel.gd"
 ## 复用原有安全区、原生触点滚动和模态取消。所有按钮仍由规则层检查距离。
 var context: String = "overview"
+func _ready() -> void:
+	super._ready()
+	panel_title.text="星光手记 · 记忆与约定"
 func open_panel(kind: String = "overview") -> void:
 	if GameState.modal: return
 	context=kind

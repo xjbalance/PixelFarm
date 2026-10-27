@@ -10,8 +10,10 @@ func _ready() -> void:
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;column.add_child(scroll)
 	content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;content.add_theme_constant_override("separation",12);scroll.add_child(content)
+	FacilityLayout.decorate(self,"recovery","坐一会儿，吃点东西，再继续今天的生活。")
+
 func words(text: String) -> void:
-	var label := FarmUIStyle.label(text,19);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;content.add_child(label)
+	FacilityLayout.text(content,text,19)
 func button(text: String, callback: Callable) -> Button:
 	var b := FarmUIStyle.button(text,callback,180);content.add_child(b);return b
 func open_panel() -> void:

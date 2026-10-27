@@ -18,8 +18,8 @@ func _ready() -> void:
 	var column := VBoxContainer.new()
 	column.add_theme_constant_override("separation",16)
 	add_child(column)
-	title = FarmUIStyle.label("像素世界 · 0.7.1 匠心打磨",26,FarmUIStyle.TITLE)
-	column.add_child(title)
+	var header:=HBoxContainer.new();column.add_child(header)
+	title = FarmUIStyle.heading(header,"像素世界 · 0.7.1 匠心打磨","house_1")
 	var scroll := ScrollContainer.new()
 	scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"))
 	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
@@ -31,10 +31,9 @@ func _ready() -> void:
 	scroll.add_child(content)
 	body = FarmUIStyle.label("",17)
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	content.add_child(body)
-	actions = VBoxContainer.new()
+	FarmUIStyle.card(content).add_child(body)
+	actions = FarmUIStyle.card(content)
 	actions.add_theme_constant_override("separation",8)
-	content.add_child(actions)
 
 func open_panel(for_sleep: bool = false) -> void:
 	if GameState.modal: return

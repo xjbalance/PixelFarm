@@ -4,18 +4,23 @@ var site: String=""
 var content: VBoxContainer
 var pending := Callable()
 var text: String=""
+var content_section: VBoxContainer
 func _ready() -> void:
 	add_to_group("modal_panels");hide()
-	var column := VBoxContainer.new();add_child(column)
+	var column := VBoxContainer.new();column.add_theme_constant_override("separation",12);add_child(column)
 	var header := HBoxContainer.new();column.add_child(header)
-	var title := FarmUIStyle.label("河湾近况 · 每个人的生活",24,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
+	var title := FarmUIStyle.heading(header,"河湾近况 · 每个人的生活","village")
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;column.add_child(scroll)
 	content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;content.add_theme_constant_override("separation",12);scroll.add_child(content)
+func content_group() -> VBoxContainer:
+	if not is_instance_valid(content_section) or not content_section.is_inside_tree(): content_section=FarmUIStyle.card(content)
+	return content_section
 func words(line: String,size: int=18) -> void:
-	var label := FarmUIStyle.label(line,size);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;content.add_child(label)
+	if size>=22: content_section=FarmUIStyle.card(content)
+	var label := FarmUIStyle.label(line,size,FarmUIStyle.TITLE if size>=22 else FarmUIStyle.TEXT);label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;content_group().add_child(label)
 func button(caption: String,callback: Callable) -> Button:
-	var control := FarmUIStyle.button(caption,callback,160);content.add_child(control);return control
+	var control := FarmUIStyle.button(caption,callback,160);content_group().add_child(control);return control
 func open_panel(id: String="linya") -> void:
 	if GameState.modal or id not in Social.PEOPLE: return
 	person=id;site="";pending=Callable();GameState.set_modal(true);show();refresh()
@@ -44,9 +49,14 @@ func refresh() -> void:
 		button("完成这次现场观察",func(): outcome(Social.observe_site(site)))
 		return
 	var data: Dictionary=Social.data.people[person]
-	var portrait := FarmPortrait.new();portrait.person=person;content.add_child(portrait)
-	words("%s · 好感%d/100 · 生日%s%d日" % [data.name,Social.friendship(person),Calendar.SEASON_NAMES[data.birthday[0]],data.birthday[1]],23)
+	var profile:=FarmUIStyle.card(content)
+	var row:=HBoxContainer.new();row.add_theme_constant_override("separation",16);profile.add_child(row)
+	var portrait := FarmPortrait.new();portrait.person=person;portrait.size_flags_vertical=Control.SIZE_SHRINK_BEGIN;row.add_child(portrait)
+	content_section=VBoxContainer.new();content_section.size_flags_horizontal=Control.SIZE_EXPAND_FILL;row.add_child(content_section)
+	var name_label:=FarmUIStyle.heading(content_section,"%s · 好感%d/100 · 生日%s%d日" % [data.name,Social.friendship(person),Calendar.SEASON_NAMES[data.birthday[0]],data.birthday[1]])
+	name_label.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART
 	words(Social.daily_line(person))
+	content_section=null
 	var nearby: bool=Social.near_person(person)
 	if not nearby: words("现在可以读近况和目标；交谈、赠礼、接取与完成约定需要走到本人身边。",16)
 	button("聊聊今天",func(): ask(Social.daily_line(person),func(): outcome(Social.talk(person)))).disabled=not nearby

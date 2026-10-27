@@ -29,7 +29,7 @@ func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",10);add_child(column)
 	var header:=HBoxContainer.new();column.add_child(header)
-	title=FarmUIStyle.label("背包",26,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
+	title=FarmUIStyle.heading(header,"背包","market")
 	header.add_child(FarmUIStyle.button("关闭 ×",close_panel,100))
 	balance=FarmUIStyle.label("",16);balance.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;column.add_child(balance)
 	DiamondPayments.controls(column,refresh);payment_control=column.get_child(column.get_child_count()-1)
@@ -37,8 +37,9 @@ func _ready() -> void:
 	for i in range(4):
 		var button:=FarmUIStyle.button(["种子与收获","材料与矿物","鱼苗与湖鲜","生活与料理"][i],change_category.bind(i),160)
 		button.size_flags_horizontal=Control.SIZE_EXPAND_FILL;button.toggle_mode=true;categories.add_child(button);category_buttons.append(button)
+	var detail_card:=FarmUIStyle.card(column)
 	selected_detail=FarmUIStyle.label("轻点物品图标或名称查看；使用与装备需点对应按钮。",16)
-	selected_detail.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;selected_detail.custom_minimum_size.y=46;column.add_child(selected_detail)
+	selected_detail.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;selected_detail.custom_minimum_size.y=36;detail_card.add_child(selected_detail)
 	rows=VBoxContainer.new();rows.add_theme_constant_override("separation",10)
 	scroll=ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
 	column.add_child(scroll);rows.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(rows)
@@ -104,7 +105,8 @@ func refresh() -> void:
 	update_rows();update_selection();update_sale()
 
 func make_row(key: String) -> Dictionary:
-	var row:=HBoxContainer.new();row.custom_minimum_size.y=78;row.add_theme_constant_override("separation",10);rows.add_child(row)
+	var card:=FarmUIStyle.card(rows)
+	var row:=HBoxContainer.new();row.custom_minimum_size.y=70;row.add_theme_constant_override("separation",10);card.add_child(row)
 	var view: Dictionary={"row":row,"selectors":[],"actions":[]}
 	row_views[key]=view;row_build_count+=1;return view
 
@@ -274,7 +276,7 @@ func cancel_sale() -> void:
 
 func build_sale() -> void:
 	sale_detail=FarmUIStyle.label("",20,FarmUIStyle.TITLE)
-	sale_detail.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;rows.add_child(sale_detail)
+	sale_detail.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;FarmUIStyle.card(rows).add_child(sale_detail)
 	var controls:=make_row("sale_quantity")
 	controls.row.custom_minimum_size.y=UIMetrics.minimum_target()+8
 	controls.row.add_child(FarmUIStyle.label("出售数量",18))

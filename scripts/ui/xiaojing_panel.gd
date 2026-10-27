@@ -6,18 +6,20 @@ var text_title: String = ""
 var story_text: String = ""
 var page: String = "main"
 var confirmation: String = "读完并记下"
+var content_section: VBoxContainer
+var panel_title: Label
 
 func _ready() -> void:
 	add_to_group("modal_panels")
-	add_theme_stylebox_override("panel",FarmUIStyle.surface("star"))
+	add_theme_stylebox_override("panel",FarmUIStyle.surface("paper"))
 	hide()
 	var layout := VBoxContainer.new()
+	layout.add_theme_constant_override("separation",12)
 	add_child(layout)
 	var header := HBoxContainer.new()
 	layout.add_child(header)
-	var caption := FarmUIStyle.label("第 1314 颗星星",25,FarmUIStyle.STAR)
-	caption.size_flags_horizontal=Control.SIZE_EXPAND_FILL
-	header.add_child(caption)
+	panel_title = FarmUIStyle.heading(header,"第 1314 颗星星","greenhouse")
+	panel_title.add_theme_color_override("font_color",FarmUIStyle.STAR)
 	header.add_child(FarmUIStyle.button("四季近况",func(): close_panel(); Events.interaction_requested.emit("social:xiaojing"),140))
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,110))
 	DiamondPayments.controls(layout,refresh)
@@ -51,10 +53,15 @@ func close_panel() -> void:
 	hide()
 	GameState.set_modal(false)
 
+func content_group() -> VBoxContainer:
+	if not is_instance_valid(content_section) or not content_section.is_inside_tree(): content_section=FarmUIStyle.card(content)
+	return content_section
+
 func label_row(text: String, size: int = 18) -> void:
+	if size>=22: content_section=FarmUIStyle.card(content)
 	var label := FarmUIStyle.label(text,size,FarmUIStyle.STAR if size>=22 else FarmUIStyle.TEXT)
 	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	content.add_child(label)
+	content_group().add_child(label)
 
 func button(text: String, callback: Callable) -> Button:
 	var result := FarmUIStyle.button(text,callback,160)
@@ -62,7 +69,7 @@ func button(text: String, callback: Callable) -> Button:
 		result.add_theme_stylebox_override("normal",FarmUIStyle.surface("danger"))
 	elif text.begins_with("求婚") or text.begins_with("开始温室仪式"):
 		result.add_theme_stylebox_override("normal",FarmUIStyle.surface("star"))
-	content.add_child(result)
+	content_group().add_child(result)
 	return result
 
 func read_story(title: String, text: String, callback: Callable = Callable(), confirm_text: String = "读完并记下") -> void:
@@ -85,10 +92,14 @@ func refresh() -> void:
 		content.remove_child(child)
 		child.queue_free()
 	if page == "story":
+		var reading:=FarmUIStyle.card(content)
+		var row:=HBoxContainer.new();row.add_theme_constant_override("separation",16);reading.add_child(row)
 		var portrait := FarmPortrait.new()
 		portrait.person = "xiaojing"
-		content.add_child(portrait)
-		label_row(text_title,22)
+		portrait.size_flags_vertical=Control.SIZE_SHRINK_BEGIN;row.add_child(portrait)
+		content_section=VBoxContainer.new();content_section.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+		content_section.add_theme_constant_override("separation",12);row.add_child(content_section)
+		var heading:=FarmUIStyle.heading(content_section,text_title);heading.add_theme_color_override("font_color",FarmUIStyle.STAR)
 		label_row(story_text,21)
 		button(confirmation,finish_story)
 		button("稍后再读",close_panel)
@@ -207,7 +218,7 @@ func build_cave() -> void:
 			map += "\n"
 		label_row(map,22)
 		var row := HBoxContainer.new()
-		content.add_child(row)
+		content_group().add_child(row)
 		for vector in [Vector2i.UP,Vector2i.LEFT,Vector2i.DOWN,Vector2i.RIGHT]: row.add_child(FarmUIStyle.button({Vector2i.UP:"上",Vector2i.LEFT:"左",Vector2i.DOWN:"下",Vector2i.RIGHT:"右"}[vector],func(): Xiaojing.cave_move(vector); refresh(),100))
 		button("开采脚下矿晶",func(): Xiaojing.cave_mine(); refresh())
 		button("从入口返回并结算",func(): Xiaojing.leave_cave(); refresh())

@@ -383,6 +383,9 @@ func reflow_panels() -> void:
 			panel.controller.layout_panel();continue
 		if panel.get_meta("parchment_atlas",false):
 			panel.layout_panel();continue
+		if panel.get_meta("journal_map_open",false):
+			var extent: Vector2=(safe.size-Vector2(24,24)).min(Vector2(1440,900))
+			place(panel,Vector2(.5,.5),Vector2(.5,.5),Rect2(-extent/2,extent));continue
 		var kind: String="default"
 		if panel==inventory_panel: kind="inventory"
 		elif panel==system_panel: kind="system"
