@@ -34,6 +34,40 @@ static func touch(test: Node,control: Control) -> void:
 	event.pressed = false
 	test.get_viewport().push_input(event,true)
 
+static func find_button(root: Node, caption: String) -> Button:
+	for child in root.get_children():
+		if child is Button and child.is_visible_in_tree() and child.text==caption: return child
+		var found:=find_button(child,caption)
+		if found: return found
+	return null
+
+static func labeled_button(root: Node, label_text: String, caption: String, scope: Node=null) -> Button:
+	if scope==null: scope=root
+	for child in root.get_children():
+		if child is Label and child.text.trim_prefix("✓ ").trim_prefix("○ ").begins_with(label_text):
+			var ancestor: Node=child.get_parent()
+			while ancestor and (ancestor==scope or scope.is_ancestor_of(ancestor)):
+				var found:=find_button(ancestor,caption)
+				if found: return found
+				ancestor=ancestor.get_parent()
+		var nested:=labeled_button(child,label_text,caption,scope)
+		if nested: return nested
+	return null
+
+static func touch_button(test: Node, root: Node, caption: String, section: String="") -> void:
+	# 纸卡、标题与图标可以改变节点层级；仍找到真实公开按钮并发原生触摸。
+	var control: Button=find_button(root,caption) if section=="" else labeled_button(root,section,caption)
+	if not is_instance_valid(control):
+		push_error("UI测试未找到公开按钮："+caption+" / "+section)
+		return
+	var ancestor: Node=control.get_parent()
+	while ancestor:
+		if ancestor is ScrollContainer: ancestor.ensure_control_visible(control)
+		ancestor=ancestor.get_parent()
+	await test.frames(3)
+	touch(test,control)
+	await test.frames(3)
+
 static func story_flow(test: Node,game: Node) -> void:
 	var panel: Node = game.hud.dialogue
 	Story.request("mail")
@@ -133,8 +167,7 @@ static func story_flow(test: Node,game: Node) -> void:
 	Inventory.items.stone = 30
 	Inventory.changed.emit()
 	await test.frames()
-	var row: HBoxContainer = game.hud.story_panel.content.get_child(4)
-	touch(test,row.get_child(1))
+	await touch_button(test,game.hud.story_panel,"一起建造",str(VillageProjects.definitions.well.name))
 	test.check(VillageProjects.has_project("well") and Inventory.coins == 460,"触屏按钮成功建设水井并准确收费")
 	test.check(game.hud.story_panel.content.get_parent().finger == -1,"建设按钮刷新后正确释放长列表的触点")
 	test.check(not VillageProjects.build("well") and Inventory.coins == 460,"已完成的村庄工程不能重复收费")

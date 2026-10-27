@@ -28,7 +28,7 @@ static func read(test: Node, game: Node, id: String) -> void:
 		return
 	test.check(game.hud.mine_panel.visible and game.hud.mine_panel.reading,"实体调查点打开矿道记录："+id)
 	if game.hud.mine_panel.visible:
-		load("res://tests/story.gd").touch(test,game.hud.mine_panel.content.get_child(2))
+		await load("res://tests/story.gd").touch_button(test,game.hud.mine_panel,"读完并记下")
 		game.hud.mine_panel.close_panel()
 
 static func fresh_chapter(game: Node) -> void:

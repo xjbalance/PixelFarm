@@ -22,7 +22,8 @@ static func collect(test: Node, game: Node, id: String) -> void:
 			test.check(game.hud.star_panel.visible and game.hud.star_panel.context=="memory:"+id,"真实邻近交互能选中独立记忆："+id)
 			if game.hud.star_panel.visible:
 				await test.frames(3)
-				load("res://tests/story.gd").touch(test,game.hud.star_panel.content.get_child(4))
+				var options: Array=StarStory.data.memory_options[memory.method]
+				await load("res://tests/story.gd").touch_button(test,game.hud.star_panel,str(options[0]))
 				game.hud.star_panel.close_panel()
 			test.check(id in Xiaojing.state.memories,"读取独立记忆："+id)
 
@@ -89,7 +90,7 @@ static func run(test: Node, game: Node) -> void:
 	game.interact()
 	test.check(game.hud.xiaojing_panel.visible and GameState.modal,"现有靠近交互可打开小京长列表")
 	await test.frames(3)
-	load("res://tests/story.gd").touch(test,game.hud.xiaojing_panel.content.get_child(1))
+	await load("res://tests/story.gd").touch_button(test,game.hud.xiaojing_panel,"每日交谈")
 	test.check(game.hud.xiaojing_panel.page=="story","原生触点按钮能打开小京交谈剧情")
 	game.hud.xiaojing_panel.close_panel()
 	test.check(Xiaojing.state.affection==before_talk,"关闭未读完的小京交谈不会提前提交好感")
@@ -273,7 +274,7 @@ static func run(test: Node, game: Node) -> void:
 	test.check(not Xiaojing.confirm_wedding(false) and Xiaojing.state.diamonds==1314,"求婚取消不扣钻石")
 	game.hud.star_panel.open_panel("desk_right")
 	await test.frames(3)
-	load("res://tests/story.gd").touch(test,game.hud.star_panel.content.get_child(4))
+	await load("res://tests/story.gd").touch_button(test,game.hud.star_panel,"取消，先收起灯闸")
 	test.check(Xiaojing.state.diamonds==1314 and not game.hud.star_panel.visible,"真实触点取消婚礼关闭面板，钻石保持")
 	test.check(Xiaojing.confirm_wedding(true) and Xiaojing.state.diamonds==0 and Xiaojing.state.married,"全部条件且1314颗钻石可一次完成婚礼事务")
 	test.check(not Xiaojing.confirm_wedding(true) and Xiaojing.state.diamonds==0,"婚后不能重复扣除钻石")
