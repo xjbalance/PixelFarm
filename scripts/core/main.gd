@@ -109,6 +109,7 @@ func _ready() -> void:
 	add_child(touch_input)
 	touch_input.setup(self)
 	home_arrange=HomeArrangeController.new();add_child(home_arrange);home_arrange.setup(self)
+	hud.atlas_panel.setup(self)
 	tutorial=GameTutorial.new();add_child(tutorial);tutorial.attach(self)
 	Events.notice.emit("欢迎回家。屋东的信箱里，有一封留给你的信。")
 	if persistence_enabled and (FileAccess.file_exists(FarmSaveStore.PATH) or FileAccess.file_exists(FarmSaveStore.PATH+".bak")):
@@ -337,7 +338,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("journal"):
 		hud.progress_panel.open_panel("journal",false)
 	elif event.is_action_pressed("story_map"):
-		hud.story_panel.open_panel()
+		hud.atlas_panel.open_panel()
 	elif event.is_action_pressed("save_game"):
 		save_game()
 	elif event.is_action_pressed("load_game"):

@@ -74,7 +74,7 @@ func classic_tools() -> void:
 	GameState.set_control_mode("tap",false);await frames(4)
 
 func menu_navigation() -> void:
-	for spec in [["背包 B",game.hud.inventory_panel],["委托 J",game.hud.progress_panel],["手记 M",game.hud.story_panel]]:
+	for spec in [["背包 B",game.hud.inventory_panel],["委托 J",game.hud.progress_panel],["手记",game.hud.story_panel]]:
 		await touch(game.hud.menu_button)
 		check(game.hud.system_panel.visible and GameState.modal,"保留的顶部菜单入口可用："+str(spec[0]))
 		var entry:=button(game.hud.system_panel,spec[0])

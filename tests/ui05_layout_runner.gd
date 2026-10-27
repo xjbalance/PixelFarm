@@ -140,7 +140,7 @@ func classic_dialogue() -> void:
 func remaining_public_panels() -> void:
 	await at("home",game.home_rest.SOFA+Vector2(0,36));check(game.home_rest.open(),prefix+"真实靠近沙发打开确认");await audit(game.home_rest.panel,"沙发小睡确认");game.home_rest.close_panel()
 	await at("farm",Vector2(656,480))
-	for entry in [[game.hud.story_panel,[],"村庄手记"],[game.hud.calendar_panel,[],"四季日历"],[game.hud.mine_panel,["journal"],"矿道手记"],[game.hud.star_panel,["overview"],"星星手记"],[game.hud.social_panel,["linya"],"村民近况"],[game.hud.abyss_panel,["legend"],"深渊试炼"],[game.hud.river_panel,["journal"],"河湾剧情"]]:
+	for entry in [[game.hud.atlas_panel,[],"羊皮纸地图"],[game.hud.story_panel,[],"村庄手记"],[game.hud.calendar_panel,[],"四季日历"],[game.hud.mine_panel,["journal"],"矿道手记"],[game.hud.star_panel,["overview"],"星星手记"],[game.hud.social_panel,["linya"],"村民近况"],[game.hud.abyss_panel,["legend"],"深渊试炼"],[game.hud.river_panel,["journal"],"河湾剧情"]]:
 		await show_panel(entry[0],entry[1],entry[2])
 	game.hud.progress_panel.open_panel("workshop",true);await audit(game.hud.progress_panel,"建设图纸");game.hud.progress_panel.close_panel()
 	await at("farm",Recovery.BENCH+Vector2(0,32));await show_panel(game.hud.recovery_panel,[],"白天恢复")

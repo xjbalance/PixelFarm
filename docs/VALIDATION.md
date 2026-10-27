@@ -1,8 +1,25 @@
 # 0.7.1《匠心打磨》实际验证记录
 
-当前温馨田园住宅与家具自由摆放：**4251项自动化、2534项桌面窗口、134个计划进程全部通过，零失败**；26套窗口检查。新增159项主状态、6进程27项持久化和86项窗口检查，覆盖移动原床/沙发/厨房/收纳、预览取消、原生拖动/点选、多指/UI拦截、真实旧档迁移、跨日工单、婚姻与柜存保留。原签名code16 APK构建及实际包内资源桌面启动通过；异常退出后独立重启通过。没有Android真机验收。
+当前整合内容为按数量出售、农场视觉样板06与羊皮纸冒险图纸；完整汇总及各套计数见[TEST-MAP06.json](TEST-MAP06.json)。存档仍v24，所有检查使用临时用户目录，不操作真实玩家数据。
 
-[当前报告与截图](HOME-ARRANGE.md) · [机器记录](TEST-HOME-ARRANGE.json)。完整无头日志`builds/home-arrange-final-check.log`，窗口日志`builds/home-arrange-final-window.log`，APK运行日志`builds/home-arrange-final-apk-runtime.log`，中断重启日志`builds/home-arrange-final-interrupt.log`。测试仅使用临时用户目录，v24迁移不操作玩家真实存档。
+最终完整执行：**4598项自动化、2869项桌面窗口、142个计划进程全部通过**；30套窗口检查无失败、脚本错误或泄漏。全日志为`builds/map06-final-check.log`与`builds/map06-final-window.log`。
+
+| 本轮专项 | 已实际执行结果 |
+|---|---|
+| 数量出售 | 35项状态、24项真实窗口，零失败 |
+| 农场视觉样板 | 139项状态、147项真实窗口，零失败 |
+| 图纸核心 | 74项状态、80项真实窗口，零失败 |
+| 图纸UI | 51项状态、51项真实窗口，零失败 |
+| 图纸独立持久化 | 4个独立进程、45项，零失败，含真实v23与v24状态恢复 |
+| Android构建与包内运行 | 原签名code17 APK导出，实际包内资源在隔离桌面Godot启动180帧及接口检查通过 |
+| 异常退出 | 实际SIGKILL后独立重启通过 |
+| Android真机 | 无设备；DPI/双指手感/覆盖安装/手机性能未验收 |
+
+[数量出售报告](SALE-QUANTITY.md) · [农场样板与前后截图](FARM-VISUAL-06.md) · [图纸报告与区域截图](PARCHMENT-MAP.md)。上述专项计数不是完整回归总数；完整结果以本轮机器记录为准。窗口为Linux Godot4.3 Xvfb/Mesa，不能替代Android运行。
+
+温馨田园住宅与家具自由摆放历史结果：**4251项自动化、2534项桌面窗口、134个计划进程全部通过，零失败**；26套窗口检查。新增159项主状态、6进程27项持久化和86项窗口检查，覆盖移动原床/沙发/厨房/收纳、预览取消、原生拖动/点选、多指/UI拦截、真实旧档迁移、跨日工单、婚姻与柜存保留。原签名code16 APK构建及实际包内资源桌面启动通过；异常退出后独立重启通过。没有Android真机验收。
+
+[住宅历史报告与截图](HOME-ARRANGE.md) · [机器记录](TEST-HOME-ARRANGE.json)。完整无头日志`builds/home-arrange-final-check.log`，窗口日志`builds/home-arrange-final-window.log`，APK运行日志`builds/home-arrange-final-apk-runtime.log`，中断重启日志`builds/home-arrange-final-interrupt.log`。测试仅使用临时用户目录，v24迁移不操作玩家真实存档。
 
 原布局恢复与森林资源历史结果：**4064项自动化、2448项窗口、127进程全部通过**。新资源117状态、73窗口、6进程21持久化通过；[报告](RESTORED-LAYOUT-RESOURCES.md)、[机器记录](TEST-CLASSIC-RESOURCES.json)。原签名code15 APK构建、包内桌面启动与异常退出重启通过；没有Android真机。
 

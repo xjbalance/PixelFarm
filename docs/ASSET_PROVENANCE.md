@@ -72,3 +72,14 @@ assets/ui/river下13款九宫格材质与5个16px状态图标由tools/generate_u
 `assets/housing/interior/`当前60张PNG由既有`tools/generate_home_interior_assets.py`使用Pillow程序像素绘制维护，本轮在51张原资源基础上新增浅色地板图集与8张`placeable_*`家具图。木床、沙发、奶油厨柜、陈设和四级墙地板统一为暖木/奶油/苔绿材质；四张192×168屋外贴图保留原透明轮廓、比例和入口。没有调用AI图像生成服务，也未将商业游戏截图或用户`need/`参考原图打入工程交付资源。
 
 `docs/home-arrange/`图片来自真实Linux Godot4.3 Xvfb/Mesa窗口；前后拼图、四级汇总与GIF由`tools/capture_home_arrange_artifacts.py`整理。GIF组合的是实际窗口状态帧，不是连续手机录像，也不代表手机帧率。字体仍使用原Noto Sans CJK及原许可。
+
+
+## 0.7.1农场视觉样板06与羊皮纸图纸
+
+`assets/farm06/`共18张原创PNG，由`tools/generate_farm06_assets.py`使用Pillow绘制：四季地面4张、三种冠幅×四季树木12张及干湿土2张。仅农场场景使用这套地面与树冠，沿用原地理和碰撞；没有把村庄、森林或矿洞标成已经完成同级重绘。
+
+`assets/maps/`共34张原创PNG，由`tools/generate_atlas_assets.py`使用Pillow绘制：10张总览/区域底图与24张符号；HUD入口`assets/ui/map_fold.svg`为原创小折叠地图图标。纸面、地貌与符号没有复用商业游戏图像；现有Noto中文字体及原许可保留。本轮没有调用AI图像API。
+
+参考访问范围：五个参考链接中的四个HTML页面访问成功，Stonebit素材参考页因TLS失败未打开；实际查看的参考图片只有Cainos Basic预览。页面可访问不等于已经查看其中全部图片。未下载商业瓦片包；预览只在本地构建目录供研究，不导入游戏，不随源码或APK分发。
+
+`docs/farm06/`与`docs/parchment-map/`来自实际Linux Godot4.3 Xvfb/Mesa窗口。前后/四季拼图仅整理真实渲染帧；图纸截图包括总览、区域、展开过程与桥梁修复前后状态，不能代表Android真机性能或真人长线游玩。

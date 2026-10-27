@@ -1,18 +1,22 @@
 # 像素世界 · Pixel World
 
-当前源码和调试APK已包含[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)及[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)。
+当前源码和调试APK已包含[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)、[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)、[按数量出售](docs/SALE-QUANTITY.md)、[农场视觉样板06](docs/FARM-VISUAL-06.md)及[羊皮纸冒险图纸](docs/PARCHMENT-MAP.md)。
 
 **0.7.1《匠心打磨》**，Godot 4.3 Standard 原创像素经营 RPG。在原工程上整合四季天气、自由钓鱼、湖泊生态、畜牧、厨房加工、四季节日、村民个人事件、家园扩建装修与三张隐藏地图。
 
 保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v24**，兼容v1–v23，原应用包名、证书与存档路径保留。
 
-最新源码完整验证见[住宅布置机器记录](docs/TEST-HOME-ARRANGE.json)：**4,251项自动化、2,534项桌面窗口检查零失败**，134个计划进程、26套窗口检查全部通过，包括原移动/农活/背包/多比例及安全区回归。原签名Android调试APK已重新生成（versionCode 16）；没有Android真机验收。
+最新整合验收：**4,598项自动化、2,869项桌面窗口检查零失败，142个计划进程全部通过**，见[地图06机器记录](docs/TEST-MAP06.json)。本轮包含出售数量选择、仅农场的四季地面/树冠视觉样板，以及按M展开的羊皮纸地图；存档仍为v24，完整九格和既有玩法规则保留。原签名Android调试APK已重新生成（versionCode 17）；没有Android真机验收。住宅布置阶段的4,251项自动化、2,534项桌面窗口及134进程记录保留为[历史验收](docs/TEST-HOME-ARRANGE.json)。
 
-[当前住宅改造与摆放报告](docs/HOME-ARRANGE.md) · [布局与森林报告](docs/RESTORED-LAYOUT-RESOURCES.md) · [住宅05报告与四级截图](docs/REPORT-HOME05.md) · [UI05报告与前后截图](docs/REPORT-UI05.md) · [布局规范](docs/UI05-LAYOUT.md) · [UI04报告](docs/REPORT-UI04.md) · [初版开发报告](docs/REPORT-0.7.1.md) · [0.7.0内容报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [UI05验收边界](docs/KNOWN-ISSUES-UI05.md)
+[当前图纸报告](docs/PARCHMENT-MAP.md) · [农场视觉样板](docs/FARM-VISUAL-06.md) · [数量出售](docs/SALE-QUANTITY.md) · [住宅改造与摆放报告](docs/HOME-ARRANGE.md) · [布局与森林报告](docs/RESTORED-LAYOUT-RESOURCES.md) · [住宅05报告与四级截图](docs/REPORT-HOME05.md) · [UI05报告与前后截图](docs/REPORT-UI05.md) · [布局规范](docs/UI05-LAYOUT.md) · [UI04报告](docs/REPORT-UI04.md) · [初版开发报告](docs/REPORT-0.7.1.md) · [0.7.0内容报告](docs/REPORT-0.7.0.md) · [操作与玩法](docs/GUIDE-0.7.0.md) · [测试记录](docs/VALIDATION.md) · [UI05验收边界](docs/KNOWN-ISSUES-UI05.md)
 
-![恢复的完整九格布局](docs/classic-resources/classic-1280-hud.png)
+![新农场样板与完整九格布局](docs/farm06/layout_1280x720.png)
 
-当前恢复完整顶栏与底部九格工具栏。农场42、村庄外围16、迷雾森林70个可再生树石点；森林从农场西北的“西北林径”进入。四级住宅和小睡功能保留。
+当前保留完整顶栏与底部九格工具栏。新农场样板统一草块、路缘、池岸和四季树冠，仅替换农场视觉；地形、农田、资源位置和碰撞保持原样。农场42、村庄外围16、迷雾森林70个可再生树石点保留；森林从农场西北的“西北林径”进入。村庄、森林和矿洞本轮未做同级美术重绘。[同镜头前后对比](docs/farm06/comparison.png) · [四季样板](docs/farm06/four-seasons.png)。
+
+按 **M** 或点击HUD的小折叠地图图标展开原创羊皮纸图纸；查看世界总览和已发现区域，拖动/双指或滚轮缩放，定位当前人物。图纸读取真实桥梁、住宅、探索状态，保留未知区域遮蔽，只供查看，不传送、不自动导航。
+
+![羊皮纸世界总览实际窗口](docs/parchment-map/world_1280x720.png)
 
 ![资源丰富的迷雾森林](docs/classic-resources/mist_forest_1280x720.png)
 
@@ -48,7 +52,9 @@ Godot **4.3 Standard** 导入`project.godot`，完成素材导入后按F5；不�
 | 移动 | WASD/方向键/鼠标点击 | 默认点击自动寻路，设置可切换备用摇杆 |
 | 交互 | 点击对象/E/空格 | 点对象，沿合法位置靠近后执行一次 |
 | 工具 | 1–9 / Q | 下方工具栏；第9格鱼竿 |
-| 背包/委托/手记 | B/J/M | 右上对应按钮 |
+| 背包/委托 | B/J | 右上对应按钮 |
+| 地图图纸 | M展开/收起，拖动/滚轮缩放 | 小折叠地图图标，拖动/双指缩放 |
+| 手记 | HUD或菜单中的手记按钮 | 同左，原手记功能保留 |
 | 保存/读取/菜单 | F5/F9/Esc | 菜单与系统返回 |
 | 钓鱼 | 按住追鱼按钮或空格，松开调整 | 长按/松开追鱼按钮 |
 | 家内布置 | 家内菜单→布置房间，点选/拖动、确认 | 同样点选/拖动家具预览，确认才提交 |
@@ -59,7 +65,7 @@ Godot **4.3 Standard** 导入`project.godot`，完成素材导入后按F5；不�
 
 现实1秒＝游戏2分钟，一天06:00–24:00，正常约9分钟。20:00前不能主动睡觉，20:00后确认休息；午夜疲劳昏睡恢复六成，每天只结算一次。菜单、对话及后台暂停正常时间。
 
-菜单“操作与生活指南”随时查看八类说明；新玩家轻提示只展示一次，旧存档默认已读。商店“出售全部”现在先确认数量和总价，取消保留物品。
+菜单“操作与生活指南”随时查看八类说明；新玩家轻提示只展示一次，旧存档默认已读。商店支持“按数量出售”：选择1至实际持有量，也可选1/5/10/全部；确认页展示单价、数量、总价与剩余，最终确认才扣物。原“出售全部”保留，购买数量独立，取消不改资源。
 
 体力不足时可用：屋东休息椅每日3次，每次花20游戏分钟恢复15；现有食物只要持有且体力未满即可继续吃，每次消耗1份，胡萝卜/土豆/小麦恢复8/12/4；鱼干/鱼汤恢复18/30，厨房料理按原值恢复，均无每日食用次数限制。已有料理增益不叠加、不覆盖或延长。建成茶座后每日热茶40。满体力不消耗恢复物品或次数，椅子不触发作物/矿石/鱼群跨天。
 

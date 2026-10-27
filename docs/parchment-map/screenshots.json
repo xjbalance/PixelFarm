@@ -1,0 +1,135 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    {
+      "name": "closed",
+      "path": "res://builds/atlas-closed.png",
+      "size": [
+        1280,
+        720
+      ],
+      "file": "docs/parchment-map/closed.png"
+    },
+    {
+      "name": "unfolding",
+      "path": "res://builds/atlas-unfolding.png",
+      "size": [
+        1280,
+        720
+      ],
+      "file": "docs/parchment-map/unfolding.png"
+    },
+    {
+      "name": "farm",
+      "path": "res://builds/atlas-farm.png",
+      "size": [
+        1280,
+        720
+      ],
+      "file": "docs/parchment-map/farm.png"
+    },
+    {
+      "name": "home",
+      "path": "res://builds/atlas-home.png",
+      "size": [
+        1280,
+        720
+      ],
+      "file": "docs/parchment-map/home.png"
+    },
+    {
+      "name": "village",
+      "path": "res://builds/atlas-village.png",
+      "size": [
+        1280,
+        720
+      ],
+      "file": "docs/parchment-map/village.png"
+    },
+    {
+      "name": "lake",
+      "path": "res://builds/atlas-lake.png",
+      "size": [
+        1280,
+        720
+      ],
+      "file": "docs/parchment-map/lake.png"
+    },
+    {
+      "name": "mine",
+      "path": "res://builds/atlas-mine.png",
+      "size": [
+        1280,
+        720
+      ],
+      "file": "docs/parchment-map/mine.png"
+    },
+    {
+      "name": "world_1280x720",
+      "path": "res://builds/atlas-world_1280x720.png",
+      "size": [
+        1280,
+        720
+      ],
+      "file": "docs/parchment-map/world_1280x720.png"
+    },
+    {
+      "name": "world_1560x720",
+      "path": "res://builds/atlas-world_1560x720.png",
+      "size": [
+        1560,
+        720
+      ],
+      "file": "docs/parchment-map/world_1560x720.png"
+    },
+    {
+      "name": "world_1600x720",
+      "path": "res://builds/atlas-world_1600x720.png",
+      "size": [
+        1600,
+        720
+      ],
+      "file": "docs/parchment-map/world_1600x720.png"
+    },
+    {
+      "name": "world_1280x960",
+      "path": "res://builds/atlas-world_1280x960.png",
+      "size": [
+        1280,
+        960
+      ],
+      "file": "docs/parchment-map/world_1280x960.png"
+    },
+    {
+      "name": "safe_area",
+      "path": "res://builds/atlas-safe_area.png",
+      "size": [
+        1280,
+        720
+      ],
+      "file": "docs/parchment-map/safe_area.png"
+    },
+    {
+      "name": "dpi_320",
+      "path": "res://builds/atlas-dpi_320.png",
+      "size": [
+        1280,
+        720
+      ],
+      "file": "docs/parchment-map/dpi_320.png"
+    },
+    {
+      "name": "dpi_480",
+      "path": "res://builds/atlas-dpi_480.png",
+      "size": [
+        1280,
+        720
+      ],
+      "file": "docs/parchment-map/dpi_480.png"
+    }
+  ],
+  "checks": 51,
+  "failures": 0,
+  "platform": "X11",
+  "note": "Actual Linux Godot 4.3 window frames; no Android device acceptance."
+}

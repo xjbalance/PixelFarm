@@ -54,6 +54,8 @@ var top_cluster: HBoxContainer
 var menu_button: Button
 var hotbar_expanded: bool = true
 var camera_return_button: Button
+var atlas_panel: PanelContainer
+var atlas_button: Button
 
 func _ready() -> void:
 	layer = 10
@@ -148,9 +150,14 @@ func build_top() -> void:
 	money_row.add_child(money_label)
 	top.add_child(FarmUIStyle.button("背包 B", func(): bag_requested.emit(), 88))
 	top.add_child(FarmUIStyle.button("委托 J",func(): progress_panel.open_panel("journal",false),88))
-	top.add_child(FarmUIStyle.button("手记 M",func(): story_panel.open_panel(),88))
+	top.add_child(FarmUIStyle.button("手记",func(): story_panel.open_panel(),88))
 	menu_button = FarmUIStyle.button("菜单", func(): system_panel.open_panel(), 72)
 	top.add_child(menu_button)
+	atlas_button=FarmUIStyle.button("",func(): atlas_panel.open_panel(),48)
+	atlas_button.name="MapButton";atlas_button.tooltip_text="展开河湾地图 · M"
+	atlas_button.icon=load("res://assets/ui/map_fold.svg")
+	atlas_button.expand_icon=true;atlas_button.add_theme_constant_override("icon_max_width",24)
+	safe.add_child(atlas_button)
 
 func status_panel() -> PanelContainer:
 	var panel := PanelContainer.new()
@@ -357,6 +364,9 @@ func build_feedback() -> void:
 	world_development_panel.set_script(preload("res://scripts/world_progress/world_development_panel.gd"))
 	place(world_development_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
 	safe.add_child(world_development_panel)
+	atlas_panel=PanelContainer.new()
+	atlas_panel.set_script(preload("res://scripts/maps/atlas_panel.gd"))
+	safe.add_child(atlas_panel)
 	# 提示位于模态层上方，金币不足、奖励和保存反馈不会被遮罩盖住。
 	safe.move_child(toast,-1)
 	Events.modal_changed.connect(func(active: bool):
@@ -371,6 +381,8 @@ func reflow_panels() -> void:
 		if not safe.is_ancestor_of(panel): continue
 		if panel.get_meta("home_editor",false):
 			panel.controller.layout_panel();continue
+		if panel.get_meta("parchment_atlas",false):
+			panel.layout_panel();continue
 		var kind: String="default"
 		if panel==inventory_panel: kind="inventory"
 		elif panel==system_panel: kind="system"
@@ -466,6 +478,10 @@ func layout_header_dependents() -> void:
 	var bottom: float=top_cluster.position.y+maxf(top_cluster.size.y,top_cluster.get_combined_minimum_size().y)
 	guide_panel.offset_top=bottom+22
 	guide_panel.offset_bottom=guide_panel.offset_top+(64 if guide_collapsed else 144)
+	if is_instance_valid(atlas_button):
+		var target: float=UIMetrics.minimum_target()
+		atlas_button.custom_minimum_size=Vector2(target,target)
+		place(atlas_button,Vector2(1,0),Vector2(1,0),Rect2(-target-12,bottom+8,target,target))
 	position_camera_return(true)
 
 func expand_hotbar() -> void:
@@ -486,7 +502,7 @@ func position_camera_return(force: bool = false) -> void:
 	var height: float=UIMetrics.minimum_target()
 	var width: float=maxf(120,height)
 	var top: float=top_cluster.position.y+maxf(top_cluster.size.y,top_cluster.get_combined_minimum_size().y)+8
-	place(button,Vector2(1,0),Vector2(1,0),Rect2(-width-12,top,width,height))
+	place(button,Vector2(1,0),Vector2(1,0),Rect2(-width-height-20,top,width,height))
 
 func apply_safe_area(area: Rect2, screen: Vector2) -> void:
 	var viewport := get_viewport().get_visible_rect().size
@@ -545,6 +561,8 @@ func show_notice(text: String) -> void:
 	toast_time = 4.0
 
 func close_active_panel() -> bool:
+	if is_instance_valid(atlas_panel) and atlas_panel.visible:
+		atlas_panel.close_panel();return true
 	var owner_game:=get_parent()
 	if "home_arrange" in owner_game and is_instance_valid(owner_game.home_arrange) and owner_game.home_arrange.active:
 		owner_game.home_arrange.cancel();return true

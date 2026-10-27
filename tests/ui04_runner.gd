@@ -177,6 +177,7 @@ func task_card() -> void:
 func general_panels() -> void:
 	game.hud.inventory_panel.open_panel(false);await audit(game.hud.inventory_panel,"背包");game.hud.inventory_panel.close_panel()
 	game.hud.inventory_panel.open_panel(true);await audit(game.hud.inventory_panel,"商店");await capture("shop");game.hud.inventory_panel.close_panel()
+	game.hud.atlas_panel.open_panel();await audit(game.hud.atlas_panel,"羊皮纸地图");game.hud.atlas_panel.close_panel()
 	game.hud.progress_panel.open_panel("journal",false);await audit(game.hud.progress_panel,"委托日志");game.hud.progress_panel.close_panel()
 	game.hud.progress_panel.open_panel("workshop",true);await audit(game.hud.progress_panel,"建设图纸");game.hud.progress_panel.close_panel()
 	game.hud.story_panel.open_panel();game.hud.story_panel.select_page(2);await audit(game.hud.story_panel,"村民手记");game.hud.story_panel.close_panel()

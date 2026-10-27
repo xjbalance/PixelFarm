@@ -59,6 +59,10 @@ steps = [
     ('home05', ['--fixed-fps','60','res://tests/home05_runner.tscn']),
     ('home-arrange', ['--fixed-fps','60','res://tests/home_arrange_runner.tscn']),
     ('resource-rich', ['--fixed-fps','60','res://tests/resource_rich_runner.tscn']),
+    ('sale-quantity', ['--fixed-fps','60','res://tests/sale_quantity_runner.tscn']),
+    ('farm-visual-06', ['--fixed-fps','60','res://tests/farm_visual06_runner.tscn']),
+    ('atlas-core', ['--fixed-fps','60','res://tests/atlas_core_runner.tscn']),
+    ('atlas-ui', ['--fixed-fps','60','res://tests/atlas_ui_runner.tscn']),
     ('persist-write', ['res://tests/persistence.tscn','--','--write-save']),
     ('persist-restart', ['res://tests/persistence.tscn']),
     ('legacy-write', ['res://tests/persistence.tscn','--','--legacy-write']),
@@ -153,6 +157,10 @@ steps = [
     ('home-arrange-read', ['--fixed-fps','60','res://tests/home_arrange_persistence.tscn','--','--read-home-arrange']),
     ('home-arrange-corrupt', ['--fixed-fps','60','res://tests/home_arrange_persistence.tscn','--','--corrupt-home-arrange']),
     ('home-arrange-backup', ['--fixed-fps','60','res://tests/home_arrange_persistence.tscn','--','--read-home-arrange-backup']),
+    ('atlas-write', ['--fixed-fps','60','res://tests/atlas_persistence.tscn','--','--write-atlas']),
+    ('atlas-read', ['--fixed-fps','60','res://tests/atlas_persistence.tscn','--','--read-atlas']),
+    ('atlas-v23-write', ['--fixed-fps','60','res://tests/atlas_persistence.tscn','--','--write-atlas-v23']),
+    ('atlas-v23-read', ['--fixed-fps','60','res://tests/atlas_persistence.tscn','--','--read-atlas-v23']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:
