@@ -27,7 +27,7 @@ func _ready() -> void:
 	var header:=HBoxContainer.new();column.add_child(header)
 	player_avatar=FarmPortrait.new();player_avatar.person="player";player_avatar.set_meta("appearance_role","player")
 	header.add_child(player_avatar);player_avatar.custom_minimum_size=Vector2(44,52)
-	title = FarmUIStyle.heading(header,"像素世界 · 0.7.1 匠心打磨","house_1")
+	title = FarmUIStyle.heading(header,FarmUIStyle.game_title(),"house_1")
 	appearance_hint=FarmUIStyle.label("形象未加载",15,FarmUIStyle.DANGER);header.add_child(appearance_hint)
 	var scroll := ScrollContainer.new()
 	scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"))
@@ -59,7 +59,7 @@ func open_panel(for_sleep: bool = false) -> void:
 	refresh_identity()
 	GameState.set_modal(true)
 	show()
-	title.text = "让今天好好结束" if for_sleep else "像素世界 · 0.7.1 匠心打磨"
+	title.text = "让今天好好结束" if for_sleep else FarmUIStyle.game_title()
 	body.text = "睡到明天早上 06:00，恢复全部体力。\n今天浇过水且适应季节的作物将成长一天。" if for_sleep else "点击地面行走，点击人物或物件靠近后交互。\n工具栏选择优先用于下一次点击；辅助开关仍有效。\nWASD / 方向键移动 · E 操作 · Q / 1—9 工具\n背包 B · 委托 J · 地图 M · 保存 F5 · 读取 F9"
 	for child in actions.get_children():
 		actions.remove_child(child)

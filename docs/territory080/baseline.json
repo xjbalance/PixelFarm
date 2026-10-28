@@ -1,0 +1,525 @@
+{
+	"appearance": {
+		"player_gender": "male",
+		"scheme": "C",
+		"xiaojing_gender": "female"
+	},
+	"game_version": "0.7.1",
+	"platform": "X11",
+	"plots": 0,
+	"resources": {
+		"mist_forest_rock_10_6": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_14_11": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_14_25": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_15_13": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_15_4": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_17_17": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_19_2": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_20_25": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_21_15": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_24_25": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_25_22": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_26_25": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_27_11": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_27_20": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_29_4": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_29_8": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_2_17": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_32_24": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_33_10": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_36_4": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_36_7": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_3_13": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_3_2": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_7_14": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_9_2": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_tree_11_13": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_11_2": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_11_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_11_8": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_12_21": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_13_13": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_13_17": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_13_2": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_15_17": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_15_2": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_16_25": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_17_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_18_25": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_19_13": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_19_15": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_19_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_20_11": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_22_11": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_22_25": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_23_13": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_25_20": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_29_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_2_19": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_2_21": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_2_23": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_31_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_33_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_33_7": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_34_24": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_36_10": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_36_24": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_3_11": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_3_15": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_3_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_3_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_3_9": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_5_2": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_6_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_7_12": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_7_16": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_7_2": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_7_8": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_8_10": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_9_12": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_9_16": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"rock_10_10": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_11_19": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_23_3": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_28_24": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_30_9": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_32_6": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_39_24": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_42_9": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_45_25": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_4_22": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_4_6": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_8_13": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"tree_10_3": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_10_8": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_12_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_16_3": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_18_3": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_19_26": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_25_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_27_8": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_29_11": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_30_26": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_31_3": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_35_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_37_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_3_12": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_3_18": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_3_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_40_23": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_41_13": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_41_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_42_27": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_43_3": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_44_21": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_45_12": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_45_29": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_45_8": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_4_15": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_5_8": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_7_20": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_7_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_9_24": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_rock_21_5": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"village_rock_34_22": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"village_rock_36_26": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"village_rock_37_10": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"village_rock_4_11": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"village_rock_8_21": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"village_tree_12_24": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_12_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_18_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_23_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_31_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_34_24": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_3_19": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_3_22": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_3_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_7_6": {
+			"hp": 3,
+			"ready_day": 0
+		}
+	},
+	"save_version": 25
+}

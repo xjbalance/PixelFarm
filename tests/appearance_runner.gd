@@ -43,10 +43,10 @@ func migration_checks() -> void:
 	var Arrange=load("res://tests/home_arrange_runner.gd")
 	check(await Arrange.setup_married_home(self,game),"迁移夹具沿真实规则形成三级已婚住宅、原柜存与家具")
 	var saved: Dictionary=canonical(FarmSaveStore.snapshot(game))
-	var old: Dictionary=saved.duplicate(true);old.version=24;old.erase("appearance")
+	var old: Dictionary=saved.duplicate(true);old.version=24;old.erase("appearance");old.erase("territory")
 	var before: Dictionary=old.duplicate(true)
 	var migrated: Dictionary=FarmSaveSchema.normalize(old)
-	check(not migrated.is_empty() and migrated.version==25 and migrated.appearance==CharacterAppearance.defaults(),"真实v24结构只补方案C默认外观并迁入v25")
+	check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION and migrated.appearance==CharacterAppearance.defaults(),"真实v24结构只补方案C默认外观并迁入v25")
 	var protected: bool=true
 	for key in old:
 		if key!="version" and canonical({"value":migrated.get(key)})!=canonical({"value":old[key]}): protected=false
@@ -65,8 +65,8 @@ func migration_checks() -> void:
 	check(FarmSaveSchema.normalize(invalid).is_empty(),"当前格式非法主角外观使该主档拒绝读取，允许沿原备份回退")
 	invalid=canonical(FarmSaveStore.snapshot(game));invalid.erase("appearance")
 	check(FarmSaveSchema.normalize(invalid).is_empty(),"v25缺必要外观字段不被冒充为历史旧档")
-	invalid=canonical(FarmSaveStore.snapshot(game));invalid.version=26
-	check(FarmSaveSchema.normalize(invalid).is_empty(),"未知未来v26继续拒绝，不能降级覆盖未来存档")
+	invalid=canonical(FarmSaveStore.snapshot(game));invalid.version=FarmSaveStore.VERSION+1
+	check(FarmSaveSchema.normalize(invalid).is_empty(),"未知未来版本继续拒绝，不能降级覆盖未来存档")
 
 func files_and_confirmation() -> void:
 	Appearance.set_player_gender("female")

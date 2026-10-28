@@ -16,6 +16,9 @@ const STAR := Color("66639b")
 const STAR_FILL := Color("7775b4")
 static var surface_textures: Dictionary={}
 
+static func game_title() -> String:
+	return "像素世界 · %s %s" % [ProjectSettings.get_setting("application/config/version"),ProjectSettings.get_setting("application/config/version_title","")]
+
 static func box(color: Color, border: Color = Color("ae9469"), radius: int = 10) -> StyleBoxFlat:
 	var style := StyleBoxFlat.new()
 	style.bg_color = color

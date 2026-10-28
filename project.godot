@@ -7,7 +7,8 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="godot/app_userdata/Pixel Farm · 风芽农场"
 config/custom_user_dir_name.windows="Godot/app_userdata/Pixel Farm · 风芽农场"
 config/custom_user_dir_name.macos="Godot/app_userdata/Pixel Farm · 风芽农场"
-config/version="0.7.1"
+config/version="0.8.0"
+config/version_title="开拓家园"
 run/main_scene="res://scenes/main/main.tscn"
 run/max_fps=60
 config/features=PackedStringArray("4.3", "GL Compatibility")
@@ -46,6 +47,7 @@ Social="*res://scripts/social/social_state.gd"
 Housing="*res://scripts/housing/housing_state.gd"
 Exploration="*res://scripts/exploration/exploration_state.gd"
 WorldDevelopment="*res://scripts/world_progress/world_development.gd"
+Territory="*res://scripts/territory/territory_state.gd"
 
 [display]
 window/size/viewport_width=1280

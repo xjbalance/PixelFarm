@@ -114,7 +114,7 @@ func build_top() -> void:
 	var names := VBoxContainer.new()
 	brand.add_child(names)
 	names.add_child(FarmUIStyle.label("像 素 世 界", 18, FarmUIStyle.TITLE))
-	names.add_child(FarmUIStyle.label("Pixel World · 0.7.1", 12, FarmUIStyle.MUTED))
+	names.add_child(FarmUIStyle.label("Pixel World · "+str(ProjectSettings.get_setting("application/config/version")), 12, FarmUIStyle.MUTED))
 	var time_panel := status_panel()
 	top.add_child(time_panel)
 	var time_row := HBoxContainer.new()

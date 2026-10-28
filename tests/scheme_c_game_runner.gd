@@ -39,7 +39,7 @@ func first_choice() -> void:
 	await frames(5)
 	check(not game.awaiting_character_choice and not panel.visible and not GameState.modal,"确认后退出选择并恢复正常游戏")
 	var saved: Dictionary=FarmSaveStore.read(path)
-	check(not saved.is_empty() and saved.version==25 and saved.appearance==CharacterAppearance.defaults("female"),"新档实际写入女主与男小京配对")
+	check(not saved.is_empty() and saved.version==FarmSaveStore.VERSION and saved.appearance==CharacterAppearance.defaults("female"),"新档实际写入女主与男小京配对")
 	var bytes: PackedByteArray=FileAccess.get_file_as_bytes(path)
 	game.confirm_character_creation("male");panel.confirm_selection()
 	check(FileAccess.get_file_as_bytes(path)==bytes and Appearance.gender("player")=="female","迟到或重复确认不会重选、重复重置或覆写新档")

@@ -29,6 +29,8 @@ var home_return: HomeReturnController
 var save_path: String=FarmSaveStore.PATH
 var awaiting_character_choice: bool=false
 var switching_character: bool=false
+var territory_world: Node
+var territory_editor: Node
 var new_game_seed: Dictionary={}
 var _reset_after_character_choice: bool=false
 var _new_game_backup_done: bool=false
@@ -120,6 +122,7 @@ func _ready() -> void:
 	home_return=HomeReturnController.new();add_child(home_return);home_return.setup(self)
 	hud.atlas_panel.setup(self)
 	tutorial=GameTutorial.new();add_child(tutorial);tutorial.attach(self)
+	Territory.bind(self)
 	character_select=PanelContainer.new();character_select.set_script(preload("res://scripts/appearance/character_select_panel.gd"))
 	hud.safe.add_child(character_select);character_select.setup(self);hud.character_select_panel=character_select
 	character_select.confirmed.connect(confirm_character_creation)

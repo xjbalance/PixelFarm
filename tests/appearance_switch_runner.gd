@@ -104,7 +104,7 @@ func verify_bindings(gender: String) -> void:
 	game.hud.dialogue.portrait.person="xiaojing"
 	check(game.hud.dialogue.portrait.current_avatar_path()==Appearance.portrait_asset(),"原对话头像使用同一个已切换小京："+gender)
 	var saved: Dictionary=FarmSaveStore.read(path)
-	check(saved.get("version")==25 and saved.get("appearance")==CharacterAppearance.defaults(gender),"切换写入现有v25存档，不新增不兼容结构："+gender)
+	check(saved.get("version")==FarmSaveStore.VERSION and saved.get("appearance")==CharacterAppearance.defaults(gender),"切换写入现有v25存档，不新增不兼容结构："+gender)
 
 func confirmations() -> void:
 	for gender in ["female","male","female"]:

@@ -2,10 +2,10 @@ class_name FarmSaveStore
 extends RefCounted
 ## 写临时文件后重命名；保留上一次存档。先完整校验再修改运行状态。
 const PATH: String = "user://farm_save.json"
-const VERSION: int = 25
+const VERSION: int = 26
 
 static func snapshot(game: Node) -> Dictionary:
-	return {
+	var result: Dictionary={
 		"appearance": Appearance.snapshot(),
 		"tutorial": game.tutorial.snapshot(),
 		"world_development": WorldDevelopment.snapshot(), "exploration": Exploration.snapshot(), "housing": Housing.snapshot(), "festival": Festival.snapshot(), "social": Social.snapshot(),
@@ -26,6 +26,10 @@ static func snapshot(game: Node) -> Dictionary:
 		"village": VillageProjects.snapshot(),
 		"journal": game.hud.completed.keys(), "muted": game.get_node("Audio").muted
 	}
+	result.territory=Territory.snapshot()
+	# 解锁列表仅为章节事实的缓存；旧测试夹具或旧档恢复不保留另一份自授权限。
+	result.territory.unlocked=Territory.migrate(result).unlocked
+	return result
 
 static func write(game: Node, path: String = PATH) -> bool:
 	# 新开局外观尚未确认时不能让自动保存替换已有进度。
@@ -106,6 +110,7 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	GameState.restoring=true
 	if game.has_method("cancel_character_creation"): game.cancel_character_creation(false)
 	if game.has_method("cancel_character_switch"): game.cancel_character_switch(false)
+	if is_instance_valid(game.get("territory_editor")): game.territory_editor.cancel()
 	WorldChanges.restoring=true
 	game.cancel_pending_save()
 	while game.hud.close_active_panel(): pass
@@ -143,6 +148,7 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	WorldDevelopment.restore(data["world_development"])
 	Exploration.restore(data["exploration"])
 	Housing.restore(data["housing"])
+	Territory.restore(data["territory"])
 	Social.restore(data["social"])
 	WorldChanges.restoring=false
 	WorldChanges.restore(data["world_changes"])

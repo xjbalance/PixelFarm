@@ -34,9 +34,9 @@ func write_fixture() -> void:
 	resources.tree_7_20={"hp":0,"ready_day":GameClock.day+3};resources.rock_11_19={"hp":1,"ready_day":0}
 	game.resource_world.restore(resources);game.change_location("home",Vector2(640,500));await frames(5)
 	var now: Dictionary=canonical(FarmSaveStore.snapshot(game))
-	check(now.version==25 and FarmSaveStore.valid(now) and now.appearance==CharacterAppearance.defaults("female"),"确认女主和男小京形成合法v25完整档")
+	check(now.version==FarmSaveStore.VERSION and FarmSaveStore.valid(now) and now.appearance==CharacterAppearance.defaults("female"),"确认女主和男小京形成合法v25完整档")
 	if legacy:
-		var old: Dictionary=now.duplicate(true);old.version=24;old.erase("appearance")
+		var old: Dictionary=now.duplicate(true);old.version=24;old.erase("appearance");old.erase("territory")
 		check(FarmSaveStore.valid(old) and old.version==24 and not old.has("appearance"),"旧写进程构造严格真实v24形状，移除现代外观字段")
 		write_json(proof_path(),old);write_json(FarmSaveStore.PATH,old);write_json(FarmSaveStore.PATH+".bak",old)
 		var existing: PackedStringArray=DirAccess.get_files_at("user://")
@@ -57,7 +57,7 @@ func read_fixture() -> void:
 	for key in proof:
 		if legacy and key=="version": continue
 		if proof[key]!=now.get(key): same=false;print("APPEARANCE RESTART DIFFERENCE ",key)
-	check(same and now.version==25,"独立重启逐旧字段恢复全部原钱物、房屋、农田、矿洞和小京进度")
+	check(same and now.version==FarmSaveStore.VERSION,"独立重启逐旧字段恢复全部原钱物、房屋、农田、矿洞和小京进度")
 	var expected:=CharacterAppearance.defaults() if legacy else CharacterAppearance.defaults("female")
 	check(Appearance.snapshot()==expected and now.appearance==expected,"独立重启恢复正确对应，不被默认男主覆盖女主存档")
 	check(Appearance.player_asset().contains("player_"+str(expected.player_gender)) and Appearance.companion_asset().contains("xiaojing_"+str(expected.xiaojing_gender)),"世界资源解析与磁盘确认的主角及小京性别一致")
@@ -70,7 +70,7 @@ func read_fixture() -> void:
 	for _i in range(2):
 		stable=FarmSaveStore.restore(game,before) and stable;await frames(4)
 	check(stable and canonical(FarmSaveStore.snapshot(game))==before,"同日重复读取不重复发资源、婚姻或外观奖励")
-	check(FarmSaveStore.write(game) and FarmSaveStore.read().version==25,"恢复后按原tmp/备份机制安全写回当前v25")
+	check(FarmSaveStore.write(game) and FarmSaveStore.read().version==FarmSaveStore.VERSION,"恢复后按原tmp/备份机制安全写回当前v25")
 	if legacy:
 		var backup: Dictionary=read_json("user://appearance-v24-backup-proof.json")
 		check(read_json(str(backup.path))==proof,"写入v25后原独立v24备份仍完整保留")
