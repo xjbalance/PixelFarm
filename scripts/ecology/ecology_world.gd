@@ -5,9 +5,10 @@ var timer: float=0
 func attach(owner_game: Node) -> void:
 	game=owner_game;LakeEcology.game=game
 	reparent(game.world,false);z_index=-4
-	var point := Node2D.new();point.set_script(preload("res://scripts/ecology/ecology_point.gd"));point.position=LakeEcology.SHORE;game.world.get_node("Actors").add_child(point)
+	var point := Node2D.new();point.set_script(preload("res://scripts/ecology/ecology_point.gd"));point.position=LakeEcology.shore_point();game.world.get_node("Actors").add_child(point)
 	GameClock.changed.connect(queue_redraw)
 	LakeEcology.changed.connect(queue_redraw)
+	FarmLayout.changed.connect(queue_redraw)
 func _process(delta: float) -> void:
 	if not is_visible_in_tree() or not GameClock.running or GameState.modal: return
 	timer+=delta
@@ -20,11 +21,12 @@ func _draw() -> void:
 		if game.world.ground.get_cell_atlas_coords(cell).x in [5,6]: draw_rect(Rect2(Vector2(cell)*32,Vector2(32,32)),tint)
 	for i in range(int(LakeEcology.state.plants)*2):
 		var angle: float=float(i)*TAU/12
-		var p := Vector2(1104,592)+Vector2(cos(angle),sin(angle))*102
+		var p := FarmLayout.point("lake")+Vector2(cos(angle),sin(angle))*102
 		draw_line(p,p+Vector2(-3,-9),Color("507b58"),2);draw_line(p,p+Vector2(4,-11),Color("8cab6d"),2)
 	if LakeEcology.state.health>=85:
-		for p in [Vector2(1060,575),Vector2(1128,615),Vector2(1148,560)]:
+		for original in [Vector2(1060,575),Vector2(1128,615),Vector2(1148,560)]:
+			var p:=FarmLayout.transform_point(original,"lake")
 			draw_rect(Rect2(p,Vector2(8,3)),Color("c2d5ac"));draw_line(p,p+Vector2(-3,2),Color("789c92"),2)
 	if GameWeather.is_moon_night():
-		for row in range(5): draw_rect(Rect2(1090+row*2,588+row*7,28-row*4,3),Color(.84,.88,.80,.25))
-	for i in range(int(LakeEcology.state.debris)): draw_rect(Rect2(1032+i*32,650,10,5),Color("88735a"))
+		for row in range(5): draw_rect(Rect2(FarmLayout.transform_point(Vector2(1090+row*2,588+row*7),"lake"),Vector2(28-row*4,3)),Color(.84,.88,.80,.25))
+	for i in range(int(LakeEcology.state.debris)): draw_rect(Rect2(FarmLayout.transform_point(Vector2(1032+i*32,650),"lake"),Vector2(10,5)),Color("88735a"))

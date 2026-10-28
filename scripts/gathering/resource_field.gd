@@ -21,12 +21,23 @@ func _ready() -> void:
 		objects[id] = object
 		add_child(object)
 	GameClock.day_advanced.connect(advance_day)
+	if area_id=="farm": FarmLayout.changed.connect(refresh_layout)
+	refresh_layout()
+
+func refresh_layout() -> void:
+	if area_id!="farm": return
+	for id in objects:
+		var object: Node2D=objects[id]
+		var at:=Vector2(FarmLayout.cell("resource",str(id)))*32
+		var stored: bool=FarmLayout.stored("resource",str(id))
+		if object.position==at and bool(object.get_meta("layout_stored",false))==stored: continue
+		object.position=at;object.set_meta("layout_stored",stored);object.highlighted=false;object.refresh()
 
 func find_target(origin: Vector2, facing: Vector2) -> Node2D:
 	var found: Node2D
 	var distance: float = 55.0
 	for object in objects.values():
-		if state[object.resource_id].hp == 0: continue
+		if state[object.resource_id].hp == 0 or object.is_stored(): continue
 		var offset: Vector2 = object.global_position-origin
 		if offset.length() < distance and facing.dot(offset.normalized()) > 0.1:
 			found = object
@@ -38,6 +49,7 @@ func highlight(target: Node2D) -> void:
 
 func hit(id: String, tool: String) -> bool:
 	if busy or not objects.has(id): return false
+	if objects[id].is_stored(): return false
 	var data: Dictionary = state[id]
 	var definition: Dictionary = FarmResourceCatalog.TYPES[objects[id].kind]
 	if data.hp == 0:
@@ -79,3 +91,4 @@ func restore(data: Dictionary) -> void:
 		var record: Dictionary = data.get(id,{"hp":maximum,"ready_day":0})
 		state[id] = {"hp":int(record.hp),"ready_day":int(record.ready_day)}
 		objects[id].refresh()
+	refresh_layout()

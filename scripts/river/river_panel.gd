@@ -64,7 +64,7 @@ func refresh() -> void:
 	button("收起",close_panel)
 func probe(id: String) -> bool:
 	var entry: Dictionary=River.data.points[id]
-	if GameState.location!=entry.area or StarStory.game.player.global_position.distance_to(Vector2(entry.position[0],entry.position[1]))>64: return false
+	if GameState.location!=entry.area or (entry.area=="farm" and not FarmLayout.active("river:"+id)) or StarStory.game.player.global_position.distance_to(WorldTravel.river_point(id))>64: return false
 	River.memory_step(entry.memory,entry.step);return true
 func build_daily() -> void:
 	words("星河之约 · 温室档案",24)
@@ -80,4 +80,4 @@ func build_daily() -> void:
 		if GameClock.day-int(Xiaojing.state.wedding_day)>=520 and "day520" not in Xiaojing.state.post_events:
 			button("婚后520日最终回信",func(): read("最后的回信",StarStory.data.post_events.day520.text,func(): Xiaojing.post_event("day520")))
 	button("进入星光温室礼堂",func(): close_panel(); StarCeremony.enter())
-	if GameState.location=="greenhouse": button("返回农场",func(): close_panel(); StarStory.game.change_location("farm",Vector2(1360,816)))
+	if GameState.location=="greenhouse": button("返回农场",func(): close_panel(); StarStory.game.change_location("farm",FarmLayout.transform_point(Vector2(1360,816),"greenhouse")))

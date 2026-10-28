@@ -175,7 +175,7 @@ static func run(test: Node, game: Node) -> void:
 	test.check(Xiaojing.start_trial("cave") and not Xiaojing.start_cave(true),"新档不能从旧路线盘新开钻石勘探")
 	# 构造真实v6在途记录，验证旧版一轮仍可继续；实体试炼另在mining.gd验证。
 	var legacy := FarmSaveStore.snapshot(game)
-	legacy.version=6;legacy.erase("appearance")
+	legacy.version=6;legacy.erase("farm_layout");legacy.erase("appearance")
 	legacy.erase("mines")
 	legacy.erase("chapter_two")
 	legacy.xiaojing.cave={"x":1,"y":1,"air":36,"hard":true,"visited":[10],"mined":[]}
@@ -317,7 +317,7 @@ static func run(test: Node, game: Node) -> void:
 		invalid.xiaojing.merge(mutation,true)
 		test.check(not FarmSaveStore.valid(invalid),"非法小京存档整份拒绝："+str(mutation.keys()))
 	var old := saved.duplicate(true)
-	old.version=4;old.erase("appearance");old.erase("territory")
+	old.version=4;old.erase("farm_layout");old.erase("appearance");old.erase("territory")
 	old.erase("xiaojing")
 	var migrated := FarmSaveSchema.normalize(old)
 	test.check(not migrated.is_empty() and migrated.xiaojing.plants==0 and migrated.items==old.items and migrated.story==old.story,"v4存档不推算历史播种，保留原剧情与物品")

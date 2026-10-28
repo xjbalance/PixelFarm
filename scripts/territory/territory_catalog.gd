@@ -8,7 +8,8 @@ const PUBLIC_AREAS: Array[String]=["home","village","mist_forest","lake_ruins","
 const TERRAIN_KINDS := {
 	"soil":{"name":"景观翻土","art":"tilled_soil"},"grass":{"name":"恢复草地","art":"grass"},"dirt_path":{"name":"泥土小路","art":"dirt_path"},
 	"stone_path":{"name":"石子小路","art":"stone_path"},"wood_path":{"name":"木质步道","art":"wood_path"},"natural":{"name":"恢复自然地表","art":"grass"},
-	"flowerbed":{"name":"花圃地面","art":"tilled_soil"},"sand":{"name":"沙土地面","art":"sand"},"gravel":{"name":"碎石地面","art":"gravel"}
+	"flowerbed":{"name":"花圃地面","art":"tilled_soil"},"sand":{"name":"沙土地面","art":"sand"},"gravel":{"name":"碎石地面","art":"gravel"},
+	"water":{"name":"挖浅水池","art":"small_pond"},"deep_water":{"name":"挖深水池","art":"large_pond"}
 }
 const OBJECT_KINDS := {
 	"tree":{"name":"观赏树","size":[2,2],"solid":true,"category":"vegetation","group":"trees","art":"oak_tree","decorative":true},
@@ -129,6 +130,8 @@ static var _farm_protected_ready: bool=false
 static var _farm_solid_protected: Dictionary={}
 static var _farm_resources: Dictionary={}
 static var _farm_resource_footprints: Dictionary={}
+static var _current_resource_signature: int=-1
+static var _current_resource_cells: Dictionary={}
 
 static func permissions() -> Dictionary:
 	var result: Dictionary={}
@@ -139,7 +142,7 @@ static func region(area: String) -> Dictionary:
 	var editable: bool=area in EDITABLE_AREAS
 	var result: Dictionary={"id":area,"name":str(NAMES.get(area,"公共区域")),"ownership":"private" if editable else "public","hint":str(HINTS.get(area,"公共、剧情或地下区域不开放领地改造。")),"entry":[640,800],"return_position":RETURNS.get(area,[656,440]).duplicate(),"gate_position":GATES.get(area,[0,0]).duplicate(),"editable_rect":Rect2i(),"protected":[],"semi_open":Rect2i()}
 	if area=="farm":
-		result.editable_rect=Rect2i(1,1,46,30)
+		result.editable_rect=Rect2i(0,0,48,32)
 		# 地表和道路没有大块禁改矩形；实体、水格和真实农田由细格检查保护。
 		result.protected=[]
 	elif area in ANNEX_AREAS:
@@ -180,7 +183,7 @@ static func ownership(area: String, cell: Vector2i) -> String:
 	for reserved: Rect2i in info.protected:
 		if reserved.has_point(cell): return "public"
 	# 只有真实建筑实体和原水格不能改造；资源与农田按当前保存状态细查。
-	if area=="farm" and farm_protected_cells().has(cell): return "public"
+	# All original farm entities can now move or enter recoverable storage.
 	return "semi_open" if info.semi_open.has_point(cell) else "private"
 
 static func _mark_farm_rect(target: Dictionary, rect: Rect2) -> void:
@@ -194,6 +197,9 @@ static func _reserve_anchor(point: Vector2) -> void:
 	_mark_farm_rect(_farm_solid_protected,Rect2(point+Vector2(-10,22),Vector2(20,20)))
 
 static func farm_protected_cells() -> Dictionary:
+	return {}
+
+static func legacy_farm_protected_cells() -> Dictionary:
 	if _farm_protected_ready: return _farm_protected
 	_farm_protected_ready=true
 	for rect in FARM_BUILDINGS: _mark_farm_rect(_farm_protected,rect)
@@ -233,13 +239,23 @@ static func farm_protected_cells() -> Dictionary:
 	return _farm_protected
 
 static func farm_solid_protected_cells() -> Dictionary:
-	farm_protected_cells();return _farm_solid_protected
+	return {}
 
 static func resource_footprint(id: String) -> Rect2i:
-	farm_protected_cells();return _farm_resource_footprints.get(id,Rect2i())
+	return FarmResourceCatalog.current_footprint(id)
 
 static func resource_ids_at(cell: Vector2i) -> Array:
-	farm_protected_cells();return _farm_resources.get(cell,[])
+	var signature: int=FarmLayout.state.resources.hash()
+	if signature!=_current_resource_signature:
+		_current_resource_signature=signature;_current_resource_cells.clear()
+		for id in FarmResourceCatalog.placements("farm"):
+			var rect:=FarmResourceCatalog.current_footprint(str(id))
+			for y in range(rect.position.y,rect.end.y):
+				for x in range(rect.position.x,rect.end.x):
+					var at:=Vector2i(x,y)
+					if not _current_resource_cells.has(at): _current_resource_cells[at]=[]
+					_current_resource_cells[at].append(id)
+	return _current_resource_cells.get(cell,[])
 
 static func farm_obstruction(cell: Vector2i, plots: Dictionary, resources: Dictionary) -> String:
 	if plots.has(key(cell)): return "这格已有真实农田状态，请保留作物与翻土记录。"
@@ -254,6 +270,7 @@ static func cell_allowed(area: String, cell: Vector2i, operation: String) -> Dic
 	if rights=="public": return {"allowed":false,"reason":"这里是公共通路、关键设施或未授予的地块，不能改造。","ownership":rights}
 	if not TERRAIN_KINDS.has(operation) and not OBJECT_KINDS.has(operation) and operation not in ["terrain","move","remove"]:
 		return {"allowed":false,"reason":"不支持这种改造工具。","ownership":rights}
+	if area!="farm" and operation in ["water","deep_water"]: return {"allowed":false,"reason":"水域重塑只在主农场使用。","ownership":rights}
 	if area=="farm" and is_solid(operation) and farm_solid_protected_cells().has(cell):
 		return {"allowed":false,"reason":"这里要留给入口、功能操作或原动物站位；可重铺地表，但不能放阻挡物。","ownership":"private"}
 	if rights=="semi_open" and OBJECT_KINDS.has(operation) and is_solid(operation):

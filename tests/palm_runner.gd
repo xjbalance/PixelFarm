@@ -130,7 +130,7 @@ func migration() -> void:
 	await reset_world()
 	game.tutorial.restore({"seen":["tap_move","farm_basics"]})
 	var latest:=FarmSaveStore.snapshot(game)
-	var old:=latest.duplicate(true);old.version=21;old.erase("appearance");old.erase("territory");old.erase("tutorial");old.housing=load("res://tests/home05_runner.gd").legacy_housing(old.housing)
+	var old:=latest.duplicate(true);old.version=21;old.erase("farm_layout");old.erase("appearance");old.erase("territory");old.erase("tutorial");old.housing=load("res://tests/home05_runner.gd").legacy_housing(old.housing)
 	var serialized: Dictionary=JSON.parse_string(JSON.stringify(old))
 	var clean:=FarmSaveSchema.normalize(serialized)
 	check(not clean.is_empty() and clean.version==FarmSaveStore.VERSION and clean.tutorial==GameTutorial.defaults(true),"实际v21档只增加教学已读，不给老玩家重新弹引导")

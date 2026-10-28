@@ -100,11 +100,11 @@ static func contract(c: Variant, day: int) -> bool:
 		if not c.get(key) is Dictionary: return false
 		for id in c[key]:
 			if id not in (MineState.data.recipes if key=="crafted" else Catalog.crops) or not FarmSaveSchema.whole(c[key][id],0,999999): return false
-	if not c.get("sown") is Dictionary or c.sown.size()>60: return false
+	if not c.get("sown") is Dictionary or c.sown.size()>1536: return false
 	for id in c.sown:
 		if not id is String or c.sown[id] not in Catalog.crops: return false
 		var xy: PackedStringArray=id.split(",")
-		if xy.size()!=2 or not xy[0].is_valid_int() or not xy[1].is_valid_int() or not Rect2i(17,16,10,6).has_point(Vector2i(int(xy[0]),int(xy[1]))): return false
+		if xy.size()!=2 or not xy[0].is_valid_int() or not xy[1].is_valid_int() or FarmLayoutCatalog.plot_cell(id)==FarmLayoutCatalog.INVALID_CELL: return false
 	if not ints(c.get("jobs"),1,999999) or not ints(c.get("depths"),1,100) or not ints(c.get("conduits"),1,100) or not MiningSaveSchema.unique(c.get("coop"),["linya","zhou","ahe"]): return false
 	if c.conduits not in [[],[5],[5,12],[5,12,20],[20],[20,60],[20,60,100]]: return false
 	return true

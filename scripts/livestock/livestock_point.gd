@@ -21,7 +21,7 @@ func _ready() -> void:
 	label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;label.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	label.add_theme_color_override("font_shadow_color",Color("263d32"));label.add_theme_constant_override("shadow_offset_x",1)
 	label.add_theme_constant_override("shadow_offset_y",1);add_child(label)
-	Livestock.changed.connect(refresh);Calendar.changed.connect(queue_redraw);refresh()
+	Livestock.changed.connect(refresh);Calendar.changed.connect(queue_redraw);FarmLayout.changed.connect(refresh);refresh()
 
 func hit_rect() -> Rect2:
 	var result:=Rect2(-64,-136,128,164)
@@ -42,10 +42,11 @@ func interact() -> void:
 	Events.interaction_requested.emit("livestock:"+livestock_id)
 
 func refresh() -> void:
+	set_meta("farm_fixture",livestock_id);position=Livestock.site_point(livestock_id);visible=FarmLayout.active(livestock_id)
 	var level: int=Livestock.building(livestock_id).level
+	shape.set_deferred("disabled",level==0 or not visible)
 	if level!=previous_level:
 		previous_level=level
-		shape.set_deferred("disabled",level==0)
 		Events.navigation_changed.emit()
 	var name_text: String=Livestock.data.buildings[livestock_id].name
 	label.text=name_text+" · 待建" if level==0 else "%s Lv%d · %d/%d" % [name_text,level,Livestock.summary(livestock_id).count,Livestock.summary(livestock_id).capacity]

@@ -47,7 +47,7 @@ func refresh() -> void:
 	for i in range(siblings.size()):
 		if siblings[i].id==animal_id: index=i;break
 	var offsets: Array=Livestock.PASTURE if Livestock.is_grazing(entry.site) else Livestock.INDOOR
-	station=Livestock.SITES[entry.site]+offsets[index]
+	station=Livestock.site_point(entry.site)+offsets[index]
 	label.text="产物%d" % int(entry.product) if entry.product>0 else ("饿了" if entry.hunger>=70 else "")
 	queue_redraw()
 
@@ -61,11 +61,12 @@ func _physics_process(delta: float) -> void:
 	var motion: Vector2=target-global_position
 	velocity=motion.normalized()*minf(18,motion.length()/maxf(delta,.001)) if motion.length()>1 else Vector2.ZERO
 	move_and_slide()
-	var bounds := Rect2(Livestock.SITES[entry.site]+Vector2(-112,-46),Vector2(224,150))
+	var bounds := Rect2(Livestock.site_point(entry.site)+Vector2(-112,-46),Vector2(224,150))
 	global_position=global_position.clamp(bounds.position,bounds.end-Vector2.ONE)
 	# 更新既有两数数组，避免18只动物每物理帧分配新的保存数组。
-	entry.position[0]=snappedf(global_position.x,.01)
-	entry.position[1]=snappedf(global_position.y,.01)
+	var logical:=FarmLayout.to_logical(str(entry.site),global_position)
+	entry.position[0]=snappedf(logical.x,.01)
+	entry.position[1]=snappedf(logical.y,.01)
 	if velocity.length()>1:
 		var old_frame: int=int(animation*4)%2
 		animation+=delta

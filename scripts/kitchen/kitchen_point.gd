@@ -7,6 +7,11 @@ func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	Kitchen.changed.connect(queue_redraw)
 	Calendar.changed.connect(queue_redraw)
+	FarmLayout.changed.connect(refresh_layout);refresh_layout()
+
+func refresh_layout() -> void:
+	if kitchen_id=="berry":
+		set_meta("farm_fixture","berry");position=Kitchen.berry_point();visible=FarmLayout.active("berry")
 
 func prompt() -> String:
 	return "采摘野莓 · 每日一次" if kitchen_id=="berry" else "做饭 · 家庭厨房"

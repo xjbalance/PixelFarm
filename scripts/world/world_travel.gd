@@ -42,7 +42,7 @@ static func create_mines(game: Node) -> void:
 		var item: Dictionary=River.data.points[id]
 		var probe := Node2D.new()
 		probe.set_script(preload("res://scripts/river/river_point.gd"))
-		probe.river_id="probe:"+str(id);probe.title=item.title;probe.position=Vector2(item.position[0],item.position[1])
+		probe.river_id="probe:"+str(id);probe.title=item.title;probe.position=river_point(str(id))
 		var parent: Node=game.world.get_node("Actors") if item.area=="farm" else game.village.get_node("Actors")
 		parent.add_child(probe)
 	var transport := Node2D.new()
@@ -68,6 +68,11 @@ static func create_mines(game: Node) -> void:
 	light.enabled=false
 	game.player.add_child(light)
 
+static func river_point(id: String) -> Vector2:
+	var item: Dictionary=River.data.points[id]
+	var original:=Vector2(item.position[0],item.position[1])
+	return FarmLayout.point("river:"+id) if item.area=="farm" else original
+
 static func maps(game: Node) -> Dictionary:
 	var result := {"farm":game.world,"home":game.home,"village":game.village}
 	result.merge(game.mine_maps)
@@ -88,7 +93,7 @@ static func entry(location: String) -> Vector2:
 	if location in MineState.AREAS:
 		var at: Array=MineState.layouts[location].entry
 		return Vector2(at[0]*32+16,at[1]*32+16)
-	return {"farm":Vector2(656,440),"home":Vector2(640,500),"village":Vector2(640,756)}[location]
+	return {"farm":FarmLayout.transform_point(Vector2(656,440),"home"),"home":Vector2(640,500),"village":Vector2(640,756)}[location]
 
 static func change(game: Node, destination: String, saved_position: Vector2 = Vector2.INF) -> bool:
 	var all_maps := maps(game)
@@ -124,6 +129,7 @@ static func change(game: Node, destination: String, saved_position: Vector2 = Ve
 		var ground: TileMapLayer=map.get_node_or_null("Ground")
 		if ground: ground.enabled=map.visible
 	game.player.position=saved_position if saved_position!=Vector2.INF else entry(destination)
+	if destination=="farm" and previous!="farm": game.call_deferred("recover_blocked_position")
 	var camera: Camera2D=game.player.get_node("Camera2D")
 	camera.zoom=Vector2.ONE if destination in ["home","greenhouse"] else Vector2(1.35,1.35)
 	camera.position=Vector2.ZERO

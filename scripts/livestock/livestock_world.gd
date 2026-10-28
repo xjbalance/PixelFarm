@@ -12,10 +12,11 @@ func attach(owner_game: Node) -> void:
 		var point := Node2D.new()
 		point.set_script(preload("res://scripts/livestock/livestock_point.gd"))
 		point.livestock_id=id
-		point.position=Livestock.SITES[id]
+		point.position=Livestock.site_point(id)
 		game.world.get_node("Actors").add_child(point)
 		sites[id]=point
 	Livestock.changed.connect(refresh)
+	FarmLayout.changed.connect(refresh)
 	refresh()
 
 func refresh() -> void:
@@ -26,12 +27,16 @@ func refresh() -> void:
 			var animal := CharacterBody2D.new()
 			animal.set_script(preload("res://scripts/livestock/livestock_animal.gd"))
 			animal.animal_id=entry.id
-			animal.position=Vector2(entry.position[0],entry.position[1])
+			animal.position=Livestock.animal_point(entry)
 			game.world.get_node("Actors").add_child(animal)
 			animals[entry.id]=animal
 		else:
-			animals[entry.id].position=Vector2(entry.position[0],entry.position[1])
+			animals[entry.id].position=Livestock.animal_point(entry)
 			animals[entry.id].refresh()
+		var animal: CharacterBody2D=animals[entry.id]
+		animal.visible=FarmLayout.active(str(entry.site))
+		animal.process_mode=Node.PROCESS_MODE_INHERIT if animal.visible else Node.PROCESS_MODE_DISABLED
+		animal.collision_mask=1 if animal.visible else 0
 	for id in animals.keys():
 		if not wanted.has(id):
 			var old: Node=animals[id]

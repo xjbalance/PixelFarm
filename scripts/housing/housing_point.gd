@@ -5,6 +5,10 @@ var builtin_id: String:
 func _ready() -> void:
 	add_to_group("interactables")
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	FarmLayout.changed.connect(refresh_layout);refresh_layout()
+func refresh_layout() -> void:
+	if housing_id=="yard":
+		set_meta("farm_fixture","yard");position=FarmLayout.point("yard");visible=FarmLayout.active("yard")
 func hit_rect() -> Rect2: return HomeBuiltinTarget.hit_rect(self,"storage") if housing_id=="home" else Rect2(-24,-42,48,56)
 func interaction_colliders() -> Array[CollisionObject2D]:
 	var result: Array[CollisionObject2D]=[]

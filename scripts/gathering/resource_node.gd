@@ -34,11 +34,16 @@ func refresh_art() -> void:
 	sprite.set_meta("scheme_c_id",art_id)
 
 func refresh() -> void:
-	var active: bool = field.state[resource_id].hp > 0
+	var stored: bool=is_stored()
+	var active: bool = field.state[resource_id].hp > 0 and not stored
+	visible=not stored;collision_layer=0 if stored else 1
 	sprite.visible = active
 	collider.set_deferred("disabled",not active)
 	Events.navigation_changed.emit()
 	queue_redraw()
+
+func is_stored() -> bool:
+	return field.area_id=="farm" and FarmLayout.stored("resource",resource_id)
 
 func hit_feedback() -> void:
 	if shake and shake.is_valid(): shake.kill()
@@ -49,8 +54,20 @@ func hit_feedback() -> void:
 	refresh()
 
 func can_regrow() -> bool:
-	# Check before the off-map fast path: changing scenes must not undo landscaping.
-	if Territory.resource_edited(resource_id,field.area_id): return false
+	if is_stored(): return false
+	if field.area_id=="farm":
+		var rect: Rect2i=FarmResourceCatalog.current_footprint(resource_id)
+		var game: Node=FarmLayout.get("game") as Node
+		for y in range(rect.position.y,rect.end.y):
+			for x in range(rect.position.x,rect.end.x):
+				var at:=Vector2i(x,y)
+				if Territory.state.get("terrain",{}).get("farm",{}).has(TerritoryCatalog.key(at)): return false
+				if FarmTerrain.effective_index(at) in [5,6] or not Territory.object_at("farm",at).is_empty(): return false
+				if is_instance_valid(game) and not game.farm.plot_at(at).is_empty(): return false
+		# A moved or stored fixture can differ from the original map. Check its actual
+		# shape properties even while this map is inactive in the shared World2D.
+		if _farm_shape_blocked(): return false
+	elif Territory.resource_edited(resource_id,field.area_id): return false
 	# 三张地图共用World2D；离图时别图同坐标玩家不能拖延这片林地恢复。
 	if field.area_id!=GameState.location: return true
 	# 再生时检查玩家脚下，避免在角色位置生成新的障碍物。
@@ -64,14 +81,40 @@ func can_regrow() -> bool:
 		if field.get_parent().is_ancestor_of(hit.collider): return false
 	return true
 
+func _farm_shape_blocked() -> bool:
+	var map: Node=field.get_parent().get_parent()
+	if not is_instance_valid(map): return true
+	var extent:=Vector2(22,19) if kind=="tree" else Vector2(30,16)
+	var footprint:=Rect2(global_position+Vector2(0,-5)-extent*.5,extent)
+	for shape_node in map.find_children("*","CollisionShape2D",true,false):
+		if shape_node==collider or not shape_node.shape or shape_node.disabled: continue
+		var owner: Node=shape_node.get_parent()
+		if not owner is CollisionObject2D or owner.collision_layer & 1 == 0: continue
+		var local_rect: Rect2=shape_node.shape.get_rect()
+		var corners: Array[Vector2]=[local_rect.position,Vector2(local_rect.end.x,local_rect.position.y),local_rect.end,Vector2(local_rect.position.x,local_rect.end.y)]
+		var bounds:=Rect2(shape_node.global_transform*corners[0],Vector2.ZERO)
+		for point in corners: bounds=bounds.expand(shape_node.global_transform*point)
+		if footprint.intersects(bounds): return true
+	return false
+
 func set_highlight(active: bool) -> void:
 	if highlighted != active:
 		highlighted = active
 		queue_redraw()
 
 func _draw() -> void:
+	if is_stored(): return
 	var data: Dictionary = field.state[resource_id]
-	if data.hp == 0 and not Territory.resource_edited(resource_id,field.area_id):
+	var covered: bool=false
+	if field.area_id=="farm":
+		var game: Node=FarmLayout.get("game") as Node
+		var rect: Rect2i=FarmResourceCatalog.current_footprint(resource_id)
+		for y in range(rect.position.y,rect.end.y):
+			for x in range(rect.position.x,rect.end.x):
+				var at:=Vector2i(x,y)
+				if Territory.state.get("terrain",{}).get("farm",{}).has(TerritoryCatalog.key(at)) or FarmTerrain.effective_index(at) in [5,6] or not Territory.object_at("farm",at).is_empty() or (is_instance_valid(game) and not game.farm.plot_at(at).is_empty()): covered=true
+		if data.hp==0 and not covered: covered=_farm_shape_blocked()
+	if data.hp == 0 and not covered:
 		if kind == "tree":
 			SchemeCAssets.draw(self,"tree_stump",Vector2.ZERO,Calendar.season())
 		else:

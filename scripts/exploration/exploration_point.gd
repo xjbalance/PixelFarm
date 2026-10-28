@@ -2,6 +2,12 @@ extends Node2D
 var exploration_id: String=""
 func _ready() -> void:
 	add_to_group("interactables");Exploration.changed.connect(queue_redraw)
+	FarmLayout.changed.connect(refresh_layout);refresh_layout()
+func refresh_layout() -> void:
+	var record: Dictionary=Exploration.definition(exploration_id)
+	if record.get("area")!="farm": return
+	set_meta("farm_fixture","explore:"+exploration_id)
+	position=Exploration.point(exploration_id);visible=FarmLayout.active("explore:"+exploration_id)
 func hit_rect() -> Rect2: return Rect2(-24,-42,48,58)
 func prompt() -> String:
 	var record: Dictionary=Exploration.definition(exploration_id)

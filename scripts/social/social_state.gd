@@ -130,7 +130,7 @@ func note(person: String, goal: String, amount: int, token: String) -> bool:
 	active.counts[goal]=mini(int(quest.goals[goal]),int(active.counts.get(goal,0))+amount)
 	return true
 func on_farm(kind: String, cell: Vector2i, crop: String, serial: int) -> void:
-	if GameState.restoring: return
+	if GameState.restoring or not Rect2i(0,0,48,32).has_point(cell): return
 	var did := false
 	var cell_id := "%d,%d" % [cell.x,cell.y]
 	for person in state.active:
@@ -189,8 +189,19 @@ func observe_clean() -> void:
 	if day<=last_clean_day: return
 	last_clean_day=day
 	if day==GameClock.day and note("zhou","clean_lake",1,"clean:%d" % day): commit()
+func site_fixture(id: String) -> String:
+	if not SITES.has(id) or SITES[id].area!="farm": return ""
+	return "social:"+id
+func site_point(id: String) -> Vector2:
+	if not SITES.has(id): return Vector2.INF
+	if id=="kitchen": return Housing.anchor("kitchen")+Vector2(32,32)
+	var fixture:=site_fixture(id)
+	return FarmLayout.point(fixture) if fixture!="" else SITES[id].point
+func site_active(id: String) -> bool:
+	var fixture:=site_fixture(id)
+	return SITES.has(id) and (fixture=="" or FarmLayout.active(fixture))
 func near_site(id: String) -> bool:
-	return SITES.has(id) and is_instance_valid(game) and GameState.location==SITES[id].area and game.player.global_position.distance_to(SITES[id].point)<=60
+	return site_active(id) and is_instance_valid(game) and GameState.location==SITES[id].area and game.player.global_position.distance_to(site_point(id))<=60
 func observe_site(id: String) -> bool:
 	if busy or GameClock.settling or not near_site(id): return false
 	var person: String={"kitchen":"zhou","cycle":"zhou","tea":"ahe","tea_season":"ahe"}.get(id,"xiaojing")
@@ -200,10 +211,10 @@ func observe_site(id: String) -> bool:
 	if id in ["tea","tea_season"] and not VillageProjects.has_project("arbor"): return false
 	if id=="tea" and (GameClock.minutes<1080 or GameClock.minutes>=1200 or not near_person("ahe")): return false
 	if id=="lake_date" and not meeting_now(): return false
-	if id=="summer_sky" and (Calendar.season()!=1 or GameClock.minutes<1200 or not companion_here(LAKE)): return false
+	if id=="summer_sky" and (Calendar.season()!=1 or GameClock.minutes<1200 or not companion_here(site_point(id))): return false
 	if id=="winter_window" and (Calendar.season()!=3 or LegendState.state.greenhouse<2): return false
-	if id=="ecology_after" and (not LakeEcology.state.restored or not companion_here(LakeEcology.SHORE)): return false
-	if id=="star_lake" and (not GameWeather.is_meteor_night() or not LakeEcology.state.restored or not companion_here(LAKE)): return false
+	if id=="ecology_after" and (not LakeEcology.state.restored or not companion_here(site_point(id))): return false
+	if id=="star_lake" and (not GameWeather.is_meteor_night() or not LakeEcology.state.restored or not companion_here(site_point(id))): return false
 	if not note(person,"site:"+id,1,"site:"+id): return false
 	commit();return true
 func ready(person: String) -> bool:
@@ -242,7 +253,7 @@ func rebook() -> bool:
 func meeting_now() -> bool:
 	if not state.active.has("xiaojing"): return false
 	var active: Dictionary=state.active.xiaojing
-	return active.id=="xiaojing_1" and not active.missed and GameClock.day==int(active.meeting_day) and GameClock.minutes>=1080 and GameClock.minutes<1200 and companion_here(LAKE)
+	return active.id=="xiaojing_1" and not active.missed and GameClock.day==int(active.meeting_day) and GameClock.minutes>=1080 and GameClock.minutes<1200 and companion_here(site_point("lake_date"))
 func companion_here(at: Vector2) -> bool:
 	var person := person_node("xiaojing")
 	return person!=null and GameState.location=="farm" and person.global_position.distance_to(at)<=80
@@ -253,10 +264,17 @@ func area(person: String) -> String:
 	if active.id=="xiaojing_2" and Calendar.season()==1 and GameClock.minutes>=1200: return "farm"
 	if active.id=="xiaojing_3" and ((GameClock.minutes>=540 and GameClock.minutes<1080) or GameWeather.is_meteor_night()): return "farm"
 	return ""
+func station_site(person: String) -> String:
+	if not state.active.has(person): return "lake_date"
+	match str(state.active[person].id):
+		"xiaojing_2": return "summer_sky"
+		"xiaojing_3": return "star_lake" if GameWeather.is_meteor_night() else "ecology_after"
+	return "lake_date"
+func station_fixture(person: String) -> String: return site_fixture(station_site(person))
 func station(person: String, location: String) -> Vector2:
 	if area(person)!=location or location!="farm": return Vector2.INF
-	if state.active[person].id=="xiaojing_3" and not GameWeather.is_meteor_night(): return Vector2(912,656)
-	return COMPANION
+	var site:=station_site(person)
+	return site_point(site)+(Vector2(0,-32) if site=="ecology_after" else Vector2(-32,-32))
 func progress(person: String) -> String:
 	var quest := current(person)
 	if quest.is_empty(): return "这一页已经写完，日常生活还会继续。"
@@ -304,13 +322,13 @@ func validate(raw: Variant, day: int) -> bool:
 		for token in active.seen:
 			if not token is String or token.length()>100 or seen.has(token): return false
 			seen[token]=true
-		if not active.tracked is Dictionary or active.tracked.size()>60: return false
+		if not active.tracked is Dictionary or active.tracked.size()>1536: return false
 		for cell in active.tracked:
 			if not cell is String: return false
 			var parts: PackedStringArray=cell.split(",")
 			if parts.size()!=2 or not parts[0].is_valid_int() or not parts[1].is_valid_int(): return false
 			var point := Vector2i(int(parts[0]),int(parts[1]))
-			if cell!="%d,%d" % [point.x,point.y] or not Rect2i(17,16,10,6).has_point(point): return false
+			if cell!="%d,%d" % [point.x,point.y] or not Rect2i(0,0,48,32).has_point(point): return false
 			var entry: Variant=active.tracked[cell]
 			if not AquacultureSaveSchema.exact(entry,["crop","serial"]) or not Catalog.crops.has(entry.crop) or not FarmSaveSchema.whole(entry.serial,1,999999999): return false
 	return true

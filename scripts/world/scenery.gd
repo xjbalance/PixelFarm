@@ -47,6 +47,8 @@ func _farm_scenery() -> bool:
 func _refresh_cover() -> void:
 	# 只盖住农场纯装饰，不覆盖外部剧情可见性，也不动功能设施与原采集物。
 	_decor_covered=kind in REPLACEABLE_DECOR and _farm_scenery() and Territory.edited_cell("farm",Vector2i((global_position/32).floor()))
+	var fixture: String=str(get_meta("farm_fixture",""))
+	if fixture!="" and FarmLayout.state.fixtures.has(fixture): _decor_covered=false
 	if is_instance_valid(_collision_body): _collision_body.collision_layer=0 if _decor_covered else 1
 	queue_redraw()
 

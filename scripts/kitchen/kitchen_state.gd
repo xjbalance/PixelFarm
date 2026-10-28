@@ -29,8 +29,9 @@ func restore(raw: Dictionary) -> void:
 func near_kitchen() -> bool:
 	return is_instance_valid(game) and GameState.location=="home" and game.player.global_position.distance_to(Housing.anchor("kitchen"))<=54
 
+func berry_point() -> Vector2: return FarmLayout.point("berry")
 func near_berry() -> bool:
-	return is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(BERRY)<=54
+	return FarmLayout.active("berry") and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(berry_point())<=54
 
 func _exchange(required: Dictionary, rewards: Dictionary, coins: int = 0) -> bool:
 	if busy or GameClock.settling: return false

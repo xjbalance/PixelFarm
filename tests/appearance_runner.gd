@@ -43,7 +43,7 @@ func migration_checks() -> void:
 	var Arrange=load("res://tests/home_arrange_runner.gd")
 	check(await Arrange.setup_married_home(self,game),"迁移夹具沿真实规则形成三级已婚住宅、原柜存与家具")
 	var saved: Dictionary=canonical(FarmSaveStore.snapshot(game))
-	var old: Dictionary=saved.duplicate(true);old.version=24;old.erase("appearance");old.erase("territory")
+	var old: Dictionary=saved.duplicate(true);old.version=24;old.erase("appearance");old.erase("territory");old.erase("farm_layout")
 	var before: Dictionary=old.duplicate(true)
 	var migrated: Dictionary=FarmSaveSchema.normalize(old)
 	check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION and migrated.appearance==CharacterAppearance.defaults(),"真实v24结构只补方案C默认外观并迁入v25")

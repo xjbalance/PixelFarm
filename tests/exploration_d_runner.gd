@@ -167,7 +167,7 @@ func persistent_safety() -> void:
 	check(not FarmSaveStore.valid(bad),"小数机关步骤整档拒绝")
 	bad=final_checkpoint.duplicate(true);bad.ecology.restored=false
 	check(not FarmSaveStore.valid(bad),"未恢复生态的伪造湖底解锁档被纯快照校验拒绝")
-	var old := original.duplicate(true);old.version=18;old.erase("appearance");old.erase("territory");old.erase("exploration");old.housing=load("res://tests/home05_runner.gd").legacy_housing(old.housing)
+	var old := original.duplicate(true);old.version=18;old.erase("farm_layout");old.erase("appearance");old.erase("territory");old.erase("exploration");old.housing=load("res://tests/home05_runner.gd").legacy_housing(old.housing)
 	var migrated := FarmSaveSchema.normalize(old)
 	check(not migrated.is_empty() and migrated.exploration.unlocked==["mist_forest"] and migrated.xiaojing==old.xiaojing and migrated.items==old.items,"旧v18只补初始森林，不清空任何旧物品关系或凭空解锁地图")
 	if not migrated.is_empty(): check(FarmSaveSchema.normalize(migrated)==migrated,"探索迁移幂等，不重复发奖")

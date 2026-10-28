@@ -16,6 +16,9 @@ func _ready() -> void:
 
 func chapter() -> Dictionary:
 	var result: Dictionary = data.chapters[stage].duplicate(true)
+	if stage in [1,2] and result.location=="farm":
+		var at:=FarmLayout.transform_point(Vector2(result.target[0],result.target[1]),"shop")
+		result.target=[at.x,at.y]
 	if stage in [1,2] and GameClock.minutes >= 1080:
 		result.location = "village"
 		result.target = [704,592] if VillageProjects.has_project("arbor") else [610,442]

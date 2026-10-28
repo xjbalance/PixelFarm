@@ -206,7 +206,7 @@ func persistence_and_time() -> void:
 	Aquaculture.settle_day()
 	check(transaction()==before,"存档恢复不会额外结算养殖一天")
 	var old := snap.duplicate(true)
-	old.version=10;old.erase("appearance");old.erase("territory");old.erase("aquaculture")
+	old.version=10;old.erase("farm_layout");old.erase("appearance");old.erase("territory");old.erase("aquaculture")
 	var migrated := FarmSaveSchema.normalize(old)
 	check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION and migrated.coins==old.coins and migrated.items==old.items and migrated.xiaojing==old.xiaojing and migrated.plots==old.plots and migrated.abyss==old.abyss,"v10迁移保留资源/农田/小京/深渊全部旧进度")
 	if not migrated.is_empty():

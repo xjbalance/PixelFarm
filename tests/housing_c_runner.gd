@@ -89,8 +89,10 @@ func furniture_rules() -> void:
 		await frames(4)
 		var entry: Dictionary=Housing.state.placed[-1]
 		check(Housing.recycle(entry.id),"庭院设施可回收不毁农田："+kind);await frames(4)
+	game.farm.plots["20,18"]={"crop":"carrot","days":0,"watered":false}
 	before=transaction()
-	check(not Housing.place("road","farm",Vector2i(20,18)) and not Housing.place("road","farm",Vector2i(34,18)) and transaction()==before,"庭院装饰不能覆盖原农田或湖水")
+	check(not Housing.place("road","farm",Vector2i(20,18)) and not Housing.place("road","farm",Vector2i(34,18)) and transaction()==before,"庭院装饰不能覆盖已有作物或实际湖水")
+	game.farm.plots.erase("20,18")
 func storage_rules() -> void:
 	await reset();await at_home()
 	var coins: int=Inventory.coins

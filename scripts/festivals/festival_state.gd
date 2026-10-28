@@ -55,10 +55,17 @@ func current_run(id: String) -> bool:
 	var run := run_for(id)
 	return not run.is_empty() and int(run.day)==GameClock.day and int(run.year)==Calendar.year()
 
-func near_board(id: String) -> bool:
-	if id not in IDS or not is_instance_valid(game): return false
+func board_point(id: String) -> Vector2:
+	if id not in IDS: return Vector2.INF
 	var event: Dictionary=data.events[id]
-	return GameState.location==event.area and game.player.global_position.distance_to(Vector2(event.board[0],event.board[1]))<=54
+	var original:=Vector2(event.board[0],event.board[1])
+	return FarmLayout.transform_point(original,"festival_"+id) if event.area=="farm" else original
+func board_active(id: String) -> bool:
+	return id in IDS and (data.events[id].area!="farm" or FarmLayout.active("festival_"+id))
+func near_board(id: String) -> bool:
+	if id not in IDS or not board_active(id) or not is_instance_valid(game): return false
+	var event: Dictionary=data.events[id]
+	return GameState.location==event.area and game.player.global_position.distance_to(board_point(id))<=54
 
 func person_near(person: String) -> bool:
 	if person not in PEOPLE or not is_instance_valid(game): return false
@@ -82,15 +89,25 @@ func begin(id: String) -> bool:
 	if not old.is_empty() and (old.year==Calendar.year() or (old.ready and key(id,int(old.year)) not in state.claims)): return false
 	var cells: Array=[]
 	if id=="spring":
-		for y in range(game.farm.BOUNDS.position.y,game.farm.BOUNDS.end.y):
-			for x in range(game.farm.BOUNDS.position.x,game.farm.BOUNDS.end.x):
-				var cell := Vector2i(x,y)
-				var plot: Dictionary=game.farm.plots.get(game.farm.key(cell),{})
-				if str(plot.get("crop",""))=="": cells.append([x,y])
-				if cells.size()==3: break
+		# 优先已有田块，再使用原60个稳定田槽；不把1536个任意空地当报名田。
+		var candidates: Array=game.farm.plots.keys()
+		for y in range(16,22):
+			for x in range(17,27):
+				var key: String="%d,%d" % [x,y]
+				if key not in candidates: candidates.append(key)
+		candidates.sort_custom(func(a: String,b: String):
+			if game.farm.plots.has(a)!=game.farm.plots.has(b): return game.farm.plots.has(a)
+			var a_cell: Vector2i=FarmLayoutCatalog.plot_cell(a);var b_cell: Vector2i=FarmLayoutCatalog.plot_cell(b)
+			return a_cell.y<b_cell.y or (a_cell.y==b_cell.y and a_cell.x<b_cell.x)
+		)
+		for key: String in candidates:
+			var cell: Vector2i=FarmLayoutCatalog.plot_cell(key)
+			if not Rect2i(0,0,48,32).has_point(cell) or FarmLayout.stored("plot",key): continue
+			var plot: Dictionary=game.farm.plots.get(key,{})
+			if str(plot.get("crop",""))=="": cells.append([cell.x,cell.y])
 			if cells.size()==3: break
 		if cells.size()!=3:
-			Events.notice.emit("先在原农田收出三格空地再报名。现有作物与材料都已保留。")
+			Events.notice.emit("先开垦或收出三格空田，再报名。现有作物与材料都已保留。")
 			return false
 	busy=true
 	state.runs[id]={"year":Calendar.year(),"day":GameClock.day,"ready":false,"claimed":false,"cells":cells,"sown":{},"watered":[],"fish":[],"talks":[],"lantern":"","exhibit":{},"score":0,"cooked":0,"delivered":[]}
@@ -135,7 +152,7 @@ func on_farm(kind: String, cell: Vector2i, crop: String, serial: int) -> void:
 	if busy or not is_instance_valid(game) or GameState.location!="farm" or not Catalog.crops.has(crop) or kind not in ["播种","浇水","收获"]: return
 	if serial<0 or serial!=int(Xiaojing.state.plant_serial): return
 	var id := "%d,%d" % [cell.x,cell.y]
-	if not game.farm.BOUNDS.has_point(cell): return
+	if not Rect2i(0,0,48,32).has_point(cell): return
 	var proof := "%s:%s" % [kind,id]
 	var token := "%d:%d" % [GameClock.day,serial]
 	if state.tracking.farm.get(proof,"")==token: return
@@ -326,13 +343,13 @@ func validate(raw: Variant, day: int) -> bool:
 	var tracking: Variant=raw.tracking
 	if not AquacultureSaveSchema.exact(tracking,["farm","fishing","aquaculture","animal","cooking"]): return false
 	if not whole(tracking.fishing,0,day*12): return false
-	if not tracking.farm is Dictionary or tracking.farm.size()>180: return false
+	if not tracking.farm is Dictionary or tracking.farm.size()>4608: return false
 	for proof in tracking.farm:
 		if not proof is String or proof.split(":").size()!=2: return false
 		var parts: PackedStringArray=proof.split(":")
 		if parts[0] not in ["播种","浇水","收获"]: return false
 		var coords: PackedStringArray=parts[1].split(",")
-		if coords.size()!=2 or not coords[0].is_valid_int() or not coords[1].is_valid_int() or not Rect2i(17,16,10,6).has_point(Vector2i(int(coords[0]),int(coords[1]))): return false
+		if coords.size()!=2 or not coords[0].is_valid_int() or not coords[1].is_valid_int() or not Rect2i(0,0,48,32).has_point(Vector2i(int(coords[0]),int(coords[1]))): return false
 		var token: Variant=tracking.farm[proof]
 		if not token is String or token.split(":").size()!=2: return false
 		var values: PackedStringArray=token.split(":")
@@ -355,7 +372,7 @@ func valid_run(run: Variant, id: String, day: int, claims: Array) -> bool:
 	if not run.cells is Array or run.cells.size()>(3 if id=="spring" else 0) or not run.sown is Dictionary or run.sown.size()>3 or not run.watered is Array or run.watered.size()>3: return false
 	var cell_ids: Array[String]=[]
 	for cell in run.cells:
-		if not cell is Array or cell.size()!=2 or not whole(cell[0],17,26) or not whole(cell[1],16,21): return false
+		if not cell is Array or cell.size()!=2 or not whole(cell[0],0,47) or not whole(cell[1],0,31): return false
 		var cell_id := "%d,%d" % [int(cell[0]),int(cell[1])]
 		if cell_id in cell_ids: return false
 		cell_ids.append(cell_id)

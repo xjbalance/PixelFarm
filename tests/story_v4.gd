@@ -29,7 +29,7 @@ static func run(test: Node, game: Node) -> void:
 	test.check(Story.complete("mill"),"探索区域事实解锁货运记录")
 	test.check(Story.complete("cargo_note","ask_departure") and Story.complete("cargo_note","ask_name") and Letters.knows("cargo_departure") and Letters.knows("cargo_name"),"风车货箱有两条可独立阅读的支线对白")
 	var v3: Dictionary = saved.duplicate(true)
-	v3.version = 3;v3.erase("appearance")
+	v3.version = 3;v3.erase("farm_layout");v3.erase("appearance")
 	v3.erase("letters")
 	v3.erase("xiaojing")
 	v3.story.lantern = "tomorrow"

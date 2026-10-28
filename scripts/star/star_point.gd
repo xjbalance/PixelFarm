@@ -4,9 +4,13 @@ func _ready() -> void:
 	add_to_group("interactables")
 	Xiaojing.changed.connect(refresh)
 	StarStory.changed.connect(refresh)
+	FarmLayout.changed.connect(refresh)
 	refresh()
 func refresh() -> void:
-	visible=Xiaojing.state.unlocked
+	var fixture: String=StarStory.point_fixture(star_id)
+	if fixture!="": set_meta("farm_fixture",fixture)
+	position=StarStory.point(star_id)
+	visible=Xiaojing.state.unlocked and StarStory.point_active(star_id)
 	queue_redraw()
 func prompt() -> String:
 	return StarStory.data.points[star_id].title

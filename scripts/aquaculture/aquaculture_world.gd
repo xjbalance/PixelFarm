@@ -22,7 +22,7 @@ func attach(owner_game: Node) -> void:
 		point.set_script(preload("res://scripts/aquaculture/aquaculture_point.gd"))
 		point.name="Lake_"+id
 		point.pen_id=id
-		point.position=SITES[id]
+		point.position=Aquaculture.site_point(id)
 		point.water_direction=DIRECTIONS[id]
 		owner_game.world.get_node("Actors").add_child(point)
 		points[id]=point

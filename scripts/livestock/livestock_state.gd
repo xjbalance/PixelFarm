@@ -62,12 +62,15 @@ func display_name(id: String) -> String:
 	var definition: Dictionary=data.species[entry.species]
 	return str(definition.name if is_adult(entry) else definition.young_name)+"%d号" % int(id.trim_prefix("animal_"))
 
+func site_point(site: String) -> Vector2: return FarmLayout.point(site) if SITES.has(site) else Vector2.INF
+func animal_point(entry: Dictionary) -> Vector2:
+	return FarmLayout.transform_point(Vector2(entry.position[0],entry.position[1]),str(entry.site)) if not entry.is_empty() else Vector2.INF
 func near_site(site: String) -> bool:
-	return SITES.has(site) and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(SITES[site])<=54
+	return SITES.has(site) and FarmLayout.active(site) and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(site_point(site))<=54
 
 func near_animal(id: String) -> bool:
 	var entry := animal(id)
-	return not entry.is_empty() and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(Vector2(entry.position[0],entry.position[1]))<=54
+	return not entry.is_empty() and FarmLayout.active(str(entry.site)) and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(animal_point(entry))<=54
 
 func near_any() -> bool:
 	for site in SITES:

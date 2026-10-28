@@ -105,7 +105,9 @@ func _draw() -> void:
 	if layer_id=="region" and region_id in TerritoryCatalog.ANNEX_AREAS: TerritoryAtlasDrawing.draw_sheet(self)
 	elif _picture: draw_texture_rect(_picture,Rect2(map_origin().round(),FarmAtlasData.PAPER_SIZE*map_scale()),false)
 	else: return
-	if layer_id=="region": _draw_changes()
+	if layer_id=="region":
+		if region_id in ["farm","lake"]: FarmAtlasDrawing.draw_current(self)
+		_draw_changes()
 	else: _draw_world_changes()
 	TerritoryAtlasDrawing.draw_overlay(self)
 	for item in resources:
@@ -116,7 +118,7 @@ func _draw() -> void:
 		else: draw_circle(at,3,tone)
 	_label_rects.clear();_label_hits.clear()
 	_territory_icons.clear()
-	if layer_id=="region" and region_id in TerritoryCatalog.ANNEX_AREAS:
+	if layer_id=="region" and (region_id in TerritoryCatalog.ANNEX_AREAS or region_id in ["farm","lake"]):
 		for item in places: _territory_icons[str(item.id)]=Rect2(map_to_screen(item.point)-Vector2(18,22),Vector2(36,36))
 	for item in places: _draw_place(item)
 	var player:=player_map_position()
@@ -165,8 +167,8 @@ func _draw_changes() -> void:
 		else:
 			draw_line(at-Vector2(12,9),at+Vector2(12,9),Color("a46b4b"),3);draw_line(at+Vector2(-12,9),at+Vector2(12,-9),Color("a46b4b"),3)
 	if region_id in ["farm","lake"] and LakeEcology.state.restored:
-		for point in [Vector2(1024,512),Vector2(1192,656),Vector2(1064,704)]:
-			var at:=map_to_screen(FarmAtlasData.world_to_map(region_id,point))
+		for original in [Vector2(1024,512),Vector2(1192,656),Vector2(1064,704)]:
+			var at:=map_to_screen(FarmAtlasData.world_to_map(region_id,FarmLayout.transform_point(original,"lake")))
 			draw_line(at,at-Vector2(3,9),Color("62806a"),2);draw_line(at,at+Vector2(3,-7),Color("789c79"),2)
 func _draw_place(item: Dictionary) -> void:
 	var at:=map_to_screen(item.point)

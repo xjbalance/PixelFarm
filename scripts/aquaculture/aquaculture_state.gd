@@ -41,8 +41,9 @@ func summary(id: String) -> Dictionary:
 	return {"fry":fry,"total":fry+int(p.adults),"capacity":AquacultureSaveSchema.CAPACITY[int(p.level)],
 		"growth":float(oldest)/4.0,"mature":p.adults>0,"feed_needed":ceili(float(fry+int(p.adults))/8)}
 
+func site_point(id: String) -> Vector2: return FarmLayout.point(id) if SITES.has(id) else Vector2.INF
 func near_pen(id: String) -> bool:
-	return SITES.has(id) and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(SITES[id])<=54
+	return SITES.has(id) and FarmLayout.active(id) and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(site_point(id))<=54
 
 func near_lake() -> bool:
 	for id in SITES:
@@ -351,12 +352,13 @@ func complete_xiaojing() -> bool:
 	return true
 
 func companion_position() -> Vector2:
-	return {"pen_1":Vector2(944,560),"pen_2":Vector2(1072,752),"pen_3":Vector2(1264,624),"pen_4":Vector2(1136,432)}.get(state.xiaojing.pen,Vector2(1072,752))
+	var id: String=str(state.xiaojing.pen) if SITES.has(state.xiaojing.pen) else "pen_2"
+	return site_point(id)+{"pen_1":Vector2(0,-32),"pen_2":Vector2(-32,0),"pen_3":Vector2(0,32),"pen_4":Vector2(32,0)}[id]
 
 func xiaojing_present(id: String) -> bool:
 	if GameClock.minutes<540 or GameClock.minutes>=1080 or not near_pen(id): return false
 	for person in get_tree().get_nodes_in_group("xiaojing"):
-		if person.is_visible_in_tree() and person.global_position.distance_to(SITES[id])<=76: return true
+		if person.is_visible_in_tree() and person.global_position.distance_to(site_point(id))<=76: return true
 	return false
 
 func observe_xiaojing() -> bool:

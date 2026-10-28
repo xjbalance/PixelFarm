@@ -31,6 +31,7 @@ var awaiting_character_choice: bool=false
 var switching_character: bool=false
 var territory_world: Node
 var territory_editor: Node
+var farm_layout_world: Node
 var new_game_seed: Dictionary={}
 var _reset_after_character_choice: bool=false
 var _new_game_backup_done: bool=false
@@ -124,6 +125,7 @@ func _ready() -> void:
 	tutorial=GameTutorial.new();add_child(tutorial);tutorial.attach(self)
 	Territory.bind(self)
 	territory_world=TerritoryWorld.new();add_child(territory_world);territory_world.setup(self)
+	farm_layout_world=load("res://scripts/farm_layout/farm_layout_world.gd").new();add_child(farm_layout_world);farm_layout_world.setup(self)
 	territory_editor=TerritoryEditor.new();add_child(territory_editor);territory_editor.setup(self)
 	hud.system_panel.territory_requested.connect(territory_editor.open)
 	character_select=PanelContainer.new();character_select.set_script(preload("res://scripts/appearance/character_select_panel.gd"))
@@ -351,7 +353,7 @@ func handle_interaction(kind: String) -> void:
 	elif kind == "board": hud.progress_panel.open_panel("journal",true)
 	elif kind == "journal": hud.progress_panel.open_panel("journal",false)
 	elif kind == "village": change_location("village")
-	elif kind == "farm_return": change_location("farm",Vector2(480,260))
+	elif kind == "farm_return": change_location("farm",FarmLayout.transform_point(Vector2(480,260),"village_gate"))
 	elif kind == "story": hud.story_panel.open_panel()
 	elif kind == "community": hud.story_panel.open_panel(true)
 
@@ -360,13 +362,17 @@ func change_location(destination: String, saved_position: Vector2 = Vector2.INF)
 
 func recover_blocked_position() -> void:
 	# JSON 坐标合法但可能落在碰撞体中；保留其余进度并回到安全出生点。
+	var area: String=GameState.location
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	if GameState.location!=area or closing: return
 	var query := PhysicsShapeQueryParameters2D.new()
 	query.shape = player.get_node("CollisionShape2D").shape
 	query.transform = player.global_transform
 	query.collision_mask = 1
 	var hits := player.get_world_2d().direct_space_state.intersect_shape(query,1)
 	if not hits.is_empty():
-		player.position = WorldTravel.entry(GameState.location)
+		player.position = farm_layout_world.safe_spawn(player.position) if area=="farm" and is_instance_valid(farm_layout_world) else WorldTravel.entry(area)
 		player.get_node("Camera2D").reset_smoothing()
 
 func save_game() -> void:
@@ -482,7 +488,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func context_tool() -> String:
 	var selected := GameState.tool()
 	if not Story.assisted_tools or selected in ["axe","pickaxe"]: return selected
-	var plot: Dictionary = farm.plots.get(farm.key(player.target_cell()),{})
+	var plot: Dictionary = farm.plot_at(player.target_cell())
 	if not plot.is_empty() and str(plot.crop) != "":
 		if farm.is_mature(plot): return "hand"
 		if not plot.watered: return "water"
@@ -499,7 +505,7 @@ func context_hint() -> String:
 	if GameState.location in MineState.AREAS: return "点击矿脉采一次 · 阶梯返回 · 手记查看矿道任务"
 	if GameState.location == "home": return "沙发可小睡1小时 · 灶台做饭 · 20:00后床上睡到明早"
 	if GameState.location != "farm": return "沿河慢慢走 · 靠近村民或物件可交互"
-	var plot: Dictionary = farm.plots.get(farm.key(player.target_cell()),{})
+	var plot: Dictionary = farm.plot_at(player.target_cell())
 	if not plot.is_empty() and str(plot.crop) != "":
 		var crop = Catalog.crops[plot.crop]
 		if not farm.is_mature(plot) and not Catalog.crop_grows(plot.crop): return "%s · 冬季休眠，转暖后继续生长" % crop.display_name
@@ -551,6 +557,7 @@ func build_xiaojing_world() -> void:
 		Xiaojing.changed.connect(refresh_person)
 		GameClock.changed.connect(refresh_person)
 		VillageProjects.changed.connect(refresh_person)
+		FarmLayout.changed.connect(refresh_person)
 		refresh_person.call()
 	var greenhouse := Node2D.new()
 	greenhouse.set_script(preload("res://scripts/world/greenhouse.gd"))

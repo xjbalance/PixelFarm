@@ -1,5 +1,5 @@
 extends "res://tests/runner.gd"
-## 农场自由改造：真实采集、再生、农活、编辑器与存档；不改原生产范围。
+## 农场自由改造：真实采集、再生、全场农活、编辑器与存档。
 var initial: Dictionary
 var metrics: Dictionary={}
 var captures: Array=[]
@@ -56,7 +56,7 @@ func coverage() -> Dictionary:
 			var cell:=Vector2i(x,y)
 			if Territory.permission("farm",cell,"grass").allowed and not protected_ground.has(cell): ground+=1
 			if Territory.permission("farm",cell,"fence").allowed and not protected_solid.has(cell): solid+=1
-	return {"map_cells":1536,"interior_cells":1380,"ground_cells":ground,"ground_fraction":float(ground)/1536.0,"ground_interior_fraction":float(ground)/1380.0,"solid_cells":solid,"solid_fraction":float(solid)/1536.0,"solid_interior_fraction":float(solid)/1380.0,"basis":"Territory.permission and runtime reserved cells; final placement also checks collision and routes"}
+	return {"map_cells":1536,"interior_cells":1536,"legacy_interior_cells":1380,"ground_cells":ground,"ground_fraction":float(ground)/1536.0,"ground_interior_fraction":float(ground)/1536.0,"solid_cells":solid,"solid_fraction":float(solid)/1536.0,"solid_interior_fraction":float(solid)/1536.0,"basis":"Territory.permission and runtime occupied cells; final placement also checks collision and routes"}
 
 func ownership_and_roads() -> void:
 	metrics.initial=coverage()
@@ -66,8 +66,16 @@ func ownership_and_roads() -> void:
 	check(await paint("stone_path",Vector2i(14,20)),"真实编辑器可在原纵向道路重新铺路")
 	check(await paint("sand",Vector2i(20,2)) and await paint("gravel",Vector2i(21,2)),"沙地与碎石素材经确认写入农场")
 	await capture("wide_farm_terrain");game.territory_editor.cancel()
+	await frames(4) # 最后一次确认的TileMap/碰撞先同步，再发起下一次真实预览。
 	for cell in [Vector2i(20,11),Vector2i(34,18),Vector2i(0,10)]:
-		check(not Territory.plan_terrain("farm",[cell],"grass").valid,"真实房屋、水面和地图边界仍受保护："+str(cell))
+		var preview:=Territory.plan_terrain("farm",[cell],"grass")
+		check(preview.valid,"自家房屋下方地表、原水域及边缘内圈均允许重铺："+str(cell)+" / "+str(preview.reason))
+	for cell in [Vector2i(-1,10),Vector2i(48,10),Vector2i(0,-1),Vector2i(10,32)]:
+		check(not Territory.plan_terrain("farm",[cell],"grass").valid and not Territory.plan_place("farm","fence",cell).valid,"真正超出48×32农场的地表和物件仍拒绝："+str(cell))
+	check(await paint("grass",Vector2i(34,18)),"原有水域通过真实确认填为陆地")
+	await frames(4);game.territory_editor.cancel()
+	check(game.world.ground.get_cell_atlas_coords(Vector2i(34,18)).x==0 and game.world.ground.get_cell_tile_data(Vector2i(34,18)).get_collision_polygons_count(0)==0,"填水同步移除原水瓦片碰撞，没有只盖一层草色")
+	game.player.position=Vector2(720,592);await frames(4)
 	check(not Territory.plan_place("farm","fence",Vector2i(20,13)).valid,"房门真实站位不能堵住")
 	check(not Territory.plan_terrain("village",[Vector2i(11,13)],"stone_path").valid and not Territory.plan_place("abyss","lamp",Vector2i(8,8)).valid,"自由改造只扩展自己的农场，公共及地下权限不变")
 	var field: Node=game.resource_world.fields.farm
@@ -83,13 +91,13 @@ func farming_safety() -> void:
 	game.territory_editor.cancel();var stamina: int=GameState.stamina
 	check(not game.farm.use_tool(cell,"hoe") and GameState.stamina==stamina,"道路上的误耕有明确提示，不扣体力")
 	check(await paint("natural",cell),"恢复自然后解除景观地表的耕种阻挡")
-	game.territory_editor.cancel();check(game.farm.use_tool(cell,"hoe"),"仍通过原农田系统开垦，未扩大原60格生产边界")
+	game.territory_editor.cancel();check(game.farm.use_tool(cell,"hoe"),"原60格通过相同农活事务开垦，体力与作物规则保留")
 	check(not Territory.plan_terrain("farm",[cell],"grass").valid and not Territory.plan_place("farm","flowers",cell).valid,"真实翻土记录不能被景观或物件覆盖")
 	check(not game.territory_editor.open(),"原农活动画完成前不能进入建造，避免中断已提交动作")
 	await frames(20)
 	var second:=Vector2i(18,16);check(await paint("soil",second),"空地可预览景观翻土")
 	game.territory_editor.cancel();check(game.farm.use_tool(second,"hoe") and not Territory.state.terrain.get("farm",{}).has("18,16"),"真正开垦时移除兼容景观覆盖，避免双份土地状态")
-	check(FarmSaveStore.valid(FarmSaveStore.snapshot(game)) and not game.farm.can_use_tool(Vector2i(5,8),"hoe",false),"农田与景观保存兼容，地图其他区域没有新增生产收益")
+	check(FarmSaveStore.valid(FarmSaveStore.snapshot(game)) and game.farm.can_use_tool(Vector2i(22,5),"hoe",false) and not game.farm.can_use_tool(Vector2i(5,8),"hoe",false),"全场空地可继续正常开垦，活资源仍阻止误耕且存档兼容")
 
 func resource_reclamation() -> void:
 	await fresh()
@@ -127,6 +135,8 @@ func hidden_access() -> void:
 	check(is_instance_valid(spring),"实际农场存在春季活动的原入口")
 	if not is_instance_valid(spring): return
 	spring.hide();check(await begin_edit(),"隐藏场地通路检查进入真实编辑器")
+	game.auto_move.navigation.rebuild()
+	check(not game.auto_move.navigation.path_to({"kind":"object","object":spring,"point":spring.global_position}).is_empty(),"开始围栏探针前，隐藏活动点确实可达")
 	var perimeter: Array[Vector2i]=[]
 	for x in range(26,29): perimeter.append(Vector2i(x,14));perimeter.append(Vector2i(x,17))
 	for y in range(15,17): perimeter.append(Vector2i(26,y));perimeter.append(Vector2i(28,y))
@@ -134,11 +144,12 @@ func hidden_access() -> void:
 	for at in perimeter:
 		var plan:=Territory.plan_place("farm","fence",at)
 		if not plan.valid:
-			denied=str(plan.reason).contains("通路");metrics.hidden_route_denial=plan.reason;break
+			denied=true;metrics.hidden_route_denial=plan.reason;break
 		check(Territory.apply_plan(plan),"确认仍保留通路的围栏预览")
 		accepted+=1
 		await frames(4)
-	check(denied,"隐藏的关键活动点也纳入通路保护，不能被围栏封成孤岛")
+	game.auto_move.navigation.rebuild()
+	check(denied and accepted>0 and not game.auto_move.navigation.path_to({"kind":"object","object":spring,"point":spring.global_position}).is_empty(),"隐藏活动点不能被完整围死，拒绝后实际路径仍然可达")
 	metrics.hidden_route_accepted_fences=accepted
 	game.territory_editor.cancel()
 

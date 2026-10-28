@@ -90,36 +90,20 @@ func _mark_rect(result: Dictionary, rect: Rect2, region: Rect2i, margin: float=0
 			if expanded.intersects(Rect2(x*32,y*32,32,32)): result[Vector2i(x,y)]=true
 
 func protected_cells(area: String, operation: String="grass") -> Dictionary:
-	var cache_key: String=area+(":solid" if TerritoryCatalog.is_solid(operation) else ":ground")
-	if _protected_cache.has(cache_key): return _protected_cache[cache_key]
-	var result: Dictionary={}
-	var region:=Rect2i(0,0,48,32) if area=="farm" else Rect2i(0,0,40,28)
-	var definition: Dictionary=TerritoryCatalog.region(area)
-	for reserved: Rect2i in definition.protected:
-		for y in range(reserved.position.y,reserved.end.y):
-			for x in range(reserved.position.x,reserved.end.x): result[Vector2i(x,y)]=true
 	if area=="farm":
-		for cell in TerritoryCatalog.farm_protected_cells(): result[cell]=true
-		if TerritoryCatalog.is_solid(operation):
-			for cell in TerritoryCatalog.farm_solid_protected_cells(): result[cell]=true
-		# 树冠和已采集点不占土地；只保护存活节点的真实脚底。
+		var result: Dictionary={}
+		for id in game.farm.plots:
+			if not FarmLayout.stored("plot",str(id)): result[FarmLayout.cell("plot",str(id))]=true
 		for id in game.resource_world.fields.farm.state:
-			if int(game.resource_world.fields.farm.state[id].hp)<=0: continue
-			var rect:=TerritoryCatalog.resource_footprint(str(id))
+			if int(game.resource_world.fields.farm.state[id].hp)<=0 or FarmLayout.stored("resource",str(id)): continue
+			var rect:=FarmResourceCatalog.current_footprint(str(id))
 			for y in range(rect.position.y,rect.end.y):
 				for x in range(rect.position.x,rect.end.x): result[Vector2i(x,y)]=true
-		for key in game.farm.plots: result[TerritoryCatalog.cell_from_key(str(key))]=true
-		for placed in Housing.state.placed:
-			if placed.area!="farm": continue
-			var rect: Rect2i=Housing.footprint(placed.kind,TerritoryCatalog.to_cell(placed.cell))
-			_mark_rect(result,Rect2(Vector2(rect.position)*32,Vector2(rect.size)*32),region,4)
-		for object in game.get_tree().get_nodes_in_group("interactables"):
-			if object is CharacterBody2D or not game.world.is_ancestor_of(object) or object.is_in_group("territory_objects"): continue
-			if TerritoryCatalog.is_solid(operation):
-				# 只留真正操作站位，路面仍可以重新铺设。
-				_mark_rect(result,Rect2(object.global_position-Vector2(10,10),Vector2(20,20)),region)
-				_mark_rect(result,Rect2(object.global_position+Vector2(-10,22),Vector2(20,20)),region)
-	_protected_cache[cache_key]=result
+		return result
+	var result: Dictionary={}
+	for reserved: Rect2i in TerritoryCatalog.region(area).protected:
+		for y in range(reserved.position.y,reserved.end.y):
+			for x in range(reserved.position.x,reserved.end.x): result[Vector2i(x,y)]=true
 	return result
 
 func validate_plan(plan: Dictionary) -> Dictionary:
@@ -128,6 +112,9 @@ func validate_plan(plan: Dictionary) -> Dictionary:
 	if not maps.has(area) or GameState.location!=area: return {"valid":false,"reason":"只能改造当前所在的私人领地。"}
 	var operation: String=str(plan.get("op",""))
 	if operation=="remove": return {"valid":true,"reason":""}
+	if area=="farm" and is_instance_valid(game.get("farm_layout_world")):
+		if operation=="terrain": return game.farm_layout_world.validate_terrain(plan)
+		return game.farm_layout_world.check_object(plan)
 	var kind: String=str(plan.get("kind",""))
 	var cells: Array=plan.get("cells",[])
 	if cells.is_empty(): return {"valid":false,"reason":"先在领地中选择要改造的地格。"}

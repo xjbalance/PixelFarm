@@ -41,11 +41,15 @@ func register_site(id: String, definition: Dictionary) -> bool:
 func point(id: String, water: bool = false) -> Vector2:
 	if not sites.has(id): return Vector2.INF
 	var at: Array=sites[id].water if water else sites[id].shore
-	return Vector2(at[0],at[1])
+	var original:=Vector2(at[0],at[1])
+	return FarmLayout.transform_point(original,"fishing_farm") if id=="farm_lake" else original
 
 func near_site(id: String) -> bool:
-	if not sites.has(id) or not is_instance_valid(game) or GameState.location!=sites[id].area or game.player.global_position.distance_to(point(id))>54: return false
+	if not sites.has(id) or (id=="farm_lake" and not FarmLayout.active("fishing_farm")) or not is_instance_valid(game) or GameState.location!=sites[id].area or game.player.global_position.distance_to(point(id))>54: return false
 	return game.auto_move!=null and game.auto_move.navigation.line_of_sight(game.player.global_position,point(id))
+
+func site_has_water(id: String) -> bool:
+	return id!="farm_lake" or FarmTerrain.effective_index(Vector2i((point(id,true)/32).floor())) in [5,6]
 
 func active() -> bool:
 	return session.phase in ["waiting","playing"]
@@ -114,6 +118,9 @@ func assistance() -> float:
 
 func start(site_id: String) -> bool:
 	if busy or active() or state.pending!="" or GameClock.settling or not near_site(site_id): return false
+	if not site_has_water(site_id):
+		Events.notice.emit("浮标位置没有水。请先挖好水池，或把钓鱼点移到合适的岸边。")
+		return false
 	if game.backgrounded or game.player.action_time>0 or GameState.tool()!="fishing_rod": return false
 	if remaining_casts(site_id)<=0:
 		Events.notice.emit("今天的水面需要歇一歇。每个游戏日最多抛竿%d次。" % daily_capacity(site_id))

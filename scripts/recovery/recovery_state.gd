@@ -21,8 +21,9 @@ func restore(raw: Dictionary) -> void:
 func validate(raw: Variant, day: int) -> bool:
 	if not raw is Dictionary or raw.size()!=3: return false
 	return FarmSaveSchema.whole(raw.get("day"),1,day) and FarmSaveSchema.whole(raw.get("rests"),0,REST_LIMIT) and FarmSaveSchema.whole(raw.get("snacks"),0,SNACK_LIMIT)
+func bench_point() -> Vector2: return FarmLayout.point("recovery")
 func near_bench() -> bool:
-	return is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(BENCH)<=54
+	return FarmLayout.active("recovery") and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(bench_point())<=54
 func available() -> bool:
 	# 暂停菜单允许吃东西；后台、离场和读档中的旧回调不能提交恢复事务。
 	return not busy and not food_busy and not GameClock.settling and not GameState.restoring and is_instance_valid(game) and not game.backgrounded and not game.closing
@@ -37,7 +38,7 @@ func can_rest() -> bool:
 	return available() and near_bench() and GameClock.minutes+20<1440 and int(snapshot().rests)<REST_LIMIT and GameState.stamina<GameState.max_stamina()
 func rest(expected_day: int = GameClock.day, expected_used: int = -1) -> bool:
 	if expected_day!=GameClock.day or not can_rest():
-		Events.notice.emit("请到屋东休息椅边；每天可歇三次，午夜前留够20分钟，满体力不消耗次数。")
+		Events.notice.emit("请到已摆放的休息椅边；每天可歇三次，午夜前留够20分钟，满体力不消耗次数。")
 		return false
 	var current := snapshot()
 	if expected_used>=0 and expected_used!=current.rests: return false

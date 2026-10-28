@@ -19,6 +19,9 @@ func refresh() -> void:
 	cells=next.duplicate(true);season=next_season;queue_redraw()
 
 func _draw() -> void:
+	# The farm's effective surface also updates real water collision and rebuilds its
+	# cached ground image. Drawing a second overlay would resurrect the old pond.
+	if area_id=="farm": return
 	for key in cells:
 		var cell:=TerritoryCatalog.cell_from_key(str(key))
 		var kind: String=str(cells[key])

@@ -293,7 +293,7 @@ static func input_and_mode(test: Node, game: Node) -> void:
 	test.check(FarmSaveStore.restore(game,saved_mode) and GameState.control_mode=="joystick" and game.hud.joystick.visible,"存档恢复所选摇杆模式")
 	await test.frames(5)
 	var legacy := saved_mode.duplicate(true)
-	legacy.version=5;legacy.erase("appearance")
+	legacy.version=5;legacy.erase("farm_layout");legacy.erase("appearance")
 	legacy.erase("control_mode")
 	var migrated := FarmSaveSchema.normalize(legacy)
 	test.check(migrated.get("control_mode")=="tap" and migrated.items==legacy.items and migrated.xiaojing==legacy.xiaojing,"v5旧档默认点击模式且保留背包与小京进度")

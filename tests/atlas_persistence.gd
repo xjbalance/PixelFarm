@@ -52,7 +52,7 @@ func write_fixture() -> void:
 	check(panel.visible and panel.map_canvas.zoom>1 and panel.map_canvas.region_id=="home" and snapshot()==before,"打开、缩放与拖动家内图纸不写资源、相机或地图持久状态")
 	write_json(token_path(),{"token":token,"sold":7,"remaining":Inventory.count("carrot"),"coins":Inventory.coins})
 	if legacy:
-		var old: Dictionary=before.duplicate(true);old.version=23;old.erase("appearance");old.erase("territory");old.housing.erase("builtins")
+		var old: Dictionary=before.duplicate(true);old.version=23;old.erase("appearance");old.erase("territory");old.erase("farm_layout");old.housing.erase("builtins")
 		check(FarmSaveStore.valid(old) and not old.housing.has("builtins"),"旧写进程使用真实v23字段结构，明确移除现代builtins")
 		write_json(proof_path(),old);write_json(FarmSaveStore.PATH,old);write_json(FarmSaveStore.PATH+".bak",old)
 		var disk:=read_json(FarmSaveStore.PATH)

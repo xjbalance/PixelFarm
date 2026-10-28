@@ -3,6 +3,9 @@ var kind: String="ecology"
 func _ready() -> void:
 	add_to_group("interactables");LakeEcology.changed.connect(queue_redraw)
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	FarmLayout.changed.connect(refresh_layout);refresh_layout()
+func refresh_layout() -> void:
+	set_meta("farm_fixture","ecology");position=LakeEcology.shore_point();visible=FarmLayout.active("ecology")
 func prompt() -> String: return "湖泊生态 · 水样与循环设施"
 func interact() -> void: Events.interaction_requested.emit("ecology")
 func _draw() -> void:

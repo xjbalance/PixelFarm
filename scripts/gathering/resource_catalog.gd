@@ -28,3 +28,23 @@ static func all_placements() -> Dictionary:
 	var result := {}
 	for area in ["farm","village","mist_forest"]: result.merge(placements(area))
 	return result
+
+static func current_placements(area: String="farm") -> Dictionary:
+	# Stable IDs and defaults above remain the legacy save catalog. Physical positions
+	# are a separate layout mapping; moving a tree never creates another resource ID.
+	var result:=placements(area)
+	if area=="farm":
+		for id in result:
+			result[id].cell=FarmLayout.cell("resource",str(id))
+			result[id].stored=FarmLayout.stored("resource",str(id))
+	return result
+
+static func current_footprint(id: String, at: Variant=null) -> Rect2i:
+	var entry: Dictionary=placements("farm").get(id,{})
+	if entry.is_empty() or (at==null and FarmLayout.stored("resource",id)): return Rect2i()
+	var cell: Vector2i=FarmLayout.cell("resource",id) if at==null else TerritoryCatalog.to_cell(at)
+	if cell==TerritoryCatalog.INVALID_CELL: return Rect2i()
+	var extent:=Vector2(22,19) if entry.kind=="tree" else Vector2(30,16)
+	var rect:=Rect2(Vector2(cell)*32+Vector2(0,-5)-extent*.5,extent)
+	var start:=Vector2i((rect.position/32).floor());var end:=Vector2i((rect.end/32).ceil())
+	return Rect2i(start,end-start)

@@ -38,6 +38,7 @@ func _ready() -> void:
 	label.add_theme_constant_override("shadow_offset_y",1)
 	add_child(label)
 	Aquaculture.changed.connect(refresh)
+	FarmLayout.changed.connect(refresh)
 	GameClock.changed.connect(refresh_time)
 	refresh()
 
@@ -65,10 +66,11 @@ func refresh_time() -> void:
 func refresh() -> void:
 	var p: Dictionary=Aquaculture.pen(pen_id)
 	last_summary=Aquaculture.summary(pen_id)
+	set_meta("farm_fixture",pen_id);position=Aquaculture.site_point(pen_id);visible=FarmLayout.active(pen_id)
 	var built: bool=bool(p.built)
+	box_collision.set_deferred("disabled",not built or not visible)
 	if built!=last_built:
 		last_built=built
-		box_collision.set_deferred("disabled",not built)
 		Events.navigation_changed.emit()
 	if not built:
 		label.text="鱼栏 %s · 待建" % pen_id.trim_prefix("pen_") if Aquaculture.available(pen_id) else "鱼栏 %s · 待扩建" % pen_id.trim_prefix("pen_")

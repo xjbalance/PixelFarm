@@ -53,11 +53,14 @@ func visuals_and_routes() -> void:
 		check(not game.auto_move.navigation.path_to({"kind":"resource","object":object,"point":object.global_position}).is_empty(),"农场树石采集面仍可达："+id)
 	check(visual.trees.size()==30,"仅替换原30棵可砍树贴图，无新装饰树冒充资源")
 	var physics: Dictionary=game.auto_move.navigation.static_solid.duplicate()
+	var season_pixels: Dictionary={}
 	for season in range(4):
 		GameClock.day=season*28+1;Calendar.restore(Calendar.snapshot());GameClock.changed.emit();await frames(3)
-		check(visual.applied_season==season and visual.ground_detail.texture.resource_path.ends_with(FarmVisual06.SEASONS[season]+".png") and visual.trees[0].texture.resource_path.contains("/world_scheme_c/seasons/"),"四季原生地面/树木视觉同步："+str(season))
+		check(visual.applied_season==season and visual.ground_detail.get_meta("season",-1)==season and visual.ground_detail.texture.get_size()==Vector2(1536,1024) and visual.trees[0].texture.resource_path.contains("/world_scheme_c/seasons/"),"四季有效地形缓存与原生树木同步，不依赖固定PNG路径："+str(season))
+		season_pixels[hash(visual.ground_detail.texture.get_image().get_data())]=true
 		game.auto_move.navigation.invalidate();await frames(3);game.auto_move.navigation.rebuild()
 		check(game.auto_move.navigation.static_solid==physics,"换季只换图，物理导航格不变化："+str(season))
+	check(season_pixels.size()==4,"四季地形缓存实际像素各不相同，未只切换季节标记")
 	check(FarmSaveStore.restore(game,original),"季节视觉夹具恢复原进度")
 	await frames(5)
 	var home_point: Node2D

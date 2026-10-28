@@ -384,14 +384,14 @@ func validate(saved: Variant, day: int) -> bool:
 		for key in ["plants","harvest","wood","stone","puzzles"]:
 			if not FarmSaveSchema.whole(t.get(key),0,999999): return false
 		if not FarmSaveSchema.whole(t.get("day"),1,day) or not FarmSaveSchema.whole(t.get("profit"),-999999999,999999999): return false
-		if not t.get("sown") is Dictionary or t.sown.size()>60 or not t.get("maps") is Array or not t.get("outputs") is Dictionary: return false
+		if not t.get("sown") is Dictionary or t.sown.size()>1536 or not t.get("maps") is Array or not t.get("outputs") is Dictionary: return false
 		for crop in t.outputs:
 			if crop not in Catalog.crops or not FarmSaveSchema.whole(t.outputs[crop],0,999999): return false
 		for cell in t.sown:
 			if not cell is String or t.sown[cell] not in Catalog.crops: return false
 			var parts: PackedStringArray = cell.split(",")
 			if parts.size()!=2 or not parts[0].is_valid_int() or not parts[1].is_valid_int(): return false
-			if not Rect2i(17,16,10,6).has_point(Vector2i(int(parts[0]),int(parts[1]))): return false
+			if FarmLayoutCatalog.plot_cell(cell)==FarmLayoutCatalog.INVALID_CELL: return false
 		for loc in t.maps:
 			if loc not in ["farm","home","village"]: return false
 	return validate_cave(saved.cave)

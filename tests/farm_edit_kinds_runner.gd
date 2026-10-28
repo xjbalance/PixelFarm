@@ -19,7 +19,7 @@ func run() -> void:
 		check(Territory.apply_plan(Territory.plan_remove(id)),"同一唯一ID拆除："+str(kind))
 		await frames(4)
 	check(used==TerritoryCatalog.OBJECT_KINDS.size() and ids.size()==used and Territory.state.objects.is_empty(),"全部素材可以在真实农场轮流摆放，ID不复用、无残留副本")
-	check(saves_valid,"每一款农场物件都通过完整v26存档校验")
+	check(saves_valid,"每一款农场物件都通过含原物布局的完整v27存档校验")
 	var after: Dictionary={"items":Inventory.items.duplicate(true),"coins":Inventory.coins,"stamina":GameState.stamina,"resources":game.resource_world.snapshot(),"plots":game.farm.plots.duplicate(true)}
 	check(before==after,"逐款摆放与拆除不修改钱物、真实农田或原资源状态")
 	var file:=FileAccess.open("res://builds/farm-edit-kinds-state.json",FileAccess.WRITE)

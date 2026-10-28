@@ -20,7 +20,7 @@ static func title(id: String) -> String:
 	return str(TITLES.get(id,"区域图纸")) if known(id) else "尚未探索"
 static func bounds(id: String) -> Rect2:
 	if id=="farm": return Rect2(0,0,1536,1024)
-	if id=="lake": return Rect2(864,384,544,512)
+	if id=="lake": return Rect2(Vector2(864,384)+FarmLayout.offset("lake"),Vector2(544,512))
 	if id=="home": return HomeLayout.map_rect(int(Housing.state.level)).grow(18)
 	return Rect2(0,0,1280,896)
 static func world_to_map(id: String, point: Vector2) -> Vector2:
@@ -31,6 +31,7 @@ static func map_to_world(id: String, point: Vector2) -> Vector2:
 	return rect.position+(point-Vector2(64,48))/Vector2(896,544)*rect.size
 static func picture(id: String) -> String:
 	if id in TerritoryCatalog.ANNEX_AREAS: return "territory"
+	if id in ["farm","lake"]: return "farm_editable_base"
 	if id in MineState.AREAS or id=="abyss": return "cave"
 	return id if id in ["farm","village","lake","home","greenhouse","mist_forest","lake_ruins","old_temple"] else "world"
 static func _place(id: String, name_text: String, point: Vector2, region: String, icon: String, text: String, discovered: bool=true) -> Dictionary:
@@ -54,12 +55,12 @@ static func description(id: String) -> String:
 		"home": return "%s。床、沙发、厨房和收纳位置与玩家已确认的家具布局一致。" % Housing.level_name()
 		"village": return "河湾村。旧桥%s；风灯架在广场中央、长椅的右上方。" % ("已经修复" if Story.stage>=5 else "尚未修复，东岸道路暂时阻断")
 		"lake": return "农场东侧同一片湖岸，并非独立传送地图。湖泊生态%d/100，%s。" % [LakeEcology.state.health,"循环已恢复" if LakeEcology.state.restored else "仍在照料恢复中"]
-		"mist_forest": return "从农场西北林径进入。林间资源可采集，%s。" % ("深处林径已开放" if Exploration.state.forest.open else "深处林径仍待实地调查")
-		"lake_ruins": return "从农场湖东旧阶进入。%s。图纸只记录已开放区域，不代替机关调查。" % ("检修桥已接通" if Exploration.state.lake.open else "排水检修尚未完成")
+		"mist_forest": return "从农场的森林入口进入。林间资源可采集，%s。" % ("深处林径已开放" if Exploration.state.forest.open else "深处林径仍待实地调查")
+		"lake_ruins": return "从农场的遗迹检修口进入。%s。图纸只记录已开放区域，不代替机关调查。" % ("检修桥已接通" if Exploration.state.lake.open else "排水检修尚未完成")
 		"old_temple": return "从河湾村东岸石门进入。%s。" % ("归航庭光路已接通" if Exploration.state.temple.open else "庭内光路仍待核对")
 		"mine_a","mine_b","mine_c": return "%s · 已开放%d/3个矿区。这里只记录出入口；矿脉、宝箱和机关需亲自探索。" % [TITLES[id],MineState.state.unlocked.size()]
 		"abyss": return "当前第%d层，已通关%d层，记录检查点第%d层。图纸仅标当前层的返回与下行站位，不提前展开100层。" % [AbyssState.state.depth,AbyssState.state.max_clear,AbyssState.state.checkpoint]
-		"greenhouse": return "农场东南的星光温室。%s，修复阶段%d/4。" % ["已恢复开放" if LegendState.state.greenhouse>=4 or Xiaojing.state.married else "仍在修复中",mini(4,int(LegendState.state.greenhouse))]
+		"greenhouse": return "农场中的星光温室。%s，修复阶段%d/4。" % ["已恢复开放" if LegendState.state.greenhouse>=4 or Xiaojing.state.married else "仍在修复中",mini(4,int(LegendState.state.greenhouse))]
 	return "沿真实道路步行前往；这张图纸仅供查看。"
 static func region_places(id: String) -> Array[Dictionary]:
 	var out: Array[Dictionary]=[]
@@ -127,6 +128,26 @@ static func region_places(id: String) -> Array[Dictionary]:
 	elif id=="greenhouse":
 		out.append(_at("venue_exit","返回农场",Vector2(640,780),id,"greenhouse",description(id),"farm"))
 		out.append(_at("archive","档案与协作桌",Vector2(800,320),id,"workshop","这里承载原有温室档案和协作，地图不会触发剧情或仪式。"))
+	if id in ["farm","lake"]:
+		var fixtures: Dictionary={"home":"home","village_entry":"village_gate","shop":"shop","lake":"lake","workshop":"workshop","board":"board","forest_entry":"explore:forest_entry","lake_entry":"explore:lake_entry","coop":"coop","barn":"barn","fold":"fold","greenhouse":"greenhouse","shore":"ecology","pen_1":"pen_1","pen_2":"pen_2","pen_3":"pen_3","pen_4":"pen_4"}
+		for area in TerritoryCatalog.ANNEX_AREAS: fixtures["gate_"+area]="gate:"+area
+		if id=="farm":
+			var total:=Vector2.ZERO;var count: int=0
+			for y in range(16,22):
+				for x in range(17,27):
+					var key: String="%d,%d" % [x,y]
+					if FarmLayout.stored("plot",key): continue
+					total+=Vector2(FarmLayout.cell("plot",key))*32+Vector2(16,16);count+=1
+			for item in out.duplicate():
+				if item.id!="plots": continue
+				if count==0: out.erase(item)
+				else: item.world_position=total/count;item.point=world_to_map(id,item.world_position)
+		for item in out.duplicate():
+			var fixture: String=str(fixtures.get(item.id,""))
+			if fixture=="": continue
+			if not FarmLayout.active(fixture): out.erase(item);continue
+			item.world_position=FarmLayout.point(fixture)
+			item.point=world_to_map(id,item.world_position)
 	return out
 static func _at(id: String, name_text: String, world: Vector2, map_region: String, icon: String, text: String, detail_region: String="") -> Dictionary:
 	var info:=_place(id,name_text,world_to_map(map_region,world),detail_region,icon,text)
@@ -141,6 +162,9 @@ static func resource_marks(id: String, resources: Dictionary={}) -> Array[Dictio
 	for key in placements:
 		var entry: Dictionary=placements[key]
 		var point: Vector2=Vector2(entry.cell)*32
+		if area=="farm":
+			if FarmLayout.stored("resource",str(key)): continue
+			point=Vector2(FarmLayout.cell("resource",str(key)))*32
 		if not bounds(id).has_point(point): continue
 		result.append({"id":key,"point":world_to_map(id,point),"kind":entry.kind,"available":int(resources.get(key,{}).get("hp",1))>0})
 	return result

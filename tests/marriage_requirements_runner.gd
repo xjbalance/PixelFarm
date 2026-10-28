@@ -147,7 +147,7 @@ func old_married_and_restart() -> void:
 	Housing.restore(Housing.defaults(GameClock.day));Fishing.restore(Fishing.defaults());game.change_location("farm",Vector2(656,440));Letters.refresh();await frames(5)
 	var original: Dictionary=snapshot()
 	check(Xiaojing.state.married and not Xiaojing.marriage_goals_ready() and FarmSaveStore.valid(original),"已婚旧档缺新增门槛仍是合法存档，不撤销既成婚姻")
-	var old: Dictionary=original.duplicate(true);old.version=24;old.erase("appearance");old.erase("territory")
+	var old: Dictionary=original.duplicate(true);old.version=24;old.erase("farm_layout");old.erase("appearance");old.erase("territory")
 	var migrated:=FarmSaveSchema.normalize(old)
 	check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION and migrated.xiaojing==original.xiaojing and migrated.housing==original.housing and migrated.fishing==original.fishing,"真实v24旧婚姻迁移不补发鱼、不补房屋，也不丢原婚后进度")
 	check(FarmSaveStore.restore(game,migrated),"无新门槛的旧已婚旅程正常恢复");await frames(5)

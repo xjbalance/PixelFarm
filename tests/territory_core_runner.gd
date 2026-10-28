@@ -73,13 +73,13 @@ func permissions_and_migration() -> void:
 	check(not Territory.unlocked("east_holding") and not Territory.permission("east_holding",Vector2i(8,8),"grass").allowed,"未完成第一章不能进入或编辑河东开发地")
 	for cell in [Vector2i(14,20),Vector2i(18,16),Vector2i(35,9)]:
 		check(Territory.permission("farm",cell,"stone_path").allowed,"旧道路、未开垦农地与入口广场允许重铺地表："+str(cell))
-	check(not Territory.permission("farm",Vector2i(34,18),"stone_path").allowed,"原湖泊真实水域仍不可覆盖")
+	check(Territory.permission("farm",Vector2i(34,18),"stone_path").allowed,"原湖泊地形可预览填平，现场碰撞和连通性由世界层复核")
 	host.farm.plots["18,16"]={"crop":"carrot","days":1,"watered":false}
 	check(not Territory.permission("farm",Vector2i(18,16),"stone_path").allowed,"已有真实作物状态的地块不可覆盖")
 	host.farm.plots.clear()
 	check(Territory.permission("farm",Vector2i(11,16),"grass").allowed,"私人空地具有明确地表编辑权限")
-	check(not Territory.permission("farm",Vector2i(9,28),"fence").allowed,"牛棚尚未建成也保留原动物未来的放牧站位")
-	check(not Territory.permission("farm",Vector2i(22,28),"fence").allowed,"羊圈未来放牧站位不被初始领地编辑堵住")
+	check(Territory.permission("farm",Vector2i(9,28),"fence").allowed,"牛棚可迁移，原草地不再由固定大矩形永久禁止规划")
+	check(Territory.permission("farm",Vector2i(22,28),"fence").allowed,"羊圈可迁移，现场实体和人物碰撞仍由世界层检查")
 	var stages: Array=[raw_progress(),raw_progress(8),raw_progress(8,true,true),raw_progress(8,true,true,true),raw_progress(8,true,true,true,true)]
 	for i in range(stages.size()):
 		var imported:=Territory.migrate(stages[i])
@@ -105,8 +105,8 @@ func terrain_transactions() -> void:
 		check(not Territory.apply_plan(plan),"同一地表预览只能确认一次："+str(kind))
 		original=Territory.snapshot()
 	check(not Territory.state.terrain.has("farm"),"恢复自然地表清除覆盖记录，不积累无用瓦片")
-	var invalid:=Territory.plan_terrain("farm",[Vector2i(11,16),Vector2i(34,18)],"dirt_path")
-	check(not invalid.valid and not Territory.apply_plan(invalid) and Territory.snapshot()==original,"批量包含真实水域时整体失败，不涂半份")
+	var invalid:=Territory.plan_terrain("farm",[Vector2i(11,16),Vector2i(48,18)],"dirt_path")
+	check(not invalid.valid and not Territory.apply_plan(invalid) and Territory.snapshot()==original,"批量包含越界格时整体失败，不涂半份")
 	var old:=Territory.plan_terrain("farm",cells,"soil");Territory.state.revision+=1
 	check(not Territory.apply_plan(old),"旧修订号不能提交过时地表操作")
 	var saved: Dictionary=Territory.snapshot();var valid:=Territory.plan_terrain("farm",cells,"soil")
@@ -146,8 +146,8 @@ func malformed_saves() -> void:
 	var mutation:=original.duplicate(true);mutation.permissions.village="private";check(not Territory.validate(mutation),"存档不能自授公共区域权限")
 	mutation=original.duplicate(true);mutation.unlocked=["farm","manor_holding"];check(not Territory.validate(mutation),"解锁列表不能跳过阶段")
 	mutation=Territory.migrate(raw_progress(8));check(not Territory.validate(mutation,raw_progress()),"缓存授权与保存剧情不符时拒绝")
-	for key in ["01,16","11.0,16","11, 16","-1,16","999999999999999999999,16","20,11"]:
-		mutation=original.duplicate(true);mutation.terrain={"farm":{key:"soil"}};check(not Territory.validate(mutation),"拒绝非规范、越界及公共格地表："+key)
+	for key in ["01,16","11.0,16","11, 16","-1,16","999999999999999999999,16","48,11"]:
+		mutation=original.duplicate(true);mutation.terrain={"farm":{key:"soil"}};check(not Territory.validate(mutation),"拒绝非规范或越界地表："+key)
 	mutation=original.duplicate(true);mutation.terrain={"farm":{"11,16":"unknown"}};check(not Territory.validate(mutation),"未知地表不会加载错误效果")
 	mutation=original.duplicate(true);mutation.terrain={"farm":{"11,16":"natural"}};check(not Territory.validate(mutation),"自然恢复应删除覆盖记录而不是留下冗余状态")
 	mutation=original.duplicate(true);mutation.terrain={"farm":{"10,8":"soil"}};check(not Territory.validate(mutation,raw_progress()),"存档注入地表也不能覆盖尚未采集的旧树木")

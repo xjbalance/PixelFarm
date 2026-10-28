@@ -22,12 +22,13 @@ func entry(area: String) -> Vector2:
 func point(id: String) -> Vector2:
 	var definition: Dictionary=data.points.get(id,data.entrances.get(id,{}))
 	if definition.is_empty(): return Vector2.INF
-	if definition.has("position"): return Vector2(definition.position[0],definition.position[1])
+	if definition.has("position"):
+		return FarmLayout.point("explore:"+id) if definition.get("area")=="farm" else Vector2(definition.position[0],definition.position[1])
 	return Vector2(definition.cell[0]*32+16,definition.cell[1]*32+16)
 func definition(id: String) -> Dictionary: return data.points.get(id,data.entrances.get(id,{}))
 func near_id(id: String) -> bool:
 	var record := definition(id)
-	if record.is_empty() or not is_instance_valid(game) or GameState.location!=record.area or game.player.global_position.distance_to(point(id))>54 or not game.auto_move: return false
+	if record.is_empty() or (record.get("area")=="farm" and not FarmLayout.active("explore:"+id)) or not is_instance_valid(game) or GameState.location!=record.area or game.player.global_position.distance_to(point(id))>54 or not game.auto_move: return false
 	for object in get_tree().get_nodes_in_group("interactables"):
 		if "exploration_id" in object and object.exploration_id==id and object.is_visible_in_tree():
 			return game.auto_move.navigation.line_of_sight(game.player.global_position,point(id),object)
@@ -71,7 +72,10 @@ func exit_area() -> bool:
 	var area: String=GameState.location
 	if busy or area not in AREAS or not near_id(data.areas[area].exit): return false
 	var at: Array=data.areas[area].return_position
-	return WorldTravel.change(game,data.areas[area].return_area,Vector2(at[0],at[1]))
+	var destination: String=data.areas[area].return_area
+	var point:=Vector2(at[0],at[1])
+	if destination=="farm": point=FarmLayout.transform_point(point,"explore:"+str(data.areas[area].entrance))
+	return WorldTravel.change(game,destination,point)
 func read(id: String) -> bool:
 	if busy or GameClock.settling or not near_id(id) or not accessible(id) or data.points[id].kind!="note" or id in state.facts: return false
 	busy=true;state.facts.append(id);_commit();return true

@@ -91,11 +91,13 @@ func seasonal_maps() -> void:
 	var forest: Node=game.mine_maps.mist_forest
 	var forest_before: Dictionary=cell_state(forest.ground)
 	var resources_before: Dictionary=game.resource_world.snapshot()
+	var season_pixels: Dictionary={}
 	for season in range(4):
 		GameClock.day=season*28+1;Calendar.restore(Calendar.snapshot());GameClock.changed.emit();await frames(5)
 		var name: String=SchemeCAssets.SEASONS[season]
 		var visual: Node=game.world.get_node("GroundDetail06")
-		check(visual.applied_season==season and visual.ground_detail.texture.resource_path.ends_with("farm_ground_"+name+".png") and visual.ground_detail.texture.get_size()==Vector2(1536,1024),"农场整图采用对应季节的源素材组合："+name)
+		check(visual.applied_season==season and visual.ground_detail.get_meta("season",-1)==season and visual.ground_detail.texture.get_size()==Vector2(1536,1024),"农场有效地形缓存采用对应季节素材组合："+name)
+		season_pixels[hash(visual.ground_detail.texture.get_image().get_data())]=true
 		check(cell_state(game.world.ground)==farm_before and cell_state(game.village.ground)==village_before and cell_state(forest.ground)==forest_before,"三图换季逐格保留原地形类型与碰撞："+name)
 		check(game.resource_world.snapshot()==resources_before,"换季不提前再生或收获资源："+name)
 		var valid: bool=true
@@ -106,6 +108,7 @@ func seasonal_maps() -> void:
 		var atlas: TileSetAtlasSource=forest.ground.tile_set.get_source(0)
 		check(atlas.texture.resource_path.ends_with("forest_ground_"+name+".png"),"只更新森林地表材质，未替换地下场景："+name)
 		game.change_location("farm",Vector2(656,470));await frames(5);await capture("farm_"+name)
+	check(season_pixels.size()==4,"四季缓存实际像素变化，不要求使用固定池塘烘焙PNG")
 	for area in ["village","mist_forest"]:
 		game.change_location(area,Vector2(640,480));await frames(5);await capture(area)
 	game.change_location("farm",Vector2(656,440));await frames(5)

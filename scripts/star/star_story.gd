@@ -28,12 +28,33 @@ func mark(id: String) -> void:
 func event(id: String) -> void:
 	if id not in state.events: state.events.append(id)
 
+func point_fixture(id: String) -> String:
+	return ("greenhouse" if id=="greenhouse" else "star:"+id) if data.points.has(id) and data.points[id].area=="farm" else ""
+func point(id: String) -> Vector2:
+	if not data.points.has(id): return Vector2.INF
+	var entry: Dictionary=data.points[id]
+	var original:=Vector2(entry.position[0],entry.position[1])
+	return FarmLayout.point(point_fixture(id)) if entry.area=="farm" else original
+func point_active(id: String) -> bool:
+	return data.points.has(id) and (data.points[id].area!="farm" or FarmLayout.active(point_fixture(id)))
+func memory_fixture(id: String) -> String:
+	return "memory:"+id if id in ["pond","orchard"] else ""
+func memory_point(id: String) -> Vector2:
+	for memory in Xiaojing.data.memories:
+		if memory.id!=id: continue
+		var original:=Vector2(memory.position[0],memory.position[1])
+		return FarmLayout.point(memory_fixture(id)) if memory.location=="farm" else original
+	return Vector2.INF
+func memory_active(id: String) -> bool:
+	var fixture:=memory_fixture(id)
+	return fixture=="" or FarmLayout.active(fixture)
+
 func near_point(id: String) -> bool:
 	if GameState.location=="greenhouse":
 		return StarCeremony.near({"greenhouse":"archive","desk_left":"ceremony_left","desk_right":"ceremony_right"}.get(id,id))
-	if not data.points.has(id) or not is_instance_valid(game): return false
+	if not point_active(id) or not is_instance_valid(game): return false
 	var entry: Dictionary=data.points[id]
-	var at := Vector2(entry.position[0],entry.position[1])
+	var at := point(id)
 	return GameState.location==entry.area and game.player.global_position.distance_to(at)<=64 and game.auto_move.navigation.line_of_sight(game.player.global_position,at)
 
 func near_person(id: String) -> bool:
@@ -43,10 +64,10 @@ func near_person(id: String) -> bool:
 	return false
 
 func near_memory(id: String) -> bool:
-	if not is_instance_valid(game): return false
+	if not is_instance_valid(game) or not memory_active(id): return false
 	for memory in Xiaojing.data.memories:
 		if memory.id==id and GameState.location==memory.location:
-			var at := Vector2(memory.position[0],memory.position[1])
+			var at := memory_point(id)
 			if game.player.global_position.distance_to(at)<=64 and game.auto_move.navigation.line_of_sight(game.player.global_position,at): return true
 	for key in MineState.placements:
 		var entry: Dictionary=MineState.placements[key]

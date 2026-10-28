@@ -14,8 +14,9 @@ func defaults(day: int = GameClock.day) -> Dictionary:
 func snapshot() -> Dictionary: return state.duplicate(true)
 func restore(raw: Dictionary) -> void:
 	state=AbyssSaveSchema.canonical(raw).duplicate(true);busy=false;changed.emit()
+func shore_point() -> Vector2: return FarmLayout.point("ecology")
 func near() -> bool:
-	return is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(SHORE)<=54
+	return FarmLayout.active("ecology") and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(shore_point())<=54
 func commit() -> void:
 	changed.emit();Events.progress_committed.emit();busy=false
 func clean() -> bool:
@@ -51,7 +52,7 @@ func xiaojing_after() -> bool:
 func companion_present() -> bool:
 	if GameClock.minutes<540 or GameClock.minutes>=1080: return false
 	for person in get_tree().get_nodes_in_group("xiaojing"):
-		if person.is_visible_in_tree() and person.global_position.distance_to(SHORE)<=80: return true
+		if person.is_visible_in_tree() and person.global_position.distance_to(shore_point())<=80: return true
 	return false
 func fishing_capacity() -> int: return 8 if state.health<40 else 12
 func rare_factor() -> float: return clampf(1.0+(float(state.health)-70)/60.0,.5,1.5)

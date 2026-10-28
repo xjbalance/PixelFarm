@@ -13,6 +13,9 @@ func _draw() -> void:
 	var rectangles: Array[Rect2]=controller.preview_rects()
 	for rect in rectangles:
 		draw_rect(rect,Color(color,0.25));draw_rect(rect.grow(-1),color,false,2)
+	if plan.get("source")=="layout":
+		for art in controller.preview_art(): draw_texture_rect(art.texture,art.rect,false,Color(1,1,1,.55))
+		return
 	var texture: Texture2D=controller.preview_texture()
 	if texture and not rectangles.is_empty():
 		var rect: Rect2=rectangles[0]

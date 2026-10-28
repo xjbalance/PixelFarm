@@ -2,6 +2,9 @@ extends Node2D
 var kind: String="recovery"
 func _ready() -> void:
 	add_to_group("interactables");texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	FarmLayout.changed.connect(refresh_layout);refresh_layout()
+func refresh_layout() -> void:
+	set_meta("farm_fixture","recovery");position=Recovery.bench_point();visible=FarmLayout.active("recovery")
 func hit_rect() -> Rect2: return Rect2(-28,-27,56,42)
 func prompt() -> String: return "休息椅 · 体力恢复"
 func interact() -> void: Events.interaction_requested.emit("recovery")

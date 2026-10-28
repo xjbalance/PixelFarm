@@ -93,63 +93,46 @@ func refresh() -> void:
 	elif page=="upgrade": show_upgrade()
 	else: show_layout()
 func show_layout() -> void:
-	if area=="home":
-		show_home_layout();return
-	words("庭院布置" if area=="farm" else "小屋起居布置",23)
-	words("选择家具，再点网格查看落点预览，最后确认放置。灰格不能放；床、门、故事木盒、厨房和穿行走廊都在保护区。已摆家具可移动或回收到家具库，不返还材料也不会复制。",16)
+	if area=="home": show_home_layout()
+	else: show_farm_layout()
+func _open_farm_editor() -> void:
+	if not visible or not is_instance_valid(Housing.game) or GameState.location!="farm": return
+	close_panel();Housing.game.territory_editor.open()
+func show_farm_layout() -> void:
+	words("农场庭院 · 直接在地图中布置",23)
+	words("进入农场DIY，点选原有家具预览新位置，再确认移动或收纳。房门和必要通路需要留空，原物品和成长进度会保留。",17)
+	button("进入农场DIY",_open_farm_editor).set_meta("farm_diy_entry",true)
+	words("恢复库中家具：在DIY的「原物 → 已收纳」选择，再点地图预览放置。移动和恢复不重复制作，也不复制储物内容。",16)
 	if selected_id!="":
-		var active: Dictionary=Housing.placement(selected_id)
-		if active.is_empty(): selected_id=""
+		var item: Dictionary=Housing.placement(selected_id)
+		if item.is_empty(): selected_id=""
 		else:
-			words("正在移动："+Housing.data.furniture[active.kind].name)
 			var id: String=selected_id
-			if active.kind=="flower" and active.area=="farm":
+			words("当前家具 · "+str(Housing.data.furniture[item.kind].name),21)
+			if item.kind=="flower":
 				var age: int=Housing.flower_age(id)
-				words("春铃花："+("尚未播种。春季庆典可获得花种，靠近这个花坛再播下。" if age<0 else "已照料%d / 3日。三个游戏日后采收，移动不改变成长日。" % mini(3,age)),16)
+				words("春铃花："+("尚未播种，靠近花坛可播下花种。" if age<0 else "已照料%d / 3日，移动不改变成长日。" % mini(3,age)),16)
 				button("播下春铃花种 · 消耗1种 / 1体力",func(): result(Housing.sow_flower(id))).disabled=age>=0 or not Housing.near_item(id)
 				if age>=0:
 					button("采收春铃花",func(): result(Housing.harvest_flower(id))).disabled=age<3 or not Housing.near_item(id)
 					button("撤回花苗 · 返还1种",func(): ask("撤回这株花苗并返还1粒种子？现有成长日会清除。",func(): result(Housing.uproot_flower(id)))).disabled=not Housing.near_item(id)
-					words("先采收或撤回花苗，再回收花坛；背包满时整笔保留。",16)
-			button("回收这件家具",func(): ask("收回家具库，原材料不返还，稍后可以再次摆放。继续？",func():
-				if Housing.recycle(id): selected_id="";selected_cell=Vector2i(-1,-1);refresh()
+					words("有花苗的花坛仍可全场移动；先采收或撤回花苗，再收纳花坛。",16)
+			var recycle:=button("收回家具库",func(): ask("收回家具库，原材料不返还，稍后可以再次摆放。继续？",func():
+				if Housing.recycle(id): selected_id="";refresh()
 				else: result(false)
 			))
-			button("取消移动，改选库中家具",func(): selected_id="";selected_cell=Vector2i(-1,-1);refresh())
-	if selected_id=="":
-		for kind in Housing.data.furniture:
-			var entry: Dictionary=Housing.data.furniture[kind]
-			if entry.area!=area or int(Housing.state.owned.get(kind,0))<1: continue
-			button(("✓ " if selected_kind==kind else "")+entry.name+" ×%d" % Housing.state.owned[kind],func(): selected_kind=kind;selected_cell=Vector2i(-1,-1);refresh())
-	words("当前："+Housing.data.furniture[selected_kind].name+" · %d×%d格" % [Housing.data.furniture[selected_kind].size[0],Housing.data.furniture[selected_kind].size[1]],18)
-	for rect in Housing.layout_rects(area):
-		var grid := GridContainer.new();grid.columns=rect.size.x;grid.add_theme_constant_override("h_separation",6);grid.add_theme_constant_override("v_separation",6);content.add_child(grid)
-		for y in range(rect.position.y,rect.end.y):
-			for x in range(rect.position.x,rect.end.x):
-				var cell := Vector2i(x,y)
-				var permitted: bool=Housing.can_place(selected_kind,area,cell,selected_id)
-				var control := FarmUIStyle.button(("预览 " if cell==selected_cell else "")+"%d,%d" % [x,y],func(): selected_cell=cell;refresh(),72)
-				control.disabled=not permitted;grid.add_child(control)
-	if selected_cell.x>=0:
-		var footprint: Rect2i=Housing.footprint(selected_kind,selected_cell)
-		words("预览：左上格%d,%d，占%d×%d格。%s" % [selected_cell.x,selected_cell.y,footprint.size.x,footprint.size.y,"实体家具会阻挡行走" if Housing.data.furniture[selected_kind].solid else "地面装饰可以走过"])
-		var cell: Vector2i=selected_cell;var kind: String=selected_kind;var id: String=selected_id
-		button("确认移动到此格" if id!="" else "确认放置到此格",func(): ask("将%s放到%d,%d？资源已在制作时扣除，本次只移动家具。" % [Housing.data.furniture[kind].name,cell.x,cell.y],func():
-			var ok: bool=Housing.move(id,cell) if id!="" else Housing.place(kind,area,cell)
-			if ok: selected_id="";selected_cell=Vector2i(-1,-1)
-			result(ok)
-		))
-	for entry in Housing.state.get("recovered",[]):
-		if area!="home": continue
-		var recovered_id: String=entry.id
-		button("恢复收纳家具 · "+Housing.data.furniture[entry.kind].name,func(): result(Housing.recover_furniture(recovered_id)))
-	for entry in Housing.state.placed:
-		if entry.area!=area: continue
-		var id: String=entry.id
-		button("移动 / 回收 · "+Housing.data.furniture[entry.kind].name+"（%d,%d）" % [entry.cell[0],entry.cell[1]],func():
-			if Housing.can_manage(area,id): selected_id=id;selected_kind=entry.kind;selected_cell=Vector2i(-1,-1);refresh()
-			else: result(false)
-		)
+			recycle.disabled=Housing.state.flowers.has(id) or not Housing.can_manage("farm",id)
+	var any_owned: bool=false
+	for kind in Housing.data.furniture:
+		var item: Dictionary=Housing.data.furniture[kind]
+		if item.area!="farm" or int(Housing.state.owned.get(kind,0))<1: continue
+		if not any_owned: words("庭院家具库",21);any_owned=true
+		words("%s ×%d" % [item.name,Housing.state.owned[kind]],17)
+	var any_placed: bool=false
+	for item in Housing.state.placed:
+		if item.area!="farm": continue
+		if not any_placed: words("已布置的庭院家具",21);any_placed=true
+		words("%s · %d,%d%s" % [Housing.data.furniture[item.kind].name,item.cell[0],item.cell[1]," · 花苗成长中" if Housing.state.flowers.has(item.id) else ""],17)
 func _room_editor() -> Node:
 	return Housing.game.home_arrange
 func _edit_builtin(id: String) -> void:

@@ -4,7 +4,14 @@ var redraw_timer: float = 0
 func _ready() -> void:
 	add_to_group("interactables")
 	Fishing.changed.connect(queue_redraw)
+	FarmLayout.changed.connect(refresh_layout);refresh_layout()
+func refresh_layout() -> void:
+	if fish_point_id=="farm_lake": set_meta("farm_fixture","fishing_farm")
+	position=Fishing.point(fish_point_id)
+	visible=fish_point_id!="farm_lake" or FarmLayout.active("fishing_farm")
+	queue_redraw()
 func prompt() -> String:
+	if not Fishing.site_has_water(fish_point_id): return "钓鱼点 · 请先布置水池或移到水岸"
 	return Fishing.sites[fish_point_id].name+" · 抛竿" if GameState.tool()=="fishing_rod" else "钓鱼点 · 装备鱼竿后抛竿"
 func interact() -> void:
 	Events.interaction_requested.emit("fishing:"+fish_point_id)

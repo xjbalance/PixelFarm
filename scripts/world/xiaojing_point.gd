@@ -5,10 +5,14 @@ var title: String = ""
 func _ready() -> void:
 	add_to_group("interactables")
 	Xiaojing.changed.connect(refresh)
+	FarmLayout.changed.connect(refresh)
 	refresh()
 
 func refresh() -> void:
-	visible = Xiaojing.state.unlocked
+	var fixture: String=StarStory.memory_fixture(memory_id)
+	if fixture!="": set_meta("farm_fixture",fixture)
+	position=StarStory.memory_point(memory_id)
+	visible = Xiaojing.state.unlocked and StarStory.memory_active(memory_id)
 	queue_redraw()
 
 func prompt() -> String:

@@ -41,6 +41,7 @@ static func resolve(game: Node, point: Vector2) -> Dictionary:
 		var resource: Node2D
 		var resource_distance: float=INF
 		for object in field.objects.values():
+			if object.has_method("is_stored") and object.is_stored(): continue
 			if field.state[object.resource_id].hp <= 0: continue
 			# Native Scheme C crowns are wider/taller than the old tree. Hit the
 			# visible sprite, preserving a small foot target and transparent gaps.
@@ -53,13 +54,13 @@ static func resolve(game: Node, point: Vector2) -> Dictionary:
 		if resource: return {"kind":"resource","object":resource,"point":resource.global_position}
 	if GameState.location == "farm":
 		var cell := Vector2i((point/32).floor())
-		if game.farm.BOUNDS.has_point(cell): return {"kind":"plot","cell":cell,"point":Vector2(cell)*32+Vector2(16,16)}
+		if game.farm.can_target_cell(cell): return {"kind":"plot","cell":cell,"point":Vector2(cell)*32+Vector2(16,16)}
 	return {"kind":"ground","point":point}
 
 static func plot_tool(game: Node, cell: Vector2i) -> String:
 	var selected := GameState.tool()
 	if GameState.manual_tool or not Story.assisted_tools: return selected
-	var plot: Dictionary = game.farm.plots.get(game.farm.key(cell),{})
+	var plot: Dictionary = game.farm.plot_at(cell)
 	if plot.is_empty(): return "hoe"
 	if str(plot.crop) == "": return selected if selected.ends_with("_seed") else ""
 	if game.farm.is_mature(plot): return "hand"

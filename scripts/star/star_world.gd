@@ -4,6 +4,7 @@ extends Node2D
 var game: Node
 var guests: Array[Node2D]=[]
 var guest_phase: int = -1
+var guest_offset:=Vector2.INF
 func setup(owner_game: Node) -> void:
 	game=owner_game
 	StarStory.bind(game)
@@ -12,7 +13,7 @@ func setup(owner_game: Node) -> void:
 		var point := Node2D.new()
 		point.set_script(preload("res://scripts/star/star_point.gd"))
 		point.star_id=id
-		point.position=Vector2(entry.position[0],entry.position[1])
+		point.position=StarStory.point(str(id))
 		var map: Node=game.home if entry.area=="home" else game.world.get_node("Actors")
 		map.add_child(point)
 	for id in ["linya","zhou","ahe"]:
@@ -22,20 +23,22 @@ func setup(owner_game: Node) -> void:
 		game.world.get_node("Actors").add_child(sprite)
 		guests.append(sprite)
 	StarStory.changed.connect(refresh)
+	FarmLayout.changed.connect(refresh)
 	refresh()
 func refresh() -> void:
 	var phase: int=StarStory.state.wedding_phase
-	for guest in guests: guest.visible=phase in [1,2,3]
-	if phase!=guest_phase:
+	for guest in guests: guest.visible=phase in [1,2,3] and FarmLayout.active("greenhouse")
+	if phase!=guest_phase or guest_offset!=FarmLayout.offset("greenhouse"):
+		guest_offset=FarmLayout.offset("greenhouse")
 		guest_phase=phase
 		for i in range(guests.size()):
-			guests[i].position=Vector2(1168+i*64,870 if phase<3 else 900)
+			guests[i].position=FarmLayout.transform_point(Vector2(1168+i*64,870 if phase<3 else 900),"greenhouse")
 	queue_redraw()
 func _process(delta: float) -> void:
 	if GameState.modal: return
 	if StarStory.state.wedding_phase in [1,2,3]:
 		for i in range(guests.size()):
-			var goal := Vector2(1168+i*64,850 if StarStory.state.wedding_phase<3 else 880)
+			var goal := FarmLayout.transform_point(Vector2(1168+i*64,850 if StarStory.state.wedding_phase<3 else 880),"greenhouse")
 			guests[i].position=guests[i].position.move_toward(goal,24*delta)
 static func schedule(person: Node, location: String, game: Node) -> void:
 	var minute: float=GameClock.minutes
@@ -44,20 +47,22 @@ static func schedule(person: Node, location: String, game: Node) -> void:
 	if married and (minute<540 or (minute>=960 and minute<1080)): place="farm"
 	if minute>=1080 and minute<1200 and VillageProjects.has_project("arbor"): place="village"
 	if StarStory.state.wedding_phase in [1,2,3]: place="farm"
-	var desired: Vector2=Vector2(624,624) if location=="village" and minute>=1080 else {"farm":Vector2(1232,800),"village":Vector2(1120,624),"home":Vector2(720,452)}[location]
+	var farm_fixture: String="greenhouse"
+	var desired: Vector2=Vector2(624,624) if location=="village" and minute>=1080 else {"farm":FarmLayout.transform_point(Vector2(1232,800),"greenhouse"),"village":Vector2(1120,624),"home":Housing.anchor("spouse")}[location]
 	if Aquaculture.state.xiaojing.stage==1 and minute>=540 and minute<1080 and StarStory.state.wedding_phase not in [1,2,3]:
 		place="farm"
-		if location=="farm": desired={"pen_1":Vector2(944,560),"pen_2":Vector2(1072,752),"pen_3":Vector2(1264,624),"pen_4":Vector2(1136,432)}[Aquaculture.state.xiaojing.pen]
+		if location=="farm":
+			farm_fixture=str(Aquaculture.state.xiaojing.pen);desired=Aquaculture.companion_position()
 	if LakeEcology.state.restored and Aquaculture.state.xiaojing.stage>=2 and not LakeEcology.state.xiaojing_seen and minute>=540 and minute<1080 and StarStory.state.wedding_phase not in [1,2,3]:
 		place="farm"
-		if location=="farm": desired=LakeEcology.SHORE+Vector2(32,0)
+		if location=="farm": farm_fixture="ecology";desired=LakeEcology.shore_point()+Vector2(32,0)
 	if place=="village" and (GameWeather.is_rainy() or GameWeather.is_snowy()):
 		desired=Vector2(352,464) if location=="village" else desired
 	if Social.area("xiaojing")!="" and StarStory.state.wedding_phase not in [1,2,3]:
 		place=Social.area("xiaojing")
 		var personal_station: Vector2=Social.station("xiaojing",location)
-		if personal_station!=Vector2.INF: desired=personal_station
-	var active: bool=Xiaojing.state.unlocked and place==location
+		if personal_station!=Vector2.INF: desired=personal_station;farm_fixture=Social.station_fixture("xiaojing")
+	var active: bool=Xiaojing.state.unlocked and place==location and (location!="farm" or FarmLayout.active(farm_fixture))
 	if active and not person.visible:
 		if GameState.location==location and game.player.global_position.distance_to(desired)<30:
 			if Aquaculture.state.xiaojing.stage==1 and place=="farm":

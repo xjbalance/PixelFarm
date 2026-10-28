@@ -346,7 +346,7 @@ func saves() -> void:
 	StarStory.restore(StarStory.defaults())
 	check(FarmSaveStore.restore(game,saved) and StarStory.state.post_steps==["sample_pond"] and StarStory.state.choices.future=="keep_journeys","读档恢复婚后实际目标和关键选择")
 	var old: Dictionary=saved.duplicate(true)
-	old.version=7;old.erase("appearance");old.erase("territory")
+	old.version=7;old.erase("farm_layout");old.erase("appearance");old.erase("territory")
 	old.erase("star_story")
 	var migrated := FarmSaveSchema.normalize(old)
 	check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION and migrated.xiaojing==old.xiaojing and migrated.items==old.items and migrated.control_mode==old.control_mode,"v7迁移保留婚姻任务记忆试炼钻石和操作方式")

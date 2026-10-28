@@ -1294,7 +1294,7 @@
       "associated_points": []
     },
     "social:cycle": {
-      "name": "个人约定观察点 · cycle",
+      "name": "生态循环观察牌",
       "point": [
         912,
         688
@@ -1315,7 +1315,7 @@
       "associated_points": []
     },
     "social:lake_date": {
-      "name": "个人约定观察点 · lake_date",
+      "name": "湖畔约定观察点",
       "point": [
         944,
         464
@@ -1336,7 +1336,7 @@
       "associated_points": []
     },
     "social:summer_sky": {
-      "name": "个人约定观察点 · summer_sky",
+      "name": "夏夜观星观察牌",
       "point": [
         944,
         464
@@ -1357,7 +1357,7 @@
       "associated_points": []
     },
     "social:winter_window": {
-      "name": "个人约定观察点 · winter_window",
+      "name": "冬日窗边观察牌",
       "point": [
         1312,
         812
@@ -1378,7 +1378,7 @@
       "associated_points": []
     },
     "social:ecology_after": {
-      "name": "个人约定观察点 · ecology_after",
+      "name": "生态修复观察牌",
       "point": [
         912,
         688
@@ -1399,7 +1399,7 @@
       "associated_points": []
     },
     "social:star_lake": {
-      "name": "个人约定观察点 · star_lake",
+      "name": "星湖日常观察点",
       "point": [
         944,
         464

@@ -68,7 +68,7 @@ func phase_one() -> void:
 	Input.action_release("move_right")
 	check(game.player.position.x < 985, "池塘 TileSet 碰撞阻挡玩家")
 	var cell := Vector2i(18,17)
-	check(not game.farm.use_tool(Vector2i(2,2),"hoe"), "不可在农田外翻土")
+	check(not game.farm.use_tool(Vector2i(-1,2),"hoe"), "不可在农场边界外翻土")
 	check(not game.farm.use_tool(cell,"carrot_seed"), "未翻土不能播种")
 	check(game.farm.use_tool(cell,"hoe"), "翻土")
 	var seeds: int = Inventory.count("carrot_seed")

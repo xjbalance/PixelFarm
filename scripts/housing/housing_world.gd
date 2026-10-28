@@ -8,7 +8,7 @@ func attach(owner_game: Node) -> void:
 	game=owner_game;Housing.game=game
 	for id in ["home","yard"]:
 		var point := Node2D.new();point.set_script(preload("res://scripts/housing/housing_point.gd"));point.housing_id=id
-		point.position=Housing.HOME if id=="home" else Housing.YARD
+		point.position=Housing.HOME if id=="home" else FarmLayout.point("yard")
 		var parent: Node=game.home if id=="home" else game.world.get_node("Actors")
 		parent.add_child(point)
 	surface=Node2D.new();surface.set_script(preload("res://scripts/housing/housing_surface.gd"));surface.game=game;game.home.add_child(surface)

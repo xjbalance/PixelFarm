@@ -61,7 +61,12 @@ func permission(area: String, cell: Vector2i, operation: String) -> Dictionary:
 	var rights:=TerritoryCatalog.cell_allowed(area,cell,operation)
 	if area=="farm" and rights.allowed:
 		var context:=_farm_context()
-		var reason:=TerritoryCatalog.farm_obstruction(cell,context.plots,context.resources)
+		var reason: String=""
+		if is_instance_valid(game) and is_instance_valid(game.get("farm")) and game.farm.has_method("plot_at"):
+			if not game.farm.plot_at(cell).is_empty(): reason="先移动或收纳这里的生产田地，再修改地表。"
+			for id in TerritoryCatalog.resource_ids_at(cell):
+				if int(context.resources.get(id,{}).get("hp",0))>0: reason="先移动、收纳或正常采集这里的树石。"
+		else: reason=TerritoryCatalog.farm_obstruction(cell,context.plots,context.resources)
 		if reason!="": return {"allowed":false,"reason":reason,"ownership":"private"}
 	return rights
 
@@ -106,9 +111,13 @@ func farm_plot_error(cell: Vector2i) -> String:
 	return ""
 
 func on_farm_plot_created(cell: Vector2i) -> void:
-	if not is_instance_valid(game) or not game.farm.committing or not game.farm.plots.has(TerritoryCatalog.key(cell)): return
+	if not is_instance_valid(game) or not game.farm.committing or game.farm.plot_at(cell).is_empty(): return
 	var cells: Dictionary=state.terrain.get("farm",{});var key: String=TerritoryCatalog.key(cell)
 	if str(cells.get(key,"")) not in ["soil","grass"]: return
+	if FarmTerrain.base_index(cell) in [5,6]:
+		cells[key]="grass" # Permanent fill under a real crop; never restore water below it.
+		state.revision=mini(MAX_REVISION,int(state.revision)+1)
+		changed.emit();Events.navigation_changed.emit();return
 	cells.erase(key)
 	if cells.is_empty(): state.terrain.erase("farm")
 	state.revision=mini(MAX_REVISION,int(state.revision)+1)
@@ -226,7 +235,7 @@ func validate(raw: Variant, raw_save: Dictionary={}) -> bool:
 			var cell:=TerritoryCatalog.cell_from_key(cell_key)
 			var kind: Variant=raw.terrain[area][cell_key]
 			if cell==TerritoryCatalog.INVALID_CELL or not kind is String or not TerritoryCatalog.TERRAIN_KINDS.has(kind) or kind=="natural" or not TerritoryCatalog.cell_allowed(area,cell,kind).allowed: return false
-			if area=="farm" and not raw_save.is_empty() and _saved_farm_obstruction(raw_save,cell)!="": return false
+			if area=="farm" and not raw_save.is_empty() and _saved_farm_obstruction(raw_save,cell,kind)!="": return false
 	if not raw.objects is Array or raw.objects.size()>MAX_OBJECTS: return false
 	var ids: Dictionary={};var occupied: Dictionary={}
 	for entry in raw.objects:
@@ -250,6 +259,19 @@ func validate(raw: Variant, raw_save: Dictionary={}) -> bool:
 				# 地表可在放置前铺设，保存时允许地表与其上的设施共存。
 	return true
 
-func _saved_farm_obstruction(raw_save: Dictionary, cell: Vector2i) -> String:
+func _saved_farm_obstruction(raw_save: Dictionary, cell: Vector2i, terrain_kind: String="") -> String:
 	var plots: Variant=raw_save.get("plots",{});var resources: Variant=raw_save.get("resources",{})
-	return TerritoryCatalog.farm_obstruction(cell,plots if plots is Dictionary else {},resources if resources is Dictionary else {})
+	var layout: Dictionary=raw_save.get("farm_layout",{}) if raw_save.get("farm_layout",{}) is Dictionary else {}
+	if not layout.get("plots",{}) is Dictionary or not layout.get("resources",{}) is Dictionary: return "布局数据不合法。"
+	if plots is Dictionary:
+		for id in plots:
+			var entry: Dictionary=layout.get("plots",{}).get(id,{"cell":str(id).split(","),"stored":false})
+			if entry.get("stored",false): continue
+			var at: Vector2i=FarmLayoutCatalog.plot_cell(str(id)) if not layout.get("plots",{}).has(id) else TerritoryCatalog.to_cell(entry.cell)
+			if at==cell and terrain_kind not in ["grass","soil"]: return "不能覆盖现有生产田地。"
+	for id in FarmResourceCatalog.placements("farm"):
+		var original: Dictionary=FarmResourceCatalog.placements("farm")[id]
+		var entry: Dictionary=layout.get("resources",{}).get(id,{"cell":[original.cell.x,original.cell.y],"stored":false})
+		if entry.get("stored",false): continue
+		if FarmResourceCatalog.current_footprint(str(id),TerritoryCatalog.to_cell(entry.cell)).has_point(cell) and (not resources is Dictionary or int(resources.get(id,{}).get("hp",1))>0): return "不能覆盖存活的采集资源。"
+	return ""

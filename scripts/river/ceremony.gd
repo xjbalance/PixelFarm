@@ -20,7 +20,7 @@ static func vows() -> bool:
 	return true
 static func leave() -> bool:
 	if not near("venue_exit"): return false
-	StarStory.game.change_location("farm",Vector2(1360,816))
+	StarStory.game.change_location("farm",FarmLayout.transform_point(Vector2(1360,816),"greenhouse"))
 	return true
 static func ready() -> bool:
 	return River.state.legacy_scene or (GameState.location=="greenhouse" and River.state.venue_used)

@@ -84,6 +84,10 @@ steps = [
     ('scheme-c-props', ['--fixed-fps','60','res://tests/scheme_c_props_runner.tscn']),
     ('farm-edit', ['--fixed-fps','60','res://tests/farm_edit_runner.tscn']),
     ('farm-edit-kinds', ['--fixed-fps','60','res://tests/farm_edit_kinds_runner.tscn']),
+    ('farm-layout-state', ['--fixed-fps','60','res://tests/farm_layout_state_runner.tscn']),
+    ('farm-diy-production', ['--fixed-fps','60','res://tests/farm_diy_production_runner.tscn']),
+    ('farm-layout-business', ['--fixed-fps','60','res://tests/farm_layout_business_runner.tscn']),
+    ('farm-diy-editor', ['--fixed-fps','60','res://tests/farm_diy_editor_runner.tscn']),
     ('scheme-c-star-female', ['--fixed-fps','60','res://tests/scheme_c_star_regression.tscn']),
     ('scheme-c-legend-female', ['--fixed-fps','60','res://tests/scheme_c_legend_regression.tscn']),
     ('scheme-c-river-female', ['--fixed-fps','60','res://tests/scheme_c_river_regression.tscn']),
@@ -197,6 +201,12 @@ steps = [
     ('territory-backup', ['--fixed-fps','60','res://tests/territory_persistence.tscn','--','--read-territory']),
     ('territory-v25-write', ['--fixed-fps','60','res://tests/territory_persistence.tscn','--','--write-territory-v25']),
     ('territory-v25-read', ['--fixed-fps','60','res://tests/territory_persistence.tscn','--','--read-territory-v25']),
+    ('farm-layout-write', ['--fixed-fps','60','res://tests/farm_layout_persistence.tscn','--','--write-farm-layout']),
+    ('farm-layout-read', ['--fixed-fps','60','res://tests/farm_layout_persistence.tscn']),
+    ('farm-layout-corrupt', ['--fixed-fps','60','res://tests/farm_layout_persistence.tscn','--','--corrupt-farm-layout']),
+    ('farm-layout-backup', ['--fixed-fps','60','res://tests/farm_layout_persistence.tscn']),
+    ('farm-layout-v26-write', ['--fixed-fps','60','res://tests/farm_layout_persistence.tscn','--','--write-farm-layout-v26']),
+    ('farm-layout-v26-read', ['--fixed-fps','60','res://tests/farm_layout_persistence.tscn','--','--read-farm-layout-v26']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:

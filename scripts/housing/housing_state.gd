@@ -143,10 +143,15 @@ func settle_day() -> void:
 		state.placed=layout.placed;state.recovered=layout.recovered;state.builtins=layout.builtins
 	_commit(completed)
 	if completed: Events.notice.emit("周砚完成了住宅改建：%s。家具和柜中物品已保留。" % level_name())
+func farm_editing() -> bool:
+	if not is_instance_valid(game) or GameState.location!="farm" or not GameState.modal or GameState.restoring or GameClock.settling or GameClock.minutes>=1440: return false
+	if game.backgrounded or game.closing or game.player.suspended or game.player.action_time>0 or game.farm.committing: return false
+	var editor: Variant=game.get("territory_editor")
+	return is_instance_valid(editor) and editor.active
 func near(area: String = GameState.location) -> bool:
 	if not is_instance_valid(game): return false
 	if area=="home": return GameState.location=="home" and game.player.global_position.distance_to(anchor("storage"))<=54
-	if area in ["farm","yard"]: return GameState.location=="farm" and game.player.global_position.distance_to(YARD)<=54
+	if area in ["farm","yard"]: return farm_editing() or (GameState.location=="farm" and FarmLayout.active("yard") and game.player.global_position.distance_to(FarmLayout.point("yard"))<=54)
 	return false
 func placement(id: String) -> Dictionary:
 	for entry in state.placed:
@@ -171,7 +176,7 @@ func can_manage(area: String, id: String = "") -> bool: return near(area) or (id
 func unlocked(kind: String) -> bool:
 	return data.furniture.has(kind) and state.level>=data.furniture[kind].level and (not data.furniture[kind].get("married",false) or Xiaojing.state.married)
 func area_rect(area: String, level: int = int(state.level)) -> Rect2i:
-	return HomeLayout.main_cells() if area=="home" else YARD_RECT if area=="farm" else Rect2i()
+	return HomeLayout.main_cells() if area=="home" else Rect2i(1,1,46,30) if area=="farm" else Rect2i()
 func allowed_rect(rect: Rect2i, area: String, level: int = int(state.level)) -> bool:
 	return area_rect(area,level).encloses(rect) or (area=="home" and level>=2 and HomeLayout.extension_cells(level).encloses(rect))
 func layout_rects(area: String) -> Array[Rect2i]:
@@ -284,6 +289,9 @@ func can_place(kind: String, area: String, cell: Vector2i, except_id: String = "
 	var bounds := area_rect(area)
 	var rect := footprint(kind,cell)
 	if not allowed_rect(rect,area): return false
+	if area=="farm" and check_physics and is_instance_valid(game):
+		for key in game.farm.plots:
+			if not FarmLayout.stored("plot",str(key)) and rect.has_point(FarmLayout.cell("plot",str(key))): return false
 	if area=="home" and not _home_cell_safe(kind,cell,int(state.level),[],_home_obstacles(int(state.level),state.builtins)): return false
 	for entry in state.placed:
 		if entry.area!=area or entry.id==except_id: continue
@@ -298,6 +306,9 @@ func can_place(kind: String, area: String, cell: Vector2i, except_id: String = "
 			if check_physics and is_instance_valid(game) and GameState.location=="home" and Rect2(Vector2(rect.position)*32,Vector2(rect.size)*32).grow(10).has_point(game.player.global_position): return false
 		return true
 	if not check_physics or not is_instance_valid(game): return true
+	if area=="farm" and is_instance_valid(game.get("farm_layout_world")) and game.farm_layout_world.has_method("check_housing"):
+		var verdict: Dictionary=game.farm_layout_world.check_housing(kind,cell,except_id)
+		if not verdict.get("valid",false): return false
 	if GameState.location!=area: return false
 	var desired: Rect2=Rect2(Vector2(rect.position)*32,Vector2(rect.size)*32)
 	# 放置不允许把玩家包住；无碰撞地毯、道路可铺在脚下。

@@ -47,10 +47,10 @@ func write_fixture() -> void:
 	check(Housing.state.level==4 and Housing.state.storage.wood==12 and Xiaojing.state.married and Xiaojing.state.diamonds==1314,"住宅、原柜存、婚姻和钻石是原有系统的真实合法进度")
 	if legacy:
 		close_panels();game.change_location("home",Housing.anchor("storage")+Vector2(32,0));await frames(5)
-		var old: Dictionary=snapshot();old.version=25;old.erase("territory")
+		var old: Dictionary=snapshot();old.version=25;old.erase("territory");old.erase("farm_layout")
 		check(FarmSaveStore.valid(old) and not old.has("territory") and old.location=="home","迁移夹具保留真正v25结构和旧场景，没有新领地字段")
 		write_json(proof_path(),old);write_json(FarmSaveStore.PATH,old);write_json(FarmSaveStore.PATH+".bak",old)
-		check(read_json(FarmSaveStore.PATH)==old and FarmSaveStore.read().version==26,"读取旧档仅在内存迁移，磁盘原v25字节结构不改写")
+		check(read_json(FarmSaveStore.PATH)==old and FarmSaveStore.read().version==FarmSaveStore.VERSION,"读取旧档仅在内存迁移，磁盘原v25字节结构不改写")
 		return
 	close_panels();game.change_location("farm",Vector2(432,528));await frames(6)
 	var editor: TerritoryEditor=game.territory_editor
@@ -75,7 +75,7 @@ func write_fixture() -> void:
 	check(Territory.object(chest_id).cell==[13,10] and Housing.state.storage.wood==12,"移动后箱子ID和原共享柜存保持不变")
 	var committed: Dictionary=Territory.snapshot();editor.choose_tool("flowers");editor.preview_at(Vector2i(16,12));await frames(4)
 	check(editor.preview_plan.get("valid",false) and Territory.snapshot()==committed,"未确认花草预览只在编辑器内，不污染持久化数据")
-	var now: Dictionary=snapshot();check(FarmSaveStore.valid(now) and now.version==26,"实际道路、树木和设施构成合法v26完整存档")
+	var now: Dictionary=snapshot();check(FarmSaveStore.valid(now) and now.version==FarmSaveStore.VERSION,"实际道路、树木和设施构成合法当前完整存档")
 	write_json(proof_path(),now)
 	check(FarmSaveStore.write(game) and FarmSaveStore.write(game),"预览期间通过原原子保存机制写入主档及备份")
 	check(read_json(FarmSaveStore.PATH)==now and now.territory.objects.size()==2 and not now.territory.has("preview"),"磁盘只保存两件已确认对象，不保存悬空预览或输入状态")
@@ -93,7 +93,7 @@ func read_fixture() -> void:
 	for key in proof:
 		if legacy and key=="version": continue
 		if proof[key]!=now.get(key): same=false;print("TERRITORY RESTART DIFFERENCE ",key)
-	check(same and now.version==26,"独立重启逐字段恢复原钱物、角色、房屋、关系、农田与地图状态")
+	check(same and now.version==FarmSaveStore.VERSION,"独立重启逐字段恢复原钱物、角色、房屋、关系、农田与地图状态")
 	check(Appearance.snapshot()==CharacterAppearance.defaults("female") and game.player.get_node("Sprite2D").texture.resource_path==Appearance.player_asset(),"独立重启继续使用原女主与对应男小京像素形象")
 	check(Housing.state.level==4 and Housing.state.storage.wood==12 and Housing.state.placed.size()==1,"四级房屋、旧家具及柜存未因领地迁移复制或丢失")
 	check(Xiaojing.state.married and Xiaojing.state.diamonds==1314 and GameState.stamina==37 and GameState.max_stamina()==130,"原婚姻、婚礼钻石、当前体力与床铺上限完整保留")
@@ -106,7 +106,7 @@ func read_fixture() -> void:
 		var original_bytes: PackedByteArray=FileAccess.get_file_as_bytes(FarmSaveStore.PATH)
 		check(read_json(FarmSaveStore.PATH).version==25,"仅载入旧档尚未主动写回，保留旧磁盘格式")
 		check(FarmSaveStore.write(game) and FileAccess.get_file_as_bytes(FarmSaveStore.PATH+".bak")==original_bytes,"第一次v26保存保留完整原v25字节作为备份")
-		check(read_json(FarmSaveStore.PATH).version==26 and FarmSaveStore.read().territory==now.territory,"安全写回当前格式，不重复发放房屋或建设效果")
+		check(read_json(FarmSaveStore.PATH).version==FarmSaveStore.VERSION and FarmSaveStore.read().territory==now.territory,"安全写回当前格式，不重复发放房屋或建设效果")
 	else:
 		check(GameState.location=="east_holding" and Territory.state.terrain.farm.size()==2 and Territory.state.objects.size()==2,"重启后回到真实已授权地块，并恢复农场两格道路和两件设施")
 		var chest: Dictionary=Territory.state.objects.filter(func(entry: Dictionary): return entry.kind=="chest")[0]

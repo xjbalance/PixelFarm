@@ -36,7 +36,7 @@ func write_fixture() -> void:
 	var now: Dictionary=canonical(FarmSaveStore.snapshot(game))
 	check(now.version==FarmSaveStore.VERSION and FarmSaveStore.valid(now) and now.appearance==CharacterAppearance.defaults("female"),"确认女主和男小京形成合法v25完整档")
 	if legacy:
-		var old: Dictionary=now.duplicate(true);old.version=24;old.erase("appearance");old.erase("territory")
+		var old: Dictionary=now.duplicate(true);old.version=24;old.erase("appearance");old.erase("territory");old.erase("farm_layout")
 		check(FarmSaveStore.valid(old) and old.version==24 and not old.has("appearance"),"旧写进程构造严格真实v24形状，移除现代外观字段")
 		write_json(proof_path(),old);write_json(FarmSaveStore.PATH,old);write_json(FarmSaveStore.PATH+".bak",old)
 		var existing: PackedStringArray=DirAccess.get_files_at("user://")

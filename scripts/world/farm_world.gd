@@ -22,8 +22,8 @@ func refresh_linya() -> void:
 	var person := get_node_or_null("Actors/Linya")
 	if person:
 		if preload("res://scripts/seasons/life_schedule.gd").gathering_summer(): return
-		person.set_station(Vector2(400,432) if GameWeather.is_rainy() or GameWeather.is_snowy() else Vector2(429,441))
-		person.visible = GameClock.minutes < 1080 and not River.gathering()
+		person.set_station(FarmLayout.transform_point(Vector2(400,432) if GameWeather.is_rainy() or GameWeather.is_snowy() else Vector2(429,441),"shop"))
+		person.visible = FarmLayout.active("shop") and GameClock.minutes < 1080 and not River.gathering()
 		person.process_mode = Node.PROCESS_MODE_INHERIT if person.visible else Node.PROCESS_MODE_DISABLED
 
 func build_tiles() -> void:

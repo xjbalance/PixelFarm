@@ -23,7 +23,8 @@ func interact() -> void:
 	if returning:
 		var entry: Dictionary=TerritoryCatalog.region(area_id)
 		var at: Array=entry.return_position
-		WorldTravel.change(game,"farm",Vector2(at[0],at[1]));return
+		WorldTravel.change(game,"farm",FarmLayout.transform_point(Vector2(at[0],at[1]),"gate:"+area_id));return
+	if not FarmLayout.active("gate:"+destination): return
 	if not Territory.unlocked(destination):
 		Events.notice.emit(str(TerritoryCatalog.region(destination).get("hint","这片领地尚未开放。")));return
 	WorldTravel.change(game,destination)
