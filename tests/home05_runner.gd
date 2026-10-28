@@ -136,7 +136,7 @@ func routes() -> bool:
 func migration() -> void:
 	await fresh()
 	Inventory.coins=54321;Inventory.items={"wood":17,"carrot_seed":9,"fish_feed":3};Xiaojing.state.diamonds=1314
-	var old:=FarmSaveStore.snapshot(game);old.version=22;old.erase("appearance");old.housing=legacy_housing(old.housing)
+	var old:=FarmSaveStore.snapshot(game);old.version=22;old.erase("appearance");old.erase("territory");old.housing=legacy_housing(old.housing)
 	var original: Dictionary=AbyssSaveSchema.canonical(JSON.parse_string(JSON.stringify(old)))
 	var migrated: Dictionary=FarmSaveSchema.normalize(JSON.parse_string(JSON.stringify(old)))
 	check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION,"真实v22格式可以迁入当前住宅版本")
@@ -165,7 +165,7 @@ func furnished_legacy_migration() -> void:
 	if not built: return
 	check(Housing.buy("chair") and Housing.place("chair","home",Vector2i(5,9)) and Housing.deposit("wood",12) and Housing.buy("floor") and Housing.apply_style("floor"),"旧档夹具实际放椅、柜存和应用地板")
 	await frames(5)
-	var old:=FarmSaveStore.snapshot(game);old.version=22;old.erase("appearance");old.housing=legacy_housing(old.housing)
+	var old:=FarmSaveStore.snapshot(game);old.version=22;old.erase("appearance");old.erase("territory");old.housing=legacy_housing(old.housing)
 	var canonical: Dictionary=AbyssSaveSchema.canonical(JSON.parse_string(JSON.stringify(old)))
 	var migrated: Dictionary=FarmSaveSchema.normalize(JSON.parse_string(JSON.stringify(old)))
 	check(not migrated.is_empty(),"已有婚姻、家具ID和装饰的真实v22存档可迁入当前版本")

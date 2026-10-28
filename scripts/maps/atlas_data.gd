@@ -2,11 +2,12 @@ class_name FarmAtlasData
 extends RefCounted
 ## 图纸只读取已经存在的世界状态；各场景拥有独立坐标，地图不传送、不写进度。
 const PAPER_SIZE := Vector2(1024,640)
-const TITLES := {"farm":"玩家农场","home":"我的家","village":"河湾村","lake":"东湖与鱼栏","mist_forest":"迷雾森林","lake_ruins":"湖底遗迹","old_temple":"古老神庙","mine_a":"旧矿道","mine_b":"地下水脉","mine_c":"晶石洞窟","abyss":"百层深渊","greenhouse":"星光温室"}
-const WORLD_POINTS := {"farm":Vector2(428,420),"village":Vector2(514,198),"lake":Vector2(740,442),"mist_forest":Vector2(203,331),"lake_ruins":Vector2(893,505),"old_temple":Vector2(895,282),"mine_a":Vector2(804,131),"greenhouse":Vector2(736,561)}
+const TITLES := {"farm":"玩家农场","home":"我的家","village":"河湾村","lake":"东湖与鱼栏","mist_forest":"迷雾森林","lake_ruins":"湖底遗迹","old_temple":"古老神庙","mine_a":"旧矿道","mine_b":"地下水脉","mine_c":"晶石洞窟","abyss":"百层深渊","greenhouse":"星光温室","east_holding":"河东开发地","lake_holding":"湖畔归属地","forest_holding":"林地开发区","manor_holding":"终局庄园用地"}
+const WORLD_POINTS := {"farm":Vector2(428,420),"village":Vector2(514,198),"lake":Vector2(740,442),"mist_forest":Vector2(203,331),"lake_ruins":Vector2(893,505),"old_temple":Vector2(895,282),"mine_a":Vector2(804,131),"greenhouse":Vector2(736,561),"east_holding":Vector2(570,388),"lake_holding":Vector2(840,402),"forest_holding":Vector2(175,500),"manor_holding":Vector2(428,562)}
 const WORLD_BRIDGE := Vector2(684,288)
 static func bridge_open() -> bool: return Story.stage>=5
 static func known(id: String) -> bool:
+	if id in TerritoryCatalog.ANNEX_AREAS: return Territory.unlocked(id)
 	if id in ["farm","home","village","lake"]: return true
 	if id in Exploration.AREAS: return Exploration.unlocked(id)
 	if id in MineState.AREAS: return id in MineState.state.unlocked
@@ -14,7 +15,9 @@ static func known(id: String) -> bool:
 	if id=="greenhouse": return Xiaojing.state.unlocked or LegendState.state.greenhouse>0 or Xiaojing.state.married
 	return false
 static func current_region() -> String: return GameState.location
-static func title(id: String) -> String: return str(TITLES.get(id,"区域图纸")) if known(id) else "尚未探索"
+static func title(id: String) -> String:
+	if id in TerritoryCatalog.ANNEX_AREAS: return str(TITLES[id])+("" if known(id) else " · 未开放")
+	return str(TITLES.get(id,"区域图纸")) if known(id) else "尚未探索"
 static func bounds(id: String) -> Rect2:
 	if id=="farm": return Rect2(0,0,1536,1024)
 	if id=="lake": return Rect2(864,384,544,512)
@@ -27,6 +30,7 @@ static func map_to_world(id: String, point: Vector2) -> Vector2:
 	var rect:=bounds(id)
 	return rect.position+(point-Vector2(64,48))/Vector2(896,544)*rect.size
 static func picture(id: String) -> String:
+	if id in TerritoryCatalog.ANNEX_AREAS: return "territory"
 	if id in MineState.AREAS or id=="abyss": return "cave"
 	return id if id in ["farm","village","lake","home","greenhouse","mist_forest","lake_ruins","old_temple"] else "world"
 static func _place(id: String, name_text: String, point: Vector2, region: String, icon: String, text: String, discovered: bool=true) -> Dictionary:
@@ -38,9 +42,13 @@ static func world_places() -> Array[Dictionary]:
 		var caption: String=title(id)
 		var icon: String={"farm":"house_"+str(Housing.state.level),"village":"village","lake":"lake","mist_forest":"forest","lake_ruins":"ruins","old_temple":"temple","mine_a":"mine","greenhouse":"greenhouse"}.get(id,"pin")
 		var text:=description(id) if is_known else "雾色遮住了这一角。沿已经开放的道路探索，图纸会随现有发现记录更新。"
+		if id in TerritoryCatalog.ANNEX_AREAS:
+			text=description(id);icon="field" if is_known else "sign"
 		result.append(_place(id,caption,WORLD_POINTS[id],id,icon if is_known else "unknown",text,is_known))
 	return result
 static func description(id: String) -> String:
+	if id in TerritoryCatalog.ANNEX_AREAS:
+		return ("私人领地 · 已开放。可从菜单进入建造模式。" if Territory.unlocked(id) else "未开放 · ")+str(TerritoryCatalog.region(id).hint)+" 图纸仅供查看，请步行到农场东北的领地路牌。"
 	match id:
 		"farm": return "%s · %d级住宅。农田、采集点与家内进度沿原存档保留。" % [Housing.level_name(),Housing.state.level]
 		"home": return "%s。床、沙发、厨房和收纳位置与玩家已确认的家具布局一致。" % Housing.level_name()
@@ -56,7 +64,16 @@ static func description(id: String) -> String:
 static func region_places(id: String) -> Array[Dictionary]:
 	var out: Array[Dictionary]=[]
 	if not known(id): return out
-	if id=="farm":
+	if id in TerritoryCatalog.ANNEX_AREAS:
+		out.append(_at("holding_exit","返回农场",Vector2(640,816),id,"sign","沿入场路牌返回原农场。","farm"))
+		out.append(_at("holding_rights",str(TITLES[id])+" · 私人领地",Vector2(320,256),id,"field",description(id)))
+		if id=="east_holding": out.append(_at("holding_transition","有限编辑过渡带",Vector2(288,112),id,"sign","允许地表、草簇和花丛；不允许固体物件阻断过渡通路。"))
+		for entry in Territory.state.objects:
+			if entry.area!=id: continue
+			if entry.kind not in ["chest","lamp","bench"]: continue
+			var footprint:=TerritoryCatalog.footprint(entry.kind,TerritoryCatalog.to_cell(entry.cell))
+			out.append(_at(entry.id,str(TerritoryCatalog.OBJECT_KINDS[entry.kind].name),Vector2(footprint.position)*32+Vector2(footprint.size)*16,id,"lantern" if entry.kind=="lamp" else "house_1" if entry.kind=="chest" else "forest" if entry.kind=="tree" else "field","玩家确认的私人布置；移动后图纸同步，不在图纸上执行编辑。"))
+	elif id=="farm":
 		out.append(_at("home","住宅 · "+Housing.level_name(),Vector2(656,410),id,"house_"+str(Housing.state.level),"房门在这里，室内厨房与沙发小睡可照常使用。","home"))
 		out.append(_at("village_entry","河湾村入口",Vector2(480,216),id,"sign","沿农场北侧道路步行进入河湾村。","village"))
 		out.append(_at("shop","林芽的种子摊",Vector2(356,416),id,"market","购买种子、出售农产品与材料；交易仍需到摊位办理。"))
@@ -70,6 +87,9 @@ static func region_places(id: String) -> Array[Dictionary]:
 			out.append(_at(str(key),name_text,Livestock.SITES[key],id,"barn","%s · 已建%d级。动物状态和产物继续遵守原有规则。" % [name_text,Livestock.state.buildings[key].level]))
 		if known("greenhouse"): out.append(_at("greenhouse","星光温室",Vector2(1328,780),id,"greenhouse",description("greenhouse"),"greenhouse"))
 		if known("lake_ruins"): out.append(_at("lake_entry","湖东旧阶",Vector2(1296,688),id,"ruins",description("lake_ruins"),"lake_ruins"))
+		for area in TerritoryCatalog.ANNEX_AREAS:
+			var at: Array=TerritoryCatalog.GATES[area]
+			out.append(_at("gate_"+area,title(area),Vector2(at[0],at[1]),id,"sign",description(area),area if known(area) else ""))
 	elif id=="village":
 		for item in [["tea","禾间茶屋",Vector2(290,357),"market","茶屋与原有阿禾交流地点。"],["workshop","周砚木作",Vector2(520,354),"workshop","周砚提供原有建造与住宅升级服务。"],["lantern","风灯架",Vector2(628,524),"lantern","广场中央、长椅右上方；第一章点灯需18:00后。"],["well","水井",Vector2(370,565),"well","%s。" % ("清泉水井已经建成" if VillageProjects.has_project("well") else "井边的共建计划仍待完成")],["bridge","河湾旧桥",Vector2(868,480),"bridge","%s。" % ("桥已修复，可以步行通过" if Story.stage>=5 else "旧桥尚未修复，不能跨河通行")],["farm_entry","返回农场",Vector2(640,826),"sign","沿南侧主路返回农场。"],["community","共建板",Vector2(680,650),"sign","查看原有水井、共仓和茶座建设。"]]:
 			out.append(_at(item[0],item[1],item[2],id,item[3],item[4]))

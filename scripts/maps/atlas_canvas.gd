@@ -101,10 +101,12 @@ func _clamp_pan() -> void:
 			pan[axis]=origin-size[axis]*.5+extent[axis]*.5
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO,size),Color("d2bd96"))
-	if not _picture: return
-	draw_texture_rect(_picture,Rect2(map_origin().round(),FarmAtlasData.PAPER_SIZE*map_scale()),false)
+	if layer_id=="region" and region_id in TerritoryCatalog.ANNEX_AREAS: TerritoryAtlasDrawing.draw_sheet(self)
+	elif _picture: draw_texture_rect(_picture,Rect2(map_origin().round(),FarmAtlasData.PAPER_SIZE*map_scale()),false)
+	else: return
 	if layer_id=="region": _draw_changes()
 	else: _draw_world_changes()
+	TerritoryAtlasDrawing.draw_overlay(self)
 	for item in resources:
 		var at:=map_to_screen(item.point)
 		var tone:=Color("62806a") if item.kind=="tree" else Color("8c8770")

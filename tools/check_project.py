@@ -75,6 +75,9 @@ steps = [
     ('appearance-switch', ['--fixed-fps','60','res://tests/appearance_switch_runner.tscn']),
     ('marriage-requirements', ['--fixed-fps','60','res://tests/marriage_requirements_runner.tscn']),
     ('territory-core', ['--fixed-fps','60','res://tests/territory_core_runner.tscn']),
+    ('territory-editor', ['--fixed-fps','60','res://tests/territory_editor_runner.tscn']),
+    ('territory-world', ['--fixed-fps','60','res://tests/territory_world_runner.tscn']),
+    ('territory-atlas', ['--fixed-fps','60','res://tests/territory_atlas_runner.tscn']),
     ('scheme-c-star-female', ['--fixed-fps','60','res://tests/scheme_c_star_regression.tscn']),
     ('scheme-c-legend-female', ['--fixed-fps','60','res://tests/scheme_c_legend_regression.tscn']),
     ('scheme-c-river-female', ['--fixed-fps','60','res://tests/scheme_c_river_regression.tscn']),
@@ -182,6 +185,12 @@ steps = [
     ('appearance-backup', ['--fixed-fps','60','res://tests/appearance_persistence.tscn','--','--read-appearance']),
     ('appearance-v24-write', ['--fixed-fps','60','res://tests/appearance_persistence.tscn','--','--write-appearance-v24']),
     ('appearance-v24-read', ['--fixed-fps','60','res://tests/appearance_persistence.tscn','--','--read-appearance-v24']),
+    ('territory-write', ['--fixed-fps','60','res://tests/territory_persistence.tscn','--','--write-territory']),
+    ('territory-read', ['--fixed-fps','60','res://tests/territory_persistence.tscn','--','--read-territory']),
+    ('territory-corrupt', ['--fixed-fps','60','res://tests/territory_persistence.tscn','--','--corrupt-territory']),
+    ('territory-backup', ['--fixed-fps','60','res://tests/territory_persistence.tscn','--','--read-territory']),
+    ('territory-v25-write', ['--fixed-fps','60','res://tests/territory_persistence.tscn','--','--write-territory-v25']),
+    ('territory-v25-read', ['--fixed-fps','60','res://tests/territory_persistence.tscn','--','--read-territory-v25']),
     ('main-smoke', ['--quit-after','180']),
 ]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:

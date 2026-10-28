@@ -142,7 +142,7 @@ func compatibility() -> void:
 	var raw_json: Dictionary=JSON.parse_string(JSON.stringify(snap))
 	check(FarmSaveStore.restore(game,raw_json),"当前v12经JSON保存恢复仍合法")
 	var old := snap.duplicate(true)
-	old.version=11;old.erase("appearance")
+	old.version=11;old.erase("appearance");old.erase("territory")
 	# v11夹具只保留v11实际拥有的分区，不伪造尚未存在的开发字段。
 	for field in ["calendar","world_changes","recovery","fishing","livestock","ecology","kitchen","festival","social","housing","exploration","world_development"]: old.erase(field)
 	var migrated := FarmSaveSchema.normalize(old)

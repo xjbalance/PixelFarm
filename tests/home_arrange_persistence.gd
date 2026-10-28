@@ -18,7 +18,7 @@ func run() -> void:
 	if legacy_write:
 		check(await Arrange.setup_married_home(self,game),"v23写进程真实三级施工、自制椅与柜存")
 		await Home.visit_builder(self,game);check(Housing.upgrade(3),"旧已婚住宅仍有真实进行中的四级施工单")
-		var old:=FarmSaveStore.snapshot(game);old.version=23;old.erase("appearance");old.housing=Arrange.legacy_v23(old.housing)
+		var old:=FarmSaveStore.snapshot(game);old.version=23;old.erase("appearance");old.erase("territory");old.housing=Arrange.legacy_v23(old.housing)
 		check(FarmSaveStore.valid(old) and not old.housing.has("builtins") and old.stamina==130 and old.xiaojing.married,"写入严格真实v23格式，保留130体力与旧婚姻")
 		write_json("user://home-arrange-v23-proof.json",old);write_json(FarmSaveStore.PATH,old);write_json(FarmSaveStore.PATH+".bak",old)
 		check(not FarmSaveStore.read().is_empty(),"真实v23结构保存到磁盘且能规范读取")

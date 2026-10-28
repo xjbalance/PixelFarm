@@ -243,7 +243,7 @@ func saves() -> void:
 	check(FarmSaveStore.restore(game,saved) and LegendState.state.greenhouse==5 and AbyssState.state.max_clear==20,"传说终局完整恢复")
 	await frames(5)
 	var old: Dictionary=saved.duplicate(true)
-	old.version=8;old.erase("appearance")
+	old.version=8;old.erase("appearance");old.erase("territory")
 	old.erase("legend")
 	old.erase("abyss")
 	var migrated := FarmSaveSchema.normalize(old)

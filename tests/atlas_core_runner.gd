@@ -18,7 +18,7 @@ func run() -> void:
 	GameClock.running=false;GameState.location="farm"
 	var before: Dictionary={"items":Inventory.items.duplicate(true),"coins":Inventory.coins,"stamina":GameState.stamina,"exploration":Exploration.snapshot(),"housing":Housing.snapshot(),"mine":MineState.state.duplicate(true),"legend":LegendState.state.duplicate(true),"xiaojing":Xiaojing.state.duplicate(true)}
 	await frames(3)
-	check(atlas.layer_id=="world" and atlas.places.size()==8,"世界图纸仅有实际已有区域")
+	check(atlas.layer_id=="world" and atlas.places.size()==FarmAtlasData.WORLD_POINTS.size(),"世界图纸仅有实际已有区域和已制作的待开放领地")
 	check(atlas.player_map_position()==FarmAtlasData.WORLD_POINTS.farm,"世界玩家标记使用独立区域坐标")
 	for id in ["farm","village","lake","home","mist_forest"]:
 		check(FarmAtlasData.known(id),"现有默认开放区域："+id)

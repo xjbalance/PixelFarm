@@ -317,7 +317,7 @@ static func run(test: Node, game: Node) -> void:
 		invalid.xiaojing.merge(mutation,true)
 		test.check(not FarmSaveStore.valid(invalid),"非法小京存档整份拒绝："+str(mutation.keys()))
 	var old := saved.duplicate(true)
-	old.version=4;old.erase("appearance")
+	old.version=4;old.erase("appearance");old.erase("territory")
 	old.erase("xiaojing")
 	var migrated := FarmSaveSchema.normalize(old)
 	test.check(not migrated.is_empty() and migrated.xiaojing.plants==0 and migrated.items==old.items and migrated.story==old.story,"v4存档不推算历史播种，保留原剧情与物品")

@@ -27,6 +27,9 @@ func _ready() -> void:
 			if x in [0,1,38,39] or y in [0,1,26,27]: index=4
 			ground.set_cell(Vector2i(x,y),0,Vector2i(index,0))
 	Calendar.changed.connect(refresh);refresh()
+	Events.location_changed.connect(func(area: String):
+		if area==area_id: refresh()
+	)
 
 static func _tiles(season: int) -> Texture2D:
 	if tile_textures.has(season): return tile_textures[season]

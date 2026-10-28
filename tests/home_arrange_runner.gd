@@ -351,7 +351,7 @@ func dynamic_functions() -> void:
 
 func migration_and_construction() -> void:
 	await fresh();check(await setup_married_home(self,game),"迁移夹具以真实施工得到三级住宅及既有自制家具柜存")
-	var old:=FarmSaveStore.snapshot(game);old.version=23;old.erase("appearance");old.housing=legacy_v23(old.housing)
+	var old:=FarmSaveStore.snapshot(game);old.version=23;old.erase("appearance");old.erase("territory");old.housing=legacy_v23(old.housing)
 	var canonical_old: Dictionary=AbyssSaveSchema.canonical(JSON.parse_string(JSON.stringify(old)))
 	var migrated:=FarmSaveSchema.normalize(JSON.parse_string(JSON.stringify(old)))
 	check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION,"真实v23字段可以迁入当前可布置住宅格式")

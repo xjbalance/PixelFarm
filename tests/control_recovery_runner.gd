@@ -183,7 +183,7 @@ func daytime_recovery() -> void:
 	check(GameClock.request_sleep(day) and days_advanced[0]==1 and recovery.snapshot().rests==0 and recovery.snapshot().snacks==0,"合法睡眠唯一跨日后刷新休息次数与兼容记录")
 	GameClock.day_advanced.disconnect(on_day)
 	var old := FarmSaveStore.snapshot(game)
-	old.version=12;old.erase("appearance");old.erase("recovery")
+	old.version=12;old.erase("appearance");old.erase("territory");old.erase("recovery")
 	var migrated := FarmSaveSchema.normalize(old)
 	check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION and migrated.recovery.rests==0 and migrated.coins==old.coins and migrated.xiaojing==old.xiaojing,"v12迁移仅增加恢复日限，保留资源和小京进度")
 	var invalid := FarmSaveStore.snapshot(game)
