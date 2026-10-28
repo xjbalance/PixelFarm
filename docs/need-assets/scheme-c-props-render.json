@@ -1,0 +1,24 @@
+{
+	"android_device_tested": false,
+	"captures": [
+		{
+			"name": "livestock_level_0",
+			"path": "res://builds/scheme-c-props-livestock_level_0.png"
+		},
+		{
+			"name": "livestock_level_1",
+			"path": "res://builds/scheme-c-props-livestock_level_1.png"
+		},
+		{
+			"name": "livestock_level_3",
+			"path": "res://builds/scheme-c-props-livestock_level_3.png"
+		},
+		{
+			"name": "livestock_with_animals",
+			"path": "res://builds/scheme-c-props-livestock_with_animals.png"
+		}
+	],
+	"checks": 45,
+	"failures": 0,
+	"platform": "X11"
+}

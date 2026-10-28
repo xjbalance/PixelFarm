@@ -1,0 +1,207 @@
+{
+  "version": "0.8.0",
+  "date": "2026-10-28",
+  "source_commit": "bed2e15d1dec9532ceddc708723c308d079ec1ed",
+  "baseline_commit": "dac68e8445b7167c859aa4b19c28d73fe2c48530",
+  "supplied_world_assets": 97,
+  "byte_verified_files": 150,
+  "native_grid": 32,
+  "save_version": 26,
+  "save_schema_changed": false,
+  "regression": {
+    "processes": 172,
+    "checks": 6928,
+    "failures": 0
+  },
+  "new_suites": [
+    {
+      "name": "world_assets_runner",
+      "checks": 344,
+      "failures": 0
+    },
+    {
+      "name": "scheme_c_nature_runner",
+      "checks": 74,
+      "failures": 0
+    },
+    {
+      "name": "scheme_c_placement_runner",
+      "checks": 1540,
+      "failures": 0
+    },
+    {
+      "name": "scheme_c_props_runner",
+      "checks": 45,
+      "failures": 0
+    },
+    {
+      "name": "farm_edit_runner",
+      "checks": 66,
+      "failures": 0
+    },
+    {
+      "name": "farm_edit_kinds_runner",
+      "checks": 200,
+      "failures": 0
+    }
+  ],
+  "state_total": {
+    "processes": 178,
+    "checks": 9197,
+    "failures": 0,
+    "repeated_runs_excluded": true
+  },
+  "actual_window_suites": [
+    {
+      "name": "world-style07-render.json",
+      "checks": 40,
+      "failures": 0
+    },
+    {
+      "name": "farm06-render-evidence.json",
+      "checks": 147,
+      "failures": 0
+    },
+    {
+      "name": "territory-editor-render.json",
+      "checks": 55,
+      "failures": 0
+    },
+    {
+      "name": "farm-edit-render.json",
+      "checks": 66,
+      "failures": 0
+    },
+    {
+      "name": "scheme-c-nature-render.json",
+      "checks": 74,
+      "failures": 0
+    },
+    {
+      "name": "scheme-c-props-render.json",
+      "checks": 45,
+      "failures": 0
+    },
+    {
+      "name": "scheme-c-placement-render.json",
+      "checks": 1540,
+      "failures": 0
+    }
+  ],
+  "actual_window_checks": 1967,
+  "coverage": {
+    "cleared": {
+      "basis": "Territory.permission and runtime reserved cells; final placement also checks collision and routes",
+      "ground_cells": 1248,
+      "ground_fraction": 0.8125,
+      "ground_interior_fraction": 0.904347826086957,
+      "interior_cells": 1380,
+      "map_cells": 1536,
+      "solid_cells": 1076,
+      "solid_fraction": 0.700520833333333,
+      "solid_interior_fraction": 0.779710144927536
+    },
+    "hidden_route_accepted_fences": 9,
+    "hidden_route_denial": "摆放会切断门口、设施、农田或人物的现有通路。",
+    "initial": {
+      "basis": "Territory.permission and runtime reserved cells; final placement also checks collision and routes",
+      "ground_cells": 1087,
+      "ground_fraction": 0.707682291666667,
+      "ground_interior_fraction": 0.78768115942029,
+      "interior_cells": 1380,
+      "map_cells": 1536,
+      "solid_cells": 925,
+      "solid_fraction": 0.602213541666667,
+      "solid_interior_fraction": 0.670289855072464
+    }
+  },
+  "windows": {
+    "version": "0.8.0",
+    "platform": "Windows x86_64",
+    "configuration": "release",
+    "pck_bytes": 27784976,
+    "embedded_pck": false,
+    "exe_sha256": "7707a60c19de6f6456741b03eeb5e89c4e9b1c6d3f9ad0e1e24ff877cbf921b4",
+    "pck_sha256": "033f2b6cb3e1ceab2eb6cc54383236c8b1b2ea7c50b0ade32ae3804a337c9e30",
+    "files": [
+      "PixelWorld.exe",
+      "PixelWorld.pck",
+      "开始游戏.txt",
+      "字体许可.txt",
+      "licenses/GODOT-LICENSE.txt",
+      "licenses/GODOT-THIRD-PARTY.txt",
+      "licenses/NOTICE.txt"
+    ],
+    "zip": "PixelWorld-0.8.0-Windows-x64.zip",
+    "zip_bytes": 55917983,
+    "zip_sha256": "efff90030585ab52e4c27726a169b18eb01a9c3f521cfd2d1d996e2617e2050f",
+    "zip_crc_verified": true,
+    "pe_amd64_verified": true,
+    "version_resource_verified": true,
+    "packed_resources_desktop_startup": true,
+    "windows_native_tested": false,
+    "wine": {
+      "exe": "/home/xiznhi/xiangqi/PixelFarm/builds/PixelWorld-0.8.0-Windows-x64/PixelWorld.exe",
+      "exe_sha256": "7707a60c19de6f6456741b03eeb5e89c4e9b1c6d3f9ad0e1e24ff877cbf921b4",
+      "pck": "/home/xiznhi/xiangqi/PixelFarm/builds/PixelWorld-0.8.0-Windows-x64/PixelWorld.pck",
+      "pck_sha256": "033f2b6cb3e1ceab2eb6cc54383236c8b1b2ea7c50b0ade32ae3804a337c9e30",
+      "wine_version": "wine-6.0.3 (Ubuntu 6.0.3~repack-1)",
+      "windows_native_tested": false,
+      "wine_tested": true,
+      "headless": true,
+      "window": true,
+      "save_restart": true,
+      "captures": [
+        {
+          "path": "builds/windows080-wine-character-select.png",
+          "width": 1280,
+          "height": 720,
+          "x": 160,
+          "y": 140,
+          "sha256": "600eaa654c1e0325a6f5113318d084fe2b164a0a6e0fd7a96b25f02990b46a6d"
+        },
+        {
+          "path": "builds/windows080-wine-farm.png",
+          "width": 1280,
+          "height": 720,
+          "x": 160,
+          "y": 140,
+          "sha256": "799b5cad82d4ec6b3f7ba6ed9d13d9ec07e3a50fa6ba2e9d6eb81d8285ff069e"
+        },
+        {
+          "path": "builds/windows080-wine-map.png",
+          "width": 1280,
+          "height": 720,
+          "x": 160,
+          "y": 140,
+          "sha256": "763f898cee9c8e5ca78217bd0558a063045808ab60acb233bcf69b69e32e3e27"
+        }
+      ],
+      "window_title": "",
+      "input_method": "keyboard_after_mouse_activation",
+      "save_version": 26,
+      "appearance": {
+        "player_gender": "female",
+        "scheme": "C",
+        "xiaojing_gender": "male"
+      },
+      "territory_saved": true,
+      "player_profile_isolated": true,
+      "standalone_without_source": true,
+      "unicode_path_tested": true,
+      "status": "passed"
+    }
+  },
+  "android": {
+    "version_code": 24,
+    "path": "PixelWorld-0.8.0-debug.apk",
+    "bytes": 74639414,
+    "sha256": "cf160173a8e7f6f4e4364108fe40290601144d514505cbe10a5b3a8a43853046",
+    "original_signing_certificate_retained": true,
+    "all_97_exported_assets_loaded": true,
+    "exported_editor_smoke": true
+  },
+  "android_device_tested": false,
+  "windows_native_tested": false,
+  "screenshot_fixture_notice": "Before/after are actual isolated Godot windows; garden and restored greenhouse use explicitly staged progress. Wine is not native Windows acceptance."
+}

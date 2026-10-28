@@ -1,5 +1,15 @@
 # 素材来源与许可记录
 
+## 2026-10-28 用户方案 C 世界素材整合
+
+`assets/world_scheme_c/` 的97款世界素材来自用户放在 `need/` 中的三个方案 C 世界素材包（树木13、第2–5组35、第6–10组49）；第6–10组为用户ZIP。本次没有下载商业游戏素材，也没有调用新的图片生成服务。源包声明其原图由图片生成工具制作，该声明保留为来源记录，不将它们称作本轮逐像素手绘。
+
+运行资源采用原生32px网格档。97张独立Sprite、40张循环动画帧、7套47形状地形图集、6款直线围栏模块共150份文件保留原始字节及SHA-256；来源/路径在 `assets/world_scheme_c/manifest.json`，可用 `python3 tools/import_world_scheme_c.py --verify` 脱离 `need/` 检查。本轮不分发生成大原图、参考画面和64档重复副本，原 `need/` 未改动、未提交或打包。
+
+四季色板、干湿土、无缝水面、真实地图合成与四级住宅外观是明确标注的适配衍生，不是用户提供了四季全套或四座独立住宅。可用 `tools/derive_scheme_c_nature.py`、`tools/derive_scheme_c_buildings.py` 重建；前者不改变原地图格、资源ID或碰撞，后者保持原住宅入口和画布。UI仍使用本工程原羊皮纸规范与合法Noto字体。源包及真正缺项见 [完整审计](NEED-ASSET-GAPS.md)。
+
+`docs/need-assets/` 为隔离存档下实际Godot窗口截图，前后使用同一夹具；庭院样例通过真实预览和确认编辑生成，是展示夹具而非玩家进度。Linux窗口、Wine和APK资源启动验证均不能替代Android或Windows原生真机验收。
+
 | 内容 | 来源 | 处理 |
 |---|---|---|
 | `assets/characters/*.png` | 本项目 `tools/generate_assets.py` 原创像素绘制 | 四向角色帧、林芽，不引用外部角色 |

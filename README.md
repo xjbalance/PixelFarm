@@ -1,5 +1,7 @@
 # 像素世界 · 0.8.0《开拓家园》
 
+2026-10-28 更新：[方案C世界素材整合与农场自由改造](docs/REPORT-NEED-ASSETS.md)。已接入用户97款世界素材和全部89种物件，支持9种地表操作与98个兼容放置条目；原道路可重铺，采集后的土地可改造，已有作物与功能入口受保护。大型功能建筑保持原位置。[还需补充的素材](docs/NEED-ASSET-GAPS.md) · [9197项检查及窗口记录](docs/TEST-NEED-ASSETS.json)
+
 当前版本新增[领地编辑第一阶段](docs/REPORT-TERRITORY-080.md)，并保留[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)、[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)、[按数量出售](docs/SALE-QUANTITY.md)、[农场视觉样板06](docs/FARM-VISUAL-06.md)、[羊皮纸冒险图纸](docs/PARCHMENT-MAP.md)、[UI07全界面收口](docs/REPORT-UI07.md)及[方案C角色选择](docs/SCHEME-C-SELECTION.md)。
 
 **0.8.0《开拓家园》第一阶段**，Godot 4.3 Standard。原农场与四处按章节开放的地表领地支持建造预览、批量铺地、观赏植被、小型设施移动与拆除；公共区域和地下保留原规则。
@@ -8,9 +10,9 @@
 
 在主农场或已开放领地中打开菜单 →「建造 / 改造领地」。选择地表、植被或设施，点击/拖动预览，再明确确认；箭头仅平移观察视野。新植被和翻土地表用于环境改造，不扩增原60格作物田、不产生新资源；共享箱子使用原住宅收纳容量。区域路线与权限见[设计说明](docs/TERRITORY-080-DESIGN.md)。
 
-本阶段完整自动化 **6,745项检查、172个进程通过**；新增与相关窗口检查 **600项通过**，另用真实编辑器25次确认采集展示截图。调试APK为code23，未做Android真机验收。[机器记录](docs/TEST-TERRITORY-080.json)
+本次原回归与新增专项合计 **9197项、178个流程通过**，实际窗口 **1967项通过**。调试APK为code24，Windows64 ZIP已生成并经Wine验证；Android与Windows原生真机未验收。[最新机器记录](docs/TEST-NEED-ASSETS.json)；[初版0.8.0的6745项历史记录](docs/TEST-TERRITORY-080.json)保留供比较。
 
-![真实建造模式与已确认地块](docs/territory080/showcase_garden_build.png)
+![方案C新素材与真实编辑器确认的庭院](docs/need-assets/after/farm_player_garden.png)
 
 尚未结婚时，婚礼还需住宅完工至当前最高四级「星光庄园」，并亲手钓获、领取过传说鱼「永恒星鲤」。只检查永久钓获记录，不交付或消耗鱼；已婚旧档保留婚姻。详见[婚礼准备](docs/MARRIAGE-REQUIREMENTS.md)。
 

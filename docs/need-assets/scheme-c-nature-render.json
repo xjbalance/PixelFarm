@@ -1,0 +1,36 @@
+{
+	"android_device_tested": false,
+	"captures": [
+		{
+			"name": "farm_spring",
+			"path": "res://builds/scheme-c-nature-farm_spring.png"
+		},
+		{
+			"name": "farm_summer",
+			"path": "res://builds/scheme-c-nature-farm_summer.png"
+		},
+		{
+			"name": "farm_autumn",
+			"path": "res://builds/scheme-c-nature-farm_autumn.png"
+		},
+		{
+			"name": "farm_winter",
+			"path": "res://builds/scheme-c-nature-farm_winter.png"
+		},
+		{
+			"name": "village",
+			"path": "res://builds/scheme-c-nature-village.png"
+		},
+		{
+			"name": "mist_forest",
+			"path": "res://builds/scheme-c-nature-mist_forest.png"
+		},
+		{
+			"name": "source_terrain_paths",
+			"path": "res://builds/scheme-c-nature-source_terrain_paths.png"
+		}
+	],
+	"checks": 74,
+	"failures": 0,
+	"platform": "X11"
+}

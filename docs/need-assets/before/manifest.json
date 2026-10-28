@@ -1,0 +1,150 @@
+{
+	"android_device_tested": false,
+	"captures": [
+		{
+			"name": "farm_hud_1280x720",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/farm_hud_1280x720.png",
+			"saved": true,
+			"window_size": [
+				1280,
+				720
+			]
+		},
+		{
+			"name": "farm_hud_20x9",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/farm_hud_20x9.png",
+			"saved": true,
+			"window_size": [
+				1600,
+				720
+			]
+		},
+		{
+			"name": "farm_hud_tablet",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/farm_hud_tablet.png",
+			"saved": true,
+			"window_size": [
+				1280,
+				960
+			]
+		},
+		{
+			"name": "farm_full_spring",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/farm_full_spring.png",
+			"saved": true,
+			"window_size": [
+				1536,
+				1024
+			]
+		},
+		{
+			"name": "farm_full_summer",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/farm_full_summer.png",
+			"saved": true,
+			"window_size": [
+				1536,
+				1024
+			]
+		},
+		{
+			"name": "farm_full_autumn",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/farm_full_autumn.png",
+			"saved": true,
+			"window_size": [
+				1536,
+				1024
+			]
+		},
+		{
+			"name": "farm_full_winter",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/farm_full_winter.png",
+			"saved": true,
+			"window_size": [
+				1536,
+				1024
+			]
+		},
+		{
+			"name": "house_level_1",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/house_level_1.png",
+			"saved": true,
+			"window_size": [
+				1280,
+				720
+			]
+		},
+		{
+			"name": "house_level_2",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/house_level_2.png",
+			"saved": true,
+			"window_size": [
+				1280,
+				720
+			]
+		},
+		{
+			"name": "house_level_3",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/house_level_3.png",
+			"saved": true,
+			"window_size": [
+				1280,
+				720
+			]
+		},
+		{
+			"name": "house_level_4",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/house_level_4.png",
+			"saved": true,
+			"window_size": [
+				1280,
+				720
+			]
+		},
+		{
+			"name": "home",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/home.png",
+			"saved": true,
+			"window_size": [
+				1280,
+				720
+			]
+		},
+		{
+			"name": "village",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/village.png",
+			"saved": true,
+			"window_size": [
+				1280,
+				720
+			]
+		},
+		{
+			"name": "forest",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/forest.png",
+			"saved": true,
+			"window_size": [
+				1280,
+				720
+			]
+		},
+		{
+			"name": "farm_edit_permissions",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/farm_edit_permissions.png",
+			"saved": true,
+			"window_size": [
+				1280,
+				720
+			]
+		},
+		{
+			"name": "farm_edit_assets",
+			"path": "/home/xiznhi/xiangqi/PixelFarm/docs/need-assets/before/farm_edit_assets.png",
+			"saved": true,
+			"window_size": [
+				1280,
+				720
+			]
+		}
+	],
+	"platform": "X11"
+}

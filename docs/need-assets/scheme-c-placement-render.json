@@ -1,0 +1,37 @@
+{
+	"android_device_tested": false,
+	"captures": [
+		{
+			"name": "oak_tree",
+			"path": "res://builds/scheme-c-placement-oak_tree.png"
+		},
+		{
+			"name": "large_pond",
+			"path": "res://builds/scheme-c-placement-large_pond.png"
+		},
+		{
+			"name": "picnic_table",
+			"path": "res://builds/scheme-c-placement-picnic_table.png"
+		},
+		{
+			"name": "wood_fence",
+			"path": "res://builds/scheme-c-placement-wood_fence.png"
+		},
+		{
+			"name": "farmhouse",
+			"path": "res://builds/scheme-c-placement-farmhouse.png"
+		},
+		{
+			"name": "windmill",
+			"path": "res://builds/scheme-c-placement-windmill.png"
+		},
+		{
+			"name": "star_spring",
+			"path": "res://builds/scheme-c-placement-star_spring.png"
+		}
+	],
+	"catalog_kinds": 98,
+	"checks": 1540,
+	"failures": 0,
+	"platform": "X11"
+}

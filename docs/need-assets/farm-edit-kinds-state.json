@@ -1,0 +1,13 @@
+{
+	"android_device_tested": false,
+	"area": "farm",
+	"cell": [
+		20,
+		5
+	],
+	"checks": 200,
+	"failures": 0,
+	"kinds": 98,
+	"original_resources_cleared": false,
+	"unique_ids": 98
+}

@@ -21,6 +21,15 @@ func run() -> void:
  game.tutorial.restore(GameTutorial.defaults(true));await frames(3)
  var expected: Dictionary=canonical(FarmSaveStore.snapshot(game));expected.erase("territory")
  var ok: bool=FarmSaveStore.VERSION==26 and game.territory_world.maps.size()==5 and not Territory.unlocked("east_holding")
+ ok=SchemeCAssets.catalog().size()==97 and ok
+ for id in SchemeCAssets.catalog():
+  var info: Dictionary=SchemeCAssets.definition(id)
+  var art: Texture2D=SchemeCAssets.texture(id)
+  ok=art!=null and art.get_size()==Vector2(info.size[0],info.size[1]) and ok
+  if int(info.frames)>1:
+   var animation: SpriteFrames=SchemeCAssets.animation(id)
+   ok=animation!=null and animation.get_frame_count("loop")==4 and ok
+ print("APK SCHEME C 97-ASSET LOAD: ","PASS" if ok else "FAIL")
  ok=not WorldTravel.change(game,"east_holding") and not Territory.permission("village",Vector2i(6,6),"grass").allowed and ok
  ok=game.territory_editor.open() and ok
  game.territory_editor.choose_tool("stone_path")
