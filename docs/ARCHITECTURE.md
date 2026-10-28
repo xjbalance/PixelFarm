@@ -1,3 +1,14 @@
+# 0.8.0领地系统增量
+
+- `TerritoryCatalog`声明地表地区、固定保护区与章节授权；`Territory`保存独立差异并以修订号提交。
+- `TerritoryWorld`创建四张地表附属地，验证真实碰撞与保留通路；既有地图和地下数据不重建。
+- `TerritoryEditor`仲裁建造手势，仅确认调用事务，退出恢复原镜头及操作模式。
+- `TerritoryAtlasDrawing`将真实差异绘入共享羊皮纸图纸，不提供传送。
+- `Housing.near_storage()`只扩展存取入口，箱子访问同一份原收纳；其他住宅业务仍用原现场条件。
+- schema26只新增`territory`；[设计与权限](TERRITORY-080-DESIGN.md)、[交付与边界](REPORT-TERRITORY-080.md)。
+
+下方保留历史架构记录。
+
 # 0.5.0架构增量
 
 - `MineState`拥有矿物/工具/加工/机关/宝箱事务；`MiningSaveSchema`验证新状态。资源与地图定义在`resources/mining`。

@@ -1,0 +1,210 @@
+{
+  "platform": "X11 / Godot 4.3 / Mesa",
+  "android_device_tested": false,
+  "captures": [
+    {
+      "path": "docs/territory080/editor_terrain_preview.png",
+      "source": "builds/territory-editor-terrain_preview.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "04b1db4d997fd03a8e2431bd3406144860432b29a23730e33b4739c9b61297bf",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/editor_vegetation_preview.png",
+      "source": "builds/territory-editor-vegetation_preview.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "d98bb92ccd7a83277ed41c01929c843203e5a096710dd8ba220f04388c2009cb",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/editor_small_facility.png",
+      "source": "builds/territory-editor-small_facility.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "0fbc0a3be6a13d5df61fad5033876427e66ee2b82e868c759ff2baded92c7467",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/editor_layout_1280x720.png",
+      "source": "builds/territory-editor-layout_1280x720.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "fc96c95362b8367a8c1be61e5837c5f5569cb890550c218e8392ed53b4cc31aa",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/editor_layout_1560x720.png",
+      "source": "builds/territory-editor-layout_1560x720.png",
+      "width": 1560,
+      "height": 720,
+      "sha256": "2e2b32d8eb1052f184fd8d436ff4e6840770a8e7f2d0e837b8cdaccee315dd79",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/editor_layout_1600x720.png",
+      "source": "builds/territory-editor-layout_1600x720.png",
+      "width": 1600,
+      "height": 720,
+      "sha256": "88df31026d95fc4d8a8ad3e316b6ebeb2ed031ab4792d612146e4bfb6d701920",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/editor_layout_1280x960.png",
+      "source": "builds/territory-editor-layout_1280x960.png",
+      "width": 1280,
+      "height": 960,
+      "sha256": "0b29fd4171b6fbd1e5741bd26e5c117dc999104a0c03b57182cdc7311163e6eb",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/editor_dpi_480.png",
+      "source": "builds/territory-editor-dpi_480.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "f52c9494f4da6372a087fa2fb350f55b4a76acf898ff89d6be8019e058ce263d",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/world_vegetation_and_paths.png",
+      "source": "builds/territory-world-vegetation_and_paths.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "cd94b74b46b394ed797fccee881d525cea34ccad8dae1b496d1eedf8827fc809",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/world_small_facilities.png",
+      "source": "builds/territory-world-small_facilities.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "d8f222006728db4bf2de67d2b87a634a52c723b284cc9e201be7cb9aa10206d3",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/world_season_0.png",
+      "source": "builds/territory-world-season_0.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "c90c6092f29802894de5ac7c6debe18390402fc0a8fa05e635f80fb568fa856e",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/world_season_1.png",
+      "source": "builds/territory-world-season_1.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "d74e420130c70fc5a6843f632443bb3a96366222dac0f924385320d577a77d8d",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/world_season_2.png",
+      "source": "builds/territory-world-season_2.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "d23e951724e9ea681b01cb17678645b1019c58ff286dd8602d7efb93e0682890",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/world_season_3.png",
+      "source": "builds/territory-world-season_3.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "d8f222006728db4bf2de67d2b87a634a52c723b284cc9e201be7cb9aa10206d3",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/atlas_locked.png",
+      "source": "builds/territory-atlas_locked.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "8c49d3a9348be75d4bc8bf4b270085092b485d5db07af028c9293a6bb08e0006",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/atlas_east_detail.png",
+      "source": "builds/territory-atlas_east_detail.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "d6ab8e14f68f2fc97445be48e71134c224bbf932f447f04e254713253de6c783",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/atlas_unlocked.png",
+      "source": "builds/territory-atlas_unlocked.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "ef52c381db6adc8b80b04812937ed2daedbf344d31d352f76c78b1544b7f71eb",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/atlas_1280x720.png",
+      "source": "builds/territory-atlas_1280x720.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "ef52c381db6adc8b80b04812937ed2daedbf344d31d352f76c78b1544b7f71eb",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/atlas_1560x720.png",
+      "source": "builds/territory-atlas_1560x720.png",
+      "width": 1560,
+      "height": 720,
+      "sha256": "5bba4d986ebbdf17fe4345414cb4500a6cf04b584593ddac84a6c301b61699f7",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/atlas_1600x720.png",
+      "source": "builds/territory-atlas_1600x720.png",
+      "width": 1600,
+      "height": 720,
+      "sha256": "40a6ee0e8df1718e79885b403bbefdd85eea58592767f8692454ea5afbb2a21c",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/atlas_1280x960.png",
+      "source": "builds/territory-atlas_1280x960.png",
+      "width": 1280,
+      "height": 960,
+      "sha256": "06812dbd7a05d333bdb9420d39ed84bf23a577f5641be8c88f57d91d9d469e05",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/territory080/showcase_garden_build.png",
+      "source": "builds/territory-showcase-garden_build.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "b246b60fb3a71d747b4ea56f3bd7a9ec671b30240128142bbaa66fc8ed070982",
+      "actual_godot_window": true,
+      "fixture_confirmed_operations": 25
+    },
+    {
+      "path": "docs/territory080/showcase_garden_atlas.png",
+      "source": "builds/territory-showcase-garden_atlas.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "a5c9a7a06e631fc8348bfca51a616274ede0f1daa805501efb86b0217ef38ab1",
+      "actual_godot_window": true,
+      "fixture_confirmed_operations": 25
+    },
+    {
+      "path": "docs/territory080/before_farm.png",
+      "source": "builds/territory080-before-farm.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "42514bc16d4d0517c9ad723963d847679c47449c693de4f105732f3c6a1ebf71",
+      "actual_godot_window": true,
+      "baseline_version": "0.7.1"
+    },
+    {
+      "path": "docs/territory080/before_atlas.png",
+      "source": "builds/territory080-before-atlas.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "a0763ef5da4d42162a3eea82891b38894da16b71f7582d85471d294078c75594",
+      "actual_godot_window": true,
+      "baseline_version": "0.7.1"
+    }
+  ]
+}

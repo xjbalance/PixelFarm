@@ -310,6 +310,7 @@ func interact() -> void:
 	else:
 		if GameState.tool() in ["axe","pickaxe"]: Events.notice.emit("面向附近的树木或石堆，再使用工具。")
 		elif GameState.location == "farm": player.begin_farm_action(farm,player.target_cell(),context_tool())
+		elif GameState.location in TerritoryCatalog.ANNEX_AREAS: Events.notice.emit("从菜单进入建造 / 改造领地；靠近入口路牌可返回农场。")
 		else: Events.notice.emit("沿河走走，靠近村民、木牌或长椅再交互。" if GameState.location == "village" else "走到床边休息，或从下方门口返回农场。")
 
 func resource_target() -> Node2D:

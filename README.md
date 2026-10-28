@@ -1,10 +1,16 @@
-# 像素世界 · Pixel World
+# 像素世界 · 0.8.0《开拓家园》
 
-当前源码和调试APK已包含[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)、[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)、[按数量出售](docs/SALE-QUANTITY.md)、[农场视觉样板06](docs/FARM-VISUAL-06.md)、[羊皮纸冒险图纸](docs/PARCHMENT-MAP.md)、[UI07全界面收口](docs/REPORT-UI07.md)及[方案C角色选择](docs/SCHEME-C-SELECTION.md)。
+当前版本新增[领地编辑第一阶段](docs/REPORT-TERRITORY-080.md)，并保留[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)、[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)、[按数量出售](docs/SALE-QUANTITY.md)、[农场视觉样板06](docs/FARM-VISUAL-06.md)、[羊皮纸冒险图纸](docs/PARCHMENT-MAP.md)、[UI07全界面收口](docs/REPORT-UI07.md)及[方案C角色选择](docs/SCHEME-C-SELECTION.md)。
 
-**0.7.1《匠心打磨》**，Godot 4.3 Standard 原创像素经营 RPG。在原工程上整合四季天气、自由钓鱼、湖泊生态、畜牧、厨房加工、四季节日、村民个人事件、家园扩建装修与三张隐藏地图。
+**0.8.0《开拓家园》第一阶段**，Godot 4.3 Standard。原农场与四处按章节开放的地表领地支持建造预览、批量铺地、观赏植被、小型设施移动与拆除；公共区域和地下保留原规则。
 
-保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v25**，兼容v1–v24，原应用包名、证书与存档路径保留。
+保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v26**，兼容v1–v25，原应用包名、证书与存档路径保留。
+
+在主农场或已开放领地中打开菜单 →「建造 / 改造领地」。选择地表、植被或设施，点击/拖动预览，再明确确认；箭头仅平移观察视野。新植被和翻土地表用于环境改造，不扩增原60格作物田、不产生新资源；共享箱子使用原住宅收纳容量。区域路线与权限见[设计说明](docs/TERRITORY-080-DESIGN.md)。
+
+本阶段完整自动化 **6,745项检查、172个进程通过**；新增与相关窗口检查 **600项通过**，另用真实编辑器25次确认采集展示截图。调试APK为code23，未做Android真机验收。[机器记录](docs/TEST-TERRITORY-080.json)
+
+![真实建造模式与已确认地块](docs/territory080/showcase_garden_build.png)
 
 尚未结婚时，婚礼还需住宅完工至当前最高四级「星光庄园」，并亲手钓获、领取过传说鱼「永恒星鲤」。只检查永久钓获记录，不交付或消耗鱼；已婚旧档保留婚姻。详见[婚礼准备](docs/MARRIAGE-REQUIREMENTS.md)。
 
@@ -54,8 +60,8 @@ Godot **4.3 Standard** 导入`project.godot`，完成素材导入后按F5；不�
 ./.tools/Godot_v4.3-stable_linux.x86_64 --path .
 ```
 
-- [Android调试APK](builds/PixelWorld-0.7.1-debug.apk) · [APK校验和](builds/PixelWorld-0.7.1-debug.apk.sha256)
-- [完整源码包](builds/PixelWorld-0.7.1-source.zip) · [源码校验和](builds/PixelWorld-0.7.1-source.sha256)
+- [Android调试APK](builds/PixelWorld-0.8.0-debug.apk) · [APK校验和](builds/PixelWorld-0.8.0-debug.apk.sha256)
+- [完整源码包](builds/PixelWorld-0.8.0-source.zip) · [源码校验和](builds/PixelWorld-0.8.0-source.sha256)
 
 源码包不含本机引擎、SDK、签名密钥或玩家存档。Android构建必须使用原签名，见[ANDROID.md](docs/ANDROID.md)。本次没有在手机安装或执行覆盖更新。
 
@@ -71,6 +77,7 @@ Godot **4.3 Standard** 导入`project.godot`，完成素材导入后按F5；不�
 | 手记 | HUD或菜单中的手记按钮 | 同左，原手记功能保留 |
 | 保存/读取/菜单 | F5/F9/Esc | 菜单与系统返回 |
 | 钓鱼 | 按住追鱼按钮或空格，松开调整 | 长按/松开追鱼按钮 |
+| 领地改造 | 菜单→建造 / 改造领地，预览后确认，Esc退出 | 单指点选或拖刷，确认/取消；多指不结算 |
 | 家内布置 | 家内菜单→布置房间，点选/拖动、确认 | 同样点选/拖动家具预览，确认才提交 |
 | 角色选择 | 左右/鼠标预选，Enter确认，Esc返回 | 点男女主角卡，确认后开始；返回保留原进度 |
 
@@ -108,6 +115,7 @@ python3 tools/check_interrupt_071.py
 python3 tools/simulate_070.py
 python3 tools/build_android.py
 python3 tools/verify_apk_runtime.py
+python3 tools/verify_territory_apk.py
 python3 tools/package_source.py
 python3 tools/verify_source_package.py
 ```
@@ -116,4 +124,4 @@ python3 tools/verify_source_package.py
 
 [经济模型](docs/ECONOMY-0.7.0.md) · [存档迁移](docs/SAVE-MIGRATION.md) · [架构](docs/ARCHITECTURE.md) · [素材溯源](docs/ASSET_PROVENANCE.md) · [变更记录](docs/CHANGELOG.md)
 
-开发分支`development/0.7.1`由5323ce2继续，保留原基线3968f07及各阶段提交，未重建项目。[阶段A–E记录](docs/PROGRESS-0.7.0.md)为开发历史；0.7.0内容和0.7.1修复分别见各版报告。
+0.8.0在`development/0.8.0`独立开发，继承0.7.1提交`7c65c99`；`development/0.7.1`保持该提交，保留原基线及各阶段历史。[阶段A–E记录](docs/PROGRESS-0.7.0.md)为开发历史；0.7.0内容和0.7.1修复分别见各版报告。

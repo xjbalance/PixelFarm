@@ -24,6 +24,7 @@ var _refresh_elapsed: float=0
 var _label_style: StyleBox
 var _label_rects: Array[Rect2]=[]
 var _label_hits: Dictionary={}
+var _territory_icons: Dictionary={}
 var resources: Array[Dictionary]=[]
 const MIN_ZOOM: float=1.0
 const MAX_ZOOM: float=3.0
@@ -114,6 +115,9 @@ func _draw() -> void:
 		if item.kind=="tree": draw_colored_polygon(PackedVector2Array([at+Vector2(0,-5),at+Vector2(-4,3),at+Vector2(4,3)]),tone)
 		else: draw_circle(at,3,tone)
 	_label_rects.clear();_label_hits.clear()
+	_territory_icons.clear()
+	if layer_id=="region" and region_id in TerritoryCatalog.ANNEX_AREAS:
+		for item in places: _territory_icons[str(item.id)]=Rect2(map_to_screen(item.point)-Vector2(18,22),Vector2(36,36))
 	for item in places: _draw_place(item)
 	var player:=player_map_position()
 	if player!=Vector2.INF:
@@ -179,6 +183,8 @@ func _draw_place(item: Dictionary) -> void:
 		var back:=Rect2(Vector2(x-5,y-17),Vector2(width+10,22))
 		if not Rect2(Vector2.ZERO,size).encloses(back): continue
 		var overlap: bool=false
+		for other in _territory_icons:
+			if other!=str(item.id) and _territory_icons[other].grow(1).intersects(back): overlap=true;break
 		for old in _label_rects:
 			if old.grow(3).intersects(back): overlap=true;break
 		if overlap: continue
