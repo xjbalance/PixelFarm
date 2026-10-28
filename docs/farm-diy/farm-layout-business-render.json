@@ -1,0 +1,11 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    "res://builds/farm-layout-business-yard_menu.png",
+    "res://builds/farm-layout-business-home_moved.png",
+    "res://builds/farm-layout-business-home_stored.png"
+  ],
+  "checks": 107,
+  "failures": 0,
+  "platform": "X11"
+}

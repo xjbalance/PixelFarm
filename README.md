@@ -1,18 +1,20 @@
 # 像素世界 · 0.8.0《开拓家园》
 
-2026-10-28 更新：[方案C世界素材整合与农场自由改造](docs/REPORT-NEED-ASSETS.md)。已接入用户97款世界素材和全部89种物件，支持9种地表操作与98个兼容放置条目；原道路可重铺，采集后的土地可改造，已有作物与功能入口受保护。大型功能建筑保持原位置。[还需补充的素材](docs/NEED-ASSET-GAPS.md) · [9197项检查及窗口记录](docs/TEST-NEED-ASSETS.json)
+最新：[农场全场DIY](docs/REPORT-FARM-DIY.md)。真实住宅、温室、畜舍、商店、鱼栏、原设施、42个资源节点与生产田都能移动或收纳后放回；48×32主农场可重新铺路、改水形并在合法干地开垦。原等级、库存、动物和剧情进度保留。存档 **v27**，兼容v1–v26。[9736项检查与窗口证据](docs/TEST-FARM-DIY.json)
+
+此前的[方案C世界素材整合](docs/REPORT-NEED-ASSETS.md)已接入97款世界素材，保留作本轮之前的对照记录。原来固定的大型功能建筑现已开放搬迁。[还需补充的素材](docs/NEED-ASSET-GAPS.md)
 
 当前版本新增[领地编辑第一阶段](docs/REPORT-TERRITORY-080.md)，并保留[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)、[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)、[按数量出售](docs/SALE-QUANTITY.md)、[农场视觉样板06](docs/FARM-VISUAL-06.md)、[羊皮纸冒险图纸](docs/PARCHMENT-MAP.md)、[UI07全界面收口](docs/REPORT-UI07.md)及[方案C角色选择](docs/SCHEME-C-SELECTION.md)。
 
-**0.8.0《开拓家园》第一阶段**，Godot 4.3 Standard。原农场与四处按章节开放的地表领地支持建造预览、批量铺地、观赏植被、小型设施移动与拆除；公共区域和地下保留原规则。
+**0.8.0《开拓家园》**，Godot 4.3 Standard。主农场支持全场DIY，四处按章节开放的地表领地保留既有权限；公共区域和地下保留原规则。
 
-保留原种田/采集/经济、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。当前存档 **v26**，兼容v1–v25，原应用包名、证书与存档路径保留。
+保留原种田/采集的消耗与产出、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。原应用包名、证书与存档路径保留。
 
-在主农场或已开放领地中打开菜单 →「建造 / 改造领地」。选择地表、植被或设施，点击/拖动预览，再明确确认；箭头仅平移观察视野。新植被和翻土地表用于环境改造，不扩增原60格作物田、不产生新资源；共享箱子使用原住宅收纳容量。区域路线与权限见[设计说明](docs/TERRITORY-080-DESIGN.md)。
+在主农场打开菜单 →「建造 / 改造领地」→「原物」，选择原建筑、设施、树石或农田后点地图预览并确认；“已收纳”分组可放回。地表页支持挖水和填水；新生产田用普通锄头开垦。观赏摆件不产生资源，共享箱子使用原住宅容量。区域路线与权限见[设计说明](docs/TERRITORY-080-DESIGN.md)。
 
-本次原回归与新增专项合计 **9197项、178个流程通过**，实际窗口 **1967项通过**。调试APK为code24，Windows64 ZIP已生成并经Wine验证；Android与Windows原生真机未验收。[最新机器记录](docs/TEST-NEED-ASSETS.json)；[初版0.8.0的6745项历史记录](docs/TEST-TERRITORY-080.json)保留供比较。
+本次完整回归 **9736项、188个进程通过**，新实际窗口专项 **359项通过**。调试APK为code25，Windows64 ZIP已生成并经Wine验证；Android与Windows原生真机未验收。[最新机器记录](docs/TEST-FARM-DIY.json)；[素材整合阶段](docs/TEST-NEED-ASSETS.json)和[初版0.8.0](docs/TEST-TERRITORY-080.json)的历史记录保留供比较。
 
-![方案C新素材与真实编辑器确认的庭院](docs/need-assets/after/farm_player_garden.png)
+![真实编辑器预览原住宅搬迁](docs/farm-diy/editor/farm-diy-editor-home_preview.png)
 
 尚未结婚时，婚礼还需住宅完工至当前最高四级「星光庄园」，并亲手钓获、领取过传说鱼「永恒星鲤」。只检查永久钓获记录，不交付或消耗鱼；已婚旧档保留婚姻。详见[婚礼准备](docs/MARRIAGE-REQUIREMENTS.md)。
 

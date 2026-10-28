@@ -1,0 +1,117 @@
+[
+  {
+    "runner": "kitchen_b_runner",
+    "exit_code": 0,
+    "results": [
+      "KITCHEN B RESULT: 100 checks, 0 failures"
+    ],
+    "errors": []
+  },
+  {
+    "runner": "livestock_b_runner",
+    "exit_code": 0,
+    "results": [
+      "LIVESTOCK B RESULT: 112 checks, 0 failures"
+    ],
+    "errors": []
+  },
+  {
+    "runner": "fishing_b_runner",
+    "exit_code": 0,
+    "results": [
+      "FISHING B RESULT: 84 checks, 0 failures"
+    ],
+    "errors": []
+  },
+  {
+    "runner": "aquaculture_runner",
+    "exit_code": 0,
+    "results": [
+      "AQUACULTURE RESULT: 155 checks, 0 failures"
+    ],
+    "errors": []
+  },
+  {
+    "runner": "social_c_runner",
+    "exit_code": 0,
+    "results": [
+      "SOCIAL C RESULT: 107 checks, 0 failures"
+    ],
+    "errors": []
+  },
+  {
+    "runner": "festivals_c_runner",
+    "exit_code": 0,
+    "results": [
+      "FESTIVALS C RESULT: 87 checks, 0 failures"
+    ],
+    "errors": []
+  },
+  {
+    "runner": "ecology_b_runner",
+    "exit_code": 0,
+    "results": [
+      "ECOLOGY B RESULT: 65 checks, 0 failures"
+    ],
+    "errors": []
+  },
+  {
+    "runner": "star_runner",
+    "exit_code": 0,
+    "results": [
+      "STAR RESULT: 125 checks, 0 failures"
+    ],
+    "errors": []
+  },
+  {
+    "runner": "river_runner",
+    "exit_code": 0,
+    "results": [
+      "RIVER RESULT: 446 checks, 0 failures"
+    ],
+    "errors": [],
+    "arguments": [
+      "--fixed-fps",
+      "60"
+    ]
+  },
+  {
+    "runner": "world_progress_d_runner",
+    "exit_code": 0,
+    "results": [
+      "WORLD PROGRESS D RESULT: 170 checks, 0 failures"
+    ],
+    "errors": []
+  },
+  {
+    "runner": "home05_runner",
+    "exit_code": 0,
+    "results": [
+      "HOME 05 RESULT: 103 checks, 0 failures"
+    ],
+    "errors": []
+  },
+  {
+    "runner": "atlas_core_runner",
+    "exit_code": 0,
+    "results": [
+      "ATLAS CORE RESULT: 78 checks, 0 failures"
+    ],
+    "errors": []
+  },
+  {
+    "runner": "housing_c_runner",
+    "exit_code": 1,
+    "results": [
+      "HOUSING C RESULT: 109 checks, 1 failures"
+    ],
+    "errors": [
+      "ERROR: FAIL: 庭院装饰不能覆盖原农田或湖水"
+    ],
+    "arguments": [
+      "--fixed-fps",
+      "60"
+    ],
+    "compatibility_note": "旧断言要求原60格永远不可摆家具；新设计仅保护实际活跃田块。未修改旧测试，已另测真实作物不可被家具覆盖。"
+  }
+]

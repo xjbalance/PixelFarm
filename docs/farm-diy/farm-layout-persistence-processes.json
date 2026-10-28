@@ -1,0 +1,56 @@
+{
+  "processes": [
+    {
+      "case": "write-farm-layout",
+      "group": "current",
+      "sequence": 0,
+      "checks": 19,
+      "failures": 0,
+      "log": "builds/farm-layout-persistence-current-0-write-farm-layout.log"
+    },
+    {
+      "case": "read-farm-layout",
+      "group": "current",
+      "sequence": 1,
+      "checks": 16,
+      "failures": 0,
+      "log": "builds/farm-layout-persistence-current-1-read-farm-layout.log"
+    },
+    {
+      "case": "corrupt-farm-layout",
+      "group": "current",
+      "sequence": 2,
+      "checks": 5,
+      "failures": 0,
+      "log": "builds/farm-layout-persistence-current-2-corrupt-farm-layout.log"
+    },
+    {
+      "case": "read-farm-layout",
+      "group": "current",
+      "sequence": 3,
+      "checks": 16,
+      "failures": 0,
+      "log": "builds/farm-layout-persistence-current-3-read-farm-layout.log"
+    },
+    {
+      "case": "write-farm-layout-v26",
+      "group": "legacy",
+      "sequence": 0,
+      "checks": 9,
+      "failures": 0,
+      "log": "builds/farm-layout-persistence-legacy-0-write-farm-layout-v26.log"
+    },
+    {
+      "case": "read-farm-layout-v26",
+      "group": "legacy",
+      "sequence": 1,
+      "checks": 16,
+      "failures": 0,
+      "log": "builds/farm-layout-persistence-legacy-1-read-farm-layout-v26.log"
+    }
+  ],
+  "checks": 81,
+  "failures": 0,
+  "isolated_profiles": 2,
+  "android_device_tested": false
+}

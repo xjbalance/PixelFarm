@@ -1,0 +1,364 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    {
+      "name": "browser",
+      "path": "res://builds/farm-diy-editor-browser.png",
+      "window": [
+        1280,
+        720
+      ]
+    },
+    {
+      "name": "home_preview",
+      "path": "res://builds/farm-diy-editor-home_preview.png",
+      "window": [
+        1280,
+        720
+      ]
+    },
+    {
+      "name": "home_after",
+      "path": "res://builds/farm-diy-editor-home_after.png",
+      "window": [
+        1280,
+        720
+      ]
+    },
+    {
+      "name": "full_farm_after",
+      "path": "res://builds/farm-diy-editor-full_farm_after.png",
+      "window": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "name": "home_storage_preview",
+      "path": "res://builds/farm-diy-editor-home_storage_preview.png",
+      "window": [
+        1280,
+        720
+      ]
+    },
+    {
+      "name": "storage_browser",
+      "path": "res://builds/farm-diy-editor-storage_browser.png",
+      "window": [
+        1280,
+        720
+      ]
+    },
+    {
+      "name": "water_preview",
+      "path": "res://builds/farm-diy-editor-water_preview.png",
+      "window": [
+        1280,
+        720
+      ]
+    },
+    {
+      "name": "layout_1280x720",
+      "path": "res://builds/farm-diy-editor-layout_1280x720.png",
+      "window": [
+        1280,
+        720
+      ]
+    },
+    {
+      "name": "layout_1560x720",
+      "path": "res://builds/farm-diy-editor-layout_1560x720.png",
+      "window": [
+        1560,
+        720
+      ]
+    },
+    {
+      "name": "layout_1600x720",
+      "path": "res://builds/farm-diy-editor-layout_1600x720.png",
+      "window": [
+        1600,
+        720
+      ]
+    },
+    {
+      "name": "layout_1280x960",
+      "path": "res://builds/farm-diy-editor-layout_1280x960.png",
+      "window": [
+        1280,
+        960
+      ]
+    },
+    {
+      "name": "dpi_480_inset",
+      "path": "res://builds/farm-diy-editor-dpi_480_inset.png",
+      "window": [
+        1280,
+        720
+      ]
+    }
+  ],
+  "checks": 164,
+  "failures": 0,
+  "layout_samples": [
+    {
+      "buttons": [
+        [
+          362,
+          574,
+          291,
+          48
+        ],
+        [
+          661,
+          574,
+          291,
+          48
+        ],
+        [
+          960,
+          574,
+          292,
+          48
+        ]
+      ],
+      "footer": [
+        346,
+        496,
+        922,
+        212
+      ],
+      "palette": [
+        12,
+        12,
+        322,
+        696
+      ],
+      "safe": [
+        0,
+        0,
+        1280,
+        720
+      ],
+      "target": 48,
+      "valid": true,
+      "window": [
+        1280,
+        720
+      ]
+    },
+    {
+      "buttons": [
+        [
+          362,
+          574,
+          384,
+          48
+        ],
+        [
+          754,
+          574,
+          385,
+          48
+        ],
+        [
+          1147,
+          574,
+          385,
+          48
+        ]
+      ],
+      "footer": [
+        346,
+        496,
+        1202,
+        212
+      ],
+      "palette": [
+        12,
+        12,
+        322,
+        696
+      ],
+      "safe": [
+        0,
+        0,
+        1560,
+        720
+      ],
+      "target": 48,
+      "valid": true,
+      "window": [
+        1560,
+        720
+      ]
+    },
+    {
+      "buttons": [
+        [
+          362,
+          574,
+          398,
+          48
+        ],
+        [
+          768,
+          574,
+          398,
+          48
+        ],
+        [
+          1174,
+          574,
+          398,
+          48
+        ]
+      ],
+      "footer": [
+        346,
+        496,
+        1242,
+        212
+      ],
+      "palette": [
+        12,
+        12,
+        322,
+        696
+      ],
+      "safe": [
+        0,
+        0,
+        1600,
+        720
+      ],
+      "target": 48,
+      "valid": true,
+      "window": [
+        1600,
+        720
+      ]
+    },
+    {
+      "buttons": [
+        [
+          362,
+          814,
+          291,
+          48
+        ],
+        [
+          661,
+          814,
+          291,
+          48
+        ],
+        [
+          960,
+          814,
+          292,
+          48
+        ]
+      ],
+      "footer": [
+        346,
+        736,
+        922,
+        212
+      ],
+      "palette": [
+        12,
+        12,
+        322,
+        936
+      ],
+      "safe": [
+        0,
+        0,
+        1280,
+        960
+      ],
+      "target": 48,
+      "valid": true,
+      "window": [
+        1280,
+        960
+      ]
+    }
+  ],
+  "platform": "X11",
+  "registry": {
+    "fixture_ids": 64,
+    "lake_representation": "live_tilemap_terrain",
+    "listed_fixture_ids": 64,
+    "nodes_per_fixture": {
+      "barn": 1,
+      "berry": 1,
+      "board": 1,
+      "coop": 1,
+      "decor:bush:0": 1,
+      "decor:bush:1": 1,
+      "decor:bush:2": 1,
+      "decor:bush:3": 1,
+      "decor:bush:4": 1,
+      "decor:bush:5": 1,
+      "decor:cart:0": 1,
+      "decor:flowers:0": 1,
+      "decor:flowers:1": 1,
+      "decor:flowers:2": 1,
+      "decor:flowers:3": 1,
+      "decor:flowers:4": 1,
+      "decor:lantern:0": 1,
+      "decor:lantern:1": 1,
+      "decor:lantern:2": 1,
+      "ecology": 1,
+      "explore:forest_entry": 1,
+      "explore:lake_entry": 1,
+      "fence:16": 1,
+      "fence:17": 1,
+      "fence:18": 1,
+      "fence:19": 1,
+      "fence:23": 1,
+      "fence:24": 1,
+      "fence:25": 1,
+      "fence:26": 1,
+      "fence:27": 1,
+      "festival_spring": 1,
+      "festival_summer": 1,
+      "fishing_farm": 1,
+      "fold": 1,
+      "gate:east_holding": 1,
+      "gate:forest_holding": 1,
+      "gate:lake_holding": 1,
+      "gate:manor_holding": 1,
+      "greenhouse": 2,
+      "home": 2,
+      "lake": 0,
+      "mail": 1,
+      "memory:orchard": 1,
+      "memory:pond": 1,
+      "pen_1": 1,
+      "pen_2": 1,
+      "pen_3": 1,
+      "pen_4": 1,
+      "recovery": 1,
+      "river:pond_high": 1,
+      "river:pond_low": 1,
+      "shop": 2,
+      "social:cycle": 1,
+      "social:ecology_after": 1,
+      "social:lake_date": 1,
+      "social:star_lake": 1,
+      "social:summer_sky": 1,
+      "social:winter_window": 1,
+      "star:desk_left": 1,
+      "star:desk_right": 1,
+      "village_gate": 1,
+      "workshop": 1,
+      "yard": 1
+    },
+    "physical_groups": 63,
+    "resource_nodes": 42,
+    "scene_fixture_nodes": 66
+  }
+}

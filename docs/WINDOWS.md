@@ -1,5 +1,7 @@
 # Windows 64位电脑版
 
+当前完整包已包含[农场全场DIY](REPORT-FARM-DIY.md)，使用v27存档并兼容原v1–v26。更新时请同时替换EXE与配套PCK；旧档继续位于原应用数据目录。
+
 给 Windows 玩家发送 `builds/PixelWorld-0.8.0-Windows-x64.zip`。全部解压后双击 `PixelWorld.exe`，旁边的 `PixelWorld.pck` 是配套游戏资源，必须保留。玩家不需要安装 Godot、Python 或 .NET。
 
 推荐 Windows 10/11 64位和支持 OpenGL 3.3 的显卡驱动。操作与当前 0.8.0 相同：点击地面行走，WASD/方向键移动，E交互，B背包，J委托，M地图，Esc菜单，F5保存，F9读取。

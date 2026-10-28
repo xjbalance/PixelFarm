@@ -1,0 +1,25 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    {
+      "name": "relocated_crops",
+      "path": "res://builds/farm-diy-production-relocated_crops.png"
+    },
+    {
+      "name": "relocated_resource",
+      "path": "res://builds/farm-diy-production-relocated_resource.png"
+    },
+    {
+      "name": "new_water",
+      "path": "res://builds/farm-diy-production-new_water.png"
+    },
+    {
+      "name": "filled_water_and_crop",
+      "path": "res://builds/farm-diy-production-filled_water_and_crop.png"
+    }
+  ],
+  "checks": 88,
+  "failures": 0,
+  "platform": "X11",
+  "save_version": 27
+}
