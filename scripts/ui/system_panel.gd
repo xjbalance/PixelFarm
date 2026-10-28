@@ -7,6 +7,7 @@ signal bag_requested
 signal journal_requested
 signal story_requested
 signal new_game_requested
+signal character_switch_requested
 var title: Label
 var body: Label
 var actions: VBoxContainer
@@ -74,6 +75,7 @@ func open_panel(for_sleep: bool = false) -> void:
 		actions.add_child(FarmUIStyle.button("背包 B",func(): close_panel();bag_requested.emit(),150))
 		actions.add_child(FarmUIStyle.button("委托 J",func(): close_panel();journal_requested.emit(),150))
 		actions.add_child(FarmUIStyle.button("手记",func(): close_panel();story_requested.emit(),150))
+		actions.add_child(FarmUIStyle.button("切换人物形象",request_character_switch,180))
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation",10)
 		actions.add_child(row)
@@ -132,6 +134,10 @@ func ask_new_game() -> void:
 func confirm_new_game(token: int) -> void:
 	if not visible or sleep_mode or not _new_game_pending or token!=_view_token: return
 	close_panel();new_game_requested.emit()
+
+func request_character_switch() -> void:
+	if not visible or sleep_mode or _new_game_pending: return
+	close_panel();character_switch_requested.emit()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed("ui_cancel"):

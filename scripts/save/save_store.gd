@@ -105,6 +105,7 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	if data.is_empty(): return false
 	GameState.restoring=true
 	if game.has_method("cancel_character_creation"): game.cancel_character_creation(false)
+	if game.has_method("cancel_character_switch"): game.cancel_character_switch(false)
 	WorldChanges.restoring=true
 	game.cancel_pending_save()
 	while game.hud.close_active_panel(): pass

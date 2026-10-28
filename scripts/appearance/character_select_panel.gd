@@ -1,5 +1,5 @@
 extends PanelContainer
-## 选择只是预览。外观与新档提交由主场景在confirmed之后统一处理。
+## 选择只是预览。新游戏和游戏内换形象的提交均由主场景处理。
 signal confirmed(gender: String)
 signal cancelled
 
@@ -19,7 +19,9 @@ var status_label: Label
 var header: HBoxContainer
 var footer: HBoxContainer
 var subtitle: Label
+var title_label: Label
 var gender_row: HBoxContainer
+var runtime_mode: bool=false
 var _opened: bool=false
 var _finishing: bool=false
 var _fingers: Dictionary={}
@@ -39,7 +41,7 @@ func _ready() -> void:
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;hide()
 	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",12);add_child(column)
 	header=HBoxContainer.new();column.add_child(header)
-	FarmUIStyle.heading(header,"新的田园生活","house_1")
+	title_label=FarmUIStyle.heading(header,"新的田园生活","house_1")
 	back_button=FarmUIStyle.button("返回",close_panel,112);header.add_child(back_button)
 	subtitle=FarmUIStyle.label("选择你的主角形象。可以反复预选，确认角色后再开始新的生活。",18)
 	subtitle.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;column.add_child(subtitle)
@@ -57,6 +59,10 @@ func _ready() -> void:
 	# 后加入的输入节点先观察原生触点，阻止双指和混合设备误按最终确认。
 	var guard:=GestureGuard.new();guard.host=self;add_child(guard)
 	get_viewport().size_changed.connect(layout_panel)
+	# 首次显示时自动换行的最小高度可能尚未稳定；容器排版后重新收回安全区。
+	minimum_size_changed.connect(func():
+		if _opened: call_deferred("layout_panel")
+	)
 	Events.location_changed.connect(func(_area: String):
 		if _opened: close_panel()
 	)
@@ -88,10 +94,13 @@ func build_card(gender: String) -> void:
 	var selected:=FarmUIStyle.label("",16,FarmUIStyle.MUTED)
 	selected.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;column.add_child(selected);selection_labels[gender]=selected
 
-func open_panel(initial_gender: String="male") -> bool:
+func open_panel(initial_gender: String="male", for_switch: bool=false) -> bool:
 	if _opened or GameState.modal or GameState.restoring: return false
 	if is_instance_valid(game) and (game.backgrounded or game.closing): return false
 	selected_gender=initial_gender if initial_gender in GENDERS else "male"
+	runtime_mode=for_switch
+	title_label.text="切换人物形象" if runtime_mode else "新的田园生活"
+	subtitle.text="选择新的主角形象，小京会同步切换。农场、任务与关系进度保持不变。" if runtime_mode else "选择你的主角形象。可以反复预选，确认角色后再开始新的生活。"
 	_finishing=false;_opened=true;reset_gesture()
 	if is_instance_valid(game) and is_instance_valid(game.touch_input):
 		_fingers=game.touch_input.fingers.duplicate();_blocked=not _fingers.is_empty()
@@ -123,14 +132,15 @@ func refresh_previews() -> void:
 		selection_labels[gender].add_theme_color_override("font_color",FarmUIStyle.TITLE if chosen else FarmUIStyle.MUTED)
 	preview_data=preview_paths(selected_gender)
 	companion_image.texture=load_preview(str(preview_data.get("companion_portrait","")))
-	companion_label.text="与你相遇的小京 · "+("女性形象" if preview_data.get("xiaojing_gender","")=="female" else "男性形象")
+	companion_label.text=("同步切换小京 · " if runtime_mode else "与你相遇的小京 · ")+("女性形象" if preview_data.get("xiaojing_gender","")=="female" else "男性形象")
 	var ready: bool=images[selected_gender].texture!=null and companion_image.texture!=null
-	status_label.text="小京会以对应形象登场，无需另作选择。" if ready else "角色图像暂未能加载，请重新打开后再试。"
+	status_label.text=("确认后保存形象；返回可取消预选。" if runtime_mode else "小京会以对应形象登场，无需另作选择。") if ready else "角色图像暂未能加载，请重新打开后再试。"
 	confirm_button.disabled=not ready
-	confirm_button.text="确认男主角并开始" if selected_gender=="male" else "确认女主角并开始"
+	confirm_button.text=("使用男主角形象" if selected_gender=="male" else "使用女主角形象") if runtime_mode else ("确认男主角并开始" if selected_gender=="male" else "确认女主角并开始")
 
 func confirm_selection() -> bool:
 	if not _opened or _finishing or _blocked or not _fingers.is_empty() or _mouse_held or confirm_button.disabled: return false
+	if GameState.restoring or (is_instance_valid(game) and (game.backgrounded or game.closing)): return false
 	_finishing=true
 	var chosen: String=selected_gender
 	finish_view();confirmed.emit(chosen);return true

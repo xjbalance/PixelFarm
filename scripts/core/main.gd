@@ -28,6 +28,7 @@ var character_select: PanelContainer
 var home_return: HomeReturnController
 var save_path: String=FarmSaveStore.PATH
 var awaiting_character_choice: bool=false
+var switching_character: bool=false
 var new_game_seed: Dictionary={}
 var _reset_after_character_choice: bool=false
 var _new_game_backup_done: bool=false
@@ -123,7 +124,10 @@ func _ready() -> void:
 	hud.safe.add_child(character_select);character_select.setup(self);hud.character_select_panel=character_select
 	character_select.confirmed.connect(confirm_character_creation)
 	character_select.cancelled.connect(cancel_character_creation)
+	character_select.confirmed.connect(confirm_character_switch)
+	character_select.cancelled.connect(cancel_character_switch)
 	hud.system_panel.new_game_requested.connect(begin_character_creation)
+	hud.system_panel.character_switch_requested.connect(begin_character_switch)
 	# 默认新档在读取现有进度之前保留；选择确认前不重置任何旧游戏数据。
 	new_game_seed=FarmSaveStore.snapshot(self)
 	Events.notice.emit("欢迎回家。屋东的信箱里，有一封留给你的信。")
@@ -133,7 +137,7 @@ func _ready() -> void:
 		begin_character_creation(false)
 
 func begin_character_creation(reset_progress: bool=true) -> bool:
-	if awaiting_character_choice or GameState.modal or GameState.restoring or backgrounded or closing: return false
+	if awaiting_character_choice or switching_character or GameState.modal or GameState.restoring or backgrounded or closing: return false
 	if player.action_time>0: return false
 	cancel_pending_save();auto_move.cancel();player.velocity=Vector2.ZERO;player.touch_direction=Vector2.ZERO
 	awaiting_character_choice=true;_reset_after_character_choice=reset_progress;_new_game_backup_done=false
@@ -180,6 +184,57 @@ func cancel_character_creation(user_cancel: bool=true) -> void:
 		# 未确认的新旅程没有可保存的角色；退出不能把默认男主写成新档。
 		persistence_enabled=false
 		close_session()
+
+func character_switch_unavailable_reason() -> String:
+	if backgrounded or closing or GameState.restoring or GameClock.settling or GameClock.minutes>=1440:
+		return "当前暂时无法切换人物，请稍后再试。"
+	if awaiting_character_choice or player.suspended or player.action_time>0 or farm.committing or Housing.busy or resource_world.committing() or home_rest.busy:
+		return "请等待当前动作完成，再切换人物形象。"
+	if Fishing.active() or (GameState.location=="greenhouse" and StarStory.state.wedding_phase==3):
+		return "请先完成当前钓鱼或仪式，再切换人物形象。"
+	return ""
+
+func begin_character_switch() -> bool:
+	if switching_character or GameState.modal: return false
+	var reason: String=character_switch_unavailable_reason()
+	if reason!="":
+		Events.notice.emit(reason)
+		return false
+	auto_move.cancel();player.velocity=Vector2.ZERO;player.touch_direction=Vector2.ZERO
+	hud.joystick.reset();touch_input.reset()
+	switching_character=true
+	if character_select.open_panel(Appearance.gender("player"),true): return true
+	switching_character=false;return false
+
+func confirm_character_switch(gender: String) -> void:
+	if not switching_character or gender not in CharacterAppearance.GENDERS: return
+	# 选择页在发出确认前关闭；其他模态界面不能提交迟到的选择。
+	if GameState.modal: return
+	var reason: String=character_switch_unavailable_reason()
+	if reason!="":
+		cancel_character_switch(false);Events.notice.emit(reason);return
+	var paths:=CharacterAppearance.preview_paths(gender)
+	for key in ["player_asset","companion_asset","player_portrait","companion_portrait","player_standing","companion_standing","player_wedding","companion_wedding"]:
+		if not ResourceLoader.exists(str(paths[key])):
+			character_select.open_panel(gender,true);character_select.status_label.text="角色资源未能完整载入，请稍后再试。";return
+	var previous: Dictionary=Appearance.snapshot()
+	# 不重载经营状态、不触发新游戏，也不重建角色或场景。
+	cancel_pending_save()
+	var accepted: bool=Appearance.set_player_gender(gender)
+	if accepted and persistence_enabled: accepted=FarmSaveStore.write(self,save_path)
+	if not accepted:
+		Appearance.restore(previous)
+		character_select.open_panel(gender,true);character_select.status_label.text="形象保存失败，原形象与游戏进度已保留。可重试或返回。";return
+	switching_character=false;touch_input.reset();hud.joystick.reset()
+	hud.system_panel.open_panel()
+	Events.notice.emit("人物形象已切换，小京也已同步。当前游戏进度保持不变。")
+
+func cancel_character_switch(user_cancel: bool=true) -> void:
+	if not switching_character: return
+	switching_character=false
+	if character_select.visible: character_select.finish_view()
+	if user_cancel and not backgrounded and not closing and not GameState.restoring and not GameClock.settling:
+		hud.system_panel.open_panel()
 
 func opening_letter() -> void:
 	if Story.stage == 0 and not GameState.modal: Events.notice.emit("先回小屋看看。窗下木盒里有一封旧信和半张地图。")

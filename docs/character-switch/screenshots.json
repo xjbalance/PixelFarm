@@ -1,0 +1,66 @@
+{
+  "platform": "X11",
+  "android_device_tested": false,
+  "captures": [
+    {
+      "path": "docs/character-switch/menu_entry.png",
+      "source": "builds/appearance-switch-menu_entry.png",
+      "sha256": "384e03a789741c309d8223f32455fc895ca8468898bc2636ca80db0ee6317beb",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/character-switch/preview_female.png",
+      "source": "builds/appearance-switch-preview_female.png",
+      "sha256": "9319bc07b84bfb3f75a834076d12dd2369b5b9b7076ad2c9d0acb0b6cde91c48",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/character-switch/menu_male.png",
+      "source": "builds/appearance-switch-menu_male.png",
+      "sha256": "03ae3e65df404897db35e977c8c64516bd93e1a451655c5482fbaa18e6d6f91d",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/character-switch/menu_female.png",
+      "source": "builds/appearance-switch-menu_female.png",
+      "sha256": "3f6232967bcb8eeb3beaaa998c06169dbb1bfd67c852dd40941de24a15cb39af",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/character-switch/world_male.png",
+      "source": "builds/appearance-switch-world_male.png",
+      "sha256": "92d0b16a5a230d34a42ea9c4d58e1adce5e35dc3fa8726d3bbe0df83970eb34e",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/character-switch/world_female.png",
+      "source": "builds/appearance-switch-world_female.png",
+      "sha256": "9d83e626a9181668b115cf8918b81f8e800cef5b700aa956d564986e0030c3fa",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/character-switch/layout_1280x720.png",
+      "source": "builds/appearance-switch-layout_1280x720.png",
+      "sha256": "b2bc6964e37e1fa1fd75518641f6d34a731a7254eebeff49856c180d043b0782",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/character-switch/layout_1560x720.png",
+      "source": "builds/appearance-switch-layout_1560x720.png",
+      "sha256": "45d21d50a067aebcfd5635e49de98e2d9dd068c7d09aef98981154cdd9a34a62",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/character-switch/layout_1600x720.png",
+      "source": "builds/appearance-switch-layout_1600x720.png",
+      "sha256": "d24c9f2c62f3d17726b996f768629a7d7648a81ac3a58304361bb8c2d7ffeb95",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/character-switch/layout_1280x960.png",
+      "source": "builds/appearance-switch-layout_1280x960.png",
+      "sha256": "5fc6569c39506b8faae48d8d5c0bb3e622903568f9b31ffdb8220dc005fd3eba",
+      "actual_godot_window": true
+    }
+  ]
+}

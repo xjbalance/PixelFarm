@@ -1,0 +1,178 @@
+{
+  "feature": "游戏内切换人物形象",
+  "save_version": 25,
+  "save_schema_changed": false,
+  "new_state": {
+    "android_device_tested": false,
+    "captures": [],
+    "checks": 126,
+    "failures": 0,
+    "platform": "headless"
+  },
+  "new_window": {
+    "android_device_tested": false,
+    "captures": [
+      {
+        "name": "menu_entry",
+        "path": "res://builds/appearance-switch-menu_entry.png"
+      },
+      {
+        "name": "preview_female",
+        "path": "res://builds/appearance-switch-preview_female.png"
+      },
+      {
+        "name": "menu_female",
+        "path": "res://builds/appearance-switch-menu_female.png"
+      },
+      {
+        "name": "world_female",
+        "path": "res://builds/appearance-switch-world_female.png"
+      },
+      {
+        "name": "menu_male",
+        "path": "res://builds/appearance-switch-menu_male.png"
+      },
+      {
+        "name": "world_male",
+        "path": "res://builds/appearance-switch-world_male.png"
+      },
+      {
+        "name": "menu_female",
+        "path": "res://builds/appearance-switch-menu_female.png"
+      },
+      {
+        "name": "world_female",
+        "path": "res://builds/appearance-switch-world_female.png"
+      },
+      {
+        "name": "menu_male",
+        "path": "res://builds/appearance-switch-menu_male.png"
+      },
+      {
+        "name": "world_male",
+        "path": "res://builds/appearance-switch-world_male.png"
+      },
+      {
+        "name": "layout_1280x720",
+        "path": "res://builds/appearance-switch-layout_1280x720.png"
+      },
+      {
+        "name": "layout_1560x720",
+        "path": "res://builds/appearance-switch-layout_1560x720.png"
+      },
+      {
+        "name": "layout_1600x720",
+        "path": "res://builds/appearance-switch-layout_1600x720.png"
+      },
+      {
+        "name": "layout_1280x960",
+        "path": "res://builds/appearance-switch-layout_1280x960.png"
+      },
+      {
+        "name": "menu_entry",
+        "path": "res://builds/appearance-switch-menu_entry.png"
+      }
+    ],
+    "checks": 126,
+    "failures": 0,
+    "platform": "X11"
+  },
+  "state_regressions": [
+    {
+      "suite": "character_select_runner",
+      "log": "builds/appearance-switch-final-character_select_runner.log",
+      "checks": 36,
+      "failures": 0
+    },
+    {
+      "suite": "scheme_c_game_runner",
+      "log": "builds/appearance-switch-final-scheme_c_game_runner.log",
+      "checks": 54,
+      "failures": 0
+    },
+    {
+      "suite": "appearance_runner",
+      "log": "builds/appearance-switch-regression-appearance_runner.log",
+      "checks": 44,
+      "failures": 0
+    },
+    {
+      "suite": "home_teleport_runner",
+      "log": "builds/appearance-switch-regression-home_teleport_runner.log",
+      "checks": 109,
+      "failures": 0
+    }
+  ],
+  "persistence": {
+    "processes": 6,
+    "checks": 40,
+    "failures": 0,
+    "cases": [
+      "v25 write",
+      "v25 read",
+      "corrupt primary",
+      "backup read",
+      "real v24 write",
+      "v24 migrated read"
+    ]
+  },
+  "window_regressions": [
+    {
+      "suite": "character_select_runner",
+      "log": "builds/window-071-character_select_runner.log",
+      "checks": 36,
+      "failures": 0
+    },
+    {
+      "suite": "scheme_c_game_render",
+      "log": "builds/window-071-scheme_c_game_render.log",
+      "checks": 54,
+      "failures": 0
+    },
+    {
+      "suite": "home_teleport_render",
+      "log": "builds/window-071-home_teleport_render.log",
+      "checks": 109,
+      "failures": 0
+    }
+  ],
+  "unique_new_checks": 126,
+  "targeted_state_checks_including_persistence": 409,
+  "targeted_window_checks": 325,
+  "baseline_checks": 90,
+  "baseline_included_in_totals": false,
+  "baseline_logs": [
+    "builds/appearance-switch-baseline-character_select_runner.log",
+    "builds/appearance-switch-baseline-scheme_c_game_runner.log"
+  ],
+  "full_historical_test_matrix_rerun": false,
+  "actual_window_review": [
+    "menu_entry",
+    "preview_female",
+    "layout_1280x720",
+    "layout_1600x720",
+    "layout_1280x960"
+  ],
+  "screenshots": "docs/character-switch/screenshots.json",
+  "fixed_first_open_issue": "Autowrap minimum height initially clamped panel beyond screen. Deferred minimum_size_changed fitting restores safe extent; first-open regression now validates footer and bounds.",
+  "android_device_tested": false,
+  "physical_gamepad_tested": false,
+  "business_changes": false,
+  "android_package": {
+    "path": "builds/PixelWorld-0.7.1-debug.apk",
+    "size_bytes": 71052682,
+    "sha256": "d7b2b456a90f9f01262ebaa04631ab5dbd60a66a91797bfd78172d27e8a32b63",
+    "version_code": 21,
+    "package_name": "org.pixelfarm.windbud",
+    "original_signature_preserved": true,
+    "signature_sha256": "89455063278c15e708389a2caff957c7254ff2e88b3e19aaf23cdd755c90414b",
+    "signed_export_verified": true,
+    "actual_apk_assets_desktop_startup": true,
+    "actual_apk_both_runtime_switches_and_save_verified": true,
+    "logs": [
+      "builds/android-apk-assets-runtime-0.7.1.log",
+      "builds/appearance-switch-final-apk.log"
+    ],
+    "android_device_tested": false
+  }
+}
