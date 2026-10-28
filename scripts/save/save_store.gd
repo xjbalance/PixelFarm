@@ -2,7 +2,7 @@ class_name FarmSaveStore
 extends RefCounted
 ## 写临时文件后重命名；保留上一次存档。先完整校验再修改运行状态。
 const PATH: String = "user://farm_save.json"
-const VERSION: int = 26
+const VERSION: int = 27
 
 static func snapshot(game: Node) -> Dictionary:
 	var result: Dictionary={
@@ -27,6 +27,7 @@ static func snapshot(game: Node) -> Dictionary:
 		"journal": game.hud.completed.keys(), "muted": game.get_node("Audio").muted
 	}
 	result.territory=Territory.snapshot()
+	result.farm_layout=FarmLayout.snapshot()
 	# 解锁列表仅为章节事实的缓存；旧测试夹具或旧档恢复不保留另一份自授权限。
 	result.territory.unlocked=Territory.migrate(result).unlocked
 	return result
@@ -35,7 +36,7 @@ static func write(game: Node, path: String = PATH) -> bool:
 	# 新开局外观尚未确认时不能让自动保存替换已有进度。
 	if game.get("awaiting_character_choice")==true: return false
 	# 农活生效事务的同步通知尚未结束时，不能把半份跨系统进度写入磁盘。
-	if game.farm.committing or Housing.busy or game.resource_world.committing(): return false
+	if game.farm.committing or Housing.busy or FarmLayout.busy or game.resource_world.committing(): return false
 	var data := snapshot(game)
 	if not valid(data): return false
 	var file := FileAccess.open(path+".tmp",FileAccess.WRITE)
@@ -116,6 +117,8 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	while game.hud.close_active_panel(): pass
 	game.touch_input.reset()
 	game.auto_move.cancel()
+	# 先装载布局但不发送中间状态；业务恢复会按同一组新位置读取实体。
+	FarmLayout.restore(data.farm_layout,false)
 	Appearance.restore(data.appearance)
 	GameState.set_control_mode(data.control_mode, false)
 	GameState.manual_tool = false
@@ -163,6 +166,9 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	game.hud.refresh_farm_guide()
 	for entry in data.get("journal",[]): game.hud.on_farm_action(entry)
 	game.get_node("Audio").muted = data.get("muted",false)
+	# 所有业务、资源与田地就绪后一次广播，恢复原先收纳/隐藏的业务节点。
+	FarmLayout.changed.emit()
+	if is_instance_valid(game.get("farm_layout_world")) and not FarmLayout.changed.is_connected(game.farm_layout_world.refresh): game.farm_layout_world.refresh()
 	game.change_location(data["location"],Vector2(data["player"][0],data["player"][1]))
 	game.call_deferred("recover_blocked_position")
 	GameState.restoring=false

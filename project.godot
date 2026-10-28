@@ -48,6 +48,7 @@ Housing="*res://scripts/housing/housing_state.gd"
 Exploration="*res://scripts/exploration/exploration_state.gd"
 WorldDevelopment="*res://scripts/world_progress/world_development.gd"
 Territory="*res://scripts/territory/territory_state.gd"
+FarmLayout="*res://scripts/farm_layout/farm_layout_state.gd"
 
 [display]
 window/size/viewport_width=1280

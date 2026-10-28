@@ -2,7 +2,7 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,26): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,27): return {}
 	var data: Dictionary = raw.duplicate(true)
 	# 旧路线盘的数字格ID也必须规范，防止JSON浮点枚举失配/重复矿格。
 	if data.get("xiaojing") is Dictionary and data.xiaojing.get("cave") is Dictionary:
@@ -133,6 +133,13 @@ static func normalize(raw: Variant) -> Dictionary:
 		if not data.get("territory") is Dictionary: return {}
 		data.territory=AbyssSaveSchema.canonical(data.territory)
 		data.territory.unlocked=Territory.migrate(data).unlocked
+	if int(data.version)==26:
+		# 旧农场只有默认位置；新增覆盖布局，不复制设施、资源或任何经营进度。
+		data.farm_layout=FarmLayout.migrate(data)
+		data.version=27
+	else:
+		if not data.get("farm_layout") is Dictionary: return {}
+		data.farm_layout=AbyssSaveSchema.canonical(data.farm_layout)
 	data.world_development=AbyssSaveSchema.canonical(data.get("world_development"))
 	data.exploration=AbyssSaveSchema.canonical(data.get("exploration"))
 	data.housing=AbyssSaveSchema.canonical(data.get("housing"))
@@ -200,7 +207,8 @@ static func valid_current(data: Variant) -> bool:
 	if not AbyssSaveSchema.validate(data.get("abyss"),int(data.day)) or not AbyssSaveSchema.legend(data.get("legend"),data.xiaojing,int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),26,26) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),27,27) or not Story.validate(data.get("story")): return false
+	if not FarmLayout.validate(data.get("farm_layout"),data): return false
 	if not Territory.validate(data.get("territory"),data): return false
 	if not CharacterAppearance.validate(data.get("appearance")): return false
 	if not data.get("tutorial") is Dictionary or GameTutorial.normalize(data.tutorial).is_empty(): return false
@@ -253,13 +261,11 @@ static func valid_current(data: Variant) -> bool:
 		if not id is String or not Catalog.is_item(id): return false
 		if not whole(items[id],1,Inventory.MAX_STACK): return false
 	var plots = data.get("plots")
-	if not plots is Dictionary or plots.size() > 60: return false
+	if not plots is Dictionary or plots.size() > 1536: return false
 	for id in plots:
 		if not id is String: return false
-		var parts: PackedStringArray = id.split(",")
-		if parts.size() != 2 or not parts[0].is_valid_int() or not parts[1].is_valid_int(): return false
-		var cell := Vector2i(int(parts[0]),int(parts[1]))
-		if id != "%d,%d" % [cell.x,cell.y] or not Rect2i(17,16,10,6).has_point(cell): return false
+		var cell:=FarmLayoutCatalog.plot_cell(id)
+		if cell==FarmLayoutCatalog.INVALID_CELL: return false
 		var plot = plots[id]
 		if not plot is Dictionary or not plot.get("watered") is bool: return false
 		var crop_id = plot.get("crop")

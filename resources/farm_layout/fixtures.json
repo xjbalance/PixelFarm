@@ -1,0 +1,1423 @@
+{
+  "version": 1,
+  "fixtures": {
+    "home": {
+      "name": "玩家住宅",
+      "point": [
+        656,
+        410
+      ],
+      "bounds": [
+        -72,
+        -76,
+        144,
+        58
+      ],
+      "display_rect": [
+        -96,
+        -170,
+        192,
+        168
+      ],
+      "solid": true,
+      "associated_points": [
+        [
+          656,
+          402
+        ],
+        [
+          656,
+          440
+        ]
+      ]
+    },
+    "shop": {
+      "name": "林芽的种子摊",
+      "point": [
+        356,
+        416
+      ],
+      "bounds": [
+        -52,
+        -56,
+        104,
+        30
+      ],
+      "display_rect": [
+        -68,
+        -114,
+        136,
+        96
+      ],
+      "solid": true,
+      "associated_points": [
+        [
+          356,
+          392
+        ],
+        [
+          429,
+          441
+        ],
+        [
+          400,
+          432
+        ]
+      ]
+    },
+    "workshop": {
+      "name": "农场修缮台",
+      "point": [
+        820,
+        432
+      ],
+      "bounds": [
+        -26,
+        -31,
+        52,
+        20
+      ],
+      "display_rect": [
+        -36,
+        -64,
+        72,
+        70
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "board": {
+      "name": "委托板",
+      "point": [
+        968,
+        432
+      ],
+      "bounds": [
+        -26,
+        -31,
+        52,
+        20
+      ],
+      "display_rect": [
+        -36,
+        -78,
+        72,
+        84
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "mail": {
+      "name": "信箱",
+      "point": [
+        748,
+        440
+      ],
+      "bounds": [
+        -16,
+        -16,
+        32,
+        20
+      ],
+      "display_rect": [
+        -22,
+        -55,
+        44,
+        60
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "village_gate": {
+      "name": "河湾村入口路牌",
+      "point": [
+        480,
+        216
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -36,
+        -76,
+        72,
+        84
+      ],
+      "solid": false,
+      "associated_points": [
+        [
+          480,
+          260
+        ]
+      ]
+    },
+    "recovery": {
+      "name": "体力恢复椅",
+      "point": [
+        784,
+        464
+      ],
+      "bounds": [
+        -28,
+        -14,
+        56,
+        26
+      ],
+      "display_rect": [
+        -32,
+        -40,
+        64,
+        48
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "yard": {
+      "name": "庭院装修台",
+      "point": [
+        464,
+        752
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -24,
+        -48,
+        48,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "berry": {
+      "name": "野莓灌木",
+      "point": [
+        240,
+        560
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -26,
+        -34,
+        52,
+        44
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "coop": {
+      "name": "鸡舍",
+      "point": [
+        176,
+        880
+      ],
+      "bounds": [
+        -56,
+        -116,
+        112,
+        48
+      ],
+      "display_rect": [
+        -66,
+        -184,
+        132,
+        280
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "barn": {
+      "name": "牛棚",
+      "point": [
+        400,
+        912
+      ],
+      "bounds": [
+        -56,
+        -116,
+        112,
+        48
+      ],
+      "display_rect": [
+        -66,
+        -184,
+        132,
+        280
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "fold": {
+      "name": "羊圈",
+      "point": [
+        816,
+        912
+      ],
+      "bounds": [
+        -56,
+        -116,
+        112,
+        48
+      ],
+      "display_rect": [
+        -66,
+        -184,
+        132,
+        280
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "greenhouse": {
+      "name": "星光温室",
+      "point": [
+        1328,
+        780
+      ],
+      "bounds": [
+        -96,
+        -32,
+        96,
+        32
+      ],
+      "display_rect": [
+        -118,
+        -100,
+        164,
+        122
+      ],
+      "solid": false,
+      "associated_points": [
+        [
+          1280,
+          780
+        ],
+        [
+          1232,
+          800
+        ],
+        [
+          1360,
+          816
+        ],
+        [
+          1312,
+          812
+        ]
+      ]
+    },
+    "pen_1": {
+      "name": "西岸鱼栏",
+      "point": [
+        944,
+        592
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -40,
+        -48,
+        80,
+        88
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "pen_2": {
+      "name": "南岸鱼栏",
+      "point": [
+        1104,
+        752
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -40,
+        -48,
+        80,
+        88
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "pen_3": {
+      "name": "东岸鱼栏",
+      "point": [
+        1264,
+        592
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -40,
+        -48,
+        80,
+        88
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "pen_4": {
+      "name": "北岸鱼栏",
+      "point": [
+        1104,
+        432
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -40,
+        -48,
+        80,
+        88
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "ecology": {
+      "name": "湖泊水样台",
+      "point": [
+        912,
+        688
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -34,
+        -36,
+        68,
+        48
+      ],
+      "solid": false,
+      "associated_points": [
+        [
+          944,
+          688
+        ]
+      ]
+    },
+    "fishing_farm": {
+      "name": "湖泊钓鱼点",
+      "point": [
+        976,
+        464
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -24,
+        -40,
+        48,
+        56
+      ],
+      "solid": false,
+      "associated_points": [
+        [
+          1040,
+          528
+        ]
+      ]
+    },
+    "festival_spring": {
+      "name": "春季播种庆典牌",
+      "point": [
+        880,
+        496
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -28,
+        -52,
+        56,
+        68
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "festival_summer": {
+      "name": "夏季湖畔灯会牌",
+      "point": [
+        1168,
+        800
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -82,
+        -88,
+        164,
+        120
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "lake": {
+      "name": "天然池塘与岸线",
+      "point": [
+        1104,
+        592
+      ],
+      "bounds": [
+        -160,
+        -160,
+        320,
+        320
+      ],
+      "display_rect": [
+        -170,
+        -170,
+        340,
+        340
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "gate:east_holding": {
+      "name": "河东领地路牌",
+      "point": [
+        1088,
+        304
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -24,
+        -38,
+        48,
+        60
+      ],
+      "solid": false,
+      "associated_points": [
+        [
+          1088,
+          352
+        ]
+      ]
+    },
+    "gate:lake_holding": {
+      "name": "湖畔领地路牌",
+      "point": [
+        1152,
+        304
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -24,
+        -38,
+        48,
+        60
+      ],
+      "solid": false,
+      "associated_points": [
+        [
+          1152,
+          352
+        ]
+      ]
+    },
+    "gate:forest_holding": {
+      "name": "林地领地路牌",
+      "point": [
+        1216,
+        304
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -24,
+        -38,
+        48,
+        60
+      ],
+      "solid": false,
+      "associated_points": [
+        [
+          1216,
+          352
+        ]
+      ]
+    },
+    "gate:manor_holding": {
+      "name": "庄园领地路牌",
+      "point": [
+        1280,
+        304
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -24,
+        -38,
+        48,
+        60
+      ],
+      "solid": false,
+      "associated_points": [
+        [
+          1280,
+          352
+        ]
+      ]
+    },
+    "decor:bush:0": {
+      "name": "原生灌木 1",
+      "point": [
+        560,
+        402
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -34,
+        -48,
+        68,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:bush:1": {
+      "name": "原生灌木 2",
+      "point": [
+        755,
+        373
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -34,
+        -48,
+        68,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:bush:2": {
+      "name": "原生灌木 3",
+      "point": [
+        910,
+        310
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -34,
+        -48,
+        68,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:bush:3": {
+      "name": "原生灌木 4",
+      "point": [
+        305,
+        690
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -34,
+        -48,
+        68,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:bush:4": {
+      "name": "原生灌木 5",
+      "point": [
+        1260,
+        690
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -34,
+        -48,
+        68,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:bush:5": {
+      "name": "原生灌木 6",
+      "point": [
+        900,
+        770
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -34,
+        -48,
+        68,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:flowers:0": {
+      "name": "原生花丛 1",
+      "point": [
+        580,
+        414
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -34,
+        -48,
+        68,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:flowers:1": {
+      "name": "原生花丛 2",
+      "point": [
+        726,
+        416
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -34,
+        -48,
+        68,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:flowers:2": {
+      "name": "原生花丛 3",
+      "point": [
+        920,
+        375
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -34,
+        -48,
+        68,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:flowers:3": {
+      "name": "原生花丛 4",
+      "point": [
+        870,
+        748
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -34,
+        -48,
+        68,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:flowers:4": {
+      "name": "原生花丛 5",
+      "point": [
+        490,
+        765
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -34,
+        -48,
+        68,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:lantern:0": {
+      "name": "原生路灯 1",
+      "point": [
+        514,
+        419
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -32,
+        -68,
+        64,
+        76
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:lantern:1": {
+      "name": "原生路灯 2",
+      "point": [
+        900,
+        438
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -32,
+        -68,
+        64,
+        76
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:lantern:2": {
+      "name": "原生路灯 3",
+      "point": [
+        455,
+        715
+      ],
+      "bounds": [
+        -12,
+        -10,
+        24,
+        20
+      ],
+      "display_rect": [
+        -32,
+        -68,
+        64,
+        76
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "decor:cart:0": {
+      "name": "农场手推车 1",
+      "point": [
+        248,
+        496
+      ],
+      "bounds": [
+        -30,
+        -20,
+        62,
+        24
+      ],
+      "display_rect": [
+        -34,
+        -48,
+        68,
+        56
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "fence:16": {
+      "name": "原农田围栏 16",
+      "point": [
+        528,
+        742
+      ],
+      "bounds": [
+        -15,
+        -8,
+        30,
+        10
+      ],
+      "display_rect": [
+        -24,
+        -32,
+        48,
+        42
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "fence:17": {
+      "name": "原农田围栏 17",
+      "point": [
+        560,
+        742
+      ],
+      "bounds": [
+        -15,
+        -8,
+        30,
+        10
+      ],
+      "display_rect": [
+        -24,
+        -32,
+        48,
+        42
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "fence:18": {
+      "name": "原农田围栏 18",
+      "point": [
+        592,
+        742
+      ],
+      "bounds": [
+        -15,
+        -8,
+        30,
+        10
+      ],
+      "display_rect": [
+        -24,
+        -32,
+        48,
+        42
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "fence:19": {
+      "name": "原农田围栏 19",
+      "point": [
+        624,
+        742
+      ],
+      "bounds": [
+        -15,
+        -8,
+        30,
+        10
+      ],
+      "display_rect": [
+        -24,
+        -32,
+        48,
+        42
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "fence:23": {
+      "name": "原农田围栏 23",
+      "point": [
+        752,
+        742
+      ],
+      "bounds": [
+        -15,
+        -8,
+        30,
+        10
+      ],
+      "display_rect": [
+        -24,
+        -32,
+        48,
+        42
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "fence:24": {
+      "name": "原农田围栏 24",
+      "point": [
+        784,
+        742
+      ],
+      "bounds": [
+        -15,
+        -8,
+        30,
+        10
+      ],
+      "display_rect": [
+        -24,
+        -32,
+        48,
+        42
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "fence:25": {
+      "name": "原农田围栏 25",
+      "point": [
+        816,
+        742
+      ],
+      "bounds": [
+        -15,
+        -8,
+        30,
+        10
+      ],
+      "display_rect": [
+        -24,
+        -32,
+        48,
+        42
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "fence:26": {
+      "name": "原农田围栏 26",
+      "point": [
+        848,
+        742
+      ],
+      "bounds": [
+        -15,
+        -8,
+        30,
+        10
+      ],
+      "display_rect": [
+        -24,
+        -32,
+        48,
+        42
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "fence:27": {
+      "name": "原农田围栏 27",
+      "point": [
+        880,
+        742
+      ],
+      "bounds": [
+        -15,
+        -8,
+        30,
+        10
+      ],
+      "display_rect": [
+        -24,
+        -32,
+        48,
+        42
+      ],
+      "solid": true,
+      "associated_points": []
+    },
+    "memory:pond": {
+      "name": "先画出回去的路",
+      "point": [
+        930,
+        752
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -24,
+        -46,
+        48,
+        60
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "memory:orchard": {
+      "name": "星灯以外",
+      "point": [
+        1210,
+        800
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -24,
+        -46,
+        48,
+        60
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "river:pond_high": {
+      "name": "池岸高处量尺",
+      "point": [
+        896,
+        752
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -24,
+        -46,
+        48,
+        60
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "river:pond_low": {
+      "name": "池岸低水尺",
+      "point": [
+        950,
+        800
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -24,
+        -46,
+        48,
+        60
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "explore:forest_entry": {
+      "name": "西北林径 · 迷雾森林",
+      "point": [
+        208,
+        320
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -24,
+        -46,
+        48,
+        60
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "explore:lake_entry": {
+      "name": "湖东旧阶 · 排水检修口",
+      "point": [
+        1296,
+        688
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -24,
+        -46,
+        48,
+        60
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "star:desk_left": {
+      "name": "温室左研究桌",
+      "point": [
+        1280,
+        848
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -26,
+        -44,
+        52,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "star:desk_right": {
+      "name": "温室右研究桌",
+      "point": [
+        1376,
+        848
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -26,
+        -44,
+        52,
+        56
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "social:cycle": {
+      "name": "个人约定观察点 · cycle",
+      "point": [
+        912,
+        688
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -18,
+        -38,
+        36,
+        48
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "social:lake_date": {
+      "name": "个人约定观察点 · lake_date",
+      "point": [
+        944,
+        464
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -18,
+        -38,
+        36,
+        48
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "social:summer_sky": {
+      "name": "个人约定观察点 · summer_sky",
+      "point": [
+        944,
+        464
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -18,
+        -38,
+        36,
+        48
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "social:winter_window": {
+      "name": "个人约定观察点 · winter_window",
+      "point": [
+        1312,
+        812
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -18,
+        -38,
+        36,
+        48
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "social:ecology_after": {
+      "name": "个人约定观察点 · ecology_after",
+      "point": [
+        912,
+        688
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -18,
+        -38,
+        36,
+        48
+      ],
+      "solid": false,
+      "associated_points": []
+    },
+    "social:star_lake": {
+      "name": "个人约定观察点 · star_lake",
+      "point": [
+        944,
+        464
+      ],
+      "bounds": [
+        -12,
+        -14,
+        24,
+        24
+      ],
+      "display_rect": [
+        -18,
+        -38,
+        36,
+        48
+      ],
+      "solid": false,
+      "associated_points": []
+    }
+  }
+}
