@@ -34,6 +34,10 @@ const HINTS := {
 const RETURNS := {"east_holding":[1088,352],"lake_holding":[1152,352],"forest_holding":[1216,352],"manor_holding":[1280,352]}
 const GATES := {"east_holding":[1088,304],"lake_holding":[1152,304],"forest_holding":[1216,304],"manor_holding":[1280,304]}
 const INVALID_CELL := Vector2i(-1000000,-1000000)
+const FARM_BUILDINGS: Array[Rect2]=[Rect2(560,242,192,204),Rect2(288,306,136,146)]
+const FARM_SERVICE_POINTS: Array[Vector2]=[Vector2(656,410),Vector2(356,416),Vector2(820,432),Vector2(968,432),Vector2(748,440),Vector2(480,216),Vector2(784,464),Vector2(464,752),Vector2(240,560),Vector2(912,688),Vector2(944,592),Vector2(1104,752),Vector2(1264,592),Vector2(1104,432),Vector2(176,880),Vector2(400,912),Vector2(816,912)]
+static var _farm_protected: Dictionary={}
+static var _farm_protected_ready: bool=false
 
 static func permissions() -> Dictionary:
 	var result: Dictionary={}
@@ -46,7 +50,7 @@ static func region(area: String) -> Dictionary:
 	if area=="farm":
 		result.editable_rect=Rect2i(2,5,44,25)
 		# 旧经营设施与农田格ID原样保留；动态资源和实际碰撞由场景校验补充。
-		result.protected=[Rect2i(2,13,44,2),Rect2i(14,5,2,25),Rect2i(16,15,12,8),Rect2i(16,8,8,5),Rect2i(32,8,10,4),Rect2i(28,10,16,14),Rect2i(36,22,10,8),Rect2i(2,25,7,5),Rect2i(10,26,6,4),Rect2i(23,26,7,4),Rect2i(9,19,6,6)]
+		result.protected=[Rect2i(2,13,44,2),Rect2i(14,5,2,25),Rect2i(16,15,12,8),Rect2i(16,8,8,5),Rect2i(32,8,10,4),Rect2i(28,10,16,14),Rect2i(36,22,10,8),Rect2i(2,25,7,5),Rect2i(9,25,8,5),Rect2i(22,25,9,5),Rect2i(9,19,6,6)]
 	elif area in ANNEX_AREAS:
 		result.editable_rect=Rect2i(2,2,36,24)
 		result.protected=[Rect2i(19,2,2,24),Rect2i(17,24,6,2)]
@@ -84,7 +88,39 @@ static func ownership(area: String, cell: Vector2i) -> String:
 	if area not in EDITABLE_AREAS or not info.editable_rect.has_point(cell): return "public"
 	for reserved: Rect2i in info.protected:
 		if reserved.has_point(cell): return "public"
+	# 存档校验同样保护原资源的未来再生位置和固定剧情点，不能仅依赖现场物理查询。
+	if area=="farm" and farm_protected_cells().has(cell): return "public"
 	return "semi_open" if info.semi_open.has_point(cell) else "private"
+
+static func _reserve_farm_rect(rect: Rect2) -> void:
+	var start:=Vector2i((rect.position/32).floor())
+	var end:=Vector2i((rect.end/32).ceil())
+	for y in range(maxi(0,start.y),mini(32,end.y)):
+		for x in range(maxi(0,start.x),mini(48,end.x)):
+			if rect.intersects(Rect2(x*32,y*32,32,32)): _farm_protected[Vector2i(x,y)]=true
+
+static func farm_protected_cells() -> Dictionary:
+	if _farm_protected_ready: return _farm_protected
+	_farm_protected_ready=true
+	for resource in FarmResourceCatalog.placements("farm").values():
+		_reserve_farm_rect(Rect2(Vector2(resource.cell)*32-Vector2(26,32),Vector2(52,52)).grow(8))
+	for rect in FARM_BUILDINGS: _reserve_farm_rect(rect)
+	for point in FARM_SERVICE_POINTS: _reserve_farm_rect(Rect2(point-Vector2(42,42),Vector2(84,84)))
+	# 使用原资源中的固定坐标，包含当前隐藏的节日牌、记忆及检修点；不读取解锁进度。
+	for path in ["res://resources/story/star1314.json","res://resources/story/xiaojing.json","res://resources/exploration/exploration.json","res://resources/river/river.json","res://resources/festivals/festivals.json","res://resources/fishing/fishing.json"]:
+		var source: Variant=JSON.parse_string(FileAccess.get_file_as_string(path))
+		if not source is Dictionary: continue
+		for group in ["points","entrances","fishing_sites","events","memories","sites"]:
+			var entries: Variant=source.get(group)
+			if entries is Dictionary: entries=entries.values()
+			if not entries is Array: continue
+			for entry in entries:
+				if not entry is Dictionary or entry.get("area",entry.get("location",""))!="farm": continue
+				var at: Variant=entry.get("position",entry.get("board",entry.get("shore")))
+				if not at is Array or at.size()!=2 or not whole(at[0],-2048,2048) or not whole(at[1],-2048,2048): continue
+				var point:=Vector2(float(at[0]),float(at[1]))
+				_reserve_farm_rect(Rect2(point-Vector2(42,42),Vector2(84,84)))
+	return _farm_protected
 
 static func cell_allowed(area: String, cell: Vector2i, operation: String) -> Dictionary:
 	var rights:=ownership(area,cell)

@@ -73,6 +73,8 @@ func permissions_and_migration() -> void:
 	for cell in [Vector2i(14,20),Vector2i(18,16),Vector2i(34,18),Vector2i(35,9)]:
 		check(not Territory.permission("farm",cell,"stone_path").allowed,"旧主通路、农田、湖泊和入口广场不可覆盖："+str(cell))
 	check(Territory.permission("farm",Vector2i(11,16),"grass").allowed,"私人空地具有明确地表编辑权限")
+	check(not Territory.permission("farm",Vector2i(9,28),"fence").allowed,"牛棚尚未建成也保留原动物未来的放牧站位")
+	check(not Territory.permission("farm",Vector2i(22,28),"fence").allowed,"羊圈未来放牧站位不被初始领地编辑堵住")
 	var stages: Array=[raw_progress(),raw_progress(8),raw_progress(8,true,true),raw_progress(8,true,true,true),raw_progress(8,true,true,true,true)]
 	for i in range(stages.size()):
 		var imported:=Territory.migrate(stages[i])
@@ -110,12 +112,12 @@ func terrain_transactions() -> void:
 	check(wealth=={"coins":Inventory.coins,"items":Inventory.items,"stamina":GameState.stamina},"非生产性景观编辑不产生资源收益或改变原经济与体力")
 
 func objects_and_rights() -> void:
-	reset()
-	var plan:=Territory.plan_place("farm","tree",Vector2i(8,16))
+	reset();unlock_all();GameState.location="east_holding"
+	var plan:=Territory.plan_place("east_holding","tree",Vector2i(8,16))
 	check(plan.valid and Territory.apply_plan(plan) and Territory.state.objects.size()==1,"观赏树占地原子保存")
 	var id: String=Territory.state.objects[0].id
-	check(not Territory.plan_place("farm","flowers",Vector2i(9,17)).valid,"不同植物和设施不能占用同一占地")
-	check(not Territory.plan_terrain("farm",[Vector2i(8,16)],"stone_path").valid,"有植物时不能穿过物体修改地表")
+	check(not Territory.plan_place("east_holding","flowers",Vector2i(9,17)).valid,"不同植物和设施不能占用同一占地")
+	check(not Territory.plan_terrain("east_holding",[Vector2i(8,16)],"stone_path").valid,"有植物时不能穿过物体修改地表")
 	check(Territory.plan_move(id,Vector2i(10,16)).valid and Territory.apply_plan(Territory.plan_move(id,Vector2i(10,16))),"已拥有的小型对象可以移动且ID稳定")
 	check(Territory.state.objects.size()==1 and Territory.state.objects[0].id==id,"移动不复制对象或改变身份")
 	check(Territory.apply_plan(Territory.plan_remove(id)) and Territory.state.objects.is_empty(),"拆除只移除指定私人对象")
@@ -143,6 +145,10 @@ func malformed_saves() -> void:
 		mutation=original.duplicate(true);mutation.terrain={"farm":{key:"soil"}};check(not Territory.validate(mutation),"拒绝非规范、越界及公共格地表："+key)
 	mutation=original.duplicate(true);mutation.terrain={"farm":{"11,16":"unknown"}};check(not Territory.validate(mutation),"未知地表不会加载错误效果")
 	mutation=original.duplicate(true);mutation.terrain={"farm":{"11,16":"natural"}};check(not Territory.validate(mutation),"自然恢复应删除覆盖记录而不是留下冗余状态")
+	mutation=original.duplicate(true);mutation.terrain={"farm":{"10,8":"soil"}};check(not Territory.validate(mutation),"存档注入地表也不能覆盖旧树木的再生与采集空间")
+	mutation=original.duplicate(true);mutation.serial=1;mutation.objects=[{"id":"territory_000001","area":"farm","kind":"lamp","cell":[10,8]}]
+	check(not Territory.validate(mutation),"格式合法的存档设施也不能覆盖原资源保留格")
+	mutation=original.duplicate(true);mutation.terrain={"farm":{"6,17":"soil"}};check(not Territory.validate(mutation),"固定浆果交互点不能通过存档注入地表覆盖")
 	mutation=original.duplicate(true);mutation.serial=2;mutation.objects=[{"id":"territory_000001","area":"farm","kind":"lamp","cell":[11,16]},{"id":"territory_000002","area":"farm","kind":"chest","cell":[11,16]}]
 	check(not Territory.validate(mutation),"恢复存档时再次检查对象占地重叠")
 	mutation.objects[1].cell=[12,16];mutation.objects[1].id="territory_000001";check(not Territory.validate(mutation),"重复对象身份不会加载成复制家具")
