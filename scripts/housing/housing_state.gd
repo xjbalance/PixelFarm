@@ -152,6 +152,12 @@ func placement(id: String) -> Dictionary:
 	for entry in state.placed:
 		if entry.id==id: return entry
 	return {}
+func near_storage() -> bool:
+	if near("home"): return true
+	if not is_instance_valid(game): return false
+	for chest in game.get_tree().get_nodes_in_group("territory_storage"):
+		if chest.has_method("storage_accessible") and chest.storage_accessible(): return true
+	return false
 func has_furniture(kind: String) -> bool:
 	if int(state.owned.get(kind,0))>0: return true
 	for entry in state.placed:
@@ -325,12 +331,12 @@ func clear_style(kind: String) -> bool:
 	if busy or GameClock.settling or not near("home") or kind not in ["wallpaper","floor"] or state.appearance[kind]=="plain": return false
 	busy=true;state.appearance[kind]="plain";_commit();return true
 func deposit(item: String, quantity: int) -> bool:
-	if busy or not near("home") or not Catalog.is_item(item) or quantity<1 or quantity>999 or int(state.storage.get(item,0))+quantity>999: return false
+	if busy or not near_storage() or not Catalog.is_item(item) or quantity<1 or quantity>999 or int(state.storage.get(item,0))+quantity>999: return false
 	if not state.storage.has(item) and state.storage.size()>=slot_count(): return false
 	if not _exchange({item:quantity},{}): return false
 	state.storage[item]=int(state.storage.get(item,0))+quantity;_commit();return true
 func withdraw(item: String, quantity: int) -> bool:
-	if busy or not near("home") or not Catalog.is_item(item) or quantity<1 or quantity>int(state.storage.get(item,0)): return false
+	if busy or not near_storage() or not Catalog.is_item(item) or quantity<1 or quantity>int(state.storage.get(item,0)): return false
 	if not _exchange({},{item:quantity}): return false
 	state.storage[item]-=quantity
 	if state.storage[item]==0: state.storage.erase(item)

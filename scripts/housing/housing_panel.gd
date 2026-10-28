@@ -42,6 +42,9 @@ func open_panel(id: String="home") -> void:
 	if GameState.modal: return
 	if id in ["upgrade","builder"]:
 		area="home";selected_id="";selected_kind="chair"
+	elif id=="territory_storage":
+		if not Housing.near_storage(): return
+		area="home";selected_id="";selected_kind="chair"
 	elif id in ["room","arrange"]:
 		if not Housing.can_arrange(): return
 		area="home";selected_id="";selected_kind="chair"
@@ -53,7 +56,8 @@ func open_panel(id: String="home") -> void:
 		area="farm" if id=="yard" else "home"
 		if not Housing.near(area): return
 		selected_id="";selected_kind="road" if area=="farm" else "chair"
-	context=id;page="upgrade" if id in ["upgrade","builder"] else "layout";quantity=1;selected_cell=Vector2i(-1,-1);pending=Callable();confirm_text=""
+	context=id;page="storage" if id=="territory_storage" else ("upgrade" if id in ["upgrade","builder"] else "layout");quantity=1;selected_cell=Vector2i(-1,-1);pending=Callable();confirm_text=""
+	tab_bar.visible=id!="territory_storage"
 	GameState.set_modal(true);show();refresh()
 func close_panel() -> void:
 	pending=Callable();confirm_text="";selected_cell=Vector2i(-1,-1);lock_payment(false);DiamondPayments.cancel(self);hide();GameState.set_modal(false)
@@ -202,7 +206,8 @@ func show_catalog() -> void:
 			button("还原原"+("墙纸" if kind=="wallpaper" else "地板"),func(): result(Housing.clear_style(kind))).disabled=Housing.state.appearance[kind]=="plain"
 	section=null
 func show_storage() -> void:
-	if area!="home" or not Housing.near("home"): words("储物柜在屋内装修台旁办理，请回小屋。不能远程搬运。",18);return
+	if area!="home" or not Housing.near_storage(): words("请靠近屋内储物柜或自己放置的共享收纳箱。不能远程搬运。",18);return
+	if context=="territory_storage": words("共享住宅收纳：所有箱子使用同一份物品和原住宅容量，移动或拆除箱子不会复制或删除柜内内容。",17)
 	words("储物各物品仍最多999，容量按种类计数。取出满包时整笔取消，不会丢掉柜中物品。",16)
 	var row := HBoxContainer.new();content.add_child(row);row.add_child(FarmUIStyle.label("数量%d" % quantity,18))
 	for delta in [-10,-1,1,10]: row.add_child(FarmUIStyle.button(("+" if delta>0 else "")+str(delta),func(): quantity=clampi(quantity+delta,1,999);refresh(),64))
