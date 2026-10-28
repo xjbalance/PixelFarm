@@ -1,0 +1,152 @@
+{
+  "source": "User-provided Scheme C groups 1–10; native 32px assets",
+  "source_manifest_sha256": "9b80a4e184e664489c4618336af66971ae52b45fe5afbcfbc363af6bf1d05c4f",
+  "method": "47-mask terrain composition, mirrored native pond samples with paired edges, binary 6px shore masks, seasonal palettes; no resize",
+  "gameplay_coordinates_changed": false,
+  "outputs": [
+    {
+      "path": "assets/world_scheme_c/derived/ground_spring.png",
+      "size": [
+        256,
+        32
+      ],
+      "sha256": "6cd819769256669b66fc40a0448cc049eaf733df9683b42103e7bd86729c7f2d"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/farm_ground_spring.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "6a04bff73af45270b19fb615dd0edffdfec440e30db9b328157e99224849f2c2"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/forest_ground_spring.png",
+      "size": [
+        256,
+        32
+      ],
+      "sha256": "116f1d7e3eb03936357e68152e01df59c54cdd676a2802b9606aa0b107052bca"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/annex_ground_spring.png",
+      "size": [
+        160,
+        32
+      ],
+      "sha256": "7a24a8e8d75f8e60ac9e5e888b5e935e04e8e809eb6f0b87d510ba60333cdd7c"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/ground_summer.png",
+      "size": [
+        256,
+        32
+      ],
+      "sha256": "e6f1d0c694025cc1ee828b5d1f89cf5749954aa1865a36c777d3dc8d9d3d0520"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/farm_ground_summer.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "40e5219693f0e93b05e656f2ee489ccf151b8cbfe43742ea2e2fce7f4e5b332b"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/forest_ground_summer.png",
+      "size": [
+        256,
+        32
+      ],
+      "sha256": "6ae41ebaecd4a683ac82e0b871d58d99bd43f83b213f57e963c2f34b04001df9"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/annex_ground_summer.png",
+      "size": [
+        160,
+        32
+      ],
+      "sha256": "2f7160576b0369a037db46a7e96ce61d2b716a921487aa9777f26836640ef576"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/ground_autumn.png",
+      "size": [
+        256,
+        32
+      ],
+      "sha256": "d104ba886e274715fc93c7b8fb6e23769e2488a0f050328767b626087fd72aae"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/farm_ground_autumn.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "494257b4fcbc53155f0df0426709c0eb38d5cec6d368c0f2ea39de9717343bf8"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/forest_ground_autumn.png",
+      "size": [
+        256,
+        32
+      ],
+      "sha256": "084bb50b70b308b2604a0ff8333f04a69a288a5ac2516d8e740a82b7384b9e37"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/annex_ground_autumn.png",
+      "size": [
+        160,
+        32
+      ],
+      "sha256": "32d0df91db2a13cf1a806101797ce8718864ffb06a26706a9fdede6f05a6fc1c"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/ground_winter.png",
+      "size": [
+        256,
+        32
+      ],
+      "sha256": "755c56eb6b1bd10ae39629f0d0b5cd6229345fb873764370426756ac5002c539"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/farm_ground_winter.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "sha256": "1b817d3708912dd28385cfb9893e7c8260312e35c11e3a4464598a9b5a722cfb"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/forest_ground_winter.png",
+      "size": [
+        256,
+        32
+      ],
+      "sha256": "ecd33ec4eb0623c217773a1027bf4726d0955346af7a81dcfbfbb707cd8d8a63"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/annex_ground_winter.png",
+      "size": [
+        160,
+        32
+      ],
+      "sha256": "95b0916d575feb9bd69534d3450733f317cabb18cb45067018e766897f4f9058"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/soil_dry.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "7e04cd4477e75f23d4e0bc562c8f55f31ce2e9710022b58fcb74cdceb5636ca1"
+    },
+    {
+      "path": "assets/world_scheme_c/derived/soil_wet.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8e1d609ad65937695b5c52edba29d1baf3a977d3d94c0eb54e8e92833c8fc45f"
+    }
+  ]
+}

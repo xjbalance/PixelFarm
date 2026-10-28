@@ -1,0 +1,2906 @@
+{
+  "version": 1,
+  "mask_order": [
+    "N",
+    "NE",
+    "E",
+    "SE",
+    "S",
+    "SW",
+    "W",
+    "NW"
+  ],
+  "sets": [
+    {
+      "id": "dirt",
+      "atlas_32": "tiles_32/dirt_terrain.png",
+      "atlas_64": "tiles_64/dirt_terrain.png",
+      "grid": [
+        8,
+        6
+      ],
+      "tile_size_32": [
+        32,
+        32
+      ],
+      "tile_size_64": [
+        64,
+        64
+      ],
+      "bit_order": {
+        "N": 1,
+        "NE": 2,
+        "E": 4,
+        "SE": 8,
+        "S": 16,
+        "SW": 32,
+        "W": 64,
+        "NW": 128
+      },
+      "tiles": [
+        {
+          "mask": 0,
+          "atlas": [
+            0,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 1,
+          "atlas": [
+            1,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 4,
+          "atlas": [
+            2,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 5,
+          "atlas": [
+            3,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 7,
+          "atlas": [
+            4,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 16,
+          "atlas": [
+            5,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 17,
+          "atlas": [
+            6,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 20,
+          "atlas": [
+            7,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 21,
+          "atlas": [
+            0,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 23,
+          "atlas": [
+            1,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 28,
+          "atlas": [
+            2,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 29,
+          "atlas": [
+            3,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 31,
+          "atlas": [
+            4,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 64,
+          "atlas": [
+            5,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 65,
+          "atlas": [
+            6,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 68,
+          "atlas": [
+            7,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 69,
+          "atlas": [
+            0,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 71,
+          "atlas": [
+            1,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 80,
+          "atlas": [
+            2,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 81,
+          "atlas": [
+            3,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 84,
+          "atlas": [
+            4,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 85,
+          "atlas": [
+            5,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 87,
+          "atlas": [
+            6,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 92,
+          "atlas": [
+            7,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 93,
+          "atlas": [
+            0,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 95,
+          "atlas": [
+            1,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 112,
+          "atlas": [
+            2,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 113,
+          "atlas": [
+            3,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 116,
+          "atlas": [
+            4,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 117,
+          "atlas": [
+            5,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 119,
+          "atlas": [
+            6,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 124,
+          "atlas": [
+            7,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 125,
+          "atlas": [
+            0,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 127,
+          "atlas": [
+            1,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 193,
+          "atlas": [
+            2,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 197,
+          "atlas": [
+            3,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 199,
+          "atlas": [
+            4,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 209,
+          "atlas": [
+            5,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 213,
+          "atlas": [
+            6,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 215,
+          "atlas": [
+            7,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 221,
+          "atlas": [
+            0,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 223,
+          "atlas": [
+            1,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 241,
+          "atlas": [
+            2,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 245,
+          "atlas": [
+            3,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 247,
+          "atlas": [
+            4,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 253,
+          "atlas": [
+            5,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 255,
+          "atlas": [
+            6,
+            5
+          ],
+          "terrain": 1
+        }
+      ],
+      "grass_tile": {
+        "atlas": [
+          7,
+          5
+        ],
+        "terrain": 0
+      },
+      "note": "47 patterns transition this generated material against grass. Texture crops and edge masks are deterministic tile export, not separately generated scenes."
+    },
+    {
+      "id": "tilled_soil",
+      "atlas_32": "tiles_32/tilled_soil_terrain.png",
+      "atlas_64": "tiles_64/tilled_soil_terrain.png",
+      "grid": [
+        8,
+        6
+      ],
+      "tile_size_32": [
+        32,
+        32
+      ],
+      "tile_size_64": [
+        64,
+        64
+      ],
+      "bit_order": {
+        "N": 1,
+        "NE": 2,
+        "E": 4,
+        "SE": 8,
+        "S": 16,
+        "SW": 32,
+        "W": 64,
+        "NW": 128
+      },
+      "tiles": [
+        {
+          "mask": 0,
+          "atlas": [
+            0,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 1,
+          "atlas": [
+            1,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 4,
+          "atlas": [
+            2,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 5,
+          "atlas": [
+            3,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 7,
+          "atlas": [
+            4,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 16,
+          "atlas": [
+            5,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 17,
+          "atlas": [
+            6,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 20,
+          "atlas": [
+            7,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 21,
+          "atlas": [
+            0,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 23,
+          "atlas": [
+            1,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 28,
+          "atlas": [
+            2,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 29,
+          "atlas": [
+            3,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 31,
+          "atlas": [
+            4,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 64,
+          "atlas": [
+            5,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 65,
+          "atlas": [
+            6,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 68,
+          "atlas": [
+            7,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 69,
+          "atlas": [
+            0,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 71,
+          "atlas": [
+            1,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 80,
+          "atlas": [
+            2,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 81,
+          "atlas": [
+            3,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 84,
+          "atlas": [
+            4,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 85,
+          "atlas": [
+            5,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 87,
+          "atlas": [
+            6,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 92,
+          "atlas": [
+            7,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 93,
+          "atlas": [
+            0,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 95,
+          "atlas": [
+            1,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 112,
+          "atlas": [
+            2,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 113,
+          "atlas": [
+            3,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 116,
+          "atlas": [
+            4,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 117,
+          "atlas": [
+            5,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 119,
+          "atlas": [
+            6,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 124,
+          "atlas": [
+            7,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 125,
+          "atlas": [
+            0,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 127,
+          "atlas": [
+            1,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 193,
+          "atlas": [
+            2,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 197,
+          "atlas": [
+            3,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 199,
+          "atlas": [
+            4,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 209,
+          "atlas": [
+            5,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 213,
+          "atlas": [
+            6,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 215,
+          "atlas": [
+            7,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 221,
+          "atlas": [
+            0,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 223,
+          "atlas": [
+            1,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 241,
+          "atlas": [
+            2,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 245,
+          "atlas": [
+            3,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 247,
+          "atlas": [
+            4,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 253,
+          "atlas": [
+            5,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 255,
+          "atlas": [
+            6,
+            5
+          ],
+          "terrain": 1
+        }
+      ],
+      "grass_tile": {
+        "atlas": [
+          7,
+          5
+        ],
+        "terrain": 0
+      },
+      "note": "47 patterns transition this generated material against grass. Texture crops and edge masks are deterministic tile export, not separately generated scenes."
+    },
+    {
+      "id": "sand",
+      "atlas_32": "tiles_32/sand_terrain.png",
+      "atlas_64": "tiles_64/sand_terrain.png",
+      "grid": [
+        8,
+        6
+      ],
+      "tile_size_32": [
+        32,
+        32
+      ],
+      "tile_size_64": [
+        64,
+        64
+      ],
+      "bit_order": {
+        "N": 1,
+        "NE": 2,
+        "E": 4,
+        "SE": 8,
+        "S": 16,
+        "SW": 32,
+        "W": 64,
+        "NW": 128
+      },
+      "tiles": [
+        {
+          "mask": 0,
+          "atlas": [
+            0,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 1,
+          "atlas": [
+            1,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 4,
+          "atlas": [
+            2,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 5,
+          "atlas": [
+            3,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 7,
+          "atlas": [
+            4,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 16,
+          "atlas": [
+            5,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 17,
+          "atlas": [
+            6,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 20,
+          "atlas": [
+            7,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 21,
+          "atlas": [
+            0,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 23,
+          "atlas": [
+            1,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 28,
+          "atlas": [
+            2,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 29,
+          "atlas": [
+            3,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 31,
+          "atlas": [
+            4,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 64,
+          "atlas": [
+            5,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 65,
+          "atlas": [
+            6,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 68,
+          "atlas": [
+            7,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 69,
+          "atlas": [
+            0,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 71,
+          "atlas": [
+            1,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 80,
+          "atlas": [
+            2,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 81,
+          "atlas": [
+            3,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 84,
+          "atlas": [
+            4,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 85,
+          "atlas": [
+            5,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 87,
+          "atlas": [
+            6,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 92,
+          "atlas": [
+            7,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 93,
+          "atlas": [
+            0,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 95,
+          "atlas": [
+            1,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 112,
+          "atlas": [
+            2,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 113,
+          "atlas": [
+            3,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 116,
+          "atlas": [
+            4,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 117,
+          "atlas": [
+            5,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 119,
+          "atlas": [
+            6,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 124,
+          "atlas": [
+            7,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 125,
+          "atlas": [
+            0,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 127,
+          "atlas": [
+            1,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 193,
+          "atlas": [
+            2,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 197,
+          "atlas": [
+            3,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 199,
+          "atlas": [
+            4,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 209,
+          "atlas": [
+            5,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 213,
+          "atlas": [
+            6,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 215,
+          "atlas": [
+            7,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 221,
+          "atlas": [
+            0,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 223,
+          "atlas": [
+            1,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 241,
+          "atlas": [
+            2,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 245,
+          "atlas": [
+            3,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 247,
+          "atlas": [
+            4,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 253,
+          "atlas": [
+            5,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 255,
+          "atlas": [
+            6,
+            5
+          ],
+          "terrain": 1
+        }
+      ],
+      "grass_tile": {
+        "atlas": [
+          7,
+          5
+        ],
+        "terrain": 0
+      },
+      "note": "47 patterns transition this generated material against grass. Texture crops and edge masks are deterministic tile export, not separately generated scenes."
+    },
+    {
+      "id": "gravel",
+      "atlas_32": "tiles_32/gravel_terrain.png",
+      "atlas_64": "tiles_64/gravel_terrain.png",
+      "grid": [
+        8,
+        6
+      ],
+      "tile_size_32": [
+        32,
+        32
+      ],
+      "tile_size_64": [
+        64,
+        64
+      ],
+      "bit_order": {
+        "N": 1,
+        "NE": 2,
+        "E": 4,
+        "SE": 8,
+        "S": 16,
+        "SW": 32,
+        "W": 64,
+        "NW": 128
+      },
+      "tiles": [
+        {
+          "mask": 0,
+          "atlas": [
+            0,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 1,
+          "atlas": [
+            1,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 4,
+          "atlas": [
+            2,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 5,
+          "atlas": [
+            3,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 7,
+          "atlas": [
+            4,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 16,
+          "atlas": [
+            5,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 17,
+          "atlas": [
+            6,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 20,
+          "atlas": [
+            7,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 21,
+          "atlas": [
+            0,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 23,
+          "atlas": [
+            1,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 28,
+          "atlas": [
+            2,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 29,
+          "atlas": [
+            3,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 31,
+          "atlas": [
+            4,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 64,
+          "atlas": [
+            5,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 65,
+          "atlas": [
+            6,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 68,
+          "atlas": [
+            7,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 69,
+          "atlas": [
+            0,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 71,
+          "atlas": [
+            1,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 80,
+          "atlas": [
+            2,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 81,
+          "atlas": [
+            3,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 84,
+          "atlas": [
+            4,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 85,
+          "atlas": [
+            5,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 87,
+          "atlas": [
+            6,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 92,
+          "atlas": [
+            7,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 93,
+          "atlas": [
+            0,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 95,
+          "atlas": [
+            1,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 112,
+          "atlas": [
+            2,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 113,
+          "atlas": [
+            3,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 116,
+          "atlas": [
+            4,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 117,
+          "atlas": [
+            5,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 119,
+          "atlas": [
+            6,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 124,
+          "atlas": [
+            7,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 125,
+          "atlas": [
+            0,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 127,
+          "atlas": [
+            1,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 193,
+          "atlas": [
+            2,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 197,
+          "atlas": [
+            3,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 199,
+          "atlas": [
+            4,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 209,
+          "atlas": [
+            5,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 213,
+          "atlas": [
+            6,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 215,
+          "atlas": [
+            7,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 221,
+          "atlas": [
+            0,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 223,
+          "atlas": [
+            1,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 241,
+          "atlas": [
+            2,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 245,
+          "atlas": [
+            3,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 247,
+          "atlas": [
+            4,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 253,
+          "atlas": [
+            5,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 255,
+          "atlas": [
+            6,
+            5
+          ],
+          "terrain": 1
+        }
+      ],
+      "grass_tile": {
+        "atlas": [
+          7,
+          5
+        ],
+        "terrain": 0
+      },
+      "note": "47 patterns transition this generated material against grass. Texture crops and edge masks are deterministic tile export, not separately generated scenes."
+    },
+    {
+      "id": "dirt_path",
+      "atlas_32": "tiles_32/dirt_path_terrain.png",
+      "atlas_64": "tiles_64/dirt_path_terrain.png",
+      "grid": [
+        8,
+        6
+      ],
+      "tile_size_32": [
+        32,
+        32
+      ],
+      "tile_size_64": [
+        64,
+        64
+      ],
+      "bit_order": {
+        "N": 1,
+        "NE": 2,
+        "E": 4,
+        "SE": 8,
+        "S": 16,
+        "SW": 32,
+        "W": 64,
+        "NW": 128
+      },
+      "tiles": [
+        {
+          "mask": 0,
+          "atlas": [
+            0,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 1,
+          "atlas": [
+            1,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 4,
+          "atlas": [
+            2,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 5,
+          "atlas": [
+            3,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 7,
+          "atlas": [
+            4,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 16,
+          "atlas": [
+            5,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 17,
+          "atlas": [
+            6,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 20,
+          "atlas": [
+            7,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 21,
+          "atlas": [
+            0,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 23,
+          "atlas": [
+            1,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 28,
+          "atlas": [
+            2,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 29,
+          "atlas": [
+            3,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 31,
+          "atlas": [
+            4,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 64,
+          "atlas": [
+            5,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 65,
+          "atlas": [
+            6,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 68,
+          "atlas": [
+            7,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 69,
+          "atlas": [
+            0,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 71,
+          "atlas": [
+            1,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 80,
+          "atlas": [
+            2,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 81,
+          "atlas": [
+            3,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 84,
+          "atlas": [
+            4,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 85,
+          "atlas": [
+            5,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 87,
+          "atlas": [
+            6,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 92,
+          "atlas": [
+            7,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 93,
+          "atlas": [
+            0,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 95,
+          "atlas": [
+            1,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 112,
+          "atlas": [
+            2,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 113,
+          "atlas": [
+            3,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 116,
+          "atlas": [
+            4,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 117,
+          "atlas": [
+            5,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 119,
+          "atlas": [
+            6,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 124,
+          "atlas": [
+            7,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 125,
+          "atlas": [
+            0,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 127,
+          "atlas": [
+            1,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 193,
+          "atlas": [
+            2,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 197,
+          "atlas": [
+            3,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 199,
+          "atlas": [
+            4,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 209,
+          "atlas": [
+            5,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 213,
+          "atlas": [
+            6,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 215,
+          "atlas": [
+            7,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 221,
+          "atlas": [
+            0,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 223,
+          "atlas": [
+            1,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 241,
+          "atlas": [
+            2,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 245,
+          "atlas": [
+            3,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 247,
+          "atlas": [
+            4,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 253,
+          "atlas": [
+            5,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 255,
+          "atlas": [
+            6,
+            5
+          ],
+          "terrain": 1
+        }
+      ],
+      "grass_tile": {
+        "atlas": [
+          7,
+          5
+        ],
+        "terrain": 0
+      },
+      "note": "47 patterns transition this generated material against grass. Texture crops and edge masks are deterministic tile export, not separately generated scenes."
+    },
+    {
+      "id": "stone_path",
+      "atlas_32": "tiles_32/stone_path_terrain.png",
+      "atlas_64": "tiles_64/stone_path_terrain.png",
+      "grid": [
+        8,
+        6
+      ],
+      "tile_size_32": [
+        32,
+        32
+      ],
+      "tile_size_64": [
+        64,
+        64
+      ],
+      "bit_order": {
+        "N": 1,
+        "NE": 2,
+        "E": 4,
+        "SE": 8,
+        "S": 16,
+        "SW": 32,
+        "W": 64,
+        "NW": 128
+      },
+      "tiles": [
+        {
+          "mask": 0,
+          "atlas": [
+            0,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 1,
+          "atlas": [
+            1,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 4,
+          "atlas": [
+            2,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 5,
+          "atlas": [
+            3,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 7,
+          "atlas": [
+            4,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 16,
+          "atlas": [
+            5,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 17,
+          "atlas": [
+            6,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 20,
+          "atlas": [
+            7,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 21,
+          "atlas": [
+            0,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 23,
+          "atlas": [
+            1,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 28,
+          "atlas": [
+            2,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 29,
+          "atlas": [
+            3,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 31,
+          "atlas": [
+            4,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 64,
+          "atlas": [
+            5,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 65,
+          "atlas": [
+            6,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 68,
+          "atlas": [
+            7,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 69,
+          "atlas": [
+            0,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 71,
+          "atlas": [
+            1,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 80,
+          "atlas": [
+            2,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 81,
+          "atlas": [
+            3,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 84,
+          "atlas": [
+            4,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 85,
+          "atlas": [
+            5,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 87,
+          "atlas": [
+            6,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 92,
+          "atlas": [
+            7,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 93,
+          "atlas": [
+            0,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 95,
+          "atlas": [
+            1,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 112,
+          "atlas": [
+            2,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 113,
+          "atlas": [
+            3,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 116,
+          "atlas": [
+            4,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 117,
+          "atlas": [
+            5,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 119,
+          "atlas": [
+            6,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 124,
+          "atlas": [
+            7,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 125,
+          "atlas": [
+            0,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 127,
+          "atlas": [
+            1,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 193,
+          "atlas": [
+            2,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 197,
+          "atlas": [
+            3,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 199,
+          "atlas": [
+            4,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 209,
+          "atlas": [
+            5,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 213,
+          "atlas": [
+            6,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 215,
+          "atlas": [
+            7,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 221,
+          "atlas": [
+            0,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 223,
+          "atlas": [
+            1,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 241,
+          "atlas": [
+            2,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 245,
+          "atlas": [
+            3,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 247,
+          "atlas": [
+            4,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 253,
+          "atlas": [
+            5,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 255,
+          "atlas": [
+            6,
+            5
+          ],
+          "terrain": 1
+        }
+      ],
+      "grass_tile": {
+        "atlas": [
+          7,
+          5
+        ],
+        "terrain": 0
+      },
+      "note": "47 patterns transition this generated material against grass. Texture crops and edge masks are deterministic tile export, not separately generated scenes."
+    },
+    {
+      "id": "wood_path",
+      "atlas_32": "tiles_32/wood_path_terrain.png",
+      "atlas_64": "tiles_64/wood_path_terrain.png",
+      "grid": [
+        8,
+        6
+      ],
+      "tile_size_32": [
+        32,
+        32
+      ],
+      "tile_size_64": [
+        64,
+        64
+      ],
+      "bit_order": {
+        "N": 1,
+        "NE": 2,
+        "E": 4,
+        "SE": 8,
+        "S": 16,
+        "SW": 32,
+        "W": 64,
+        "NW": 128
+      },
+      "tiles": [
+        {
+          "mask": 0,
+          "atlas": [
+            0,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 1,
+          "atlas": [
+            1,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 4,
+          "atlas": [
+            2,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 5,
+          "atlas": [
+            3,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 7,
+          "atlas": [
+            4,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 16,
+          "atlas": [
+            5,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 17,
+          "atlas": [
+            6,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 20,
+          "atlas": [
+            7,
+            0
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 21,
+          "atlas": [
+            0,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 23,
+          "atlas": [
+            1,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 28,
+          "atlas": [
+            2,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 29,
+          "atlas": [
+            3,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 31,
+          "atlas": [
+            4,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 64,
+          "atlas": [
+            5,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 65,
+          "atlas": [
+            6,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 68,
+          "atlas": [
+            7,
+            1
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 69,
+          "atlas": [
+            0,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 71,
+          "atlas": [
+            1,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 80,
+          "atlas": [
+            2,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 81,
+          "atlas": [
+            3,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 84,
+          "atlas": [
+            4,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 85,
+          "atlas": [
+            5,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 87,
+          "atlas": [
+            6,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 92,
+          "atlas": [
+            7,
+            2
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 93,
+          "atlas": [
+            0,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 95,
+          "atlas": [
+            1,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 112,
+          "atlas": [
+            2,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 113,
+          "atlas": [
+            3,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 116,
+          "atlas": [
+            4,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 117,
+          "atlas": [
+            5,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 119,
+          "atlas": [
+            6,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 124,
+          "atlas": [
+            7,
+            3
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 125,
+          "atlas": [
+            0,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 127,
+          "atlas": [
+            1,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 193,
+          "atlas": [
+            2,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 197,
+          "atlas": [
+            3,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 199,
+          "atlas": [
+            4,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 209,
+          "atlas": [
+            5,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 213,
+          "atlas": [
+            6,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 215,
+          "atlas": [
+            7,
+            4
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 221,
+          "atlas": [
+            0,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 223,
+          "atlas": [
+            1,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 241,
+          "atlas": [
+            2,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 245,
+          "atlas": [
+            3,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 247,
+          "atlas": [
+            4,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 253,
+          "atlas": [
+            5,
+            5
+          ],
+          "terrain": 1
+        },
+        {
+          "mask": 255,
+          "atlas": [
+            6,
+            5
+          ],
+          "terrain": 1
+        }
+      ],
+      "grass_tile": {
+        "atlas": [
+          7,
+          5
+        ],
+        "terrain": 0
+      },
+      "note": "47 patterns transition this generated material against grass. Texture crops and edge masks are deterministic tile export, not separately generated scenes."
+    }
+  ]
+}

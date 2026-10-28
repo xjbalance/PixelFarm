@@ -1,0 +1,6 @@
+{
+  "source": "User-supplied native32 Scheme C farmhouse, tool_shed, market_stall, flower_pot, flower_basket, moon_lamp",
+  "processing": "Nearest-neighbor fitting, palette variants and existing-art composites; no AI generation in this integration.",
+  "house_levels": "One supplied house, four derived tiers; not four distinct supplied architectures.",
+  "entrances": "Original game positions, collision shapes and interior levels unchanged."
+}

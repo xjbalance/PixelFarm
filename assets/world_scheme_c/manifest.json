@@ -1,0 +1,2472 @@
+{
+  "version": 1,
+  "grid": 32,
+  "origin": "User supplied need/ Scheme C packs, 2026-10-28",
+  "seasonal_derivatives": "Palette adaptations made by import_world_scheme_c.py; not supplied seasonal artwork.",
+  "assets": {
+    "oak_tree": {
+      "id": "oak_tree",
+      "name": "阔叶树",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/oak_tree.png",
+      "size": [
+        96,
+        112
+      ],
+      "anchor": [
+        48,
+        109
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "pine_tree": {
+      "id": "pine_tree",
+      "name": "松树",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/pine_tree.png",
+      "size": [
+        80,
+        128
+      ],
+      "anchor": [
+        40,
+        125
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "birch_tree": {
+      "id": "birch_tree",
+      "name": "白桦树",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/birch_tree.png",
+      "size": [
+        64,
+        112
+      ],
+      "anchor": [
+        32,
+        109
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "apple_tree": {
+      "id": "apple_tree",
+      "name": "果树",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/apple_tree.png",
+      "size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        93
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "blossom_tree": {
+      "id": "blossom_tree",
+      "name": "开花树",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/blossom_tree.png",
+      "size": [
+        96,
+        112
+      ],
+      "anchor": [
+        48,
+        109
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "dead_tree": {
+      "id": "dead_tree",
+      "name": "枯树",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/dead_tree.png",
+      "size": [
+        48,
+        80
+      ],
+      "anchor": [
+        24,
+        77
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "tree_stump": {
+      "id": "tree_stump",
+      "name": "树桩",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/tree_stump.png",
+      "size": [
+        32,
+        24
+      ],
+      "anchor": [
+        16,
+        21
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "bush": {
+      "id": "bush",
+      "name": "灌木丛",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/bush.png",
+      "size": [
+        48,
+        32
+      ],
+      "anchor": [
+        24,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "oak_sapling": {
+      "id": "oak_sapling",
+      "name": "阔叶幼树",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/oak_sapling.png",
+      "size": [
+        24,
+        40
+      ],
+      "anchor": [
+        12,
+        37
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "pine_sapling": {
+      "id": "pine_sapling",
+      "name": "松树幼苗",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/pine_sapling.png",
+      "size": [
+        24,
+        40
+      ],
+      "anchor": [
+        12,
+        37
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "birch_sapling": {
+      "id": "birch_sapling",
+      "name": "白桦幼树",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/birch_sapling.png",
+      "size": [
+        24,
+        40
+      ],
+      "anchor": [
+        12,
+        37
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "apple_sapling": {
+      "id": "apple_sapling",
+      "name": "果树幼苗",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/apple_sapling.png",
+      "size": [
+        24,
+        40
+      ],
+      "anchor": [
+        12,
+        37
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "blossom_sapling": {
+      "id": "blossom_sapling",
+      "name": "开花树幼苗",
+      "group": "01_trees",
+      "path": "res://assets/world_scheme_c/sprites/blossom_sapling.png",
+      "size": [
+        24,
+        40
+      ],
+      "anchor": [
+        12,
+        37
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Trees_Pack"
+    },
+    "short_grass": {
+      "id": "short_grass",
+      "name": "短草",
+      "group": "02_grass_flowers",
+      "path": "res://assets/world_scheme_c/sprites/short_grass.png",
+      "size": [
+        24,
+        16
+      ],
+      "anchor": [
+        12,
+        13
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "tall_grass": {
+      "id": "tall_grass",
+      "name": "长草",
+      "group": "02_grass_flowers",
+      "path": "res://assets/world_scheme_c/sprites/tall_grass.png",
+      "size": [
+        24,
+        32
+      ],
+      "anchor": [
+        12,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "grass_clump": {
+      "id": "grass_clump",
+      "name": "草丛",
+      "group": "02_grass_flowers",
+      "path": "res://assets/world_scheme_c/sprites/grass_clump.png",
+      "size": [
+        32,
+        24
+      ],
+      "anchor": [
+        16,
+        21
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "clover": {
+      "id": "clover",
+      "name": "三叶草",
+      "group": "02_grass_flowers",
+      "path": "res://assets/world_scheme_c/sprites/clover.png",
+      "size": [
+        24,
+        16
+      ],
+      "anchor": [
+        12,
+        13
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "white_wildflowers": {
+      "id": "white_wildflowers",
+      "name": "白色野花",
+      "group": "02_grass_flowers",
+      "path": "res://assets/world_scheme_c/sprites/white_wildflowers.png",
+      "size": [
+        24,
+        32
+      ],
+      "anchor": [
+        12,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "yellow_wildflowers": {
+      "id": "yellow_wildflowers",
+      "name": "黄色野花",
+      "group": "02_grass_flowers",
+      "path": "res://assets/world_scheme_c/sprites/yellow_wildflowers.png",
+      "size": [
+        24,
+        32
+      ],
+      "anchor": [
+        12,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "purple_wildflowers": {
+      "id": "purple_wildflowers",
+      "name": "紫色野花",
+      "group": "02_grass_flowers",
+      "path": "res://assets/world_scheme_c/sprites/purple_wildflowers.png",
+      "size": [
+        24,
+        32
+      ],
+      "anchor": [
+        12,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "sunflower": {
+      "id": "sunflower",
+      "name": "向日葵",
+      "group": "02_grass_flowers",
+      "path": "res://assets/world_scheme_c/sprites/sunflower.png",
+      "size": [
+        32,
+        48
+      ],
+      "anchor": [
+        16,
+        45
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "flower_patch": {
+      "id": "flower_patch",
+      "name": "花丛",
+      "group": "02_grass_flowers",
+      "path": "res://assets/world_scheme_c/sprites/flower_patch.png",
+      "size": [
+        48,
+        32
+      ],
+      "anchor": [
+        24,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "grass": {
+      "id": "grass",
+      "name": "草地",
+      "group": "03_ground_paths",
+      "path": "res://assets/world_scheme_c/sprites/grass.png",
+      "size": [
+        32,
+        32
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "dirt": {
+      "id": "dirt",
+      "name": "泥土",
+      "group": "03_ground_paths",
+      "path": "res://assets/world_scheme_c/sprites/dirt.png",
+      "size": [
+        32,
+        32
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "tilled_soil": {
+      "id": "tilled_soil",
+      "name": "耕地",
+      "group": "03_ground_paths",
+      "path": "res://assets/world_scheme_c/sprites/tilled_soil.png",
+      "size": [
+        32,
+        32
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "sand": {
+      "id": "sand",
+      "name": "沙地",
+      "group": "03_ground_paths",
+      "path": "res://assets/world_scheme_c/sprites/sand.png",
+      "size": [
+        32,
+        32
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "gravel": {
+      "id": "gravel",
+      "name": "碎石地",
+      "group": "03_ground_paths",
+      "path": "res://assets/world_scheme_c/sprites/gravel.png",
+      "size": [
+        32,
+        32
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "dirt_path": {
+      "id": "dirt_path",
+      "name": "泥土路面",
+      "group": "03_ground_paths",
+      "path": "res://assets/world_scheme_c/sprites/dirt_path.png",
+      "size": [
+        32,
+        32
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "stone_path": {
+      "id": "stone_path",
+      "name": "石板路面",
+      "group": "03_ground_paths",
+      "path": "res://assets/world_scheme_c/sprites/stone_path.png",
+      "size": [
+        32,
+        32
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "wood_path": {
+      "id": "wood_path",
+      "name": "木板路面",
+      "group": "03_ground_paths",
+      "path": "res://assets/world_scheme_c/sprites/wood_path.png",
+      "size": [
+        32,
+        32
+      ],
+      "anchor": [
+        0,
+        0
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "small_pond": {
+      "id": "small_pond",
+      "name": "小池塘",
+      "group": "04_water",
+      "path": "res://assets/world_scheme_c/sprites/small_pond.png",
+      "size": [
+        64,
+        48
+      ],
+      "anchor": [
+        32,
+        45
+      ],
+      "frames": 4,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "animation": "res://assets/world_scheme_c/animations/small_pond/sprite_frames.tres"
+    },
+    "large_pond": {
+      "id": "large_pond",
+      "name": "大池塘",
+      "group": "04_water",
+      "path": "res://assets/world_scheme_c/sprites/large_pond.png",
+      "size": [
+        128,
+        96
+      ],
+      "anchor": [
+        64,
+        93
+      ],
+      "frames": 4,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "animation": "res://assets/world_scheme_c/animations/large_pond/sprite_frames.tres"
+    },
+    "stream": {
+      "id": "stream",
+      "name": "溪流",
+      "group": "04_water",
+      "path": "res://assets/world_scheme_c/sprites/stream.png",
+      "size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        61
+      ],
+      "frames": 4,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "animation": "res://assets/world_scheme_c/animations/stream/sprite_frames.tres"
+    },
+    "spring": {
+      "id": "spring",
+      "name": "泉眼",
+      "group": "04_water",
+      "path": "res://assets/world_scheme_c/sprites/spring.png",
+      "size": [
+        48,
+        48
+      ],
+      "anchor": [
+        24,
+        45
+      ],
+      "frames": 4,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "animation": "res://assets/world_scheme_c/animations/spring/sprite_frames.tres"
+    },
+    "well": {
+      "id": "well",
+      "name": "水井",
+      "group": "04_water",
+      "path": "res://assets/world_scheme_c/sprites/well.png",
+      "size": [
+        48,
+        64
+      ],
+      "anchor": [
+        24,
+        61
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "waterfall": {
+      "id": "waterfall",
+      "name": "小瀑布",
+      "group": "04_water",
+      "path": "res://assets/world_scheme_c/sprites/waterfall.png",
+      "size": [
+        48,
+        80
+      ],
+      "anchor": [
+        24,
+        77
+      ],
+      "frames": 4,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "animation": "res://assets/world_scheme_c/animations/waterfall/sprite_frames.tres"
+    },
+    "shore_rocks": {
+      "id": "shore_rocks",
+      "name": "岸边石头",
+      "group": "04_water",
+      "path": "res://assets/world_scheme_c/sprites/shore_rocks.png",
+      "size": [
+        32,
+        24
+      ],
+      "anchor": [
+        16,
+        21
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "reeds": {
+      "id": "reeds",
+      "name": "芦苇",
+      "group": "04_water",
+      "path": "res://assets/world_scheme_c/sprites/reeds.png",
+      "size": [
+        24,
+        40
+      ],
+      "anchor": [
+        12,
+        37
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "lily_pad": {
+      "id": "lily_pad",
+      "name": "荷叶",
+      "group": "04_water",
+      "path": "res://assets/world_scheme_c/sprites/lily_pad.png",
+      "size": [
+        24,
+        16
+      ],
+      "anchor": [
+        12,
+        13
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "water_lily": {
+      "id": "water_lily",
+      "name": "睡莲",
+      "group": "04_water",
+      "path": "res://assets/world_scheme_c/sprites/water_lily.png",
+      "size": [
+        24,
+        24
+      ],
+      "anchor": [
+        12,
+        21
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "wood_chair": {
+      "id": "wood_chair",
+      "name": "木椅",
+      "group": "05_furniture",
+      "path": "res://assets/world_scheme_c/sprites/wood_chair.png",
+      "size": [
+        24,
+        32
+      ],
+      "anchor": [
+        12,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "wood_bench": {
+      "id": "wood_bench",
+      "name": "长椅",
+      "group": "05_furniture",
+      "path": "res://assets/world_scheme_c/sprites/wood_bench.png",
+      "size": [
+        48,
+        32
+      ],
+      "anchor": [
+        24,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "stump_stool": {
+      "id": "stump_stool",
+      "name": "树桩凳",
+      "group": "05_furniture",
+      "path": "res://assets/world_scheme_c/sprites/stump_stool.png",
+      "size": [
+        24,
+        24
+      ],
+      "anchor": [
+        12,
+        21
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "round_table": {
+      "id": "round_table",
+      "name": "圆木桌",
+      "group": "05_furniture",
+      "path": "res://assets/world_scheme_c/sprites/round_table.png",
+      "size": [
+        40,
+        32
+      ],
+      "anchor": [
+        20,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "square_table": {
+      "id": "square_table",
+      "name": "方木桌",
+      "group": "05_furniture",
+      "path": "res://assets/world_scheme_c/sprites/square_table.png",
+      "size": [
+        40,
+        32
+      ],
+      "anchor": [
+        20,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "picnic_table": {
+      "id": "picnic_table",
+      "name": "野餐桌",
+      "group": "05_furniture",
+      "path": "res://assets/world_scheme_c/sprites/picnic_table.png",
+      "size": [
+        64,
+        40
+      ],
+      "anchor": [
+        32,
+        37
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "parasol": {
+      "id": "parasol",
+      "name": "遮阳伞",
+      "group": "05_furniture",
+      "path": "res://assets/world_scheme_c/sprites/parasol.png",
+      "size": [
+        48,
+        64
+      ],
+      "anchor": [
+        24,
+        61
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "garden_swing": {
+      "id": "garden_swing",
+      "name": "庭院秋千",
+      "group": "05_furniture",
+      "path": "res://assets/world_scheme_c/sprites/garden_swing.png",
+      "size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        61
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_2_to_5"
+    },
+    "wood_fence": {
+      "id": "wood_fence",
+      "name": "木栅栏",
+      "group": "06_fences_bridges",
+      "path": "res://assets/world_scheme_c/sprites/wood_fence.png",
+      "size": [
+        48,
+        32
+      ],
+      "anchor": [
+        24,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "stone_wall": {
+      "id": "stone_wall",
+      "name": "矮石墙",
+      "group": "06_fences_bridges",
+      "path": "res://assets/world_scheme_c/sprites/stone_wall.png",
+      "size": [
+        48,
+        24
+      ],
+      "anchor": [
+        24,
+        21
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "hedge_fence": {
+      "id": "hedge_fence",
+      "name": "篱笆",
+      "group": "06_fences_bridges",
+      "path": "res://assets/world_scheme_c/sprites/hedge_fence.png",
+      "size": [
+        48,
+        32
+      ],
+      "anchor": [
+        24,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "wood_gate": {
+      "id": "wood_gate",
+      "name": "木门",
+      "group": "06_fences_bridges",
+      "path": "res://assets/world_scheme_c/sprites/wood_gate.png",
+      "size": [
+        32,
+        40
+      ],
+      "anchor": [
+        16,
+        37
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "flower_arch": {
+      "id": "flower_arch",
+      "name": "花架拱门",
+      "group": "06_fences_bridges",
+      "path": "res://assets/world_scheme_c/sprites/flower_arch.png",
+      "size": [
+        64,
+        80
+      ],
+      "anchor": [
+        32,
+        77
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "wood_bridge": {
+      "id": "wood_bridge",
+      "name": "小木桥",
+      "group": "06_fences_bridges",
+      "path": "res://assets/world_scheme_c/sprites/wood_bridge.png",
+      "size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        61
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "stone_bridge": {
+      "id": "stone_bridge",
+      "name": "石桥",
+      "group": "06_fences_bridges",
+      "path": "res://assets/world_scheme_c/sprites/stone_bridge.png",
+      "size": [
+        64,
+        64
+      ],
+      "anchor": [
+        32,
+        61
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "wood_steps": {
+      "id": "wood_steps",
+      "name": "木台阶",
+      "group": "06_fences_bridges",
+      "path": "res://assets/world_scheme_c/sprites/wood_steps.png",
+      "size": [
+        48,
+        32
+      ],
+      "anchor": [
+        24,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "wood_fence_vertical": {
+      "id": "wood_fence_vertical",
+      "name": "纵向木栅栏",
+      "group": "06_fences_bridges",
+      "path": "res://assets/world_scheme_c/sprites/wood_fence_vertical.png",
+      "size": [
+        24,
+        48
+      ],
+      "anchor": [
+        12,
+        45
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "stone_wall_vertical": {
+      "id": "stone_wall_vertical",
+      "name": "纵向矮石墙",
+      "group": "06_fences_bridges",
+      "path": "res://assets/world_scheme_c/sprites/stone_wall_vertical.png",
+      "size": [
+        24,
+        48
+      ],
+      "anchor": [
+        12,
+        45
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "hedge_fence_vertical": {
+      "id": "hedge_fence_vertical",
+      "name": "纵向篱笆",
+      "group": "06_fences_bridges",
+      "path": "res://assets/world_scheme_c/sprites/hedge_fence_vertical.png",
+      "size": [
+        24,
+        48
+      ],
+      "anchor": [
+        12,
+        45
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "wood_crate": {
+      "id": "wood_crate",
+      "name": "木箱",
+      "group": "07_farm_props",
+      "path": "res://assets/world_scheme_c/sprites/wood_crate.png",
+      "size": [
+        24,
+        24
+      ],
+      "anchor": [
+        12,
+        21
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "wood_barrel": {
+      "id": "wood_barrel",
+      "name": "木桶",
+      "group": "07_farm_props",
+      "path": "res://assets/world_scheme_c/sprites/wood_barrel.png",
+      "size": [
+        24,
+        32
+      ],
+      "anchor": [
+        12,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "flower_pot": {
+      "id": "flower_pot",
+      "name": "花盆",
+      "group": "07_farm_props",
+      "path": "res://assets/world_scheme_c/sprites/flower_pot.png",
+      "size": [
+        24,
+        32
+      ],
+      "anchor": [
+        12,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "flower_basket": {
+      "id": "flower_basket",
+      "name": "花篮",
+      "group": "07_farm_props",
+      "path": "res://assets/world_scheme_c/sprites/flower_basket.png",
+      "size": [
+        32,
+        24
+      ],
+      "anchor": [
+        16,
+        21
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "burlap_sack": {
+      "id": "burlap_sack",
+      "name": "麻袋",
+      "group": "07_farm_props",
+      "path": "res://assets/world_scheme_c/sprites/burlap_sack.png",
+      "size": [
+        24,
+        24
+      ],
+      "anchor": [
+        12,
+        21
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "hay_bale": {
+      "id": "hay_bale",
+      "name": "干草堆",
+      "group": "07_farm_props",
+      "path": "res://assets/world_scheme_c/sprites/hay_bale.png",
+      "size": [
+        32,
+        24
+      ],
+      "anchor": [
+        16,
+        21
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "firewood_pile": {
+      "id": "firewood_pile",
+      "name": "柴火堆",
+      "group": "07_farm_props",
+      "path": "res://assets/world_scheme_c/sprites/firewood_pile.png",
+      "size": [
+        32,
+        24
+      ],
+      "anchor": [
+        16,
+        21
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "handcart": {
+      "id": "handcart",
+      "name": "手推车",
+      "group": "07_farm_props",
+      "path": "res://assets/world_scheme_c/sprites/handcart.png",
+      "size": [
+        48,
+        40
+      ],
+      "anchor": [
+        24,
+        37
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "watering_can": {
+      "id": "watering_can",
+      "name": "浇水壶",
+      "group": "07_farm_props",
+      "path": "res://assets/world_scheme_c/sprites/watering_can.png",
+      "size": [
+        24,
+        24
+      ],
+      "anchor": [
+        12,
+        21
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "tool_rack": {
+      "id": "tool_rack",
+      "name": "农具架",
+      "group": "07_farm_props",
+      "path": "res://assets/world_scheme_c/sprites/tool_rack.png",
+      "size": [
+        40,
+        48
+      ],
+      "anchor": [
+        20,
+        45
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "road_sign": {
+      "id": "road_sign",
+      "name": "路牌",
+      "group": "08_village",
+      "path": "res://assets/world_scheme_c/sprites/road_sign.png",
+      "size": [
+        32,
+        40
+      ],
+      "anchor": [
+        16,
+        37
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "mailbox": {
+      "id": "mailbox",
+      "name": "邮箱",
+      "group": "08_village",
+      "path": "res://assets/world_scheme_c/sprites/mailbox.png",
+      "size": [
+        24,
+        40
+      ],
+      "anchor": [
+        12,
+        37
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "notice_board": {
+      "id": "notice_board",
+      "name": "公告栏",
+      "group": "08_village",
+      "path": "res://assets/world_scheme_c/sprites/notice_board.png",
+      "size": [
+        48,
+        56
+      ],
+      "anchor": [
+        24,
+        53
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "street_lamp": {
+      "id": "street_lamp",
+      "name": "路灯",
+      "group": "08_village",
+      "path": "res://assets/world_scheme_c/sprites/street_lamp.png",
+      "size": [
+        24,
+        64
+      ],
+      "anchor": [
+        12,
+        61
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "lantern": {
+      "id": "lantern",
+      "name": "灯笼",
+      "group": "08_village",
+      "path": "res://assets/world_scheme_c/sprites/lantern.png",
+      "size": [
+        24,
+        32
+      ],
+      "anchor": [
+        12,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "campfire": {
+      "id": "campfire",
+      "name": "篝火",
+      "group": "08_village",
+      "path": "res://assets/world_scheme_c/sprites/campfire.png",
+      "size": [
+        32,
+        40
+      ],
+      "anchor": [
+        16,
+        37
+      ],
+      "frames": 4,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "animation": "res://assets/world_scheme_c/animations/campfire/sprite_frames.tres"
+    },
+    "tent": {
+      "id": "tent",
+      "name": "帐篷",
+      "group": "08_village",
+      "path": "res://assets/world_scheme_c/sprites/tent.png",
+      "size": [
+        64,
+        56
+      ],
+      "anchor": [
+        32,
+        53
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "market_stall": {
+      "id": "market_stall",
+      "name": "摊位",
+      "group": "08_village",
+      "path": "res://assets/world_scheme_c/sprites/market_stall.png",
+      "size": [
+        80,
+        64
+      ],
+      "anchor": [
+        40,
+        61
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "clothesline": {
+      "id": "clothesline",
+      "name": "晾衣架",
+      "group": "08_village",
+      "path": "res://assets/world_scheme_c/sprites/clothesline.png",
+      "size": [
+        64,
+        48
+      ],
+      "anchor": [
+        32,
+        45
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "farmhouse": {
+      "id": "farmhouse",
+      "name": "农舍",
+      "group": "09_buildings",
+      "path": "res://assets/world_scheme_c/sprites/farmhouse.png",
+      "size": [
+        160,
+        160
+      ],
+      "anchor": [
+        80,
+        157
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "tool_shed": {
+      "id": "tool_shed",
+      "name": "工具棚",
+      "group": "09_buildings",
+      "path": "res://assets/world_scheme_c/sprites/tool_shed.png",
+      "size": [
+        112,
+        112
+      ],
+      "anchor": [
+        56,
+        109
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "chicken_coop": {
+      "id": "chicken_coop",
+      "name": "鸡舍",
+      "group": "09_buildings",
+      "path": "res://assets/world_scheme_c/sprites/chicken_coop.png",
+      "size": [
+        96,
+        80
+      ],
+      "anchor": [
+        48,
+        77
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "barn": {
+      "id": "barn",
+      "name": "畜棚",
+      "group": "09_buildings",
+      "path": "res://assets/world_scheme_c/sprites/barn.png",
+      "size": [
+        160,
+        144
+      ],
+      "anchor": [
+        80,
+        141
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "greenhouse": {
+      "id": "greenhouse",
+      "name": "温室",
+      "group": "09_buildings",
+      "path": "res://assets/world_scheme_c/sprites/greenhouse.png",
+      "size": [
+        144,
+        128
+      ],
+      "anchor": [
+        72,
+        125
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "windmill": {
+      "id": "windmill",
+      "name": "风车",
+      "group": "09_buildings",
+      "path": "res://assets/world_scheme_c/sprites/windmill.png",
+      "size": [
+        144,
+        192
+      ],
+      "anchor": [
+        72,
+        189
+      ],
+      "frames": 4,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "animation": "res://assets/world_scheme_c/animations/windmill/sprite_frames.tres"
+    },
+    "pavilion": {
+      "id": "pavilion",
+      "name": "凉亭",
+      "group": "09_buildings",
+      "path": "res://assets/world_scheme_c/sprites/pavilion.png",
+      "size": [
+        128,
+        112
+      ],
+      "anchor": [
+        64,
+        109
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "wood_door_closed": {
+      "id": "wood_door_closed",
+      "name": "关闭木门",
+      "group": "09_buildings",
+      "path": "res://assets/world_scheme_c/sprites/wood_door_closed.png",
+      "size": [
+        48,
+        48
+      ],
+      "anchor": [
+        24,
+        45
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "wood_door_open": {
+      "id": "wood_door_open",
+      "name": "打开木门",
+      "group": "09_buildings",
+      "path": "res://assets/world_scheme_c/sprites/wood_door_open.png",
+      "size": [
+        48,
+        48
+      ],
+      "anchor": [
+        24,
+        45
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "window_closed": {
+      "id": "window_closed",
+      "name": "关闭窗户",
+      "group": "09_buildings",
+      "path": "res://assets/world_scheme_c/sprites/window_closed.png",
+      "size": [
+        48,
+        32
+      ],
+      "anchor": [
+        24,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "window_open": {
+      "id": "window_open",
+      "name": "打开窗户",
+      "group": "09_buildings",
+      "path": "res://assets/world_scheme_c/sprites/window_open.png",
+      "size": [
+        48,
+        32
+      ],
+      "anchor": [
+        24,
+        29
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "star_tree": {
+      "id": "star_tree",
+      "name": "星辉树",
+      "group": "10_star_region",
+      "path": "res://assets/world_scheme_c/sprites/star_tree.png",
+      "size": [
+        96,
+        112
+      ],
+      "anchor": [
+        48,
+        109
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "glowing_flowers": {
+      "id": "glowing_flowers",
+      "name": "发光花草",
+      "group": "10_star_region",
+      "path": "res://assets/world_scheme_c/sprites/glowing_flowers.png",
+      "size": [
+        32,
+        32
+      ],
+      "anchor": [
+        16,
+        29
+      ],
+      "frames": 4,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "animation": "res://assets/world_scheme_c/animations/glowing_flowers/sprite_frames.tres"
+    },
+    "star_stele": {
+      "id": "star_stele",
+      "name": "星纹石碑",
+      "group": "10_star_region",
+      "path": "res://assets/world_scheme_c/sprites/star_stele.png",
+      "size": [
+        32,
+        56
+      ],
+      "anchor": [
+        16,
+        53
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "star_altar": {
+      "id": "star_altar",
+      "name": "小型祭坛",
+      "group": "10_star_region",
+      "path": "res://assets/world_scheme_c/sprites/star_altar.png",
+      "size": [
+        64,
+        40
+      ],
+      "anchor": [
+        32,
+        37
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "star_spring": {
+      "id": "star_spring",
+      "name": "星辉泉水",
+      "group": "10_star_region",
+      "path": "res://assets/world_scheme_c/sprites/star_spring.png",
+      "size": [
+        64,
+        56
+      ],
+      "anchor": [
+        32,
+        53
+      ],
+      "frames": 4,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "animation": "res://assets/world_scheme_c/animations/star_spring/sprite_frames.tres"
+    },
+    "moon_lamp": {
+      "id": "moon_lamp",
+      "name": "月亮灯",
+      "group": "10_star_region",
+      "path": "res://assets/world_scheme_c/sprites/moon_lamp.png",
+      "size": [
+        32,
+        56
+      ],
+      "anchor": [
+        16,
+        53
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "star_lamp": {
+      "id": "star_lamp",
+      "name": "星形路灯",
+      "group": "10_star_region",
+      "path": "res://assets/world_scheme_c/sprites/star_lamp.png",
+      "size": [
+        24,
+        64
+      ],
+      "anchor": [
+        12,
+        61
+      ],
+      "frames": 1,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10"
+    },
+    "star_particles": {
+      "id": "star_particles",
+      "name": "星光粒子",
+      "group": "10_star_region",
+      "path": "res://assets/world_scheme_c/sprites/star_particles.png",
+      "size": [
+        32,
+        32
+      ],
+      "anchor": [
+        16,
+        16
+      ],
+      "frames": 4,
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "animation": "res://assets/world_scheme_c/animations/star_particles/sprite_frames.tres"
+    }
+  },
+  "copied_files": [
+    {
+      "path": "sprites/oak_tree.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/oak_tree.png",
+      "sha256": "d64ed653de5008bc80205aacc2af19b2d7e273202ddd773e334eb43be156cf51"
+    },
+    {
+      "path": "sprites/pine_tree.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/pine_tree.png",
+      "sha256": "b7ac7204aa6433f519a174b6bda2730a70147b4deab112851fa9ad31a658bb9c"
+    },
+    {
+      "path": "sprites/birch_tree.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/birch_tree.png",
+      "sha256": "8171d5303b66a3c3e1d108b2d4003584c35e0c45284efe5971c3e24de76515b6"
+    },
+    {
+      "path": "sprites/apple_tree.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/apple_tree.png",
+      "sha256": "5eb5679e697ff67110a328d0955f4c996bd95bf243ecd0413b8162ed572c0ba7"
+    },
+    {
+      "path": "sprites/blossom_tree.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/blossom_tree.png",
+      "sha256": "276f1c76a4aae70d8c397361cca3435c61554a2990169f0ceeb0a05403cdfd4e"
+    },
+    {
+      "path": "sprites/dead_tree.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/dead_tree.png",
+      "sha256": "5ba095c68bb980b7066e7e7c0a85517bfc0e8ba63416bc7d231bc5563660533c"
+    },
+    {
+      "path": "sprites/tree_stump.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/tree_stump.png",
+      "sha256": "de5907419f446bd495e651a59387620589a807043a67ab24b846ddf13604c888"
+    },
+    {
+      "path": "sprites/bush.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/bush.png",
+      "sha256": "9c8b3705f74a390c620535e8464637065b6a5f32992b45dfd2fb706feb32770f"
+    },
+    {
+      "path": "sprites/oak_sapling.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/oak_sapling.png",
+      "sha256": "e5c24cfecddc76504f7ef77ef152acace8270edeaed5a2a21a62e656b30a07de"
+    },
+    {
+      "path": "sprites/pine_sapling.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/pine_sapling.png",
+      "sha256": "b64d6276cab20f88c351856c184cb223bed4e0039fcb8ffece1a8ebe6ba6f1d2"
+    },
+    {
+      "path": "sprites/birch_sapling.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/birch_sapling.png",
+      "sha256": "97681fc2090603737dbd3d39519516b217dc8f8814733ae2f3ca69b4cbccbe0d"
+    },
+    {
+      "path": "sprites/apple_sapling.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/apple_sapling.png",
+      "sha256": "8952afb180aa095c7c3684e61dab200b7362cfae2158b518a005ef0fb253f9c6"
+    },
+    {
+      "path": "sprites/blossom_sapling.png",
+      "package": "PixelWorld_SchemeC_Trees_Pack",
+      "original": "assets_32/blossom_sapling.png",
+      "sha256": "75eebb8fd0fcb1ae50a6c1a726d62203b90b2e32b074bba2d8128dfa1bd0645a"
+    },
+    {
+      "path": "sprites/short_grass.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/02_grass_flowers/short_grass.png",
+      "sha256": "cb9fb5edd71800b8ce550bd99589602f53e4a74178008b4ada0b261c106c8823"
+    },
+    {
+      "path": "sprites/tall_grass.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/02_grass_flowers/tall_grass.png",
+      "sha256": "d7e18e5cc33b3aa72b80e16c95c0a91ddf5bf48fb9fdd6fcf75504408d1f6510"
+    },
+    {
+      "path": "sprites/grass_clump.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/02_grass_flowers/grass_clump.png",
+      "sha256": "e699816f0b9cadc910ed74730438d1979a93416a4f4d7ff4fc53fa37c0da6363"
+    },
+    {
+      "path": "sprites/clover.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/02_grass_flowers/clover.png",
+      "sha256": "d02226eeea341dd051686f30e5b007e53eed88fc63602405fd72d872bfb31846"
+    },
+    {
+      "path": "sprites/white_wildflowers.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/02_grass_flowers/white_wildflowers.png",
+      "sha256": "3538197a05a67910e72ccef1b781dcc48dc13db0cdb3c03b4bee02c9b1e53638"
+    },
+    {
+      "path": "sprites/yellow_wildflowers.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/02_grass_flowers/yellow_wildflowers.png",
+      "sha256": "387a6b8e66f189e9a0f88e797da55ab12820dcd253ab31dc9b3bb330f54e8467"
+    },
+    {
+      "path": "sprites/purple_wildflowers.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/02_grass_flowers/purple_wildflowers.png",
+      "sha256": "9f5a3d79a8152003b42f8add7e918474b5d796ed4588234b41f7e7edb3aaeff0"
+    },
+    {
+      "path": "sprites/sunflower.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/02_grass_flowers/sunflower.png",
+      "sha256": "e81579b29fb29c47a12d8e4b5ab76f23aa8287f5be7dd773106c17ba132f1c4d"
+    },
+    {
+      "path": "sprites/flower_patch.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/02_grass_flowers/flower_patch.png",
+      "sha256": "37fc639e5b271c249579a8df5876da09a7e796ce44cf1fe29dec8caf4640e922"
+    },
+    {
+      "path": "sprites/grass.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/03_ground_paths/grass.png",
+      "sha256": "f78b93371545246042b51bcfeba62604ede05cb872c64331108e2b8a83a28d98"
+    },
+    {
+      "path": "sprites/dirt.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/03_ground_paths/dirt.png",
+      "sha256": "945a0f85d7205831b28b585d71f01604c9d431c1c8c211aa4b42428a667552ed"
+    },
+    {
+      "path": "sprites/tilled_soil.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/03_ground_paths/tilled_soil.png",
+      "sha256": "e33634791beecf1ca1ab6beebc4e96c815aa990c6f9768e811fb2b8b2b992f54"
+    },
+    {
+      "path": "sprites/sand.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/03_ground_paths/sand.png",
+      "sha256": "ec4c3105f55213fc51480b3967a3f87bfcaf1464090166fadc3c2295ae539374"
+    },
+    {
+      "path": "sprites/gravel.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/03_ground_paths/gravel.png",
+      "sha256": "e89705ace7be91818a2fddaa14e4192c404c6865481fd08ab5ee75bdbc9eeef8"
+    },
+    {
+      "path": "sprites/dirt_path.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/03_ground_paths/dirt_path.png",
+      "sha256": "fc11b85d8c168148ca86be010ee2870d615348220df75ef840a846732339ef4c"
+    },
+    {
+      "path": "sprites/stone_path.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/03_ground_paths/stone_path.png",
+      "sha256": "ab9809f38440e0b7326b730e2abe38d0c997e214ee53d3a7f6e4719206e13412"
+    },
+    {
+      "path": "sprites/wood_path.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/03_ground_paths/wood_path.png",
+      "sha256": "6d03eb2c6c41de7f2d9d111cc21da883e36cc26f20c02aa5e6e195f5369e247f"
+    },
+    {
+      "path": "sprites/small_pond.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/04_water/small_pond.png",
+      "sha256": "fe79d018b010ebd07cd3574698d09f56375b9b36b7f72048e0c16b8bc6385dc8"
+    },
+    {
+      "path": "animations/small_pond/frame_00.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/small_pond/frame_00.png",
+      "sha256": "fe79d018b010ebd07cd3574698d09f56375b9b36b7f72048e0c16b8bc6385dc8"
+    },
+    {
+      "path": "animations/small_pond/frame_01.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/small_pond/frame_01.png",
+      "sha256": "60320b91920e7b7b849f4cee8d2bd0cf47d2b941690c42cfdd178fdce3ef6902"
+    },
+    {
+      "path": "animations/small_pond/frame_02.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/small_pond/frame_02.png",
+      "sha256": "183b69769eacbf677894422a9095f3abd40880a90bd2f263717930ceb11b16ad"
+    },
+    {
+      "path": "animations/small_pond/frame_03.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/small_pond/frame_03.png",
+      "sha256": "57a4931caca8c6796a8c82f7491251fed1af8bedff609e23e2651ffe52eca400"
+    },
+    {
+      "path": "sprites/large_pond.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/04_water/large_pond.png",
+      "sha256": "31be5886a77ef30ea574098f361bc0380669357188881dfe1e9bd511a15a3b30"
+    },
+    {
+      "path": "animations/large_pond/frame_00.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/large_pond/frame_00.png",
+      "sha256": "31be5886a77ef30ea574098f361bc0380669357188881dfe1e9bd511a15a3b30"
+    },
+    {
+      "path": "animations/large_pond/frame_01.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/large_pond/frame_01.png",
+      "sha256": "d1f858af3346c41e272e1891554454c6f7f53b2617ed6b4155a065611f64c7c9"
+    },
+    {
+      "path": "animations/large_pond/frame_02.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/large_pond/frame_02.png",
+      "sha256": "639a893fc9c3ac1f7f6ba639b507b12ef2f2da3e90e9100f1d5a0da67d3fb69d"
+    },
+    {
+      "path": "animations/large_pond/frame_03.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/large_pond/frame_03.png",
+      "sha256": "273daea2d902126024cf42fe98cf729193b4b691e165093dfb7e5851855bd0a7"
+    },
+    {
+      "path": "sprites/stream.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/04_water/stream.png",
+      "sha256": "4bafc8e55036f341179f4724ad6b00ed83d7a4e9e0196083be3ef7de3bc9f8c6"
+    },
+    {
+      "path": "animations/stream/frame_00.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/stream/frame_00.png",
+      "sha256": "4bafc8e55036f341179f4724ad6b00ed83d7a4e9e0196083be3ef7de3bc9f8c6"
+    },
+    {
+      "path": "animations/stream/frame_01.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/stream/frame_01.png",
+      "sha256": "a7de7945a6180cffe6c7891529a027fea88b6dc93aceec13b683ce3bf2aae798"
+    },
+    {
+      "path": "animations/stream/frame_02.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/stream/frame_02.png",
+      "sha256": "9acd8d32b58a85f4cc2a3d2264938911ebf9f8e504a2d8bd276e469c677e7539"
+    },
+    {
+      "path": "animations/stream/frame_03.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/stream/frame_03.png",
+      "sha256": "0ab43acc97428ffb54f4bdb863e65c278715032f0d3374b7480aec50f247a78d"
+    },
+    {
+      "path": "sprites/spring.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/04_water/spring.png",
+      "sha256": "a96411e927da6c02fc383f14a4ebc29487bd7e2ff1350f3e509bdbf76af38ddd"
+    },
+    {
+      "path": "animations/spring/frame_00.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/spring/frame_00.png",
+      "sha256": "a96411e927da6c02fc383f14a4ebc29487bd7e2ff1350f3e509bdbf76af38ddd"
+    },
+    {
+      "path": "animations/spring/frame_01.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/spring/frame_01.png",
+      "sha256": "1ca1906b10ee15089f2d0e348332a4e40b3763b860ab6f8fbc76cfe5f7f2e50d"
+    },
+    {
+      "path": "animations/spring/frame_02.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/spring/frame_02.png",
+      "sha256": "092768c96d63d12a074fa8ad26fc0ed1c5d52c53c6b252f7abde8973fbfa7dd2"
+    },
+    {
+      "path": "animations/spring/frame_03.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/spring/frame_03.png",
+      "sha256": "265b82bf417fb986bfa9e329639015b665ad3fc2f3b9e80036a6eccce941caf4"
+    },
+    {
+      "path": "sprites/well.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/04_water/well.png",
+      "sha256": "a747d8e5eb791b38ba5e52778d526076bd239617498805e93ca751b395b3f48a"
+    },
+    {
+      "path": "sprites/waterfall.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/04_water/waterfall.png",
+      "sha256": "62a1f1678f1650548ce178aa64fe199c5bf70e62eef92f311fcdc247cf7ff507"
+    },
+    {
+      "path": "animations/waterfall/frame_00.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/waterfall/frame_00.png",
+      "sha256": "62a1f1678f1650548ce178aa64fe199c5bf70e62eef92f311fcdc247cf7ff507"
+    },
+    {
+      "path": "animations/waterfall/frame_01.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/waterfall/frame_01.png",
+      "sha256": "58fbd69970f319e3f2060127d1a7a888526c4ceefebc0a74d88b76b941e81d4a"
+    },
+    {
+      "path": "animations/waterfall/frame_02.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/waterfall/frame_02.png",
+      "sha256": "239fd33c43153445f16ca6408d4bd03ca834ce7a22bc8c3a00fe3219bc989423"
+    },
+    {
+      "path": "animations/waterfall/frame_03.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "animations_32/waterfall/frame_03.png",
+      "sha256": "d55f6cf618e2e7e4e0744599ba384a0ab47d021e30c3a5dacbd4906ee5d4a460"
+    },
+    {
+      "path": "sprites/shore_rocks.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/04_water/shore_rocks.png",
+      "sha256": "435086256dafd23dc68f20648688fdf3755d74c6536dceb8b166d8e53667a106"
+    },
+    {
+      "path": "sprites/reeds.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/04_water/reeds.png",
+      "sha256": "364ca5409ba789f3b62e8a48aaa2657d143db37798cff3add1d038a2dfd20723"
+    },
+    {
+      "path": "sprites/lily_pad.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/04_water/lily_pad.png",
+      "sha256": "f6ea21f261c4c3d0ddaf416e95dfe8928ae14c243148df4080b9add3c500ac59"
+    },
+    {
+      "path": "sprites/water_lily.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/04_water/water_lily.png",
+      "sha256": "0cf555169ea8fae0f88c94c3104575bc6a76c24b297e265e535f5b432bd1c3e0"
+    },
+    {
+      "path": "sprites/wood_chair.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/05_furniture/wood_chair.png",
+      "sha256": "473a8dd513b936ae79f580ad9c96873d19d0e9a57446ddd82973c8005f01c7f4"
+    },
+    {
+      "path": "sprites/wood_bench.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/05_furniture/wood_bench.png",
+      "sha256": "bd4efd2e3309d2b079866f373ff89e44bc29c9ae995dbf17da4a8656217bc1f5"
+    },
+    {
+      "path": "sprites/stump_stool.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/05_furniture/stump_stool.png",
+      "sha256": "57d8f9e1cb6aa3ddd8d13c9dd17fb5609d888cdfef2829f50cae40f131a1bbf7"
+    },
+    {
+      "path": "sprites/round_table.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/05_furniture/round_table.png",
+      "sha256": "ac7b050cf4a891ff4346e13f14f1aae1e366dae07f3ce95327090a37fe344a53"
+    },
+    {
+      "path": "sprites/square_table.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/05_furniture/square_table.png",
+      "sha256": "d456cf10ec059131604ae63d89d2b0fcc3f660a87ae6a74530e3ee016c3e3fbc"
+    },
+    {
+      "path": "sprites/picnic_table.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/05_furniture/picnic_table.png",
+      "sha256": "58705d91a11a68f16a7193719f54a962db1ecf7f6c2422f8a220acbdf23684b9"
+    },
+    {
+      "path": "sprites/parasol.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/05_furniture/parasol.png",
+      "sha256": "7be5dfe7240a1e86d16bf275b1a56b9ba08475af74ef4390304fe81b9a0ab952"
+    },
+    {
+      "path": "sprites/garden_swing.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "assets_32/05_furniture/garden_swing.png",
+      "sha256": "e9e2569455904ec5b6b4143d2e07bfd4489bda9311efdba8602436d9fc1c430c"
+    },
+    {
+      "path": "terrain/dirt.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "tiles_32/dirt_terrain.png",
+      "sha256": "f9abcf8fbc48c64056c324a89d0e7eaf00cf9bee9e1d6af9fb4186b1bacb2ac4"
+    },
+    {
+      "path": "terrain/tilled_soil.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "tiles_32/tilled_soil_terrain.png",
+      "sha256": "078bdd3e450ab6a08a99907da1066be2f5ab7aab67fec9c42fe899a1241b4b89"
+    },
+    {
+      "path": "terrain/sand.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "tiles_32/sand_terrain.png",
+      "sha256": "2365775edfb045b7f53e692cd976472a30d6a45c5e96e65e70f7936f071c17ae"
+    },
+    {
+      "path": "terrain/gravel.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "tiles_32/gravel_terrain.png",
+      "sha256": "e0105d89fa3053aa5c9b53c08df9011c861b93c60fca3e53e3ab41281dcb11a9"
+    },
+    {
+      "path": "terrain/dirt_path.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "tiles_32/dirt_path_terrain.png",
+      "sha256": "397e5bc27ec2bac3d2904d1ebdd3b2f836103c2b61af0efeb807a45cc71f0e1b"
+    },
+    {
+      "path": "terrain/stone_path.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "tiles_32/stone_path_terrain.png",
+      "sha256": "d13de51076543336a1112c88cd31aba6c40ade51979cafe5fb6a91813adeb413"
+    },
+    {
+      "path": "terrain/wood_path.png",
+      "package": "PixelWorld_SchemeC_Groups_2_to_5",
+      "original": "tiles_32/wood_path_terrain.png",
+      "sha256": "d5a6473f76ccab2c49c5e256556562e92ac54b2c5cd83e70d6b1156e4e033e26"
+    },
+    {
+      "path": "sprites/wood_fence.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/06_fences_bridges/wood_fence.png",
+      "sha256": "c15913c362cce7aaffb60ebab3fbcc11e6975307c8c3dd5f3934cfa76cfd0726"
+    },
+    {
+      "path": "sprites/stone_wall.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/06_fences_bridges/stone_wall.png",
+      "sha256": "3f4fc752387b08c40f820e32f872799648472c8703dc94ffbc2b56e459de407a"
+    },
+    {
+      "path": "sprites/hedge_fence.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/06_fences_bridges/hedge_fence.png",
+      "sha256": "d4cb4f8e68bac2acc29cfd71fa0994ad09401d770f039b3599db17a6bc307e44"
+    },
+    {
+      "path": "sprites/wood_gate.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/06_fences_bridges/wood_gate.png",
+      "sha256": "4a95dde4a8572c440dc6cc20d0eda4224ea84de93cd23ffe09cc6d1c01dee929"
+    },
+    {
+      "path": "sprites/flower_arch.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/06_fences_bridges/flower_arch.png",
+      "sha256": "6c10770cb2b02bed38fbd6b567eaa45fe46c326380d62751e8935c03156317b8"
+    },
+    {
+      "path": "sprites/wood_bridge.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/06_fences_bridges/wood_bridge.png",
+      "sha256": "a1e81de0b510eabca3ef0b28fc0de738996607aa51c0975f0807ae030cd0e1c2"
+    },
+    {
+      "path": "sprites/stone_bridge.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/06_fences_bridges/stone_bridge.png",
+      "sha256": "1f501b3bb06cedfe98584f827e2f1b22c03bd9030f0d10ad64e2f2d778cc7eb7"
+    },
+    {
+      "path": "sprites/wood_steps.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/06_fences_bridges/wood_steps.png",
+      "sha256": "2624c5d32363af7b289f123f8fd96766eaa54f8593777e78858b45e703d07c31"
+    },
+    {
+      "path": "sprites/wood_fence_vertical.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/06_fences_bridges/wood_fence_vertical.png",
+      "sha256": "8cc2b998df5281a39bf3d654d8ccd874409d5bea019af5d0dda77fe41527e5af"
+    },
+    {
+      "path": "sprites/stone_wall_vertical.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/06_fences_bridges/stone_wall_vertical.png",
+      "sha256": "bf4bd54ac961b7f09db28e4dd4e5dd9ecc8a6ded27b3fa22db3e299e2c73c399"
+    },
+    {
+      "path": "sprites/hedge_fence_vertical.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/06_fences_bridges/hedge_fence_vertical.png",
+      "sha256": "22120f275db37a0c4167c2b5c4c17037cd5cf645a0af073387bbc5cf6ea9c0ff"
+    },
+    {
+      "path": "sprites/wood_crate.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/07_farm_props/wood_crate.png",
+      "sha256": "cf4d7b49b6501245237e404d4dfc36077e3a70f1d34d0d4b89735ecadfe9388b"
+    },
+    {
+      "path": "sprites/wood_barrel.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/07_farm_props/wood_barrel.png",
+      "sha256": "2065d767d8f98c2c46d42a0239aac0bed9a698df17cac45f2aa7c1b3c24ec60a"
+    },
+    {
+      "path": "sprites/flower_pot.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/07_farm_props/flower_pot.png",
+      "sha256": "ac9d8b5bd415d299c625bfa01847de857a0489dbf509c015e52356e4b16d65cb"
+    },
+    {
+      "path": "sprites/flower_basket.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/07_farm_props/flower_basket.png",
+      "sha256": "48889cd0c8058444ad34b88b08f0c30706d397138e8ef168c7c6b1003da0b1eb"
+    },
+    {
+      "path": "sprites/burlap_sack.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/07_farm_props/burlap_sack.png",
+      "sha256": "37a5615bd07a8a368c8ff280e9cca9b7b243c5821017c83bce41630710945eaa"
+    },
+    {
+      "path": "sprites/hay_bale.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/07_farm_props/hay_bale.png",
+      "sha256": "be832d8991d8c8ae5d9d5eaf8f59e860a16a7b257ea2d8449ef207b8c19c7e83"
+    },
+    {
+      "path": "sprites/firewood_pile.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/07_farm_props/firewood_pile.png",
+      "sha256": "b4fee759ed7f2fc46ce89ee9f6fcfb04000d4851d0d25ccb5ab329071d84882f"
+    },
+    {
+      "path": "sprites/handcart.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/07_farm_props/handcart.png",
+      "sha256": "5cbe5ded023f4e075e1fce6e593af49c4ac4d4cb0dcbd2da8bad91123a33a2e8"
+    },
+    {
+      "path": "sprites/watering_can.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/07_farm_props/watering_can.png",
+      "sha256": "7e3d3b56e6e588fe049b3713ae9a1baa71a6a1a0a8ec9ec281dac24453b31112"
+    },
+    {
+      "path": "sprites/tool_rack.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/07_farm_props/tool_rack.png",
+      "sha256": "90dcd31241944d70148b6a52c793ed4d48f82b33a3ff964447303123eee7058e"
+    },
+    {
+      "path": "sprites/road_sign.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/08_village/road_sign.png",
+      "sha256": "041b5834e63b95cfdd6ffc85b5192c860756a371ef5c0e66f4d3f7250e456a56"
+    },
+    {
+      "path": "sprites/mailbox.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/08_village/mailbox.png",
+      "sha256": "84a58ac7207cae7e0bb2e91df730e30449d30ecd216897383b07432d14a8ee7b"
+    },
+    {
+      "path": "sprites/notice_board.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/08_village/notice_board.png",
+      "sha256": "7a95e3a9a50b5497ddf9be9db179ebb3856a8ed07c289c9dcf0aba6451afcb8b"
+    },
+    {
+      "path": "sprites/street_lamp.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/08_village/street_lamp.png",
+      "sha256": "703a33bc4edd8d67a84d1ad2f70f2a9b91b4dc6b633a0ce63f52326380a0ce80"
+    },
+    {
+      "path": "sprites/lantern.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/08_village/lantern.png",
+      "sha256": "c180c977c6ac62b3fc8f640bd656ffe1638024cf6c3a3b7f4f680feb9a6b387e"
+    },
+    {
+      "path": "sprites/campfire.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/08_village/campfire.png",
+      "sha256": "044dff7963f0e16f9807c0c552fcf00e6b46d07d05b111c9ca9afd2a249238c5"
+    },
+    {
+      "path": "animations/campfire/frame_00.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/campfire/frame_00.png",
+      "sha256": "044dff7963f0e16f9807c0c552fcf00e6b46d07d05b111c9ca9afd2a249238c5"
+    },
+    {
+      "path": "animations/campfire/frame_01.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/campfire/frame_01.png",
+      "sha256": "0c5e4d644145ae17c43d700ec904e441d74980f3c44608f547549b5c97527e32"
+    },
+    {
+      "path": "animations/campfire/frame_02.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/campfire/frame_02.png",
+      "sha256": "9f9e33f307a9f398aedcef7ef73f396416cc37facab41f3b10a3dcc3427c0fd5"
+    },
+    {
+      "path": "animations/campfire/frame_03.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/campfire/frame_03.png",
+      "sha256": "4b9f5313a44083a2b6f067d8061a923abb148f89612ba954475d0d0177d4bace"
+    },
+    {
+      "path": "sprites/tent.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/08_village/tent.png",
+      "sha256": "22d8547fbc18a1d05b7ea1a8ee19db84937e1e01df1f6f455a6e7870d580b2bf"
+    },
+    {
+      "path": "sprites/market_stall.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/08_village/market_stall.png",
+      "sha256": "c900b10b025e39be76bcfd77e2864187d94dc9d0287f4f6e5ed271ee1d7bd5b9"
+    },
+    {
+      "path": "sprites/clothesline.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/08_village/clothesline.png",
+      "sha256": "5bbd278ea659b18e54bdc409eaef18a0a83300426da3a95d4b2b3db950607a89"
+    },
+    {
+      "path": "sprites/farmhouse.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/09_buildings/farmhouse.png",
+      "sha256": "f09d8ec1c1b5760b2399cf7bdc7f9eef19c4de8370a517cc9447a4629d490dbd"
+    },
+    {
+      "path": "sprites/tool_shed.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/09_buildings/tool_shed.png",
+      "sha256": "6f671fdc509bf600be26c5e3a763dd93e1b35c3fb59deaaaa8b2109da0594de1"
+    },
+    {
+      "path": "sprites/chicken_coop.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/09_buildings/chicken_coop.png",
+      "sha256": "0a7e2b64de31a45994cbfff5ee2158c49096e8873c1fa83e9eb58d0b9a27ad8d"
+    },
+    {
+      "path": "sprites/barn.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/09_buildings/barn.png",
+      "sha256": "d6694ed6ab4186926527025998e63a1a63fd10d66a78a93607a14f85da9a7469"
+    },
+    {
+      "path": "sprites/greenhouse.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/09_buildings/greenhouse.png",
+      "sha256": "e335d1f306dcb88c587b6e05b78debb47bf4d63a5b7f4b703d53e678c4458fc8"
+    },
+    {
+      "path": "sprites/windmill.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/09_buildings/windmill.png",
+      "sha256": "d1487f6e3ba6fb36662f9461485eaf5eb00883032c01eddbf6481746699d9b45"
+    },
+    {
+      "path": "animations/windmill/frame_00.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/windmill/frame_00.png",
+      "sha256": "d1487f6e3ba6fb36662f9461485eaf5eb00883032c01eddbf6481746699d9b45"
+    },
+    {
+      "path": "animations/windmill/frame_01.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/windmill/frame_01.png",
+      "sha256": "8963fc73b00bf9011dbc2005328811982fb60d0959838bcc7013c82980a9c68f"
+    },
+    {
+      "path": "animations/windmill/frame_02.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/windmill/frame_02.png",
+      "sha256": "2d7eaddd5e2a1bfeade84c2cc62ee683e5e13b64aa9c39455da26499ba3c8f3e"
+    },
+    {
+      "path": "animations/windmill/frame_03.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/windmill/frame_03.png",
+      "sha256": "8211dcadef72f5f192fbcd4894c0265577f2d0539c65cfd878f5c829139ef930"
+    },
+    {
+      "path": "sprites/pavilion.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/09_buildings/pavilion.png",
+      "sha256": "d5bcc795bd3627ccfc1d34faf930f4e493e29956387e32ac5d0f25761613e549"
+    },
+    {
+      "path": "sprites/wood_door_closed.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/09_buildings/wood_door_closed.png",
+      "sha256": "945206306c0bba2613e53eadd7baa4cc2724ce2ba470781f210f8aad67a19824"
+    },
+    {
+      "path": "sprites/wood_door_open.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/09_buildings/wood_door_open.png",
+      "sha256": "ff417800827c45298a61d33c56922d0c8407221b25d67d7af31a237f1a76d589"
+    },
+    {
+      "path": "sprites/window_closed.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/09_buildings/window_closed.png",
+      "sha256": "c546b6edff23be740ad27803e488ac86ba7b45b18b08e01f39733985c2289f91"
+    },
+    {
+      "path": "sprites/window_open.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/09_buildings/window_open.png",
+      "sha256": "57a5d188659a1a38df75a0318267354d4bcf864bd54d95c63538507047627876"
+    },
+    {
+      "path": "sprites/star_tree.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/10_star_region/star_tree.png",
+      "sha256": "fff5eeb68dfcc57071177db23a03c12aa77b3b502f6d02816802ab09fc63f019"
+    },
+    {
+      "path": "sprites/glowing_flowers.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/10_star_region/glowing_flowers.png",
+      "sha256": "71d49cc1b0b98cf45b55cdf6cdcb3f35b48198634018d3ee91d78d0ffbf17fc8"
+    },
+    {
+      "path": "animations/glowing_flowers/frame_00.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/glowing_flowers/frame_00.png",
+      "sha256": "71d49cc1b0b98cf45b55cdf6cdcb3f35b48198634018d3ee91d78d0ffbf17fc8"
+    },
+    {
+      "path": "animations/glowing_flowers/frame_01.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/glowing_flowers/frame_01.png",
+      "sha256": "6d1087d8e05ef396fd34e2fa98a84698f6f0fd7cc3835ad9de4bbf4cc16a24fc"
+    },
+    {
+      "path": "animations/glowing_flowers/frame_02.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/glowing_flowers/frame_02.png",
+      "sha256": "4ed016d11959de03c2a43489ae8a618e04b88b3766cb03e8266d8b9eff9732e8"
+    },
+    {
+      "path": "animations/glowing_flowers/frame_03.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/glowing_flowers/frame_03.png",
+      "sha256": "c2f7e9c57b133993df9eca9223e3cf33b5d0bbed385da913fc06f903bada97bf"
+    },
+    {
+      "path": "sprites/star_stele.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/10_star_region/star_stele.png",
+      "sha256": "61b133b50cd3bd30bcf0ed6b31e3bcd5feedc7388fc2dd0cb51a4e8bd8279e70"
+    },
+    {
+      "path": "sprites/star_altar.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/10_star_region/star_altar.png",
+      "sha256": "83324db2d63c621cce4398b4d9bcce04ddf0258754b96286e210424830bf0b2b"
+    },
+    {
+      "path": "sprites/star_spring.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/10_star_region/star_spring.png",
+      "sha256": "34fb434068db7298900bdd169a959a0a5b19a801e591470b21b99b03ad4579be"
+    },
+    {
+      "path": "animations/star_spring/frame_00.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/star_spring/frame_00.png",
+      "sha256": "34fb434068db7298900bdd169a959a0a5b19a801e591470b21b99b03ad4579be"
+    },
+    {
+      "path": "animations/star_spring/frame_01.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/star_spring/frame_01.png",
+      "sha256": "c894ca8c5591b81f08acc1e295bb99a23b5f83c715cbea3bea3d40b3cdfa511e"
+    },
+    {
+      "path": "animations/star_spring/frame_02.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/star_spring/frame_02.png",
+      "sha256": "929f644152b6736fc76882509de0268c9fca5a4504846034abafe289757d4fc0"
+    },
+    {
+      "path": "animations/star_spring/frame_03.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/star_spring/frame_03.png",
+      "sha256": "28c2c27737dd2ac3e0866cf29a40a210b1deccc3d52d1d10d60e80aca4b2108c"
+    },
+    {
+      "path": "sprites/moon_lamp.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/10_star_region/moon_lamp.png",
+      "sha256": "77b9dda3ec1c2af287010cc27c97fa21ecdcbe57f4a18853449dafeb0bb4824a"
+    },
+    {
+      "path": "sprites/star_lamp.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/10_star_region/star_lamp.png",
+      "sha256": "412c99c3bbbf5ad173da9865ad1e4d8844e0fa52b89762e35500cb39aff07d9f"
+    },
+    {
+      "path": "sprites/star_particles.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "assets_32/10_star_region/star_particles.png",
+      "sha256": "9e09d6344d70d19ce6962fc47f0bc0b35e0c22c2fd57c7f15eefd2878f893993"
+    },
+    {
+      "path": "animations/star_particles/frame_00.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/star_particles/frame_00.png",
+      "sha256": "9e09d6344d70d19ce6962fc47f0bc0b35e0c22c2fd57c7f15eefd2878f893993"
+    },
+    {
+      "path": "animations/star_particles/frame_01.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/star_particles/frame_01.png",
+      "sha256": "53bf52d6220bf7bd4cad62e97b5a0e23618b47e219dd293a4ae45248ba8b2284"
+    },
+    {
+      "path": "animations/star_particles/frame_02.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/star_particles/frame_02.png",
+      "sha256": "7caa51ec2bdba357c5ee8e22f594123ebbdf86aac26ee13f690c0b6f1e1040e7"
+    },
+    {
+      "path": "animations/star_particles/frame_03.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "animations_32/star_particles/frame_03.png",
+      "sha256": "3247eb7a48240f40bc53b94d3786cd1244caccff344c3aa9d8ec4200a911bf5c"
+    },
+    {
+      "path": "modules/wood_fence.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "modules_32/wood_fence_repeat.png",
+      "sha256": "9d7084223dcc8b091daf6a7c34673d04fb82c0918f4306b4db273b0e6465bbc7"
+    },
+    {
+      "path": "modules/stone_wall.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "modules_32/stone_wall_repeat.png",
+      "sha256": "4475915789f976b4fa1e264c37be9f113ee118f7845e0727907ffca22a21aae8"
+    },
+    {
+      "path": "modules/hedge_fence.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "modules_32/hedge_fence_repeat.png",
+      "sha256": "a183fdbd7cf7b317407ab8aa409d3e6d0497aefeeee0b5ecf0b6ce42fad36ce3"
+    },
+    {
+      "path": "modules/wood_fence_vertical.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "modules_32/wood_fence_vertical_repeat.png",
+      "sha256": "d6cf3641d94fc4f3584217ae49fe672d95f20dca235588b2009dfa2bdf5daf8a"
+    },
+    {
+      "path": "modules/stone_wall_vertical.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "modules_32/stone_wall_vertical_repeat.png",
+      "sha256": "5e7aa55b51915a67766baa3fcab05aed1e7108c4fd5b2f0cf8a6da52082f63a0"
+    },
+    {
+      "path": "modules/hedge_fence_vertical.png",
+      "package": "PixelWorld_SchemeC_Groups_6_to_10",
+      "original": "modules_32/hedge_fence_vertical_repeat.png",
+      "sha256": "689e4f0ee7471a272738d36f2d8e03e9bc6503ac06c6b78ed1e9a009db218313"
+    }
+  ]
+}
