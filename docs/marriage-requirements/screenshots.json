@@ -1,0 +1,30 @@
+{
+  "platform": "X11",
+  "android_device_tested": false,
+  "captures": [
+    {
+      "path": "docs/marriage-requirements/missing_fish.png",
+      "source": "builds/marriage-requirements-missing_fish.png",
+      "sha256": "ed62f8ff386cc913b11e63828ee4ef97500a5f99624d832108f118d58476f2af",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/marriage-requirements/goals_complete.png",
+      "source": "builds/marriage-requirements-goals_complete.png",
+      "sha256": "dab9581e1d4ce2732075a5508f152fbb06becc02f6f4ce5cc6498bbfe9c6909f",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/marriage-requirements/ceremony_male.png",
+      "source": "builds/marriage-requirements-ceremony_male.png",
+      "sha256": "e5cd04bf8282c40dc72c57482783bd27631e552c804f6afb8650599c62631c45",
+      "actual_godot_window": true
+    },
+    {
+      "path": "docs/marriage-requirements/ceremony_female.png",
+      "source": "builds/marriage-requirements-ceremony_female.png",
+      "sha256": "eae7a4e3226f25e24742219fc9d95b4c95e167687d0ccda9d8a7bbc13d93d0e5",
+      "actual_godot_window": true
+    }
+  ]
+}

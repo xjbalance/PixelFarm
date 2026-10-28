@@ -57,7 +57,8 @@ func build_legend() -> void:
 	words("第1314颗星星 · 传说约定",24)
 	words("温室%d/5阶段 · 最终推理%d/3 · 强化试炼%d/5 · 深渊%d/100层\n好感来自交流与礼物，信任来自调查与践行，羁绊来自共同活动和守约。" % [LegendState.state.greenhouse,LegendState.state.deduction,LegendState.state.trials.size(),AbyssState.state.max_clear])
 	if LegendState.state.legacy_vow:
-		words("旧档已确认的婚约继续有效，旧任务与奖励没有清除。已求婚或结婚的玩家不必重复承担新增成本。")
+		words("旧档已确认的婚约与已完成任务保留；已经结婚不受影响。尚未结婚仍需完成当前住宅与传说鱼准备。")
+	if not Xiaojing.state.married: words(Xiaojing.marriage_goals_text(),17)
 	for i in range(5):
 		var stage: Dictionary=LegendState.data.greenhouse[i]
 		words(("✓ " if i<int(LegendState.state.greenhouse) else "○ ")+stage.title+" · "+costs(stage.required)+(" · 1314钻石，仅婚礼最终确认" if i==4 else " · "+DiamondPayments.text(int(stage.coins))),17)

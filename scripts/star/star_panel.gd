@@ -65,6 +65,9 @@ func build_memory(id: String) -> void:
 					label_row("这份记忆已记下。旧收藏不会再计一次。")
 			)
 func build_overview() -> void:
+	if not Xiaojing.state.married:
+		label_row("婚礼生活准备",20)
+		label_row(Xiaojing.marriage_goals_text(),17)
 	for entry in Xiaojing.data.acts: label_row(("✓ " if StarStory.has("act_"+str(entry.id)) else "○ ")+entry.title+" · "+entry.text,20)
 	label_row("温室在农场东南，旧种箱在小屋南侧。先调查气窗，再把七份记忆带回档案桌。\n小京婚后6–9时在农场，9–16时在河东，16–18时回温室；18–20时有茶座则到村庄，21时回小屋。")
 	var q := Xiaojing.current_quest()
@@ -81,7 +84,7 @@ func build_overview() -> void:
 		if StarStory.state.repair_pending:
 			button("说明失约的原因，重新商量安排",func(): act(StarStory.repair_relationship))
 		if not Xiaojing.state.married:
-			label_row("求婚需要三属性100、全部任务记忆试炼、五段关系事件、温室、历史拼接、两项决定和1314钻石。求婚不扣钻。")
+			label_row("求婚需要三属性100、全部任务记忆试炼、五段关系事件、温室、历史拼接、两项决定、1314钻石，以及已完工四级住宅和永恒星鲤钓获记录。求婚不扣钻。")
 			for choice in ["share_home","keep_journeys"]:
 				button({"share_home":"求婚：一起经营家，也留独立研究桌","keep_journeys":"求婚：一起生活，也保留各自的远行"}[choice],func(): act(func(): return StarStory.propose(choice)))
 	if not Xiaojing.state.trial.is_empty(): label_row(StarTrials.describe())
@@ -99,6 +102,7 @@ func build_greenhouse() -> void:
 	if StarStory.has("history_solved") and not s.choices.has("closure"):
 		for choice in ["water","seeds"]: button(StarStory.data.choices.closure[choice],func(): act(func(): return StarStory.choose("closure",choice)))
 	if not Xiaojing.state.married:
+		label_row(Xiaojing.marriage_goals_text(),17)
 		label_row("已邀请："+str(s.invited)+"。邀请需要亲自到三位村民身边交谈。")
 		button("开始温室仪式，等候亲友到场",func(): act(StarStory.start_ceremony))
 		if s.wedding_phase==1: label_row("林芽带来留种袋，周砚检查灯闸，阿禾把留言册放在入口。请走到左研究桌布置。")
@@ -125,6 +129,7 @@ func build_desk() -> void:
 	if s.post_run=="separate_desks": button("亲手整理这张研究桌",func(): act(func(): return StarStory.work_desk(context)))
 	if context=="desk_left" and s.wedding_phase==1: button("摆好两只杯子与村民留言册",func(): act(StarStory.place_wedding_table))
 	if context=="desk_right" and s.wedding_phase==2:
+		label_row(Xiaojing.marriage_goals_text(),17)
 		label_row("最终确认将消耗1314颗钻石，点亮温室全部星灯并缔结婚姻。取消不会扣除。",21)
 		button("最终确认婚礼 · 消耗1314钻石",func():
 			if Xiaojing.confirm_wedding(true):

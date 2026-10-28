@@ -6,6 +6,7 @@ func capture() -> void:
 	add_child(game)
 	game.get_node("Audio").muted=true
 	load("res://tests/star_runner.gd").fixture(game,false)
+	load("res://tests/marriage_requirement_fixture.gd").satisfy(game)
 	GameClock.running=false
 	GameClock.minutes=1100
 	GameClock.changed.emit()

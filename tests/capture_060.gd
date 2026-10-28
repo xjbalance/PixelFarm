@@ -12,6 +12,7 @@ func capture() -> void:
 		game.hud.toast_time=0
 		await save_image("res://docs/screenshot-060-%03d.png" % depth)
 	StarStory.event("proposal");StarStory.event("kept_appointment");StarStory.state.invited=["linya","zhou","ahe"];StarStory.state.choices.future="share_home"
+	load("res://tests/marriage_requirement_fixture.gd").satisfy(game)
 	Xiaojing.state.diamonds=1314;game.change_location("farm",Vector2(1360,816));StarStory.start_ceremony();await frames(5)
 	game.player.position=Vector2(640,500);game.player.get_node("Camera2D").reset_smoothing();game.get_node("Audio").muted=false
 	await frames(16);game.hud.toast_time=0

@@ -252,14 +252,43 @@ func repair_greenhouse() -> bool:
 	commit()
 	return true
 
+func marriage_goals() -> Array[Dictionary]:
+	# 只读取现有完工等级和成功领取的渔获记录，不以库存代替亲手钓获，也不消耗鱼。
+	var level: int=int(Housing.state.level)
+	var catches: int=int(Fishing.state.counts.get("eternal",0))
+	return [
+		{"id":"home","ready":level>=4,"label":"住宅完工至最高四级 · 星光庄园","detail":"当前：%s（%d/4级）%s。到周砚处升级，施工完成后生效。" % [Housing.level_name(),level," · 施工中" if not Housing.state.construction.is_empty() else ""]},
+		{"id":"fish","ready":catches>0,"label":"亲手钓获并领取过传说鱼 · 永恒星鲤","detail":"钓获记录：%d/1。记录永久保留，婚礼不交付、不消耗鱼；获取条件可查钓鱼图鉴。" % mini(catches,1)}
+	]
+
+func marriage_goals_ready() -> bool:
+	for goal in marriage_goals():
+		if not goal.ready: return false
+	return true
+
+func marriage_goals_text() -> String:
+	var lines: Array[String]=[]
+	for goal in marriage_goals():
+		lines.append(("✓ " if goal.ready else "○ ")+str(goal.label)+"\n"+str(goal.detail))
+	return "\n".join(lines)
+
+func marriage_goals_missing_text() -> String:
+	var missing: Array[String]=[]
+	for goal in marriage_goals():
+		if not goal.ready: missing.append(str(goal.label))
+	return "还需完成："+"；".join(missing)+"。" if not missing.is_empty() else ""
+
 func base_marriage_ready() -> bool:
-	return state.unlocked and not state.married and state.affection == 100 and state.trust == 100 and state.bond == 100 and state.events.size() == 5 and state.quests.size() == 12 and state.memories.size() == 7 and state.trials.size() == 5 and state.dating and state.greenhouse and state.diamonds >= 1314
+	return marriage_goals_ready() and state.unlocked and not state.married and state.affection == 100 and state.trust == 100 and state.bond == 100 and state.events.size() == 5 and state.quests.size() == 12 and state.memories.size() == 7 and state.trials.size() == 5 and state.dating and state.greenhouse and state.diamonds >= 1314
 
 func marriage_ready() -> bool:
 	return base_marriage_ready() and StarStory.wedding_ready()
 
 func confirm_wedding(confirm: bool) -> bool:
-	if not confirm or committing or not marriage_ready(): return false
+	if not confirm or committing or state.married: return false
+	if not marriage_goals_ready():
+		Events.notice.emit(marriage_goals_missing_text());return false
+	if not marriage_ready(): return false
 	committing = true
 	state.diamonds -= 1314
 	Playtest.record("diamonds",{"source":"wedding","delta":-1314})

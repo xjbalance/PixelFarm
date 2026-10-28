@@ -1,0 +1,177 @@
+{
+  "feature": "小京婚礼新增四级住宅与亲钓永恒星鲤条件",
+  "user_confirmed_scope": [
+    "当前最高四级住宅完工",
+    "亲手钓获并领取最稀有永恒星鲤"
+  ],
+  "additional_mainline_completion_gate": false,
+  "previous_marriage_conditions_preserved": true,
+  "goals": [
+    {
+      "id": "home",
+      "level": 4,
+      "name": "星光庄园",
+      "completed_only": true
+    },
+    {
+      "id": "fish",
+      "species": "eternal",
+      "name": "永恒星鲤",
+      "source": "Fishing.state.counts.eternal",
+      "minimum": 1,
+      "consume_fish": false
+    }
+  ],
+  "save_schema_version": 25,
+  "save_schema_changed": false,
+  "already_married_legacy_preserved": true,
+  "unmarried_legacy_vow_does_not_bypass": true,
+  "new_state": {
+    "android_device_tested": false,
+    "captures": [],
+    "checks": 69,
+    "failures": 0,
+    "platform": "headless"
+  },
+  "new_window": {
+    "android_device_tested": false,
+    "captures": [
+      {
+        "name": "missing_fish",
+        "path": "res://builds/marriage-requirements-missing_fish.png"
+      },
+      {
+        "name": "goals_complete",
+        "path": "res://builds/marriage-requirements-goals_complete.png"
+      },
+      {
+        "name": "ceremony_male",
+        "path": "res://builds/marriage-requirements-ceremony_male.png"
+      },
+      {
+        "name": "ceremony_female",
+        "path": "res://builds/marriage-requirements-ceremony_female.png"
+      }
+    ],
+    "checks": 69,
+    "failures": 0,
+    "platform": "X11"
+  },
+  "unique_new_checks": 69,
+  "regression_state": [
+    {
+      "suite": "runner",
+      "log": "builds/marriage-requirements-regression-runner.log",
+      "checks": 452,
+      "failures": 0
+    },
+    {
+      "suite": "star_runner",
+      "log": "builds/marriage-requirements-regression-star_runner.log",
+      "checks": 125,
+      "failures": 0
+    },
+    {
+      "suite": "legend_runner",
+      "log": "builds/marriage-requirements-regression-legend_runner.log",
+      "checks": 252,
+      "failures": 0
+    },
+    {
+      "suite": "river_runner",
+      "log": "builds/marriage-requirements-regression-river_runner.log",
+      "checks": 446,
+      "failures": 0
+    },
+    {
+      "suite": "fishing_b_runner",
+      "log": "builds/marriage-requirements-regression-fishing_b_runner.log",
+      "checks": 84,
+      "failures": 0
+    },
+    {
+      "suite": "home05_runner",
+      "log": "builds/marriage-requirements-regression-home05_runner.log",
+      "checks": 103,
+      "failures": 0
+    },
+    {
+      "suite": "appearance_runner",
+      "log": "builds/marriage-requirements-regression-appearance_runner.log",
+      "checks": 44,
+      "failures": 0
+    },
+    {
+      "suite": "appearance_switch_runner",
+      "log": "builds/marriage-requirements-regression-appearance_switch_runner.log",
+      "checks": 126,
+      "failures": 0
+    }
+  ],
+  "regression_window": [
+    {
+      "suite": "palm_ui_render",
+      "checks": 296,
+      "failures": 0,
+      "log": "builds/window-071-palm_ui_render.log"
+    }
+  ],
+  "total_targeted_state_checks": 1701,
+  "total_targeted_window_checks": 365,
+  "baseline": {
+    "checks": 1010,
+    "failures": 0,
+    "included_in_total": false,
+    "suites": [
+      "star_runner",
+      "legend_runner",
+      "river_runner",
+      "fishing_b_runner",
+      "home05_runner"
+    ]
+  },
+  "full_historical_matrix_rerun": false,
+  "actual_window_review": [
+    "missing_fish",
+    "goals_complete",
+    "ceremony_female"
+  ],
+  "screenshot_manifest": "docs/marriage-requirements/screenshots.json",
+  "window_resolutions": [
+    [
+      1280,
+      720
+    ],
+    [
+      1600,
+      720
+    ],
+    [
+      1280,
+      960
+    ]
+  ],
+  "safe_area_injected": true,
+  "android": {
+    "device_tested": false,
+    "path": "builds/PixelWorld-0.7.1-debug.apk",
+    "bytes": 71056778,
+    "sha256": "1701518e1747a77323dc4ea8fd7ac9cb369d907145076833835b3dde0151ace9",
+    "package": "org.pixelfarm.windbud",
+    "version_code": 22,
+    "original_signature_preserved": true,
+    "signature_sha256": "89455063278c15e708389a2caff957c7254ff2e88b3e19aaf23cdd755c90414b",
+    "signed_export_verified": true,
+    "actual_apk_assets_desktop_startup": true,
+    "actual_apk_goal_code_smoke": true,
+    "logs": [
+      "builds/android-apk-assets-runtime-0.7.1.log",
+      "builds/marriage-requirements-final-apk.log"
+    ]
+  },
+  "economy_or_fishing_rules_changed": false,
+  "new_mainline_story_or_maps": false,
+  "remaining": [
+    "Android真机触感和覆盖安装未验收"
+  ]
+}

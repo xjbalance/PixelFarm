@@ -220,6 +220,7 @@ func contracts() -> void:
 	await Flow.at(self,game,"farm",Vector2(1360,816))
 	check(LegendTrials.finish() and LegendState.state.trials.size()==5,"五种强化试炼均完成，不由纯对白代替")
 func wedding() -> void:
+	load("res://tests/marriage_requirement_fixture.gd").satisfy(game)
 	await Hidden.near(self,game)
 	Xiaojing.state.diamonds=1313
 	check(not StarStory.propose("share_home"),"传说全目标仍不能用1313钻石求婚")

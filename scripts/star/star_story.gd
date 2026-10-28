@@ -180,7 +180,10 @@ func proposal_ready() -> bool:
 	return LegendState.marriage_gate() and Xiaojing.base_marriage_ready() and has("history_solved") and state.choices.has("tables") and state.choices.has("closure") and not state.repair_pending
 
 func propose(choice: String) -> bool:
-	if not Xiaojing.nearby() or not proposal_ready() or has("proposal") or choice not in ["share_home","keep_journeys"]: return false
+	if not Xiaojing.nearby() or has("proposal") or choice not in ["share_home","keep_journeys"]: return false
+	if not Xiaojing.marriage_goals_ready():
+		Events.notice.emit(Xiaojing.marriage_goals_missing_text());return false
+	if not proposal_ready(): return false
 	state.choices.future=choice
 	event("proposal")
 	commit()
@@ -193,6 +196,8 @@ func invite(id: String) -> bool:
 	return true
 
 func start_ceremony() -> bool:
+	if near_point("greenhouse") and not Xiaojing.state.married and not Xiaojing.marriage_goals_ready():
+		Events.notice.emit(Xiaojing.marriage_goals_missing_text());return false
 	if not near_point("greenhouse") or not proposal_ready() or not has("proposal") or state.invited.size()!=3 or state.wedding_phase!=0: return false
 	state.wedding_phase=1
 	commit()
@@ -208,7 +213,7 @@ func place_wedding_table() -> bool:
 	return true
 
 func wedding_ready() -> bool:
-	return StarCeremony.ready() and LegendState.marriage_gate() and has("proposal") and state.invited.size()==3 and state.wedding_phase==2 and near_point("desk_right") and not state.repair_pending
+	return Xiaojing.marriage_goals_ready() and StarCeremony.ready() and LegendState.marriage_gate() and has("proposal") and state.invited.size()==3 and state.wedding_phase==2 and near_point("desk_right") and not state.repair_pending
 
 func wedding_committed() -> void:
 	LegendState.wedding_committed()

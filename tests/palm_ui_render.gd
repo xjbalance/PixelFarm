@@ -155,6 +155,7 @@ func panels() -> void:
 	await menu_help()
 
 func wedding() -> void:
+	load("res://tests/marriage_requirement_fixture.gd").satisfy(game)
 	Xiaojing.state.proposed=true
 	LegendState.state.greenhouse=4 # 已完成四段修复，允许正常进入独立礼堂。
 	if "proposal" not in StarStory.state.events: StarStory.state.events.append("proposal")

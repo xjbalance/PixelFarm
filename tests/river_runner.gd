@@ -199,6 +199,7 @@ func wedding_room() -> void:
 		await Hidden.person(self,game,id);check(LegendTrials.cooperate(id),"新联合考察实际村民分工："+id)
 	await Flow.at(self,game,"farm",Vector2(1360,816));check(LegendTrials.finish() and LegendState.state.trials.size()==5,"0.6五场终局试炼完整可玩")
 	for stage in range(4): check(LegendState.repair(),"五阶段温室修复阶段："+str(stage+1))
+	load("res://tests/marriage_requirement_fixture.gd").satisfy(game)
 	await Hidden.near(self,game);Xiaojing.state.diamonds=1313;check(not StarStory.propose("share_home"),"0.6全进度仍不能以1313钻石求婚")
 	Xiaojing.state.diamonds=1314;check(StarStory.propose("share_home"),"完整百层与关系条件满足可求婚")
 	for id in ["linya","zhou","ahe"]: await Hidden.person(self,game,id);StarStory.invite(id)

@@ -20,6 +20,7 @@ func refresh() -> void:
 			words("林芽把留种袋放在桌角，周砚压好灯线，阿禾翻开留言册。你与小京各留下自己的研究位置。",21)
 			button("摆好两只杯子与研究笔记",func(): act(StarStory.place_wedding_table))
 		"ceremony_right":
+			if not Xiaojing.state.married: words(Xiaojing.marriage_goals_text(),17)
 			words("最后确认：消耗1314颗钻石点亮全部星灯，缔结婚姻。取消不扣。当前%d钻石。" % Xiaojing.state.diamonds,21)
 			button("最终确认 · 点亮1314盏星灯",func():
 				if Xiaojing.confirm_wedding(true):

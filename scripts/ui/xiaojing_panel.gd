@@ -121,6 +121,9 @@ func refresh() -> void:
 		FarmUIStyle.heading(notes,"小京 · 星辉旅人")
 		var stats:=FarmUIStyle.label(summary,18);stats.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;notes.add_child(stats)
 	else: label_row(summary)
+	if not state.married and page in ["main","wedding"]:
+		label_row("婚礼生活准备",20)
+		label_row(Xiaojing.marriage_goals_text(),17)
 	if page == "wedding":
 		label_row("确认举行婚礼，将消耗1314颗钻石点亮已修复温室的全部星灯。取消不会扣除资源。",21)
 		button("确认婚礼 · 消耗1314钻石",func():

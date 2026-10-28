@@ -73,6 +73,7 @@ steps = [
     ('scheme-c-cancel', ['--fixed-fps','60','res://tests/scheme_c_cancel_runner.tscn']),
     ('home-teleport', ['--fixed-fps','60','res://tests/home_teleport_runner.tscn']),
     ('appearance-switch', ['--fixed-fps','60','res://tests/appearance_switch_runner.tscn']),
+    ('marriage-requirements', ['--fixed-fps','60','res://tests/marriage_requirements_runner.tscn']),
     ('scheme-c-star-female', ['--fixed-fps','60','res://tests/scheme_c_star_regression.tscn']),
     ('scheme-c-legend-female', ['--fixed-fps','60','res://tests/scheme_c_legend_regression.tscn']),
     ('scheme-c-river-female', ['--fixed-fps','60','res://tests/scheme_c_river_regression.tscn']),

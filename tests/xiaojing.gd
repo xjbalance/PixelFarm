@@ -257,6 +257,8 @@ static func run(test: Node, game: Node) -> void:
 	test.check(Xiaojing.refine() and Xiaojing.state.diamonds==diamonds+2 and Xiaojing.state.ore==5,"稀有材料加工扣原矿与石料")
 	# 隔离验证v8已约定婚礼的原流程；传说新增目标由独立新套覆盖。
 	LegendState.state.legacy_vow=true
+	# 本轮新增的住宅与亲手钓获条件也必须满足，不能由旧婚约标记绕过。
+	load("res://tests/marriage_requirement_fixture.gd").satisfy(game)
 	Xiaojing.state.diamonds=1314
 	test.check(StarStory.propose("share_home"),"独立求婚事件不扣钻石")
 	for id in ["linya","zhou","ahe"]:
