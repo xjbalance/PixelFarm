@@ -152,7 +152,9 @@ func house(origin: Vector2, texture: Texture2D) -> void:
 	prop.position = origin
 	actors.add_child(prop)
 	var sprite := Sprite2D.new()
-	sprite.texture = texture
+	var id: String="tea_house" if texture.resource_path.ends_with("tea_house.png") else "workshop"
+	sprite.texture = load("res://assets/world_scheme_c/derived/"+id+".png")
+	sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.position.y = -78
 	prop.add_child(sprite)
 	blocker(Rect2(-72,-68,144,58),prop)

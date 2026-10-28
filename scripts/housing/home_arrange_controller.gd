@@ -96,7 +96,13 @@ func _geometry(cell: Vector2i) -> Dictionary:
 	var rect: Rect2i=Housing.footprint(kind,cell)
 	return {"position":Vector2(rect.position)*32,"footprint":Rect2(Vector2(rect.position)*32,Vector2(rect.size)*32),"kind":kind,"cell":cell}
 func preview_texture(item: Dictionary) -> Texture2D:
-	var path: String="res://assets/housing/interior/"+str(item.art)+".png" if item.has("art") else "res://assets/housing/interior/placeable_"+str(item.kind)+".png"
+	if item.has("art"):
+		var replacement:=SchemeCAssets.home_texture(str(game.home.refreshed_art_id(str(item.art))))
+		if replacement: return replacement
+	elif item.has("kind"):
+		var replacement:=SchemeCAssets.furniture_texture(str(item.kind))
+		if replacement: return replacement
+	var path: String="res://assets/housing/interior/"+str(game.home.refreshed_art_id(str(item.art)))+".png" if item.has("art") else "res://assets/housing/interior/placeable_"+str(item.kind)+".png"
 	if not ResourceLoader.exists(path) and item.has("kind"): path="res://assets/housing/"+str(item.kind)+".png"
 	return load(path) if ResourceLoader.exists(path) else null
 func world_for_cell(cell: Vector2i) -> Vector2: return Vector2(cell)*32+_grab_offset

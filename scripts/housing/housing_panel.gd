@@ -197,7 +197,10 @@ func show_catalog() -> void:
 		if entry.area not in [area,"style"]: continue
 		if entry.area=="style" and area!="home": continue
 		section=FarmUIStyle.section(grid)
-		var icon := TextureRect.new();var preferred: String="res://assets/housing/interior/placeable_"+str(kind)+".png";icon.texture=load(preferred if entry.area=="home" and ResourceLoader.exists(preferred) else "res://assets/housing/"+str(kind)+".png");icon.custom_minimum_size=Vector2(48,48);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;section.add_child(icon)
+		var icon := TextureRect.new();var preferred: String="res://assets/housing/interior/placeable_"+str(kind)+".png";icon.texture=load(preferred if entry.area=="home" and ResourceLoader.exists(preferred) else "res://assets/housing/"+str(kind)+".png")
+		var replacement:=SchemeCAssets.furniture_texture(str(kind))
+		if replacement: icon.texture=replacement
+		icon.custom_minimum_size=Vector2(48,48);icon.stretch_mode=TextureRect.STRETCH_KEEP_ASPECT_CENTERED;section.add_child(icon)
 		words(entry.name+" · 家具库%d\n%s\n%s、%s" % [Housing.state.owned.get(kind,0),entry.description,costs(entry.required),DiamondPayments.text(int(entry.coins))])
 		if not Housing.unlocked(kind): words("需要住宅等级%d%s" % [entry.level,"且已结婚" if entry.get("married",false) else ""],16)
 		button("制作一件 · "+entry.name,func(): ask("消耗"+costs(entry.required)+"与"+DiamondPayments.text(int(entry.coins))+"制作一件"+entry.name+"？",func(): DiamondPayments.request(self,int(entry.coins),func(): result(Housing.buy(kind))))).disabled=not Housing.unlocked(kind)

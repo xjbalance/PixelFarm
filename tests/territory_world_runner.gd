@@ -47,8 +47,11 @@ func gates_and_permissions() -> void:
 	check(not Territory.unlocked("east_holding"),"新旅程尚未完成章节，河东入口未开放")
 	await visit("farm",Vector2(1088,352));territory_world.gates.east_holding.interact();await frames(3)
 	check(GameState.location=="farm","未解锁路牌不能将角色送入附属地")
-	check(not Territory.plan_terrain("farm",[Vector2i(17,16)],"soil").valid,"原60格农田不被领地地表覆盖")
-	check(not Territory.plan_place("farm","tree",Vector2i(7,20)).valid,"旧资源再生位置永远受保护")
+	check(Territory.plan_terrain("farm",[Vector2i(17,16)],"soil").valid,"尚未开垦的农地允许景观地表预览")
+	game.farm.plots["17,16"]={"crop":"carrot","days":1,"watered":false}
+	check(not Territory.plan_terrain("farm",[Vector2i(17,16)],"soil").valid,"已存在作物状态的原农田不被领地地表覆盖")
+	game.farm.plots.erase("17,16");territory_world.invalidate_geometry()
+	check(not Territory.plan_place("farm","tree",Vector2i(7,20)).valid,"尚未采集的旧树木真实脚底受保护")
 	check(not Territory.plan_place("farm","fence",Vector2i(20,13)).valid,"原主通路与住宅门前不能堵住")
 	check(not Territory.plan_terrain("village",[Vector2i(8,8)],"stone_path").valid,"公共村庄拒绝地表编辑")
 	check(not Territory.plan_place("mine_a","lamp",Vector2i(8,8)).valid,"地下区域拒绝放置新设施")

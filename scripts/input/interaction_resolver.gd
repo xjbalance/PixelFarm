@@ -38,10 +38,19 @@ static func resolve(game: Node, point: Vector2) -> Dictionary:
 	if not fishing_target.is_empty(): return fishing_target
 	var field: Node2D=game.resource_world.active_field()
 	if field:
+		var resource: Node2D
+		var resource_distance: float=INF
 		for object in field.objects.values():
 			if field.state[object.resource_id].hp <= 0: continue
-			var rect := Rect2(-25,-80,50,96) if object.kind == "tree" else Rect2(-25,-35,50,48)
-			if rect.has_point(point-object.global_position): return {"kind":"resource","object":object,"point":object.global_position}
+			# Native Scheme C crowns are wider/taller than the old tree. Hit the
+			# visible sprite, preserving a small foot target and transparent gaps.
+			var foot:=Rect2(-16,-18,32,30)
+			var local: Vector2=object.sprite.to_local(point)
+			var hit: bool=foot.has_point(point-object.global_position) or (object.sprite.get_rect().has_point(local) and object.sprite.is_pixel_opaque(local))
+			if hit:
+				var score: float=point.distance_to(object.global_position-Vector2(0,20))
+				if score<resource_distance: resource=object;resource_distance=score
+		if resource: return {"kind":"resource","object":resource,"point":resource.global_position}
 	if GameState.location == "farm":
 		var cell := Vector2i((point/32).floor())
 		if game.farm.BOUNDS.has_point(cell): return {"kind":"plot","cell":cell,"point":Vector2(cell)*32+Vector2(16,16)}

@@ -7,13 +7,14 @@ var sprite: Sprite2D
 var collider: CollisionShape2D
 var highlighted: bool = false
 var shake: Tween
+var art_id: String=""
 
 func _ready() -> void:
 	collision_layer = 1
 	collision_mask = 0
 	sprite = Sprite2D.new()
-	sprite.texture = load(FarmResourceCatalog.TYPES[kind].texture)
-	sprite.position.y = -sprite.texture.get_height()/2.0 + 6
+	sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	art_id=["oak_tree","birch_tree","pine_tree"][absi(resource_id.hash())%3] if kind=="tree" else "shore_rocks"
 	add_child(sprite)
 	collider = CollisionShape2D.new()
 	var shape := RectangleShape2D.new()
@@ -21,7 +22,16 @@ func _ready() -> void:
 	collider.shape = shape
 	collider.position.y = -5
 	add_child(collider)
+	Calendar.changed.connect(refresh_art)
+	Territory.changed.connect(queue_redraw)
+	refresh_art()
 	refresh()
+
+func refresh_art() -> void:
+	if not is_instance_valid(sprite): return
+	sprite.texture=SchemeCAssets.texture(art_id,Calendar.season())
+	sprite.position=SchemeCAssets.offset(art_id)
+	sprite.set_meta("scheme_c_id",art_id)
 
 func refresh() -> void:
 	var active: bool = field.state[resource_id].hp > 0
@@ -39,6 +49,8 @@ func hit_feedback() -> void:
 	refresh()
 
 func can_regrow() -> bool:
+	# Check before the off-map fast path: changing scenes must not undo landscaping.
+	if Territory.resource_edited(resource_id,field.area_id): return false
 	# 三张地图共用World2D；离图时别图同坐标玩家不能拖延这片林地恢复。
 	if field.area_id!=GameState.location: return true
 	# 再生时检查玩家脚下，避免在角色位置生成新的障碍物。
@@ -59,10 +71,9 @@ func set_highlight(active: bool) -> void:
 
 func _draw() -> void:
 	var data: Dictionary = field.state[resource_id]
-	if data.hp == 0:
+	if data.hp == 0 and not Territory.resource_edited(resource_id,field.area_id):
 		if kind == "tree":
-			draw_rect(Rect2(-10,-8,20,12),Color("795940"))
-			draw_rect(Rect2(-8,-8,16,4),Color("bf9a65"))
+			SchemeCAssets.draw(self,"tree_stump",Vector2.ZERO,Calendar.season())
 		else:
 			draw_rect(Rect2(-8,-2,6,4),Color("768a7a"))
 			draw_rect(Rect2(4,-5,5,5),Color("9ba58c"))

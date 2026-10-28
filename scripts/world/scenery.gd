@@ -5,16 +5,25 @@ var kind: String = "bush"
 var tone: Color = Color("bd8771")
 var phase: float = 0
 var caption: String = "河湾村 ↑"
+const NEED_ART := {"bush":"bush","flowers":"flower_patch","lantern":"street_lamp","mail":"mailbox","sign":"road_sign","bench":"wood_bench","well":"well","cart":"handcart","table":"picnic_table","post":"notice_board","community":"notice_board","cooperative":"market_stall","fence":"wood_fence","garden":"flower_pot"}
+const CJK: Font=preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc")
+const REPLACEABLE_DECOR := ["bush","flowers","cart","lantern","garden"]
+var _decor_covered: bool=false
+var _collision_body: StaticBody2D
+var _windmill_art: Node2D
 
 func _ready() -> void:
 	Story.changed.connect(queue_redraw)
 	VillageProjects.changed.connect(queue_redraw)
 	GameClock.changed.connect(queue_redraw)
+	Calendar.changed.connect(queue_redraw)
+	Territory.changed.connect(_refresh_cover)
 	set_process(kind == "windmill")
 	var footprints := {"mail":Rect2(-16,-16,32,20),"bench":Rect2(-36,-12,76,16),"well":Rect2(-28,-22,56,26),"cart":Rect2(-30,-20,62,24),"table":Rect2(-50,-23,104,27),"windmill":Rect2(-36,-45,72,49),"post":Rect2(-32,-16,64,20),"community":Rect2(-40,-20,80,24),"cooperative":Rect2(-48,-30,100,34)}
 	if footprints.has(kind):
 		var rect: Rect2 = footprints[kind]
 		var body := StaticBody2D.new()
+		_collision_body=body
 		body.position = rect.get_center()
 		var shape := CollisionShape2D.new()
 		var box := RectangleShape2D.new()
@@ -22,6 +31,67 @@ func _ready() -> void:
 		shape.shape = box
 		body.add_child(shape)
 		add_child(body)
+	if kind=="windmill" and SchemeCAssets.animation("windmill")!=null:
+		_windmill_art=SchemeCAssets.make_sprite("windmill",Calendar.season());add_child(_windmill_art)
+		set_process(false)
+	_refresh_cover()
+
+func _farm_scenery() -> bool:
+	var ancestor: Node=get_parent()
+	while ancestor:
+		var farm: Variant=ancestor.get("world")
+		if farm is Node and is_instance_valid(farm) and farm.is_ancestor_of(self): return true
+		ancestor=ancestor.get_parent()
+	return false
+
+func _refresh_cover() -> void:
+	# 只盖住农场纯装饰，不覆盖外部剧情可见性，也不动功能设施与原采集物。
+	_decor_covered=kind in REPLACEABLE_DECOR and _farm_scenery() and Territory.edited_cell("farm",Vector2i((global_position/32).floor()))
+	if is_instance_valid(_collision_body): _collision_body.collision_layer=0 if _decor_covered else 1
+	queue_redraw()
+
+func _caption_plate(text: String, baseline: float) -> void:
+	var width: float=maxf(60,CJK.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,12).x+12)
+	draw_rect(Rect2(-width*.5,baseline-17,width,22),Color("79563b"))
+	draw_rect(Rect2(-width*.5+2,baseline-15,width-4,18),Color("cfad79"))
+	var text_width: float=CJK.get_string_size(text,HORIZONTAL_ALIGNMENT_LEFT,-1,12).x
+	draw_string(CJK,Vector2(-text_width*.5,baseline),text,HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("59452f"))
+
+func _draw_need() -> bool:
+	if kind=="windmill":
+		return is_instance_valid(_windmill_art) or SchemeCAssets.draw(self,"windmill",Vector2.ZERO,Calendar.season())
+	if not NEED_ART.has(kind): return false
+	if kind=="cooperative" and not VillageProjects.has_project("cooperative"):
+		var drawn: bool=SchemeCAssets.draw(self,"firewood_pile",Vector2(-12,0),Calendar.season())
+		SchemeCAssets.draw(self,"wood_crate",Vector2(20,0),Calendar.season())
+		return drawn
+	if kind=="bench" and VillageProjects.has_project("arbor"):
+		SchemeCAssets.draw(self,"pavilion",Vector2.ZERO,Calendar.season())
+	if kind=="lantern" and GameClock.minutes>=1080:
+		draw_circle(Vector2(0,-42),28,Color("f9d78a12"));draw_circle(Vector2(0,-42),18,Color("f9d78a15"))
+	var art_scale: Vector2=Vector2.ONE
+	if kind=="mail": art_scale=Vector2(1.25,1.25)
+	elif kind=="sign": art_scale=Vector2(2,2)
+	elif kind=="bench" or kind=="table": art_scale=Vector2(1.5,1.5)
+	elif kind=="well" or kind=="cooperative": art_scale=Vector2(1.35,1.35)
+	elif kind=="cart" or kind=="post": art_scale=Vector2(1.4,1.4)
+	elif kind=="community": art_scale=Vector2(1.7,1.7)
+	elif kind in ["fence","garden"]: art_scale=Vector2(1.25,1.25)
+	var id: String=NEED_ART[kind]
+	if kind=="well" and not VillageProjects.has_project("well"):
+		var art:=SchemeCAssets.texture(id,Calendar.season())
+		if not art: return false
+		var origin: Vector2=(SchemeCAssets.offset(id)-art.get_size()*.5)*art_scale
+		draw_texture_rect(art,Rect2(origin,art.get_size()*art_scale),false,Color(.65,.67,.61))
+		_caption_plate("旧井 · 待修",-18)
+		return true
+	if not SchemeCAssets.draw(self,id,Vector2.ZERO,Calendar.season(),art_scale): return false
+	if kind=="sign": _caption_plate(caption,-49)
+	elif kind=="community": _caption_plate("共建 %d/3" % VillageProjects.built.size(),-22)
+	elif kind=="cooperative": _caption_plate("种子共仓",-38)
+	elif kind=="well":
+		draw_rect(Rect2(27,1,60,5),Color("6d9690"));draw_rect(Rect2(30,2,55,2),Color("adceba"))
+	return true
 
 func _process(delta: float) -> void:
 	phase += delta*0.32
@@ -31,6 +101,7 @@ func block(x: float,y: float,w: float,h: float,c: String) -> void:
 	draw_rect(Rect2(x,y,w,h),Color(c))
 
 func _draw() -> void:
+	if _decor_covered or _draw_need(): return
 	match kind:
 		"bush":
 			block(-25,-4,50,8,"345c4940")

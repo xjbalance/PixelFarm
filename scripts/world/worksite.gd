@@ -1,5 +1,5 @@
 extends Node2D
-## 可交互的修缮台和委托板使用原创像素几何；升级后外观同步改变。
+## 修缮台和委托板复用方案C图像；原交互、碰撞与升级状态保留。
 @export var kind: String = "workshop"
 
 func _ready() -> void:
@@ -13,6 +13,7 @@ func _ready() -> void:
 	body.add_child(collider)
 	add_child(body)
 	FarmProgress.changed.connect(queue_redraw)
+	Calendar.changed.connect(queue_redraw)
 	queue_redraw()
 
 func prompt() -> String:
@@ -21,7 +22,15 @@ func prompt() -> String:
 func interact() -> void:
 	Events.interaction_requested.emit(kind)
 
+func _draw_need() -> bool:
+	if kind=="board": return SchemeCAssets.draw(self,"notice_board",Vector2.ZERO,Calendar.season(),Vector2(1.35,1.35))
+	if not SchemeCAssets.draw(self,"picnic_table",Vector2.ZERO,Calendar.season()): return false
+	if FarmProgress.has_upgrade("toolrack"): SchemeCAssets.draw(self,"tool_rack",Vector2(0,-18),Calendar.season())
+	if FarmProgress.has_upgrade("irrigation"): SchemeCAssets.draw(self,"watering_can",Vector2(44,-8),Calendar.season())
+	return true
+
 func _draw() -> void:
+	if _draw_need(): return
 	draw_rect(Rect2(-29,-4,60,10),Color("3e573944"))
 	if kind == "board":
 		draw_rect(Rect2(-22,-32,6,35),Color("78583d"))

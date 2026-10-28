@@ -4,8 +4,8 @@ signal changed
 const BOUNDS := Rect2i(17, 16, 10, 6)
 const IRRIGATION := Rect2i(17,16,4,3)
 var CROP_TEXTURE = load("res://assets/crops/crops.png")
-var SOIL_DRY: Texture2D=preload("res://assets/farm06/soil_dry.png")
-var SOIL_WET: Texture2D=preload("res://assets/farm06/soil_wet.png")
+var SOIL_DRY: Texture2D=preload("res://assets/world_scheme_c/derived/soil_dry.png")
+var SOIL_WET: Texture2D=preload("res://assets/world_scheme_c/derived/soil_wet.png")
 var plots: Dictionary = {}
 var last_growth_day: int = 1
 var highlighted := Vector2i(-1, -1)
@@ -36,6 +36,8 @@ func tool_error(cell: Vector2i, tool: String) -> String:
 	var plot: Dictionary=plots.get(key(cell),{})
 	if tool=="hoe":
 		if not plot.is_empty(): return "这块土地已翻好，可以播种了。"
+		var landscape_error: String=Territory.farm_plot_error(cell)
+		if landscape_error!="": return landscape_error
 	elif tool.ends_with("_seed"):
 		var crop_id:=tool.trim_suffix("_seed")
 		if plot.is_empty() or not str(plot.get("crop","")).is_empty(): return "种子需要播在空的、翻过的土地上。"
@@ -75,6 +77,7 @@ func _commit_tool(cell: Vector2i, tool: String) -> bool:
 	var action: String=""
 	if tool=="hoe":
 		plots[id]={"crop":"","days":0,"watered":GameWeather.is_rainy() or (FarmProgress.has_upgrade("irrigation") and IRRIGATION.has_point(cell))}
+		Territory.on_farm_plot_created(cell)
 		action="翻土"
 	elif tool.ends_with("_seed"):
 		plot.crop=crop;plot.days=0;action="播种"

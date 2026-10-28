@@ -33,16 +33,8 @@ func _ready() -> void:
 
 static func _tiles(season: int) -> Texture2D:
 	if tile_textures.has(season): return tile_textures[season]
-	var image:=Image.create(160,32,false,Image.FORMAT_RGBA8)
-	for index in range(5):
-		var color: Color=SEASON_BASE[season].lightened((index-1)*.025) if index<3 else Color("c4aa7a") if index==3 else Color("506d48") if season!=3 else Color("829586")
-		image.fill_rect(Rect2i(index*32,0,32,32),color)
-		for i in range(14):
-			var at:=Vector2i(index*32+3+(i*11+index*3)%26,3+(i*7+index*5)%26)
-			image.fill_rect(Rect2i(at,Vector2i(2,1)),color.lightened(.07) if i%2 else color.darkened(.08))
-		if index==3:
-			for y in [1,30]: image.fill_rect(Rect2i(index*32,y,32,1),color.darkened(.08))
-	var texture:=ImageTexture.create_from_image(image);tile_textures[season]=texture;return texture
+	var texture: Texture2D=load("res://assets/world_scheme_c/derived/annex_ground_"+SchemeCAssets.SEASONS[season]+".png")
+	tile_textures[season]=texture;return texture
 
 func refresh() -> void:
 	var season: int=Calendar.season()
@@ -53,16 +45,12 @@ func refresh() -> void:
 
 func _draw() -> void:
 	var season: int=Calendar.season()
-	var greens: Array[Color]=[Color("638956"),Color("4c7549"),Color("947f4d"),Color("acbbab")]
-	var shade: Color=greens[season]
 	# 边界有实体瓦片，疏落的树篱轮廓只画在不可建设的边缘。
 	for y in range(80,840,64):
 		for x in [40,1240]:
-			draw_rect(Rect2(Vector2(x-22,y-26),Vector2(44,40)),shade.darkened(.13))
-			draw_rect(Rect2(Vector2(x-27,y-20),Vector2(54,26)),shade)
-			draw_rect(Rect2(Vector2(x-17,y-27),Vector2(29,12)),shade.lightened(.13))
+			SchemeCAssets.draw(self,"bush",Vector2(x,y),season)
 	for x in range(96,1200,64):
-		draw_rect(Rect2(x,42,44,16),shade)
+		SchemeCAssets.draw(self,"hedge_fence",Vector2(x,56),season)
 	if area_id=="lake_holding":
 		for x in range(90,1200,48): draw_line(Vector2(x,856),Vector2(x+27,856),Color("8ab2ad"),4)
 	elif area_id=="manor_holding":

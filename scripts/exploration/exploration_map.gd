@@ -11,6 +11,7 @@ var gates: Dictionary={}
 var fog_time: float=0
 var forest_background: PackedVector2Array=PackedVector2Array()
 var forest_tree_texture: Texture2D
+var applied_forest_season: int=-1
 func _ready() -> void:
 	layout=Exploration.data.areas[area_id];name=area_id
 	ground=TileMapLayer.new();ground.name="Ground";ground.z_index=-5;add_child(ground)
@@ -38,10 +39,17 @@ func _ready() -> void:
 		if record.area!=area_id: continue
 		var point := Node2D.new();point.set_script(preload("res://scripts/exploration/exploration_point.gd"));point.exploration_id=id;point.position=Exploration.point(id)
 		actors.add_child(point);objects[id]=point
-	Exploration.changed.connect(refresh);Calendar.changed.connect(queue_redraw);refresh()
+	Exploration.changed.connect(refresh);Calendar.changed.connect(refresh_forest_season);refresh_forest_season();refresh()
+func refresh_forest_season() -> void:
+	if area_id=="mist_forest" and applied_forest_season!=Calendar.season():
+		applied_forest_season=Calendar.season()
+		var atlas: TileSetAtlasSource=ground.tile_set.get_source(0)
+		atlas.texture=load("res://assets/world_scheme_c/derived/forest_ground_"+SchemeCAssets.SEASONS[applied_forest_season]+".png")
+		forest_tree_texture=SchemeCAssets.texture("pine_tree",applied_forest_season)
+	queue_redraw()
 func cache_forest_background() -> void:
 	# 林壁已有地形碰撞；少量背景树只缓存绘制位置，不创建AI/额外物理节点。
-	forest_tree_texture=load("res://assets/tilesets/tree.png")
+	forest_tree_texture=SchemeCAssets.texture("pine_tree",Calendar.season())
 	forest_background.clear()
 	for y in range(2,27,3):
 		for x in range(1,39,3):
@@ -75,14 +83,14 @@ func _draw() -> void:
 	if not layout: return
 	if area_id=="mist_forest":
 		for at in forest_background:
-			draw_texture(forest_tree_texture,at-Vector2(forest_tree_texture.get_width()*.5,forest_tree_texture.get_height()-6),Color(.80,.88,.78,.96))
+			var tree_id: String=["pine_tree","oak_tree","birch_tree"][absi(int(at.x+at.y))%3]
+			SchemeCAssets.draw(self,tree_id,at,Calendar.season())
 		# 稀疏低透明雾带，不另加屏幕级大雾；保持32px通路边界能看清。
 		for i in range(7):
 			var p := Vector2(fposmod(float(i)*233+fog_time*3,1400)-140,float(i%4)*190+120)
 			draw_rect(Rect2(p,Vector2(310,26)),Color(.76,.82,.74,.045))
-		var seasonal: Color=[Color("b7ca88"),Color("68966a"),Color("be8c59"),Color("d2ddd0")][Calendar.season()]
 		for at in [Vector2(100,360),Vector2(350,250),Vector2(660,330),Vector2(1010,110)]:
-			draw_line(at,at+Vector2(3,-22),Color("617551"),3);draw_rect(Rect2(at+Vector2(-4,-27),Vector2(15,10)),seasonal)
+			SchemeCAssets.draw(self,"reeds",at,Calendar.season())
 	elif area_id=="lake_ruins":
 		# 拱顶/检修栏杆明确表明是在封闭干燥廊道，不是水下普通行走。
 		for y in [170,362,554,746]:

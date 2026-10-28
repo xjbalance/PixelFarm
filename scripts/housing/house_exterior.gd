@@ -14,6 +14,6 @@ func find_house(node: Node) -> void:
 func refresh() -> void:
 	var level: int=int(Housing.state.level)
 	if not is_instance_valid(house) or applied_level==level: return
-	var path: String="res://assets/housing/interior/exterior_%d.png" % level
+	var path: String="res://assets/world_scheme_c/derived/exterior_%d.png" % level
 	if ResourceLoader.exists(path):
 		house.texture=load(path);applied_level=level

@@ -19,6 +19,8 @@ func refresh() -> void:
 	label=definition.name;solid=definition.solid
 	var preferred: String="res://assets/housing/interior/placeable_"+str(entry.kind)+".png"
 	texture=load(preferred if entry.area=="home" and ResourceLoader.exists(preferred) else "res://assets/housing/"+entry.kind+".png")
+	var replacement:=SchemeCAssets.furniture_texture(str(entry.kind))
+	if replacement: texture=replacement
 	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	z_index=0 if solid else -2
 	var key: String="%s:%s" % [solid,size]
@@ -49,4 +51,6 @@ func _draw() -> void:
 			draw_line(Vector2(0,0),Vector2(-7,-4),Color("9cb57b"),2);draw_line(Vector2(0,-2),Vector2(7,-7),Color("9cb57b"),2)
 			if age==2: draw_rect(Rect2(-3,-15,6,5),Color("b9d8c5"))
 		else: draw_rect(Rect2(-3,0,6,3),Color("bea47a"))
-	elif texture: draw_texture_rect(texture,Rect2(-size/2,size),false)
+	elif texture:
+		var extent:=texture.get_size()
+		draw_texture(texture,Vector2(-extent.x*.5,size.y*.5-extent.y))

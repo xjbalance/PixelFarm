@@ -16,8 +16,8 @@ func _draw() -> void:
 	var texture: Texture2D=controller.preview_texture()
 	if texture and not rectangles.is_empty():
 		var rect: Rect2=rectangles[0]
-		# 和实际TerritoryObject的脚底/缩放协议一致，确认前后不跳位置或比例。
-		if str(plan.get("kind",""))=="tree":
-			var extent: Vector2=texture.get_size()
-			draw_texture_rect(texture,Rect2(Vector2(rect.get_center().x-extent.x/2,rect.get_center().y-extent.y+12),extent),false,Color(1,1,1,0.58))
-		else: draw_texture_rect(texture,rect,false,Color(1,1,1,0.58))
+		# 原生像素尺寸与同一脚底锚点，预览不拉伸树冠或池塘。
+		var art: String=str(TerritoryCatalog.OBJECT_KINDS[str(plan.kind)].art)
+		var extent: Vector2=texture.get_size()
+		var origin: Vector2=rect.get_center()+TerritoryObject.art_position(art,rect.size)-extent*.5
+		draw_texture_rect(texture,Rect2(origin,extent),false,Color(1,1,1,0.58))

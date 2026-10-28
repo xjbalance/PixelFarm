@@ -21,10 +21,18 @@ func _ready() -> void:
 	label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;label.mouse_filter=Control.MOUSE_FILTER_IGNORE
 	label.add_theme_color_override("font_shadow_color",Color("263d32"));label.add_theme_constant_override("shadow_offset_x",1)
 	label.add_theme_constant_override("shadow_offset_y",1);add_child(label)
-	Livestock.changed.connect(refresh);refresh()
+	Livestock.changed.connect(refresh);Calendar.changed.connect(queue_redraw);refresh()
 
 func hit_rect() -> Rect2:
-	return Rect2(-64,-136,128,164)
+	var result:=Rect2(-64,-136,128,164)
+	if Livestock.building(livestock_id).level>0:
+		var id: String="chicken_coop" if livestock_id=="coop" else "barn"
+		var art:=SchemeCAssets.texture(id,Calendar.season())
+		if art:
+			var factor: float=120.0/art.get_width()
+			var top: Vector2=Vector2(0,-64)+(SchemeCAssets.offset(id)-art.get_size()*.5)*factor
+			result=result.merge(Rect2(top,art.get_size()*factor))
+	return result
 
 func prompt() -> String:
 	return ("管理" if Livestock.building(livestock_id).level>0 else "建造")+str(Livestock.data.buildings[livestock_id].name)
@@ -44,27 +52,37 @@ func refresh() -> void:
 	if shelter_floor: shelter_floor.queue_redraw()
 	queue_redraw()
 
+func _draw_need_roof() -> bool:
+	var id: String="chicken_coop" if livestock_id=="coop" else "barn"
+	var art:=SchemeCAssets.texture(id,Calendar.season())
+	if not art: return false
+	var factor: float=120.0/art.get_width()
+	# 图像底部止于旧后墙之前，开放暖舍与动物层不被完整房图盖住。
+	return SchemeCAssets.draw(self,id,Vector2(0,-64),Calendar.season(),Vector2(factor,factor))
+
 func _draw() -> void:
 	var level: int=Livestock.building(livestock_id).level
 	if level==0:
+		if SchemeCAssets.draw(self,"road_sign",Vector2.ZERO,Calendar.season(),Vector2(1.3,1.3)): return
 		draw_rect(Rect2(-4,-14,8,20),Color("635d45"))
 		draw_rect(Rect2(-24,-30,48,18),Color("c2a276"))
 		draw_line(Vector2(-15,-23),Vector2(15,-23),Color("756448"),2)
 		return
 	var wall := Color("bb9c70") if livestock_id=="coop" else (Color("a6aa8b") if livestock_id=="barn" else Color("b4aa8d"))
 	var roof := Color("91654f") if livestock_id=="coop" else (Color("59746a") if livestock_id=="barn" else Color("857b60"))
-	draw_rect(Rect2(-58,-110,116,48),Color("514d3d"))
-	draw_rect(Rect2(-54,-106,108,40),wall)
-	for x in range(-48,51,12): draw_line(Vector2(x,-104),Vector2(x,-67),wall.darkened(.15),1)
-	draw_colored_polygon(PackedVector2Array([Vector2(-66,-108),Vector2(-48,-132),Vector2(48,-132),Vector2(66,-108)]),roof)
-	for x in range(-45,46,15): draw_line(Vector2(x,-128),Vector2(x+8,-111),roof.lightened(.18),2)
-	draw_rect(Rect2(-17,-96,34,31),Color("5b5946"))
-	draw_rect(Rect2(-12,-93,24,28),Color("a18a64"))
-	draw_rect(Rect2(-7,-80,14,15),Color("d6c593"))
-	for x in [-38,38]:
-		draw_rect(Rect2(x-9,-98,18,17),Color("5b6b60"))
-		draw_rect(Rect2(x-6,-95,12,11),Color("adc5b1"))
-		draw_line(Vector2(x,-95),Vector2(x,-84),Color("718370"),2)
+	if not _draw_need_roof():
+		draw_rect(Rect2(-58,-110,116,48),Color("514d3d"))
+		draw_rect(Rect2(-54,-106,108,40),wall)
+		for x in range(-48,51,12): draw_line(Vector2(x,-104),Vector2(x,-67),wall.darkened(.15),1)
+		draw_colored_polygon(PackedVector2Array([Vector2(-66,-108),Vector2(-48,-132),Vector2(48,-132),Vector2(66,-108)]),roof)
+		for x in range(-45,46,15): draw_line(Vector2(x,-128),Vector2(x+8,-111),roof.lightened(.18),2)
+		draw_rect(Rect2(-17,-96,34,31),Color("5b5946"))
+		draw_rect(Rect2(-12,-93,24,28),Color("a18a64"))
+		draw_rect(Rect2(-7,-80,14,15),Color("d6c593"))
+		for x in [-38,38]:
+			draw_rect(Rect2(x-9,-98,18,17),Color("5b6b60"))
+			draw_rect(Rect2(x-6,-95,12,11),Color("adc5b1"))
+			draw_line(Vector2(x,-95),Vector2(x,-84),Color("718370"),2)
 	# 仅装饰的前庭围栏，不新增横跨通道的硬碰撞。
 	for x in [-64,64]:
 		# 两侧牧门留出真实进出缺口，动物不穿过绘制的围栏。

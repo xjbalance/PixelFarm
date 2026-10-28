@@ -57,6 +57,8 @@ func set_house_level(value: int) -> void:
 
 func prop(id: String,at: Vector2,sort_y: float,layer: int=0,builtin_id: String="") -> void:
 	var texture: Texture2D=load("res://assets/housing/interior/"+id+".png")
+	var replacement: Texture2D=SchemeCAssets.home_texture(id)
+	if replacement: texture=replacement
 	var sprite:=Sprite2D.new();sprite.name=(builtin_id if builtin_id!="" else id).to_pascal_case();sprite.texture=texture;sprite.centered=false;sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.position=Vector2(at.x+texture.get_width()/2.0,sort_y);sprite.offset=Vector2(-texture.get_width()/2.0,at.y-sort_y);sprite.z_index=layer
 	sprite.set_meta("home_art_id",id);sprite.add_to_group("home_interior_art")

@@ -61,13 +61,32 @@ static func draw_overlay(canvas: Control) -> void:
 	for reserved: Rect2i in info.protected:
 		var rect:=_world_rect(canvas,Rect2(Vector2(reserved.position)*32,Vector2(reserved.size)*32))
 		canvas.draw_rect(rect,Color(PUBLIC,.10));canvas.draw_rect(rect,Color(PUBLIC,.65),false,1)
+	if canvas.region_id=="farm":
+		# Same fine-grained reservations as the editor; the old broad road and
+		# courtyard rectangles no longer describe the player's editable farm.
+		var protected: Dictionary=TerritoryCatalog.farm_protected_cells().duplicate()
+		if is_instance_valid(canvas.game):
+			var farm: Variant=canvas.game.get("farm")
+			if is_instance_valid(farm) and farm.get("plots") is Dictionary:
+				for key in farm.plots: protected[TerritoryCatalog.cell_from_key(str(key))]=true
+			var resource_world: Variant=canvas.game.get("resource_world")
+			var resources: Dictionary={}
+			if is_instance_valid(resource_world) and resource_world.get("fields") is Dictionary and resource_world.fields.has("farm"):
+				resources=resource_world.fields.farm.state
+			for id in resources:
+				if int(resources[id].hp)<=0: continue
+				var footprint: Rect2i=TerritoryCatalog.resource_footprint(str(id))
+				for y in range(footprint.position.y,footprint.end.y):
+					for x in range(footprint.position.x,footprint.end.x): protected[Vector2i(x,y)]=true
+		for cell: Vector2i in protected:
+			canvas.draw_rect(_world_rect(canvas,Rect2(Vector2(cell)*32,Vector2(32,32))),Color(PUBLIC,.20))
 	if info.semi_open.has_area():
 		var semi: Rect2i=info.semi_open
 		canvas.draw_rect(_world_rect(canvas,Rect2(Vector2(semi.position)*32,Vector2(semi.size)*32)),Color("c6ac6c66"))
 	var terrain: Dictionary=Territory.state.terrain.get(canvas.region_id,{})
 	for key in terrain:
 		var cell:=TerritoryCatalog.cell_from_key(key)
-		var color: Color={"soil":Color("987352"),"grass":Color("8fa477"),"flowerbed":Color("b69372"),"dirt_path":Color("bc9964"),"stone_path":Color("9fa798"),"wood_path":Color("b68c5c")}.get(terrain[key],OWNED)
+		var color: Color={"soil":Color("987352"),"grass":Color("8fa477"),"flowerbed":Color("b69372"),"dirt_path":Color("bc9964"),"stone_path":Color("9fa798"),"wood_path":Color("b68c5c"),"sand":Color("d9c091"),"gravel":Color("aaa48d")}.get(terrain[key],OWNED)
 		canvas.draw_rect(_world_rect(canvas,Rect2(Vector2(cell)*32,Vector2(32,32))),color)
 	for object in Territory.state.objects:
 		if object.area!=canvas.region_id: continue

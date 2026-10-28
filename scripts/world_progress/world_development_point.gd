@@ -44,6 +44,7 @@ func _draw() -> void:
 	if development_id=="community": draw_community();return
 	draw_lamp()
 func draw_board() -> void:
+	if SchemeCAssets.draw(self,"notice_board",Vector2.ZERO,Calendar.season()): return
 	for x in [-15,15]: draw_rect(Rect2(x-2,-9,4,24),DARK)
 	draw_rect(Rect2(-25,-47,50,39),DARK);draw_rect(Rect2(-23,-45,46,35),Color("c6b17c"))
 	var icon: Texture2D=load("res://assets/world_progress/development_sign.png")
@@ -97,6 +98,9 @@ func draw_lamp() -> void:
 	var checked: bool=int(WorldDevelopment.state.lamps[id])==GameClock.day
 	var night: bool=GameClock.minutes>=1080 or GameClock.minutes<420
 	if night: draw_circle(Vector2(0,-37),25,Color(1,.8,.42,.10 if checked else .055))
+	if SchemeCAssets.draw(self,"street_lamp",Vector2.ZERO,Calendar.season()):
+		if checked: draw_rect(Rect2(-2,2,4,4),Color("acc38b"))
+		return
 	draw_rect(Rect2(-2,-36,4,48),DARK);draw_rect(Rect2(-10,-51,20,5),Color("8c805e"))
 	draw_rect(Rect2(-7,-46,14,18),Color("e4ca8e") if night else Color("bbba93"))
 	for x in [-8,7]: draw_rect(Rect2(x,-47,2,21),DARK)

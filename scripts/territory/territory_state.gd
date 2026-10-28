@@ -58,7 +58,22 @@ func permission(area: String, cell: Vector2i, operation: String) -> Dictionary:
 	if area not in TerritoryCatalog.EDITABLE_AREAS:
 		return {"allowed":false,"reason":"公共、剧情和地下区域不开放领地改造。","ownership":"public"}
 	if not unlocked(area): return {"allowed":false,"reason":str(TerritoryCatalog.region(area).hint),"ownership":"locked"}
-	return TerritoryCatalog.cell_allowed(area,cell,operation)
+	var rights:=TerritoryCatalog.cell_allowed(area,cell,operation)
+	if area=="farm" and rights.allowed:
+		var context:=_farm_context()
+		var reason:=TerritoryCatalog.farm_obstruction(cell,context.plots,context.resources)
+		if reason!="": return {"allowed":false,"reason":reason,"ownership":"private"}
+	return rights
+
+func _farm_context() -> Dictionary:
+	var result: Dictionary={"plots":{},"resources":{}}
+	if not is_instance_valid(game): return result
+	var farm: Variant=game.get("farm")
+	if is_instance_valid(farm) and farm.get("plots") is Dictionary: result.plots=farm.plots
+	var resources: Variant=game.get("resource_world")
+	if is_instance_valid(resources) and resources.get("fields") is Dictionary and resources.fields.has("farm"):
+		result.resources=resources.fields.farm.state
+	return result
 
 func object(id: String) -> Dictionary:
 	for entry in state.objects:
@@ -69,6 +84,35 @@ func object_at(area: String, cell: Vector2i) -> Dictionary:
 	for entry in state.objects:
 		if entry.area==area and TerritoryCatalog.footprint(entry.kind,TerritoryCatalog.to_cell(entry.cell)).has_point(cell): return entry
 	return {}
+
+func edited_cell(area: String, cell: Vector2i) -> bool:
+	return state.terrain.get(area,{}).has(TerritoryCatalog.key(cell)) or not object_at(area,cell).is_empty()
+
+func resource_edited(resource_id: String, area: String="farm") -> bool:
+	if area!="farm": return false
+	# 与原采集物真实脚底一致；树冠不是不可改造的土地。
+	var rect:=TerritoryCatalog.resource_footprint(resource_id)
+	var plots: Dictionary=_farm_context().plots
+	for y in range(rect.position.y,rect.end.y):
+		for x in range(rect.position.x,rect.end.x):
+			var cell:=Vector2i(x,y)
+			if plots.has(TerritoryCatalog.key(cell)) or edited_cell(area,cell): return true
+	return false
+
+func farm_plot_error(cell: Vector2i) -> String:
+	if not object_at("farm",cell).is_empty(): return "这里摆有植物或物件，请先在建造模式移走，再开垦。"
+	var kind: String=str(state.terrain.get("farm",{}).get(TerritoryCatalog.key(cell),""))
+	if kind in ["dirt_path","stone_path","wood_path","sand","gravel","flowerbed"]: return "这里是景观地表，请先在建造模式恢复自然土地，再开垦。"
+	return ""
+
+func on_farm_plot_created(cell: Vector2i) -> void:
+	if not is_instance_valid(game) or not game.farm.committing or not game.farm.plots.has(TerritoryCatalog.key(cell)): return
+	var cells: Dictionary=state.terrain.get("farm",{});var key: String=TerritoryCatalog.key(cell)
+	if str(cells.get(key,"")) not in ["soil","grass"]: return
+	cells.erase(key)
+	if cells.is_empty(): state.terrain.erase("farm")
+	state.revision=mini(MAX_REVISION,int(state.revision)+1)
+	changed.emit();Events.navigation_changed.emit()
 
 func _failure(plan: Dictionary, message: String) -> Dictionary:
 	plan.valid=false;plan.reason=message
@@ -182,6 +226,7 @@ func validate(raw: Variant, raw_save: Dictionary={}) -> bool:
 			var cell:=TerritoryCatalog.cell_from_key(cell_key)
 			var kind: Variant=raw.terrain[area][cell_key]
 			if cell==TerritoryCatalog.INVALID_CELL or not kind is String or not TerritoryCatalog.TERRAIN_KINDS.has(kind) or kind=="natural" or not TerritoryCatalog.cell_allowed(area,cell,kind).allowed: return false
+			if area=="farm" and not raw_save.is_empty() and _saved_farm_obstruction(raw_save,cell)!="": return false
 	if not raw.objects is Array or raw.objects.size()>MAX_OBJECTS: return false
 	var ids: Dictionary={};var occupied: Dictionary={}
 	for entry in raw.objects:
@@ -200,6 +245,11 @@ func validate(raw: Variant, raw_save: Dictionary={}) -> bool:
 			for x in range(extent.position.x,extent.end.x):
 				var at:=Vector2i(x,y);var occupied_key: String=str(entry.area)+":"+TerritoryCatalog.key(at)
 				if occupied.has(occupied_key) or not TerritoryCatalog.cell_allowed(entry.area,at,entry.kind).allowed: return false
+				if entry.area=="farm" and not raw_save.is_empty() and _saved_farm_obstruction(raw_save,at)!="": return false
 				occupied[occupied_key]=true
 				# 地表可在放置前铺设，保存时允许地表与其上的设施共存。
 	return true
+
+func _saved_farm_obstruction(raw_save: Dictionary, cell: Vector2i) -> String:
+	var plots: Variant=raw_save.get("plots",{});var resources: Variant=raw_save.get("resources",{})
+	return TerritoryCatalog.farm_obstruction(cell,plots if plots is Dictionary else {},resources if resources is Dictionary else {})

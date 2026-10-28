@@ -67,8 +67,12 @@ func entry_and_cancellation() -> void:
 	check(editor.palette.visible and editor.panel.visible and not game.hud.scrim.visible,"仅显示局部调色板与确认栏，地图保留完整视野")
 	check(not editor.confirm() and Territory.snapshot()==territory,"没有预览时确认不提交任何数据")
 	editor.choose_tool("soil");editor.preview_at(Vector2i(18,17))
-	check(not editor.preview_plan.get("valid",false) and not editor.confirm(),"原有农田格属于保护区域，不能由地表编辑覆盖")
+	check(editor.preview_plan.get("valid",false),"原来未开垦的空农地允许景观预览")
+	editor.discard_preview();game.farm.plots["18,17"]={"crop":"carrot","days":1,"watered":false}
+	editor.preview_at(Vector2i(18,17))
+	check(not editor.preview_plan.get("valid",false) and not editor.confirm(),"已有真实作物状态的地块不能由地表编辑覆盖")
 	editor.cancel();await frames(3)
+	game.farm.plots.erase("18,17");game.territory_world.invalidate_geometry()
 	check(not editor.active and not GameState.modal and not editor.palette.visible and not editor.panel.visible,"退出建造关闭局部面板并恢复普通游戏")
 	check(Territory.snapshot()==territory and business()==previous,"取消预览不改领地、农田、钱物、体力或剧情")
 	game.change_location("village");await frames(4)

@@ -6,6 +6,7 @@ var entry_id: String=""
 var entry: Dictionary={}
 var body: StaticBody2D
 var sprite: Sprite2D
+var animated: AnimatedSprite2D
 var definition: Dictionary={}
 var footprint_size:=Vector2(32,32)
 var geometry_key: String=""
@@ -14,6 +15,7 @@ func _ready() -> void:
 	add_to_group("interactables");add_to_group("territory_objects")
 	body=StaticBody2D.new();body.collision_layer=0;body.collision_mask=0;add_child(body)
 	sprite=Sprite2D.new();sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;add_child(sprite)
+	animated=AnimatedSprite2D.new();animated.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;add_child(animated);animated.hide()
 	Calendar.changed.connect(refresh_art)
 	refresh()
 
@@ -33,27 +35,36 @@ func refresh() -> void:
 		body.collision_layer=1 if bool(definition.solid) else 0
 		if bool(definition.solid):
 			var shape:=CollisionShape2D.new();var rectangle:=RectangleShape2D.new();rectangle.size=footprint_size-Vector2(4,4);shape.shape=rectangle;body.add_child(shape)
-		if str(entry.kind)=="chest": add_to_group("territory_storage")
+		if bool(definition.get("storage",false)): add_to_group("territory_storage")
 		elif is_in_group("territory_storage"): remove_from_group("territory_storage")
 	z_index=0 if bool(definition.solid) else -2
 	refresh_art()
 
 func refresh_art() -> void:
 	if entry.is_empty() or not is_instance_valid(sprite): return
-	var texture: Texture2D=TerritoryWorld.texture_for(str(entry.kind))
+	var art: String=str(definition.get("art",""))
+	var texture: Texture2D=SchemeCAssets.placed_texture(art,footprint_size,Calendar.season())
+	if texture==null: texture=TerritoryWorld.texture_for(str(entry.kind))
 	sprite.texture=texture;sprite.visible=texture!=null
+	animated.hide()
 	if texture:
 		sprite.scale=Vector2.ONE
-		if str(entry.kind)=="tree": sprite.position=Vector2(0,-texture.get_height()*.5+12)
-		elif str(entry.kind)=="fence": sprite.position=Vector2(0,-4)
-		else:
-			sprite.position=Vector2.ZERO
-			sprite.scale=footprint_size/Vector2(texture.get_width(),texture.get_height())
+		sprite.position=art_position(art,footprint_size)
+		var frames:=SchemeCAssets.animation(art)
+		if frames:
+			if animated.sprite_frames!=frames: animated.sprite_frames=frames;animated.play("loop")
+			animated.position=sprite.position;animated.show();sprite.hide()
 	queue_redraw()
+
+static func art_position(art: String, extent: Vector2) -> Vector2:
+	if SchemeCAssets.has_repeat(art): return Vector2.ZERO
+	var base:=Vector2(0,extent.y*.5-3)
+	if art.ends_with("_tree") or art=="dead_tree": base=Vector2(0,12)
+	return SchemeCAssets.offset(art)+base
 
 func prompt() -> String:
 	if entry.is_empty(): return "领地物件"
-	return str(definition.name)+(" · 共用住宅收纳" if str(entry.kind)=="chest" else " · 建造模式可移动或拆除")
+	return str(definition.name)+(" · 共用住宅收纳" if bool(definition.get("storage",false)) else " · 建造模式可移动或拆除")
 
 func hit_rect() -> Rect2:
 	if is_instance_valid(sprite) and sprite.texture:
@@ -62,12 +73,12 @@ func hit_rect() -> Rect2:
 	return Rect2(-footprint_size*.5,footprint_size)
 
 func storage_accessible() -> bool:
-	if entry.is_empty() or str(entry.kind)!="chest" or not is_instance_valid(game) or not is_visible_in_tree() or GameState.location!=str(entry.area): return false
+	if entry.is_empty() or not bool(definition.get("storage",false)) or not is_instance_valid(game) or not is_visible_in_tree() or GameState.location!=str(entry.area): return false
 	return not game.backgrounded and not game.closing and not GameState.restoring and game.player.global_position.distance_to(global_position)<=54 and game.auto_move.navigation.line_of_sight(game.player.global_position,global_position,self)
 
 func interact() -> void:
 	if entry.is_empty() or not is_instance_valid(game) or GameState.modal or game.player.global_position.distance_to(global_position)>54: return
-	if str(entry.kind)=="chest": Events.interaction_requested.emit("housing:territory_storage")
+	if bool(definition.get("storage",false)): Events.interaction_requested.emit("housing:territory_storage")
 	else: Events.notice.emit(str(definition.name)+"是领地摆设，可在菜单的建造模式中移动或拆除。")
 
 func _draw() -> void:

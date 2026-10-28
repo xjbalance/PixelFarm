@@ -55,7 +55,7 @@ func visuals_and_routes() -> void:
 	var physics: Dictionary=game.auto_move.navigation.static_solid.duplicate()
 	for season in range(4):
 		GameClock.day=season*28+1;Calendar.restore(Calendar.snapshot());GameClock.changed.emit();await frames(3)
-		check(visual.applied_season==season and visual.ground_detail.texture.resource_path.ends_with(FarmVisual06.SEASONS[season]+".png") and visual.trees[0].texture.resource_path.contains("/farm06/"),"四季原生地面/树木视觉同步："+str(season))
+		check(visual.applied_season==season and visual.ground_detail.texture.resource_path.ends_with(FarmVisual06.SEASONS[season]+".png") and visual.trees[0].texture.resource_path.contains("/world_scheme_c/seasons/"),"四季原生地面/树木视觉同步："+str(season))
 		game.auto_move.navigation.invalidate();await frames(3);game.auto_move.navigation.rebuild()
 		check(game.auto_move.navigation.static_solid==physics,"换季只换图，物理导航格不变化："+str(season))
 	check(FarmSaveStore.restore(game,original),"季节视觉夹具恢复原进度")

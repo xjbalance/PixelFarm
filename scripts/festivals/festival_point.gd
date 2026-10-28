@@ -13,9 +13,10 @@ func interact() -> void:
 func _draw() -> void:
 	var event: Dictionary=Festival.data.events[festival_id]
 	var today: bool=Festival.active_id()==festival_id
-	draw_rect(Rect2(-3,-15,6,30),Color("6f6048"))
-	draw_rect(Rect2(-23,-44,46,29),Color("59644d"))
-	draw_rect(Rect2(-21,-42,42,25),COLORS[festival_id])
+	if not SchemeCAssets.draw(self,"notice_board",Vector2(0,9),Calendar.season()):
+		draw_rect(Rect2(-3,-15,6,30),Color("6f6048"))
+		draw_rect(Rect2(-23,-44,46,29),Color("59644d"))
+		draw_rect(Rect2(-21,-42,42,25),COLORS[festival_id])
 	var icon: Texture2D=load("res://assets/festivals/"+str(event.reward.items.keys()[0])+".png")
 	draw_texture_rect(icon,Rect2(-12,-43,24,24),false)
 	if not today: return

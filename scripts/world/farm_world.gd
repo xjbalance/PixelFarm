@@ -112,6 +112,9 @@ func add_prop(path: String, origin: Vector2, collision: Rect2) -> void:
 	actors.add_child(prop)
 	var sprite := Sprite2D.new()
 	sprite.texture = load(path)
+	if path.ends_with("/market.png"): sprite.texture=load("res://assets/world_scheme_c/derived/market.png")
+	elif path.ends_with("/fence.png"): sprite.texture=SchemeCAssets.texture("wood_fence")
+	sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.position.y = -sprite.texture.get_height() / 2.0 + 6
 	prop.add_child(sprite)
 	add_blocker(collision, prop)

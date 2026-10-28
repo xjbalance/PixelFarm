@@ -61,6 +61,9 @@ func refresh() -> void:
 	invalidate_geometry()
 
 static func texture_for(kind: String) -> Texture2D:
+	var definition: Dictionary=TerritoryCatalog.OBJECT_KINDS.get(kind,{})
+	var art: String=str(definition.get("art",""))
+	if not SchemeCAssets.definition(art).is_empty(): return SchemeCAssets.placed_texture(art,Vector2(TerritoryCatalog.footprint(kind,Vector2i.ZERO).size)*32,Calendar.season())
 	var key: String=kind+("_"+str(Calendar.season()) if kind=="tree" else "")
 	if _textures.has(key): return _textures[key]
 	var path: String=""
@@ -86,8 +89,9 @@ func _mark_rect(result: Dictionary, rect: Rect2, region: Rect2i, margin: float=0
 		for x in range(maxi(region.position.x,start.x),mini(region.end.x,end.x)):
 			if expanded.intersects(Rect2(x*32,y*32,32,32)): result[Vector2i(x,y)]=true
 
-func protected_cells(area: String) -> Dictionary:
-	if _protected_cache.has(area): return _protected_cache[area]
+func protected_cells(area: String, operation: String="grass") -> Dictionary:
+	var cache_key: String=area+(":solid" if TerritoryCatalog.is_solid(operation) else ":ground")
+	if _protected_cache.has(cache_key): return _protected_cache[cache_key]
 	var result: Dictionary={}
 	var region:=Rect2i(0,0,48,32) if area=="farm" else Rect2i(0,0,40,28)
 	var definition: Dictionary=TerritoryCatalog.region(area)
@@ -95,20 +99,27 @@ func protected_cells(area: String) -> Dictionary:
 		for y in range(reserved.position.y,reserved.end.y):
 			for x in range(reserved.position.x,reserved.end.x): result[Vector2i(x,y)]=true
 	if area=="farm":
-		# 原资源再生坐标永久保留，即使今天已经采尽，也不能被装修覆盖。
-		for entry in FarmResourceCatalog.placements("farm").values():
-			_mark_rect(result,Rect2(Vector2(entry.cell)*32-Vector2(26,32),Vector2(52,52)),region,8)
-		# 建筑的屋顶/外墙也保留，不只保护狭窄的物理脚底。
-		for rect in [Rect2(560,242,192,204),Rect2(288,306,136,146)]: _mark_rect(result,rect,region)
+		for cell in TerritoryCatalog.farm_protected_cells(): result[cell]=true
+		if TerritoryCatalog.is_solid(operation):
+			for cell in TerritoryCatalog.farm_solid_protected_cells(): result[cell]=true
+		# 树冠和已采集点不占土地；只保护存活节点的真实脚底。
+		for id in game.resource_world.fields.farm.state:
+			if int(game.resource_world.fields.farm.state[id].hp)<=0: continue
+			var rect:=TerritoryCatalog.resource_footprint(str(id))
+			for y in range(rect.position.y,rect.end.y):
+				for x in range(rect.position.x,rect.end.x): result[Vector2i(x,y)]=true
+		for key in game.farm.plots: result[TerritoryCatalog.cell_from_key(str(key))]=true
 		for placed in Housing.state.placed:
 			if placed.area!="farm": continue
 			var rect: Rect2i=Housing.footprint(placed.kind,TerritoryCatalog.to_cell(placed.cell))
 			_mark_rect(result,Rect2(Vector2(rect.position)*32,Vector2(rect.size)*32),region,4)
 		for object in game.get_tree().get_nodes_in_group("interactables"):
 			if object is CharacterBody2D or not game.world.is_ancestor_of(object) or object.is_in_group("territory_objects"): continue
-			# 节日牌即使今天隐藏，也保留下一季到访的合法站位。
-			_mark_rect(result,Rect2(object.global_position-Vector2(42,42),Vector2(84,84)),region)
-	_protected_cache[area]=result
+			if TerritoryCatalog.is_solid(operation):
+				# 只留真正操作站位，路面仍可以重新铺设。
+				_mark_rect(result,Rect2(object.global_position-Vector2(10,10),Vector2(20,20)),region)
+				_mark_rect(result,Rect2(object.global_position+Vector2(-10,22),Vector2(20,20)),region)
+	_protected_cache[cache_key]=result
 	return result
 
 func validate_plan(plan: Dictionary) -> Dictionary:
@@ -120,14 +131,14 @@ func validate_plan(plan: Dictionary) -> Dictionary:
 	var kind: String=str(plan.get("kind",""))
 	var cells: Array=plan.get("cells",[])
 	if cells.is_empty(): return {"valid":false,"reason":"先在领地中选择要改造的地格。"}
-	var claimed: Dictionary=protected_cells(area)
+	var claimed: Dictionary=protected_cells(area,kind)
 	var rects: Array[Rect2i]=[]
 	for value in cells:
 		var cell: Vector2i=TerritoryCatalog.to_cell(value)
 		var rect: Rect2i=Rect2i(cell,Vector2i.ONE) if operation=="terrain" else TerritoryCatalog.footprint(kind,cell)
 		for y in range(rect.position.y,rect.end.y):
 			for x in range(rect.position.x,rect.end.x):
-				if claimed.has(Vector2i(x,y)): return {"valid":false,"reason":"这里保留原农田、资源、门口或剧情交互通路，不能覆盖。"}
+				if claimed.has(Vector2i(x,y)): return {"valid":false,"reason":"这里有真实建筑、农田、存活资源或功能站位，请先保留它们。"}
 		rects.append(rect)
 	var solid: bool=operation!="terrain" and TerritoryCatalog.is_solid(kind)
 	var excluded: Array[RID]=[]
@@ -142,10 +153,22 @@ func validate_plan(plan: Dictionary) -> Dictionary:
 			if solid and person is CharacterBody2D and map.is_ancestor_of(person) and person.is_visible_in_tree() and bounds.grow(18).has_point(person.global_position): return {"valid":false,"reason":"请避开人物当前的站位。"}
 		shape.size=bounds.size-Vector2(4,4);query.transform=Transform2D(0,bounds.get_center())
 		for hit in game.player.get_world_2d().direct_space_state.intersect_shape(query,64):
-			if map==hit.collider or map.is_ancestor_of(hit.collider): return {"valid":false,"reason":"这里与水面、建筑或已有物件重叠。"}
+			if (map==hit.collider or map.is_ancestor_of(hit.collider)) and not _replaceable_scenery(hit.collider,rects): return {"valid":false,"reason":"这里与水面、建筑或已有物件重叠。"}
 	if solid:
 		return _validate_routes(plan)
 	return {"valid":true,"reason":""}
+
+func _replaceable_scenery(collider: Node, rectangles: Array[Rect2i]) -> bool:
+	if GameState.location!="farm": return false
+	var node: Node=collider
+	while is_instance_valid(node) and node!=game.world:
+		if node is RiverScenery and node.kind in ["bush","flowers","cart","lantern","garden"]:
+			var cell:=Vector2i((node.global_position/32).floor())
+			for rect in rectangles:
+				if rect.has_point(cell): return true
+			return false
+		node=node.get_parent()
+	return false
 
 func _baseline() -> Dictionary:
 	var nav: WorldNavigation=game.auto_move.navigation
@@ -225,17 +248,18 @@ func _validate_routes(plan: Dictionary) -> Dictionary:
 	var points: Array[Vector2]=[]
 	var map: Node=maps[GameState.location]
 	for object in game.get_tree().get_nodes_in_group("interactables"):
-		if not map.is_ancestor_of(object) or not object.is_visible_in_tree() or object.is_in_group("territory_objects"): continue
+		if not map.is_ancestor_of(object) or object.is_in_group("territory_objects"): continue
 		if object is CharacterBody2D:
+			if not object.is_visible_in_tree(): continue
 			var cell:=Vector2i((object.global_position/32).floor())
 			if before.has(cell) and not after.has(cell): return {"valid":false,"reason":"摆放会将人物与原有通路隔开。"}
 		else: points.append(object.global_position)
 	if GameState.location=="farm":
-		for y in range(16,22):
-			for x in range(17,27): points.append(Vector2(x*32+16,y*32+16))
-		for entry in FarmResourceCatalog.placements("farm").values(): points.append(Vector2(entry.cell)*32)
+		for key in game.farm.plots: points.append(Vector2(TerritoryCatalog.cell_from_key(str(key)))*32+Vector2(16,16))
+		for id in game.resource_world.fields.farm.state:
+			if int(game.resource_world.fields.farm.state[id].hp)>0: points.append(game.resource_world.fields.farm.objects[id].global_position)
 	for entry in proposed:
-		if str(entry.area)==GameState.location:
+		if str(entry.area)==GameState.location and bool(TerritoryCatalog.OBJECT_KINDS[str(entry.kind)].get("storage",str(entry.kind)=="chest")):
 			var rect:=TerritoryCatalog.footprint(str(entry.kind),TerritoryCatalog.to_cell(entry.cell));points.append(Vector2(rect.position)*32+Vector2(rect.size)*16)
 	for point in points:
 		if _approachable(point,before) and not _approachable(point,after): return {"valid":false,"reason":"摆放会切断门口、设施、农田或人物的现有通路。"}
