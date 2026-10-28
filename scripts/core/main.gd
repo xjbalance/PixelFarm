@@ -123,6 +123,9 @@ func _ready() -> void:
 	hud.atlas_panel.setup(self)
 	tutorial=GameTutorial.new();add_child(tutorial);tutorial.attach(self)
 	Territory.bind(self)
+	territory_world=TerritoryWorld.new();add_child(territory_world);territory_world.setup(self)
+	territory_editor=TerritoryEditor.new();add_child(territory_editor);territory_editor.setup(self)
+	hud.system_panel.territory_requested.connect(territory_editor.open)
 	character_select=PanelContainer.new();character_select.set_script(preload("res://scripts/appearance/character_select_panel.gd"))
 	hud.safe.add_child(character_select);character_select.setup(self);hud.character_select_panel=character_select
 	character_select.confirmed.connect(confirm_character_creation)
@@ -410,6 +413,7 @@ func _notification(what: int) -> void:
 		if not backgrounded:
 			backgrounded = true
 			if is_instance_valid(home_arrange): home_arrange.cancel()
+			if is_instance_valid(territory_editor): territory_editor.cancel()
 			player.suspended = true
 			player.cancel_farm_action()
 			was_running = GameClock.running
@@ -487,6 +491,7 @@ func context_action_name() -> String:
 	return {"hoe":"翻土","water":"浇水","hand":"收获","axe":"砍伐","pickaxe":"采石","fishing_rod":"抛竿"}.get(context_tool(),"播种")
 
 func context_hint() -> String:
+	if GameState.location in TerritoryCatalog.ANNEX_AREAS: return Story.NAMES[GameState.location]+" · 菜单进入建造 / 改造领地 · 沿原路牌返回农场"
 	if GameState.location in Exploration.AREAS: return Story.NAMES[GameState.location]+" · 点击路标和机关，调查提示后再操作，沿入口返回"
 	if GameState.location=="greenhouse": return "星光温室 · 左右桌准备仪式 · 星灯下交换约定 · 档案桌安排日常"
 	if GameState.location=="abyss": return "深渊%d层 · 空气%d/160 · 检查刻痕、机关和安全绳" % [AbyssState.state.depth,AbyssState.state.air]
@@ -564,6 +569,7 @@ func on_day_ending(_reason: String) -> void:
 	GameState.set_modal(false)
 
 func freeze_for_close() -> void:
+	if is_instance_valid(territory_editor): territory_editor.cancel()
 	GameClock._process(0) # 若已到午夜，先唯一结算再保存。
 	GameClock.running=false
 	auto_move.cancel()

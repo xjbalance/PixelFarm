@@ -390,6 +390,8 @@ func reflow_panels() -> void:
 	if not is_instance_valid(dialogue): return
 	for panel in get_tree().get_nodes_in_group("modal_panels"):
 		if not safe.is_ancestor_of(panel): continue
+		if panel.get_meta("territory_editor",false):
+			panel.controller.layout_panel();continue
 		if panel.get_meta("home_editor",false):
 			panel.controller.layout_panel();continue
 		if panel.get_meta("parchment_atlas",false):
@@ -581,6 +583,9 @@ func show_notice(text: String) -> void:
 	toast_time = 4.0
 
 func close_active_panel() -> bool:
+	var current_game:=get_parent()
+	if is_instance_valid(current_game.get("territory_editor")) and current_game.territory_editor.active:
+		current_game.territory_editor.cancel();return true
 	if is_instance_valid(character_select_panel) and character_select_panel.visible:
 		character_select_panel.close_panel();return true
 	if is_instance_valid(atlas_panel) and atlas_panel.visible:

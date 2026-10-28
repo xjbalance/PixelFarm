@@ -8,6 +8,7 @@ signal journal_requested
 signal story_requested
 signal new_game_requested
 signal character_switch_requested
+signal territory_requested
 var title: Label
 var body: Label
 var actions: VBoxContainer
@@ -76,6 +77,7 @@ func open_panel(for_sleep: bool = false) -> void:
 		actions.add_child(FarmUIStyle.button("委托 J",func(): close_panel();journal_requested.emit(),150))
 		actions.add_child(FarmUIStyle.button("手记",func(): close_panel();story_requested.emit(),150))
 		actions.add_child(FarmUIStyle.button("切换人物形象",request_character_switch,180))
+		actions.add_child(FarmUIStyle.button("建造 / 改造领地",func(): close_panel();territory_requested.emit(),180))
 		var row := HBoxContainer.new()
 		row.add_theme_constant_override("separation",10)
 		actions.add_child(row)

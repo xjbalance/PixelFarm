@@ -12,6 +12,7 @@ static func resolve(game: Node, point: Vector2) -> Dictionary:
 		var offset: Vector2 = point-object.global_position
 		var rect := Rect2(-34,-65,68,88)
 		if "mine_id" in object or "abyss_id" in object: rect = Rect2(-20,-43,40,58)
+		elif object.is_in_group("territory_objects") or object.is_in_group("territory_gates"): rect=object.hit_rect()
 		elif "development_id" in object: rect=object.hit_rect()
 		elif "exploration_id" in object: rect=object.hit_rect()
 		elif "builtin_id" in object and object.builtin_id!="": rect=object.hit_rect()
