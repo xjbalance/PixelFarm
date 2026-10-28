@@ -246,7 +246,7 @@ func build_feedback() -> void:
 	var content := VBoxContainer.new()
 	content.add_theme_constant_override("separation",2)
 	guide.add_child(content)
-	guide_toggle=FarmUIStyle.button("任务手记 ▾",toggle_guide,180)
+	guide_toggle=FarmUIStyle.button(guide_title(),toggle_guide,180)
 	guide_toggle.icon=load("res://assets/ui/river/icon_task.png")
 	guide_toggle.expand_icon=true
 	guide_toggle.add_theme_constant_override("icon_max_width",18)
@@ -429,9 +429,13 @@ func bubble_style() -> StyleBoxTexture:
 	style.content_margin_top=5;style.content_margin_bottom=5
 	return style
 
+func guide_title() -> String:
+	if OS.get_name()=="Windows": return "任务手记 "+("+" if guide_collapsed else "-")
+	return "任务手记 ▸" if guide_collapsed else "任务手记 ▾"
+
 func toggle_guide() -> void:
 	guide_collapsed=not guide_collapsed
-	guide_toggle.text="任务手记 ▸" if guide_collapsed else "任务手记 ▾"
+	guide_toggle.text=guide_title()
 	progress_label.visible=not guide_collapsed
 	quest_label.visible=not guide_collapsed
 	guide_panel.offset_bottom=guide_panel.offset_top+(64 if guide_collapsed else 144)

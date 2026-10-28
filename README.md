@@ -60,6 +60,7 @@ Godot **4.3 Standard** 导入`project.godot`，完成素材导入后按F5；不�
 ./.tools/Godot_v4.3-stable_linux.x86_64 --path .
 ```
 
+- [Windows 64位电脑版 ZIP](builds/PixelWorld-0.8.0-Windows-x64.zip) · [Windows说明](docs/WINDOWS.md)
 - [Android调试APK](builds/PixelWorld-0.8.0-debug.apk) · [APK校验和](builds/PixelWorld-0.8.0-debug.apk.sha256)
 - [完整源码包](builds/PixelWorld-0.8.0-source.zip) · [源码校验和](builds/PixelWorld-0.8.0-source.sha256)
 
@@ -114,6 +115,7 @@ python3 tools/check_windows.py
 python3 tools/check_interrupt_071.py
 python3 tools/simulate_070.py
 python3 tools/build_android.py
+python3 tools/build_windows.py
 python3 tools/verify_apk_runtime.py
 python3 tools/verify_territory_apk.py
 python3 tools/package_source.py

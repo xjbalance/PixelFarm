@@ -1,0 +1,141 @@
+{
+  "version": "0.8.0",
+  "target": "Windows x64 release",
+  "package": {
+    "version": "0.8.0",
+    "platform": "Windows x86_64",
+    "configuration": "release",
+    "pck_bytes": 24272224,
+    "embedded_pck": false,
+    "exe_sha256": "7707a60c19de6f6456741b03eeb5e89c4e9b1c6d3f9ad0e1e24ff877cbf921b4",
+    "pck_sha256": "011b24ddf08928e535203d64ad077f3d82193c6b1f646616f5ba8016d5f665dd",
+    "files": [
+      "PixelWorld.exe",
+      "PixelWorld.pck",
+      "开始游戏.txt",
+      "字体许可.txt",
+      "licenses/GODOT-LICENSE.txt",
+      "licenses/GODOT-THIRD-PARTY.txt",
+      "licenses/NOTICE.txt"
+    ],
+    "zip": "PixelWorld-0.8.0-Windows-x64.zip",
+    "zip_bytes": 52988224,
+    "zip_sha256": "3d56ecd2e79f964ac9187f4119ff2f8dedc266890b6049b424efe20634a38c9a",
+    "zip_crc_verified": true,
+    "pe_amd64_verified": true,
+    "version_resource_verified": true,
+    "packed_resources_desktop_startup": true,
+    "windows_native_tested": false
+  },
+  "wine_runtime": {
+    "exe": "/home/xiznhi/xiangqi/PixelFarm/builds/PixelWorld-0.8.0-Windows-x64/PixelWorld.exe",
+    "exe_sha256": "7707a60c19de6f6456741b03eeb5e89c4e9b1c6d3f9ad0e1e24ff877cbf921b4",
+    "pck": "/home/xiznhi/xiangqi/PixelFarm/builds/PixelWorld-0.8.0-Windows-x64/PixelWorld.pck",
+    "pck_sha256": "011b24ddf08928e535203d64ad077f3d82193c6b1f646616f5ba8016d5f665dd",
+    "wine_version": "wine-6.0.3 (Ubuntu 6.0.3~repack-1)",
+    "windows_native_tested": false,
+    "wine_tested": true,
+    "headless": true,
+    "window": true,
+    "save_restart": true,
+    "captures": [
+      {
+        "path": "builds/windows080-wine-character-select.png",
+        "width": 1280,
+        "height": 720,
+        "x": 160,
+        "y": 140,
+        "sha256": "dff98b8299e206cda0e5f6aa4808686b5da04ac0a40690f4a43375d7ca73e7e1",
+        "committed_path": "docs/windows080/character-select.png"
+      },
+      {
+        "path": "builds/windows080-wine-farm.png",
+        "width": 1280,
+        "height": 720,
+        "x": 160,
+        "y": 140,
+        "sha256": "2e5f68048987f42917dbf4d74149e87b19caa5e9fa078141a2e37e15f50a4630",
+        "committed_path": "docs/windows080/farm.png"
+      },
+      {
+        "path": "builds/windows080-wine-map.png",
+        "width": 1280,
+        "height": 720,
+        "x": 160,
+        "y": 140,
+        "sha256": "76ae1c43109c1bfaf21ff555c922637022b941480ae4dde3b30446a6bc6d0194",
+        "committed_path": "docs/windows080/map.png"
+      }
+    ],
+    "window_title": "",
+    "input_method": "keyboard_after_mouse_activation",
+    "save_version": 26,
+    "appearance": {
+      "player_gender": "female",
+      "scheme": "C",
+      "xiaojing_gender": "male"
+    },
+    "territory_saved": true,
+    "player_profile_isolated": true,
+    "standalone_without_source": true,
+    "unicode_path_tested": true,
+    "status": "passed"
+  },
+  "regressions": [
+    {
+      "suite": "character_select_runner",
+      "checks": 36,
+      "failures": 0,
+      "log": "builds/windows080-regression-character_select_runner.log"
+    },
+    {
+      "suite": "touch_polish_runner",
+      "checks": 53,
+      "failures": 0,
+      "log": "builds/windows080-regression-touch_polish_runner.log"
+    },
+    {
+      "suite": "appearance_switch_runner",
+      "checks": 126,
+      "failures": 0,
+      "log": "builds/windows080-regression-appearance_switch_runner.log"
+    }
+  ],
+  "regression_checks": 215,
+  "gameplay_data_changed": false,
+  "android_preset_changed": false,
+  "windows_native_tested": false,
+  "windows_font_fix": "Use packagedNoto for default theme+global fallback,retain builtin symbols; Windows task disclosure usesASCII +/-.",
+  "template": {
+    "version": "4.3.stable",
+    "official_source": "https://github.com/godotengine/godot-builds/releases/download/4.3-stable/Godot_v4.3-stable_export_templates.tpz",
+    "templates": [
+      {
+        "name": "windows_release_x86_64.exe",
+        "size": 84214784,
+        "sha256": "66b26ad96df7458ea917b632a73ac7c88bb058db24dbd11a457fd50435ab7b13",
+        "zip_crc32": 2749614684,
+        "pe_machine": "AMD64",
+        "source_offset": 1043137051
+      },
+      {
+        "name": "windows_release_x86_64_console.exe",
+        "size": 185856,
+        "sha256": "8b8e736c794a840ff81d46889e6e8670c7cb8362e4a09c4ba701d3dcd36152e7",
+        "zip_crc32": 2295027096,
+        "pe_machine": "AMD64",
+        "source_offset": 1043062036
+      }
+    ]
+  },
+  "sources": [
+    "https://github.com/godotengine/godot-builds/releases/tag/4.3-stable",
+    "https://github.com/electron/rcedit/releases/tag/v2.0.0"
+  ],
+  "font_license": "assets/ui/fonts/LICENSE.txt",
+  "contents_include_player_save": false,
+  "source_profile_isolated": true,
+  "remaining": [
+    "Windows10/11原生机器、硬件驱动和音频未验收；Wine与Linux资源启动检查不能替代原生验收。"
+  ]
+}

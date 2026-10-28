@@ -22,6 +22,13 @@ func set_control_mode(mode: String, persist: bool = true) -> void:
 	if persist: Events.progress_committed.emit()
 
 func _ready() -> void:
+	# 世界标牌使用全局回退字体；Windows 英文系统也须能显示中文。
+	if OS.get_name()=="Windows":
+		var previous: Font=ThemeDB.get_default_theme().default_font
+		var chinese: Font=load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc")
+		if previous and previous!=chinese and previous not in chinese.fallbacks: chinese.fallbacks=chinese.fallbacks+[previous]
+		ThemeDB.get_default_theme().default_font=chinese
+		ThemeDB.fallback_font=chinese
 	# 在运行时统一注册按键，避免平台键码与编辑器配置不一致。
 	var bindings := {"move_left": [KEY_A, KEY_LEFT], "move_right": [KEY_D, KEY_RIGHT],
 		"move_up": [KEY_W, KEY_UP], "move_down": [KEY_S, KEY_DOWN],
