@@ -22,6 +22,8 @@ var content_key: String=""
 var view_epoch: int=0
 var row_build_count: int=0
 var scrolling_trade_controls: bool=false
+var crop_page: int=0
+var crop_group: int=0
 var sale_detail: Label
 var sale_quantity_label: Label
 
@@ -55,6 +57,7 @@ func _ready() -> void:
 func open_panel(as_shop: bool) -> void:
 	if GameState.modal: return
 	pending_sale.clear();sale_serial+=1;view_epoch+=1;content_key="";selected_item=""
+	crop_page=0;crop_group=0
 	shop_mode=as_shop;materials_tab=false;aquaculture_tab=false;life_tab=false;quantity=1
 	GameState.set_modal(true);show();refresh();scroll.scroll_vertical=0
 
@@ -68,6 +71,7 @@ func close_panel() -> void:
 func change_category(index: int) -> void:
 	if not visible: return
 	DiamondPayments.cancel(self);pending_sale.clear();sale_serial+=1
+	crop_page=0
 	materials_tab=index==1;aquaculture_tab=index==2;life_tab=index==3;selected_item=""
 	refresh();scroll.scroll_vertical=0
 
@@ -87,7 +91,7 @@ func refresh() -> void:
 	footer.visible=shop_mode and pending_sale.is_empty();payment_control.visible=footer.visible;quantity_label.text=str(quantity)
 	var current:=category()
 	for i in range(category_buttons.size()): category_buttons[i].set_pressed_no_signal(current==["crops","materials","fish","life"][i])
-	var key: String=("shop:" if shop_mode else "bag:")+current+(":sale:"+str(pending_sale.token) if not pending_sale.is_empty() else "")
+	var key: String=("shop:" if shop_mode else "bag:")+current+str(crop_page)+":"+str(crop_group)+":"+str(Calendar.season())+(":sale:"+str(pending_sale.token) if not pending_sale.is_empty() else "")
 	if key!=content_key:
 		view_epoch+=1;content_key=key;row_views.clear()
 		for child in rows.get_children():
@@ -131,8 +135,27 @@ func add_action(view: Dictionary,caption: String,callback: Callable,item: String
 	button.set_meta("inventory_action",item);button.set_meta("action_kind",action);button.set_meta("caption",caption)
 	view.row.add_child(button);view.actions.append(button);return button
 
+func crop_turn(amount: int) -> void:
+	crop_page=maxi(0,crop_page+amount);content_key="";refresh();scroll.scroll_vertical=0
+
 func build_crops() -> void:
+	var available: Array[String]=[]
 	for id in Catalog.crops:
+		if id in ["carrot","potato","wheat"]: available.append(id);continue
+		var row: Dictionary=HarvestCatalog.data().crops[id]
+		if shop_mode:
+			if not HarvestCatalog.seed_available(id): continue
+		elif not Catalog.crop_grows(id) and Inventory.count(id)==0 and Inventory.count(id+"_seed")==0: continue
+		if crop_group==1 and "flower" not in row.tags: continue
+		available.append(id)
+	var pages: int=maxi(1,ceili(available.size()/6.0));crop_page=clampi(crop_page,0,pages-1)
+	var navigation:=HBoxContainer.new();rows.add_child(navigation)
+	navigation.add_child(FarmUIStyle.button("上一页",crop_turn.bind(-1),90));navigation.get_child(0).disabled=crop_page==0
+	navigation.add_child(FarmUIStyle.label("%s季 · %d/%d页" % [["春","夏","秋","冬"][Calendar.season()],crop_page+1,pages],17))
+	var next:=FarmUIStyle.button("下一页",crop_turn.bind(1),90);next.disabled=crop_page>=pages-1;navigation.add_child(next)
+	navigation.add_child(FarmUIStyle.button("全部 / 花卉",func(): crop_group=1-crop_group;crop_page=0;content_key="";refresh(),160))
+	if shop_mode: FacilityLayout.text(rows,"当季种子 · 部分品种在种子合作社建成后供货；树苗见生活分类。",15)
+	for id in available.slice(crop_page*6,mini(available.size(),crop_page*6+6)):
 		var view:=make_row("crop:"+id)
 		add_selector(view,id+"_seed",160);add_selector(view,id,150)
 		if shop_mode:
@@ -142,7 +165,7 @@ func build_crops() -> void:
 			add_action(view,"按数量出售",request_sale_quantity.bind(id),id,"sell_quantity",120)
 		else:
 			add_action(view,"装备种子",equip.bind(id),id+"_seed","equip")
-			add_action(view,"吃1个\n+%d体力" % Recovery.FOOD[id],use_item.bind(id),id,"eat",100)
+			if Recovery.FOOD.has(id): add_action(view,"吃1个\n+%d体力" % Recovery.FOOD[id],use_item.bind(id),id,"eat",100)
 
 func refresh_materials() -> void:
 	for id in Catalog.materials:
@@ -317,7 +340,7 @@ func confirm_sale(token: int) -> void:
 
 func equip(crop_id: String) -> void:
 	if not visible or Inventory.count(crop_id+"_seed")<=0: return
-	GameState.select_tool(GameState.tools.find(crop_id+"_seed"));close_panel()
+	Workshop.select_seed(crop_id);close_panel()
 
 func equip_tool(id: String) -> void:
 	if not visible or id not in GameState.tools: return

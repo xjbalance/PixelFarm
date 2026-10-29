@@ -2,11 +2,11 @@ class_name FarmSaveStore
 extends RefCounted
 ## 写临时文件后重命名；保留上一次存档。先完整校验再修改运行状态。
 const PATH: String = "user://farm_save.json"
-const VERSION: int = 27
+const VERSION: int = 28
 
 static func snapshot(game: Node) -> Dictionary:
 	var result: Dictionary={
-		"appearance": Appearance.snapshot(),
+		"appearance": Appearance.snapshot(), "workshop": Workshop.snapshot(),
 		"tutorial": game.tutorial.snapshot(),
 		"world_development": WorldDevelopment.snapshot(), "exploration": Exploration.snapshot(), "housing": Housing.snapshot(), "festival": Festival.snapshot(), "social": Social.snapshot(),
 		"kitchen": Kitchen.snapshot(), "ecology": LakeEcology.snapshot(), "fishing": Fishing.snapshot(), "livestock": Livestock.snapshot(),
@@ -36,7 +36,7 @@ static func write(game: Node, path: String = PATH) -> bool:
 	# 新开局外观尚未确认时不能让自动保存替换已有进度。
 	if game.get("awaiting_character_choice")==true: return false
 	# 农活生效事务的同步通知尚未结束时，不能把半份跨系统进度写入磁盘。
-	if game.farm.committing or Housing.busy or FarmLayout.busy or game.resource_world.committing(): return false
+	if Workshop.busy or Kitchen.busy or Territory.busy or game.farm.committing or Housing.busy or FarmLayout.busy or game.resource_world.committing(): return false
 	var data := snapshot(game)
 	if not valid(data): return false
 	var file := FileAccess.open(path+".tmp",FileAccess.WRITE)
@@ -130,6 +130,7 @@ static func restore(game: Node, raw: Dictionary) -> bool:
 	game.tutorial.restore(data.tutorial)
 	Festival.restore(data["festival"])
 	Kitchen.restore(data["kitchen"])
+	Workshop.restore(data["workshop"])
 	Fishing.restore(data["fishing"])
 	Livestock.restore(data["livestock"])
 	Recovery.restore(data["recovery"])

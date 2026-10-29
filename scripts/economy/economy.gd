@@ -5,6 +5,9 @@ static func buy(crop_id: String, quantity: int) -> bool:
 	if not Catalog.crops.has(crop_id) or quantity < 1 or quantity > 99:
 		Events.notice.emit("购买数量须为 1—99。")
 		return false
+	if not HarvestCatalog.seed_available(crop_id):
+		Events.notice.emit("当前季节不出售这种种子，或尚需完成种子合作社建设。")
+		return false
 	var crop: CropDefinition = Catalog.crops[crop_id]
 	var cost: int = seed_price(crop_id) * quantity
 	var item := crop_id + "_seed"

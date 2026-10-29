@@ -557,11 +557,12 @@ func refresh() -> void:
 
 func refresh_hotbar() -> void:
 	# 工具和库存变化驱动；时钟/体力/剧情刷新无需重复设置九个相同按钮。
-	var signature: Array=[GameState.selected,Inventory.count("carrot_seed"),Inventory.count("potato_seed"),Inventory.count("wheat_seed")]
+	var signature: Array=[GameState.selected,GameState.tools[5],Inventory.count("carrot_seed"),Inventory.count("potato_seed"),Inventory.count(GameState.tools[5])]
 	if signature==toolbar_signature: return
 	toolbar_signature=signature
 	for i in range(tool_buttons.size()):
 		var id: String = GameState.tools[i]
+		if i==5: tool_buttons[i].icon=tool_badge(ItemPresentation.texture(id))
 		var amount := str(Inventory.count(id)) if id.ends_with("_seed") else str(i + 1)
 		var empty_seed: bool=id.ends_with("_seed") and Inventory.count(id)==0
 		if empty_seed: amount="0 已用完"

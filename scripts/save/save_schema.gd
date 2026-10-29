@@ -2,7 +2,7 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,27): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,28): return {}
 	var data: Dictionary = raw.duplicate(true)
 	# 旧路线盘的数字格ID也必须规范，防止JSON浮点枚举失配/重复矿格。
 	if data.get("xiaojing") is Dictionary and data.xiaojing.get("cave") is Dictionary:
@@ -140,6 +140,8 @@ static func normalize(raw: Variant) -> Dictionary:
 	else:
 		if not data.get("farm_layout") is Dictionary: return {}
 		data.farm_layout=AbyssSaveSchema.canonical(data.farm_layout)
+	if int(data.version)==27:
+		data.workshop=Workshop.defaults();data.version=28
 	data.world_development=AbyssSaveSchema.canonical(data.get("world_development"))
 	data.exploration=AbyssSaveSchema.canonical(data.get("exploration"))
 	data.housing=AbyssSaveSchema.canonical(data.get("housing"))
@@ -207,7 +209,7 @@ static func valid_current(data: Variant) -> bool:
 	if not AbyssSaveSchema.validate(data.get("abyss"),int(data.day)) or not AbyssSaveSchema.legend(data.get("legend"),data.xiaojing,int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),27,27) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),28,28) or not Story.validate(data.get("story")): return false
 	if not FarmLayout.validate(data.get("farm_layout"),data): return false
 	if not Territory.validate(data.get("territory"),data): return false
 	if not CharacterAppearance.validate(data.get("appearance")): return false
@@ -291,6 +293,7 @@ static func valid_current(data: Variant) -> bool:
 		for personal_event in data.social.completed:
 			if personal_event.begins_with("xiaojing_"): return false
 	if not Kitchen.validate(data.get("kitchen"),int(data.day)): return false
+	if not Workshop.validate(data.get("workshop"),data): return false
 	if data.kitchen.buff.id!="" and data.aquaculture.meal_day==0: return false
 	if not LakeEcology.validate(data.get("ecology"),int(data.day)): return false
 	if "lake_ruins" in data.exploration.unlocked and (not data.ecology.restored or "forest_archive" not in data.exploration.facts or "drain_plate" not in data.exploration.facts): return false

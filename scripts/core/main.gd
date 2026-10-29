@@ -508,7 +508,7 @@ func context_hint() -> String:
 	var plot: Dictionary = farm.plot_at(player.target_cell())
 	if not plot.is_empty() and str(plot.crop) != "":
 		var crop = Catalog.crops[plot.crop]
-		if not farm.is_mature(plot) and not Catalog.crop_grows(plot.crop): return "%s · 冬季休眠，转暖后继续生长" % crop.display_name
+		if not farm.is_mature(plot) and not Catalog.crop_grows(plot.crop): return "%s · 非适种季节，植株保留" % crop.display_name
 		return "%s · %s" % [Catalog.item_name(plot.crop),"可以收获了" if farm.is_mature(plot) else ("已浇水 · 还需 %d 个生长日" % (crop.growth_days-int(plot.days)) if plot.watered else "需要一点水")]
 	return "对准脚前亮框 · "+context_action_name()
 

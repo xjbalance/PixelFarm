@@ -1,0 +1,3196 @@
+{
+  "version": 1,
+  "crops": {
+    "strawberry": {
+      "name": "草莓",
+      "seasons": [
+        0
+      ],
+      "growth_days": 4,
+      "seed_price": 20,
+      "sell_price": 28,
+      "harvest_quantity": 2,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "berry",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "草莓可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：草莓果酱。",
+      "uses": [
+        "strawberry_jam"
+      ]
+    },
+    "cabbage": {
+      "name": "卷心菜",
+      "seasons": [
+        0
+      ],
+      "growth_days": 4,
+      "seed_price": 22,
+      "sell_price": 62,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "cabbage",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "卷心菜可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：泡菜、田园蔬菜汤。",
+      "uses": [
+        "kimchi",
+        "vegetable_soup"
+      ]
+    },
+    "radish": {
+      "name": "白萝卜",
+      "seasons": [
+        0
+      ],
+      "growth_days": 3,
+      "seed_price": 14,
+      "sell_price": 42,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "root",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "白萝卜可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：腌萝卜、葱香鲫鱼汤。",
+      "uses": [
+        "pickled_radish",
+        "farm_fish_soup"
+      ]
+    },
+    "peas": {
+      "name": "豌豆",
+      "seasons": [
+        0
+      ],
+      "growth_days": 3,
+      "seed_price": 16,
+      "sell_price": 25,
+      "harvest_quantity": 2,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "pod",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "豌豆可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：豌豆干、田园饭团。",
+      "uses": [
+        "dried_peas",
+        "rice_ball"
+      ]
+    },
+    "spinach": {
+      "name": "菠菜",
+      "seasons": [
+        0
+      ],
+      "growth_days": 2,
+      "seed_price": 10,
+      "sell_price": 28,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "leaf",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "菠菜可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：菠菜干、田园蔬菜汤。",
+      "uses": [
+        "dried_spinach",
+        "vegetable_soup"
+      ]
+    },
+    "rapeseed": {
+      "name": "油菜",
+      "seasons": [
+        0
+      ],
+      "growth_days": 4,
+      "seed_price": 16,
+      "sell_price": 46,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "cooperative",
+      "shape": "oilflower",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "油菜可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：菜籽油。",
+      "uses": [
+        "canola_oil"
+      ]
+    },
+    "garlic_shoot": {
+      "name": "蒜苗",
+      "seasons": [
+        0
+      ],
+      "growth_days": 3,
+      "seed_price": 12,
+      "sell_price": 34,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "stalk",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "蒜苗可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：蒜苗汤料、蔬菜煎饼。",
+      "uses": [
+        "soup_herbs",
+        "vegetable_pancake"
+      ]
+    },
+    "tomato": {
+      "name": "番茄",
+      "seasons": [
+        1
+      ],
+      "growth_days": 4,
+      "seed_price": 22,
+      "sell_price": 31,
+      "harvest_quantity": 2,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "tomato",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "番茄可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：番茄酱、葵香拌蔬菜。",
+      "uses": [
+        "tomato_sauce",
+        "sunflower_salad"
+      ]
+    },
+    "cucumber": {
+      "name": "黄瓜",
+      "seasons": [
+        1
+      ],
+      "growth_days": 3,
+      "seed_price": 16,
+      "sell_price": 24,
+      "harvest_quantity": 2,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "cucumber",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "黄瓜可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：腌黄瓜、葵香拌蔬菜。",
+      "uses": [
+        "pickled_cucumber",
+        "sunflower_salad"
+      ]
+    },
+    "corn": {
+      "name": "玉米",
+      "seasons": [
+        1
+      ],
+      "growth_days": 4,
+      "seed_price": 20,
+      "sell_price": 58,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "corn",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "玉米可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：玉米粉、玉米饲料。",
+      "uses": [
+        "cornmeal",
+        "corn_feed"
+      ]
+    },
+    "chili": {
+      "name": "辣椒",
+      "seasons": [
+        1
+      ],
+      "growth_days": 4,
+      "seed_price": 24,
+      "sell_price": 34,
+      "harvest_quantity": 2,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "cooperative",
+      "shape": "chili",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "辣椒可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：辣椒酱。",
+      "uses": [
+        "chili_sauce"
+      ]
+    },
+    "eggplant": {
+      "name": "茄子",
+      "seasons": [
+        1
+      ],
+      "growth_days": 4,
+      "seed_price": 20,
+      "sell_price": 57,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "eggplant",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "茄子可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：茄子干、田园蔬菜豆腐。",
+      "uses": [
+        "dried_eggplant",
+        "tofu_vegetables"
+      ]
+    },
+    "watermelon": {
+      "name": "西瓜",
+      "seasons": [
+        1
+      ],
+      "growth_days": 6,
+      "seed_price": 38,
+      "sell_price": 110,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "cooperative",
+      "shape": "melon",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "西瓜可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：西瓜汁。",
+      "uses": [
+        "watermelon_juice"
+      ]
+    },
+    "blueberry": {
+      "name": "蓝莓",
+      "seasons": [
+        1
+      ],
+      "growth_days": 5,
+      "seed_price": 24,
+      "sell_price": 24,
+      "harvest_quantity": 3,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "cooperative",
+      "shape": "cluster",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "蓝莓可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：蓝莓果酱、水果沙拉。",
+      "uses": [
+        "blueberry_jam",
+        "fruit_salad"
+      ]
+    },
+    "sunflower_crop": {
+      "name": "向日葵",
+      "seasons": [
+        1
+      ],
+      "growth_days": 5,
+      "seed_price": 24,
+      "sell_price": 68,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "sunflower",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "向日葵可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：葵花籽油。",
+      "uses": [
+        "sunflower_oil"
+      ]
+    },
+    "pumpkin": {
+      "name": "南瓜",
+      "seasons": [
+        2
+      ],
+      "growth_days": 6,
+      "seed_price": 32,
+      "sell_price": 94,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "pumpkin",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "南瓜可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：南瓜泥。",
+      "uses": [
+        "pumpkin_puree"
+      ]
+    },
+    "sweet_potato": {
+      "name": "红薯",
+      "seasons": [
+        2
+      ],
+      "growth_days": 4,
+      "seed_price": 20,
+      "sell_price": 56,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "tuber",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "红薯可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：红薯干、烤红薯。",
+      "uses": [
+        "dried_sweet_potato",
+        "roast_sweet_potato"
+      ]
+    },
+    "rice_crop": {
+      "name": "水稻",
+      "seasons": [
+        2
+      ],
+      "growth_days": 4,
+      "seed_price": 18,
+      "sell_price": 52,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "grain",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "水稻可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：精制大米。",
+      "uses": [
+        "rice"
+      ]
+    },
+    "soybean": {
+      "name": "大豆",
+      "seasons": [
+        2
+      ],
+      "growth_days": 4,
+      "seed_price": 18,
+      "sell_price": 50,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "beans",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "大豆可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：鲜豆腐。",
+      "uses": [
+        "tofu"
+      ]
+    },
+    "grape": {
+      "name": "葡萄",
+      "seasons": [
+        2
+      ],
+      "growth_days": 5,
+      "seed_price": 26,
+      "sell_price": 25,
+      "harvest_quantity": 3,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "cooperative",
+      "shape": "grape",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "葡萄可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：葡萄汁、葡萄干。",
+      "uses": [
+        "grape_juice",
+        "raisins"
+      ]
+    },
+    "peanut": {
+      "name": "花生",
+      "seasons": [
+        2
+      ],
+      "growth_days": 4,
+      "seed_price": 22,
+      "sell_price": 60,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "cooperative",
+      "shape": "peanut",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "花生可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：花生油。",
+      "uses": [
+        "peanut_oil"
+      ]
+    },
+    "cotton": {
+      "name": "棉花",
+      "seasons": [
+        2
+      ],
+      "growth_days": 5,
+      "seed_price": 24,
+      "sell_price": 70,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "cooperative",
+      "shape": "cotton",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "棉花可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：棉布。",
+      "uses": [
+        "cotton_cloth"
+      ]
+    },
+    "winter_kale": {
+      "name": "冬甘蓝",
+      "seasons": [
+        3
+      ],
+      "growth_days": 4,
+      "seed_price": 22,
+      "sell_price": 60,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "kale",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "冬甘蓝可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：甘蓝干。",
+      "uses": [
+        "dried_kale"
+      ]
+    },
+    "snow_radish": {
+      "name": "雪萝卜",
+      "seasons": [
+        3
+      ],
+      "growth_days": 3,
+      "seed_price": 16,
+      "sell_price": 44,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "snowroot",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "雪萝卜可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：雪萝卜泡菜、暖冬蔬菜汤。",
+      "uses": [
+        "snow_pickle",
+        "winter_soup"
+      ]
+    },
+    "winter_onion": {
+      "name": "冬葱",
+      "seasons": [
+        3
+      ],
+      "growth_days": 3,
+      "seed_price": 14,
+      "sell_price": 40,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "onion",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "冬葱可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：冬葱干、豆腐汤、葱香鲫鱼汤。",
+      "uses": [
+        "onion_flakes",
+        "tofu_soup",
+        "farm_fish_soup"
+      ]
+    },
+    "frost_peas": {
+      "name": "耐寒豌豆",
+      "seasons": [
+        3
+      ],
+      "growth_days": 4,
+      "seed_price": 18,
+      "sell_price": 26,
+      "harvest_quantity": 2,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "frostpod",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "耐寒豌豆可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：寒豌豆汤料、暖冬蔬菜汤。",
+      "uses": [
+        "frost_pea_flakes",
+        "winter_soup"
+      ]
+    },
+    "winter_cabbage": {
+      "name": "冬白菜",
+      "seasons": [
+        3
+      ],
+      "growth_days": 5,
+      "seed_price": 26,
+      "sell_price": 76,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "lettuce",
+      "tags": [
+        "crop"
+      ],
+      "gift_to": "linya",
+      "description": "冬白菜可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：冬白菜泡菜、暖冬蔬菜汤。",
+      "uses": [
+        "winter_pickle",
+        "winter_soup"
+      ]
+    },
+    "lavender": {
+      "name": "薰衣草",
+      "seasons": [
+        0,
+        1
+      ],
+      "growth_days": 4,
+      "seed_price": 18,
+      "sell_price": 52,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "lavender",
+      "tags": [
+        "flower"
+      ],
+      "gift_to": "linya",
+      "description": "薰衣草可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：干薰衣草。",
+      "uses": [
+        "lavender_bundle"
+      ]
+    },
+    "rose": {
+      "name": "玫瑰",
+      "seasons": [
+        0,
+        1,
+        2
+      ],
+      "growth_days": 5,
+      "seed_price": 26,
+      "sell_price": 74,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "cooperative",
+      "shape": "rose",
+      "tags": [
+        "flower"
+      ],
+      "gift_to": "linya",
+      "description": "玫瑰可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：干玫瑰花瓣。",
+      "uses": [
+        "rose_petals"
+      ]
+    },
+    "chamomile": {
+      "name": "洋甘菊",
+      "seasons": [
+        0,
+        2
+      ],
+      "growth_days": 3,
+      "seed_price": 14,
+      "sell_price": 40,
+      "harvest_quantity": 1,
+      "watering": "daily",
+      "stages": 4,
+      "unlock": "basic",
+      "shape": "daisy",
+      "tags": [
+        "flower"
+      ],
+      "gift_to": "linya",
+      "description": "洋甘菊可用于工坊加工、料理或赠送村民；非适种季节暂停生长，植株保留。 用途：干洋甘菊。",
+      "uses": [
+        "chamomile_dried"
+      ]
+    }
+  },
+  "orchard": {
+    "apple": {
+      "name": "苹果树",
+      "fruit": "apple",
+      "seasons": [
+        2
+      ],
+      "growth_days": 10,
+      "regrow_days": 3,
+      "yield": 2,
+      "sapling_price": 240,
+      "unlock": "cooperative"
+    },
+    "pear": {
+      "name": "梨树",
+      "fruit": "pear",
+      "seasons": [
+        2
+      ],
+      "growth_days": 10,
+      "regrow_days": 3,
+      "yield": 2,
+      "sapling_price": 240,
+      "unlock": "cooperative"
+    },
+    "peach": {
+      "name": "桃树",
+      "fruit": "peach",
+      "seasons": [
+        1
+      ],
+      "growth_days": 12,
+      "regrow_days": 3,
+      "yield": 2,
+      "sapling_price": 280,
+      "unlock": "cooperative"
+    },
+    "orange": {
+      "name": "橙树",
+      "fruit": "orange",
+      "seasons": [
+        3
+      ],
+      "growth_days": 12,
+      "regrow_days": 3,
+      "yield": 2,
+      "sapling_price": 280,
+      "unlock": "cooperative"
+    }
+  },
+  "items": {
+    "apple": {
+      "name": "苹果",
+      "sell_price": 36,
+      "kind": "fruit",
+      "description": "成熟苹果树在结果季每三天结两份果实；可加工、烹饪或赠礼。",
+      "icon": "res://assets/harvest/items/apple.png",
+      "gift_to": "linya"
+    },
+    "apple_sapling": {
+      "name": "苹果树苗",
+      "sell_price": 0,
+      "kind": "sapling",
+      "description": "在建造模式的果园分组栽种；10天长成，不需每日浇水。",
+      "icon": "res://assets/harvest/items/apple_sapling.png",
+      "price": 240
+    },
+    "pear": {
+      "name": "梨",
+      "sell_price": 38,
+      "kind": "fruit",
+      "description": "成熟梨树在结果季每三天结两份果实；可加工、烹饪或赠礼。",
+      "icon": "res://assets/harvest/items/pear.png",
+      "gift_to": "linya"
+    },
+    "pear_sapling": {
+      "name": "梨树苗",
+      "sell_price": 0,
+      "kind": "sapling",
+      "description": "在建造模式的果园分组栽种；10天长成，不需每日浇水。",
+      "icon": "res://assets/harvest/items/pear_sapling.png",
+      "price": 240
+    },
+    "peach": {
+      "name": "桃",
+      "sell_price": 42,
+      "kind": "fruit",
+      "description": "成熟桃树在结果季每三天结两份果实；可加工、烹饪或赠礼。",
+      "icon": "res://assets/harvest/items/peach.png",
+      "gift_to": "linya"
+    },
+    "peach_sapling": {
+      "name": "桃树苗",
+      "sell_price": 0,
+      "kind": "sapling",
+      "description": "在建造模式的果园分组栽种；12天长成，不需每日浇水。",
+      "icon": "res://assets/harvest/items/peach_sapling.png",
+      "price": 280
+    },
+    "orange": {
+      "name": "橙",
+      "sell_price": 44,
+      "kind": "fruit",
+      "description": "成熟橙树在结果季每三天结两份果实；可加工、烹饪或赠礼。",
+      "icon": "res://assets/harvest/items/orange.png",
+      "gift_to": "linya"
+    },
+    "orange_sapling": {
+      "name": "橙树苗",
+      "sell_price": 0,
+      "kind": "sapling",
+      "description": "在建造模式的果园分组栽种；12天长成，不需每日浇水。",
+      "icon": "res://assets/harvest/items/orange_sapling.png",
+      "price": 280
+    },
+    "rice": {
+      "name": "精制大米",
+      "sell_price": 63,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/rice.png",
+      "shape": "sack",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "cornmeal": {
+      "name": "玉米粉",
+      "sell_price": 70,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/cornmeal.png",
+      "shape": "sack",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "tofu": {
+      "name": "鲜豆腐",
+      "sell_price": 61,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/tofu.png",
+      "shape": "tofu",
+      "color": "cream",
+      "gift_to": "ahe"
+    },
+    "canola_oil": {
+      "name": "菜籽油",
+      "sell_price": 112,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/canola_oil.png",
+      "shape": "bottle",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "peanut_oil": {
+      "name": "花生油",
+      "sell_price": 146,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/peanut_oil.png",
+      "shape": "bottle",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "sunflower_oil": {
+      "name": "葵花籽油",
+      "sell_price": 165,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/sunflower_oil.png",
+      "shape": "bottle",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "pickled_cucumber": {
+      "name": "腌黄瓜",
+      "sell_price": 58,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/pickled_cucumber.png",
+      "shape": "jar",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "kimchi": {
+      "name": "泡菜",
+      "sell_price": 151,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/kimchi.png",
+      "shape": "jar",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "pickled_radish": {
+      "name": "腌萝卜",
+      "sell_price": 102,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/pickled_radish.png",
+      "shape": "jar",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "snow_pickle": {
+      "name": "雪萝卜泡菜",
+      "sell_price": 107,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/snow_pickle.png",
+      "shape": "jar",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "winter_pickle": {
+      "name": "冬白菜泡菜",
+      "sell_price": 185,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/winter_pickle.png",
+      "shape": "jar",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "tomato_sauce": {
+      "name": "番茄酱",
+      "sell_price": 75,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/tomato_sauce.png",
+      "shape": "jar",
+      "color": "roof",
+      "gift_to": "ahe"
+    },
+    "chili_sauce": {
+      "name": "辣椒酱",
+      "sell_price": 82,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/chili_sauce.png",
+      "shape": "jar",
+      "color": "roof",
+      "gift_to": "ahe"
+    },
+    "pumpkin_puree": {
+      "name": "南瓜泥",
+      "sell_price": 229,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/pumpkin_puree.png",
+      "shape": "jar",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "strawberry_jam": {
+      "name": "草莓果酱",
+      "sell_price": 68,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/strawberry_jam.png",
+      "shape": "jar",
+      "color": "flower",
+      "gift_to": "ahe"
+    },
+    "blueberry_jam": {
+      "name": "蓝莓果酱",
+      "sell_price": 58,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/blueberry_jam.png",
+      "shape": "jar",
+      "color": "star",
+      "gift_to": "ahe"
+    },
+    "peach_jam": {
+      "name": "桃子果酱",
+      "sell_price": 102,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/peach_jam.png",
+      "shape": "jar",
+      "color": "flower",
+      "gift_to": "ahe"
+    },
+    "grape_juice": {
+      "name": "葡萄汁",
+      "sell_price": 61,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/grape_juice.png",
+      "shape": "bottle",
+      "color": "star",
+      "gift_to": "ahe"
+    },
+    "apple_juice": {
+      "name": "苹果汁",
+      "sell_price": 87,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/apple_juice.png",
+      "shape": "bottle",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "pear_juice": {
+      "name": "梨汁",
+      "sell_price": 92,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/pear_juice.png",
+      "shape": "bottle",
+      "color": "cream",
+      "gift_to": "ahe"
+    },
+    "orange_juice": {
+      "name": "橙汁",
+      "sell_price": 107,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/orange_juice.png",
+      "shape": "bottle",
+      "color": "roof",
+      "gift_to": "ahe"
+    },
+    "watermelon_juice": {
+      "name": "西瓜汁",
+      "sell_price": 268,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/watermelon_juice.png",
+      "shape": "bottle",
+      "color": "flower",
+      "gift_to": "ahe"
+    },
+    "raisins": {
+      "name": "葡萄干",
+      "sell_price": 61,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/raisins.png",
+      "shape": "tray",
+      "color": "star",
+      "gift_to": "ahe"
+    },
+    "dried_sweet_potato": {
+      "name": "红薯干",
+      "sell_price": 136,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/dried_sweet_potato.png",
+      "shape": "tray",
+      "color": "roof",
+      "gift_to": "ahe"
+    },
+    "dried_pear": {
+      "name": "梨干",
+      "sell_price": 92,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/dried_pear.png",
+      "shape": "tray",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "dried_spinach": {
+      "name": "菠菜干",
+      "sell_price": 68,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/dried_spinach.png",
+      "shape": "tray",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "dried_kale": {
+      "name": "甘蓝干",
+      "sell_price": 146,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/dried_kale.png",
+      "shape": "tray",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "soup_herbs": {
+      "name": "蒜苗汤料",
+      "sell_price": 82,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/soup_herbs.png",
+      "shape": "tray",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "onion_flakes": {
+      "name": "冬葱干",
+      "sell_price": 97,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/onion_flakes.png",
+      "shape": "tray",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "dried_eggplant": {
+      "name": "茄子干",
+      "sell_price": 139,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/dried_eggplant.png",
+      "shape": "tray",
+      "color": "star",
+      "gift_to": "ahe"
+    },
+    "dried_peas": {
+      "name": "豌豆干",
+      "sell_price": 61,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/dried_peas.png",
+      "shape": "tray",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "frost_pea_flakes": {
+      "name": "寒豌豆汤料",
+      "sell_price": 63,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/frost_pea_flakes.png",
+      "shape": "tray",
+      "color": "teal",
+      "gift_to": "ahe"
+    },
+    "lavender_bundle": {
+      "name": "干薰衣草",
+      "sell_price": 126,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/lavender_bundle.png",
+      "shape": "bundle",
+      "color": "star",
+      "gift_to": "ahe"
+    },
+    "rose_petals": {
+      "name": "干玫瑰花瓣",
+      "sell_price": 180,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/rose_petals.png",
+      "shape": "tray",
+      "color": "flower",
+      "gift_to": "ahe"
+    },
+    "chamomile_dried": {
+      "name": "干洋甘菊",
+      "sell_price": 97,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/chamomile_dried.png",
+      "shape": "bundle",
+      "color": "cream",
+      "gift_to": "ahe"
+    },
+    "mayonnaise": {
+      "name": "蛋黄酱",
+      "sell_price": 43,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/mayonnaise.png",
+      "shape": "jar",
+      "color": "cream",
+      "gift_to": "ahe"
+    },
+    "butter": {
+      "name": "黄油",
+      "sell_price": 46,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/butter.png",
+      "shape": "butter",
+      "color": "cream",
+      "gift_to": "ahe"
+    },
+    "yogurt": {
+      "name": "酸奶",
+      "sell_price": 46,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/yogurt.png",
+      "shape": "cup",
+      "color": "cream",
+      "gift_to": "ahe"
+    },
+    "wool_cloth": {
+      "name": "毛布",
+      "sell_price": 117,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/wool_cloth.png",
+      "shape": "cloth",
+      "color": "cream",
+      "gift_to": "ahe"
+    },
+    "cotton_cloth": {
+      "name": "棉布",
+      "sell_price": 170,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/cotton_cloth.png",
+      "shape": "cloth",
+      "color": "teal",
+      "gift_to": "ahe"
+    },
+    "sachet": {
+      "name": "薰衣草香包",
+      "sell_price": 361,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/sachet.png",
+      "shape": "sachet",
+      "color": "star",
+      "gift_to": "ahe"
+    },
+    "rose_perfume": {
+      "name": "玫瑰香水",
+      "sell_price": 356,
+      "kind": "processed",
+      "description": "可出售或赠礼；在工坊查看后续配方。",
+      "icon": "res://assets/harvest/items/rose_perfume.png",
+      "shape": "perfume",
+      "color": "flower",
+      "gift_to": "ahe"
+    },
+    "bread": {
+      "name": "麦香面包",
+      "sell_price": 53,
+      "kind": "food",
+      "description": "恢复24体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/bread.png",
+      "energy": 24,
+      "buff": "",
+      "seconds": 0,
+      "shape": "bread",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "noodles": {
+      "name": "手工面条",
+      "sell_price": 73,
+      "kind": "food",
+      "description": "恢复26体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/noodles.png",
+      "energy": 26,
+      "buff": "",
+      "seconds": 0,
+      "shape": "noodles",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "cake": {
+      "name": "田园蛋糕",
+      "sell_price": 136,
+      "kind": "food",
+      "description": "恢复40体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/cake.png",
+      "energy": 40,
+      "buff": "thrift",
+      "seconds": 90,
+      "shape": "cake",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "pumpkin_pie": {
+      "name": "南瓜派",
+      "sell_price": 361,
+      "kind": "food",
+      "description": "恢复42体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/pumpkin_pie.png",
+      "energy": 42,
+      "buff": "mining",
+      "seconds": 90,
+      "shape": "pie",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "strawberry_cake": {
+      "name": "草莓蛋糕",
+      "sell_price": 192,
+      "kind": "food",
+      "description": "恢复40体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/strawberry_cake.png",
+      "energy": 40,
+      "buff": "thrift",
+      "seconds": 90,
+      "shape": "cake",
+      "color": "flower",
+      "gift_to": "ahe"
+    },
+    "tomato_pasta": {
+      "name": "番茄意面",
+      "sell_price": 291,
+      "kind": "food",
+      "description": "恢复38体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/tomato_pasta.png",
+      "energy": 38,
+      "buff": "speed",
+      "seconds": 120,
+      "shape": "noodles",
+      "color": "roof",
+      "gift_to": "ahe"
+    },
+    "vegetable_soup": {
+      "name": "田园蔬菜汤",
+      "sell_price": 163,
+      "kind": "food",
+      "description": "恢复28体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/vegetable_soup.png",
+      "energy": 28,
+      "buff": "",
+      "seconds": 0,
+      "shape": "bowl",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "tofu_soup": {
+      "name": "豆腐汤",
+      "sell_price": 113,
+      "kind": "food",
+      "description": "恢复26体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/tofu_soup.png",
+      "energy": 26,
+      "buff": "",
+      "seconds": 0,
+      "shape": "bowl",
+      "color": "cream",
+      "gift_to": "ahe"
+    },
+    "cooked_rice": {
+      "name": "香米饭",
+      "sell_price": 70,
+      "kind": "food",
+      "description": "恢复22体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/cooked_rice.png",
+      "energy": 22,
+      "buff": "",
+      "seconds": 0,
+      "shape": "rice",
+      "color": "cream",
+      "gift_to": "ahe"
+    },
+    "fish_rice": {
+      "name": "湖鲜鱼肉饭",
+      "sell_price": 193,
+      "kind": "food",
+      "description": "恢复36体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/fish_rice.png",
+      "energy": 36,
+      "buff": "fishing",
+      "seconds": 120,
+      "shape": "rice",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "rice_ball": {
+      "name": "田园饭团",
+      "sell_price": 98,
+      "kind": "food",
+      "description": "恢复26体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/rice_ball.png",
+      "energy": 26,
+      "buff": "",
+      "seconds": 0,
+      "shape": "riceball",
+      "color": "cream",
+      "gift_to": "ahe"
+    },
+    "corn_cake": {
+      "name": "玉米饼",
+      "sell_price": 98,
+      "kind": "food",
+      "description": "恢复28体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/corn_cake.png",
+      "energy": 28,
+      "buff": "",
+      "seconds": 0,
+      "shape": "pancake",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "corn_bread": {
+      "name": "玉米面包",
+      "sell_price": 105,
+      "kind": "food",
+      "description": "恢复28体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/corn_bread.png",
+      "energy": 28,
+      "buff": "",
+      "seconds": 0,
+      "shape": "bread",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "cheese_bread": {
+      "name": "奶酪面包",
+      "sell_price": 143,
+      "kind": "food",
+      "description": "恢复38体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/cheese_bread.png",
+      "energy": 38,
+      "buff": "mining",
+      "seconds": 90,
+      "shape": "bread",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "roast_sweet_potato": {
+      "name": "烤红薯",
+      "sell_price": 62,
+      "kind": "food",
+      "description": "恢复20体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/roast_sweet_potato.png",
+      "energy": 20,
+      "buff": "",
+      "seconds": 0,
+      "shape": "tuber",
+      "color": "roof",
+      "gift_to": "ahe"
+    },
+    "fruit_salad": {
+      "name": "水果沙拉",
+      "sell_price": 109,
+      "kind": "food",
+      "description": "恢复30体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/fruit_salad.png",
+      "energy": 30,
+      "buff": "",
+      "seconds": 0,
+      "shape": "salad",
+      "color": "flower",
+      "gift_to": "ahe"
+    },
+    "cream_stew": {
+      "name": "奶油炖菜",
+      "sell_price": 197,
+      "kind": "food",
+      "description": "恢复42体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/cream_stew.png",
+      "energy": 42,
+      "buff": "mining",
+      "seconds": 90,
+      "shape": "bowl",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "herbal_tea": {
+      "name": "香草茶",
+      "sell_price": 141,
+      "kind": "food",
+      "description": "恢复22体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/herbal_tea.png",
+      "energy": 22,
+      "buff": "fishing",
+      "seconds": 120,
+      "shape": "cup",
+      "color": "star",
+      "gift_to": "ahe"
+    },
+    "rose_tea": {
+      "name": "玫瑰花茶",
+      "sell_price": 201,
+      "kind": "food",
+      "description": "恢复24体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/rose_tea.png",
+      "energy": 24,
+      "buff": "",
+      "seconds": 0,
+      "shape": "cup",
+      "color": "flower",
+      "gift_to": "ahe"
+    },
+    "chamomile_tea": {
+      "name": "洋甘菊茶",
+      "sell_price": 108,
+      "kind": "food",
+      "description": "恢复22体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/chamomile_tea.png",
+      "energy": 22,
+      "buff": "",
+      "seconds": 0,
+      "shape": "cup",
+      "color": "cream",
+      "gift_to": "ahe"
+    },
+    "vegetable_pancake": {
+      "name": "蔬菜煎饼",
+      "sell_price": 85,
+      "kind": "food",
+      "description": "恢复30体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/vegetable_pancake.png",
+      "energy": 30,
+      "buff": "thrift",
+      "seconds": 90,
+      "shape": "pancake",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "mixed_juice": {
+      "name": "缤纷混合果汁",
+      "sell_price": 285,
+      "kind": "food",
+      "description": "恢复34体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/mixed_juice.png",
+      "energy": 34,
+      "buff": "",
+      "seconds": 0,
+      "shape": "cup",
+      "color": "flower",
+      "gift_to": "ahe"
+    },
+    "apple_pie": {
+      "name": "苹果派",
+      "sell_price": 185,
+      "kind": "food",
+      "description": "恢复38体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/apple_pie.png",
+      "energy": 38,
+      "buff": "",
+      "seconds": 0,
+      "shape": "pie",
+      "color": "gold",
+      "gift_to": "ahe"
+    },
+    "tofu_vegetables": {
+      "name": "田园蔬菜豆腐",
+      "sell_price": 295,
+      "kind": "food",
+      "description": "恢复34体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/tofu_vegetables.png",
+      "energy": 34,
+      "buff": "thrift",
+      "seconds": 90,
+      "shape": "bowl",
+      "color": "leaf",
+      "gift_to": "ahe"
+    },
+    "winter_soup": {
+      "name": "暖冬蔬菜汤",
+      "sell_price": 163,
+      "kind": "food",
+      "description": "恢复30体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/winter_soup.png",
+      "energy": 30,
+      "buff": "",
+      "seconds": 0,
+      "shape": "bowl",
+      "color": "teal",
+      "gift_to": "ahe"
+    },
+    "farm_fish_soup": {
+      "name": "葱香鲫鱼汤",
+      "sell_price": 109,
+      "kind": "food",
+      "description": "恢复32体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/farm_fish_soup.png",
+      "energy": 32,
+      "buff": "fishing",
+      "seconds": 120,
+      "shape": "bowl",
+      "color": "cream",
+      "gift_to": "ahe"
+    },
+    "sunflower_salad": {
+      "name": "葵香拌蔬菜",
+      "sell_price": 246,
+      "kind": "food",
+      "description": "恢复30体力；已有增益不叠加或刷新。",
+      "icon": "res://assets/harvest/items/sunflower_salad.png",
+      "energy": 30,
+      "buff": "",
+      "seconds": 0,
+      "shape": "bowl",
+      "color": "leaf",
+      "gift_to": "ahe"
+    }
+  },
+  "stations": {
+    "mill": {
+      "name": "磨坊",
+      "required": {
+        "wood": 8,
+        "stone": 6
+      },
+      "coins": 80,
+      "size": [
+        1,
+        1
+      ],
+      "icon": "res://assets/harvest/stations/mill.png",
+      "unlock": "basic",
+      "description": "在农场建造模式中摆放；每台设备一次加工一批，完成后留在输出槽。"
+    },
+    "oil_press": {
+      "name": "榨油机",
+      "required": {
+        "wood": 12,
+        "stone": 8,
+        "copper_bar": 2
+      },
+      "coins": 180,
+      "size": [
+        1,
+        1
+      ],
+      "icon": "res://assets/harvest/stations/oil_press.png",
+      "unlock": "basic",
+      "description": "在农场建造模式中摆放；每台设备一次加工一批，完成后留在输出槽。"
+    },
+    "pickle_jar": {
+      "name": "腌制罐",
+      "required": {
+        "stone": 8,
+        "wood": 4
+      },
+      "coins": 100,
+      "size": [
+        1,
+        1
+      ],
+      "icon": "res://assets/harvest/stations/pickle_jar.png",
+      "unlock": "basic",
+      "description": "在农场建造模式中摆放；每台设备一次加工一批，完成后留在输出槽。"
+    },
+    "jam_pot": {
+      "name": "果酱锅",
+      "required": {
+        "wood": 6,
+        "stone": 8,
+        "copper_bar": 1
+      },
+      "coins": 100,
+      "size": [
+        1,
+        1
+      ],
+      "icon": "res://assets/harvest/stations/jam_pot.png",
+      "unlock": "basic",
+      "description": "在农场建造模式中摆放；每台设备一次加工一批，完成后留在输出槽。"
+    },
+    "juicer": {
+      "name": "果汁机",
+      "required": {
+        "wood": 10,
+        "copper_bar": 2
+      },
+      "coins": 160,
+      "size": [
+        1,
+        1
+      ],
+      "icon": "res://assets/harvest/stations/juicer.png",
+      "unlock": "basic",
+      "description": "在农场建造模式中摆放；每台设备一次加工一批，完成后留在输出槽。"
+    },
+    "drying_rack": {
+      "name": "烘干架",
+      "required": {
+        "wood": 10,
+        "stone": 4
+      },
+      "coins": 100,
+      "size": [
+        1,
+        1
+      ],
+      "icon": "res://assets/harvest/stations/drying_rack.png",
+      "unlock": "basic",
+      "description": "在农场建造模式中摆放；每台设备一次加工一批，完成后留在输出槽。"
+    },
+    "cheese_table": {
+      "name": "奶制品加工台",
+      "required": {
+        "wood": 10,
+        "stone": 4,
+        "copper_bar": 1
+      },
+      "coins": 120,
+      "size": [
+        1,
+        1
+      ],
+      "icon": "res://assets/harvest/stations/cheese_table.png",
+      "unlock": "basic",
+      "description": "在农场建造模式中摆放；每台设备一次加工一批，完成后留在输出槽。"
+    },
+    "egg_table": {
+      "name": "蛋制品加工台",
+      "required": {
+        "wood": 8,
+        "stone": 4
+      },
+      "coins": 120,
+      "size": [
+        1,
+        1
+      ],
+      "icon": "res://assets/harvest/stations/egg_table.png",
+      "unlock": "basic",
+      "description": "在农场建造模式中摆放；每台设备一次加工一批，完成后留在输出槽。"
+    },
+    "loom": {
+      "name": "纺织机",
+      "required": {
+        "wood": 18,
+        "iron_bar": 2
+      },
+      "coins": 280,
+      "size": [
+        1,
+        1
+      ],
+      "icon": "res://assets/harvest/stations/loom.png",
+      "unlock": "basic",
+      "description": "在农场建造模式中摆放；每台设备一次加工一批，完成后留在输出槽。"
+    },
+    "smoker": {
+      "name": "熏制炉",
+      "required": {
+        "wood": 8,
+        "stone": 10,
+        "iron_bar": 1
+      },
+      "coins": 160,
+      "size": [
+        1,
+        1
+      ],
+      "icon": "res://assets/harvest/stations/smoker.png",
+      "unlock": "basic",
+      "description": "在农场建造模式中摆放；每台设备一次加工一批，完成后留在输出槽。"
+    }
+  },
+  "processing": {
+    "mill_flour": {
+      "recipe_id": "mill_flour",
+      "name": "研磨面粉",
+      "output_item_id": "flour",
+      "output_quantity": 1,
+      "input_items": {
+        "wheat": 1
+      },
+      "processing_station_id": "mill",
+      "processing_duration": 45,
+      "unlock_condition": "basic",
+      "sell_value": 24,
+      "category": "mill",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "rice": {
+      "recipe_id": "rice",
+      "name": "精制大米",
+      "output_item_id": "rice",
+      "output_quantity": 1,
+      "input_items": {
+        "rice_crop": 1
+      },
+      "processing_station_id": "mill",
+      "processing_duration": 45,
+      "unlock_condition": "basic",
+      "sell_value": 63,
+      "category": "mill",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "cornmeal": {
+      "recipe_id": "cornmeal",
+      "name": "玉米粉",
+      "output_item_id": "cornmeal",
+      "output_quantity": 1,
+      "input_items": {
+        "corn": 1
+      },
+      "processing_station_id": "mill",
+      "processing_duration": 45,
+      "unlock_condition": "basic",
+      "sell_value": 70,
+      "category": "mill",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "tofu": {
+      "recipe_id": "tofu",
+      "name": "鲜豆腐",
+      "output_item_id": "tofu",
+      "output_quantity": 1,
+      "input_items": {
+        "soybean": 1
+      },
+      "processing_station_id": "mill",
+      "processing_duration": 60,
+      "unlock_condition": "basic",
+      "sell_value": 61,
+      "category": "mill",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "corn_feed": {
+      "recipe_id": "corn_feed",
+      "name": "玉米饲料",
+      "output_item_id": "hay",
+      "output_quantity": 8,
+      "input_items": {
+        "corn": 1
+      },
+      "processing_station_id": "mill",
+      "processing_duration": 45,
+      "unlock_condition": "basic",
+      "sell_value": 1,
+      "category": "mill",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "canola_oil": {
+      "recipe_id": "canola_oil",
+      "name": "菜籽油",
+      "output_item_id": "canola_oil",
+      "output_quantity": 1,
+      "input_items": {
+        "rapeseed": 2
+      },
+      "processing_station_id": "oil_press",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 112,
+      "category": "oil_press",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "peanut_oil": {
+      "recipe_id": "peanut_oil",
+      "name": "花生油",
+      "output_item_id": "peanut_oil",
+      "output_quantity": 1,
+      "input_items": {
+        "peanut": 2
+      },
+      "processing_station_id": "oil_press",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 146,
+      "category": "oil_press",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "sunflower_oil": {
+      "recipe_id": "sunflower_oil",
+      "name": "葵花籽油",
+      "output_item_id": "sunflower_oil",
+      "output_quantity": 1,
+      "input_items": {
+        "sunflower_crop": 2
+      },
+      "processing_station_id": "oil_press",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 165,
+      "category": "oil_press",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "pickled_cucumber": {
+      "recipe_id": "pickled_cucumber",
+      "name": "腌黄瓜",
+      "output_item_id": "pickled_cucumber",
+      "output_quantity": 1,
+      "input_items": {
+        "cucumber": 2
+      },
+      "processing_station_id": "pickle_jar",
+      "processing_duration": 1440,
+      "unlock_condition": "basic",
+      "sell_value": 58,
+      "category": "pickle_jar",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "kimchi": {
+      "recipe_id": "kimchi",
+      "name": "泡菜",
+      "output_item_id": "kimchi",
+      "output_quantity": 1,
+      "input_items": {
+        "cabbage": 2
+      },
+      "processing_station_id": "pickle_jar",
+      "processing_duration": 1440,
+      "unlock_condition": "basic",
+      "sell_value": 151,
+      "category": "pickle_jar",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "pickled_radish": {
+      "recipe_id": "pickled_radish",
+      "name": "腌萝卜",
+      "output_item_id": "pickled_radish",
+      "output_quantity": 1,
+      "input_items": {
+        "radish": 2
+      },
+      "processing_station_id": "pickle_jar",
+      "processing_duration": 1440,
+      "unlock_condition": "basic",
+      "sell_value": 102,
+      "category": "pickle_jar",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "snow_pickle": {
+      "recipe_id": "snow_pickle",
+      "name": "雪萝卜泡菜",
+      "output_item_id": "snow_pickle",
+      "output_quantity": 1,
+      "input_items": {
+        "snow_radish": 2
+      },
+      "processing_station_id": "pickle_jar",
+      "processing_duration": 1440,
+      "unlock_condition": "basic",
+      "sell_value": 107,
+      "category": "pickle_jar",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "winter_pickle": {
+      "recipe_id": "winter_pickle",
+      "name": "冬白菜泡菜",
+      "output_item_id": "winter_pickle",
+      "output_quantity": 1,
+      "input_items": {
+        "winter_cabbage": 2
+      },
+      "processing_station_id": "pickle_jar",
+      "processing_duration": 1440,
+      "unlock_condition": "basic",
+      "sell_value": 185,
+      "category": "pickle_jar",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "tomato_sauce": {
+      "recipe_id": "tomato_sauce",
+      "name": "番茄酱",
+      "output_item_id": "tomato_sauce",
+      "output_quantity": 1,
+      "input_items": {
+        "tomato": 2
+      },
+      "processing_station_id": "jam_pot",
+      "processing_duration": 240,
+      "unlock_condition": "basic",
+      "sell_value": 75,
+      "category": "jam_pot",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "chili_sauce": {
+      "recipe_id": "chili_sauce",
+      "name": "辣椒酱",
+      "output_item_id": "chili_sauce",
+      "output_quantity": 1,
+      "input_items": {
+        "chili": 2
+      },
+      "processing_station_id": "jam_pot",
+      "processing_duration": 240,
+      "unlock_condition": "basic",
+      "sell_value": 82,
+      "category": "jam_pot",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "pumpkin_puree": {
+      "recipe_id": "pumpkin_puree",
+      "name": "南瓜泥",
+      "output_item_id": "pumpkin_puree",
+      "output_quantity": 1,
+      "input_items": {
+        "pumpkin": 2
+      },
+      "processing_station_id": "jam_pot",
+      "processing_duration": 240,
+      "unlock_condition": "basic",
+      "sell_value": 229,
+      "category": "jam_pot",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "strawberry_jam": {
+      "recipe_id": "strawberry_jam",
+      "name": "草莓果酱",
+      "output_item_id": "strawberry_jam",
+      "output_quantity": 1,
+      "input_items": {
+        "strawberry": 2
+      },
+      "processing_station_id": "jam_pot",
+      "processing_duration": 240,
+      "unlock_condition": "basic",
+      "sell_value": 68,
+      "category": "jam_pot",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "blueberry_jam": {
+      "recipe_id": "blueberry_jam",
+      "name": "蓝莓果酱",
+      "output_item_id": "blueberry_jam",
+      "output_quantity": 1,
+      "input_items": {
+        "blueberry": 2
+      },
+      "processing_station_id": "jam_pot",
+      "processing_duration": 240,
+      "unlock_condition": "basic",
+      "sell_value": 58,
+      "category": "jam_pot",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "peach_jam": {
+      "recipe_id": "peach_jam",
+      "name": "桃子果酱",
+      "output_item_id": "peach_jam",
+      "output_quantity": 1,
+      "input_items": {
+        "peach": 2
+      },
+      "processing_station_id": "jam_pot",
+      "processing_duration": 240,
+      "unlock_condition": "basic",
+      "sell_value": 102,
+      "category": "jam_pot",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "grape_juice": {
+      "recipe_id": "grape_juice",
+      "name": "葡萄汁",
+      "output_item_id": "grape_juice",
+      "output_quantity": 1,
+      "input_items": {
+        "grape": 2
+      },
+      "processing_station_id": "juicer",
+      "processing_duration": 90,
+      "unlock_condition": "basic",
+      "sell_value": 61,
+      "category": "juicer",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "apple_juice": {
+      "recipe_id": "apple_juice",
+      "name": "苹果汁",
+      "output_item_id": "apple_juice",
+      "output_quantity": 1,
+      "input_items": {
+        "apple": 2
+      },
+      "processing_station_id": "juicer",
+      "processing_duration": 90,
+      "unlock_condition": "basic",
+      "sell_value": 87,
+      "category": "juicer",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "pear_juice": {
+      "recipe_id": "pear_juice",
+      "name": "梨汁",
+      "output_item_id": "pear_juice",
+      "output_quantity": 1,
+      "input_items": {
+        "pear": 2
+      },
+      "processing_station_id": "juicer",
+      "processing_duration": 90,
+      "unlock_condition": "basic",
+      "sell_value": 92,
+      "category": "juicer",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "orange_juice": {
+      "recipe_id": "orange_juice",
+      "name": "橙汁",
+      "output_item_id": "orange_juice",
+      "output_quantity": 1,
+      "input_items": {
+        "orange": 2
+      },
+      "processing_station_id": "juicer",
+      "processing_duration": 90,
+      "unlock_condition": "basic",
+      "sell_value": 107,
+      "category": "juicer",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "watermelon_juice": {
+      "recipe_id": "watermelon_juice",
+      "name": "西瓜汁",
+      "output_item_id": "watermelon_juice",
+      "output_quantity": 1,
+      "input_items": {
+        "watermelon": 2
+      },
+      "processing_station_id": "juicer",
+      "processing_duration": 90,
+      "unlock_condition": "basic",
+      "sell_value": 268,
+      "category": "juicer",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "raisins": {
+      "recipe_id": "raisins",
+      "name": "葡萄干",
+      "output_item_id": "raisins",
+      "output_quantity": 1,
+      "input_items": {
+        "grape": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 61,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "dried_sweet_potato": {
+      "recipe_id": "dried_sweet_potato",
+      "name": "红薯干",
+      "output_item_id": "dried_sweet_potato",
+      "output_quantity": 1,
+      "input_items": {
+        "sweet_potato": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 136,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "dried_pear": {
+      "recipe_id": "dried_pear",
+      "name": "梨干",
+      "output_item_id": "dried_pear",
+      "output_quantity": 1,
+      "input_items": {
+        "pear": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 92,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "dried_spinach": {
+      "recipe_id": "dried_spinach",
+      "name": "菠菜干",
+      "output_item_id": "dried_spinach",
+      "output_quantity": 1,
+      "input_items": {
+        "spinach": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 68,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "dried_kale": {
+      "recipe_id": "dried_kale",
+      "name": "甘蓝干",
+      "output_item_id": "dried_kale",
+      "output_quantity": 1,
+      "input_items": {
+        "winter_kale": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 146,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "soup_herbs": {
+      "recipe_id": "soup_herbs",
+      "name": "蒜苗汤料",
+      "output_item_id": "soup_herbs",
+      "output_quantity": 1,
+      "input_items": {
+        "garlic_shoot": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 82,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "onion_flakes": {
+      "recipe_id": "onion_flakes",
+      "name": "冬葱干",
+      "output_item_id": "onion_flakes",
+      "output_quantity": 1,
+      "input_items": {
+        "winter_onion": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 97,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "dried_eggplant": {
+      "recipe_id": "dried_eggplant",
+      "name": "茄子干",
+      "output_item_id": "dried_eggplant",
+      "output_quantity": 1,
+      "input_items": {
+        "eggplant": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 139,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "dried_peas": {
+      "recipe_id": "dried_peas",
+      "name": "豌豆干",
+      "output_item_id": "dried_peas",
+      "output_quantity": 1,
+      "input_items": {
+        "peas": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 61,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "frost_pea_flakes": {
+      "recipe_id": "frost_pea_flakes",
+      "name": "寒豌豆汤料",
+      "output_item_id": "frost_pea_flakes",
+      "output_quantity": 1,
+      "input_items": {
+        "frost_peas": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 63,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "lavender_bundle": {
+      "recipe_id": "lavender_bundle",
+      "name": "干薰衣草",
+      "output_item_id": "lavender_bundle",
+      "output_quantity": 1,
+      "input_items": {
+        "lavender": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 126,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "rose_petals": {
+      "recipe_id": "rose_petals",
+      "name": "干玫瑰花瓣",
+      "output_item_id": "rose_petals",
+      "output_quantity": 1,
+      "input_items": {
+        "rose": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 180,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "chamomile_dried": {
+      "recipe_id": "chamomile_dried",
+      "name": "干洋甘菊",
+      "output_item_id": "chamomile_dried",
+      "output_quantity": 1,
+      "input_items": {
+        "chamomile": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 97,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "mayonnaise": {
+      "recipe_id": "mayonnaise",
+      "name": "蛋黄酱",
+      "output_item_id": "mayonnaise",
+      "output_quantity": 1,
+      "input_items": {
+        "egg": 2
+      },
+      "processing_station_id": "egg_table",
+      "processing_duration": 120,
+      "unlock_condition": "basic",
+      "sell_value": 43,
+      "category": "egg_table",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "butter": {
+      "recipe_id": "butter",
+      "name": "黄油",
+      "output_item_id": "butter",
+      "output_quantity": 1,
+      "input_items": {
+        "milk": 1
+      },
+      "processing_station_id": "cheese_table",
+      "processing_duration": 360,
+      "unlock_condition": "basic",
+      "sell_value": 46,
+      "category": "cheese_table",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "dairy_cheese": {
+      "recipe_id": "dairy_cheese",
+      "name": "河湾奶酪",
+      "output_item_id": "cheese",
+      "output_quantity": 1,
+      "input_items": {
+        "milk": 2
+      },
+      "processing_station_id": "cheese_table",
+      "processing_duration": 360,
+      "unlock_condition": "basic",
+      "sell_value": 80,
+      "category": "cheese_table",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "yogurt": {
+      "recipe_id": "yogurt",
+      "name": "酸奶",
+      "output_item_id": "yogurt",
+      "output_quantity": 1,
+      "input_items": {
+        "milk": 1
+      },
+      "processing_station_id": "cheese_table",
+      "processing_duration": 360,
+      "unlock_condition": "basic",
+      "sell_value": 46,
+      "category": "cheese_table",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "wool_cloth": {
+      "recipe_id": "wool_cloth",
+      "name": "毛布",
+      "output_item_id": "wool_cloth",
+      "output_quantity": 1,
+      "input_items": {
+        "wool": 2
+      },
+      "processing_station_id": "loom",
+      "processing_duration": 360,
+      "unlock_condition": "basic",
+      "sell_value": 117,
+      "category": "loom",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "cotton_cloth": {
+      "recipe_id": "cotton_cloth",
+      "name": "棉布",
+      "output_item_id": "cotton_cloth",
+      "output_quantity": 1,
+      "input_items": {
+        "cotton": 2
+      },
+      "processing_station_id": "loom",
+      "processing_duration": 360,
+      "unlock_condition": "basic",
+      "sell_value": 170,
+      "category": "loom",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "sachet": {
+      "recipe_id": "sachet",
+      "name": "薰衣草香包",
+      "output_item_id": "sachet",
+      "output_quantity": 1,
+      "input_items": {
+        "lavender_bundle": 1,
+        "cotton_cloth": 1
+      },
+      "processing_station_id": "loom",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 361,
+      "category": "loom",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "rose_perfume": {
+      "recipe_id": "rose_perfume",
+      "name": "玫瑰香水",
+      "output_item_id": "rose_perfume",
+      "output_quantity": 1,
+      "input_items": {
+        "rose_petals": 1,
+        "canola_oil": 1
+      },
+      "processing_station_id": "juicer",
+      "processing_duration": 240,
+      "unlock_condition": "basic",
+      "sell_value": 356,
+      "category": "juicer",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "smoke_fish_carp": {
+      "recipe_id": "smoke_fish_carp",
+      "name": "烟熏湖鲜",
+      "output_item_id": "smoked_fish",
+      "output_quantity": 1,
+      "input_items": {
+        "fish_carp": 2,
+        "wood": 1
+      },
+      "processing_station_id": "smoker",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 68,
+      "category": "smoker",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "dry_fish_carp": {
+      "recipe_id": "dry_fish_carp",
+      "name": "风干湖鲜",
+      "output_item_id": "dried_fish",
+      "output_quantity": 1,
+      "input_items": {
+        "fish_carp": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 240,
+      "unlock_condition": "basic",
+      "sell_value": 68,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "smoke_fish_crucian": {
+      "recipe_id": "smoke_fish_crucian",
+      "name": "烟熏湖鲜",
+      "output_item_id": "smoked_fish",
+      "output_quantity": 1,
+      "input_items": {
+        "fish_crucian": 2,
+        "wood": 1
+      },
+      "processing_station_id": "smoker",
+      "processing_duration": 180,
+      "unlock_condition": "basic",
+      "sell_value": 68,
+      "category": "smoker",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "dry_fish_crucian": {
+      "recipe_id": "dry_fish_crucian",
+      "name": "风干湖鲜",
+      "output_item_id": "dried_fish",
+      "output_quantity": 1,
+      "input_items": {
+        "fish_crucian": 2
+      },
+      "processing_station_id": "drying_rack",
+      "processing_duration": 240,
+      "unlock_condition": "basic",
+      "sell_value": 68,
+      "category": "drying_rack",
+      "description": "按游戏内时间加工，离场与保存不重置进度。"
+    }
+  },
+  "recipes": {
+    "bread": {
+      "recipe_id": "bread",
+      "name": "麦香面包",
+      "required": {
+        "flour": 2
+      },
+      "rewards": {
+        "bread": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "bread",
+      "output_quantity": 1,
+      "input_items": {
+        "flour": 2
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 53,
+      "category": "baking"
+    },
+    "noodles": {
+      "recipe_id": "noodles",
+      "name": "手工面条",
+      "required": {
+        "flour": 2,
+        "egg": 1
+      },
+      "rewards": {
+        "noodles": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "noodles",
+      "output_quantity": 1,
+      "input_items": {
+        "flour": 2,
+        "egg": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 73,
+      "category": "meals"
+    },
+    "cake": {
+      "recipe_id": "cake",
+      "name": "田园蛋糕",
+      "required": {
+        "flour": 2,
+        "egg": 2,
+        "milk": 1
+      },
+      "rewards": {
+        "cake": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "cake",
+      "output_quantity": 1,
+      "input_items": {
+        "flour": 2,
+        "egg": 2,
+        "milk": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 136,
+      "category": "baking"
+    },
+    "pumpkin_pie": {
+      "recipe_id": "pumpkin_pie",
+      "name": "南瓜派",
+      "required": {
+        "pumpkin_puree": 1,
+        "flour": 2,
+        "butter": 1
+      },
+      "rewards": {
+        "pumpkin_pie": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "pumpkin_pie",
+      "output_quantity": 1,
+      "input_items": {
+        "pumpkin_puree": 1,
+        "flour": 2,
+        "butter": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 361,
+      "category": "baking"
+    },
+    "strawberry_cake": {
+      "recipe_id": "strawberry_cake",
+      "name": "草莓蛋糕",
+      "required": {
+        "strawberry_jam": 1,
+        "flour": 2,
+        "egg": 1,
+        "milk": 1
+      },
+      "rewards": {
+        "strawberry_cake": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "strawberry_cake",
+      "output_quantity": 1,
+      "input_items": {
+        "strawberry_jam": 1,
+        "flour": 2,
+        "egg": 1,
+        "milk": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 192,
+      "category": "baking"
+    },
+    "tomato_pasta": {
+      "recipe_id": "tomato_pasta",
+      "name": "番茄意面",
+      "required": {
+        "noodles": 1,
+        "tomato_sauce": 1,
+        "canola_oil": 1
+      },
+      "rewards": {
+        "tomato_pasta": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "tomato_pasta",
+      "output_quantity": 1,
+      "input_items": {
+        "noodles": 1,
+        "tomato_sauce": 1,
+        "canola_oil": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 291,
+      "category": "meals"
+    },
+    "vegetable_soup": {
+      "recipe_id": "vegetable_soup",
+      "name": "田园蔬菜汤",
+      "required": {
+        "cabbage": 1,
+        "spinach": 1,
+        "potato": 1
+      },
+      "rewards": {
+        "vegetable_soup": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "vegetable_soup",
+      "output_quantity": 1,
+      "input_items": {
+        "cabbage": 1,
+        "spinach": 1,
+        "potato": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 163,
+      "category": "meals"
+    },
+    "tofu_soup": {
+      "recipe_id": "tofu_soup",
+      "name": "豆腐汤",
+      "required": {
+        "tofu": 1,
+        "winter_onion": 1
+      },
+      "rewards": {
+        "tofu_soup": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "tofu_soup",
+      "output_quantity": 1,
+      "input_items": {
+        "tofu": 1,
+        "winter_onion": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 113,
+      "category": "meals"
+    },
+    "cooked_rice": {
+      "recipe_id": "cooked_rice",
+      "name": "香米饭",
+      "required": {
+        "rice": 1
+      },
+      "rewards": {
+        "cooked_rice": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "cooked_rice",
+      "output_quantity": 1,
+      "input_items": {
+        "rice": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 70,
+      "category": "meals"
+    },
+    "fish_rice": {
+      "recipe_id": "fish_rice",
+      "name": "湖鲜鱼肉饭",
+      "required": {
+        "rice": 1,
+        "fish_carp": 1,
+        "soup_herbs": 1
+      },
+      "rewards": {
+        "fish_rice": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "fish_rice",
+      "output_quantity": 1,
+      "input_items": {
+        "rice": 1,
+        "fish_carp": 1,
+        "soup_herbs": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 193,
+      "category": "meals"
+    },
+    "rice_ball": {
+      "recipe_id": "rice_ball",
+      "name": "田园饭团",
+      "required": {
+        "rice": 1,
+        "peas": 1
+      },
+      "rewards": {
+        "rice_ball": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "rice_ball",
+      "output_quantity": 1,
+      "input_items": {
+        "rice": 1,
+        "peas": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 98,
+      "category": "meals"
+    },
+    "corn_cake": {
+      "recipe_id": "corn_cake",
+      "name": "玉米饼",
+      "required": {
+        "cornmeal": 1,
+        "egg": 1
+      },
+      "rewards": {
+        "corn_cake": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "corn_cake",
+      "output_quantity": 1,
+      "input_items": {
+        "cornmeal": 1,
+        "egg": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 98,
+      "category": "meals"
+    },
+    "corn_bread": {
+      "recipe_id": "corn_bread",
+      "name": "玉米面包",
+      "required": {
+        "cornmeal": 1,
+        "flour": 1
+      },
+      "rewards": {
+        "corn_bread": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "corn_bread",
+      "output_quantity": 1,
+      "input_items": {
+        "cornmeal": 1,
+        "flour": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 105,
+      "category": "baking"
+    },
+    "cheese_bread": {
+      "recipe_id": "cheese_bread",
+      "name": "奶酪面包",
+      "required": {
+        "flour": 2,
+        "cheese": 1
+      },
+      "rewards": {
+        "cheese_bread": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "cheese_bread",
+      "output_quantity": 1,
+      "input_items": {
+        "flour": 2,
+        "cheese": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 143,
+      "category": "baking"
+    },
+    "roast_sweet_potato": {
+      "recipe_id": "roast_sweet_potato",
+      "name": "烤红薯",
+      "required": {
+        "sweet_potato": 1
+      },
+      "rewards": {
+        "roast_sweet_potato": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "roast_sweet_potato",
+      "output_quantity": 1,
+      "input_items": {
+        "sweet_potato": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 62,
+      "category": "meals"
+    },
+    "fruit_salad": {
+      "recipe_id": "fruit_salad",
+      "name": "水果沙拉",
+      "required": {
+        "apple": 1,
+        "pear": 1,
+        "blueberry": 1
+      },
+      "rewards": {
+        "fruit_salad": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "fruit_salad",
+      "output_quantity": 1,
+      "input_items": {
+        "apple": 1,
+        "pear": 1,
+        "blueberry": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 109,
+      "category": "meals"
+    },
+    "cream_stew": {
+      "recipe_id": "cream_stew",
+      "name": "奶油炖菜",
+      "required": {
+        "butter": 1,
+        "milk": 1,
+        "potato": 1,
+        "carrot": 1
+      },
+      "rewards": {
+        "cream_stew": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "cream_stew",
+      "output_quantity": 1,
+      "input_items": {
+        "butter": 1,
+        "milk": 1,
+        "potato": 1,
+        "carrot": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 197,
+      "category": "meals"
+    },
+    "herbal_tea": {
+      "recipe_id": "herbal_tea",
+      "name": "香草茶",
+      "required": {
+        "lavender_bundle": 1
+      },
+      "rewards": {
+        "herbal_tea": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "herbal_tea",
+      "output_quantity": 1,
+      "input_items": {
+        "lavender_bundle": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 141,
+      "category": "drinks"
+    },
+    "rose_tea": {
+      "recipe_id": "rose_tea",
+      "name": "玫瑰花茶",
+      "required": {
+        "rose_petals": 1
+      },
+      "rewards": {
+        "rose_tea": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "rose_tea",
+      "output_quantity": 1,
+      "input_items": {
+        "rose_petals": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 201,
+      "category": "drinks"
+    },
+    "chamomile_tea": {
+      "recipe_id": "chamomile_tea",
+      "name": "洋甘菊茶",
+      "required": {
+        "chamomile_dried": 1
+      },
+      "rewards": {
+        "chamomile_tea": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "chamomile_tea",
+      "output_quantity": 1,
+      "input_items": {
+        "chamomile_dried": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 108,
+      "category": "drinks"
+    },
+    "vegetable_pancake": {
+      "recipe_id": "vegetable_pancake",
+      "name": "蔬菜煎饼",
+      "required": {
+        "flour": 1,
+        "egg": 1,
+        "garlic_shoot": 1
+      },
+      "rewards": {
+        "vegetable_pancake": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "vegetable_pancake",
+      "output_quantity": 1,
+      "input_items": {
+        "flour": 1,
+        "egg": 1,
+        "garlic_shoot": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 85,
+      "category": "meals"
+    },
+    "mixed_juice": {
+      "recipe_id": "mixed_juice",
+      "name": "缤纷混合果汁",
+      "required": {
+        "apple_juice": 1,
+        "orange_juice": 1,
+        "grape_juice": 1
+      },
+      "rewards": {
+        "mixed_juice": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "mixed_juice",
+      "output_quantity": 1,
+      "input_items": {
+        "apple_juice": 1,
+        "orange_juice": 1,
+        "grape_juice": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 285,
+      "category": "drinks"
+    },
+    "apple_pie": {
+      "recipe_id": "apple_pie",
+      "name": "苹果派",
+      "required": {
+        "apple": 2,
+        "flour": 2,
+        "butter": 1
+      },
+      "rewards": {
+        "apple_pie": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "apple_pie",
+      "output_quantity": 1,
+      "input_items": {
+        "apple": 2,
+        "flour": 2,
+        "butter": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 185,
+      "category": "baking"
+    },
+    "tofu_vegetables": {
+      "recipe_id": "tofu_vegetables",
+      "name": "田园蔬菜豆腐",
+      "required": {
+        "tofu": 1,
+        "eggplant": 1,
+        "peanut_oil": 1
+      },
+      "rewards": {
+        "tofu_vegetables": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "tofu_vegetables",
+      "output_quantity": 1,
+      "input_items": {
+        "tofu": 1,
+        "eggplant": 1,
+        "peanut_oil": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 295,
+      "category": "meals"
+    },
+    "winter_soup": {
+      "recipe_id": "winter_soup",
+      "name": "暖冬蔬菜汤",
+      "required": {
+        "winter_cabbage": 1,
+        "snow_radish": 1,
+        "frost_peas": 1
+      },
+      "rewards": {
+        "winter_soup": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "winter_soup",
+      "output_quantity": 1,
+      "input_items": {
+        "winter_cabbage": 1,
+        "snow_radish": 1,
+        "frost_peas": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 163,
+      "category": "meals"
+    },
+    "farm_fish_soup": {
+      "recipe_id": "farm_fish_soup",
+      "name": "葱香鲫鱼汤",
+      "required": {
+        "fish_crucian": 1,
+        "winter_onion": 1,
+        "radish": 1
+      },
+      "rewards": {
+        "farm_fish_soup": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "farm_fish_soup",
+      "output_quantity": 1,
+      "input_items": {
+        "fish_crucian": 1,
+        "winter_onion": 1,
+        "radish": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 109,
+      "category": "meals"
+    },
+    "sunflower_salad": {
+      "recipe_id": "sunflower_salad",
+      "name": "葵香拌蔬菜",
+      "required": {
+        "sunflower_oil": 1,
+        "tomato": 1,
+        "cucumber": 1
+      },
+      "rewards": {
+        "sunflower_salad": 1
+      },
+      "facility": "",
+      "unlock": "basic",
+      "hint": "在住宅厨房制作；材料不足时不扣除。",
+      "output_item_id": "sunflower_salad",
+      "output_quantity": 1,
+      "input_items": {
+        "sunflower_oil": 1,
+        "tomato": 1,
+        "cucumber": 1
+      },
+      "processing_station_id": "kitchen",
+      "processing_duration": 0,
+      "unlock_condition": "basic",
+      "sell_value": 246,
+      "category": "meals"
+    }
+  },
+  "future": [
+    {
+      "recipe_id": "salted_duck_egg",
+      "source": "duck_egg",
+      "reason": "当前只有鸡、牛、羊的实际养殖；鸭尚未实现。"
+    },
+    {
+      "recipe_id": "goat_cheese",
+      "source": "goat_milk",
+      "reason": "当前没有山羊产奶玩法。"
+    },
+    {
+      "recipe_id": "honey_cookie",
+      "source": "honey",
+      "reason": "当前没有可生产蜂蜜的蜂箱。"
+    },
+    {
+      "recipe_id": "truffle_sauce",
+      "source": "truffle",
+      "reason": "当前没有猪与松露生产玩法。"
+    },
+    {
+      "recipe_id": "mushroom_soup",
+      "source": "mushroom",
+      "reason": "当前没有可食用蘑菇的合法采集来源。"
+    }
+  ]
+}

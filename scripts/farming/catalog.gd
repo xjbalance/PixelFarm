@@ -23,6 +23,8 @@ func _ready() -> void:
 			entry.source=source.path
 			register_item(id,entry)
 
+	HarvestCatalog.register(self)
+
 func register_item(id: String, definition: Dictionary) -> bool:
 	if items.has(id) or id=="" or not definition.get("name") is String or not definition.get("sell_price") is float and not definition.get("sell_price") is int:
 		push_error("重复或无效的物品定义："+id)

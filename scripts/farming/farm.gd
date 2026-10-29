@@ -6,6 +6,7 @@ const LEGACY_BOUNDS := Rect2i(17,16,10,6)
 const IRRIGATION := Rect2i(17,16,4,3)
 const INVALID_CELL:=Vector2i(-1,-1)
 var CROP_TEXTURE = load("res://assets/crops/crops.png")
+var crop_textures: Dictionary={}
 var SOIL_DRY: Texture2D=preload("res://assets/world_scheme_c/derived/soil_dry.png")
 var SOIL_WET: Texture2D=preload("res://assets/world_scheme_c/derived/soil_wet.png")
 var plots: Dictionary = {}
@@ -94,13 +95,13 @@ func tool_error(cell: Vector2i, tool: String) -> String:
 		var crop_id:=tool.trim_suffix("_seed")
 		if plot.is_empty() or not str(plot.get("crop","")).is_empty(): return "种子需要播在空的、翻过的土地上。"
 		if not Catalog.crops.has(crop_id) or Inventory.count(tool)<1: return "种子用完了，去林芽的种子摊看看吧。"
-		if not Catalog.crop_grows(crop_id): return "冬季露天土壤不适合这种作物。种子已保留，可以种耐寒小麦。"
+		if not Catalog.crop_grows(crop_id): return "这种作物适合%s季；种子已保留。" % HarvestCatalog.season_text(crop_id)
 	elif tool=="water":
 		if plot.is_empty() or bool(plot.get("watered",false)): return "选择翻过的、还未浇水的土地。"
 	elif tool=="hand":
 		var crop_id: String=str(plot.get("crop",""))
 		if crop_id.is_empty() or not is_mature(plot): return "每天浇水，等作物成熟再收获。"
-		if Inventory.count(crop_id)>=Inventory.MAX_STACK: return "背包已满，先出售一些收获吧。"
+		if Inventory.count(crop_id)+Catalog.crops[crop_id].harvest_quantity>Inventory.MAX_STACK: return "背包已满，先出售一些收获吧。"
 	else: return "这种工具不能在农田使用。"
 	if GameState.stamina<Kitchen.energy_cost(2 if tool=="hoe" else 1):
 		return "体力不足：去屋东椅歇脚，或在背包吃食物。20:00后可睡。"
@@ -122,7 +123,7 @@ func _commit_tool(cell: Vector2i, tool: String) -> bool:
 	var plot: Dictionary=plots.get(id,{})
 	var crop: String=tool.trim_suffix("_seed") if tool.ends_with("_seed") else str(plot.get("crop",""))
 	var required: Dictionary={tool:1} if tool.ends_with("_seed") else {}
-	var rewards: Dictionary={crop:1} if tool=="hand" else {}
+	var rewards: Dictionary={crop:Catalog.crops[crop].harvest_quantity} if tool=="hand" else {}
 	# 沿用背包的整笔容量/数量验证；先写完农田、物品、体力，再通知观察者。
 	var inventory_change:=Inventory.preview_exchange(required,rewards,0)
 	if inventory_change.is_empty(): return false
@@ -150,7 +151,7 @@ func _commit_tool(cell: Vector2i, tool: String) -> bool:
 	changed.emit()
 	Events.farm_action.emit(action)
 	Events.farm_effect.emit(Vector2(cell)*32+Vector2(16,16),action)
-	if action=="收获": Events.notice.emit("收获了 1 个%s！" % Catalog.item_name(crop))
+	if action=="收获": Events.notice.emit("收获了 %d 个%s！" % [Catalog.crops[crop].harvest_quantity,Catalog.item_name(crop)])
 	queue_redraw()
 	return true
 
@@ -201,7 +202,8 @@ func _draw() -> void:
 		if not crop_id.is_empty():
 			var crop: CropDefinition = Catalog.crops[crop_id]
 			var stage: int = mini(int(float(plot["days"]) / crop.growth_days * (crop.stages - 1)), crop.stages - 1)
-			draw_texture_rect_region(CROP_TEXTURE, Rect2(origin + Vector2(0, -9), Vector2(32, 40)), Rect2(stage * 32, crop.atlas_row * 40, 32, 40))
+			if not crop_textures.has(crop.texture_path): crop_textures[crop.texture_path]=load(crop.texture_path)
+			draw_texture_rect_region(crop_textures[crop.texture_path], Rect2(origin + Vector2(0, -9), Vector2(32, 40)), Rect2(stage * 32, crop.atlas_row * 40, 32, 40))
 		if wet:
 			draw_rect(Rect2(origin + Vector2(24, 24), Vector2(4, 4)), Color("91c8da"))
 	if BOUNDS.has_point(highlighted) and (logical_cell(highlighted)!=INVALID_CELL or GameState.manual_tool or LEGACY_BOUNDS.has_point(highlighted)):

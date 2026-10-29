@@ -6,7 +6,9 @@ static var textures: Dictionary = {}
 static func texture(id: String) -> Texture2D:
 	if textures.has(id): return textures[id]
 	var result: Texture2D
-	if Catalog.crops.has(id):
+	if Catalog.items.get(id,{}).has("icon"):
+		result=load(str(Catalog.items[id].icon))
+	elif Catalog.crops.has(id):
 		var atlas:=AtlasTexture.new();atlas.atlas=load("res://assets/crops/crops.png")
 		atlas.region=Rect2(96,Catalog.crops[id].atlas_row*40,32,40);result=atlas
 	elif id.ends_with("_seed") and Catalog.crops.has(id.trim_suffix("_seed")):
@@ -21,9 +23,10 @@ static func texture(id: String) -> Texture2D:
 	return result
 
 static func description(id: String) -> String:
+	if HarvestCatalog.data().crops.has(id): return str(HarvestCatalog.data().crops[id].description)
 	if Catalog.crops.has(id): return "可出售、食用或交付委托；食用后恢复%d体力。" % int(Recovery.FOOD.get(id,0))
 	if id.ends_with("_seed") and Catalog.crops.has(id.trim_suffix("_seed")):
-		return "先装备种子，再点空的已翻土地；%d个适种生长日成熟。" % int(Catalog.crops[id.trim_suffix("_seed")].growth_days)
+		return "%s季种植；每天浇水，%d日成熟。先装备再点空的翻土地。" % [HarvestCatalog.season_text(id.trim_suffix("_seed")),int(Catalog.crops[id.trim_suffix("_seed")].growth_days)]
 	return str(Catalog.items.get(id,{}).get("description","收藏或任务物品；请到对应设施查看用途。"))
 
 static func material_symbol(id: String) -> Texture2D:

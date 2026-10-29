@@ -8,3 +8,5 @@ extends Resource
 @export var growth_days: int = 2
 @export var atlas_row: int = 0
 @export var stages: int = 4
+@export var harvest_quantity: int = 1
+@export var texture_path: String = "res://assets/crops/crops.png"
