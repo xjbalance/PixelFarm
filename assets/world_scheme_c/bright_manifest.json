@@ -1,0 +1,4235 @@
+{
+  "version": 1,
+  "name": "晴光河湾 · 明亮田园",
+  "palette": "resources/presentation/world_palette.json",
+  "source_manifest_unchanged": true,
+  "original_files_verified": 150,
+  "pixel_geometry_unchanged": true,
+  "runtime_shader": false,
+  "outputs": [
+    {
+      "path": "assets/world_scheme_c/bright/sprites/oak_tree.png",
+      "source": "assets/world_scheme_c/sprites/oak_tree.png",
+      "source_sha256": "d64ed653de5008bc80205aacc2af19b2d7e273202ddd773e334eb43be156cf51",
+      "sha256": "ad710d190413dfbc52609ffdfa490cf38ad4f2f4108aef30caec340ae110a1c7",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/oak_tree.png",
+      "source": "assets/world_scheme_c/sprites/oak_tree.png",
+      "source_sha256": "d64ed653de5008bc80205aacc2af19b2d7e273202ddd773e334eb43be156cf51",
+      "sha256": "ad710d190413dfbc52609ffdfa490cf38ad4f2f4108aef30caec340ae110a1c7",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/oak_tree.png",
+      "source": "assets/world_scheme_c/sprites/oak_tree.png",
+      "source_sha256": "d64ed653de5008bc80205aacc2af19b2d7e273202ddd773e334eb43be156cf51",
+      "sha256": "4b3c6dfb0fd876618c98894f8ba7c04b3f95417ee12ef9c8945183af2ebe88eb",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/oak_tree.png",
+      "source": "assets/world_scheme_c/sprites/oak_tree.png",
+      "source_sha256": "d64ed653de5008bc80205aacc2af19b2d7e273202ddd773e334eb43be156cf51",
+      "sha256": "c924edc7a3b43ab61de4bcd4bfb2eeab8ec3c6148f601dd5d3d563e2fb0c8e2f",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/oak_tree.png",
+      "source": "assets/world_scheme_c/sprites/oak_tree.png",
+      "source_sha256": "d64ed653de5008bc80205aacc2af19b2d7e273202ddd773e334eb43be156cf51",
+      "sha256": "39350c876815a15f9027e273e2e6ebfa1bf50b22af14e1049a939536a752b874",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/pine_tree.png",
+      "source": "assets/world_scheme_c/sprites/pine_tree.png",
+      "source_sha256": "b7ac7204aa6433f519a174b6bda2730a70147b4deab112851fa9ad31a658bb9c",
+      "sha256": "50a2ba5d2d4248fa58abd57c413b97a223b8b9e461ae2924238a886b7f46ae02",
+      "size": [
+        80,
+        128
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/pine_tree.png",
+      "source": "assets/world_scheme_c/sprites/pine_tree.png",
+      "source_sha256": "b7ac7204aa6433f519a174b6bda2730a70147b4deab112851fa9ad31a658bb9c",
+      "sha256": "50a2ba5d2d4248fa58abd57c413b97a223b8b9e461ae2924238a886b7f46ae02",
+      "size": [
+        80,
+        128
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/pine_tree.png",
+      "source": "assets/world_scheme_c/sprites/pine_tree.png",
+      "source_sha256": "b7ac7204aa6433f519a174b6bda2730a70147b4deab112851fa9ad31a658bb9c",
+      "sha256": "c1d4efac9b2214d094b50ebb00d7b54a2c14cc8f3704fa7884b0ce3dbe0afb1e",
+      "size": [
+        80,
+        128
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/pine_tree.png",
+      "source": "assets/world_scheme_c/sprites/pine_tree.png",
+      "source_sha256": "b7ac7204aa6433f519a174b6bda2730a70147b4deab112851fa9ad31a658bb9c",
+      "sha256": "e8bffaf143b7ce57996030d28830288ff833235dc6c4564a4d9f93f2a7a061c2",
+      "size": [
+        80,
+        128
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/pine_tree.png",
+      "source": "assets/world_scheme_c/sprites/pine_tree.png",
+      "source_sha256": "b7ac7204aa6433f519a174b6bda2730a70147b4deab112851fa9ad31a658bb9c",
+      "sha256": "b87fc221f3e83fd2d3430c31aadbed851dd2a3c561eaf975d681961016386220",
+      "size": [
+        80,
+        128
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/birch_tree.png",
+      "source": "assets/world_scheme_c/sprites/birch_tree.png",
+      "source_sha256": "8171d5303b66a3c3e1d108b2d4003584c35e0c45284efe5971c3e24de76515b6",
+      "sha256": "810e7258331861e2bb5a888becf0546090cd44b2d46ae47c14ecd1c700ff7142",
+      "size": [
+        64,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/birch_tree.png",
+      "source": "assets/world_scheme_c/sprites/birch_tree.png",
+      "source_sha256": "8171d5303b66a3c3e1d108b2d4003584c35e0c45284efe5971c3e24de76515b6",
+      "sha256": "810e7258331861e2bb5a888becf0546090cd44b2d46ae47c14ecd1c700ff7142",
+      "size": [
+        64,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/birch_tree.png",
+      "source": "assets/world_scheme_c/sprites/birch_tree.png",
+      "source_sha256": "8171d5303b66a3c3e1d108b2d4003584c35e0c45284efe5971c3e24de76515b6",
+      "sha256": "03169a4d7edb0464c399ffddb4e0aebf5cf2cfa5d1d033311aa182b8bdb375df",
+      "size": [
+        64,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/birch_tree.png",
+      "source": "assets/world_scheme_c/sprites/birch_tree.png",
+      "source_sha256": "8171d5303b66a3c3e1d108b2d4003584c35e0c45284efe5971c3e24de76515b6",
+      "sha256": "fcaaa925d0b5110c8f0cde5f7d553d17d32da54d1daa55c0681f9547cfff387d",
+      "size": [
+        64,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/birch_tree.png",
+      "source": "assets/world_scheme_c/sprites/birch_tree.png",
+      "source_sha256": "8171d5303b66a3c3e1d108b2d4003584c35e0c45284efe5971c3e24de76515b6",
+      "sha256": "8d9a6a774304ea12a75c4f86afcba70e52446c862111c722ac086697055cf41c",
+      "size": [
+        64,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/apple_tree.png",
+      "source": "assets/world_scheme_c/sprites/apple_tree.png",
+      "source_sha256": "5eb5679e697ff67110a328d0955f4c996bd95bf243ecd0413b8162ed572c0ba7",
+      "sha256": "15a0597082a938bee17fe032104152cc28a48fda2f3f614a12ab8063a26590f0",
+      "size": [
+        96,
+        96
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/apple_tree.png",
+      "source": "assets/world_scheme_c/sprites/apple_tree.png",
+      "source_sha256": "5eb5679e697ff67110a328d0955f4c996bd95bf243ecd0413b8162ed572c0ba7",
+      "sha256": "15a0597082a938bee17fe032104152cc28a48fda2f3f614a12ab8063a26590f0",
+      "size": [
+        96,
+        96
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/apple_tree.png",
+      "source": "assets/world_scheme_c/sprites/apple_tree.png",
+      "source_sha256": "5eb5679e697ff67110a328d0955f4c996bd95bf243ecd0413b8162ed572c0ba7",
+      "sha256": "4de05b716f514c7f49bf5037f2d7479d7fac74061ff4dc27635a5775addb0079",
+      "size": [
+        96,
+        96
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/apple_tree.png",
+      "source": "assets/world_scheme_c/sprites/apple_tree.png",
+      "source_sha256": "5eb5679e697ff67110a328d0955f4c996bd95bf243ecd0413b8162ed572c0ba7",
+      "sha256": "a59e1c89de7d753f465f1758ce97eca4a7307aeba7ff68c509ca6e3f7dc72f91",
+      "size": [
+        96,
+        96
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/apple_tree.png",
+      "source": "assets/world_scheme_c/sprites/apple_tree.png",
+      "source_sha256": "5eb5679e697ff67110a328d0955f4c996bd95bf243ecd0413b8162ed572c0ba7",
+      "sha256": "9e8fdc2f33f85e50274d8d7b9f5a5f07a2b1a8afd6a889dbc6b980656875c48b",
+      "size": [
+        96,
+        96
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/blossom_tree.png",
+      "source": "assets/world_scheme_c/sprites/blossom_tree.png",
+      "source_sha256": "276f1c76a4aae70d8c397361cca3435c61554a2990169f0ceeb0a05403cdfd4e",
+      "sha256": "ad74b6a624f1d1fd1607980b2af8c1aff5a97221de968b84853329c9f2d78038",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/blossom_tree.png",
+      "source": "assets/world_scheme_c/sprites/blossom_tree.png",
+      "source_sha256": "276f1c76a4aae70d8c397361cca3435c61554a2990169f0ceeb0a05403cdfd4e",
+      "sha256": "ad74b6a624f1d1fd1607980b2af8c1aff5a97221de968b84853329c9f2d78038",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/blossom_tree.png",
+      "source": "assets/world_scheme_c/sprites/blossom_tree.png",
+      "source_sha256": "276f1c76a4aae70d8c397361cca3435c61554a2990169f0ceeb0a05403cdfd4e",
+      "sha256": "a9a56ac6c7ef33d2940eece9de51b7efe699d18f15057f23f50df8471020f56f",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/blossom_tree.png",
+      "source": "assets/world_scheme_c/sprites/blossom_tree.png",
+      "source_sha256": "276f1c76a4aae70d8c397361cca3435c61554a2990169f0ceeb0a05403cdfd4e",
+      "sha256": "90453ddff12f77b5d82c6f1049441c5bafb3e4c5359f2d732dcbe9f488bdfd21",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/blossom_tree.png",
+      "source": "assets/world_scheme_c/sprites/blossom_tree.png",
+      "source_sha256": "276f1c76a4aae70d8c397361cca3435c61554a2990169f0ceeb0a05403cdfd4e",
+      "sha256": "59db2d064f6de09ead30729b94f71e7593cef7ab8fbc14ca39eaf50574b31563",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/dead_tree.png",
+      "source": "assets/world_scheme_c/sprites/dead_tree.png",
+      "source_sha256": "5ba095c68bb980b7066e7e7c0a85517bfc0e8ba63416bc7d231bc5563660533c",
+      "sha256": "538d305f448b82dc77c1e1896309c7e84534bdcf661ff057e13b591b19de8af8",
+      "size": [
+        48,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/dead_tree.png",
+      "source": "assets/world_scheme_c/sprites/dead_tree.png",
+      "source_sha256": "5ba095c68bb980b7066e7e7c0a85517bfc0e8ba63416bc7d231bc5563660533c",
+      "sha256": "538d305f448b82dc77c1e1896309c7e84534bdcf661ff057e13b591b19de8af8",
+      "size": [
+        48,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/dead_tree.png",
+      "source": "assets/world_scheme_c/sprites/dead_tree.png",
+      "source_sha256": "5ba095c68bb980b7066e7e7c0a85517bfc0e8ba63416bc7d231bc5563660533c",
+      "sha256": "538d305f448b82dc77c1e1896309c7e84534bdcf661ff057e13b591b19de8af8",
+      "size": [
+        48,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/dead_tree.png",
+      "source": "assets/world_scheme_c/sprites/dead_tree.png",
+      "source_sha256": "5ba095c68bb980b7066e7e7c0a85517bfc0e8ba63416bc7d231bc5563660533c",
+      "sha256": "538d305f448b82dc77c1e1896309c7e84534bdcf661ff057e13b591b19de8af8",
+      "size": [
+        48,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/dead_tree.png",
+      "source": "assets/world_scheme_c/sprites/dead_tree.png",
+      "source_sha256": "5ba095c68bb980b7066e7e7c0a85517bfc0e8ba63416bc7d231bc5563660533c",
+      "sha256": "538d305f448b82dc77c1e1896309c7e84534bdcf661ff057e13b591b19de8af8",
+      "size": [
+        48,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/tree_stump.png",
+      "source": "assets/world_scheme_c/sprites/tree_stump.png",
+      "source_sha256": "de5907419f446bd495e651a59387620589a807043a67ab24b846ddf13604c888",
+      "sha256": "0acfe5c6aa909fae98dea697fa306f3a8fa0bd97f12eed3c27776f343ded84eb",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/tree_stump.png",
+      "source": "assets/world_scheme_c/sprites/tree_stump.png",
+      "source_sha256": "de5907419f446bd495e651a59387620589a807043a67ab24b846ddf13604c888",
+      "sha256": "0acfe5c6aa909fae98dea697fa306f3a8fa0bd97f12eed3c27776f343ded84eb",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/tree_stump.png",
+      "source": "assets/world_scheme_c/sprites/tree_stump.png",
+      "source_sha256": "de5907419f446bd495e651a59387620589a807043a67ab24b846ddf13604c888",
+      "sha256": "072928cb7d8c9f875e27491f4507902eba26e40a06a342f05235ebd086a97ad2",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/tree_stump.png",
+      "source": "assets/world_scheme_c/sprites/tree_stump.png",
+      "source_sha256": "de5907419f446bd495e651a59387620589a807043a67ab24b846ddf13604c888",
+      "sha256": "75dc0d267b1ec0ef3edccb57fd451b2975cd5e98faacb1b907812d0f66a45a85",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/tree_stump.png",
+      "source": "assets/world_scheme_c/sprites/tree_stump.png",
+      "source_sha256": "de5907419f446bd495e651a59387620589a807043a67ab24b846ddf13604c888",
+      "sha256": "eaf587fac2a1802717c708deee73a0442f88ef63b765316f8c56e81c4aba93f4",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/bush.png",
+      "source": "assets/world_scheme_c/sprites/bush.png",
+      "source_sha256": "9c8b3705f74a390c620535e8464637065b6a5f32992b45dfd2fb706feb32770f",
+      "sha256": "98837f0928d2b35e61f1b09b8f0070a3dc99005c11510877514c294b8aa0da18",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/bush.png",
+      "source": "assets/world_scheme_c/sprites/bush.png",
+      "source_sha256": "9c8b3705f74a390c620535e8464637065b6a5f32992b45dfd2fb706feb32770f",
+      "sha256": "98837f0928d2b35e61f1b09b8f0070a3dc99005c11510877514c294b8aa0da18",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/bush.png",
+      "source": "assets/world_scheme_c/sprites/bush.png",
+      "source_sha256": "9c8b3705f74a390c620535e8464637065b6a5f32992b45dfd2fb706feb32770f",
+      "sha256": "c1b547488efd6de4d3ad2c2c131ec419078d9162a8ca039f2f61a460df3a7a57",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/bush.png",
+      "source": "assets/world_scheme_c/sprites/bush.png",
+      "source_sha256": "9c8b3705f74a390c620535e8464637065b6a5f32992b45dfd2fb706feb32770f",
+      "sha256": "6ff09a98b26ff1a31906c9e37fb1c91ec36f89fe43726e0c9fedff6953fcbe6a",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/bush.png",
+      "source": "assets/world_scheme_c/sprites/bush.png",
+      "source_sha256": "9c8b3705f74a390c620535e8464637065b6a5f32992b45dfd2fb706feb32770f",
+      "sha256": "99430d311f4a8f6bbc1437caaff9bb9306f4b529c81db4e84bf43d90a00808ae",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/oak_sapling.png",
+      "source": "assets/world_scheme_c/sprites/oak_sapling.png",
+      "source_sha256": "e5c24cfecddc76504f7ef77ef152acace8270edeaed5a2a21a62e656b30a07de",
+      "sha256": "4c8396d4aa941d85785df9370e44af209b72c4a442e80cf184edd5617d1e09e0",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/oak_sapling.png",
+      "source": "assets/world_scheme_c/sprites/oak_sapling.png",
+      "source_sha256": "e5c24cfecddc76504f7ef77ef152acace8270edeaed5a2a21a62e656b30a07de",
+      "sha256": "4c8396d4aa941d85785df9370e44af209b72c4a442e80cf184edd5617d1e09e0",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/oak_sapling.png",
+      "source": "assets/world_scheme_c/sprites/oak_sapling.png",
+      "source_sha256": "e5c24cfecddc76504f7ef77ef152acace8270edeaed5a2a21a62e656b30a07de",
+      "sha256": "aef9e1eceb8dacca14ab9817e04fe86003db3e6b4a6b428d1b623f215f146d05",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/oak_sapling.png",
+      "source": "assets/world_scheme_c/sprites/oak_sapling.png",
+      "source_sha256": "e5c24cfecddc76504f7ef77ef152acace8270edeaed5a2a21a62e656b30a07de",
+      "sha256": "34d73f1a0b6103a6720805f689c2357e1e7654598919c5220ac3ac64596d0322",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/oak_sapling.png",
+      "source": "assets/world_scheme_c/sprites/oak_sapling.png",
+      "source_sha256": "e5c24cfecddc76504f7ef77ef152acace8270edeaed5a2a21a62e656b30a07de",
+      "sha256": "76fb378c15f73984f993b9b26be613f8dd39068b4848b65c625824e443089900",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/pine_sapling.png",
+      "source": "assets/world_scheme_c/sprites/pine_sapling.png",
+      "source_sha256": "b64d6276cab20f88c351856c184cb223bed4e0039fcb8ffece1a8ebe6ba6f1d2",
+      "sha256": "aa98c32d9596f6d7cb13ac2d7bff6d70db5a3509927adced9a7261f230ca4417",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/pine_sapling.png",
+      "source": "assets/world_scheme_c/sprites/pine_sapling.png",
+      "source_sha256": "b64d6276cab20f88c351856c184cb223bed4e0039fcb8ffece1a8ebe6ba6f1d2",
+      "sha256": "aa98c32d9596f6d7cb13ac2d7bff6d70db5a3509927adced9a7261f230ca4417",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/pine_sapling.png",
+      "source": "assets/world_scheme_c/sprites/pine_sapling.png",
+      "source_sha256": "b64d6276cab20f88c351856c184cb223bed4e0039fcb8ffece1a8ebe6ba6f1d2",
+      "sha256": "9b885a7f6d7d7f1dc01196048bdc667d63ca83c8d8a7fad47dbec392708f1317",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/pine_sapling.png",
+      "source": "assets/world_scheme_c/sprites/pine_sapling.png",
+      "source_sha256": "b64d6276cab20f88c351856c184cb223bed4e0039fcb8ffece1a8ebe6ba6f1d2",
+      "sha256": "48213446a15c6d8352dfebbb79464f8a00ebd0afc76d17afb5ad9c5b07dbeabb",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/pine_sapling.png",
+      "source": "assets/world_scheme_c/sprites/pine_sapling.png",
+      "source_sha256": "b64d6276cab20f88c351856c184cb223bed4e0039fcb8ffece1a8ebe6ba6f1d2",
+      "sha256": "d3924472f4cfbef1d5228816ef81a57188473dfc552375b33cedad5bb64d8cf6",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/birch_sapling.png",
+      "source": "assets/world_scheme_c/sprites/birch_sapling.png",
+      "source_sha256": "97681fc2090603737dbd3d39519516b217dc8f8814733ae2f3ca69b4cbccbe0d",
+      "sha256": "a7e94e25b34bccc8c3ae71401143f7005b401a461c10c76062de7bf48f26e725",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/birch_sapling.png",
+      "source": "assets/world_scheme_c/sprites/birch_sapling.png",
+      "source_sha256": "97681fc2090603737dbd3d39519516b217dc8f8814733ae2f3ca69b4cbccbe0d",
+      "sha256": "a7e94e25b34bccc8c3ae71401143f7005b401a461c10c76062de7bf48f26e725",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/birch_sapling.png",
+      "source": "assets/world_scheme_c/sprites/birch_sapling.png",
+      "source_sha256": "97681fc2090603737dbd3d39519516b217dc8f8814733ae2f3ca69b4cbccbe0d",
+      "sha256": "e00a19b12ab28dc31ad2aa40bea29629df22f47d51a0ce40aacf48cae16d5858",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/birch_sapling.png",
+      "source": "assets/world_scheme_c/sprites/birch_sapling.png",
+      "source_sha256": "97681fc2090603737dbd3d39519516b217dc8f8814733ae2f3ca69b4cbccbe0d",
+      "sha256": "46dfbd05160a1cd45890ba2e1274c68cf11916add40ad3170a3467e157a4222b",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/birch_sapling.png",
+      "source": "assets/world_scheme_c/sprites/birch_sapling.png",
+      "source_sha256": "97681fc2090603737dbd3d39519516b217dc8f8814733ae2f3ca69b4cbccbe0d",
+      "sha256": "c9d2d9a7cf8eaa2fdbd0b2909360732e0e5b786f9949d5ea0528a2a1fd7057be",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/apple_sapling.png",
+      "source": "assets/world_scheme_c/sprites/apple_sapling.png",
+      "source_sha256": "8952afb180aa095c7c3684e61dab200b7362cfae2158b518a005ef0fb253f9c6",
+      "sha256": "a79044a8955308a88f1cec768669b4e1d561d30a192647de6327e4bbe1d08411",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/apple_sapling.png",
+      "source": "assets/world_scheme_c/sprites/apple_sapling.png",
+      "source_sha256": "8952afb180aa095c7c3684e61dab200b7362cfae2158b518a005ef0fb253f9c6",
+      "sha256": "a79044a8955308a88f1cec768669b4e1d561d30a192647de6327e4bbe1d08411",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/apple_sapling.png",
+      "source": "assets/world_scheme_c/sprites/apple_sapling.png",
+      "source_sha256": "8952afb180aa095c7c3684e61dab200b7362cfae2158b518a005ef0fb253f9c6",
+      "sha256": "0ebbdd9607944dfca6fdcd906a57c4740e74739fc331ddf9c4519be00ff1f566",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/apple_sapling.png",
+      "source": "assets/world_scheme_c/sprites/apple_sapling.png",
+      "source_sha256": "8952afb180aa095c7c3684e61dab200b7362cfae2158b518a005ef0fb253f9c6",
+      "sha256": "8054d2d0ad5e2e49e97405d758d33a724c74ea6a140acfd750fea32e186194a9",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/apple_sapling.png",
+      "source": "assets/world_scheme_c/sprites/apple_sapling.png",
+      "source_sha256": "8952afb180aa095c7c3684e61dab200b7362cfae2158b518a005ef0fb253f9c6",
+      "sha256": "59972c4dcf50001f17eb093f3ec6a3182de8ee9351c64fe934f2684153b6f72a",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/blossom_sapling.png",
+      "source": "assets/world_scheme_c/sprites/blossom_sapling.png",
+      "source_sha256": "75eebb8fd0fcb1ae50a6c1a726d62203b90b2e32b074bba2d8128dfa1bd0645a",
+      "sha256": "db095350d6cb37457a43710a827c58fb5c02e922627ceb868e68db3c55e0ac8d",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/blossom_sapling.png",
+      "source": "assets/world_scheme_c/sprites/blossom_sapling.png",
+      "source_sha256": "75eebb8fd0fcb1ae50a6c1a726d62203b90b2e32b074bba2d8128dfa1bd0645a",
+      "sha256": "db095350d6cb37457a43710a827c58fb5c02e922627ceb868e68db3c55e0ac8d",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/blossom_sapling.png",
+      "source": "assets/world_scheme_c/sprites/blossom_sapling.png",
+      "source_sha256": "75eebb8fd0fcb1ae50a6c1a726d62203b90b2e32b074bba2d8128dfa1bd0645a",
+      "sha256": "51fa659fb065b3fbb3f1ff4fd45129a3fbc6b9fb25a0d63100e2792c4c59fff4",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/blossom_sapling.png",
+      "source": "assets/world_scheme_c/sprites/blossom_sapling.png",
+      "source_sha256": "75eebb8fd0fcb1ae50a6c1a726d62203b90b2e32b074bba2d8128dfa1bd0645a",
+      "sha256": "641e5809f7c8e34e50aea8d0c6378e38d0f5fa1d6c7ad48d5499b54ec9c6956c",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/blossom_sapling.png",
+      "source": "assets/world_scheme_c/sprites/blossom_sapling.png",
+      "source_sha256": "75eebb8fd0fcb1ae50a6c1a726d62203b90b2e32b074bba2d8128dfa1bd0645a",
+      "sha256": "be49e51ad5b291949454557d98b15e40a100701d044213fa3bee7984ed23655f",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/short_grass.png",
+      "source": "assets/world_scheme_c/sprites/short_grass.png",
+      "source_sha256": "cb9fb5edd71800b8ce550bd99589602f53e4a74178008b4ada0b261c106c8823",
+      "sha256": "3a8bd09343cb46f9b7a102ae6b8f69ed7c3f64b8f86c3874a54989a5d378d997",
+      "size": [
+        24,
+        16
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/short_grass.png",
+      "source": "assets/world_scheme_c/sprites/short_grass.png",
+      "source_sha256": "cb9fb5edd71800b8ce550bd99589602f53e4a74178008b4ada0b261c106c8823",
+      "sha256": "3a8bd09343cb46f9b7a102ae6b8f69ed7c3f64b8f86c3874a54989a5d378d997",
+      "size": [
+        24,
+        16
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/short_grass.png",
+      "source": "assets/world_scheme_c/sprites/short_grass.png",
+      "source_sha256": "cb9fb5edd71800b8ce550bd99589602f53e4a74178008b4ada0b261c106c8823",
+      "sha256": "d7c2906257f334de63f36c49a4606fd8ab9952eb751f09bd7f984eeb5a91bfb9",
+      "size": [
+        24,
+        16
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/short_grass.png",
+      "source": "assets/world_scheme_c/sprites/short_grass.png",
+      "source_sha256": "cb9fb5edd71800b8ce550bd99589602f53e4a74178008b4ada0b261c106c8823",
+      "sha256": "b0fa856d2fcae850f610115c7b56287099f8cb56e6301db32bec1b5e936ddb62",
+      "size": [
+        24,
+        16
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/short_grass.png",
+      "source": "assets/world_scheme_c/sprites/short_grass.png",
+      "source_sha256": "cb9fb5edd71800b8ce550bd99589602f53e4a74178008b4ada0b261c106c8823",
+      "sha256": "ecfd0a972e3e30ed818ce97fbf5b52d9f1f91f6ab5bf926babe06f7261eefeda",
+      "size": [
+        24,
+        16
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/tall_grass.png",
+      "source": "assets/world_scheme_c/sprites/tall_grass.png",
+      "source_sha256": "d7e18e5cc33b3aa72b80e16c95c0a91ddf5bf48fb9fdd6fcf75504408d1f6510",
+      "sha256": "cbc270361aa41e593e3aff2eb92520a630e4bc343f279c6948b6bca2e5d77036",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/tall_grass.png",
+      "source": "assets/world_scheme_c/sprites/tall_grass.png",
+      "source_sha256": "d7e18e5cc33b3aa72b80e16c95c0a91ddf5bf48fb9fdd6fcf75504408d1f6510",
+      "sha256": "cbc270361aa41e593e3aff2eb92520a630e4bc343f279c6948b6bca2e5d77036",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/tall_grass.png",
+      "source": "assets/world_scheme_c/sprites/tall_grass.png",
+      "source_sha256": "d7e18e5cc33b3aa72b80e16c95c0a91ddf5bf48fb9fdd6fcf75504408d1f6510",
+      "sha256": "3a7d068e7fdbcaf21142fb0bef0ed31f66143441e8d1b8bb388d6db0661f82cf",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/tall_grass.png",
+      "source": "assets/world_scheme_c/sprites/tall_grass.png",
+      "source_sha256": "d7e18e5cc33b3aa72b80e16c95c0a91ddf5bf48fb9fdd6fcf75504408d1f6510",
+      "sha256": "a62ee79d12db7b751e558189e29c8fbc60843b5d97584771ecb2e6caad733ee0",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/tall_grass.png",
+      "source": "assets/world_scheme_c/sprites/tall_grass.png",
+      "source_sha256": "d7e18e5cc33b3aa72b80e16c95c0a91ddf5bf48fb9fdd6fcf75504408d1f6510",
+      "sha256": "172a13d2651c637e601f91e3a582baca86ac172f3ee631f2136024a4c3f54a37",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/grass_clump.png",
+      "source": "assets/world_scheme_c/sprites/grass_clump.png",
+      "source_sha256": "e699816f0b9cadc910ed74730438d1979a93416a4f4d7ff4fc53fa37c0da6363",
+      "sha256": "619e246e0e533f6075b6f45bf8b95b20ad309ea4a941fb8a3604287a7d8e88c3",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/grass_clump.png",
+      "source": "assets/world_scheme_c/sprites/grass_clump.png",
+      "source_sha256": "e699816f0b9cadc910ed74730438d1979a93416a4f4d7ff4fc53fa37c0da6363",
+      "sha256": "619e246e0e533f6075b6f45bf8b95b20ad309ea4a941fb8a3604287a7d8e88c3",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/grass_clump.png",
+      "source": "assets/world_scheme_c/sprites/grass_clump.png",
+      "source_sha256": "e699816f0b9cadc910ed74730438d1979a93416a4f4d7ff4fc53fa37c0da6363",
+      "sha256": "5177aa5c8dd210d76c384c14b619000f57c441b07d2f365b0e580d86c688d61b",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/grass_clump.png",
+      "source": "assets/world_scheme_c/sprites/grass_clump.png",
+      "source_sha256": "e699816f0b9cadc910ed74730438d1979a93416a4f4d7ff4fc53fa37c0da6363",
+      "sha256": "b5be9db79b619084b2456ff23fae961a0fefbf170aa571a3f96b8044d5aa8cb0",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/grass_clump.png",
+      "source": "assets/world_scheme_c/sprites/grass_clump.png",
+      "source_sha256": "e699816f0b9cadc910ed74730438d1979a93416a4f4d7ff4fc53fa37c0da6363",
+      "sha256": "c9a8380b7a8ac4d602ad543145ed873436cfc3a5f8befebdebd10f29dc5370a6",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/clover.png",
+      "source": "assets/world_scheme_c/sprites/clover.png",
+      "source_sha256": "d02226eeea341dd051686f30e5b007e53eed88fc63602405fd72d872bfb31846",
+      "sha256": "7837304906b7b16254c1e3e082df44d3564dfd5ac78a409c01bd7d73c4a139bb",
+      "size": [
+        24,
+        16
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/clover.png",
+      "source": "assets/world_scheme_c/sprites/clover.png",
+      "source_sha256": "d02226eeea341dd051686f30e5b007e53eed88fc63602405fd72d872bfb31846",
+      "sha256": "7837304906b7b16254c1e3e082df44d3564dfd5ac78a409c01bd7d73c4a139bb",
+      "size": [
+        24,
+        16
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/clover.png",
+      "source": "assets/world_scheme_c/sprites/clover.png",
+      "source_sha256": "d02226eeea341dd051686f30e5b007e53eed88fc63602405fd72d872bfb31846",
+      "sha256": "4b005f2ea4fab9311516dc9f47c784d67fcd1874f558bec65bc833ad0ea89e94",
+      "size": [
+        24,
+        16
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/clover.png",
+      "source": "assets/world_scheme_c/sprites/clover.png",
+      "source_sha256": "d02226eeea341dd051686f30e5b007e53eed88fc63602405fd72d872bfb31846",
+      "sha256": "576ae72ab032d4609c4d2fa5b710c08376fac85d231a1954d8ba822b715b7358",
+      "size": [
+        24,
+        16
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/clover.png",
+      "source": "assets/world_scheme_c/sprites/clover.png",
+      "source_sha256": "d02226eeea341dd051686f30e5b007e53eed88fc63602405fd72d872bfb31846",
+      "sha256": "d3ad3700495cc83a0b6d3ee8dce5bae8dba4ca946a68b7275900f4537a797957",
+      "size": [
+        24,
+        16
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/white_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/white_wildflowers.png",
+      "source_sha256": "3538197a05a67910e72ccef1b781dcc48dc13db0cdb3c03b4bee02c9b1e53638",
+      "sha256": "8a23d6a4fb35070f03faa592081a7d266ad46add3ea043eeebef2a9ff622bf05",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/white_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/white_wildflowers.png",
+      "source_sha256": "3538197a05a67910e72ccef1b781dcc48dc13db0cdb3c03b4bee02c9b1e53638",
+      "sha256": "8a23d6a4fb35070f03faa592081a7d266ad46add3ea043eeebef2a9ff622bf05",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/white_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/white_wildflowers.png",
+      "source_sha256": "3538197a05a67910e72ccef1b781dcc48dc13db0cdb3c03b4bee02c9b1e53638",
+      "sha256": "217e904ce853b5ff6d95fa5ef43a9ecfeebb7e34ba29454f3e163da99ab2cd9e",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/white_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/white_wildflowers.png",
+      "source_sha256": "3538197a05a67910e72ccef1b781dcc48dc13db0cdb3c03b4bee02c9b1e53638",
+      "sha256": "2686eccf0751760e94b5f5bbdd03e72b4cef25f8046c0992d82ff5931c632f5e",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/white_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/white_wildflowers.png",
+      "source_sha256": "3538197a05a67910e72ccef1b781dcc48dc13db0cdb3c03b4bee02c9b1e53638",
+      "sha256": "a4f0a9a528eeb2d2c9557cd31545e324f1d994d6d86715168f2052206d01bf5d",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/yellow_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/yellow_wildflowers.png",
+      "source_sha256": "387a6b8e66f189e9a0f88e797da55ab12820dcd253ab31dc9b3bb330f54e8467",
+      "sha256": "d31005ff44a665aa56d9d272fbbfe38dc47bc990c4d02631f46ae4af760a8084",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/yellow_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/yellow_wildflowers.png",
+      "source_sha256": "387a6b8e66f189e9a0f88e797da55ab12820dcd253ab31dc9b3bb330f54e8467",
+      "sha256": "d31005ff44a665aa56d9d272fbbfe38dc47bc990c4d02631f46ae4af760a8084",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/yellow_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/yellow_wildflowers.png",
+      "source_sha256": "387a6b8e66f189e9a0f88e797da55ab12820dcd253ab31dc9b3bb330f54e8467",
+      "sha256": "160e04f19225e842fc71a3745e5d80ad3af948fe89dae5eb2980216c518c6b77",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/yellow_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/yellow_wildflowers.png",
+      "source_sha256": "387a6b8e66f189e9a0f88e797da55ab12820dcd253ab31dc9b3bb330f54e8467",
+      "sha256": "a5ee35c33877ed6e7b91391cd3797cf85792d80ca75985c68025459043107d85",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/yellow_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/yellow_wildflowers.png",
+      "source_sha256": "387a6b8e66f189e9a0f88e797da55ab12820dcd253ab31dc9b3bb330f54e8467",
+      "sha256": "0b6e4e984a35015364e0a54bdf76b574c79053f6bfdaf77ad001baded975acfa",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/purple_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/purple_wildflowers.png",
+      "source_sha256": "9f5a3d79a8152003b42f8add7e918474b5d796ed4588234b41f7e7edb3aaeff0",
+      "sha256": "1643a131f69244d92f6489334c216a483b95167dcbc21d53fd71fadb1bd42bbe",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/purple_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/purple_wildflowers.png",
+      "source_sha256": "9f5a3d79a8152003b42f8add7e918474b5d796ed4588234b41f7e7edb3aaeff0",
+      "sha256": "1643a131f69244d92f6489334c216a483b95167dcbc21d53fd71fadb1bd42bbe",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/purple_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/purple_wildflowers.png",
+      "source_sha256": "9f5a3d79a8152003b42f8add7e918474b5d796ed4588234b41f7e7edb3aaeff0",
+      "sha256": "1643a131f69244d92f6489334c216a483b95167dcbc21d53fd71fadb1bd42bbe",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/purple_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/purple_wildflowers.png",
+      "source_sha256": "9f5a3d79a8152003b42f8add7e918474b5d796ed4588234b41f7e7edb3aaeff0",
+      "sha256": "1643a131f69244d92f6489334c216a483b95167dcbc21d53fd71fadb1bd42bbe",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/purple_wildflowers.png",
+      "source": "assets/world_scheme_c/sprites/purple_wildflowers.png",
+      "source_sha256": "9f5a3d79a8152003b42f8add7e918474b5d796ed4588234b41f7e7edb3aaeff0",
+      "sha256": "1643a131f69244d92f6489334c216a483b95167dcbc21d53fd71fadb1bd42bbe",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/sunflower.png",
+      "source": "assets/world_scheme_c/sprites/sunflower.png",
+      "source_sha256": "e81579b29fb29c47a12d8e4b5ab76f23aa8287f5be7dd773106c17ba132f1c4d",
+      "sha256": "9fbdbef4047d62fb05a1db0472e203ae7510dca92f10c642cf33f92ac56b60f8",
+      "size": [
+        32,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/sunflower.png",
+      "source": "assets/world_scheme_c/sprites/sunflower.png",
+      "source_sha256": "e81579b29fb29c47a12d8e4b5ab76f23aa8287f5be7dd773106c17ba132f1c4d",
+      "sha256": "9fbdbef4047d62fb05a1db0472e203ae7510dca92f10c642cf33f92ac56b60f8",
+      "size": [
+        32,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/sunflower.png",
+      "source": "assets/world_scheme_c/sprites/sunflower.png",
+      "source_sha256": "e81579b29fb29c47a12d8e4b5ab76f23aa8287f5be7dd773106c17ba132f1c4d",
+      "sha256": "66ab75d29240c8bd708a5bae3bcb4e192b9c8e1fc492cef2494b0ded6b772322",
+      "size": [
+        32,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/sunflower.png",
+      "source": "assets/world_scheme_c/sprites/sunflower.png",
+      "source_sha256": "e81579b29fb29c47a12d8e4b5ab76f23aa8287f5be7dd773106c17ba132f1c4d",
+      "sha256": "4cc659df5c85fcc93cc27eb5fcc3085bba9e4c85e31eb816d672def1266cb824",
+      "size": [
+        32,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/sunflower.png",
+      "source": "assets/world_scheme_c/sprites/sunflower.png",
+      "source_sha256": "e81579b29fb29c47a12d8e4b5ab76f23aa8287f5be7dd773106c17ba132f1c4d",
+      "sha256": "f0e16ff6b7316fc5b6be27f4ab3a8343d0350193df7689fc29547fb8af9b3215",
+      "size": [
+        32,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/flower_patch.png",
+      "source": "assets/world_scheme_c/sprites/flower_patch.png",
+      "source_sha256": "37fc639e5b271c249579a8df5876da09a7e796ce44cf1fe29dec8caf4640e922",
+      "sha256": "e0b512addee793523ce9cf5df24a70c5cb84719afc5938327f4f983ee9b3bc7a",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/flower_patch.png",
+      "source": "assets/world_scheme_c/sprites/flower_patch.png",
+      "source_sha256": "37fc639e5b271c249579a8df5876da09a7e796ce44cf1fe29dec8caf4640e922",
+      "sha256": "e0b512addee793523ce9cf5df24a70c5cb84719afc5938327f4f983ee9b3bc7a",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/flower_patch.png",
+      "source": "assets/world_scheme_c/sprites/flower_patch.png",
+      "source_sha256": "37fc639e5b271c249579a8df5876da09a7e796ce44cf1fe29dec8caf4640e922",
+      "sha256": "29af2a59dfc1c59b877c22d7ad16f0801d5a3d3e4993c87d952a1e5e14070b09",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/flower_patch.png",
+      "source": "assets/world_scheme_c/sprites/flower_patch.png",
+      "source_sha256": "37fc639e5b271c249579a8df5876da09a7e796ce44cf1fe29dec8caf4640e922",
+      "sha256": "2be017b2c7a1c74b9b977bee0fe16edde6fb21c2840474b61b301a1e5127ec1e",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/flower_patch.png",
+      "source": "assets/world_scheme_c/sprites/flower_patch.png",
+      "source_sha256": "37fc639e5b271c249579a8df5876da09a7e796ce44cf1fe29dec8caf4640e922",
+      "sha256": "828e32b08af5aa2ce375c9933fa67376695e6f1cf5c0c4b5df26ce4a7a21e1b0",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/grass.png",
+      "source": "assets/world_scheme_c/sprites/grass.png",
+      "source_sha256": "f78b93371545246042b51bcfeba62604ede05cb872c64331108e2b8a83a28d98",
+      "sha256": "6939be69fd9419a52b6a38b1de321569b9bbf20f2e96f555f8d785bc05b2b5be",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/grass.png",
+      "source": "assets/world_scheme_c/sprites/grass.png",
+      "source_sha256": "f78b93371545246042b51bcfeba62604ede05cb872c64331108e2b8a83a28d98",
+      "sha256": "6939be69fd9419a52b6a38b1de321569b9bbf20f2e96f555f8d785bc05b2b5be",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/grass.png",
+      "source": "assets/world_scheme_c/sprites/grass.png",
+      "source_sha256": "f78b93371545246042b51bcfeba62604ede05cb872c64331108e2b8a83a28d98",
+      "sha256": "1af98bd75ddc49a3d8add733dc0018a9fb19aa9181b98a389fe5670ad48da4d2",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/grass.png",
+      "source": "assets/world_scheme_c/sprites/grass.png",
+      "source_sha256": "f78b93371545246042b51bcfeba62604ede05cb872c64331108e2b8a83a28d98",
+      "sha256": "d202bcd77fd996c299ec79b9d2c58d42326fbca11ff1df9b5ce8384234bf90e9",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/grass.png",
+      "source": "assets/world_scheme_c/sprites/grass.png",
+      "source_sha256": "f78b93371545246042b51bcfeba62604ede05cb872c64331108e2b8a83a28d98",
+      "sha256": "053cdb7b191b6608ee731ae3c2b338a30a2ac460105c92c9c0c8c92e47b6b0dd",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/dirt.png",
+      "source": "assets/world_scheme_c/sprites/dirt.png",
+      "source_sha256": "945a0f85d7205831b28b585d71f01604c9d431c1c8c211aa4b42428a667552ed",
+      "sha256": "ce574129e2a1ecedd9957642cb00439211218a49c812093219f01f5cdb8ecfc6",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/dirt.png",
+      "source": "assets/world_scheme_c/sprites/dirt.png",
+      "source_sha256": "945a0f85d7205831b28b585d71f01604c9d431c1c8c211aa4b42428a667552ed",
+      "sha256": "ce574129e2a1ecedd9957642cb00439211218a49c812093219f01f5cdb8ecfc6",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/dirt.png",
+      "source": "assets/world_scheme_c/sprites/dirt.png",
+      "source_sha256": "945a0f85d7205831b28b585d71f01604c9d431c1c8c211aa4b42428a667552ed",
+      "sha256": "3e7ef674ba9cb281efc23c25c8bcb740c9b76984b378b10e0d23b0883ed0825e",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/dirt.png",
+      "source": "assets/world_scheme_c/sprites/dirt.png",
+      "source_sha256": "945a0f85d7205831b28b585d71f01604c9d431c1c8c211aa4b42428a667552ed",
+      "sha256": "d2dd2ac57748bd27c5843b6b31bfdf3be732e5120c93f1c8f1bae952185fa89d",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/dirt.png",
+      "source": "assets/world_scheme_c/sprites/dirt.png",
+      "source_sha256": "945a0f85d7205831b28b585d71f01604c9d431c1c8c211aa4b42428a667552ed",
+      "sha256": "caa141d2988c20612f39f6c1ca4e2ff975d038fb73df864d8b7696481b78fcb3",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/tilled_soil.png",
+      "source": "assets/world_scheme_c/sprites/tilled_soil.png",
+      "source_sha256": "e33634791beecf1ca1ab6beebc4e96c815aa990c6f9768e811fb2b8b2b992f54",
+      "sha256": "6021b14466f3595200dfadb029a1c6cdaf5920850da7547123bf665a575d0f64",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/tilled_soil.png",
+      "source": "assets/world_scheme_c/sprites/tilled_soil.png",
+      "source_sha256": "e33634791beecf1ca1ab6beebc4e96c815aa990c6f9768e811fb2b8b2b992f54",
+      "sha256": "6021b14466f3595200dfadb029a1c6cdaf5920850da7547123bf665a575d0f64",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/tilled_soil.png",
+      "source": "assets/world_scheme_c/sprites/tilled_soil.png",
+      "source_sha256": "e33634791beecf1ca1ab6beebc4e96c815aa990c6f9768e811fb2b8b2b992f54",
+      "sha256": "6021b14466f3595200dfadb029a1c6cdaf5920850da7547123bf665a575d0f64",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/tilled_soil.png",
+      "source": "assets/world_scheme_c/sprites/tilled_soil.png",
+      "source_sha256": "e33634791beecf1ca1ab6beebc4e96c815aa990c6f9768e811fb2b8b2b992f54",
+      "sha256": "6021b14466f3595200dfadb029a1c6cdaf5920850da7547123bf665a575d0f64",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/tilled_soil.png",
+      "source": "assets/world_scheme_c/sprites/tilled_soil.png",
+      "source_sha256": "e33634791beecf1ca1ab6beebc4e96c815aa990c6f9768e811fb2b8b2b992f54",
+      "sha256": "6021b14466f3595200dfadb029a1c6cdaf5920850da7547123bf665a575d0f64",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/sand.png",
+      "source": "assets/world_scheme_c/sprites/sand.png",
+      "source_sha256": "ec4c3105f55213fc51480b3967a3f87bfcaf1464090166fadc3c2295ae539374",
+      "sha256": "431521eddd951ff14bbf004bdfd139c0cd64e338a14a621a69eca73810c75534",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/sand.png",
+      "source": "assets/world_scheme_c/sprites/sand.png",
+      "source_sha256": "ec4c3105f55213fc51480b3967a3f87bfcaf1464090166fadc3c2295ae539374",
+      "sha256": "431521eddd951ff14bbf004bdfd139c0cd64e338a14a621a69eca73810c75534",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/sand.png",
+      "source": "assets/world_scheme_c/sprites/sand.png",
+      "source_sha256": "ec4c3105f55213fc51480b3967a3f87bfcaf1464090166fadc3c2295ae539374",
+      "sha256": "431521eddd951ff14bbf004bdfd139c0cd64e338a14a621a69eca73810c75534",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/sand.png",
+      "source": "assets/world_scheme_c/sprites/sand.png",
+      "source_sha256": "ec4c3105f55213fc51480b3967a3f87bfcaf1464090166fadc3c2295ae539374",
+      "sha256": "431521eddd951ff14bbf004bdfd139c0cd64e338a14a621a69eca73810c75534",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/sand.png",
+      "source": "assets/world_scheme_c/sprites/sand.png",
+      "source_sha256": "ec4c3105f55213fc51480b3967a3f87bfcaf1464090166fadc3c2295ae539374",
+      "sha256": "431521eddd951ff14bbf004bdfd139c0cd64e338a14a621a69eca73810c75534",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/gravel.png",
+      "source": "assets/world_scheme_c/sprites/gravel.png",
+      "source_sha256": "e89705ace7be91818a2fddaa14e4192c404c6865481fd08ab5ee75bdbc9eeef8",
+      "sha256": "b07059f7b8f158d2af4a84d757633a4f5580ab2923837f4d9cf2bddbeeddd5af",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/gravel.png",
+      "source": "assets/world_scheme_c/sprites/gravel.png",
+      "source_sha256": "e89705ace7be91818a2fddaa14e4192c404c6865481fd08ab5ee75bdbc9eeef8",
+      "sha256": "b07059f7b8f158d2af4a84d757633a4f5580ab2923837f4d9cf2bddbeeddd5af",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/gravel.png",
+      "source": "assets/world_scheme_c/sprites/gravel.png",
+      "source_sha256": "e89705ace7be91818a2fddaa14e4192c404c6865481fd08ab5ee75bdbc9eeef8",
+      "sha256": "b07059f7b8f158d2af4a84d757633a4f5580ab2923837f4d9cf2bddbeeddd5af",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/gravel.png",
+      "source": "assets/world_scheme_c/sprites/gravel.png",
+      "source_sha256": "e89705ace7be91818a2fddaa14e4192c404c6865481fd08ab5ee75bdbc9eeef8",
+      "sha256": "b07059f7b8f158d2af4a84d757633a4f5580ab2923837f4d9cf2bddbeeddd5af",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/gravel.png",
+      "source": "assets/world_scheme_c/sprites/gravel.png",
+      "source_sha256": "e89705ace7be91818a2fddaa14e4192c404c6865481fd08ab5ee75bdbc9eeef8",
+      "sha256": "b07059f7b8f158d2af4a84d757633a4f5580ab2923837f4d9cf2bddbeeddd5af",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/dirt_path.png",
+      "source": "assets/world_scheme_c/sprites/dirt_path.png",
+      "source_sha256": "fc11b85d8c168148ca86be010ee2870d615348220df75ef840a846732339ef4c",
+      "sha256": "a5573100f1c13b190a2ec168e2fc050a2b3000caf4f5bb98071a7b626a538c5a",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/dirt_path.png",
+      "source": "assets/world_scheme_c/sprites/dirt_path.png",
+      "source_sha256": "fc11b85d8c168148ca86be010ee2870d615348220df75ef840a846732339ef4c",
+      "sha256": "a5573100f1c13b190a2ec168e2fc050a2b3000caf4f5bb98071a7b626a538c5a",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/dirt_path.png",
+      "source": "assets/world_scheme_c/sprites/dirt_path.png",
+      "source_sha256": "fc11b85d8c168148ca86be010ee2870d615348220df75ef840a846732339ef4c",
+      "sha256": "a5573100f1c13b190a2ec168e2fc050a2b3000caf4f5bb98071a7b626a538c5a",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/dirt_path.png",
+      "source": "assets/world_scheme_c/sprites/dirt_path.png",
+      "source_sha256": "fc11b85d8c168148ca86be010ee2870d615348220df75ef840a846732339ef4c",
+      "sha256": "a5573100f1c13b190a2ec168e2fc050a2b3000caf4f5bb98071a7b626a538c5a",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/dirt_path.png",
+      "source": "assets/world_scheme_c/sprites/dirt_path.png",
+      "source_sha256": "fc11b85d8c168148ca86be010ee2870d615348220df75ef840a846732339ef4c",
+      "sha256": "a5573100f1c13b190a2ec168e2fc050a2b3000caf4f5bb98071a7b626a538c5a",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/stone_path.png",
+      "source": "assets/world_scheme_c/sprites/stone_path.png",
+      "source_sha256": "ab9809f38440e0b7326b730e2abe38d0c997e214ee53d3a7f6e4719206e13412",
+      "sha256": "11b37750c64ed5a8940545b0b91bb42be8677ccccc52b88d985cde37bcd16786",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/stone_path.png",
+      "source": "assets/world_scheme_c/sprites/stone_path.png",
+      "source_sha256": "ab9809f38440e0b7326b730e2abe38d0c997e214ee53d3a7f6e4719206e13412",
+      "sha256": "11b37750c64ed5a8940545b0b91bb42be8677ccccc52b88d985cde37bcd16786",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/stone_path.png",
+      "source": "assets/world_scheme_c/sprites/stone_path.png",
+      "source_sha256": "ab9809f38440e0b7326b730e2abe38d0c997e214ee53d3a7f6e4719206e13412",
+      "sha256": "d996400a71fb564032d2368467c642d1f6ac9bc450f565cba5d96b25bfc57d98",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/stone_path.png",
+      "source": "assets/world_scheme_c/sprites/stone_path.png",
+      "source_sha256": "ab9809f38440e0b7326b730e2abe38d0c997e214ee53d3a7f6e4719206e13412",
+      "sha256": "0a0be9cb4c544d2fd8b407c6c13ae8c53a2cd9e687bf62290fc7c666b1c4385f",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/stone_path.png",
+      "source": "assets/world_scheme_c/sprites/stone_path.png",
+      "source_sha256": "ab9809f38440e0b7326b730e2abe38d0c997e214ee53d3a7f6e4719206e13412",
+      "sha256": "c88e6783e2d31ca6eb8b19e8ba17750a46a50baa039a37a14b088a23a4927627",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/wood_path.png",
+      "source": "assets/world_scheme_c/sprites/wood_path.png",
+      "source_sha256": "6d03eb2c6c41de7f2d9d111cc21da883e36cc26f20c02aa5e6e195f5369e247f",
+      "sha256": "037075cb7ab949e0bbbbad39251e9483e2ef81972296167f8ef33ea8d51b7760",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/wood_path.png",
+      "source": "assets/world_scheme_c/sprites/wood_path.png",
+      "source_sha256": "6d03eb2c6c41de7f2d9d111cc21da883e36cc26f20c02aa5e6e195f5369e247f",
+      "sha256": "037075cb7ab949e0bbbbad39251e9483e2ef81972296167f8ef33ea8d51b7760",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/wood_path.png",
+      "source": "assets/world_scheme_c/sprites/wood_path.png",
+      "source_sha256": "6d03eb2c6c41de7f2d9d111cc21da883e36cc26f20c02aa5e6e195f5369e247f",
+      "sha256": "037075cb7ab949e0bbbbad39251e9483e2ef81972296167f8ef33ea8d51b7760",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/wood_path.png",
+      "source": "assets/world_scheme_c/sprites/wood_path.png",
+      "source_sha256": "6d03eb2c6c41de7f2d9d111cc21da883e36cc26f20c02aa5e6e195f5369e247f",
+      "sha256": "037075cb7ab949e0bbbbad39251e9483e2ef81972296167f8ef33ea8d51b7760",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/wood_path.png",
+      "source": "assets/world_scheme_c/sprites/wood_path.png",
+      "source_sha256": "6d03eb2c6c41de7f2d9d111cc21da883e36cc26f20c02aa5e6e195f5369e247f",
+      "sha256": "037075cb7ab949e0bbbbad39251e9483e2ef81972296167f8ef33ea8d51b7760",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/small_pond.png",
+      "source": "assets/world_scheme_c/sprites/small_pond.png",
+      "source_sha256": "fe79d018b010ebd07cd3574698d09f56375b9b36b7f72048e0c16b8bc6385dc8",
+      "sha256": "0c149068baab2952ffddf643d61156d1915bbe6e62d1ee2f0b45ff7db13dbe86",
+      "size": [
+        64,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/small_pond/frame_00.png",
+      "source": "assets/world_scheme_c/animations/small_pond/frame_00.png",
+      "source_sha256": "fe79d018b010ebd07cd3574698d09f56375b9b36b7f72048e0c16b8bc6385dc8",
+      "sha256": "0c149068baab2952ffddf643d61156d1915bbe6e62d1ee2f0b45ff7db13dbe86",
+      "size": [
+        64,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/small_pond/frame_01.png",
+      "source": "assets/world_scheme_c/animations/small_pond/frame_01.png",
+      "source_sha256": "60320b91920e7b7b849f4cee8d2bd0cf47d2b941690c42cfdd178fdce3ef6902",
+      "sha256": "601a7170363629ab51765c18ee42773b16e47f165588404e1506a7a5b97895d2",
+      "size": [
+        64,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/small_pond/frame_02.png",
+      "source": "assets/world_scheme_c/animations/small_pond/frame_02.png",
+      "source_sha256": "183b69769eacbf677894422a9095f3abd40880a90bd2f263717930ceb11b16ad",
+      "sha256": "52c512b3b802b22a2d4f820834ddbabbc4af95932434e148757c7c1bc1b1f57a",
+      "size": [
+        64,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/small_pond/frame_03.png",
+      "source": "assets/world_scheme_c/animations/small_pond/frame_03.png",
+      "source_sha256": "57a4931caca8c6796a8c82f7491251fed1af8bedff609e23e2651ffe52eca400",
+      "sha256": "03e9c479c292ff1aae704a1e1350ebb0d87fc874e0c6a2f1730f28804490f080",
+      "size": [
+        64,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/large_pond.png",
+      "source": "assets/world_scheme_c/sprites/large_pond.png",
+      "source_sha256": "31be5886a77ef30ea574098f361bc0380669357188881dfe1e9bd511a15a3b30",
+      "sha256": "14cf2a08b41f2fc9de5aabeba5296f634547b552e46e93d17aea2216f4848877",
+      "size": [
+        128,
+        96
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/large_pond/frame_00.png",
+      "source": "assets/world_scheme_c/animations/large_pond/frame_00.png",
+      "source_sha256": "31be5886a77ef30ea574098f361bc0380669357188881dfe1e9bd511a15a3b30",
+      "sha256": "14cf2a08b41f2fc9de5aabeba5296f634547b552e46e93d17aea2216f4848877",
+      "size": [
+        128,
+        96
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/large_pond/frame_01.png",
+      "source": "assets/world_scheme_c/animations/large_pond/frame_01.png",
+      "source_sha256": "d1f858af3346c41e272e1891554454c6f7f53b2617ed6b4155a065611f64c7c9",
+      "sha256": "5b3adb0441e1e714fd10689e8305950a187b6694113600d994c3ba922968b885",
+      "size": [
+        128,
+        96
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/large_pond/frame_02.png",
+      "source": "assets/world_scheme_c/animations/large_pond/frame_02.png",
+      "source_sha256": "639a893fc9c3ac1f7f6ba639b507b12ef2f2da3e90e9100f1d5a0da67d3fb69d",
+      "sha256": "5c5a8ad907ddfe7d8beaa80b79ad9eec916b0bfb6f330b4508be94ec2eaad31b",
+      "size": [
+        128,
+        96
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/large_pond/frame_03.png",
+      "source": "assets/world_scheme_c/animations/large_pond/frame_03.png",
+      "source_sha256": "273daea2d902126024cf42fe98cf729193b4b691e165093dfb7e5851855bd0a7",
+      "sha256": "83412ee7fc4d026b5ff7776470f10c803144393bde10e4f6a233ca4f02b0969a",
+      "size": [
+        128,
+        96
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/stream.png",
+      "source": "assets/world_scheme_c/sprites/stream.png",
+      "source_sha256": "4bafc8e55036f341179f4724ad6b00ed83d7a4e9e0196083be3ef7de3bc9f8c6",
+      "sha256": "21f3cf342743f99df81666bd42dd109c809608780d9d5a8147b85c954e74e4b0",
+      "size": [
+        64,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/stream/frame_00.png",
+      "source": "assets/world_scheme_c/animations/stream/frame_00.png",
+      "source_sha256": "4bafc8e55036f341179f4724ad6b00ed83d7a4e9e0196083be3ef7de3bc9f8c6",
+      "sha256": "21f3cf342743f99df81666bd42dd109c809608780d9d5a8147b85c954e74e4b0",
+      "size": [
+        64,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/stream/frame_01.png",
+      "source": "assets/world_scheme_c/animations/stream/frame_01.png",
+      "source_sha256": "a7de7945a6180cffe6c7891529a027fea88b6dc93aceec13b683ce3bf2aae798",
+      "sha256": "eed0b4117e81c2d09f8efa51dcbb253b0e1101573a9233fdc5a54808ff3399eb",
+      "size": [
+        64,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/stream/frame_02.png",
+      "source": "assets/world_scheme_c/animations/stream/frame_02.png",
+      "source_sha256": "9acd8d32b58a85f4cc2a3d2264938911ebf9f8e504a2d8bd276e469c677e7539",
+      "sha256": "058064828a6570ccfae77d677bc7b7e5932aa9bad668a2c2239e5d826d070254",
+      "size": [
+        64,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/stream/frame_03.png",
+      "source": "assets/world_scheme_c/animations/stream/frame_03.png",
+      "source_sha256": "0ab43acc97428ffb54f4bdb863e65c278715032f0d3374b7480aec50f247a78d",
+      "sha256": "208d1ea1a60918651497684469ad09f3f222ffa01eda5fac3b7af6165f3ea7ae",
+      "size": [
+        64,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/spring.png",
+      "source": "assets/world_scheme_c/sprites/spring.png",
+      "source_sha256": "a96411e927da6c02fc383f14a4ebc29487bd7e2ff1350f3e509bdbf76af38ddd",
+      "sha256": "fbddaf841a5481267ea83fc715639ea990baf0dc7e6bdd5867beedacdfc0d59b",
+      "size": [
+        48,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/spring/frame_00.png",
+      "source": "assets/world_scheme_c/animations/spring/frame_00.png",
+      "source_sha256": "a96411e927da6c02fc383f14a4ebc29487bd7e2ff1350f3e509bdbf76af38ddd",
+      "sha256": "fbddaf841a5481267ea83fc715639ea990baf0dc7e6bdd5867beedacdfc0d59b",
+      "size": [
+        48,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/spring/frame_01.png",
+      "source": "assets/world_scheme_c/animations/spring/frame_01.png",
+      "source_sha256": "1ca1906b10ee15089f2d0e348332a4e40b3763b860ab6f8fbc76cfe5f7f2e50d",
+      "sha256": "a545fbe71072c030b9c008fddf8af104855953326580d463ca247d1583cd9918",
+      "size": [
+        48,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/spring/frame_02.png",
+      "source": "assets/world_scheme_c/animations/spring/frame_02.png",
+      "source_sha256": "092768c96d63d12a074fa8ad26fc0ed1c5d52c53c6b252f7abde8973fbfa7dd2",
+      "sha256": "69e7568ca6d13c33ec15fea1c3e58025b87de7eb3f95c7234bcdea9cffefd061",
+      "size": [
+        48,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/spring/frame_03.png",
+      "source": "assets/world_scheme_c/animations/spring/frame_03.png",
+      "source_sha256": "265b82bf417fb986bfa9e329639015b665ad3fc2f3b9e80036a6eccce941caf4",
+      "sha256": "a65e94662f1f7f36683849acb12a9895aa465fa516929efdf353fa2dc309071c",
+      "size": [
+        48,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/well.png",
+      "source": "assets/world_scheme_c/sprites/well.png",
+      "source_sha256": "a747d8e5eb791b38ba5e52778d526076bd239617498805e93ca751b395b3f48a",
+      "sha256": "83ea142c63ea349c435612752f23096812da00d13e1b7d85c6e518e57d3ba6ff",
+      "size": [
+        48,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/waterfall.png",
+      "source": "assets/world_scheme_c/sprites/waterfall.png",
+      "source_sha256": "62a1f1678f1650548ce178aa64fe199c5bf70e62eef92f311fcdc247cf7ff507",
+      "sha256": "63e95ced95841d911d29916e35668f2aea93695441e369f002b3ac3ba840bf7e",
+      "size": [
+        48,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/waterfall/frame_00.png",
+      "source": "assets/world_scheme_c/animations/waterfall/frame_00.png",
+      "source_sha256": "62a1f1678f1650548ce178aa64fe199c5bf70e62eef92f311fcdc247cf7ff507",
+      "sha256": "63e95ced95841d911d29916e35668f2aea93695441e369f002b3ac3ba840bf7e",
+      "size": [
+        48,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/waterfall/frame_01.png",
+      "source": "assets/world_scheme_c/animations/waterfall/frame_01.png",
+      "source_sha256": "58fbd69970f319e3f2060127d1a7a888526c4ceefebc0a74d88b76b941e81d4a",
+      "sha256": "0fd52bec1820f02e7bb989616ae08047bb4f9f8d5177a8a5785fe3b5a2b7ca86",
+      "size": [
+        48,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/waterfall/frame_02.png",
+      "source": "assets/world_scheme_c/animations/waterfall/frame_02.png",
+      "source_sha256": "239fd33c43153445f16ca6408d4bd03ca834ce7a22bc8c3a00fe3219bc989423",
+      "sha256": "e6d557e8c0ae168c4a167b58304665ac8fc485c8ba64fd6cce5246a2e9770811",
+      "size": [
+        48,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/waterfall/frame_03.png",
+      "source": "assets/world_scheme_c/animations/waterfall/frame_03.png",
+      "source_sha256": "d55f6cf618e2e7e4e0744599ba384a0ab47d021e30c3a5dacbd4906ee5d4a460",
+      "sha256": "ff023e583860e37a954a47121e013f91c7ee7c0daaee9a4b0832ff90ceb5ad31",
+      "size": [
+        48,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/shore_rocks.png",
+      "source": "assets/world_scheme_c/sprites/shore_rocks.png",
+      "source_sha256": "435086256dafd23dc68f20648688fdf3755d74c6536dceb8b166d8e53667a106",
+      "sha256": "0a148ca2be503bad7d18fe2560a5fea15c994680ed50c50f42dd7a4a08e967fd",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/reeds.png",
+      "source": "assets/world_scheme_c/sprites/reeds.png",
+      "source_sha256": "364ca5409ba789f3b62e8a48aaa2657d143db37798cff3add1d038a2dfd20723",
+      "sha256": "d09c15e95c25e9d7e3763a879a7db6a85db101709d9af9a4fba2554846ce34c8",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/lily_pad.png",
+      "source": "assets/world_scheme_c/sprites/lily_pad.png",
+      "source_sha256": "f6ea21f261c4c3d0ddaf416e95dfe8928ae14c243148df4080b9add3c500ac59",
+      "sha256": "c3504b81d9b42d9bb72ccf9a7e38f0a39531f14a027c0c10dda11563c8fc515a",
+      "size": [
+        24,
+        16
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/water_lily.png",
+      "source": "assets/world_scheme_c/sprites/water_lily.png",
+      "source_sha256": "0cf555169ea8fae0f88c94c3104575bc6a76c24b297e265e535f5b432bd1c3e0",
+      "sha256": "391eee0052a125a8c5cd1ed20345ad65a6a08cfa5461941da666fcecebe1f15c",
+      "size": [
+        24,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/wood_chair.png",
+      "source": "assets/world_scheme_c/sprites/wood_chair.png",
+      "source_sha256": "473a8dd513b936ae79f580ad9c96873d19d0e9a57446ddd82973c8005f01c7f4",
+      "sha256": "113e75aa7597a7d6ddd848cf4a0070f3055b6f051cfb359ce466e1f0f25a7572",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/wood_bench.png",
+      "source": "assets/world_scheme_c/sprites/wood_bench.png",
+      "source_sha256": "bd4efd2e3309d2b079866f373ff89e44bc29c9ae995dbf17da4a8656217bc1f5",
+      "sha256": "c0597f2f2907b6f9c07b7625f66a99f730e3c48c8caf62c6d313f56b6ed23642",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/stump_stool.png",
+      "source": "assets/world_scheme_c/sprites/stump_stool.png",
+      "source_sha256": "57d8f9e1cb6aa3ddd8d13c9dd17fb5609d888cdfef2829f50cae40f131a1bbf7",
+      "sha256": "5dd99062e53c92774b896681d297754560e403eb4a7a404d6429c828adfbf69f",
+      "size": [
+        24,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/round_table.png",
+      "source": "assets/world_scheme_c/sprites/round_table.png",
+      "source_sha256": "ac7b050cf4a891ff4346e13f14f1aae1e366dae07f3ce95327090a37fe344a53",
+      "sha256": "e4a2ff20d6c5626106df761e2f8dc2d5cae4368be830838854a9c2d93c2558c0",
+      "size": [
+        40,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/square_table.png",
+      "source": "assets/world_scheme_c/sprites/square_table.png",
+      "source_sha256": "d456cf10ec059131604ae63d89d2b0fcc3f660a87ae6a74530e3ee016c3e3fbc",
+      "sha256": "1a06109dd07a73c9c2ab45968209df1f978acd2d545db3513f7bbae3dc09157d",
+      "size": [
+        40,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/picnic_table.png",
+      "source": "assets/world_scheme_c/sprites/picnic_table.png",
+      "source_sha256": "58705d91a11a68f16a7193719f54a962db1ecf7f6c2422f8a220acbdf23684b9",
+      "sha256": "15c20d11302f7d316e668007535df37c0038836d106c8f404f0593aa712055fb",
+      "size": [
+        64,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/parasol.png",
+      "source": "assets/world_scheme_c/sprites/parasol.png",
+      "source_sha256": "7be5dfe7240a1e86d16bf275b1a56b9ba08475af74ef4390304fe81b9a0ab952",
+      "sha256": "995943f9614eee4b18b47a1b0bffb2d3beb388222cd66c7ea987e418db689246",
+      "size": [
+        48,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/garden_swing.png",
+      "source": "assets/world_scheme_c/sprites/garden_swing.png",
+      "source_sha256": "e9e2569455904ec5b6b4143d2e07bfd4489bda9311efdba8602436d9fc1c430c",
+      "sha256": "0242daeccf6b4deace67fc8dc8f9e0ef5ae1173c5b5e51647e5194b00a66c6fb",
+      "size": [
+        64,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/wood_fence.png",
+      "source": "assets/world_scheme_c/sprites/wood_fence.png",
+      "source_sha256": "c15913c362cce7aaffb60ebab3fbcc11e6975307c8c3dd5f3934cfa76cfd0726",
+      "sha256": "d3797c3448f48b2549eb088f8c232ade23ca9851316f2b74dff75f0c495578a7",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/stone_wall.png",
+      "source": "assets/world_scheme_c/sprites/stone_wall.png",
+      "source_sha256": "3f4fc752387b08c40f820e32f872799648472c8703dc94ffbc2b56e459de407a",
+      "sha256": "86dd927b70bb8c2a45c7b282aa67c89efc4a665e4611e08562d534d94b5852a8",
+      "size": [
+        48,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/hedge_fence.png",
+      "source": "assets/world_scheme_c/sprites/hedge_fence.png",
+      "source_sha256": "d4cb4f8e68bac2acc29cfd71fa0994ad09401d770f039b3599db17a6bc307e44",
+      "sha256": "96376c7f93abd826bac8285c288fc0e045bb1a04bd21d9b968779e1193049635",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/wood_gate.png",
+      "source": "assets/world_scheme_c/sprites/wood_gate.png",
+      "source_sha256": "4a95dde4a8572c440dc6cc20d0eda4224ea84de93cd23ffe09cc6d1c01dee929",
+      "sha256": "00a4af6e9198040b395af30c706d38a61632f08c97f6895bf696c0b037ecc1a0",
+      "size": [
+        32,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/flower_arch.png",
+      "source": "assets/world_scheme_c/sprites/flower_arch.png",
+      "source_sha256": "6c10770cb2b02bed38fbd6b567eaa45fe46c326380d62751e8935c03156317b8",
+      "sha256": "ff604a18c2ddc2854f1537158eef59464d5a98a5e4f67e77c3e392a72664ac52",
+      "size": [
+        64,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/wood_bridge.png",
+      "source": "assets/world_scheme_c/sprites/wood_bridge.png",
+      "source_sha256": "a1e81de0b510eabca3ef0b28fc0de738996607aa51c0975f0807ae030cd0e1c2",
+      "sha256": "ff3daa587411e4af27863b188fea48ac39fbb234b1806dd18d24690bc5bebc0a",
+      "size": [
+        64,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/stone_bridge.png",
+      "source": "assets/world_scheme_c/sprites/stone_bridge.png",
+      "source_sha256": "1f501b3bb06cedfe98584f827e2f1b22c03bd9030f0d10ad64e2f2d778cc7eb7",
+      "sha256": "8686a1868bcc3822e077cf4f6f8e3f9b5d50dcefeff39a7fd06461e682ae114f",
+      "size": [
+        64,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/wood_steps.png",
+      "source": "assets/world_scheme_c/sprites/wood_steps.png",
+      "source_sha256": "2624c5d32363af7b289f123f8fd96766eaa54f8593777e78858b45e703d07c31",
+      "sha256": "7421f3e514390a04e02b94d036a2df8b71b6fc52224801e025386f2ce61c9a54",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/wood_fence_vertical.png",
+      "source": "assets/world_scheme_c/sprites/wood_fence_vertical.png",
+      "source_sha256": "8cc2b998df5281a39bf3d654d8ccd874409d5bea019af5d0dda77fe41527e5af",
+      "sha256": "ba86140e60f8492f14287680db8d1092faca101db7f584597f35775c33ae3d54",
+      "size": [
+        24,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/stone_wall_vertical.png",
+      "source": "assets/world_scheme_c/sprites/stone_wall_vertical.png",
+      "source_sha256": "bf4bd54ac961b7f09db28e4dd4e5dd9ecc8a6ded27b3fa22db3e299e2c73c399",
+      "sha256": "bbf967039dbeadac3312a78a75b80d3788b4299e5ef14829dc2a87aea268f827",
+      "size": [
+        24,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/hedge_fence_vertical.png",
+      "source": "assets/world_scheme_c/sprites/hedge_fence_vertical.png",
+      "source_sha256": "22120f275db37a0c4167c2b5c4c17037cd5cf645a0af073387bbc5cf6ea9c0ff",
+      "sha256": "7a6c3a22878fad93f38cbb513c17e0a1cdf731e45b2e809f6530ac2911d462cc",
+      "size": [
+        24,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/wood_crate.png",
+      "source": "assets/world_scheme_c/sprites/wood_crate.png",
+      "source_sha256": "cf4d7b49b6501245237e404d4dfc36077e3a70f1d34d0d4b89735ecadfe9388b",
+      "sha256": "58f989d085f9a297b01332d322bbe97f7487b398c17a10843a0975b38a1059d0",
+      "size": [
+        24,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/wood_barrel.png",
+      "source": "assets/world_scheme_c/sprites/wood_barrel.png",
+      "source_sha256": "2065d767d8f98c2c46d42a0239aac0bed9a698df17cac45f2aa7c1b3c24ec60a",
+      "sha256": "3103fd3a90eacb0a81562f0af467730102fd9cda1b4f58fe50eb138b9bc33625",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/flower_pot.png",
+      "source": "assets/world_scheme_c/sprites/flower_pot.png",
+      "source_sha256": "ac9d8b5bd415d299c625bfa01847de857a0489dbf509c015e52356e4b16d65cb",
+      "sha256": "f1a3c73e4906214771f0f1c9e346f6a11cb56793235ae9b0bb4df32f6463712e",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/flower_basket.png",
+      "source": "assets/world_scheme_c/sprites/flower_basket.png",
+      "source_sha256": "48889cd0c8058444ad34b88b08f0c30706d397138e8ef168c7c6b1003da0b1eb",
+      "sha256": "f57dacd68fcdca271884372f80200d1f194ffa8ea9e05e4ea195ee348daa391c",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/burlap_sack.png",
+      "source": "assets/world_scheme_c/sprites/burlap_sack.png",
+      "source_sha256": "37a5615bd07a8a368c8ff280e9cca9b7b243c5821017c83bce41630710945eaa",
+      "sha256": "2dc616404c483fe6d9389f88f65ba8dc1d36ca1b868954745462d10be0eb1fa4",
+      "size": [
+        24,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/hay_bale.png",
+      "source": "assets/world_scheme_c/sprites/hay_bale.png",
+      "source_sha256": "be832d8991d8c8ae5d9d5eaf8f59e860a16a7b257ea2d8449ef207b8c19c7e83",
+      "sha256": "2d4fd484cdd69ee729ff09ffb06c420bbe961d1b4d56bbbd5aa36255801ee045",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/firewood_pile.png",
+      "source": "assets/world_scheme_c/sprites/firewood_pile.png",
+      "source_sha256": "b4fee759ed7f2fc46ce89ee9f6fcfb04000d4851d0d25ccb5ab329071d84882f",
+      "sha256": "1cf9d24577ed424917ec6eb92d27467f5dadfc650848f2ad08b6f12f749ef087",
+      "size": [
+        32,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/handcart.png",
+      "source": "assets/world_scheme_c/sprites/handcart.png",
+      "source_sha256": "5cbe5ded023f4e075e1fce6e593af49c4ac4d4cb0dcbd2da8bad91123a33a2e8",
+      "sha256": "72f40f31713982889e7917fffbc370293ee5771c94e2a754d7c30010bfff7073",
+      "size": [
+        48,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/watering_can.png",
+      "source": "assets/world_scheme_c/sprites/watering_can.png",
+      "source_sha256": "7e3d3b56e6e588fe049b3713ae9a1baa71a6a1a0a8ec9ec281dac24453b31112",
+      "sha256": "705130effd2d322342c84aed8121bc39aabbeac4d4706502d74c51408b08fcc4",
+      "size": [
+        24,
+        24
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/tool_rack.png",
+      "source": "assets/world_scheme_c/sprites/tool_rack.png",
+      "source_sha256": "90dcd31241944d70148b6a52c793ed4d48f82b33a3ff964447303123eee7058e",
+      "sha256": "ab53d5c14c74c9d4cc9b3eec650e78dd0daa86b04538f86edd2aeaa375c75720",
+      "size": [
+        40,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/road_sign.png",
+      "source": "assets/world_scheme_c/sprites/road_sign.png",
+      "source_sha256": "041b5834e63b95cfdd6ffc85b5192c860756a371ef5c0e66f4d3f7250e456a56",
+      "sha256": "fe557cdf64f33e8e6328b29bb54b5b5b7f8b45aa2054b8d2afd042d1ce424e9b",
+      "size": [
+        32,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/mailbox.png",
+      "source": "assets/world_scheme_c/sprites/mailbox.png",
+      "source_sha256": "84a58ac7207cae7e0bb2e91df730e30449d30ecd216897383b07432d14a8ee7b",
+      "sha256": "16e040642e588acf95e62d11b1af6d3882ec683de327a78190f9c289beb85850",
+      "size": [
+        24,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/notice_board.png",
+      "source": "assets/world_scheme_c/sprites/notice_board.png",
+      "source_sha256": "7a95e3a9a50b5497ddf9be9db179ebb3856a8ed07c289c9dcf0aba6451afcb8b",
+      "sha256": "1a903efa39ec2f9f8e35e4948203f35206b09237bbe40cd7cb407a010876a8c9",
+      "size": [
+        48,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/street_lamp.png",
+      "source": "assets/world_scheme_c/sprites/street_lamp.png",
+      "source_sha256": "703a33bc4edd8d67a84d1ad2f70f2a9b91b4dc6b633a0ce63f52326380a0ce80",
+      "sha256": "dbf2cf74c15bba168e97e944cf0434fcb09bceb151904bd55176e88dd7948624",
+      "size": [
+        24,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/lantern.png",
+      "source": "assets/world_scheme_c/sprites/lantern.png",
+      "source_sha256": "c180c977c6ac62b3fc8f640bd656ffe1638024cf6c3a3b7f4f680feb9a6b387e",
+      "sha256": "06877b796dfb1bc05718aa141d0bfa0379593bb39c0bb535fd54a12bc9cd7465",
+      "size": [
+        24,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/campfire.png",
+      "source": "assets/world_scheme_c/sprites/campfire.png",
+      "source_sha256": "044dff7963f0e16f9807c0c552fcf00e6b46d07d05b111c9ca9afd2a249238c5",
+      "sha256": "20cdc430b66e1e270df7a7065e194938e81e53687eaab9e764bbd069310e0fa4",
+      "size": [
+        32,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/campfire/frame_00.png",
+      "source": "assets/world_scheme_c/animations/campfire/frame_00.png",
+      "source_sha256": "044dff7963f0e16f9807c0c552fcf00e6b46d07d05b111c9ca9afd2a249238c5",
+      "sha256": "20cdc430b66e1e270df7a7065e194938e81e53687eaab9e764bbd069310e0fa4",
+      "size": [
+        32,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/campfire/frame_01.png",
+      "source": "assets/world_scheme_c/animations/campfire/frame_01.png",
+      "source_sha256": "0c5e4d644145ae17c43d700ec904e441d74980f3c44608f547549b5c97527e32",
+      "sha256": "c3f6e5ba48ce97a13040a148192f29c3d366d26a34f7ce0e3212d1de21f84214",
+      "size": [
+        32,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/campfire/frame_02.png",
+      "source": "assets/world_scheme_c/animations/campfire/frame_02.png",
+      "source_sha256": "9f9e33f307a9f398aedcef7ef73f396416cc37facab41f3b10a3dcc3427c0fd5",
+      "sha256": "18c373322585c1469c15f3b1933fe8fa737b95b102e568c307052d58d0742912",
+      "size": [
+        32,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/campfire/frame_03.png",
+      "source": "assets/world_scheme_c/animations/campfire/frame_03.png",
+      "source_sha256": "4b9f5313a44083a2b6f067d8061a923abb148f89612ba954475d0d0177d4bace",
+      "sha256": "1b57c9b2a1c6578c02ec47e366e0e4603ee9d464cc8573d1b421dbaeb4f99e9a",
+      "size": [
+        32,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/tent.png",
+      "source": "assets/world_scheme_c/sprites/tent.png",
+      "source_sha256": "22d8547fbc18a1d05b7ea1a8ee19db84937e1e01df1f6f455a6e7870d580b2bf",
+      "sha256": "5f63e2900100b0801f28fafa8e03de013d05d84e086748b9ae91793e27b3acb5",
+      "size": [
+        64,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/market_stall.png",
+      "source": "assets/world_scheme_c/sprites/market_stall.png",
+      "source_sha256": "c900b10b025e39be76bcfd77e2864187d94dc9d0287f4f6e5ed271ee1d7bd5b9",
+      "sha256": "51dd5a8b0c45031d7b4bba4c645c48537d5444fc4b3e93646ba67a28dd0dfe6f",
+      "size": [
+        80,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/clothesline.png",
+      "source": "assets/world_scheme_c/sprites/clothesline.png",
+      "source_sha256": "5bbd278ea659b18e54bdc409eaef18a0a83300426da3a95d4b2b3db950607a89",
+      "sha256": "aa5ef3ea69fe3673c59ce7d27b9dcf6284701c3eb2e33fb188a61a3f73ef07c0",
+      "size": [
+        64,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/farmhouse.png",
+      "source": "assets/world_scheme_c/sprites/farmhouse.png",
+      "source_sha256": "f09d8ec1c1b5760b2399cf7bdc7f9eef19c4de8370a517cc9447a4629d490dbd",
+      "sha256": "cc964a85dcee67b2c3c5cce7e0601c5d2a41c5a022ac9fe141c19e6c3abde697",
+      "size": [
+        160,
+        160
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/tool_shed.png",
+      "source": "assets/world_scheme_c/sprites/tool_shed.png",
+      "source_sha256": "6f671fdc509bf600be26c5e3a763dd93e1b35c3fb59deaaaa8b2109da0594de1",
+      "sha256": "0a44b7b0076c9323e3f7cea7b2fdb6763f2274268c3474e3b4beec5a751c974b",
+      "size": [
+        112,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/chicken_coop.png",
+      "source": "assets/world_scheme_c/sprites/chicken_coop.png",
+      "source_sha256": "0a7e2b64de31a45994cbfff5ee2158c49096e8873c1fa83e9eb58d0b9a27ad8d",
+      "sha256": "85364bec79d91db61c8b8306836971a39d65075ad045e6bc01e556e726e3c643",
+      "size": [
+        96,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/barn.png",
+      "source": "assets/world_scheme_c/sprites/barn.png",
+      "source_sha256": "d6694ed6ab4186926527025998e63a1a63fd10d66a78a93607a14f85da9a7469",
+      "sha256": "a8a9247d0da2dc97a18f5a96e1b7e1f0bbf6b4fa52d11c58bfaea90e767c6a03",
+      "size": [
+        160,
+        144
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/greenhouse.png",
+      "source": "assets/world_scheme_c/sprites/greenhouse.png",
+      "source_sha256": "e335d1f306dcb88c587b6e05b78debb47bf4d63a5b7f4b703d53e678c4458fc8",
+      "sha256": "21d3c9871a023943b6d315c78662b7f4107173d8c0d81bf962dc1d4d0e41c147",
+      "size": [
+        144,
+        128
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/windmill.png",
+      "source": "assets/world_scheme_c/sprites/windmill.png",
+      "source_sha256": "d1487f6e3ba6fb36662f9461485eaf5eb00883032c01eddbf6481746699d9b45",
+      "sha256": "3b7d0dcdec0c6d1f94e69e7874561d36f2471ef7ce4f1ec29872e13225103178",
+      "size": [
+        144,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/windmill/frame_00.png",
+      "source": "assets/world_scheme_c/animations/windmill/frame_00.png",
+      "source_sha256": "d1487f6e3ba6fb36662f9461485eaf5eb00883032c01eddbf6481746699d9b45",
+      "sha256": "3b7d0dcdec0c6d1f94e69e7874561d36f2471ef7ce4f1ec29872e13225103178",
+      "size": [
+        144,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/windmill/frame_01.png",
+      "source": "assets/world_scheme_c/animations/windmill/frame_01.png",
+      "source_sha256": "8963fc73b00bf9011dbc2005328811982fb60d0959838bcc7013c82980a9c68f",
+      "sha256": "b0004b1821a5ae9f1221db2efcef93bfbb85fcf47d4f10f584b460a88ad64deb",
+      "size": [
+        144,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/windmill/frame_02.png",
+      "source": "assets/world_scheme_c/animations/windmill/frame_02.png",
+      "source_sha256": "2d7eaddd5e2a1bfeade84c2cc62ee683e5e13b64aa9c39455da26499ba3c8f3e",
+      "sha256": "ee1421dcea4a1cfc3d1626ed889840d9900e6d98032d046554d7281348a42ca4",
+      "size": [
+        144,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/windmill/frame_03.png",
+      "source": "assets/world_scheme_c/animations/windmill/frame_03.png",
+      "source_sha256": "8211dcadef72f5f192fbcd4894c0265577f2d0539c65cfd878f5c829139ef930",
+      "sha256": "3d72b1e9071a818c033a20cc2b48e1feafb6e4ad6d12de7d3e7e9e0d6d5bb899",
+      "size": [
+        144,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/pavilion.png",
+      "source": "assets/world_scheme_c/sprites/pavilion.png",
+      "source_sha256": "d5bcc795bd3627ccfc1d34faf930f4e493e29956387e32ac5d0f25761613e549",
+      "sha256": "5ab46cc6f6c43e9a647688ed408d095de8b1cf6e8c97248bf913864206503617",
+      "size": [
+        128,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/wood_door_closed.png",
+      "source": "assets/world_scheme_c/sprites/wood_door_closed.png",
+      "source_sha256": "945206306c0bba2613e53eadd7baa4cc2724ce2ba470781f210f8aad67a19824",
+      "sha256": "2aa44fc0b7f91ebc79914c6ec01832964984f03e089c525539f5a33299842dcd",
+      "size": [
+        48,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/wood_door_open.png",
+      "source": "assets/world_scheme_c/sprites/wood_door_open.png",
+      "source_sha256": "ff417800827c45298a61d33c56922d0c8407221b25d67d7af31a237f1a76d589",
+      "sha256": "9ba3e79d19731f0bd1ef72fa2390edf71f7a98473f7254aa275f1d4976da81bd",
+      "size": [
+        48,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/window_closed.png",
+      "source": "assets/world_scheme_c/sprites/window_closed.png",
+      "source_sha256": "c546b6edff23be740ad27803e488ac86ba7b45b18b08e01f39733985c2289f91",
+      "sha256": "84ed0923e37b893749198d8b447128ed8a4aa092d356b9e7250616a51d9d1c7c",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/window_open.png",
+      "source": "assets/world_scheme_c/sprites/window_open.png",
+      "source_sha256": "57a5d188659a1a38df75a0318267354d4bcf864bd54d95c63538507047627876",
+      "sha256": "0a232f327a187c82c65a5e424d03478cf0b8088cf6fd935c3bc1b772a571343d",
+      "size": [
+        48,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/star_tree.png",
+      "source": "assets/world_scheme_c/sprites/star_tree.png",
+      "source_sha256": "fff5eeb68dfcc57071177db23a03c12aa77b3b502f6d02816802ab09fc63f019",
+      "sha256": "f2bcaae7ee9e3b7898f4cc358acf374777caa42491b4f9b5d31035101e691a56",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/glowing_flowers.png",
+      "source": "assets/world_scheme_c/sprites/glowing_flowers.png",
+      "source_sha256": "71d49cc1b0b98cf45b55cdf6cdcb3f35b48198634018d3ee91d78d0ffbf17fc8",
+      "sha256": "522d25412f88bc2c26b197a07c442783976fd3019fae9cede1618107e9ad1fa3",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/glowing_flowers/frame_00.png",
+      "source": "assets/world_scheme_c/animations/glowing_flowers/frame_00.png",
+      "source_sha256": "71d49cc1b0b98cf45b55cdf6cdcb3f35b48198634018d3ee91d78d0ffbf17fc8",
+      "sha256": "522d25412f88bc2c26b197a07c442783976fd3019fae9cede1618107e9ad1fa3",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/glowing_flowers/frame_01.png",
+      "source": "assets/world_scheme_c/animations/glowing_flowers/frame_01.png",
+      "source_sha256": "6d1087d8e05ef396fd34e2fa98a84698f6f0fd7cc3835ad9de4bbf4cc16a24fc",
+      "sha256": "c03d8c02f7ce2721106ff6e18aecf0a6bf017a69639d343f8922efd196670165",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/glowing_flowers/frame_02.png",
+      "source": "assets/world_scheme_c/animations/glowing_flowers/frame_02.png",
+      "source_sha256": "4ed016d11959de03c2a43489ae8a618e04b88b3766cb03e8266d8b9eff9732e8",
+      "sha256": "cf04f41afad16f88ee20d46baf49908f2de12c80e47ef5427eb5d89049a8e804",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/glowing_flowers/frame_03.png",
+      "source": "assets/world_scheme_c/animations/glowing_flowers/frame_03.png",
+      "source_sha256": "c2f7e9c57b133993df9eca9223e3cf33b5d0bbed385da913fc06f903bada97bf",
+      "sha256": "a264b44f530b9baaf0044ed5588efc32f7bb512a72e7df8bdf8352e01e6c521e",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/star_stele.png",
+      "source": "assets/world_scheme_c/sprites/star_stele.png",
+      "source_sha256": "61b133b50cd3bd30bcf0ed6b31e3bcd5feedc7388fc2dd0cb51a4e8bd8279e70",
+      "sha256": "10aca970d2a69a3e6b444269e0504e8e1c296cdf8da3dc4a7dd2759ea85219ad",
+      "size": [
+        32,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/star_altar.png",
+      "source": "assets/world_scheme_c/sprites/star_altar.png",
+      "source_sha256": "83324db2d63c621cce4398b4d9bcce04ddf0258754b96286e210424830bf0b2b",
+      "sha256": "8a9c81051783f5e3168c025aa61a2c17a100dd7210d45e0141fc365166317734",
+      "size": [
+        64,
+        40
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/star_spring.png",
+      "source": "assets/world_scheme_c/sprites/star_spring.png",
+      "source_sha256": "34fb434068db7298900bdd169a959a0a5b19a801e591470b21b99b03ad4579be",
+      "sha256": "569a08b8ad7b7e53740d4856128bad1d65eb199a26733137542d75099c65c3fd",
+      "size": [
+        64,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/star_spring/frame_00.png",
+      "source": "assets/world_scheme_c/animations/star_spring/frame_00.png",
+      "source_sha256": "34fb434068db7298900bdd169a959a0a5b19a801e591470b21b99b03ad4579be",
+      "sha256": "569a08b8ad7b7e53740d4856128bad1d65eb199a26733137542d75099c65c3fd",
+      "size": [
+        64,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/star_spring/frame_01.png",
+      "source": "assets/world_scheme_c/animations/star_spring/frame_01.png",
+      "source_sha256": "c894ca8c5591b81f08acc1e295bb99a23b5f83c715cbea3bea3d40b3cdfa511e",
+      "sha256": "4017bf0db220139cad26a18cb1d840ca44bd3da4f3c069c8af117fdea2c7f434",
+      "size": [
+        64,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/star_spring/frame_02.png",
+      "source": "assets/world_scheme_c/animations/star_spring/frame_02.png",
+      "source_sha256": "929f644152b6736fc76882509de0268c9fca5a4504846034abafe289757d4fc0",
+      "sha256": "0a993870ed49ac07e38b1529fb85db93ceec9d5f05389d5f2786c17124e72baf",
+      "size": [
+        64,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/star_spring/frame_03.png",
+      "source": "assets/world_scheme_c/animations/star_spring/frame_03.png",
+      "source_sha256": "28c2c27737dd2ac3e0866cf29a40a210b1deccc3d52d1d10d60e80aca4b2108c",
+      "sha256": "45c52b22b4831cf7bf185936662d3ff8ed526aed7a06a128602fe55abc36e553",
+      "size": [
+        64,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/moon_lamp.png",
+      "source": "assets/world_scheme_c/sprites/moon_lamp.png",
+      "source_sha256": "77b9dda3ec1c2af287010cc27c97fa21ecdcbe57f4a18853449dafeb0bb4824a",
+      "sha256": "bc27ea2b7d992e577d5201412617afc26242e29832bd26cfe3331185b7114b99",
+      "size": [
+        32,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/star_lamp.png",
+      "source": "assets/world_scheme_c/sprites/star_lamp.png",
+      "source_sha256": "412c99c3bbbf5ad173da9865ad1e4d8844e0fa52b89762e35500cb39aff07d9f",
+      "sha256": "4e4e87a41e6578b9b14891104b868863381642f6d026c50f7cd33838351f1166",
+      "size": [
+        24,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/star_particles.png",
+      "source": "assets/world_scheme_c/sprites/star_particles.png",
+      "source_sha256": "9e09d6344d70d19ce6962fc47f0bc0b35e0c22c2fd57c7f15eefd2878f893993",
+      "sha256": "fef21b30ed75a30498f37b189dfe4eac5395844f019cd5cbbf5a097db1aa5c7d",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/star_particles/frame_00.png",
+      "source": "assets/world_scheme_c/animations/star_particles/frame_00.png",
+      "source_sha256": "9e09d6344d70d19ce6962fc47f0bc0b35e0c22c2fd57c7f15eefd2878f893993",
+      "sha256": "fef21b30ed75a30498f37b189dfe4eac5395844f019cd5cbbf5a097db1aa5c7d",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/star_particles/frame_01.png",
+      "source": "assets/world_scheme_c/animations/star_particles/frame_01.png",
+      "source_sha256": "53bf52d6220bf7bd4cad62e97b5a0e23618b47e219dd293a4ae45248ba8b2284",
+      "sha256": "c513d8290833043605dcfa9d364ed1fb033830fa0384e0ce969fed2d8356c47d",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/star_particles/frame_02.png",
+      "source": "assets/world_scheme_c/animations/star_particles/frame_02.png",
+      "source_sha256": "7caa51ec2bdba357c5ee8e22f594123ebbdf86aac26ee13f690c0b6f1e1040e7",
+      "sha256": "ac415bfe0fddfc26d60a6538aa6a89d6aec3357b098d79dd19682133a71adbf9",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/animations/star_particles/frame_03.png",
+      "source": "assets/world_scheme_c/animations/star_particles/frame_03.png",
+      "source_sha256": "3247eb7a48240f40bc53b94d3786cd1244caccff344c3aa9d8ec4200a911bf5c",
+      "sha256": "a5f92d24e8eaba7bc4a95352f3e3cd01e6100ff6b3b7535fb37c3fe222523676",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/terrain/dirt.png",
+      "source": "assets/world_scheme_c/terrain/dirt.png",
+      "source_sha256": "f9abcf8fbc48c64056c324a89d0e7eaf00cf9bee9e1d6af9fb4186b1bacb2ac4",
+      "sha256": "1a95e04e09708e336192ffbeebbd6c9a7f3639629dbee3df8120f28aa9216c15",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/terrain/dirt.png",
+      "source": "assets/world_scheme_c/terrain/dirt.png",
+      "source_sha256": "f9abcf8fbc48c64056c324a89d0e7eaf00cf9bee9e1d6af9fb4186b1bacb2ac4",
+      "sha256": "1a95e04e09708e336192ffbeebbd6c9a7f3639629dbee3df8120f28aa9216c15",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/terrain/dirt.png",
+      "source": "assets/world_scheme_c/terrain/dirt.png",
+      "source_sha256": "f9abcf8fbc48c64056c324a89d0e7eaf00cf9bee9e1d6af9fb4186b1bacb2ac4",
+      "sha256": "422bfeaca1d08edc179c8f4ea4a3c67e7f7783d947afa8ec6d4fc36dd5f274f9",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/terrain/dirt.png",
+      "source": "assets/world_scheme_c/terrain/dirt.png",
+      "source_sha256": "f9abcf8fbc48c64056c324a89d0e7eaf00cf9bee9e1d6af9fb4186b1bacb2ac4",
+      "sha256": "b8dbfe3009bad10ad66ace93c1e6f387e9b470e398827843833db5a448ced308",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/terrain/dirt.png",
+      "source": "assets/world_scheme_c/terrain/dirt.png",
+      "source_sha256": "f9abcf8fbc48c64056c324a89d0e7eaf00cf9bee9e1d6af9fb4186b1bacb2ac4",
+      "sha256": "0cbffaf66cae873eba58882b80809a0cd96314a56791e0fe06ed6898bff8bede",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/terrain/dirt_path.png",
+      "source": "assets/world_scheme_c/terrain/dirt_path.png",
+      "source_sha256": "397e5bc27ec2bac3d2904d1ebdd3b2f836103c2b61af0efeb807a45cc71f0e1b",
+      "sha256": "506b9912454c64f706b957ddeffebd8b5d90532588554efa882f659c8eb3c2eb",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/terrain/dirt_path.png",
+      "source": "assets/world_scheme_c/terrain/dirt_path.png",
+      "source_sha256": "397e5bc27ec2bac3d2904d1ebdd3b2f836103c2b61af0efeb807a45cc71f0e1b",
+      "sha256": "506b9912454c64f706b957ddeffebd8b5d90532588554efa882f659c8eb3c2eb",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/terrain/dirt_path.png",
+      "source": "assets/world_scheme_c/terrain/dirt_path.png",
+      "source_sha256": "397e5bc27ec2bac3d2904d1ebdd3b2f836103c2b61af0efeb807a45cc71f0e1b",
+      "sha256": "ea332bebc469e7136345f2eb5d003fa6ed85fe07aacb68a833c6c87a6302d728",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/terrain/dirt_path.png",
+      "source": "assets/world_scheme_c/terrain/dirt_path.png",
+      "source_sha256": "397e5bc27ec2bac3d2904d1ebdd3b2f836103c2b61af0efeb807a45cc71f0e1b",
+      "sha256": "0b2dd57dfa7c047eb94071a114a1eb15e43c1926785495976eec619246dc6b17",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/terrain/dirt_path.png",
+      "source": "assets/world_scheme_c/terrain/dirt_path.png",
+      "source_sha256": "397e5bc27ec2bac3d2904d1ebdd3b2f836103c2b61af0efeb807a45cc71f0e1b",
+      "sha256": "9e8d07894c94bec519341b2ca6f3e64b54e4a0f84f8d987a1e1ec34ed3a2de17",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/terrain/gravel.png",
+      "source": "assets/world_scheme_c/terrain/gravel.png",
+      "source_sha256": "e0105d89fa3053aa5c9b53c08df9011c861b93c60fca3e53e3ab41281dcb11a9",
+      "sha256": "8d27612fa74e34a97dcd58af5aceb2054fa9488153df83df91bfd1194cf8ca60",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/terrain/gravel.png",
+      "source": "assets/world_scheme_c/terrain/gravel.png",
+      "source_sha256": "e0105d89fa3053aa5c9b53c08df9011c861b93c60fca3e53e3ab41281dcb11a9",
+      "sha256": "8d27612fa74e34a97dcd58af5aceb2054fa9488153df83df91bfd1194cf8ca60",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/terrain/gravel.png",
+      "source": "assets/world_scheme_c/terrain/gravel.png",
+      "source_sha256": "e0105d89fa3053aa5c9b53c08df9011c861b93c60fca3e53e3ab41281dcb11a9",
+      "sha256": "60114adf6abaa87945dcd5ab90b671eccd50e3eeb37638554b3b534f9fb20601",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/terrain/gravel.png",
+      "source": "assets/world_scheme_c/terrain/gravel.png",
+      "source_sha256": "e0105d89fa3053aa5c9b53c08df9011c861b93c60fca3e53e3ab41281dcb11a9",
+      "sha256": "efcf13bcf894c031f2cd12b1158fb45ea3a0d914f853c9f753dca79d58e94c30",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/terrain/gravel.png",
+      "source": "assets/world_scheme_c/terrain/gravel.png",
+      "source_sha256": "e0105d89fa3053aa5c9b53c08df9011c861b93c60fca3e53e3ab41281dcb11a9",
+      "sha256": "779f57515ccc03bde42cafb7dbd377a3422cf24c79bb44c240eeaa98917ac789",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/terrain/sand.png",
+      "source": "assets/world_scheme_c/terrain/sand.png",
+      "source_sha256": "2365775edfb045b7f53e692cd976472a30d6a45c5e96e65e70f7936f071c17ae",
+      "sha256": "a62b5d2b565499ae876fe4dbf9fd5c10aa15e256f5a7d560cec41518a50bd7a6",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/terrain/sand.png",
+      "source": "assets/world_scheme_c/terrain/sand.png",
+      "source_sha256": "2365775edfb045b7f53e692cd976472a30d6a45c5e96e65e70f7936f071c17ae",
+      "sha256": "a62b5d2b565499ae876fe4dbf9fd5c10aa15e256f5a7d560cec41518a50bd7a6",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/terrain/sand.png",
+      "source": "assets/world_scheme_c/terrain/sand.png",
+      "source_sha256": "2365775edfb045b7f53e692cd976472a30d6a45c5e96e65e70f7936f071c17ae",
+      "sha256": "3029817b57e4343eefda00195302f19ed8d3af7fab8c4a28b6068f2acfdd8979",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/terrain/sand.png",
+      "source": "assets/world_scheme_c/terrain/sand.png",
+      "source_sha256": "2365775edfb045b7f53e692cd976472a30d6a45c5e96e65e70f7936f071c17ae",
+      "sha256": "f64efdb42e8603e19b3a2aa78adce0e56666dc7f43074b26aa77d033940ddd44",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/terrain/sand.png",
+      "source": "assets/world_scheme_c/terrain/sand.png",
+      "source_sha256": "2365775edfb045b7f53e692cd976472a30d6a45c5e96e65e70f7936f071c17ae",
+      "sha256": "e1d890d0ffd65cd88d6d612ad6ec6ca23c3ed081be04bf3828b9bfc77da608cf",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/terrain/stone_path.png",
+      "source": "assets/world_scheme_c/terrain/stone_path.png",
+      "source_sha256": "d13de51076543336a1112c88cd31aba6c40ade51979cafe5fb6a91813adeb413",
+      "sha256": "0ae78406a2f84d088a11e6f498c466459237238b72651c813f3905180b70a9f1",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/terrain/stone_path.png",
+      "source": "assets/world_scheme_c/terrain/stone_path.png",
+      "source_sha256": "d13de51076543336a1112c88cd31aba6c40ade51979cafe5fb6a91813adeb413",
+      "sha256": "0ae78406a2f84d088a11e6f498c466459237238b72651c813f3905180b70a9f1",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/terrain/stone_path.png",
+      "source": "assets/world_scheme_c/terrain/stone_path.png",
+      "source_sha256": "d13de51076543336a1112c88cd31aba6c40ade51979cafe5fb6a91813adeb413",
+      "sha256": "fa423c27ad8589a19b0adf3c06e7165c86e0b80c081a0994de0192c3860ef439",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/terrain/stone_path.png",
+      "source": "assets/world_scheme_c/terrain/stone_path.png",
+      "source_sha256": "d13de51076543336a1112c88cd31aba6c40ade51979cafe5fb6a91813adeb413",
+      "sha256": "86723392749961fca43edca7308bd533812e4ad7e407cde8efcb06c1c835f834",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/terrain/stone_path.png",
+      "source": "assets/world_scheme_c/terrain/stone_path.png",
+      "source_sha256": "d13de51076543336a1112c88cd31aba6c40ade51979cafe5fb6a91813adeb413",
+      "sha256": "39132393d507cbcf16f908b703c778747b80ded6fb6e62652b9f77cfca3f573e",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/terrain/tilled_soil.png",
+      "source": "assets/world_scheme_c/terrain/tilled_soil.png",
+      "source_sha256": "078bdd3e450ab6a08a99907da1066be2f5ab7aab67fec9c42fe899a1241b4b89",
+      "sha256": "37f0cc13abe16936d49ca704c7d39509bff5a5c2f56c492b1db77895fa881ec8",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/terrain/tilled_soil.png",
+      "source": "assets/world_scheme_c/terrain/tilled_soil.png",
+      "source_sha256": "078bdd3e450ab6a08a99907da1066be2f5ab7aab67fec9c42fe899a1241b4b89",
+      "sha256": "37f0cc13abe16936d49ca704c7d39509bff5a5c2f56c492b1db77895fa881ec8",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/terrain/tilled_soil.png",
+      "source": "assets/world_scheme_c/terrain/tilled_soil.png",
+      "source_sha256": "078bdd3e450ab6a08a99907da1066be2f5ab7aab67fec9c42fe899a1241b4b89",
+      "sha256": "dda69c24928a2ea8e1802f80761f29e6c93ddcf766c07a92639ba56997f449c3",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/terrain/tilled_soil.png",
+      "source": "assets/world_scheme_c/terrain/tilled_soil.png",
+      "source_sha256": "078bdd3e450ab6a08a99907da1066be2f5ab7aab67fec9c42fe899a1241b4b89",
+      "sha256": "ad316bb9911807b2738edc3648102d08a4707b0ff9156b65ad753303bfc2a7e5",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/terrain/tilled_soil.png",
+      "source": "assets/world_scheme_c/terrain/tilled_soil.png",
+      "source_sha256": "078bdd3e450ab6a08a99907da1066be2f5ab7aab67fec9c42fe899a1241b4b89",
+      "sha256": "b5a06b51d528fcde8cb6d8b941178a93fd5fe7ef1ab19c91ad2a3ecaf93ba8d0",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/terrain/wood_path.png",
+      "source": "assets/world_scheme_c/terrain/wood_path.png",
+      "source_sha256": "d5a6473f76ccab2c49c5e256556562e92ac54b2c5cd83e70d6b1156e4e033e26",
+      "sha256": "409ffc937fb6d3d96873ecd7e5809f404dc329dd5225a06aebcec188615adb49",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/terrain/wood_path.png",
+      "source": "assets/world_scheme_c/terrain/wood_path.png",
+      "source_sha256": "d5a6473f76ccab2c49c5e256556562e92ac54b2c5cd83e70d6b1156e4e033e26",
+      "sha256": "409ffc937fb6d3d96873ecd7e5809f404dc329dd5225a06aebcec188615adb49",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/terrain/wood_path.png",
+      "source": "assets/world_scheme_c/terrain/wood_path.png",
+      "source_sha256": "d5a6473f76ccab2c49c5e256556562e92ac54b2c5cd83e70d6b1156e4e033e26",
+      "sha256": "03723596620bb905462dca2c63113754fabd105b959332c9f5e2e93244a33d3c",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/terrain/wood_path.png",
+      "source": "assets/world_scheme_c/terrain/wood_path.png",
+      "source_sha256": "d5a6473f76ccab2c49c5e256556562e92ac54b2c5cd83e70d6b1156e4e033e26",
+      "sha256": "5feb94c589f98883027848f525c3359cd9f91039ae1f236bd5cbc65a91b137c8",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/terrain/wood_path.png",
+      "source": "assets/world_scheme_c/terrain/wood_path.png",
+      "source_sha256": "d5a6473f76ccab2c49c5e256556562e92ac54b2c5cd83e70d6b1156e4e033e26",
+      "sha256": "74969ddd8801b4f9a62f5ce99ef8aef8cff6a49f8ead3ddb46a3d58f6b7dd468",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/modules/hedge_fence.png",
+      "source": "assets/world_scheme_c/modules/hedge_fence.png",
+      "source_sha256": "a183fdbd7cf7b317407ab8aa409d3e6d0497aefeeee0b5ecf0b6ce42fad36ce3",
+      "sha256": "ffa7f98b6c0adc57010defa290d8ec46a6e1b946915dadf96212d2269efc3e92",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/modules/hedge_fence.png",
+      "source": "assets/world_scheme_c/modules/hedge_fence.png",
+      "source_sha256": "a183fdbd7cf7b317407ab8aa409d3e6d0497aefeeee0b5ecf0b6ce42fad36ce3",
+      "sha256": "ffa7f98b6c0adc57010defa290d8ec46a6e1b946915dadf96212d2269efc3e92",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/modules/hedge_fence.png",
+      "source": "assets/world_scheme_c/modules/hedge_fence.png",
+      "source_sha256": "a183fdbd7cf7b317407ab8aa409d3e6d0497aefeeee0b5ecf0b6ce42fad36ce3",
+      "sha256": "80548d01ea3bddff36e102545cdf4b8e54a8d3244ae0ab766c34a47ff666bc19",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/modules/hedge_fence.png",
+      "source": "assets/world_scheme_c/modules/hedge_fence.png",
+      "source_sha256": "a183fdbd7cf7b317407ab8aa409d3e6d0497aefeeee0b5ecf0b6ce42fad36ce3",
+      "sha256": "4919025f70718f74b45ad112823483088837d6c692fe600b351756afebbe1810",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/modules/hedge_fence.png",
+      "source": "assets/world_scheme_c/modules/hedge_fence.png",
+      "source_sha256": "a183fdbd7cf7b317407ab8aa409d3e6d0497aefeeee0b5ecf0b6ce42fad36ce3",
+      "sha256": "633b63b1587f06ffc444315f0cdcb50cf2dcfd32709d1d1522dffba5d998ebf1",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/modules/hedge_fence_vertical.png",
+      "source": "assets/world_scheme_c/modules/hedge_fence_vertical.png",
+      "source_sha256": "689e4f0ee7471a272738d36f2d8e03e9bc6503ac06c6b78ed1e9a009db218313",
+      "sha256": "6309a033c260dc88ff6d63ad34e0b1682a1d0a750e66d94fd3a896436c99fe18",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/modules/hedge_fence_vertical.png",
+      "source": "assets/world_scheme_c/modules/hedge_fence_vertical.png",
+      "source_sha256": "689e4f0ee7471a272738d36f2d8e03e9bc6503ac06c6b78ed1e9a009db218313",
+      "sha256": "6309a033c260dc88ff6d63ad34e0b1682a1d0a750e66d94fd3a896436c99fe18",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/modules/hedge_fence_vertical.png",
+      "source": "assets/world_scheme_c/modules/hedge_fence_vertical.png",
+      "source_sha256": "689e4f0ee7471a272738d36f2d8e03e9bc6503ac06c6b78ed1e9a009db218313",
+      "sha256": "cbf5cde658069b0ac12d8334cca6810136ff38311098c40d3db993da9f84cfa5",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/modules/hedge_fence_vertical.png",
+      "source": "assets/world_scheme_c/modules/hedge_fence_vertical.png",
+      "source_sha256": "689e4f0ee7471a272738d36f2d8e03e9bc6503ac06c6b78ed1e9a009db218313",
+      "sha256": "25f2a6ca30961e14a08bd1139697229a401572014920d8315b430204e9d6ef11",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/modules/hedge_fence_vertical.png",
+      "source": "assets/world_scheme_c/modules/hedge_fence_vertical.png",
+      "source_sha256": "689e4f0ee7471a272738d36f2d8e03e9bc6503ac06c6b78ed1e9a009db218313",
+      "sha256": "65c2d9fa62d7a36fdf2ff782c96c96da0f1186e4b38a7590e550014a5d32104f",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/modules/stone_wall.png",
+      "source": "assets/world_scheme_c/modules/stone_wall.png",
+      "source_sha256": "4475915789f976b4fa1e264c37be9f113ee118f7845e0727907ffca22a21aae8",
+      "sha256": "a6d0a1ac56a2fa5868186e080e9355911757be8773fefeeba432f0ad12832363",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/modules/stone_wall.png",
+      "source": "assets/world_scheme_c/modules/stone_wall.png",
+      "source_sha256": "4475915789f976b4fa1e264c37be9f113ee118f7845e0727907ffca22a21aae8",
+      "sha256": "a6d0a1ac56a2fa5868186e080e9355911757be8773fefeeba432f0ad12832363",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/modules/stone_wall.png",
+      "source": "assets/world_scheme_c/modules/stone_wall.png",
+      "source_sha256": "4475915789f976b4fa1e264c37be9f113ee118f7845e0727907ffca22a21aae8",
+      "sha256": "ce52141eaaff59d7d99866f9c60f2bcc18054f97060f731687f449b6f747d7ca",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/modules/stone_wall.png",
+      "source": "assets/world_scheme_c/modules/stone_wall.png",
+      "source_sha256": "4475915789f976b4fa1e264c37be9f113ee118f7845e0727907ffca22a21aae8",
+      "sha256": "417bceaefa2d9e7f57b529381a099d3e6ca7b2668bb761452e89f45269dd58a0",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/modules/stone_wall.png",
+      "source": "assets/world_scheme_c/modules/stone_wall.png",
+      "source_sha256": "4475915789f976b4fa1e264c37be9f113ee118f7845e0727907ffca22a21aae8",
+      "sha256": "ef056354568042b604ae76c2ec449e4107172956cd376927ed234861701d04d4",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/modules/stone_wall_vertical.png",
+      "source": "assets/world_scheme_c/modules/stone_wall_vertical.png",
+      "source_sha256": "5e7aa55b51915a67766baa3fcab05aed1e7108c4fd5b2f0cf8a6da52082f63a0",
+      "sha256": "ba76de48c2e820e85f5186b393fe5df37be308159068a1c8bdb1906007fbb618",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/modules/stone_wall_vertical.png",
+      "source": "assets/world_scheme_c/modules/stone_wall_vertical.png",
+      "source_sha256": "5e7aa55b51915a67766baa3fcab05aed1e7108c4fd5b2f0cf8a6da52082f63a0",
+      "sha256": "ba76de48c2e820e85f5186b393fe5df37be308159068a1c8bdb1906007fbb618",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/modules/stone_wall_vertical.png",
+      "source": "assets/world_scheme_c/modules/stone_wall_vertical.png",
+      "source_sha256": "5e7aa55b51915a67766baa3fcab05aed1e7108c4fd5b2f0cf8a6da52082f63a0",
+      "sha256": "573bd8a986363408c43b460a2a87b6093c7037a7bd1375b5e642ab0437c2ac91",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/modules/stone_wall_vertical.png",
+      "source": "assets/world_scheme_c/modules/stone_wall_vertical.png",
+      "source_sha256": "5e7aa55b51915a67766baa3fcab05aed1e7108c4fd5b2f0cf8a6da52082f63a0",
+      "sha256": "1dd7ee9902e81ef90f44a04ed0c852eee6c4d0b469f9b8fbc98eb8d9b2125ca6",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/modules/stone_wall_vertical.png",
+      "source": "assets/world_scheme_c/modules/stone_wall_vertical.png",
+      "source_sha256": "5e7aa55b51915a67766baa3fcab05aed1e7108c4fd5b2f0cf8a6da52082f63a0",
+      "sha256": "ebee25e6c5e0a3b7e60a1c7a9ebb3f3d0627a92aa7f18ba40022f85d954ec487",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/modules/wood_fence.png",
+      "source": "assets/world_scheme_c/modules/wood_fence.png",
+      "source_sha256": "9d7084223dcc8b091daf6a7c34673d04fb82c0918f4306b4db273b0e6465bbc7",
+      "sha256": "4c9fe78c561a1ccac1abcd333f7790babc1b682e69928cc9dd254bbdd6eab2a5",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/modules/wood_fence.png",
+      "source": "assets/world_scheme_c/modules/wood_fence.png",
+      "source_sha256": "9d7084223dcc8b091daf6a7c34673d04fb82c0918f4306b4db273b0e6465bbc7",
+      "sha256": "4c9fe78c561a1ccac1abcd333f7790babc1b682e69928cc9dd254bbdd6eab2a5",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/modules/wood_fence.png",
+      "source": "assets/world_scheme_c/modules/wood_fence.png",
+      "source_sha256": "9d7084223dcc8b091daf6a7c34673d04fb82c0918f4306b4db273b0e6465bbc7",
+      "sha256": "4c9fe78c561a1ccac1abcd333f7790babc1b682e69928cc9dd254bbdd6eab2a5",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/modules/wood_fence.png",
+      "source": "assets/world_scheme_c/modules/wood_fence.png",
+      "source_sha256": "9d7084223dcc8b091daf6a7c34673d04fb82c0918f4306b4db273b0e6465bbc7",
+      "sha256": "4c9fe78c561a1ccac1abcd333f7790babc1b682e69928cc9dd254bbdd6eab2a5",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/modules/wood_fence.png",
+      "source": "assets/world_scheme_c/modules/wood_fence.png",
+      "source_sha256": "9d7084223dcc8b091daf6a7c34673d04fb82c0918f4306b4db273b0e6465bbc7",
+      "sha256": "4c9fe78c561a1ccac1abcd333f7790babc1b682e69928cc9dd254bbdd6eab2a5",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/bright/modules/wood_fence_vertical.png",
+      "source": "assets/world_scheme_c/modules/wood_fence_vertical.png",
+      "source_sha256": "d6cf3641d94fc4f3584217ae49fe672d95f20dca235588b2009dfa2bdf5daf8a",
+      "sha256": "4fa90e56f6c703997c1991b57f2cb73a98b36853f07119615aa9505948fac84c",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/spring/modules/wood_fence_vertical.png",
+      "source": "assets/world_scheme_c/modules/wood_fence_vertical.png",
+      "source_sha256": "d6cf3641d94fc4f3584217ae49fe672d95f20dca235588b2009dfa2bdf5daf8a",
+      "sha256": "4fa90e56f6c703997c1991b57f2cb73a98b36853f07119615aa9505948fac84c",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/summer/modules/wood_fence_vertical.png",
+      "source": "assets/world_scheme_c/modules/wood_fence_vertical.png",
+      "source_sha256": "d6cf3641d94fc4f3584217ae49fe672d95f20dca235588b2009dfa2bdf5daf8a",
+      "sha256": "4fa90e56f6c703997c1991b57f2cb73a98b36853f07119615aa9505948fac84c",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/autumn/modules/wood_fence_vertical.png",
+      "source": "assets/world_scheme_c/modules/wood_fence_vertical.png",
+      "source_sha256": "d6cf3641d94fc4f3584217ae49fe672d95f20dca235588b2009dfa2bdf5daf8a",
+      "sha256": "4fa90e56f6c703997c1991b57f2cb73a98b36853f07119615aa9505948fac84c",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/seasons/winter/modules/wood_fence_vertical.png",
+      "source": "assets/world_scheme_c/modules/wood_fence_vertical.png",
+      "source_sha256": "d6cf3641d94fc4f3584217ae49fe672d95f20dca235588b2009dfa2bdf5daf8a",
+      "sha256": "4fa90e56f6c703997c1991b57f2cb73a98b36853f07119615aa9505948fac84c",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_bed.png",
+      "source": "assets/housing/interior/bed.png",
+      "source_sha256": "dd6b75c8e96b8261e0bd6e7576afe6653a064bf8aa2587b764e23ef0f8761645",
+      "sha256": "0d5d56354c5bd98add4ef34f0310468216078f791b7c461bcaf5eeba580dd8ae",
+      "size": [
+        96,
+        128
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_bed_quilt.png",
+      "source": "assets/housing/interior/bed_quilt.png",
+      "source_sha256": "2e549de79f9d95fa309300a86ba33958304a3177869e33d2ef003926f71dabae",
+      "sha256": "53bf7389e3a9c0c35fbb750ed5b8001fe29e2971f4757dd992de8bd7b9026747",
+      "size": [
+        96,
+        128
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_bed_rug.png",
+      "source": "assets/housing/interior/bed_rug.png",
+      "source_sha256": "db983a689b33640136e3c5a9a0ea2f41af980a44ac3e2344ae9563207e1d82a3",
+      "sha256": "a0e523a678ad7d655c030dbd1d6c155b1f42350c4fea4b0e990f43087286fb80",
+      "size": [
+        96,
+        144
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_bedroom_divider.png",
+      "source": "assets/housing/interior/bedroom_divider.png",
+      "source_sha256": "f3be2a49f8a0cc52e567e5f3436e4a43c9c3906f2a39402aa919d837f6a92e7c",
+      "sha256": "fa0557cf7534ba40853749550ddafd4ef5cd8e750407cd71fdbd3081eb8a4e5a",
+      "size": [
+        56,
+        152
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_bookcase.png",
+      "source": "assets/housing/interior/bookcase.png",
+      "source_sha256": "54021bb880667ed7ee514f6d02e0d41b587cd9e18120503061971784d3532a06",
+      "sha256": "2347ae66bfcfb34389765ff3239d6056ac3e2f08f7b3eee134beddd01f878d1a",
+      "size": [
+        64,
+        48
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_dining_rug.png",
+      "source": "assets/housing/interior/dining_rug.png",
+      "source_sha256": "5f2d13d51616e9cb5d253afc955ed1d09382d10eacc88a4378e302e7636e0bf6",
+      "sha256": "92513ae7c78a2b50ef1bb4289d504452e1fd59c408400e9a48bde029162b77db",
+      "size": [
+        176,
+        104
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_dining_table.png",
+      "source": "assets/housing/interior/dining_table.png",
+      "source_sha256": "2aab8085cc060b5b5f1aa72b6ecf9e946e223f395e08670011a13f871e7c037c",
+      "sha256": "5095a1da9169b44182b4273d2d71e19e34573bd57acfc0cd606d3e256c4fb889",
+      "size": [
+        120,
+        84
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_dresser.png",
+      "source": "assets/housing/interior/dresser.png",
+      "source_sha256": "797624e592f128229f9336dca5ff29123c1bc56a123c10049f07029e24f0b784",
+      "sha256": "e0db396877a138d8097fa56ec0f6d5c5064b417cdc23db98d0cfa307f909ae8b",
+      "size": [
+        136,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_extension_walls_2.png",
+      "source": "assets/housing/interior/extension_walls_2.png",
+      "source_sha256": "33522eeb44b357dc4bf85f8fa38e9252013dba29d9b89f1b2268a30236fe2828",
+      "sha256": "7b9e750154372ef3113463ba32d4a9d8dfa3a52adf331d1d787dc2ed6ac0a052",
+      "size": [
+        152,
+        220
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_extension_walls_3.png",
+      "source": "assets/housing/interior/extension_walls_3.png",
+      "source_sha256": "fb78f5b065a738d548bd5c3232365dec3d4338ac517524c630a9ef2f740c002b",
+      "sha256": "b898e11971245338225c0fab9f9d71cf120fde97a688ce366b1a903affd9fd4c",
+      "size": [
+        248,
+        348
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_extension_walls_4.png",
+      "source": "assets/housing/interior/extension_walls_4.png",
+      "source_sha256": "733987bcf0a9df12f4702ff04ddc5d1a4e9c56a7a9ea462ee2c83c812efa1a12",
+      "sha256": "d94310e468e3de1fe6b437d42959b997928062faa2e2043bb6c99ec8f9297a40",
+      "size": [
+        312,
+        412
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_exterior_1.png",
+      "source": "assets/housing/interior/exterior_1.png",
+      "source_sha256": "6cda7b97e7aeb785dba8aebc9ba00e464bbd6cb134bbe984c682cf5c20fca1d3",
+      "sha256": "877ccd502e02c314cf49418a9bb2c33f44f0632a269ae22382df0e18c7c1f231",
+      "size": [
+        192,
+        168
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_exterior_2.png",
+      "source": "assets/housing/interior/exterior_2.png",
+      "source_sha256": "abc717b43155179a09abe02e9a5574f9ed5402ffd7374a7e2d72a1139a019c21",
+      "sha256": "f9f7aced8c1df034e5e67258901018e68339e4871e3f586d622eae4bde11e44f",
+      "size": [
+        192,
+        168
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_exterior_3.png",
+      "source": "assets/housing/interior/exterior_3.png",
+      "source_sha256": "6f2e6e2e841e4d4ade1a073714d7aff1602ab1c12f232641cd3fb0744a495b96",
+      "sha256": "c8f8e8346711180045fe3e797dd047cf532e3ac164a869337539ab554255d16c",
+      "size": [
+        192,
+        168
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_exterior_4.png",
+      "source": "assets/housing/interior/exterior_4.png",
+      "source_sha256": "204f1667d13add03010a0bba84d80f14f846b11cd92bf3901ec7356ae942bc16",
+      "sha256": "f1ec781dfb7baca74800ca9a66cf08b98cabc576263be45b2d438283b5c2bf82",
+      "size": [
+        192,
+        168
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_fireplace.png",
+      "source": "assets/housing/interior/fireplace.png",
+      "source_sha256": "fa02fc428dce79f0fd009073b9be3d3805bcf631dacd3a0c79af33a14462ecef",
+      "sha256": "4724425ce12fc313ffdcecdc38678dca29e113819be9236ea01008b4ea8c1875",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_fireplace_grand.png",
+      "source": "assets/housing/interior/fireplace_grand.png",
+      "source_sha256": "eb899925d5718e7b60b9e0784f023ada40b45caeb3fce0cf94995e2fae32fd27",
+      "sha256": "96fa82fc5133b5258ebbf79b9399b0be332afa7b7002a6e1fa8c8171b17bdee2",
+      "size": [
+        96,
+        112
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_floor_estate_atlas.png",
+      "source": "assets/housing/interior/floor_estate_atlas.png",
+      "source_sha256": "e46499e07e3b7b0d0c0c5be1791070907b65de66ec770b17978efa28813e2d08",
+      "sha256": "3772016dbd7fa30d2346d4b51c77d5c3fe1bb93e087870e8634d83d1220b6738",
+      "size": [
+        256,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_floor_oak_atlas.png",
+      "source": "assets/housing/interior/floor_oak_atlas.png",
+      "source_sha256": "0546638c43d19d81e16318d51c9473ed54bcff2694c460804995b70e4ba137ae",
+      "sha256": "5803f2011e4af6ad8af5082ea82f27ae7e41e6940492c9296eaba878a384f4c2",
+      "size": [
+        256,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_floor_pale_atlas.png",
+      "source": "assets/housing/interior/floor_pale_atlas.png",
+      "source_sha256": "ac719ee1c5381b277f81a89bb02e844b01948a178c4a69ff0e58b32f1d327b3f",
+      "sha256": "74f6716cdccbd64d90ae1e7650b4cd070a4d1c253212f7add81ca2eca5553947",
+      "size": [
+        256,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_floor_polished_atlas.png",
+      "source": "assets/housing/interior/floor_polished_atlas.png",
+      "source_sha256": "30bb05244e5c2aff729c956560ff194343d8621972c7936b93cdbeb33039cbf8",
+      "sha256": "e7a494c5f338520e1c69ff632a1b8e773d2a261c9523869546b9495d73f6c97d",
+      "size": [
+        256,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_kitchen.png",
+      "source": "assets/housing/interior/kitchen.png",
+      "source_sha256": "ea60792266884faf791ec4b4a6f314890bb3a7871e8021e399d9acb1257987c0",
+      "sha256": "e256ffb7cfa98d8d820034a6af4e6e0ac6d70d3b64133c243bf097bf3acfd0da",
+      "size": [
+        128,
+        72
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_kitchen_estate.png",
+      "source": "assets/housing/interior/kitchen_estate.png",
+      "source_sha256": "fd0c4eb7b50db38d98f8948e4cd85fc4162bfec2f7a8e9cac6d5dfb02485c531",
+      "sha256": "f681163365d2276619de28650907ebb1e0acbe1720856d76fa1408d580451161",
+      "size": [
+        128,
+        72
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_kitchen_tiles.png",
+      "source": "assets/housing/interior/kitchen_tiles.png",
+      "source_sha256": "962acc1f4680e10eece6f110d2d34570297d349b5d799c97fb640c5698651dec",
+      "sha256": "8d774551d063665aaed684a8b4c2ae64fd8afbc9b8a9b9f2f48c528e85cb8a6e",
+      "size": [
+        144,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_mail_desk.png",
+      "source": "assets/housing/interior/mail_desk.png",
+      "source_sha256": "8118badfc1fe1111e6c0e91ab22082399523b9eef7c7cf22577f20eabbcc4246",
+      "sha256": "ccd2326f59436d62ff67b157c698a79c0ae3741700dc518cacd0d7b15e544f8f",
+      "size": [
+        88,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_main_rug.png",
+      "source": "assets/housing/interior/main_rug.png",
+      "source_sha256": "8d2190cad171f65dd7b27c3120d6fa9907246c9276753f6d0e3628352c3c6aca",
+      "sha256": "6d4393ddb8e175fe3ef3b38e89ddd62654e8df618168c4129fa72043bf3bc549",
+      "size": [
+        240,
+        126
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_placeable_bed.png",
+      "source": "assets/housing/interior/placeable_bed.png",
+      "source_sha256": "fe6cbca3b2bca0ce3d63bf04e85a004cd2b1f675719b1456ba53269c8f8f3e3b",
+      "sha256": "0eb1aad1907eed316306285e31e059af203449efab600418c132ff8450d9f8a9",
+      "size": [
+        32,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_placeable_cabinet.png",
+      "source": "assets/housing/interior/placeable_cabinet.png",
+      "source_sha256": "afdf69dbd18b55429f5a5caa4025a1118c0f578b93b1da38b827e08a0f759701",
+      "sha256": "804a1e19b8f165cf162cd055888ef17df3b1cca771a4e3796697c417b0d4c8be",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_placeable_chair.png",
+      "source": "assets/housing/interior/placeable_chair.png",
+      "source_sha256": "ca9be11f7e4effe7cfc8d0a08ac2d96a4335c107f8e5b6e01362e22e8a3b4f84",
+      "sha256": "aaf9f13c9ebbe430f670752e5ed5e4970848a41f6279351c2b80e393317d133b",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_placeable_lamp.png",
+      "source": "assets/housing/interior/placeable_lamp.png",
+      "source_sha256": "37a32b17a0bc28a3a10983636cab3841d5fbe2dc30c4f5dff0b8b1e482ca770b",
+      "sha256": "be6c8216c8939a3ec96fb2aba20978739e75d3c33e377e2c39d1718a1111de92",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_placeable_plant.png",
+      "source": "assets/housing/interior/placeable_plant.png",
+      "source_sha256": "5a82e34a33582fe63e6c1316ebe40adcbcfbb05518c7d7bf346689efbf2ff2bb",
+      "sha256": "4668ce84f706677d363cd00c4fd3a33fe631cdb15f66818f130a7928f271ff82",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_placeable_rug.png",
+      "source": "assets/housing/interior/placeable_rug.png",
+      "source_sha256": "e711a1cb49957054fa3d5944c606a9b19a7cd2a531dfac12e80be70e9d611633",
+      "sha256": "22f486a01d3e5f547c86a8704d5f5c4071dae0482ea13bfc31215b915c035741",
+      "size": [
+        64,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_placeable_spouse_desk.png",
+      "source": "assets/housing/interior/placeable_spouse_desk.png",
+      "source_sha256": "c3a23973e468d9b92b6575d6b2c938b71f1788eda96c2c389b2e283bd6681632",
+      "sha256": "2414756a2e886a1e1da5ea89a83b6815141b6d83f771f4b46a333c92c57c0eb6",
+      "size": [
+        64,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_placeable_table.png",
+      "source": "assets/housing/interior/placeable_table.png",
+      "source_sha256": "180d0de65d3e550f38b1885e4ced5f0965aa811ac98ea36b9ed34658b240e9e0",
+      "sha256": "1055b622ef1685113a3ae278a7d03783893d36474e4747f75194ce165f88f36c",
+      "size": [
+        64,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_sofa.png",
+      "source": "assets/housing/interior/sofa.png",
+      "source_sha256": "3fb96960f19d25f4e247790594c14549f55f31b87e8c4af1c2ceb39252d78c47",
+      "sha256": "88b97c7348b4bd1a1b187cdffc6135e53e632a4b8fb49707f3a2c1751ad4bc76",
+      "size": [
+        88,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_sofa_cottage.png",
+      "source": "assets/housing/interior/sofa_cottage.png",
+      "source_sha256": "f262d2f93c2555dd85b1314846c7a1f455e6f04f93562e39aa93a27641e90fd5",
+      "sha256": "88b97c7348b4bd1a1b187cdffc6135e53e632a4b8fb49707f3a2c1751ad4bc76",
+      "size": [
+        88,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_sofa_estate.png",
+      "source": "assets/housing/interior/sofa_estate.png",
+      "source_sha256": "e118e76407a76d2418e41a85a3e77c3bb22804c595cd6d774b9b9aeb52a9e6be",
+      "sha256": "5fe126d7516b2bd57f36745cafe8fa695d6d2cad6c8793445f35e665ea34ad75",
+      "size": [
+        88,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_star_map.png",
+      "source": "assets/housing/interior/star_map.png",
+      "source_sha256": "7a0a2a0d4e592980864ceff44505bd8a6a3143722e403e5769c57e11f92a2327",
+      "sha256": "ed5f828bf24fcab5da10e4d2fd4447f32cddccf17ce0039b76fb98fd3f52a692",
+      "size": [
+        64,
+        56
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_storage_chest.png",
+      "source": "assets/housing/interior/storage_chest.png",
+      "source_sha256": "60f17fc700fb972e6f71f208c465426d2ebe433665e5f69a2fc6796f853c7be6",
+      "sha256": "c91c145e650d7fcf38be097016301c65e42867faeeaf05b4e2110083d82b1d1a",
+      "size": [
+        64,
+        80
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_storage_slim.png",
+      "source": "assets/housing/interior/storage_slim.png",
+      "source_sha256": "9bb5e4a8ed88718adf82d98b75aeac4dba9b1fbc376a45780f3020cef8580bb8",
+      "sha256": "24b38432f3dae323c2f12a46ac3222388ada76f2fc317e9e7c76a74d759bd8f9",
+      "size": [
+        32,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_study_desk_2.png",
+      "source": "assets/housing/interior/study_desk_2.png",
+      "source_sha256": "43d6d8d22ab6e3f70cc61dd24857cd1bd12f9f6c81aeff3cc6e11b5169b71d05",
+      "sha256": "27b566a8c448fb062b0a76a030e97a5e5eea0cc39d897d9e15a9f1d515a1502d",
+      "size": [
+        104,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_study_desk_3.png",
+      "source": "assets/housing/interior/study_desk_3.png",
+      "source_sha256": "b6942ed4d9090dbf9ec8caeeae484d4a77c1e049c4585a2c9c9ae9d79129a051",
+      "sha256": "f8422ddda3803644c58d5ca1d42b94b0bcf258bf7b36e4fa32c023df0dc70c24",
+      "size": [
+        192,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_study_desk_4.png",
+      "source": "assets/housing/interior/study_desk_4.png",
+      "source_sha256": "a0df42c0f27b6196d0cc262d33659b17a8c45bb4bea7ccb7f426605bda1b295f",
+      "sha256": "fd7be6438c5f00a2f1fdc85be8e383fde6a685bc5b1fb5d2566881acfb946bb1",
+      "size": [
+        256,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_study_rug.png",
+      "source": "assets/housing/interior/study_rug.png",
+      "source_sha256": "a2b20fe6f8d956faaa4d56aaff16d8012544bc1ab7100b7fe5e485f40fee611d",
+      "sha256": "dafd897b51ddee01290d89be4d55575c9d4ee66d2c7bad179b51f54b69531dcd",
+      "size": [
+        176,
+        176
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_study_rug_2.png",
+      "source": "assets/housing/interior/study_rug_2.png",
+      "source_sha256": "f41aba506eb85b4e698df3f82e28cc7aec4bf82c5f9d524f9e3188c4b19481cf",
+      "sha256": "d699d843f3057ef63a5236c609bc6abe56357a0290e1af7aa5554ad2861c5435",
+      "size": [
+        80,
+        104
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_study_rug_4.png",
+      "source": "assets/housing/interior/study_rug_4.png",
+      "source_sha256": "2f68537a8da87cdc0032d02e36ac9d137be86bf0c7a4a9e6f13a15e5ac1b9025",
+      "sha256": "44419adeeb5505499293e0f8472aed780f2da0d18ecdc71fa0df0a3ecf479f93",
+      "size": [
+        224,
+        224
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_sunbeam.png",
+      "source": "assets/housing/interior/sunbeam.png",
+      "source_sha256": "f4fb91ad22109e5eb58fae239f0a6ccad5471cca3cf8d8745aba5817fb78b2c7",
+      "sha256": "6e1f384a9e561dd1f5ac0c239a17cb79d91f09c6c7beb5158c2bb39505d20a6e",
+      "size": [
+        128,
+        160
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_wallpaper_sage.png",
+      "source": "assets/housing/interior/wallpaper_sage.png",
+      "source_sha256": "27aed390329804ef12240e7917d5ab659a60c1a6c0e237d8b62fe0ed3226a472",
+      "sha256": "87526f9853286b2d30a4ff2138cf51f39d2f4b42b5a18f2b7ef5b936715b6a8e",
+      "size": [
+        608,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_walls_1.png",
+      "source": "assets/housing/interior/walls_1.png",
+      "source_sha256": "a6b3fdf9ea87702f5f5ac83770378b9ccab0d1ab11f57f7bf8a72ccfc4930732",
+      "sha256": "15b7db88a66ecebef91a1e1c1020a26f70b572987bbb260cd273a3cea4812bc4",
+      "size": [
+        640,
+        464
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_walls_2.png",
+      "source": "assets/housing/interior/walls_2.png",
+      "source_sha256": "f159f22fa9dee13fe64c063a74b151beafa6d85cdd70371c844600eca25b01e9",
+      "sha256": "4da9c2a69f6c5704a46e95c21dcc41a7ece7c978a4aa6f7666a8bf722ea0f7f1",
+      "size": [
+        640,
+        464
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_walls_3.png",
+      "source": "assets/housing/interior/walls_3.png",
+      "source_sha256": "f159f22fa9dee13fe64c063a74b151beafa6d85cdd70371c844600eca25b01e9",
+      "sha256": "4da9c2a69f6c5704a46e95c21dcc41a7ece7c978a4aa6f7666a8bf722ea0f7f1",
+      "size": [
+        640,
+        464
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/home_walls_4.png",
+      "source": "assets/housing/interior/walls_4.png",
+      "source_sha256": "f159f22fa9dee13fe64c063a74b151beafa6d85cdd70371c844600eca25b01e9",
+      "sha256": "4da9c2a69f6c5704a46e95c21dcc41a7ece7c978a4aa6f7666a8bf722ea0f7f1",
+      "size": [
+        640,
+        464
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/furniture_bed.png",
+      "source": "assets/housing/interior/placeable_bed.png",
+      "source_sha256": "fe6cbca3b2bca0ce3d63bf04e85a004cd2b1f675719b1456ba53269c8f8f3e3b",
+      "sha256": "0eb1aad1907eed316306285e31e059af203449efab600418c132ff8450d9f8a9",
+      "size": [
+        32,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/furniture_cabinet.png",
+      "source": "assets/housing/interior/placeable_cabinet.png",
+      "source_sha256": "afdf69dbd18b55429f5a5caa4025a1118c0f578b93b1da38b827e08a0f759701",
+      "sha256": "804a1e19b8f165cf162cd055888ef17df3b1cca771a4e3796697c417b0d4c8be",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/furniture_rug.png",
+      "source": "assets/housing/interior/placeable_rug.png",
+      "source_sha256": "e711a1cb49957054fa3d5944c606a9b19a7cd2a531dfac12e80be70e9d611633",
+      "sha256": "22f486a01d3e5f547c86a8704d5f5c4071dae0482ea13bfc31215b915c035741",
+      "size": [
+        64,
+        64
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/furniture_lamp.png",
+      "source": "assets/housing/interior/placeable_lamp.png",
+      "source_sha256": "37a32b17a0bc28a3a10983636cab3841d5fbe2dc30c4f5dff0b8b1e482ca770b",
+      "sha256": "be6c8216c8939a3ec96fb2aba20978739e75d3c33e377e2c39d1718a1111de92",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/furniture_wallpaper.png",
+      "source": "assets/housing/wallpaper.png",
+      "source_sha256": "0d3c59b51828aa0158cfbf8b2ed499e77b1a6f53a420f4476e75e0a9df05f371",
+      "sha256": "9f64a595464aa2b4a07d70d77b82efa839dc611c3755cb3c8ef709269923f70d",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/furniture_floor.png",
+      "source": "assets/housing/floor.png",
+      "source_sha256": "6aee9b1b3405627644203db0a06048a12ac20314518ad22fd648f846ff0b2a67",
+      "sha256": "582677aad513ae43cdbecfcfa8a947f5c960b921111b3ab28c3a191cda12a9d3",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/furniture_spouse_desk.png",
+      "source": "assets/housing/interior/placeable_spouse_desk.png",
+      "source_sha256": "c3a23973e468d9b92b6575d6b2c938b71f1788eda96c2c389b2e283bd6681632",
+      "sha256": "2414756a2e886a1e1da5ea89a83b6815141b6d83f771f4b46a333c92c57c0eb6",
+      "size": [
+        64,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/furniture_road.png",
+      "source": "assets/housing/road.png",
+      "source_sha256": "cc6d39e523ff248a66a04f6630deba0fbb2401ddc4867000e067b71f961cbf96",
+      "sha256": "68c97e1e15cacbd97511e8055d68af2194c567dc78bf70efe912a4c1b744c3b1",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/furniture_flower.png",
+      "source": "assets/housing/flower.png",
+      "source_sha256": "1c742acca0c1e9f5124e2f46a3d864ad1a4f9ae7e2f6d406cc6bac466c8657e6",
+      "sha256": "7a571da63c7431608237d3e0beebc2307811a361372a9955b17bd9678fc6e766",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    },
+    {
+      "path": "assets/world_scheme_c/derived/furniture_water_basin.png",
+      "source": "assets/housing/water_basin.png",
+      "source_sha256": "14c18ff190926508162e53787e4f2d1ebec52d5db907136fd199ad78830baae9",
+      "sha256": "1a8a478ab0e65aecb0c65b52bdb0b7a2fa06b737e3e5aa23d5b4ab980ecab9a7",
+      "size": [
+        32,
+        32
+      ],
+      "alpha_preserved": true
+    }
+  ]
+}

@@ -142,4 +142,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--verify", action="store_true", help="Verify installed art without need/")
     args = parser.parse_args()
-    verify() if args.verify else import_assets()
+    if args.verify:
+        verify()
+    else:
+        import_assets()
+        # Rebuild the reviewed shared palette as part of a normal reimport,
+        # rather than leaving seasonal and non-seasonal art in different styles.
+        from brighten_world_assets import main as brighten_world
+        brighten_world()

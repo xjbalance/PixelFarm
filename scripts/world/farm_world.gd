@@ -117,6 +117,9 @@ func add_prop(path: String, origin: Vector2, collision: Rect2) -> void:
 	sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.position.y = -sprite.texture.get_height() / 2.0 + 6
 	prop.add_child(sprite)
+	if path.ends_with("/house.png") or path.ends_with("/market.png"):
+		var contact:=preload("res://scripts/presentation/world_contact_shadow.gd").new()
+		contact.extent=Vector2(collision.size.x,6);contact.position=Vector2(3,5);prop.add_child(contact)
 	add_blocker(collision, prop)
 
 func add_blocker(rect: Rect2, parent: Node) -> void:

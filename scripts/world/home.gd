@@ -13,7 +13,7 @@ func _ready() -> void:
 	y_sort_enabled=true
 	var layer: TileMapLayer=$Floor;layer.z_index=-5
 	var tiles:=TileSet.new();tiles.tile_size=Vector2i(32,32)
-	var atlas:=TileSetAtlasSource.new();atlas.texture=load("res://assets/housing/interior/floor_oak_atlas.png");atlas.texture_region_size=Vector2i(32,32)
+	var atlas:=TileSetAtlasSource.new();atlas.texture=SchemeCAssets.home_texture("floor_oak_atlas");atlas.texture_region_size=Vector2i(32,32)
 	for variant in range(8): atlas.create_tile(Vector2i(variant,0))
 	tiles.add_source(atlas,0);layer.tile_set=tiles
 	var cells:=HomeLayout.main_cells()
@@ -52,7 +52,7 @@ func set_house_level(value: int) -> void:
 		if builtin_by_collision.has(rect):
 			body.set_meta("builtin_id",builtin_by_collision[rect]);body.add_to_group("home_builtin_colliders")
 		var collision:=CollisionShape2D.new();var shape:=RectangleShape2D.new();shape.size=rect.size;collision.shape=shape;body.add_child(collision);collision_root.add_child(body);left_walls.append(body)
-	wall_texture=load("res://assets/housing/interior/walls_"+str(value)+".png")
+	wall_texture=SchemeCAssets.home_texture("walls_"+str(value))
 	art_token="";refresh_art();queue_redraw();Events.navigation_changed.emit()
 
 func prop(id: String,at: Vector2,sort_y: float,layer: int=0,builtin_id: String="") -> void:

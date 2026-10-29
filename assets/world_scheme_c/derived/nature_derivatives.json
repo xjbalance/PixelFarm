@@ -1,6 +1,6 @@
 {
   "source": "User-provided Scheme C groups 1–10; native 32px assets",
-  "source_manifest_sha256": "9b80a4e184e664489c4618336af66971ae52b45fe5afbcfbc363af6bf1d05c4f",
+  "source_manifest_sha256": "d599c042bc0b315ad4e650cc8464a185eacf17c8561c33a5ac5e4baaa2718259",
   "method": "47-mask terrain composition, mirrored native pond samples with paired edges, binary 6px shore masks, seasonal palettes; no resize",
   "gameplay_coordinates_changed": false,
   "outputs": [
@@ -10,7 +10,7 @@
         256,
         32
       ],
-      "sha256": "6cd819769256669b66fc40a0448cc049eaf733df9683b42103e7bd86729c7f2d"
+      "sha256": "74f0c97e1984ca2770d3b3bfe981e7500d093a74b2ce2ecd78bd890d6f0e0384"
     },
     {
       "path": "assets/world_scheme_c/derived/farm_ground_spring.png",
@@ -18,7 +18,7 @@
         1536,
         1024
       ],
-      "sha256": "6a04bff73af45270b19fb615dd0edffdfec440e30db9b328157e99224849f2c2"
+      "sha256": "a2815bd07e7e2ac963bd1b30c76da11d33d6d5c54c65ac555b3f8f0a2e22989c"
     },
     {
       "path": "assets/world_scheme_c/derived/forest_ground_spring.png",
@@ -26,7 +26,7 @@
         256,
         32
       ],
-      "sha256": "116f1d7e3eb03936357e68152e01df59c54cdd676a2802b9606aa0b107052bca"
+      "sha256": "8a5b506c81eac49f9686b04253d656e7422ab724e876b4082e5d6ecdfe43a164"
     },
     {
       "path": "assets/world_scheme_c/derived/annex_ground_spring.png",
@@ -34,7 +34,7 @@
         160,
         32
       ],
-      "sha256": "7a24a8e8d75f8e60ac9e5e888b5e935e04e8e809eb6f0b87d510ba60333cdd7c"
+      "sha256": "cc64c6d598e6e1458c88596c50cf178f2ce91970f5492b53cfdda29978b5386f"
     },
     {
       "path": "assets/world_scheme_c/derived/ground_summer.png",
@@ -42,7 +42,7 @@
         256,
         32
       ],
-      "sha256": "e6f1d0c694025cc1ee828b5d1f89cf5749954aa1865a36c777d3dc8d9d3d0520"
+      "sha256": "0e2ce04290f8053cd576c966b27d16f93bbc20b566b8850ea153528f24bd0e55"
     },
     {
       "path": "assets/world_scheme_c/derived/farm_ground_summer.png",
@@ -50,7 +50,7 @@
         1536,
         1024
       ],
-      "sha256": "40e5219693f0e93b05e656f2ee489ccf151b8cbfe43742ea2e2fce7f4e5b332b"
+      "sha256": "b2ddffe6148b85aee8031899720315f6887b8627994500140560aaa96379e57c"
     },
     {
       "path": "assets/world_scheme_c/derived/forest_ground_summer.png",
@@ -58,7 +58,7 @@
         256,
         32
       ],
-      "sha256": "6ae41ebaecd4a683ac82e0b871d58d99bd43f83b213f57e963c2f34b04001df9"
+      "sha256": "291bddcbd61921d519bd32e99f5ace8e073306c60130a9b3f1fe9264ae010a47"
     },
     {
       "path": "assets/world_scheme_c/derived/annex_ground_summer.png",
@@ -66,7 +66,7 @@
         160,
         32
       ],
-      "sha256": "2f7160576b0369a037db46a7e96ce61d2b716a921487aa9777f26836640ef576"
+      "sha256": "5e52c685d145a22e0533d2c252612e681f58152eeba6598f0c70edd19bcd2e8c"
     },
     {
       "path": "assets/world_scheme_c/derived/ground_autumn.png",
@@ -74,7 +74,7 @@
         256,
         32
       ],
-      "sha256": "d104ba886e274715fc93c7b8fb6e23769e2488a0f050328767b626087fd72aae"
+      "sha256": "4ebd630c27d17cf8ddd77e9312bef127c3348e24eee48816224ce71c0a096a8e"
     },
     {
       "path": "assets/world_scheme_c/derived/farm_ground_autumn.png",
@@ -82,7 +82,7 @@
         1536,
         1024
       ],
-      "sha256": "494257b4fcbc53155f0df0426709c0eb38d5cec6d368c0f2ea39de9717343bf8"
+      "sha256": "3701db43546ebd26419b9c55f46b78435c9629e1e3b7ce1f52e9747a2081ab8a"
     },
     {
       "path": "assets/world_scheme_c/derived/forest_ground_autumn.png",
@@ -90,7 +90,7 @@
         256,
         32
       ],
-      "sha256": "084bb50b70b308b2604a0ff8333f04a69a288a5ac2516d8e740a82b7384b9e37"
+      "sha256": "435457b7fb55c103571e1ad01ae02632a66f55b117983d4992210b16cce8c4d1"
     },
     {
       "path": "assets/world_scheme_c/derived/annex_ground_autumn.png",
@@ -98,7 +98,7 @@
         160,
         32
       ],
-      "sha256": "32d0df91db2a13cf1a806101797ce8718864ffb06a26706a9fdede6f05a6fc1c"
+      "sha256": "531ad6093d0e67a047379741a5ccc302cfd0c5f1be3457d66df3b662f429a129"
     },
     {
       "path": "assets/world_scheme_c/derived/ground_winter.png",
@@ -106,7 +106,7 @@
         256,
         32
       ],
-      "sha256": "755c56eb6b1bd10ae39629f0d0b5cd6229345fb873764370426756ac5002c539"
+      "sha256": "136eae37090fd93fb74015380fb9a004cab78f850ed6b1d5de0a5e43a150c4fa"
     },
     {
       "path": "assets/world_scheme_c/derived/farm_ground_winter.png",
@@ -114,7 +114,7 @@
         1536,
         1024
       ],
-      "sha256": "1b817d3708912dd28385cfb9893e7c8260312e35c11e3a4464598a9b5a722cfb"
+      "sha256": "4047ca5488f94717c089cbdd630f47e26d208304a6922c85eff376f42dfe3e64"
     },
     {
       "path": "assets/world_scheme_c/derived/forest_ground_winter.png",
@@ -122,7 +122,7 @@
         256,
         32
       ],
-      "sha256": "ecd33ec4eb0623c217773a1027bf4726d0955346af7a81dcfbfbb707cd8d8a63"
+      "sha256": "bebd1cff746a429b83def1bae8d52ac3d81492a9630c81e46374481b2f759d63"
     },
     {
       "path": "assets/world_scheme_c/derived/annex_ground_winter.png",
@@ -130,7 +130,7 @@
         160,
         32
       ],
-      "sha256": "95b0916d575feb9bd69534d3450733f317cabb18cb45067018e766897f4f9058"
+      "sha256": "8403a1c50ef808bc0f0cca14177aba9fb47840c1578ca7eb57a308f969297e71"
     },
     {
       "path": "assets/world_scheme_c/derived/soil_dry.png",
@@ -138,7 +138,7 @@
         32,
         32
       ],
-      "sha256": "7e04cd4477e75f23d4e0bc562c8f55f31ce2e9710022b58fcb74cdceb5636ca1"
+      "sha256": "6021b14466f3595200dfadb029a1c6cdaf5920850da7547123bf665a575d0f64"
     },
     {
       "path": "assets/world_scheme_c/derived/soil_wet.png",
@@ -146,7 +146,7 @@
         32,
         32
       ],
-      "sha256": "8e1d609ad65937695b5c52edba29d1baf3a977d3d94c0eb54e8e92833c8fc45f"
+      "sha256": "ac7bbde6094fbee27d70de15caeeceaf47d32c1c3424099f9dc6aa7d2997bc56"
     }
   ]
 }

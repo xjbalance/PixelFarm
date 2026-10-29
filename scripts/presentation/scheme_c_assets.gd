@@ -16,10 +16,14 @@ static func catalog() -> Dictionary:
 static func definition(id: String) -> Dictionary:
 	return catalog().get(id,{})
 
+static func bright_path(path: String) -> String:
+	var candidate: String=ROOT+"bright/"+path.trim_prefix(ROOT)
+	return candidate if ResourceLoader.exists(candidate) else path
+
 static func texture(id: String, season: int=-1) -> Texture2D:
 	var info:=definition(id)
 	if info.is_empty(): return null
-	var path: String=str(info.path)
+	var path: String=bright_path(str(info.path))
 	if season>=0 and season<4:
 		var seasonal: String=ROOT+"seasons/"+SEASONS[season]+"/"+id+".png"
 		if ResourceLoader.exists(seasonal): path=seasonal
@@ -35,7 +39,7 @@ static func offset(id: String) -> Vector2:
 static func animation(id: String) -> SpriteFrames:
 	if _animations.has(id): return _animations[id]
 	var info:=definition(id)
-	var result: SpriteFrames=load(str(info.animation)) if info.has("animation") else null
+	var result: SpriteFrames=load(bright_path(str(info.animation))) if info.has("animation") else null
 	_animations[id]=result
 	return result
 
@@ -52,11 +56,15 @@ static func make_sprite(id: String, season: int=-1) -> Node2D:
 
 static func home_texture(id: String) -> Texture2D:
 	var path: String=ROOT+"derived/home_"+id+".png"
-	return load(path) if ResourceLoader.exists(path) else null
+	if not ResourceLoader.exists(path): return null
+	if not _textures.has(path): _textures[path]=load(path)
+	return _textures[path]
 
 static func furniture_texture(kind: String) -> Texture2D:
 	var path: String=ROOT+"derived/furniture_"+kind+".png"
-	return load(path) if ResourceLoader.exists(path) else null
+	if not ResourceLoader.exists(path): return null
+	if not _textures.has(path): _textures[path]=load(path)
+	return _textures[path]
 
 static func has_repeat(id: String) -> bool:
 	return ResourceLoader.exists(ROOT+"modules/"+id+".png")
@@ -65,7 +73,7 @@ static func placed_texture(id: String, extent: Vector2, season: int=-1) -> Textu
 	if not has_repeat(id): return texture(id,season)
 	var key: String="module:"+id+":"+str(extent)+":"+str(season)
 	if not _textures.has(key):
-		var path: String=ROOT+"seasons/"+SEASONS[season]+"/modules/"+id+".png" if season>=0 and season<4 else ROOT+"modules/"+id+".png"
+		var path: String=ROOT+"seasons/"+SEASONS[season]+"/modules/"+id+".png" if season>=0 and season<4 else bright_path(ROOT+"modules/"+id+".png")
 		var module: Texture2D=load(path)
 		var image:=Image.create(int(extent.x),int(extent.y),false,Image.FORMAT_RGBA8)
 		var tile: Image=module.get_image()
@@ -78,5 +86,7 @@ static func draw(node: CanvasItem, id: String, at: Vector2=Vector2.ZERO, season:
 	var art:=texture(id,season)
 	if not art: return false
 	var top_left: Vector2=offset(id)-art.get_size()*.5
+	if id in ["wood_bench","picnic_table","wood_crate","notice_board","handcart","well","tool_rack"]:
+		preload("res://scripts/presentation/world_contact_shadow.gd").paint(node,at+Vector2(2,0),Vector2(minf(art.get_width()*.65,48),4)*scale)
 	node.draw_texture_rect(art,Rect2(at+top_left*scale,art.get_size()*scale),false)
 	return true

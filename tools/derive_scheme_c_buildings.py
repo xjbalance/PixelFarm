@@ -2,6 +2,7 @@
 from pathlib import Path
 import json
 from PIL import Image, ImageDraw
+from world_palette import harmonize
 
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / 'assets/world_scheme_c'
@@ -9,7 +10,9 @@ OUT = ART / 'derived'
 
 
 def source(ident):
-    return Image.open(ART / 'sprites' / (ident + '.png')).convert('RGBA')
+    path = ART / 'bright' / 'sprites' / (ident + '.png')
+    if not path.exists(): path = ART / 'sprites' / (ident + '.png')
+    return Image.open(path).convert('RGBA')
 
 
 def recolor_roof(im, level):
@@ -47,7 +50,7 @@ def derive():
             house.alpha_composite(star, (144, 111))
             for x, y in ((87, 46), (93, 43), (99, 46)):
                 draw.rectangle((x, y, x+2, y+2), fill='#e7c78b')
-        house.save(OUT / f'exterior_{level}.png')
+        harmonize(house).save(OUT / f'exterior_{level}.png')
     for ident, filename, size, color in (
         ('farmhouse', 'tea_house', (192,168), '#6e8c69'),
         ('tool_shed', 'workshop', (192,168), '#ac7754'),
@@ -69,7 +72,7 @@ def derive():
                         light=(r*.3+g*.5+b*.2)/140
                         pixels[x,y]=(*[min(255,round(v*light)) for v in base],a)
         image.alpha_composite(art, ((size[0]-art.width)//2, size[1]-art.height))
-        image.save(OUT / (filename+'.png'))
+        harmonize(image).save(OUT / (filename+'.png'))
     # Preserve the original built-in furniture canvases so the placement preview,
     # final drawing, Y sort and old saved cell offsets agree exactly.
     for ident, supplied in {
@@ -83,14 +86,14 @@ def derive():
         ratio=min(1,size[0]/art.width,size[1]/art.height)
         if ratio<1: art=art.resize((round(art.width*ratio),round(art.height*ratio)),Image.NEAREST)
         canvas.alpha_composite(art,((size[0]-art.width)//2,size[1]-art.height))
-        canvas.save(OUT/('home_'+ident+'.png'))
+        harmonize(canvas).save(OUT/('home_'+ident+'.png'))
     for kind, supplied in {'table':'square_table','chair':'wood_chair','plant':'flower_pot','yard_lamp':'street_lamp'}.items():
         canvas=Image.new('RGBA',{'table':(64,32)}.get(kind,(32,32)))
         art=source(supplied)
         # Tall courtyard lamps keep their full visible height above the cell.
         if kind=='yard_lamp': canvas=Image.new('RGBA',(32,64))
         canvas.alpha_composite(art,((canvas.width-art.width)//2,canvas.height-art.height))
-        canvas.save(OUT/('furniture_'+kind+'.png'))
+        harmonize(canvas).save(OUT/('furniture_'+kind+'.png'))
     (OUT/'building_sources.json').write_text(json.dumps({
         'source': 'User-supplied native32 Scheme C farmhouse, tool_shed, market_stall, flower_pot, flower_basket, moon_lamp',
         'processing': 'Nearest-neighbor fitting, palette variants and existing-art composites; no AI generation in this integration.',

@@ -157,6 +157,8 @@ func house(origin: Vector2, texture: Texture2D) -> void:
 	sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
 	sprite.position.y = -78
 	prop.add_child(sprite)
+	var contact:=preload("res://scripts/presentation/world_contact_shadow.gd").new()
+	contact.extent=Vector2(144,6);contact.position=Vector2(3,5);prop.add_child(contact)
 	blocker(Rect2(-72,-68,144,58),prop)
 
 func npc(id: String,origin: Vector2) -> void:

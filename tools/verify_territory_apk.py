@@ -26,10 +26,13 @@ func run() -> void:
   var info: Dictionary=SchemeCAssets.definition(id)
   var art: Texture2D=SchemeCAssets.texture(id)
   ok=art!=null and art.get_size()==Vector2(info.size[0],info.size[1]) and ok
+  ok=art!=null and art.resource_path.contains("/world_scheme_c/bright/sprites/") and ok
   if int(info.frames)>1:
    var animation: SpriteFrames=SchemeCAssets.animation(id)
    ok=animation!=null and animation.get_frame_count("loop")==4 and ok
+   ok=animation!=null and animation.get_frame_texture("loop",0).resource_path.contains("/world_scheme_c/bright/animations/") and ok
  print("APK SCHEME C 97-ASSET LOAD: ","PASS" if ok else "FAIL")
+ print("APK BRIGHT PALETTE STATIC/ANIMATED PATHS: ","PASS" if ok else "FAIL")
  ok=not WorldTravel.change(game,"east_holding") and not Territory.permission("village",Vector2i(6,6),"grass").allowed and ok
  ok=game.territory_editor.open() and ok
  game.territory_editor.choose_tool("stone_path")

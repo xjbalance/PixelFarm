@@ -7,13 +7,13 @@ var glow_points: Array[Vector2]=[]
 func _ready() -> void:
 	z_index=0
 	var atlas: TileSetAtlasSource=game.home.get_node("Floor").tile_set.get_source(0)
-	original_floor=atlas.texture;sunlight=load("res://assets/housing/interior/sunbeam.png")
+	original_floor=atlas.texture;sunlight=SchemeCAssets.home_texture("sunbeam")
 	GameClock.changed.connect(queue_redraw);refresh()
 func refresh() -> void:
 	var atlas: TileSetAtlasSource=game.home.get_node("Floor").tile_set.get_source(0)
-	if Housing.state.appearance.floor=="floor": atlas.texture=load("res://assets/housing/interior/floor_pale_atlas.png")
-	elif int(Housing.state.level)>=4: atlas.texture=load("res://assets/housing/interior/floor_estate_atlas.png")
-	elif int(Housing.state.level)>=3: atlas.texture=load("res://assets/housing/interior/floor_polished_atlas.png")
+	if Housing.state.appearance.floor=="floor": atlas.texture=SchemeCAssets.home_texture("floor_pale_atlas")
+	elif int(Housing.state.level)>=4: atlas.texture=SchemeCAssets.home_texture("floor_estate_atlas")
+	elif int(Housing.state.level)>=3: atlas.texture=SchemeCAssets.home_texture("floor_polished_atlas")
 	else: atlas.texture=original_floor
 	glow_points.clear()
 	for entry in HomeLayout.builtin_layout(int(Housing.state.level),Housing.state.get("builtins",{})):
@@ -28,7 +28,7 @@ func _draw() -> void:
 			draw_texture_rect_region(sunlight,clipped,Rect2(clipped.position-point,clipped.size))
 	if Housing.state.appearance.wallpaper=="wallpaper":
 		# 背景墙纸在房间墙面同坐标绘制，窗口与家具单独分层。
-		draw_texture(load("res://assets/housing/interior/wallpaper_sage.png"),Vector2(336,160))
+		draw_texture(SchemeCAssets.home_texture("wallpaper_sage"),Vector2(336,160))
 	if GameClock.minutes>=1140:
 		# 手绘低强度暖光，不增加移动端实时灯光节点。
 		for at in glow_points:

@@ -23,7 +23,7 @@ func refresh() -> void:
 		for y in range(cells.position.y,cells.end.y):
 			for x in range(cells.position.x,cells.end.x):
 				var cell:=Vector2i(x,y);floor.set_cell(cell,0,game.home.floor_variant(cell))
-		walls_texture=load("res://assets/housing/interior/extension_walls_"+str(previous_level)+".png")
+		walls_texture=SchemeCAssets.home_texture("extension_walls_"+str(previous_level))
 	queue_redraw();Events.navigation_changed.emit()
 func _draw() -> void:
 	if walls_texture: draw_texture(walls_texture,room.position-Vector2(12,48))

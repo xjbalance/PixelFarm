@@ -24,7 +24,9 @@ DIRECTIONS = ((0, -1, 1), (1, -1, 2), (1, 0, 4), (1, 1, 8),
 def picture(name: str, season: str) -> Image.Image:
     path = ART / "seasons" / season / f"{name}.png"
     if not path.exists():
-        path = ART / "sprites" / f"{name}.png"
+        path = ART / "bright" / "sprites" / f"{name}.png"
+        if not path.exists():
+            path = ART / "sprites" / f"{name}.png"
     return Image.open(path).convert("RGBA")
 
 
@@ -63,7 +65,7 @@ def water_tile(season: str) -> Image.Image:
     pond = picture("large_pond", season)
     patch = pond.crop((60, 32, 76, 48)).convert("RGB")
     patch = ImageEnhance.Contrast(patch).enhance(.26)
-    patch = Image.blend(patch, Image.new("RGB", patch.size, "#69a8a4"), .34).convert("RGBA")
+    patch = Image.blend(patch, Image.new("RGB", patch.size, "#72bdca"), .34).convert("RGBA")
     water = Image.new("RGBA", (32, 32))
     water.alpha_composite(patch, (0, 0))
     water.alpha_composite(ImageOps.mirror(patch), (16, 0))

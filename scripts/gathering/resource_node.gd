@@ -105,6 +105,7 @@ func set_highlight(active: bool) -> void:
 func _draw() -> void:
 	if is_stored(): return
 	var data: Dictionary = field.state[resource_id]
+	if data.hp>0: preload("res://scripts/presentation/world_contact_shadow.gd").paint(self,Vector2(2,0),Vector2(30,6) if kind=="tree" else Vector2(24,4))
 	var covered: bool=false
 	if field.area_id=="farm":
 		var game: Node=FarmLayout.get("game") as Node

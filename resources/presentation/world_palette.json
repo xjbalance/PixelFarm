@@ -1,0 +1,35 @@
+{
+  "name": "晴光河湾 · 明亮田园",
+  "version": 1,
+  "midtone_lift": 0.065,
+  "water_lift": 0.08,
+  "ground_colours": {"spring": "8cba68", "summer": "7abd6c", "autumn": "d7ba70", "winter": "d4e4df"},
+  "foliage": {
+    "spring": {"hue": 98, "hue_spread": 0.25, "saturation": 0.43, "light_base": 0.215, "light_scale": 0.84},
+    "summer": {"hue": 112, "hue_spread": 0.25, "saturation": 0.45, "light_base": 0.175, "light_scale": 0.86},
+    "autumn": {"hue": 37, "hue_spread": 0.24, "saturation": 0.62, "light_base": 0.20, "light_scale": 0.84},
+    "winter": {"hue": 184, "hue_spread": 0.12, "saturation": 0.13, "light_base": 0.66, "light_scale": 0.31}
+  },
+  "ramps": {
+    "outline": ["343e37", "414c42", "525c4a"],
+    "leaf": ["365d40", "487547", "5d8c4e", "73a358", "86b462", "8cba68", "92c06e", "a5ce7d", "bedf97", "d6ebaf"],
+    "summer_leaf": ["326748", "44834f", "60a35c", "7abd6c", "9bd486"],
+    "wood_earth": ["634c3b", "805c41", "9c734e", "b88e61", "bd996a", "c39f70", "c9a576", "cfa775", "e1c18d", "efdaa9", "f7e9c5"],
+    "path": ["c8ad7d", "d1b787", "d7bd8d", "ddc393", "e6cfa3"],
+    "roof": ["763e3e", "984b44", "b85f4c", "d27856", "e4946a", "efa980", "f6c49a"],
+    "cream": ["706451", "93816a", "b5a181", "d4c2a0", "e8d9b9", "f4ead1", "fff4df"],
+    "stone": ["54615d", "718078", "8f9e91", "abb8a5", "c4cfbb", "dce3d2", "eef1e2"],
+    "water": ["365d71", "427e94", "56a0b2", "72bdca", "91d3dc", "b4e6e9", "d7f1ed"],
+    "teal": ["426e64", "5a9582", "79b7a0", "a2d3ba", "cde8d2"],
+    "snow": ["9ebebc", "bed4d0", "d4e4df", "e7f0e9", "f4f7eb"],
+    "gold": ["a17a43", "c4994f", "d7ba70", "ddba64", "edd581", "f7e8a5"],
+    "flower": ["a25f72", "c5808e", "e1a5ad", "f0c5c1", "f8ded3"],
+    "star": ["54486c", "77658f", "9d86ae", "bda6c9", "dbcae1", "eee3ed"]
+  },
+  "rules": [
+    "All environment assets share these colour ramps, without dithering.",
+    "Source sprite geometry, alpha, anchors and animation timing are unchanged.",
+    "Ground texture contrast is reduced before palette mapping; silhouettes remain crisp.",
+    "Palette conversion is offline, with no full-screen tint or runtime shader."
+  ]
+}
