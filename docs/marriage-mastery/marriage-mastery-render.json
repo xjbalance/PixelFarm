@@ -1,0 +1,29 @@
+{
+	"android_device_tested": false,
+	"captures": [
+		{
+			"name": "missing_overview",
+			"path": "res://builds/marriage-mastery-missing_overview.png"
+		},
+		{
+			"name": "missing_achievements",
+			"path": "res://builds/marriage-mastery-missing_achievements.png"
+		},
+		{
+			"name": "completed_achievements",
+			"path": "res://builds/marriage-mastery-completed_achievements.png"
+		},
+		{
+			"name": "completed_1600x720",
+			"path": "res://builds/marriage-mastery-completed_1600x720.png"
+		},
+		{
+			"name": "completed_1280x960",
+			"path": "res://builds/marriage-mastery-completed_1280x960.png"
+		}
+	],
+	"checks": 87,
+	"failures": 0,
+	"platform": "X11",
+	"save_schema": 27
+}

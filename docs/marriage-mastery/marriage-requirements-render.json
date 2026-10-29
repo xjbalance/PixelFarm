@@ -1,0 +1,24 @@
+{
+	"android_device_tested": false,
+	"captures": [
+		{
+			"name": "missing_fish",
+			"path": "res://builds/marriage-requirements-missing_fish.png"
+		},
+		{
+			"name": "goals_complete",
+			"path": "res://builds/marriage-requirements-goals_complete.png"
+		},
+		{
+			"name": "ceremony_male",
+			"path": "res://builds/marriage-requirements-ceremony_male.png"
+		},
+		{
+			"name": "ceremony_female",
+			"path": "res://builds/marriage-requirements-ceremony_female.png"
+		}
+	],
+	"checks": 70,
+	"failures": 0,
+	"platform": "X11"
+}

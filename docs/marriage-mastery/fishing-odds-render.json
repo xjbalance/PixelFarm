@@ -1,0 +1,122 @@
+{
+	"android_device_tested": false,
+	"captures": [
+		{
+			"name": "current_pool",
+			"path": "res://builds/fishing-odds-current_pool.png"
+		},
+		{
+			"name": "legend_book",
+			"path": "res://builds/fishing-odds-legend_book.png"
+		}
+	],
+	"cases": [
+		{
+			"all_species": {
+				"carp": 0.362102443923669,
+				"crucian": 0.520522263140274,
+				"eternal": 0.0155339805825243,
+				"star": 0.101841312353532
+			},
+			"day": 40,
+			"ecology": 90,
+			"percent": 1.55339805825243,
+			"probability": 0.0155339805825243,
+			"season": "summer",
+			"star_unlocked": true
+		},
+		{
+			"all_species": {
+				"crucian": 0.817516005121639,
+				"eternal": 0.0225352112676056,
+				"star": 0.159948783610755
+			},
+			"day": 96,
+			"ecology": 90,
+			"percent": 2.25352112676056,
+			"probability": 0.0225352112676056,
+			"season": "winter",
+			"star_unlocked": true
+		},
+		{
+			"all_species": {
+				"carp": 0.353502047674052,
+				"crucian": 0.50815919353145,
+				"eternal": 0.0168224299065421,
+				"star": 0.121516328887955
+			},
+			"day": 40,
+			"ecology": 100,
+			"percent": 1.68224299065421,
+			"probability": 0.0168224299065421,
+			"season": "summer",
+			"star_unlocked": true
+		},
+		{
+			"all_species": {
+				"crucian": 0.787649122807018,
+				"eternal": 0.024,
+				"star": 0.188350877192982
+			},
+			"day": 96,
+			"ecology": 100,
+			"percent": 2.4,
+			"probability": 0.024,
+			"season": "winter",
+			"star_unlocked": true
+		},
+		{
+			"all_species": {
+				"carp": 0.403273322422259,
+				"crucian": 0.579705400981997,
+				"eternal": 0.0170212765957447
+			},
+			"day": 40,
+			"ecology": 90,
+			"percent": 1.70212765957447,
+			"probability": 0.0170212765957447,
+			"season": "summer",
+			"star_unlocked": false
+		},
+		{
+			"all_species": {
+				"crucian": 0.974193548387097,
+				"eternal": 0.0258064516129032
+			},
+			"day": 96,
+			"ecology": 90,
+			"percent": 2.58064516129032,
+			"probability": 0.0258064516129032,
+			"season": "winter",
+			"star_unlocked": false
+		},
+		{
+			"all_species": {
+				"carp": 0.402564102564103,
+				"crucian": 0.578685897435897,
+				"eternal": 0.01875
+			},
+			"day": 40,
+			"ecology": 100,
+			"percent": 1.875,
+			"probability": 0.01875,
+			"season": "summer",
+			"star_unlocked": false
+		},
+		{
+			"all_species": {
+				"crucian": 0.971875,
+				"eternal": 0.028125
+			},
+			"day": 96,
+			"ecology": 100,
+			"percent": 2.8125,
+			"probability": 0.028125,
+			"season": "winter",
+			"star_unlocked": false
+		}
+	],
+	"checks": 51,
+	"failures": 0,
+	"platform": "X11"
+}
