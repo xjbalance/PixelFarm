@@ -1,7 +1,13 @@
 extends Node2D
 var festival_id: String = "spring"
+var _reward_icon: Texture2D
 const COLORS := {"spring":Color("d2b784"),"summer":Color("6fa5a4"),"autumn":Color("bd865e"),"winter":Color("a9c5c8")}
 func _ready() -> void:
+	texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
+	# Canvas draw commands retain a RID, not the Texture2D resource. Keep the
+	# icon alive after _draw returns or the renderer shows a solid white quad.
+	var event: Dictionary=Festival.data.events[festival_id]
+	_reward_icon=load("res://assets/festivals/"+str(event.reward.items.keys()[0])+".png")
 	add_to_group("interactables")
 	Festival.changed.connect(queue_redraw)
 	GameClock.changed.connect(queue_redraw)
@@ -11,14 +17,12 @@ func prompt() -> String:
 func interact() -> void:
 	Events.interaction_requested.emit("festival:"+festival_id)
 func _draw() -> void:
-	var event: Dictionary=Festival.data.events[festival_id]
 	var today: bool=Festival.active_id()==festival_id
 	if not SchemeCAssets.draw(self,"notice_board",Vector2(0,9),Calendar.season()):
 		draw_rect(Rect2(-3,-15,6,30),Color("6f6048"))
 		draw_rect(Rect2(-23,-44,46,29),Color("59644d"))
 		draw_rect(Rect2(-21,-42,42,25),COLORS[festival_id])
-	var icon: Texture2D=load("res://assets/festivals/"+str(event.reward.items.keys()[0])+".png")
-	draw_texture_rect(icon,Rect2(-12,-43,24,24),false)
+	if _reward_icon: draw_texture_rect(_reward_icon,Rect2(-12,-43,24,24),false)
 	if not today: return
 	# 稀疏横幅与小摊，无碰撞、不占通路或为湖水增添地面。
 	for x in [-64,-32,0,32,64]:

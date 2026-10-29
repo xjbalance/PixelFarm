@@ -1,0 +1,17 @@
+{
+	"android_device_tested": false,
+	"captures": [
+		"/home/xiznhi/xiangqi/PixelFarm/builds/festival-icons-before/spring-initial.png",
+		"/home/xiznhi/xiangqi/PixelFarm/builds/festival-icons-before/summer-initial.png",
+		"/home/xiznhi/xiangqi/PixelFarm/builds/festival-icons-before/autumn-initial.png",
+		"/home/xiznhi/xiangqi/PixelFarm/builds/festival-icons-before/winter-initial.png",
+		"/home/xiznhi/xiangqi/PixelFarm/builds/festival-icons-before/spring-redraw.png",
+		"/home/xiznhi/xiangqi/PixelFarm/builds/festival-icons-before/summer-redraw.png",
+		"/home/xiznhi/xiangqi/PixelFarm/builds/festival-icons-before/autumn-redraw.png",
+		"/home/xiznhi/xiangqi/PixelFarm/builds/festival-icons-before/winter-redraw.png",
+		"/home/xiznhi/xiangqi/PixelFarm/builds/festival-icons-before/farm-bench.png"
+	],
+	"checks": 17,
+	"failures": 8,
+	"platform": "X11"
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "suite": "festivals_c_runner",
+    "exit_code": 0,
+    "results": [
+      "FESTIVALS C RESULT: 87 checks, 0 failures"
+    ]
+  },
+  {
+    "suite": "scheme_c_props_runner",
+    "exit_code": 0,
+    "results": [
+      "SCHEME C PROPS STATE RESULT: 45 checks, 0 failures"
+    ]
+  },
+  {
+    "suite": "farm_layout_business_runner",
+    "exit_code": 0,
+    "results": [
+      "FARM LAYOUT BUSINESS RESULT: 107 checks, 0 failures"
+    ]
+  }
+]
