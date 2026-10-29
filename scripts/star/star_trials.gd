@@ -88,8 +88,8 @@ static func complete(id: String) -> bool:
 	match id:
 		"management":
 			var kinds := 0
-			for crop in c.harvest:
-				if int(c.harvest[crop])>=12: kinds+=1
+			for crop in Catalog.FOUNDATION_CROPS:
+				if int(c.harvest.get(crop,0))>=12: kinds+=1
 			return GameClock.day-int(c.day)<=8 and c.plants<=60 and c.seed_value<=1000 and kinds>=2 and int(c.sold_value)-int(c.seed_value)>=1800
 		"planning": return GameClock.day-int(c.day)<=3 and c.wood<=24 and c.stone<=16 and "copper_bar" in c.crafted and "hinge" in c.parts
 		"cave": return c.steps<=180 and "manual" in c.checks and "water" in c.checks

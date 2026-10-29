@@ -19,7 +19,7 @@
       "description": "奶制品台把两份牛奶加工6小时；可用于奶酪面包和湖鲜餐。"
     },
     "smoked_fish": {
-      "name": "烟熏鲤鱼",
+      "name": "烟熏湖鲜",
       "sell_price": 68,
       "kind": "processed",
       "description": "鲤鱼或鲫鱼与木材熏制3小时；可用于湖鲜餐或出售。"

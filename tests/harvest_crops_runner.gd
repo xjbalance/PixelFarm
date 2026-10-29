@@ -43,5 +43,17 @@ func run() -> void:
 	Inventory.coins=99999
 	check(not FarmEconomy.buy("blueberry",1),"跨季或未建合作社不能提前买高级种子")
 	check(FarmEconomy.buy("strawberry",1),"春季基础草莓种子正常购买")
+	Inventory.items.tomato=3;game.hud.inventory_panel.open_panel(true)
+	var found: bool=false;var blocked_seed: bool=false
+	for page in range(5):
+		game.hud.inventory_panel.crop_page=page;game.hud.inventory_panel.content_key="";game.hud.inventory_panel.refresh()
+		if game.hud.inventory_panel.row_views.has("crop:tomato"):
+			found=true
+			for button in game.hud.inventory_panel.row_views["crop:tomato"].actions:
+				if button.get_meta("action_kind","")=="seed_buy": blocked_seed=button.disabled
+			break
+	check(found and blocked_seed,"非当季持有作物仍列入出售页，但不开放跨季种子购买")
+	check(FarmEconomy.sell("tomato",2) and Inventory.count("tomato")==1,"跨季库存可以按数量正常出售")
+	game.hud.inventory_panel.close_panel()
 	print("HARVEST CROPS RESULT: %d checks, %d failures" % [checked,failed])
 	game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(4);get_tree().call_deferred("quit",1 if failed else 0)

@@ -20,4 +20,4 @@ func run() -> void:
 	col.add_child(FarmUIStyle.label("田间上排：旧胡萝卜、土豆、小麦　下排：草莓四阶段　右侧：果酱锅",16))
 	await frames(8);await RenderingServer.frame_post_draw
 	get_viewport().get_texture().get_image().save_png("res://docs/harvest-workshop/style-sample.png")
-	game.get_node("Audio").stop_all();game.queue_free();await frames(4);get_tree().call_deferred("quit")
+	game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(4);get_tree().call_deferred("quit")

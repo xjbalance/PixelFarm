@@ -1,12 +1,16 @@
-# 像素世界 · 0.8.0《开拓家园》
+# 像素世界 · 0.8.0《丰收工坊》
 
-最新：[农场全场DIY](docs/REPORT-FARM-DIY.md)。真实住宅、温室、畜舍、商店、鱼栏、原设施、42个资源节点与生产田都能移动或收纳后放回；48×32主农场可重新铺路、改水形并在合法干地开垦。原等级、库存、动物和剧情进度保留。存档 **v27**，兼容v1–v26。[9736项检查与窗口证据](docs/TEST-FARM-DIY.json)
+最新：[丰收工坊完整说明、配方与截图](docs/HARVEST-WORKSHOP.md)。新增27种季节作物、3种花卉、4种结果树、10类实体设备、49条加工配方、27道料理及布料家具。设备在农场建造模式摆放，料理仍在住宅厨房制作。存档 **v28**，旧v27及更早进度安全迁移；九格工具栏、全场DIY、婚姻和原钓鱼概率保留。
+
+验收与复现：`python3 tools/validate_harvest.py`、`python3 tools/check_project.py`、`python3 tools/capture_harvest.py`。Android 真机手感尚未验收。
+
+此前：[农场全场DIY](docs/REPORT-FARM-DIY.md)。真实住宅、温室、畜舍、商店、鱼栏、原设施、42个资源节点与生产田都能移动或收纳后放回；48×32主农场可重新铺路、改水形并在合法干地开垦。原等级、库存、动物和剧情进度保留。存档 **v27**，兼容v1–v26。[9736项检查与窗口证据](docs/TEST-FARM-DIY.json)
 
 此前的[方案C世界素材整合](docs/REPORT-NEED-ASSETS.md)已接入97款世界素材，保留作本轮之前的对照记录。原来固定的大型功能建筑现已开放搬迁。[还需补充的素材](docs/NEED-ASSET-GAPS.md)
 
 当前版本新增[领地编辑第一阶段](docs/REPORT-TERRITORY-080.md)，并保留[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)、[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)、[按数量出售](docs/SALE-QUANTITY.md)、[农场视觉样板06](docs/FARM-VISUAL-06.md)、[羊皮纸冒险图纸](docs/PARCHMENT-MAP.md)、[UI07全界面收口](docs/REPORT-UI07.md)及[方案C角色选择](docs/SCHEME-C-SELECTION.md)。
 
-**0.8.0《开拓家园》**，Godot 4.3 Standard。主农场支持全场DIY，四处按章节开放的地表领地保留既有权限；公共区域和地下保留原规则。
+**0.8.0《丰收工坊》**，Godot 4.3 Standard。主农场支持全场DIY，四处按章节开放的地表领地保留既有权限；公共区域和地下保留原规则。
 
 保留原种田/采集的消耗与产出、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。原应用包名、证书与存档路径保留。
 

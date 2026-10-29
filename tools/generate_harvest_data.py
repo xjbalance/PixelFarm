@@ -64,7 +64,7 @@ process('mill_flour','研磨面粉','mill',{'wheat':1},'flour',minutes=45)
 process('rice','精制大米','mill',{'rice_crop':1},minutes=45,shape='sack')
 process('cornmeal','玉米粉','mill',{'corn':1},minutes=45,shape='sack')
 process('tofu','鲜豆腐','mill',{'soybean':1},minutes=60,shape='tofu',color='cream')
-process('corn_feed','玉米饲料','mill',{'corn':1},'hay',8,45)
+process('corn_feed','玉米饲料','mill',{'corn':1},'hay',16,45)
 for crop,out,name in [('rapeseed','canola_oil','菜籽油'),('peanut','peanut_oil','花生油'),('sunflower_crop','sunflower_oil','葵花籽油')]: process(out,name,'oil_press',{crop:2},minutes=180,shape='bottle')
 for crop,out,name in [('cucumber','pickled_cucumber','腌黄瓜'),('cabbage','kimchi','泡菜'),('radish','pickled_radish','腌萝卜'),('snow_radish','snow_pickle','雪萝卜泡菜'),('winter_cabbage','winter_pickle','冬白菜泡菜')]: process(out,name,'pickle_jar',{crop:2},minutes=1440,color='leaf')
 for crop,out,name,color in [('tomato','tomato_sauce','番茄酱','roof'),('chili','chili_sauce','辣椒酱','roof'),('pumpkin','pumpkin_puree','南瓜泥','gold'),('strawberry','strawberry_jam','草莓果酱','flower'),('blueberry','blueberry_jam','蓝莓果酱','star'),('peach','peach_jam','桃子果酱','flower')]: process(out,name,'jam_pot',{crop:2},minutes=240,color=color)
@@ -80,8 +80,8 @@ process('cotton_cloth','棉布','loom',{'cotton':2},minutes=360,shape='cloth',co
 process('sachet','薰衣草香包','loom',{'lavender_bundle':1,'cotton_cloth':1},minutes=180,shape='sachet',color='star')
 process('rose_perfume','玫瑰香水','juicer',{'rose_petals':1,'canola_oil':1},minutes=240,shape='perfume',color='flower')
 for fish in ['fish_carp','fish_crucian']:
-    process('smoke_'+fish,'烟熏湖鲜','smoker',{fish:2,'wood':1},'smoked_fish',minutes=180)
-    process('dry_'+fish,'风干湖鲜','drying_rack',{fish:2},'dried_fish',minutes=240)
+    process('smoke_'+fish,('鲤鱼' if fish=='fish_carp' else '鲫鱼')+'熏制','smoker',{fish:2,'wood':1},'smoked_fish',minutes=180)
+    process('dry_'+fish,('鲤鱼' if fish=='fish_carp' else '鲫鱼')+'晒干','drying_rack',{fish:2},'dried_fish',minutes=240)
 def dish(id,name,inputs,energy=24,buff='',shape='bowl',color='gold'):
     value=int(sum(prices[k]*v for k,v in inputs.items())*1.12)
     item(id,name,value,'food',f'恢复{energy}体力；已有增益不叠加或刷新。',energy=energy,buff=buff,seconds={'speed':120,'thrift':90,'mining':90,'fishing':120}.get(buff,0),shape=shape,color=color,gift_to='ahe');prices[id]=value

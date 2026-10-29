@@ -76,12 +76,26 @@ func agricultural_cycle() -> void:
 	await frames(30)
 	check(GameClock.minutes==minute+60 and Workshop.state.jobs[mill].ready,"沙发小睡一小时自然推进加工进度")
 	check(not game.home_rest.confirm(serial),"同次小睡回调不会重复结算工坊时间")
+	await Touch.place(self,game,"farm",Vector2(704,704));await Fixture.approach(self,game,mill)
+	var first: int=Workshop.state.jobs[mill].id
+	check(Workshop.claim(mill,first),"领取小睡期间完成的第一笔工单")
+	GameClock.minutes=1410
+	check(Workshop.start(mill,"mill_flour"),"23:30开始新工单，不立即完成")
+	var night_job: int=Workshop.state.jobs[mill].id;var day: int=GameClock.day
+	await Touch.place(self,game,"home",Housing.anchor("sofa")+Vector2(0,28))
+	var meter: Dictionary={"days":0};var observer:=func(): meter.days+=1
+	GameClock.day_advanced.connect(observer)
+	check(game.home_rest.open() and game.home_rest.confirm(game.home_rest.pending_token),"23:30生产中执行真实沙发小睡")
+	await frames(30);GameClock.day_advanced.disconnect(observer)
+	check(GameClock.day==day+1 and GameClock.minutes==360 and meter.days==1 and Workshop.state.jobs[mill].ready,"午夜优先结算一次，工坊经正常睡眠完成，不补休到次日06:30")
+	await Touch.place(self,game,"farm",Vector2(704,704));await Fixture.approach(self,game,mill)
+	check(Workshop.claim(mill,night_job) and not Workshop.claim(mill,night_job) and Inventory.count("flour")==2,"午夜小睡工单只发一份，不重复材料或成品")
 func livestock_cycle() -> void:
 	await reset()
 	for i in range(28): GameClock.minutes=1200;GameClock.request_sleep(GameClock.day)
 	await Touch.place(self,game,"farm",Vector2(704,704));var mill: String=await Fixture.install(self,game,"station_mill")
 	await grow(["corn","corn","corn","wheat","wheat"])
-	check(await process_at(mill,"corn_feed",3) and Inventory.count("hay")==24,"三份实收玉米加工24份合法动物饲料")
+	check(await process_at(mill,"corn_feed",3) and Inventory.count("hay")==48,"三份实收玉米加工48份合法动物饲料")
 	var animals: Array[String]=[]
 	for site in ["coop","barn"]:
 		await Touch.place(self,game,"farm",Livestock.site_point(site)+Vector2(0,48))

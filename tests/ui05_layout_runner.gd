@@ -42,6 +42,16 @@ func layout_configuration(size: Vector2i,target: int,inset: bool,all_panels: boo
 	await show_panel(game.hud.xiaojing_panel,[],"小京关系")
 	await at("home",Kitchen.ANCHOR+Vector2(0,32));await show_panel(game.hud.kitchen_panel,[],"厨房")
 	await at("farm",Aquaculture.SITES.pen_1+Vector2(-32,0));await show_panel(game.hud.aquaculture_panel,["pen_1"],"湖岸鱼栏")
+	await at("farm",Vector2(704,704))
+	var workshop_before:=FarmSaveStore.snapshot(game)
+	load("res://tests/harvest_fixture.gd").stock()
+	var workshop_device: String=await load("res://tests/harvest_fixture.gd").install(self,game,"station_mill")
+	check(workshop_device!="",prefix+"实际安装磨坊后检查新增加工入口")
+	if workshop_device!="":
+		await load("res://tests/harvest_fixture.gd").approach(self,game,workshop_device)
+		await show_panel(game.hud.workshop_panel,[workshop_device],"丰收工坊")
+	check(FarmSaveStore.restore(game,workshop_before),prefix+"布局检查恢复原经营状态")
+	await frames(4)
 	if all_panels:
 		await remaining_public_panels()
 		var omitted: Array[String]=[]

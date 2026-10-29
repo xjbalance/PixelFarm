@@ -1871,7 +1871,7 @@
       "recipe_id": "corn_feed",
       "name": "玉米饲料",
       "output_item_id": "hay",
-      "output_quantity": 8,
+      "output_quantity": 16,
       "input_items": {
         "corn": 1
       },
@@ -2486,7 +2486,7 @@
     },
     "smoke_fish_carp": {
       "recipe_id": "smoke_fish_carp",
-      "name": "烟熏湖鲜",
+      "name": "鲤鱼熏制",
       "output_item_id": "smoked_fish",
       "output_quantity": 1,
       "input_items": {
@@ -2502,7 +2502,7 @@
     },
     "dry_fish_carp": {
       "recipe_id": "dry_fish_carp",
-      "name": "风干湖鲜",
+      "name": "鲤鱼晒干",
       "output_item_id": "dried_fish",
       "output_quantity": 1,
       "input_items": {
@@ -2517,7 +2517,7 @@
     },
     "smoke_fish_crucian": {
       "recipe_id": "smoke_fish_crucian",
-      "name": "烟熏湖鲜",
+      "name": "鲫鱼熏制",
       "output_item_id": "smoked_fish",
       "output_quantity": 1,
       "input_items": {
@@ -2533,7 +2533,7 @@
     },
     "dry_fish_crucian": {
       "recipe_id": "dry_fish_crucian",
-      "name": "风干湖鲜",
+      "name": "鲫鱼晒干",
       "output_item_id": "dried_fish",
       "output_quantity": 1,
       "input_items": {

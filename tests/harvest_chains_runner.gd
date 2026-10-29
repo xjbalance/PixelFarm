@@ -54,6 +54,9 @@ func orchard() -> void:
 		check(Workshop.buy_sapling(fruit) and Inventory.coins==coins-ceili(int(HarvestCatalog.data().orchard[fruit].sapling_price)*.8),"合作社折扣购买树苗："+fruit)
 		var id: String=await Fixture.install(self,game,"orchard_"+fruit);trees[fruit]=id
 		check(id!="" and Inventory.count(fruit+"_sapling")==0 and Workshop.tree_age(id)==0,"树苗实体栽种并初始化独立树龄："+fruit)
+		if id!="":
+			var object: Node2D=game.territory_world.objects[id]
+			check(not object.hit_rect().has_point(Vector2(35,-60)) and TouchInteractionResolver.resolve(game,object.global_position+Vector2(35,-60)).get("object")!=object,"幼树透明画布不抢走邻近地格点击："+fruit)
 	for i in range(12):
 		GameClock.minutes=1200;GameClock.request_sleep(GameClock.day)
 	await frames(4)
@@ -89,3 +92,17 @@ func textiles() -> void:
 	check(Housing.buy("wool_rug") and int(Housing.state.owned.get("wool_rug",0))==1 and Inventory.count("wool_cloth")==0,"毛布真正进入可装修地毯制作")
 	check(Housing.buy("cotton_chair") and int(Housing.state.owned.get("cotton_chair",0))==1 and Inventory.count("cotton_cloth")==0,"棉布真正进入软垫家具制作")
 	check(FarmSaveStore.valid(FarmSaveStore.snapshot(game)),"新织物家具沿用住宅库存存档")
+	for kind in ["wool_rug","cotton_chair"]:
+		var placed: bool=false
+		for y in range(8,17):
+			for x in range(11,28):
+				if Housing.can_place(kind,"home",Vector2i(x,y)) and Housing.place(kind,"home",Vector2i(x,y)): placed=true;break
+			if placed: break
+		check(placed,"自产织物家具可真实放入当前住宅："+kind)
+		await frames(4)
+		if placed:
+			var id: String=Housing.state.placed[-1].id;var rendered: bool=false
+			for object in get_tree().get_nodes_in_group("housing_furniture"):
+				if object.housing_id==id: rendered=object.texture!=null and object.is_visible_in_tree()
+			check(rendered and Housing.recycle(id) and int(Housing.state.owned.get(kind,0))==1,"实体家具正确显示并回收原件，不复制材料："+kind)
+			await frames(4)

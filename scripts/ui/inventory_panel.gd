@@ -144,7 +144,7 @@ func build_crops() -> void:
 		if id in ["carrot","potato","wheat"]: available.append(id);continue
 		var row: Dictionary=HarvestCatalog.data().crops[id]
 		if shop_mode:
-			if not HarvestCatalog.seed_available(id): continue
+			if not HarvestCatalog.seed_available(id) and Inventory.count(id)==0: continue
 		elif not Catalog.crop_grows(id) and Inventory.count(id)==0 and Inventory.count(id+"_seed")==0: continue
 		if crop_group==1 and "flower" not in row.tags: continue
 		available.append(id)
@@ -222,7 +222,9 @@ func update_rows() -> void:
 				"sapling_buy":
 					button.disabled=not HarvestCatalog.unlocked(str(HarvestCatalog.data().orchard[id.trim_suffix("_sapling")].unlock))
 					button.text="购入%d棵\n%d金 / 棵" % [quantity,ceili(int(Catalog.items[id].price)*(.8 if VillageProjects.has_project("cooperative") else 1.0))]
-				"seed_buy": button.text="买 %d 袋\n%s" % [quantity,DiamondPayments.text(FarmEconomy.seed_price(id)*quantity)]
+				"seed_buy":
+					button.disabled=not HarvestCatalog.seed_available(id)
+					button.text="本季不售种子" if button.disabled else "买 %d 袋\n%s" % [quantity,DiamondPayments.text(FarmEconomy.seed_price(id)*quantity)]
 				"crop_buy": button.text="购收获%d个\n%d钻石" % [quantity,DiamondPayments.price(Catalog.sell_price(id)*3*quantity)]
 				"material_buy": button.text="钻石购入%d个\n%d钻石" % [quantity,int(DiamondPayments.GOODS[id])*quantity]
 				"fish_buy": button.text="购买%d份\n%s" % [quantity,DiamondPayments.text(fish_cost(id)*quantity)]

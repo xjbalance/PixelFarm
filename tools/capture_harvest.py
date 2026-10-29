@@ -2,7 +2,7 @@
 from pathlib import Path
 import os, subprocess, tempfile, time, argparse
 ROOT=Path(__file__).resolve().parents[1]
-p=argparse.ArgumentParser();p.add_argument('--baseline',action='store_true');p.add_argument('--sample',action='store_true');p.add_argument('--scene');args=p.parse_args()
+p=argparse.ArgumentParser();p.add_argument('--baseline',action='store_true');p.add_argument('--sample',action='store_true');p.add_argument('--scene');p.add_argument('--all',action='store_true');p.add_argument('--verbose',action='store_true');args=p.parse_args()
 (ROOT/'docs/harvest-workshop').mkdir(parents=True,exist_ok=True)
 display=next(f':{i}' for i in range(190,220) if not Path(f'/tmp/.X11-unix/X{i}').exists())
 with tempfile.TemporaryDirectory(prefix='harvest-window-') as profile:
@@ -11,9 +11,11 @@ with tempfile.TemporaryDirectory(prefix='harvest-window-') as profile:
         time.sleep(.5)
         env=dict(os.environ,DISPLAY=display,LIBGL_ALWAYS_SOFTWARE='1',XDG_DATA_HOME=profile,APPDATA=profile)
         scene=args.scene or ('harvest_baseline' if args.baseline else 'harvest_sample' if args.sample else 'harvest_render')
-        run=subprocess.run([str(ROOT/'.tools/Godot_v4.3-stable_linux.x86_64'),'--path',str(ROOT),'--audio-driver','Dummy','--fixed-fps','60','res://tests/'+scene+'.tscn'],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=240)
-        (ROOT/'builds'/f'{scene}-window.log').write_text(run.stdout)
-        print(run.stdout[-6000:])
-        if run.returncode or any(x in run.stdout for x in ['ERROR:','SCRIPT ERROR:','instances leaked']): raise SystemExit(1)
+        scenes=['harvest_sample','harvest_render','harvest_touch_runner','harvest_processing_runner'] if args.all else [scene]
+        for scene in scenes:
+            run=subprocess.run([str(ROOT/'.tools/Godot_v4.3-stable_linux.x86_64'),'--path',str(ROOT),'--audio-driver','Dummy','--fixed-fps','60','res://tests/'+scene+'.tscn']+(['--verbose'] if args.verbose else []),env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=240)
+            (ROOT/'builds'/f'{scene}-window.log').write_text(run.stdout)
+            print(run.stdout[-6000:])
+            if run.returncode or any(x in run.stdout for x in ['ERROR:','SCRIPT ERROR:','instances leaked']): raise SystemExit(1)
     finally:
         server.terminate();server.wait(timeout=10)

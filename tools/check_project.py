@@ -9,6 +9,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 parser = argparse.ArgumentParser()
 parser.add_argument('--godot', default=None, help='Godot 4.3 Standard executable')
+parser.add_argument('--from-step', default=None, help='Resume at a named step; earlier passing results must be retained separately')
 args = parser.parse_args()
 portable = ROOT / '.tools/Godot_v4.3-stable_linux.x86_64'
 godot = args.godot or shutil.which('godot') or shutil.which('godot4') or (str(portable) if portable.exists() else None)
@@ -21,6 +22,11 @@ logs = ROOT/'builds'
 logs.mkdir(exist_ok=True)
 steps = [
     ('import', ['--import']),
+    ('harvest-crops', ['--fixed-fps','60','res://tests/harvest_crops_runner.tscn']),
+    ('harvest-processing', ['--fixed-fps','60','res://tests/harvest_processing_runner.tscn']),
+    ('harvest-chains', ['--fixed-fps','60','res://tests/harvest_chains_runner.tscn']),
+    ('harvest-meals', ['--fixed-fps','60','res://tests/harvest_meals_runner.tscn']),
+    ('harvest-touch', ['--fixed-fps','60','res://tests/harvest_touch_runner.tscn']),
     ('sleep', ['--fixed-fps','60','res://tests/sleep_runner.tscn']),
     ('integration', ['res://tests/runner.tscn']),
     ('mining', ['--fixed-fps','60','res://tests/mining_runner.tscn']),
@@ -209,8 +215,16 @@ steps = [
     ('farm-layout-backup', ['--fixed-fps','60','res://tests/farm_layout_persistence.tscn']),
     ('farm-layout-v26-write', ['--fixed-fps','60','res://tests/farm_layout_persistence.tscn','--','--write-farm-layout-v26']),
     ('farm-layout-v26-read', ['--fixed-fps','60','res://tests/farm_layout_persistence.tscn','--','--read-farm-layout-v26']),
+    ('harvest-save-write', ['--fixed-fps','60','res://tests/harvest_persistence.tscn','--','--write']),
+    ('harvest-save-read', ['--fixed-fps','60','res://tests/harvest_persistence.tscn','--','--read']),
+    ('harvest-save-read-claimed', ['--fixed-fps','60','res://tests/harvest_persistence.tscn','--','--read-claimed']),
+    ('harvest-save-legacy', ['--fixed-fps','60','res://tests/harvest_persistence.tscn','--','--legacy']),
     ('main-smoke', ['--quit-after','180']),
 ]
+if args.from_step:
+    names=[name for name,_ in steps]
+    if args.from_step not in names: parser.error('Unknown step: '+args.from_step)
+    steps=steps[names.index(args.from_step):]
 with tempfile.TemporaryDirectory(prefix='pixel-farm-test-') as profile:
     env = dict(os.environ, XDG_DATA_HOME=profile, APPDATA=profile)
     for name, options in steps:

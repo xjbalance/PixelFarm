@@ -1,6 +1,6 @@
 """Validate the actual content graph, icons, attainable inputs and bounded value chains."""
 from pathlib import Path
-import json, re
+import json, re, hashlib
 from PIL import Image
 ROOT=Path(__file__).resolve().parents[1]
 def unique_object(pairs):
@@ -38,6 +38,9 @@ def validate():
     for tree,info in data['orchard'].items():
         sources.add(info['fruit']);assert info['fruit'] in items
         for stage in ['young','growing','mature','fruit']:assert (ROOT/f'assets/harvest/orchard/{tree}_{stage}.png').exists()
+    for group in [list(data['crops'])+list(data['orchard']),list(data['recipes'])]:
+        signatures=[hashlib.sha256((ROOT/f'assets/harvest/items/{id}.png').read_bytes()).hexdigest() for id in group]
+        assert len(signatures)==len(set(signatures)),'Distinct raw produce and dishes must not share identical icon bitmaps'
     recipes={**data['processing'],**data['recipes']};assert len(recipes)==len(data['processing'])+len(data['recipes'])
     edges={};costs=[]
     for id,r in recipes.items():
@@ -65,7 +68,22 @@ def validate():
     for id,r in data['stations'].items():
         assert Image.open(ROOT/r['icon'].removeprefix('res://')).size==(32,48)
         assert any(p['processing_station_id']==id for p in data['processing'].values())
-    report={'crops':len(data['crops']),'trees':len(data['orchard']),'stations':len(data['stations']),'processing':len(data['processing']),'dishes':len(data['recipes']),'recipes':costs,'unavailable_extensions':data['future']}
+    yearly=[]
+    for id,crop in data['crops'].items():
+        growing=None;cash=0;planted=0;harvested=0;waterings=0
+        for day in range(112):
+            season=day//28
+            if growing is not None and growing>=crop['growth_days']:
+                harvested+=crop['harvest_quantity'];cash+=crop['harvest_quantity']*crop['sell_price'];growing=None
+            if growing is None and season in crop['seasons']:
+                growing=0;cash-=crop['seed_price'];planted+=1
+            if growing is not None and season in crop['seasons']:
+                growing+=1;waterings+=1
+        yearly.append({'crop':id,'days':112,'plots':1,'seed_purchases':planted,'harvested':harvested,'watering_actions':waterings,'net_gold':cash,'unharvested_growth_days':growing})
+    for row in costs:
+        if row['game_minutes']>0:row['theoretical_batches_per_24h']=1440//row['game_minutes']
+    assert data['processing']['corn_feed']['output_quantity']*items['hay']['price']>=items['corn']['sell_price'],'Feed should be useful compared with buying hay'
+    report={'crops':len(data['crops']),'trees':len(data['orchard']),'stations':len(data['stations']),'processing':len(data['processing']),'dishes':len(data['recipes']),'recipes':costs,'yearly_one_plot_simulation':yearly,'simulation_assumptions':['112 days, one plot, full-price seeds, all relevant unlocks earned','Water every suitable day; harvest at the following morning; off-season growth pauses','No labor/energy valuation, rainfall bonus, seed discount or terminal crop liquidation','Device throughput is an ideal upper bound; actual collection and night gaps lower output'],'unavailable_extensions':data['future']}
     (ROOT/'docs/harvest-workshop').mkdir(exist_ok=True,parents=True)
     (ROOT/'docs/harvest-workshop/economy.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     print('HARVEST DATA PASS:',{k:v for k,v in report.items() if isinstance(v,int)})

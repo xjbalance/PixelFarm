@@ -10,6 +10,7 @@ var animated: AnimatedSprite2D
 var definition: Dictionary={}
 var footprint_size:=Vector2(32,32)
 var geometry_key: String=""
+static var orchard_hit_bounds: Dictionary={}
 
 func _ready() -> void:
 	add_to_group("interactables");add_to_group("territory_objects")
@@ -72,6 +73,15 @@ func prompt() -> String:
 func hit_rect() -> Rect2:
 	if is_instance_valid(sprite) and sprite.texture:
 		var rect:=sprite.get_rect()
+		if str(entry.get("kind","")).begins_with("orchard_"):
+			# Young trees share the adult 96px canvas; transparent padding must not steal nearby plot taps.
+			var path: String=sprite.texture.resource_path
+			if not orchard_hit_bounds.has(path):
+				var picture:=sprite.texture.get_image()
+				if picture.is_compressed(): picture.decompress()
+				orchard_hit_bounds[path]=Rect2(picture.get_used_rect()).grow(3)
+			var used: Rect2=orchard_hit_bounds[path]
+			rect=Rect2(rect.position+used.position,used.size)
 		return Rect2(rect.position*sprite.scale+sprite.position,rect.size*sprite.scale)
 	return Rect2(-footprint_size*.5,footprint_size)
 

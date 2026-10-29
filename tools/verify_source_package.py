@@ -11,17 +11,20 @@ with tempfile.TemporaryDirectory(prefix='pixelworld-source-test-') as directory:
   names=package.namelist()
   for name in names:
    assert '..' not in Path(name).parts
-   assert not any(part in ['.git','.tools','.godot'] for part in Path(name).parts)
+   assert not any(part in ['.git','.tools','.godot','need'] for part in Path(name).parts)
    assert not name.endswith(('.keystore','.jks','.key','.p12','.pfx','.pem'))
    assert Path(name).name!='export_credentials.cfg'
    assert not Path(name).name.startswith('.env') or Path(name).name=='.env.example'
   assert package.read('PixelWorld/project.godot')==(ROOT/'project.godot').read_bytes()
   for source in (ROOT/'resources').rglob('*.json'):
    assert package.read('PixelWorld/'+source.relative_to(ROOT).as_posix())==source.read_bytes(),source
+  for folder,pattern in [('scripts','*.gd'),('assets','*.png')]:
+   for source in (ROOT/folder).rglob(pattern):
+    assert package.read('PixelWorld/'+source.relative_to(ROOT).as_posix())==source.read_bytes(),source
   package.extractall(root/'game')
  project=root/'game/PixelWorld';env=dict(os.environ,XDG_DATA_HOME=str(root/'profile'),APPDATA=str(root/'profile'))
  with (ROOT/f'builds/source-runtime-{version}-final.log').open('w') as log:
-  log.write(f'Archive: {archive.name}\nFiles: {len(names)}\nCRC / all JSON data / version / excluded secrets: PASS\n');log.flush()
+  log.write(f'Archive: {archive.name}\nFiles: {len(names)}\nCRC / all JSON data / all game scripts / PNG assets / version / excluded secrets and need: PASS\n');log.flush()
   for label,args in [('fresh-import',['--import']),('fresh-main',['--quit-after','180'])]:
    result=subprocess.run([str(engine),'--headless','--path',str(project),*args],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=180)
    log.write(result.stdout);log.flush()

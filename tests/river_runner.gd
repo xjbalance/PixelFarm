@@ -192,7 +192,7 @@ func wedding_room() -> void:
 		await at_depth(depth);await act_point("conduit");check(LegendTrials.conduit(),"实际高层回路校准："+str(depth));game.hud.close_active_panel();await leave_mine()
 	await Flow.at(self,game,"farm",Vector2(1360,816));check(LegendTrials.finish(),"三处高层实体回路全部完成")
 	check(LegendTrials.begin("joint"),"高层联合考察开始")
-	for crop in Catalog.crops: Hidden.grow(game,12,crop)
+	for crop in Catalog.FOUNDATION_CROPS: Hidden.grow(game,12,crop)
 	await at_depth(100);await read_note();await leave_mine()
 	await Hidden.near(self,game);StarStory.book_appointment();advance_day();await Hidden.near(self,game,1100);check(StarStory.attend_appointment(),"联合考察要求真实守约")
 	for id in ["linya","zhou","ahe"]:

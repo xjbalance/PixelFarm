@@ -20,7 +20,7 @@ func run() -> void:
  GameClock.running=false;GameWeather.enabled=false;game.get_node("Audio").muted=true;await frames(8)
  game.tutorial.restore(GameTutorial.defaults(true));await frames(3)
  var expected: Dictionary=canonical(FarmSaveStore.snapshot(game));expected.erase("territory");expected.erase("farm_layout")
- var ok: bool=FarmSaveStore.VERSION==27 and FarmLayoutCatalog.fixtures().size()==64 and game.territory_world.maps.size()==5 and not Territory.unlocked("east_holding")
+ var ok: bool=FarmSaveStore.VERSION==28 and FarmLayoutCatalog.fixtures().size()==64 and game.territory_world.maps.size()==5 and not Territory.unlocked("east_holding")
  ok=SchemeCAssets.catalog().size()==97 and ok
  for id in SchemeCAssets.catalog():
   var info: Dictionary=SchemeCAssets.definition(id)
@@ -38,6 +38,10 @@ func run() -> void:
  print("APK MARRIAGE MASTERY 9-STORY/5-RECIPE/7-FISH CONFIG: ","PASS" if ok else "FAIL")
  ok=int(Fishing.data.get("eternal_chance_divisor",0))==10 and Fishing.has_method("encounter_chances") and ok
  print("APK FISHING NO-PITY / ONE-TENTH ENCOUNTER CONFIG: ","PASS" if ok else "FAIL")
+ ok=Catalog.crops.size()==33 and Kitchen.data.recipes.size()==32 and HarvestCatalog.data().processing.size()==49 and ok
+ for id in HarvestCatalog.data().items: ok=ItemPresentation.texture(id)!=null and ok
+ for id in HarvestCatalog.data().stations: ok=TerritoryWorld.texture_for("station_"+id)!=null and ok
+ print("APK HARVEST 33-CROPS/32-DISHES/49-PROCESSES/10-STATIONS: ","PASS" if ok else "FAIL")
  ok=not WorldTravel.change(game,"east_holding") and not Territory.permission("village",Vector2i(6,6),"grass").allowed and ok
  ok=game.territory_editor.open() and ok
  game.territory_editor.choose_tool("stone_path")
@@ -56,14 +60,35 @@ func run() -> void:
  ok=game.territory_editor.confirm() and ok
  await frames(5);game.territory_editor.cancel();game.save_game();await frames(3)
  var data: Dictionary=FarmSaveStore.read(game.save_path)
- ok=data.get("version")==27 and data.get("farm_layout")==FarmLayout.snapshot() and data.get("territory",{}).get("terrain",{}).get("farm",{}).get(TerritoryCatalog.key(cell))=="stone_path" and ok
+ ok=data.get("version")==28 and data.get("farm_layout")==FarmLayout.snapshot() and data.get("territory",{}).get("terrain",{}).get("farm",{}).get(TerritoryCatalog.key(cell))=="stone_path" and ok
  ok=data.get("farm_layout",{}).get("fixtures",{}).get("home",{}).get("cell")==[20,5] and FarmSaveStore.restore(game,data) and ok
  await frames(5)
  ok=FarmLayout.cell("fixture","home")==Vector2i(20,5) and ok
- print("APK FARM LAYOUT V27 MOVE/RESTORE: ","PASS" if ok else "FAIL")
+ print("APK FARM LAYOUT V28 MOVE/RESTORE: ","PASS" if ok else "FAIL")
  var after: Dictionary=canonical(FarmSaveStore.snapshot(game));after.erase("territory");after.erase("farm_layout")
  ok=after==expected and ok
  print("APK TERRITORY EDITOR SMOKE: ","PASS" if ok else "FAIL")
+ game.persistence_enabled=false;Inventory.coins=1000;Inventory.items.wood=30;Inventory.items.stone=30;Inventory.items.wheat=2
+ ok=game.territory_editor.open() and ok;await frames(4)
+ var device: String=""
+ for y in range(23,27):
+  for x in range(17,29):
+   var plan: Dictionary=Territory.plan_place("farm","station_mill",Vector2i(x,y))
+   if plan.valid and Territory.apply_plan(plan): device=Territory.state.objects[-1].id;break
+  if device!="": break
+ game.territory_editor.cancel();await frames(5)
+ if device!="":
+  var object: Node2D=game.territory_world.objects[device];game.auto_move.navigation.rebuild()
+  var route: PackedVector2Array=game.auto_move.navigation.path_to({"kind":"object","object":object,"point":object.global_position})
+  if not route.is_empty(): game.player.position=route[-1]
+  await frames(4)
+  ok=Workshop.start(device,"mill_flour",2) and ok
+  GameClock.minutes+=90;GameClock.changed.emit()
+  ok=Workshop.claim(device,1) and not Workshop.claim(device,1) and Inventory.count("flour")==2 and ok
+  game.change_location("home",Housing.anchor("kitchen")+Vector2(0,32));await frames(5)
+  ok=Kitchen.cook("bread") and Inventory.count("bread")==1 and FarmSaveStore.valid(FarmSaveStore.snapshot(game)) and ok
+ else: ok=false
+ print("APK HARVEST REAL MILL / FLOUR / BREAD / CLAIM-ONCE: ","PASS" if ok else "FAIL")
  game.persistence_enabled=false;game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(4);get_tree().quit(0 if ok else 1)
 '''
 

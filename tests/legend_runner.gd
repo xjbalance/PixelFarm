@@ -205,7 +205,7 @@ func contracts() -> void:
 	await Flow.at(self,game,"farm",Vector2(1360,816))
 	check(LegendTrials.finish(),"风水灯三段实际机关校准完成")
 	check(LegendTrials.begin("joint"),"传说联合考察开始")
-	for crop in Catalog.crops: Hidden.grow(game,12,crop)
+	for crop in Catalog.FOUNDATION_CROPS: Hidden.grow(game,12,crop)
 	await depth_at(20)
 	await read()
 	await surface()

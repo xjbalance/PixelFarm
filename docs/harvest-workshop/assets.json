@@ -1,0 +1,2437 @@
+{
+  "count": 270,
+  "palette": "resources/presentation/world_palette.json",
+  "tree_source": "assets/world_scheme_c/bright/sprites/apple_tree.png",
+  "assets": [
+    {
+      "path": "assets/harvest/crops/blueberry.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "d1fddc63962e5fec2933fe334d7ee42db38d87bdbab411b0798a259157da51f0",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/cabbage.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "f6fa4335b0beb925314c0e2b468defa3d93f3e11efd93a767735aa509e190edd",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/chamomile.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "046696bcaf86bceaa3a3b1b8bc45c1869c39493a74692c43ee65c5cee4361ac8",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/chili.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "c9cc56908914bd9f9a4d84b2c5f8f4d3c51154b2eab94068696a1df15b1330c1",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/corn.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "ebdb15aabfdbd816c8064ff2bc36ab04a5174827e6d8298fa77b4c0c4c3ea8b3",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/cotton.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "66d0620bbb16f9ec92057d15c2f70815cff25563a9dffa40d2f10989f1b5e533",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/cucumber.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "6fa3625a5ca990d2fe31bb417a66669ffa9a09935cd2b4a571b47aefa0cf56b5",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/eggplant.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "9d1a74284f2341932a6dffd8eedbb724f5f8a2e8fd2d0356090c6a2e0a9f103e",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/frost_peas.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "2359331e3b3b332a73a8ca82a3e8cd4294abdb03753b4660c2e540a56598f168",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/garlic_shoot.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "abb2a776fee4e3a7b330b0ac6abb864d48878cf0072b2a030f5c86441f707841",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/grape.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "0723ebf9519df8c28ab527fa61116a76d6529a88816a451d62d8e651294b9f5f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/lavender.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "fa5f9fce06e6c84cd7f8a1f9ed12e36bc715860c2a7fa31a80fb98fc0b563184",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/peanut.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "5b6a80386373991ade0dafd65800706f114c25236a878f4b5257e5611b85a896",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/peas.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "d2677024c453e8ee7b5ba7c901b6e57418d4fd0557de9a59584bee17d773326a",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/pumpkin.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "494790a8a8bdd96b7c49575c4bea6de750cf935dd7d48018560381b8512f2f79",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/radish.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "412e99df00edc0d433554ebaa8893ca7b3ff0bdc0767345db44b68da2e5156e5",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/rapeseed.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "387033133487cbeefb7dcdbdf15bbd688d01f3e00d7fcb50a3ea5e0528d5711e",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/rice_crop.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "330e5cf900effa334a10f20b26b4ac1ebdea941f31d6a876550adaa5e2b23cb9",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/rose.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "6980156c4ae61127def3c5c67e8f9efbebe9219101215a344eef001f58d38b5f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/snow_radish.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "4410fdeb42e1faddc4c9da2caa23124effe839f30e1a1fba98e76a166d6be73a",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/soybean.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "be50819b6c4c008e53e5574186c3308bbe99a14a4a54f40e9515d390aa8d38b6",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/spinach.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "0180b80e295a7731f0898c7f898ffd5642576f98b0f79bafc83130bd88b476aa",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/strawberry.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "3d9f0c2ac7aed48284eccd8e2272456182de329ad747ec39d2c2405e383c7f6f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/sunflower_crop.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "22c837df16e144ba1dbd19c449aac9b7a604f5c3c7aca0d460dfb4013ecaca9e",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/sweet_potato.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "c05feaeba3f3e1f501ed1d392146ccc5aa9e3b370b4a9daabd3456afc90ceae3",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/tomato.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "0d971b2ef2121918cc8629053da49c70a8a92e55f713f559af78b66defe92199",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/watermelon.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "a68962502a27861a9f093993159ebd0495a21f5bfca9ee970f54c807bdf00fe3",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/winter_cabbage.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "f67c8c673ed6988ead1dc807579ae2378f057f481a80ce1cc9a46af075d2fb92",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/winter_kale.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "3683d5bddf601d4ac4e8bc97fb1ce545957ed2ff50ac3da386554d8935261fde",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/crops/winter_onion.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "28c7b48887b96260a992a3a0f0d9ffd339f7381f343336035f9c3fdf305877ed",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/item_atlas.png",
+      "size": [
+        640,
+        480
+      ],
+      "sha256": "1e538a672f8cb100ca89a6f58afa77368d1705143d7850179bab105b2b8994c7",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/apple.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "eec5a12bf48716928077bb2db36f16735d507a8a7ce8f12d987ab0711dbcd55d",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/apple_juice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8525a0e2dc3629018b660ff97df7be8693c0c1c84dec91b2d8be877a21823d29",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/apple_pie.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "6140ce1398cfe85414f477815da936ead5915ef89b76f2b1ceb4cb73ffa2fb8b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/apple_sapling.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "da21305264debe936c752df3311fab06a7d671455f35e0b66e1dfdda432a65af",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/blueberry.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ab4cef3e628adc285289185354b5097b15ace4405e83d8a2dabe8c55f870cc8b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/blueberry_jam.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ed0bff800cb17dff8c56dd6a200c416071be170a26cd36a71656ab7efdb7c243",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/blueberry_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "543c812793f0232bc00319474cea125ba8d293e902d2382133c9803eb61f2cb6",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/bread.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e950d6e5ce7989b3ba2b02a6103e6d235e44fd158d3fc25ab8de25a53b9b5c4b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/butter.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2c3d5fd72e74ef73e5feff843147166b69d376d6b4a75f08c03b98af07bf91dc",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cabbage.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "28cfd93bb828871715fff4231b92b58e96c1c40f008af4602dbdd23a4e33f0ad",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cabbage_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e04b5cd278d76d5853a53676b663e96c607aad9e05f8a34bd718b170ab381104",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cake.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "abab142d3004a6cf5c6120237bbb6c18bb30601d8182f0b6c21e5cbf29ca0920",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/canola_oil.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "d1726851711da5ee43329e78ad9970a57ef6a7643c552b11f9802a348689f727",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/chamomile.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "232ad8628100ed778146efc84d35352341f7cac24ab1be7f0df330359a6504e2",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/chamomile_dried.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "64bc8a4d39d1bc5600e6208cf2535745992fa02e257a1b1e90b13c646d40893f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/chamomile_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e2d4ebb23058fd9248943a04c79ff61030ce5c0877095ebbe687a05cce86dc1d",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/chamomile_tea.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "682b40732b40fb8a74aa7f290842b8f5156ac2b511f0f61321f6f402731ac87b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cheese_bread.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c2303616e267fc96dbf3778ef5d1b296fe461f0706f47efe53deccfc9fc90c1e",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cheese_table_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "67be31390b299fcf900d26eee33204d250cf09e8a58845c852df222c0141e8c3",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/chili.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "f7fe595a79b5c33a3b96ac31fff390d1cd5b14ac79721c84e9a97b9ab4a3c960",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/chili_sauce.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "be6e6d51c9292c413973690c23c85e6463de6faf19e32cf5270941df7561b23d",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/chili_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "df8cdb3d50d846be0149e06653628de7145b49750bdcd6aaf922d2760ef5ad78",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cooked_rice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "632cd01f7524011beedec98209e077a9c69786bb00fe2752123d80db13086df5",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/corn.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "66c82a3e4d52090f5e224a69cc82f21a36c00a6b398d2d05aa325f0e619b32eb",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/corn_bread.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8b33cd27c1a033c888f9a9947af16c209be1c92d8700a733d1190a4e0a727cbe",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/corn_cake.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "5f6b906e7134fcdf431c993a0d91f46bda5760817d152011fb974aa27f6ce47b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/corn_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "b1e3bb10d620a0618eb92b93888a97a012c9d03fb64f138d9aaacabb4a0235cc",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cornmeal.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e235c9b82fa1c66768f318e33393a534d1ae51e45f4d4c2eefacef9a9aa2393f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cotton.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "93c79a6e0ce34fb36b387e3549b38ff48cfb5310af8839c580cc7bfaef93848b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cotton_cloth.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "d05a10b99a490d2b9cb34cc27292e7599f1a931c01dea7752613dfd4b14d3729",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cotton_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "914a06233c2184d630e27d5590e6109cf9d65f3fd5eed9d343afb66d595735c6",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cream_stew.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "f0374be15ea12c83925159bf51f8b140a44abcaa5fbeb3e2b211f9db966a45fb",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cucumber.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "5c0760c3c2e3c22b827571cc381db69d5da7f1fc2553d9c5e312113e40e2d51d",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/cucumber_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "12dc42e3c757a2156b467c98d3f5387e10a52d24f077e865cd803928ce43390c",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/dried_eggplant.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "1c82e87f869ce505077f724a0306c09d3e78253ff59baca2c68e2349d552b8eb",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/dried_kale.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "4a776860dd07c3e23a2ac62403890887506badc3ff3df98dbb17838364f2459c",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/dried_pear.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "4ce997ac9a9758909ad852fcc2198cc80d79e7a7696081e1cb92623594ab10bf",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/dried_peas.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "4a776860dd07c3e23a2ac62403890887506badc3ff3df98dbb17838364f2459c",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/dried_spinach.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "4a776860dd07c3e23a2ac62403890887506badc3ff3df98dbb17838364f2459c",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/dried_sweet_potato.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "f4c2da7d4b1b9dec7d881ce8534b57e87219fcd968dd8a4b4f072e0b952b9b19",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/drying_rack_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "201efd6fb94014f78dce3bb661bfdf17f96290f4fb43ae9f111cc32f2499f4af",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/egg_table_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a73b529e526d9eb2359cd24faa363a536d1d2d37684cd145967db96f42f8bd57",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/eggplant.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a39e2245655998e889aec1bfc5e688bab6e4b1596112eab4cf91cc86c6bac615",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/eggplant_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ff4e6e04bb953c5bd14503e093ecff96918f6f4bbdb32e78cb45cc528060c76f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/farm_fish_soup.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "3fb2f55ea880d5cb619ab5cc7bd86ac355e6218d7e0b2bb67af7a5dd4a9e13c5",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/fish_rice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "79171abe3473d056d634dd23efc0fe9fa8f467acef40043d6d957c18092a9d1c",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/frost_pea_flakes.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "08f56c1dad85ec7c3bdde07a58602998a9a252b4bb1a9cb324dfa18617ae465f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/frost_peas.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "7ef33b32fbd5b4d05c18137a10c367e8a9991ccb822f86aaee7be3b4bfd79b85",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/frost_peas_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "f18fe6e7af75f96b19915702057406754042c3ecfc1c216120099490475b9abd",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/fruit_salad.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "0bfe7b4af6816c9b49e54edeba1cc55ad6f89380ec4eb836e9a02392f73e0fba",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/garlic_shoot.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "923303e0f103f65e39bab910a62854f110ff59e28c9fa2c10d5f260ba50ec35c",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/garlic_shoot_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "bcf411e9085cd8d98ff908a5863d84ac93965d0bac0fd14761ff74c6c1cf6fe3",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/grape.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "99b2a96bd9ae0a35c63943017d8ad3dea3afa5697ebedb38c4d1e4622471382f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/grape_juice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "b815d279734d95038d738bfc0dbc9df2531e31a485732ef18a93122307aafbd2",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/grape_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "9aaf05d113b322447a88bcaeaacc951d99f4830ec11df8d50b69354c09d5fa0e",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/herbal_tea.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "99c6e03dbe9d38cd21d16f09704c07528c89d97e0d538081141f10a1d51cbffe",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/jam_pot_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2e42908bb92c2d633586a4752e04a02c0f9d43d6fca815d758e644e4b0c31f02",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/juicer_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "b507444d3183cb1b58ca8265ff7d5b9039d9dbd891e54b53ca91931864d0ee0d",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/kimchi.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e24acec75442f00cab8d7db2faaff47bce3d3311797032754c12fba198009a65",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/lavender.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "9c1146c61b51d4422d6f9b7d36d9a21c891eb539705f81bcde47e2be97c56e79",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/lavender_bundle.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "17265ef4e1de69d9bea2529ae90447a2dce9cf461518811e327a7b595f4f73f2",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/lavender_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c66333852b2d9f88d0a5261f4abeeba8fe36af7bc4da49dee1233fd7c29b06f8",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/loom_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "18e24556ca887efe19171295fe3abe90988354251e563c4bb11b956b0e12f5b7",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/mayonnaise.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ad3fe6aaa6748d4421967c89d29303ddf4924d89d7063b336e9ec1a0313ee47e",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/mill_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "017a68f56278fc19a408dbce7502c16d9ac3bfe75102d7297126304f2f7afb5d",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/mixed_juice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c7d58b3ee85ab1e0e2433375468566baa3ec96d5120732fc7e1c45e68f585ce7",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/noodles.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "f1165ca4a9ee8961172a6ebb99d497f7f19dd5bca2b5323f367d6a2b52577933",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/oil_press_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "77fb52fcf56d9d1cbf30935564319228bd44e331d8f4f8999ec964bcd02c781c",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/onion_flakes.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "4a776860dd07c3e23a2ac62403890887506badc3ff3df98dbb17838364f2459c",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/orange.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "919eff0fb44e5c4a99cf48d139d002f70909f3adb71ded3340e9f7db58fad002",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/orange_juice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a66cef505b5eb6862b433eb1ba327774467f7ae84d2f28dafb21c05de10dc32e",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/orange_sapling.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "da21305264debe936c752df3311fab06a7d671455f35e0b66e1dfdda432a65af",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/peach.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "98ed0342025365476f91e83c98f9c195dcf64bfa1be76dde6d7b58e192db804d",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/peach_jam.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "765ac0305101e48fb94142285c3c8b14b022310a0aaf354bf86d0dc8ea7496b3",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/peach_sapling.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "da21305264debe936c752df3311fab06a7d671455f35e0b66e1dfdda432a65af",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/peanut.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "66ea1f412ca6c33373991c6a0ecbd63ae111d3140007761fee8c57fe6365502e",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/peanut_oil.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "260116518cc51552fc8eda1ee3b562c8760a9eae49d6a7706763bb647eadfbd6",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/peanut_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "0d774675ec4b53702059e1a443461e6805f27a15230fc09b9690860e6743ef14",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/pear.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "5fb5e0970a8d77a8297dc9085f11530c672b6a3c7e22190e7fa61f8072db47cf",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/pear_juice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "b47ecd41f1aad857a48ed86ff506d86a5a4b464b16e7d6989c3713029cc2dcbe",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/pear_sapling.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "da21305264debe936c752df3311fab06a7d671455f35e0b66e1dfdda432a65af",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/peas.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "960fbb34e40d6f156b4b715619f1bc2f1d716de18b73f0752ac2d251514c1921",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/peas_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "52ebe387c9628a3fd4471629fbc837c2aead6ba6c379425b533214e42c4f505f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/pickle_jar_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "4769802d6e4de26ae31490a1c4c30c89ad64575c6f9e58a23e6fd02b71c632c6",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/pickled_cucumber.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "9934dfc8714a172bff9c5f1fc9df5301e8d2f665841c961059dc45108c13e428",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/pickled_radish.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "6212c7e938938d00cf760b4d63897d4060bcb61ce5538efac7ce7e6ab1b1949b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/pumpkin.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "fab10131b34a62c987db7a959e2589023a18be6b9d04dcd2a86921a59d1fb231",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/pumpkin_pie.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "463845cbef7e1b03ec05cc4050d1483bc09ef821470f19e5890bfbc5825eb1a9",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/pumpkin_puree.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "566cf02ead265e1ff268b8b426224b47f235cbc5f1743e0d7c101d83c7ee8713",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/pumpkin_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "cba6ec490be5914362d0f8c248c1ca33dcb4e4fab3faf1a40b95291ebcee20a6",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/radish.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "4ef699f973f70e3dc55bc464ab60aeb063ee23cdfd9dfb2e6fdda77c56d4a1cd",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/radish_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "5e93c04e1ba81f93a238da48f3f211ac97b28b4fd3b571ce9d051ba54027f404",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/raisins.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "1c82e87f869ce505077f724a0306c09d3e78253ff59baca2c68e2349d552b8eb",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/rapeseed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "09a699b4a7a3db06a0c18c4635a21ff6369f46968424308e7ea81caacee68944",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/rapeseed_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "0f7a90a7f89a1fbc6408c2bddda2302206dc1ec8e9e596204716d9be770fdd6b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/rice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e235c9b82fa1c66768f318e33393a534d1ae51e45f4d4c2eefacef9a9aa2393f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/rice_ball.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "291421c5f6117d93dbb84fdc3510ee38a546f60d7046e1f09c954cb8a2051c09",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/rice_crop.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e161a0e5d6f88c7471c178ca09c51d4958a6dcfd9234b71420a79f5d4b8456d8",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/rice_crop_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "917bd6eeddb448f3ae4b31382ab9008142afa43377f6be3474ecf5423e5b917a",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/roast_sweet_potato.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "14dff3207c1e9850f66b385067f3570d920f6a3183ae9b8b3a9653bdf33b2891",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/rose.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "cd62f8531c97a62cad03723379754b7e624313b0614b88d38c2d0cfe7e365109",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/rose_perfume.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "dad15ea6ca33694df5c60ad109791e029ad4912f2fb6f025eed6b0ac381a391e",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/rose_petals.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2b6ecf023e95a1d15a1b5ecea3bc2a1539491dbb1a2c491dcdef161ed81a0aa8",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/rose_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "4fb22d2fe28f56a92460e7082ffbe18c85eba1c269da789d3247414d14439912",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/rose_tea.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "265fbd62107edf64ab65f84b86ec4cc9595ec90cf3061e1b217b2198305aaac8",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/sachet.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "18f2044628eeb2bc08ecf632556045bf904b45a7428c6dcf2a9eb9376593a81b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/smoker_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "269961d6ba879ece8c54920a1ba9696a338f10b186dd85a410214bcb2ea46b05",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/snow_pickle.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "6212c7e938938d00cf760b4d63897d4060bcb61ce5538efac7ce7e6ab1b1949b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/snow_radish.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a376938917da5d1ad3d0e20c1f5836afae7a66c217fa5ed6cebcc9827c5200e7",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/snow_radish_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "6a28c35d3f9f8f0ad1d010297d66b9c2ea0444340370464cd061f0bc2cb6c2ff",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/soup_herbs.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "4a776860dd07c3e23a2ac62403890887506badc3ff3df98dbb17838364f2459c",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/soybean.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "963bf5d04067473b5222119b112f472fcfe3352dc96f4eb7a426ad37aeee0cc3",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/soybean_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "5332373f53809ea2259aad1a17115f4ab38b0ae59e5af739370dc7aca24177f2",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/spinach.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "0c29243bae9b88068a518cac2f8fb5bbe24a4579b6a6c8ad7955549cee2d3989",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/spinach_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "656f4f92a2766c0fe044f067a523a1c4c8e45687d31e9f2958a8b62ebbbe211b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/strawberry.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "089ba2f1f991d623cc22ed5c895af39a8ee6a191d7bfbef951ecdc144bdc0b12",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/strawberry_cake.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "7bc31739d5a7a090d2e8c301cfb387ad48abcfa511c40332332a4345bb409ad9",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/strawberry_jam.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "7d92c216d8d24efee9eaee988c05fd661bebedf3e64694216a280df59237ac45",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/strawberry_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2a8b6d7d3c869cde6f981805ff62ec15520755ec5fe1f5a409294a8600d27582",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/sunflower_crop.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "fda5d604efb6c6b10d39a284fafc6c37a0961877f0cee54624a30f2410f21d85",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/sunflower_crop_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ddd030cb7b645406e323c6220d267541e503e616e35d092d6b779abdc7fc659a",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/sunflower_oil.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "29f3f41da38f189cfafb0408ca7d8c2fb3773eaee2d63d6ecab355378ee3327d",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/sunflower_salad.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c1daece0637db85e62717fdfb6ded8b6659b8683a718a9f310a5753ea1ba4d54",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/sweet_potato.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ea62b4467069b7be65954e8718a44fbb5e3c88c773a45a5517d268d1db4f1226",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/sweet_potato_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "047bf7b359d425c80b310e897a626b664bfe02d9dc700ee27270ecec39ef9e46",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/tofu.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "cae0334422a0c8b7b6e785966920be6bc0ba0965380596f43ead46f3486f7e28",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/tofu_soup.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "b0b4e4c8329c6cff332c47cb7af903160bf603e9ec3b219859964cf4bbbc713a",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/tofu_vegetables.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "86db8ba3e33d66fb3615531ac5aefb21ab5012170b615f98360d4eed6d6c42a4",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/tomato.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "72f801b2cf07b9df9d36706e942f04c8c53307ddfc314910d99569f7ae0a54e8",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/tomato_pasta.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "118452fe9e19872c8a57aaca12f8fd5482d124f802d80a8760859d73ecd95dd8",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/tomato_sauce.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a7a88bd48294bbdd6cf88abe39f76bdffece10b559af02c6c25c4a9238810edf",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/tomato_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a889d3cd796e44f58a704a86453a030af09507dda44d6d328e94e9066ae49cd7",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/vegetable_pancake.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "949383a81505b9fc03a5977c8542403ae0f8afcdb770c5e6e4cd2962688ad701",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/vegetable_soup.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "6f35c42a523db22329321758a1ee30827021abc4c827ac71f76c9c7b30951d56",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/watermelon.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "51e6787459b61e58d54ee0fb0fba92f6b0040cf33585f9a61b6e7465e03932b3",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/watermelon_juice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "b5433bcdbdc41c551be108cd9da0c7479f22d40247991ddc35328c9228dffcef",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/watermelon_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "7be62235422da34f47e693f3f375a2caf6cc77635921ff9effb846dcfa145c8f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/winter_cabbage.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e7559e320b80fdd048b942f8b65e30a2fdfae3ece3ce7bfb71d0eafb2f39d2b7",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/winter_cabbage_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "319762cbb6063a17aeec3198eddee8abc1e819810b9da023534a303326269aad",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/winter_kale.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "82b0d004368cf422f9ad8f2e5f7e8c61816bcbad624d7de867e44dae8c9cbaf4",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/winter_kale_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "3ba44c0718f901888f981c8b621c70040bb12c33f851ea13c730af15d1721bf4",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/winter_onion.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "eb54e2dd3e6ffdd7adf73063917e70e237092dd9dbf39b887f74655166c9a2bf",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/winter_onion_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "509dd26b451fa4abfdd35317bc385b1c425a1da60c15d63993d2c1140c8598df",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/winter_pickle.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a9adf47116ecc18a353ccc40bbb0b658bef96616839c8018b6ed029f37eed2e9",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/winter_soup.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e0113f4b5a6dd79073ea51f22fad53a8d2e584894126a2227756a7941a866ed0",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/wool_cloth.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "5dcf58b0515d71277786305921737466db6087982d6ae2a19e6864e18e7ecd52",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/items/yogurt.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "682b40732b40fb8a74aa7f290842b8f5156ac2b511f0f61321f6f402731ac87b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_fruit.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "7abd4f3e4ab0607f34ee994bc6278199709ec9fe8be49a22b0afde93913b8661",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_fruit_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "f74010da4252260ffd2e22175ef8d5a48aff16c48b1763c1b063d1a8245a49b3",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_fruit_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ff4ec2a773ef3f14eb7c4455d0f15233f76f36b4eecb305f9574238055d2ba14",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_fruit_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "8f8981f5f9369c13445b4297118bd189d2620ffcc16bcfb02514f7137ffb56ef",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_fruit_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "5adb27ed2d05aa6e4915c3cfcbc5c7609afd7cceb748b79489a9f2cbbc571bb5",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_growing.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "5e59913b3f73811218d5df606c71195adae6fed3d50e32efd10b046ed1b1b762",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_growing_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46582aba23af2372ad4375ec19b44a9c69ecaf29562280893052b962c7705a2c",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_growing_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "c926b2f7b56213427bc1f3092ff8298848e0e11689adb8020bf41a542fc0132a",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_growing_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "e6863449068ad943b6c9256b1fb819f4ff7c42b67f83f0ced7b080dff0f0ee85",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_growing_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ca73e87e95e2142206432fac235519d81ed3ab947ceeeca52e08424bcc12f2f0",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_mature.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "eaa0c0bdf3e3a5056587dfa6d44a756d79b02c4b878edbaaf6285bcba79797b7",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_mature_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "90964ba4a5244e797af0eba99a5a4e305305589328215a100612dec2f8f26211",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_mature_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1880cc726f9dc48e580096b81d776f330791fcd16af1dce48fe09ab41437bed7",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_mature_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "823f013c8bf2835e3f01e9fc781b2dd288cd71e46bf0a64ceb1f6af6f9f48373",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_mature_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "954787164bb2626fd0d75b4e3c8eb287105159d1e5180fb9275854cc66acea8e",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_young.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46939d9e37f374b4f4bff6dc0d102fbe5073e3f463a139888d13ad33b834ba1d",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_young_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ef403d3cc9e518d5100f7c6fdbc4a13128b0a5cff4d2a18bbb7dd249d29c5aff",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_young_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "23c4c7799875316edbd599928da63de2b39de8ef1574841b678a8ddedde76098",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_young_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "9ecdbd5bab993e8205ba421e0225667dc128988841fe3df0bbb41f0648c7e0ed",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_young_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1b948e15a268aaf04ec7fbf31d8f98faf127f1ac66c8e51f6bcca33670058220",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_fruit.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ccb1b3d9e24e8232e883743b2b683e40934fb805db2c9d5ecfb96522f6f22488",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_fruit_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "d8a1525f9f35b632974fdf446698732909976ebca1b720cc9b990fcb0fe808d2",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_fruit_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "0884af5ab0f015ece296994d7995aba10eafb327001eba5c7901aed45f4eee36",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_fruit_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "03635eeb102f8274aaa2183e96e95c4e1ebd12a2d45a6e04afd7d35e40585a8e",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_fruit_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "835f23abaf8027d0e856e9419f9644cf5a186becc36d5ddf5621b0bb4259590c",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_growing.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "5e59913b3f73811218d5df606c71195adae6fed3d50e32efd10b046ed1b1b762",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_growing_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46582aba23af2372ad4375ec19b44a9c69ecaf29562280893052b962c7705a2c",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_growing_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "c926b2f7b56213427bc1f3092ff8298848e0e11689adb8020bf41a542fc0132a",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_growing_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "e6863449068ad943b6c9256b1fb819f4ff7c42b67f83f0ced7b080dff0f0ee85",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_growing_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ca73e87e95e2142206432fac235519d81ed3ab947ceeeca52e08424bcc12f2f0",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_mature.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "eaa0c0bdf3e3a5056587dfa6d44a756d79b02c4b878edbaaf6285bcba79797b7",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_mature_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "90964ba4a5244e797af0eba99a5a4e305305589328215a100612dec2f8f26211",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_mature_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1880cc726f9dc48e580096b81d776f330791fcd16af1dce48fe09ab41437bed7",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_mature_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "823f013c8bf2835e3f01e9fc781b2dd288cd71e46bf0a64ceb1f6af6f9f48373",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_mature_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "954787164bb2626fd0d75b4e3c8eb287105159d1e5180fb9275854cc66acea8e",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_young.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46939d9e37f374b4f4bff6dc0d102fbe5073e3f463a139888d13ad33b834ba1d",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_young_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ef403d3cc9e518d5100f7c6fdbc4a13128b0a5cff4d2a18bbb7dd249d29c5aff",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_young_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "23c4c7799875316edbd599928da63de2b39de8ef1574841b678a8ddedde76098",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_young_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "9ecdbd5bab993e8205ba421e0225667dc128988841fe3df0bbb41f0648c7e0ed",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_young_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1b948e15a268aaf04ec7fbf31d8f98faf127f1ac66c8e51f6bcca33670058220",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_fruit.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "b35b4674f23e5d9360205ceaf21e16bc8b19232ad13fd2d590de68488ed2a6ec",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_fruit_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "f9da092b053cb572b3b659b37338550c54b464d9d67962bf90fe80772808af41",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_fruit_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "dd334a968f6ee18877c1e98891571989c23b32dda7516f2a07f0a5e8fdcef05b",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_fruit_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "84fc128d5953151a053acb861cd00b861a6754959bf21aae37648f5a7dc19d84",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_fruit_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "014ba5b1ed8fa4ae8e0b0ab8c7fe95f7e2d70100add21e375175019e35151979",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_growing.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "5e59913b3f73811218d5df606c71195adae6fed3d50e32efd10b046ed1b1b762",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_growing_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46582aba23af2372ad4375ec19b44a9c69ecaf29562280893052b962c7705a2c",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_growing_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "c926b2f7b56213427bc1f3092ff8298848e0e11689adb8020bf41a542fc0132a",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_growing_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "e6863449068ad943b6c9256b1fb819f4ff7c42b67f83f0ced7b080dff0f0ee85",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_growing_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ca73e87e95e2142206432fac235519d81ed3ab947ceeeca52e08424bcc12f2f0",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_mature.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "eaa0c0bdf3e3a5056587dfa6d44a756d79b02c4b878edbaaf6285bcba79797b7",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_mature_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "90964ba4a5244e797af0eba99a5a4e305305589328215a100612dec2f8f26211",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_mature_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1880cc726f9dc48e580096b81d776f330791fcd16af1dce48fe09ab41437bed7",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_mature_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "823f013c8bf2835e3f01e9fc781b2dd288cd71e46bf0a64ceb1f6af6f9f48373",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_mature_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "954787164bb2626fd0d75b4e3c8eb287105159d1e5180fb9275854cc66acea8e",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_young.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46939d9e37f374b4f4bff6dc0d102fbe5073e3f463a139888d13ad33b834ba1d",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_young_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ef403d3cc9e518d5100f7c6fdbc4a13128b0a5cff4d2a18bbb7dd249d29c5aff",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_young_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "23c4c7799875316edbd599928da63de2b39de8ef1574841b678a8ddedde76098",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_young_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "9ecdbd5bab993e8205ba421e0225667dc128988841fe3df0bbb41f0648c7e0ed",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_young_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1b948e15a268aaf04ec7fbf31d8f98faf127f1ac66c8e51f6bcca33670058220",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_fruit.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "df44440c8343749a21e55b4e13795f376c7a26ef3c48a0dad26ec162a757af6c",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_fruit_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "4e204209515735d7b079924fea4795eb072bdb0335981f86444f8cf99d180ef9",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_fruit_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "82351446c78d667ba0bbdd846842b495a103f248bfbaf4db94b21b45dc41bee8",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_fruit_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "05dfc0ab18c43226d3f0477f2c6fdfb9959c65ca1bb0a54f8bbac8b5d588ba94",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_fruit_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "a4423f0ab9a44d7555e580b797d8ee5aed560a04503f0580444840e038d07124",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_growing.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "5e59913b3f73811218d5df606c71195adae6fed3d50e32efd10b046ed1b1b762",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_growing_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46582aba23af2372ad4375ec19b44a9c69ecaf29562280893052b962c7705a2c",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_growing_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "c926b2f7b56213427bc1f3092ff8298848e0e11689adb8020bf41a542fc0132a",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_growing_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "e6863449068ad943b6c9256b1fb819f4ff7c42b67f83f0ced7b080dff0f0ee85",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_growing_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ca73e87e95e2142206432fac235519d81ed3ab947ceeeca52e08424bcc12f2f0",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_mature.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "eaa0c0bdf3e3a5056587dfa6d44a756d79b02c4b878edbaaf6285bcba79797b7",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_mature_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "90964ba4a5244e797af0eba99a5a4e305305589328215a100612dec2f8f26211",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_mature_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1880cc726f9dc48e580096b81d776f330791fcd16af1dce48fe09ab41437bed7",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_mature_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "823f013c8bf2835e3f01e9fc781b2dd288cd71e46bf0a64ceb1f6af6f9f48373",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_mature_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "954787164bb2626fd0d75b4e3c8eb287105159d1e5180fb9275854cc66acea8e",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_young.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46939d9e37f374b4f4bff6dc0d102fbe5073e3f463a139888d13ad33b834ba1d",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_young_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ef403d3cc9e518d5100f7c6fdbc4a13128b0a5cff4d2a18bbb7dd249d29c5aff",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_young_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "23c4c7799875316edbd599928da63de2b39de8ef1574841b678a8ddedde76098",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_young_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "9ecdbd5bab993e8205ba421e0225667dc128988841fe3df0bbb41f0648c7e0ed",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_young_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1b948e15a268aaf04ec7fbf31d8f98faf127f1ac66c8e51f6bcca33670058220",
+      "source": "derived from existing supplied tree silhouette; nearest-neighbor growth stages and shared seasonal palette"
+    },
+    {
+      "path": "assets/harvest/stations/cheese_table.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "52a7019d28c9e310db553d3d99830aa8da2606280891b4b119363e7b0adc67f1",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/stations/drying_rack.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "62cb702d25d78b507418d7dc274f7d86faaab6d9b27953eac3e709efff229590",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/stations/egg_table.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "ca8db903aa5f9b2c0180287e0140297e34cc46f2d2d14ba7c107af823bdae6dc",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/stations/jam_pot.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "8e34536dd16251861bceeb711961dfbc00584b5f1dbd5ec182c29db6338f2fbf",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/stations/juicer.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "3e00173d6d3d2de0523dd4aab8d397e10acd849ecfbd7c3c64f8ffd09d49d52b",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/stations/loom.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "2b9ee7e413ff503daea1ac5c471b6393e266f2ba2be7703a2c47d639bc1f306f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/stations/mill.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "d5e90c4a366bcae278482ef5fe3acba200e3ae8fef7417b5e8d877b4465c1a58",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/stations/oil_press.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "16dc5074d04388abdb990488ab675caebabdcf250b73342877f2965913c7012f",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/stations/pickle_jar.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "840425bf4e585b345d6b60f30ac99e987a233a7a16762a73a235f7d92344944e",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/harvest/stations/smoker.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "9015360bfcb8c9c9c40060cc48207a5cb76e816d683d2c18fd3a0ca45ca7e6d2",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/housing/cotton_chair.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "497f7823507dcbdbbb302f1e7ec19dc7fc80cb63daf08d701f04cf570b9dca85",
+      "source": "original code-drawn pixel extension using current world palette"
+    },
+    {
+      "path": "assets/housing/wool_rug.png",
+      "size": [
+        64,
+        64
+      ],
+      "sha256": "066d1ffd49766ea013b6555136ed4048ce0afb3577272f8f0f716e18f5de1a51",
+      "source": "original code-drawn pixel extension using current world palette"
+    }
+  ]
+}

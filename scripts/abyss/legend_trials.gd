@@ -81,7 +81,8 @@ static func cooperate(id: String) -> bool:
 	var c: Dictionary=LegendState.state.contract
 	if id in c.coop: return false
 	if id=="linya":
-		for crop in Catalog.crops:
+		# 旧三作试炼的条件固定，不随新增目录扩大。
+		for crop in Catalog.FOUNDATION_CROPS:
 			if int(c.harvest.get(crop,0))<12: return false
 		if not Inventory.exchange({"wheat":12,"potato":12,"carrot":12},{},0): return false
 	elif id=="zhou" and not StarStory.has("vent_repaired"): return false
@@ -97,7 +98,7 @@ static func finish() -> bool:
 		"management":
 			var r: Dictionary=LegendState.data.trials.management
 			var kinds := 0
-			for crop in Catalog.crops:
+			for crop in Catalog.FOUNDATION_CROPS:
 				if int(c.harvest.get(crop,0))>=int(r.harvest_each): kinds+=1
 			ok=kinds==3 and c.plants<=int(r.seeds) and c.budget<=int(r.budget) and c.sales-c.budget>=int(r.profit) and GameClock.day-c.day<=int(r.days)
 		"planning": ok=c.fabricated and c.wood<=24 and c.stone<=16 and GameClock.day-c.day<=4

@@ -148,10 +148,10 @@ func legacy_and_restart() -> void:
 	await reset();var old: Dictionary=snapshot();old.version=26;old.erase("farm_layout")
 	var normalized: Dictionary=FarmSaveSchema.normalize(old)
 	check(not normalized.is_empty() and normalized.kitchen==old.kitchen and normalized.social==old.social and normalized.ecology==old.ecology and normalized.fishing==old.fishing,"v26旧档直接认可已保存成就，不重置四项业务记录")
-	check(FarmSaveStore.restore(game,normalized),"旧档正常恢复到当前v27");await frames(3)
+	check(FarmSaveStore.restore(game,normalized),"旧档正常恢复到当前存档格式");await frames(3)
 	check(Xiaojing.marriage_goals_ready(),"旧档已完成的条件无需重新制作、钓鱼或交任务")
 	var path: String="user://marriage-mastery-proof.json"
-	check(FarmSaveStore.write(game,path) and FarmSaveStore.read(path).version==27,"保存继续使用v27，没有新增持久化字段")
+	check(FarmSaveStore.write(game,path) and FarmSaveStore.read(path).version==FarmSaveStore.VERSION and not FarmSaveStore.read(path).has("marriage_mastery"),"按当前schema保存，婚礼准备继续复用原业务记录")
 	var expected: Dictionary=snapshot()
 	game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(4)
 	game=load("res://scenes/main/main.tscn").instantiate();game.persistence_enabled=true;game.save_path=path;add_child(game)

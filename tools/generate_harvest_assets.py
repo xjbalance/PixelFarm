@@ -29,6 +29,12 @@ def produce(id,shape=None):
         d.line((15,27,16,10),fill=CREAM if shape=='lettuce' else LIGHT,width=2)
         if shape=='kale':
             for x,y in [(6,18),(10,11),(22,13),(24,22)]:d.rectangle((x,y,x+3,y+3),fill=LIGHT)
+    elif shape=='leaf':
+        d.line((16,29,16,10),fill=LEAF,width=2)
+        for points in [[(15,26),(8,23),(4,17),(5,9),(10,7),(14,15)],[(17,25),(23,23),(28,15),(26,7),(21,9),(18,16)],[(14,22),(10,12),(12,4),(17,2),(21,7),(19,16)]]:
+            d.polygon(points,fill=LEAF)
+            d.line((points[0][0],points[0][1],points[3][0],points[3][1]),fill=LIGHT,width=2)
+        d.line((12,28,20,28),fill=P['wood_earth'][3],width=2)
     elif shape in ['root','snowroot','tuber','onion']:
         col=CREAM if shape in ['root','snowroot','onion'] else P['roof'][2]
         d.polygon([(12,10),(22,10),(24,17),(18,26),(11,28),(9,21),(9,15)],fill=INK)
@@ -58,6 +64,8 @@ def produce(id,shape=None):
             for x in [11,17,23]:d.arc((x-4,11,x+4,27),270,90,fill=LEAF if shape=='melon' else P['roof'][2],width=2)
         if shape=='peach':d.arc((9,11,19,27),270,90,fill=P['flower'][0])
         d.line((16,11,18,6),fill=P['wood_earth'][0],width=2);leaf(d,18,8,1)
+        if shape=='tomato':d.polygon([(10,10),(14,9),(12,6),(17,9),(22,7),(20,11),(23,13),(17,12),(12,14)],fill=LEAF)
+        if shape=='apple':d.line((15,11,17,13),fill=P['roof'][1]);d.line((9,16,10,20),fill=P['flower'][-1],width=2)
     elif shape in ['cluster','grape','beans','peanut']:
         col=P['star'][2] if shape in ['cluster','grape'] else P['gold'][3]
         coords=[(10,11),(20,10),(15,18),(9,22),(23,21)] if shape!='grape' else [(10,10),(18,10),(8,16),(16,16),(21,16),(12,22),(18,22),(15,26)]
@@ -152,6 +160,22 @@ def product(id,info):
             for x,y in [(10,14),(17,17),(22,14),(13,20)]:d.rectangle((x-2,y-1,x+2,y+1),fill=hi)
         else:
             for x,y in [(10,15),(19,14),(16,19)]:d.rectangle((x,y,x+3,y+2),fill=GREEN if shape=='salad' else P['roof'][4]);d.point((x,y),fill=hi)
+    if id=='corn_bread':
+        for x,y in [(11,13),(15,16),(21,12),(22,18)]:d.rectangle((x,y,x+2,y+2),fill=P['gold'][-1]);d.point((x+2,y+2),fill=P['gold'][0])
+    elif id=='cheese_bread':
+        d.polygon([(16,9),(25,12),(20,18)],fill=P['gold'][-1]);d.rectangle((20,12,21,13),fill=P['gold'][0]);d.point((21,15),fill=P['gold'][0])
+    elif id=='apple_pie':
+        for x in [11,16,21]:d.arc((x-3,12,x+2,20),250,90,fill=CREAM,width=2)
+        leaf(d,22,13,1)
+    elif id=='tofu_vegetables':
+        for x,y in [(10,15),(17,14),(19,18)]:d.rectangle((x,y,x+4,y+3),fill=CREAM);d.line((x,y+3,x+4,y+3),fill=P['cream'][2])
+    elif id=='sunflower_salad':
+        for x,y in [(10,15),(16,16),(20,13)]:leaf(d,x,y,1,LIGHT)
+        for x,y in [(9,18),(17,13),(20,19)]:d.rectangle((x,y,x+1,y+1),fill=P['gold'][-1])
+    elif id=='farm_fish_soup':
+        d.polygon([(10,16),(8,13),(8,20),(12,18),(20,20),(24,16),(20,14)],fill=P['stone'][1]);d.line((13,15,20,15),fill=P['cream'][-1]);d.point((21,16),fill=INK)
+    elif id=='mixed_juice':
+        d.line((19,19,23,4),fill=P['gold'][-1],width=2);d.line((23,4,28,4),fill=P['gold'][-1],width=2);d.ellipse((4,10,13,19),fill=P['roof'][4]);d.arc((5,11,12,18),20,310,fill=CREAM)
     if shape in ['jar','bottle','perfume']:
         for recipe in D['processing'].values():
             source=next(iter(recipe['input_items']))

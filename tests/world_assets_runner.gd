@@ -37,6 +37,6 @@ func run() -> void:
 	await frames(5)
 	check(FarmSaveStore.snapshot(game).plots==original.plots and FarmSaveStore.snapshot(game).resources==original.resources and Housing.snapshot()==original.housing,"美术接入保留农田、资源、家具和储物状态")
 	var restored:=FarmSaveStore.snapshot(game)
-	check(FarmSaveStore.VERSION==27 and restored.has("farm_layout") and restored.farm_layout==original.farm_layout and FarmSaveStore.valid(restored),"v27布局存档完整恢复，原进度和新增布局字段均合法")
+	check(restored.version==FarmSaveStore.VERSION and restored.has("farm_layout") and restored.farm_layout==original.farm_layout and FarmSaveStore.valid(restored),"v27布局存档完整恢复，原进度和新增布局字段均合法")
 	print("WORLD ASSETS RESULT: %d checks, %d failures" % [checked,failed])
 	game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(4);get_tree().quit(1 if failed else 0)

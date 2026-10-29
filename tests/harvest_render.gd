@@ -15,7 +15,8 @@ func run() -> void:
 		var id: String=ids[i];var cell:=Vector2i(18+i%6,17+i/6)
 		game.farm.plots[TerritoryCatalog.key(cell)]={"crop":id,"days":Catalog.crops[id].growth_days,"watered":true}
 		Inventory.items[id]=8;Inventory.items[id+"_seed"]=10
-	game.farm.queue_redraw();game.player.position=Vector2(704,704);game.camera_rig.follow_now();await frames(5)
+	game.farm.queue_redraw();game.player.position=Vector2(704,608);game.camera_rig.follow_now();await frames(5);await shot("after-farm")
+	game.player.position=Vector2(704,704);game.camera_rig.follow_now();await frames(5)
 	await shot("farm-workshop")
 	game.hud.root.hide();game.camera_rig.set_physics_process(false);game.player.get_node("Camera2D").zoom=Vector2(.7,.7)
 	game.player.get_node("Camera2D").global_position=Vector2(768,512);game.player.get_node("Camera2D").force_update_scroll();await frames(5);await shot("farm-panorama")
@@ -64,7 +65,7 @@ func run() -> void:
 	game.hud.kitchen_panel.open_panel();game.hud.kitchen_panel.recipe_page=1;game.hud.kitchen_panel.selected_recipe="cake";game.hud.kitchen_panel.refresh();await shot("kitchen-recipes");game.hud.close_active_panel()
 	game.hud.inventory_panel.open_panel(false);await shot("crops-inventory");game.hud.close_active_panel()
 	var font: Font=load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc");var glyphs_ok: bool=true
-	for row in HarvestCatalog.data().items.values():
+	for row in HarvestCatalog.data().items.values()+HarvestCatalog.data().crops.values():
 		var text: String=str(row.name)+str(row.description)
 		for i in range(text.length()):
 			if text.unicode_at(i)>32 and not font.has_char(text.unicode_at(i)): glyphs_ok=false

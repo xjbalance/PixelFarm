@@ -1,5 +1,6 @@
 extends Node
 ## 统一只读物品目录；旧作物资源与矿物/养殖ID仍是来源，不复制或改写玩家物品。
+const FOUNDATION_CROPS: Array[String]=["carrot","potato","wheat"]
 var crops: Dictionary = {}
 var materials: Dictionary = {}
 var aquaculture_items: Dictionary = {}

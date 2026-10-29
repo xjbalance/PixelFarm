@@ -135,7 +135,7 @@ def build():
         exe = DEST / 'PixelWorld.exe'
         shutil.copyfile(pending, exe)
         shutil.copyfile(pack, DEST / 'PixelWorld.pck')
-        readme = f'''像素世界 {VERSION}《开拓家园》· Windows 64位版
+        readme = f'''像素世界 {VERSION}《丰收工坊》· Windows 64位版
 
 1. 将整个 ZIP 解压到普通文件夹。
 2. 双击 PixelWorld.exe 开始游戏，无需安装 Godot、Python 或 .NET。
