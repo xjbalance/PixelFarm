@@ -13,9 +13,11 @@ ROOT = Path(__file__).resolve().parents[1]
 ENGINE = ROOT/'.tools/Godot_v4.3-stable_linux.x86_64'
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--before', action='store_true')
+parser.add_argument('--ref', default='HEAD', help='Git baseline used with --before')
+parser.add_argument('--output', type=Path, help='Keep a separate comparison set')
 args = parser.parse_args()
 phase = 'before' if args.before else 'after'
-output = ROOT/'docs/need-assets'/phase
+output = args.output.resolve() if args.output else ROOT/'docs/need-assets'/phase
 output.mkdir(parents=True,exist_ok=True)
 with tempfile.TemporaryDirectory(prefix='world-art-capture-') as tmp:
     profile = Path(tmp)/'profile'
@@ -23,7 +25,7 @@ with tempfile.TemporaryDirectory(prefix='world-art-capture-') as tmp:
     if args.before:
         project=Path(tmp)/'original'
         project.mkdir()
-        data=subprocess.check_output(['git','archive','HEAD'],cwd=ROOT)
+        data=subprocess.check_output(['git','archive',args.ref],cwd=ROOT)
         with tarfile.open(fileobj=io.BytesIO(data)) as archive:
             archive.extractall(project)
         for name in ['world_assets_capture.gd','world_assets_capture.tscn']:
@@ -38,7 +40,8 @@ with tempfile.TemporaryDirectory(prefix='world-art-capture-') as tmp:
             (ROOT/'builds/need-assets-before-import.log').write_text(result.stdout)
             if result.returncode or 'SCRIPT ERROR:' in result.stdout: raise RuntimeError('Baseline import failed')
         result=subprocess.run([str(ENGINE),'--path',str(project),'--audio-driver','Dummy','--fixed-fps','60','--max-fps','0','res://tests/world_assets_capture.tscn','--','--capture-dir='+str(output)],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=240)
-        (ROOT/f'builds/need-assets-{phase}-capture.log').write_text(result.stdout)
+        log_name = 'world-'+output.parent.name+'-'+output.name if args.output else 'need-assets-'+phase
+        (ROOT/f'builds/{log_name}-capture.log').write_text(result.stdout)
         print('\n'.join(x for x in result.stdout.splitlines() if 'CAPTURE' in x or 'ERROR' in x))
         if result.returncode or any(x in result.stdout for x in ['ERROR:','SCRIPT ERROR:','instances leaked']): raise RuntimeError('Capture failed, see builds log')
     finally:

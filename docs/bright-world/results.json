@@ -1,0 +1,1022 @@
+{
+  "baseline": "f5a02037689792267bf059226858b593ccee205b",
+  "source_assets": 97,
+  "original_files_unchanged": 150,
+  "palette_colours": 89,
+  "derived_pngs_geometry_and_alpha_verified": 384,
+  "metrics": {
+    "before": {
+      "grass_patch": {
+        "mean_rgb": [
+          139.94,
+          141.14,
+          81.99
+        ],
+        "srgb_weighted_luminance_0_255": 136.62,
+        "luminance_stddev": 14.05,
+        "unique_colours": 601
+      },
+      "road_patch": {
+        "mean_rgb": [
+          204.23,
+          153.41,
+          100.8
+        ],
+        "srgb_weighted_luminance_0_255": 160.42,
+        "luminance_stddev": 16.92,
+        "unique_colours": 255
+      }
+    },
+    "after": {
+      "grass_patch": {
+        "mean_rgb": [
+          139.49,
+          185.49,
+          103.49
+        ],
+        "srgb_weighted_luminance_0_255": 169.79,
+        "luminance_stddev": 1.67,
+        "unique_colours": 2
+      },
+      "road_patch": {
+        "mean_rgb": [
+          216.3,
+          190.29,
+          142.29
+        ],
+        "srgb_weighted_luminance_0_255": 192.36,
+        "luminance_stddev": 4.04,
+        "unique_colours": 4
+      }
+    }
+  },
+  "hud_title_pixels_unchanged": true,
+  "metrics_scope": "Same fixed scene, daytime, X11 window, sRGB pixel values; not physical lighting measurements.",
+  "full_regression": {
+    "processes": 188,
+    "checks": 9736,
+    "failures": 0,
+    "suites": [
+      {
+        "name": "import",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "sleep",
+        "checks": 29,
+        "failures": 0
+      },
+      {
+        "name": "integration",
+        "checks": 452,
+        "failures": 0
+      },
+      {
+        "name": "mining",
+        "checks": 98,
+        "failures": 0
+      },
+      {
+        "name": "star",
+        "checks": 125,
+        "failures": 0
+      },
+      {
+        "name": "legend",
+        "checks": 252,
+        "failures": 0
+      },
+      {
+        "name": "stability",
+        "checks": 264,
+        "failures": 0
+      },
+      {
+        "name": "river",
+        "checks": 446,
+        "failures": 0
+      },
+      {
+        "name": "aquaculture",
+        "checks": 155,
+        "failures": 0
+      },
+      {
+        "name": "seasons-a",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "name": "control-recovery",
+        "checks": 52,
+        "failures": 0
+      },
+      {
+        "name": "fishing-b",
+        "checks": 84,
+        "failures": 0
+      },
+      {
+        "name": "livestock-b",
+        "checks": 112,
+        "failures": 0
+      },
+      {
+        "name": "kitchen-b",
+        "checks": 100,
+        "failures": 0
+      },
+      {
+        "name": "ecology-b",
+        "checks": 65,
+        "failures": 0
+      },
+      {
+        "name": "festivals-c",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "name": "social-c",
+        "checks": 107,
+        "failures": 0
+      },
+      {
+        "name": "housing-c",
+        "checks": 109,
+        "failures": 0
+      },
+      {
+        "name": "exploration-d",
+        "checks": 106,
+        "failures": 0
+      },
+      {
+        "name": "world-progress-d",
+        "checks": 170,
+        "failures": 0
+      },
+      {
+        "name": "quality-070",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "name": "performance-070",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "name": "finale-070",
+        "checks": 24,
+        "failures": 0
+      },
+      {
+        "name": "palm-071",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "name": "recovery-071",
+        "checks": 55,
+        "failures": 0
+      },
+      {
+        "name": "tutorial-ui-071",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "name": "performance-071",
+        "checks": 17,
+        "failures": 0
+      },
+      {
+        "name": "touch-polish",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "name": "farming-actions",
+        "checks": 110,
+        "failures": 0
+      },
+      {
+        "name": "food-recovery",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "name": "ui04-theme",
+        "checks": 7,
+        "failures": 0
+      },
+      {
+        "name": "inventory03",
+        "checks": 51,
+        "failures": 0
+      },
+      {
+        "name": "hotbar03",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "name": "ui05-camera",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "name": "ui05-hotbar",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "name": "ui05-layout",
+        "checks": 308,
+        "failures": 0
+      },
+      {
+        "name": "home05",
+        "checks": 103,
+        "failures": 0
+      },
+      {
+        "name": "home-arrange",
+        "checks": 159,
+        "failures": 0
+      },
+      {
+        "name": "resource-rich",
+        "checks": 117,
+        "failures": 0
+      },
+      {
+        "name": "sale-quantity",
+        "checks": 35,
+        "failures": 0
+      },
+      {
+        "name": "farm-visual-06",
+        "checks": 140,
+        "failures": 0
+      },
+      {
+        "name": "atlas-core",
+        "checks": 78,
+        "failures": 0
+      },
+      {
+        "name": "atlas-ui",
+        "checks": 51,
+        "failures": 0
+      },
+      {
+        "name": "journal-atlas-ui07",
+        "checks": 42,
+        "failures": 0
+      },
+      {
+        "name": "story-ui07",
+        "checks": 68,
+        "failures": 0
+      },
+      {
+        "name": "facility-ui07",
+        "checks": 316,
+        "failures": 0
+      },
+      {
+        "name": "world-style07",
+        "checks": 38,
+        "failures": 0
+      },
+      {
+        "name": "appearance",
+        "checks": 44,
+        "failures": 0
+      },
+      {
+        "name": "character-select",
+        "checks": 36,
+        "failures": 0
+      },
+      {
+        "name": "scheme-c-game",
+        "checks": 54,
+        "failures": 0
+      },
+      {
+        "name": "scheme-c-cancel",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "name": "home-teleport",
+        "checks": 109,
+        "failures": 0
+      },
+      {
+        "name": "appearance-switch",
+        "checks": 126,
+        "failures": 0
+      },
+      {
+        "name": "marriage-requirements",
+        "checks": 69,
+        "failures": 0
+      },
+      {
+        "name": "territory-core",
+        "checks": 299,
+        "failures": 0
+      },
+      {
+        "name": "territory-editor",
+        "checks": 55,
+        "failures": 0
+      },
+      {
+        "name": "territory-world",
+        "checks": 95,
+        "failures": 0
+      },
+      {
+        "name": "territory-atlas",
+        "checks": 35,
+        "failures": 0
+      },
+      {
+        "name": "world-assets",
+        "checks": 344,
+        "failures": 0
+      },
+      {
+        "name": "scheme-c-nature",
+        "checks": 75,
+        "failures": 0
+      },
+      {
+        "name": "scheme-c-placement",
+        "checks": 1540,
+        "failures": 0
+      },
+      {
+        "name": "scheme-c-props",
+        "checks": 45,
+        "failures": 0
+      },
+      {
+        "name": "farm-edit",
+        "checks": 73,
+        "failures": 0
+      },
+      {
+        "name": "farm-edit-kinds",
+        "checks": 200,
+        "failures": 0
+      },
+      {
+        "name": "farm-layout-state",
+        "checks": 79,
+        "failures": 0
+      },
+      {
+        "name": "farm-diy-production",
+        "checks": 88,
+        "failures": 0
+      },
+      {
+        "name": "farm-layout-business",
+        "checks": 107,
+        "failures": 0
+      },
+      {
+        "name": "farm-diy-editor",
+        "checks": 164,
+        "failures": 0
+      },
+      {
+        "name": "scheme-c-star-female",
+        "checks": 135,
+        "failures": 0
+      },
+      {
+        "name": "scheme-c-legend-female",
+        "checks": 258,
+        "failures": 0
+      },
+      {
+        "name": "scheme-c-river-female",
+        "checks": 456,
+        "failures": 0
+      },
+      {
+        "name": "persist-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "persist-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "legacy-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "legacy-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "mine-persist-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "mine-persist-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "mine-backup-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "mine-backup-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "mine-backup-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "star-persist-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "star-persist-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "star-backup-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "star-backup-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "abyss-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "abyss-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "abyss-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "abyss-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "river-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "river-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "river-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "river-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "stability-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "stability-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "stability-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "stability-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "aquaculture-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "aquaculture-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "aquaculture-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "aquaculture-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "seasons-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "seasons-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "seasons-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "seasons-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "fishing-b-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "fishing-b-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "fishing-b-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "fishing-b-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "livestock-b-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "livestock-b-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "livestock-b-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "livestock-b-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "kitchen-b-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "kitchen-b-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "kitchen-b-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "kitchen-b-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "social-c-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "social-c-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "social-c-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "social-c-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "life-c-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "life-c-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "life-c-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "life-c-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "exploration-d-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "exploration-d-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "exploration-d-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "exploration-d-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "world-progress-d-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "world-progress-d-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "world-progress-d-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "world-progress-d-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "palm-write",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "palm-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "palm-interrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "palm-interrupted-restart",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "palm-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "palm-backup",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "touch-polish-write",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "name": "touch-polish-restart",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "name": "farm-windup-write",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "name": "farm-windup-read",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "name": "farm-impact-write",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "name": "farm-impact-read",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "name": "inventory03-write",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "name": "inventory03-read",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "name": "home05-pending-write",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "name": "home05-pending-read",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "name": "home05-finished-read",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "name": "home05-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "home05-backup-read",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "name": "home05-sofa-write",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "name": "home05-sofa-read",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "name": "resource-rich-legacy-write",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "name": "resource-rich-legacy-read",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "name": "resource-rich-write",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "name": "resource-rich-read",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "name": "resource-rich-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "resource-rich-backup",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "name": "home-arrange-v23-write",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "name": "home-arrange-v23-read",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "name": "home-arrange-write",
+        "checks": 7,
+        "failures": 0
+      },
+      {
+        "name": "home-arrange-read",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "name": "home-arrange-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "home-arrange-backup",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "name": "atlas-write",
+        "checks": 8,
+        "failures": 0
+      },
+      {
+        "name": "atlas-read",
+        "checks": 14,
+        "failures": 0
+      },
+      {
+        "name": "atlas-v23-write",
+        "checks": 8,
+        "failures": 0
+      },
+      {
+        "name": "atlas-v23-read",
+        "checks": 15,
+        "failures": 0
+      },
+      {
+        "name": "appearance-write",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "name": "appearance-read",
+        "checks": 10,
+        "failures": 0
+      },
+      {
+        "name": "appearance-corrupt",
+        "checks": 0,
+        "failures": 0
+      },
+      {
+        "name": "appearance-backup",
+        "checks": 10,
+        "failures": 0
+      },
+      {
+        "name": "appearance-v24-write",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "name": "appearance-v24-read",
+        "checks": 11,
+        "failures": 0
+      },
+      {
+        "name": "territory-write",
+        "checks": 16,
+        "failures": 0
+      },
+      {
+        "name": "territory-read",
+        "checks": 11,
+        "failures": 0
+      },
+      {
+        "name": "territory-corrupt",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "name": "territory-backup",
+        "checks": 11,
+        "failures": 0
+      },
+      {
+        "name": "territory-v25-write",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "name": "territory-v25-read",
+        "checks": 13,
+        "failures": 0
+      },
+      {
+        "name": "farm-layout-write",
+        "checks": 19,
+        "failures": 0
+      },
+      {
+        "name": "farm-layout-read",
+        "checks": 16,
+        "failures": 0
+      },
+      {
+        "name": "farm-layout-corrupt",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "name": "farm-layout-backup",
+        "checks": 16,
+        "failures": 0
+      },
+      {
+        "name": "farm-layout-v26-write",
+        "checks": 9,
+        "failures": 0
+      },
+      {
+        "name": "farm-layout-v26-read",
+        "checks": 16,
+        "failures": 0
+      },
+      {
+        "name": "main-smoke",
+        "checks": 0,
+        "failures": 0
+      }
+    ]
+  },
+  "window_captures": {
+    "before": 20,
+    "after": 20
+  },
+  "packages": [
+    {
+      "name": "PixelWorld-0.8.0-Windows-x64.zip",
+      "bytes": 54756186,
+      "sha256": "d3b3220fe2cffb3470f3bdb56a50a9c3c847b3113c549f72162b4846624a9a4d"
+    },
+    {
+      "name": "PixelWorld-0.8.0-debug.apk",
+      "bytes": 73387111,
+      "sha256": "13b29d905955807d88d2ca08c228cd664ed5fe7401fcef9b7e3925dd29743376"
+    }
+  ],
+  "save_schema": 27,
+  "android_version_code": 27,
+  "android_device_tested": false,
+  "windows_native_tested": false
+}
