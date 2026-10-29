@@ -33,6 +33,9 @@ func run() -> void:
    ok=animation!=null and animation.get_frame_texture("loop",0).resource_path.contains("/world_scheme_c/bright/animations/") and ok
  print("APK SCHEME C 97-ASSET LOAD: ","PASS" if ok else "FAIL")
  print("APK BRIGHT PALETTE STATIC/ANIMATED PATHS: ","PASS" if ok else "FAIL")
+ var marriage: Dictionary=load("res://scripts/story/marriage_preparation.gd").data()
+ ok=marriage.villager_stories.size()==9 and marriage.recipes.size()==5 and marriage.fish_species.size()==7 and Xiaojing.marriage_goals().size()==6 and ok
+ print("APK MARRIAGE MASTERY 9-STORY/5-RECIPE/7-FISH CONFIG: ","PASS" if ok else "FAIL")
  ok=not WorldTravel.change(game,"east_holding") and not Territory.permission("village",Vector2i(6,6),"grass").allowed and ok
  ok=game.territory_editor.open() and ok
  game.territory_editor.choose_tool("stone_path")

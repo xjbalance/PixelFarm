@@ -108,6 +108,13 @@ func refresh() -> void:
 		button(confirmation,finish_story)
 		button("稍后再读",close_panel)
 		return
+	if page=="preparation":
+		label_row(Xiaojing.marriage_goals_summary(),23)
+		label_row("生活与成就的完成记录会保留；原有关系、探索、试炼、温室与1314钻石条件仍需满足。",17)
+		label_row(Xiaojing.marriage_goals_text(),17)
+		button("返回",func(): page="main";refresh())
+		button("收起",close_panel)
+		return
 	var state: Dictionary = Xiaojing.state
 	var summary: String="好感 %d · 信任 %d · 羁绊 %d / 100\n专属任务 %d/12 · 记忆 %d/7 · 试炼 %d/5\n钻石 %d / 1314 · 稀有原矿 %d" % [state.affection,state.trust,state.bond,state.quests.size(),state.memories.size(),state.trials.size(),state.diamonds,state.ore]
 	if page=="main":
@@ -121,8 +128,9 @@ func refresh() -> void:
 		FarmUIStyle.heading(notes,"小京 · 星辉旅人")
 		var stats:=FarmUIStyle.label(summary,18);stats.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;notes.add_child(stats)
 	else: label_row(summary)
-	if not state.married and page in ["main","wedding"]:
-		label_row("婚礼生活准备",20)
+	if not state.married and page=="main": marriage_preparation_summary()
+	elif not state.married and page=="wedding":
+		label_row(Xiaojing.marriage_goals_summary(),20)
 		label_row(Xiaojing.marriage_goals_text(),17)
 	if page == "wedding":
 		label_row("确认举行婚礼，将消耗1314颗钻石点亮已修复温室的全部星灯。取消不会扣除资源。",21)
@@ -144,6 +152,10 @@ func refresh() -> void:
 	else:
 		build_main()
 	button("收起",close_panel)
+
+func marriage_preparation_summary() -> void:
+	label_row(Xiaojing.marriage_goals_summary(),20)
+	button("查看婚礼准备详情",func(): page="preparation";refresh())
 
 func build_main() -> void:
 	var state: Dictionary = Xiaojing.state

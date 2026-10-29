@@ -29,6 +29,7 @@ func run() -> void:
 	GameClock.running=false;GameWeather.enabled=false;game.get_node("Audio").muted=true;await frames(7)
 	load("res://tests/star_runner.gd").fixture(game,false)
 	Housing.restore(Housing.defaults(GameClock.day));Fishing.restore(Fishing.defaults())
+	Ready.life_milestones();Ready.caught_catalogue(true)
 	game.tutorial.restore(GameTutorial.defaults(true));Letters.refresh();await frames(5)
 	seed=snapshot();check(FarmSaveStore.valid(seed),"全部原婚礼条件已具备且未添加新门槛的夹具合法")
 	await missing_requirements()
@@ -43,7 +44,7 @@ func run() -> void:
 
 func missing_requirements() -> void:
 	await reset();await Hidden.near(self,game)
-	check(Xiaojing.marriage_goals().size()==2 and not goal("home").ready and not goal("fish").ready,"新增门槛只包含四级住宅完工与传说鱼实际钓获")
+	check(Xiaojing.marriage_goals().size()==6 and not goal("home").ready and not goal("fish").ready,"六项婚礼准备保留四级住宅完工与传说鱼实际钓获")
 	var before:=snapshot()
 	check(not Xiaojing.base_marriage_ready() and not StarStory.propose("share_home") and snapshot()==before,"旧三属性任务钻石全部满足仍不能跳过新增目标")
 	check(LegendState.state.legacy_vow and not StarStory.proposal_ready(),"旧未婚婚约豁免不能绕过新增住宅和渔获要求")
@@ -57,6 +58,7 @@ func missing_requirements() -> void:
 	var other:=Fishing.defaults();other.serial=1;other.total=1;other.xp=16;other.counts={"star":1};other.collection=["star"];other.casts_day=GameClock.day;other.casts=1
 	Fishing.restore(other)
 	check(Fishing.validate(Fishing.snapshot(),GameClock.day) and not goal("fish").ready,"钓过星辉鱼仍不能替代传说级永恒星鲤")
+	Ready.caught_catalogue(true)
 	Ready.max_home(game)
 	check(goal("home").ready and not Xiaojing.base_marriage_ready(),"只有最高级住宅而没有传说鱼仍不能求婚")
 	game.hud.xiaojing_panel.open_panel();await frames(4);await capture("missing_fish");game.hud.xiaojing_panel.close_panel()
@@ -93,6 +95,7 @@ func actual_fishing() -> void:
 	# 提供合法既往普通鱼经验，仍通过原抛竿与追鱼小游戏完成本次传说钓获。
 	var fishing:=Fishing.defaults();fishing.rod=3;fishing.counts={"crucian":54};fishing.collection=["crucian"]
 	fishing.total=54;fishing.xp=162;fishing.serial=54;fishing.casts_day=5;fishing.casts=6;fishing.legend_pity=3;Fishing.restore(fishing)
+	Ready.caught_catalogue(true)
 	for candidate in range(GameClock.day,GameClock.day+113):
 		if Calendar.weather_id(candidate)=="meteor": GameClock.day=candidate;break
 	Calendar.restore(Calendar.snapshot());GameClock.minutes=1260;GameWeather.enabled=true

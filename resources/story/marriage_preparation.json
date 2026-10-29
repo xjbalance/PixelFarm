@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "villager_stories": ["linya_1", "linya_2", "linya_3", "zhou_1", "zhou_2", "zhou_3", "ahe_1", "ahe_2", "ahe_3"],
+  "recipes": ["carrot_stew", "potato_bread", "egg_meal", "milk_porridge", "fish_feast"],
+  "fish_species": ["crucian", "carp", "grass", "perch", "golden", "star", "eternal"]
+}

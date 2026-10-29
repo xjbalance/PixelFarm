@@ -256,15 +256,24 @@ func marriage_goals() -> Array[Dictionary]:
 	# 只读取现有完工等级和成功领取的渔获记录，不以库存代替亲手钓获，也不消耗鱼。
 	var level: int=int(Housing.state.level)
 	var catches: int=int(Fishing.state.counts.get("eternal",0))
-	return [
-		{"id":"home","ready":level>=4,"label":"住宅完工至最高四级 · 星光庄园","detail":"当前：%s（%d/4级）%s。到周砚处升级，施工完成后生效。" % [Housing.level_name(),level," · 施工中" if not Housing.state.construction.is_empty() else ""]},
-		{"id":"fish","ready":catches>0,"label":"亲手钓获并领取过传说鱼 · 永恒星鲤","detail":"钓获记录：%d/1。记录永久保留，婚礼不交付、不消耗鱼；获取条件可查钓鱼图鉴。" % mini(catches,1)}
+	var result: Array[Dictionary]=[
+		{"id":"home","short_label":"完工四级住宅","ready":level>=4,"label":"住宅完工至最高四级 · 星光庄园","detail":"当前：%s（%d/4级）%s。到周砚处升级，施工完成后生效。" % [Housing.level_name(),level," · 施工中" if not Housing.state.construction.is_empty() else ""]},
+		{"id":"fish","short_label":"亲钓永恒星鲤","ready":catches>0,"label":"亲手钓获并领取过传说鱼 · 永恒星鲤","detail":"钓获记录：%d/1。记录永久保留，婚礼不交付、不消耗鱼；获取条件可查钓鱼图鉴。" % mini(catches,1)}
 	]
+	result.append_array(preload("res://scripts/story/marriage_preparation.gd").goals())
+	return result
 
 func marriage_goals_ready() -> bool:
 	for goal in marriage_goals():
 		if not goal.ready: return false
 	return true
+
+func marriage_goals_summary() -> String:
+	var goals:=marriage_goals()
+	var completed: int=0
+	for goal in goals:
+		if goal.ready: completed+=1
+	return "婚礼生活准备 · %d/%d项完成" % [completed,goals.size()]
 
 func marriage_goals_text() -> String:
 	var lines: Array[String]=[]
@@ -275,7 +284,7 @@ func marriage_goals_text() -> String:
 func marriage_goals_missing_text() -> String:
 	var missing: Array[String]=[]
 	for goal in marriage_goals():
-		if not goal.ready: missing.append(str(goal.label))
+		if not goal.ready: missing.append(str(goal.get("short_label",goal.label)))
 	return "还需完成："+"；".join(missing)+"。" if not missing.is_empty() else ""
 
 func base_marriage_ready() -> bool:

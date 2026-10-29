@@ -16,7 +16,7 @@ func act(callback: Callable) -> void:
 	if not callback.call(): Events.notice.emit("暂时做不了：检查现场、前置记录、时段和材料。进度已保留。")
 	refresh()
 func refresh() -> void:
-	if page=="story":
+	if page in ["story","preparation"]:
 		super.refresh()
 		return
 	for child in content.get_children():
@@ -66,8 +66,7 @@ func build_memory(id: String) -> void:
 			)
 func build_overview() -> void:
 	if not Xiaojing.state.married:
-		label_row("婚礼生活准备",20)
-		label_row(Xiaojing.marriage_goals_text(),17)
+		marriage_preparation_summary()
 	for entry in Xiaojing.data.acts: label_row(("✓ " if StarStory.has("act_"+str(entry.id)) else "○ ")+entry.title+" · "+entry.text,20)
 	label_row("温室在农场东南，旧种箱在小屋南侧。先调查气窗，再把七份记忆带回档案桌。\n小京婚后6–9时在农场，9–16时在河东，16–18时回温室；18–20时有茶座则到村庄，21时回小屋。")
 	var q := Xiaojing.current_quest()
@@ -84,7 +83,7 @@ func build_overview() -> void:
 		if StarStory.state.repair_pending:
 			button("说明失约的原因，重新商量安排",func(): act(StarStory.repair_relationship))
 		if not Xiaojing.state.married:
-			label_row("求婚需要三属性100、全部任务记忆试炼、五段关系事件、温室、历史拼接、两项决定、1314钻石，以及已完工四级住宅和永恒星鲤钓获记录。求婚不扣钻。")
+			label_row("求婚需要三属性100、全部任务记忆试炼、五段关系事件、温室、历史拼接、两项决定、1314钻石，以及上方全部婚礼准备：四级住宅、传说鱼、村民个人支线、家常料理、完整鱼类图鉴与湖泊生态修复。求婚不扣钻。")
 			for choice in ["share_home","keep_journeys"]:
 				button({"share_home":"求婚：一起经营家，也留独立研究桌","keep_journeys":"求婚：一起生活，也保留各自的远行"}[choice],func(): act(func(): return StarStory.propose(choice)))
 	if not Xiaojing.state.trial.is_empty(): label_row(StarTrials.describe())

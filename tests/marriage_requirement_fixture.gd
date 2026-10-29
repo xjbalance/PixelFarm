@@ -3,7 +3,30 @@ extends RefCounted
 
 static func satisfy(_game: Node) -> void:
 	max_home(_game)
-	caught_eternal()
+	life_milestones()
+	caught_catalogue()
+
+static func life_milestones() -> void:
+	var rules: Dictionary=load("res://scripts/story/marriage_preparation.gd").data()
+	var social: Dictionary=Social.snapshot()
+	for id in rules.villager_stories:
+		var quest: Dictionary=Social.definition(str(id))
+		if id not in social.completed: social.completed.append(id)
+		social.choices[id]=quest.choices.keys()[0]
+		social.active.erase(quest.person)
+	Social.restore(social)
+	var kitchen: Dictionary=Kitchen.snapshot()
+	for id in rules.recipes: kitchen.cooked[id]=maxi(1,int(kitchen.cooked.get(id,0)))
+	Kitchen.restore(kitchen)
+	var lake: Dictionary=LakeEcology.snapshot()
+	lake.restored=true;lake.cycle=true;lake.plants=maxi(3,int(lake.plants));lake.health=maxi(90,int(lake.health));lake.debris=0
+	LakeEcology.restore(lake)
+
+static func caught_catalogue(except_eternal: bool=false) -> void:
+	var species: Array=[]
+	for id in load("res://scripts/story/marriage_preparation.gd").data().fish_species:
+		if not except_eternal or id!="eternal": species.append(id)
+	caught_species(species)
 
 static func max_home(_game: Node) -> void:
 	var house: Dictionary=Housing.snapshot()
@@ -14,16 +37,20 @@ static func max_home(_game: Node) -> void:
 	Housing.restore(house)
 
 static func caught_eternal() -> void:
+	caught_species(["eternal"])
+
+static func caught_species(species: Array) -> void:
 	var fishing: Dictionary=Fishing.snapshot()
 	fishing.pending="";fishing.pending_day=0
 	fishing.rod=3
-	if int(fishing.counts.get("eternal",0))<1: fishing.counts.eternal=1
-	if "eternal" not in fishing.collection: fishing.collection.append("eternal")
+	for id in species:
+		if int(fishing.counts.get(id,0))<1: fishing.counts[id]=1
+		if id not in fishing.collection: fishing.collection.append(id)
 	# 保留已有钓获；此夹具只补齐对应的经验与真实尝试元数据，不发放鱼物品。
 	fishing.total=0;fishing.xp=0
-	for species in fishing.counts:
-		fishing.total+=int(fishing.counts[species])
-		fishing.xp+=int(fishing.counts[species])*int(Fishing.data.species[species].xp)
+	for id in fishing.counts:
+		fishing.total+=int(fishing.counts[id])
+		fishing.xp+=int(fishing.counts[id])*int(Fishing.data.species[id].xp)
 	# 对应实际可钓传说鱼的星纹竿，并补足其已钓获经验门槛。
 	var required: int=160 if fishing.rod==3 else (40 if fishing.rod==2 else 0)
 	if fishing.xp<required:
@@ -35,6 +62,6 @@ static func caught_eternal() -> void:
 	fishing.casts_day=maxi(int(fishing.casts_day),ceili(float(fishing.serial)/12.0))
 	fishing.casts=maxi(1,int(fishing.serial)-(int(fishing.casts_day)-1)*12)
 	fishing.casts=mini(12,int(fishing.casts))
-	fishing.legend_season=Calendar.season_serial()
+	if int(fishing.counts.get("eternal",0))>0: fishing.legend_season=Calendar.season_serial()
 	Fishing.restore(fishing)
 	Fishing.update_achievements()

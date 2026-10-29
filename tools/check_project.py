@@ -74,6 +74,7 @@ steps = [
     ('home-teleport', ['--fixed-fps','60','res://tests/home_teleport_runner.tscn']),
     ('appearance-switch', ['--fixed-fps','60','res://tests/appearance_switch_runner.tscn']),
     ('marriage-requirements', ['--fixed-fps','60','res://tests/marriage_requirements_runner.tscn']),
+    ('marriage-mastery', ['--fixed-fps','60','res://tests/marriage_mastery_runner.tscn']),
     ('territory-core', ['--fixed-fps','60','res://tests/territory_core_runner.tscn']),
     ('territory-editor', ['--fixed-fps','60','res://tests/territory_editor_runner.tscn']),
     ('territory-world', ['--fixed-fps','60','res://tests/territory_world_runner.tscn']),
