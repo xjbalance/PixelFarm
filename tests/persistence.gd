@@ -30,9 +30,48 @@ func _ready() -> void:
 		GameState.stamina = 117
 		GameState.selected = 7
 		game.farm.plots = {"20,20":{"crop":"potato","days":2,"watered":true}}
-		success = FarmSaveStore.write(game)
+		var hidden := Xiaojing.defaults()
+		hidden.plants=520
+		hidden.plant_serial=520
+		hidden.unlocked=true
+		hidden.affection=100
+		hidden.trust=100
+		hidden.bond=100
+		hidden.dating=true
+		hidden.greenhouse=true
+		hidden.proposed=true
+		hidden.married=true
+		hidden.wedding_day=10
+		hidden.diamonds=7
+		hidden.ore=6
+		for event in Xiaojing.data.events: hidden.events.append(event.id)
+		for quest in Xiaojing.data.quests: hidden.quests.append(quest.id)
+		for memory in Xiaojing.data.memories: hidden.memories.append(memory.id)
+		hidden.trials=["management","planning","cave","mechanism","joint"]
+		Xiaojing.restore(hidden)
+		StarStory.restore(StarStory.migrate(hidden))
+		LegendState.restore(LegendState.migrate(hidden,StarStory.snapshot()))
+		# 从真实设置按钮切换，只依靠模式变更的自动保存，再由下一进程读取。
+		game.persistence_enabled=true
+		game.hud.system_panel.open_panel()
+		await get_tree().process_frame
+		for _i in range(2): await get_tree().physics_frame
+		var mode_button: Button=game.hud.system_panel.control_mode_button
+		print("PERSISTENCE MODE BUTTON BEFORE SCROLL reachable=",mode_button.contains_touch(mode_button.get_global_rect().get_center()))
+		# UI05设置正文可滚动；仍真实点击原按钮，先把它滚入可命中区域。
+		var ancestor: Node=mode_button.get_parent()
+		while ancestor:
+			if ancestor is ScrollContainer: ancestor.ensure_control_visible(mode_button)
+			ancestor=ancestor.get_parent()
+		for _i in range(2): await get_tree().physics_frame
+		print("PERSISTENCE MODE BUTTON AFTER SCROLL reachable=",mode_button.contains_touch(mode_button.get_global_rect().get_center()))
+		load("res://tests/story.gd").touch(self,mode_button)
+		for _i in range(4): await get_tree().physics_frame
+		var automatic := FarmSaveStore.read()
+		success = automatic.get("control_mode")=="joystick" and automatic.get("xiaojing",{}).get("married",false)
+		game.hud.system_panel.close_panel()
 	elif legacy_read:
-		success = Inventory.coins == 321 and Inventory.count("carrot") == 3 and GameClock.day == 5 and GameState.stamina == 73
+		success = Inventory.coins == 321 and Inventory.count("carrot") == 3 and GameClock.day == 5 and GameState.stamina == 73 and GameState.control_mode == "tap"
 		success = success and FarmProgress.built.is_empty() and FarmProgress.quest_states.is_empty() and FarmProgress.friendship == 0
 		success = success and game.world.resource_field.state.tree_7_20.hp == 3 and game.farm.plots["17,16"].days == 1
 		success = success and FarmSaveStore.write(game)
@@ -40,8 +79,9 @@ func _ready() -> void:
 		success = success and backup.version == 1 and FarmSaveStore.read().version == FarmSaveStore.VERSION
 	else:
 		success = Inventory.coins == 987 and Inventory.count("wheat") == 3 and Inventory.count("carrot_seed") == 7
+		success = success and Xiaojing.state.married and Xiaojing.state.plants==520 and Xiaojing.state.diamonds==7 and Xiaojing.state.ore==6
 		success = success and GameClock.day == 12 and GameClock.minutes == 1057 and GameState.stamina == 117
-		success = success and Inventory.count("wood") == 11 and Inventory.count("stone") == 4 and GameState.selected == 7
+		success = success and Inventory.count("wood") == 11 and Inventory.count("stone") == 4 and GameState.selected == 7 and GameState.control_mode == "joystick"
 		success = success and FarmProgress.built.size() == 3 and FarmProgress.quest_status("river_path") == "active" and FarmProgress.friendship == 37
 		success = success and FarmProgress.last_talk_day == 12 and game.world.resource_field.state.tree_7_20.ready_day == 14 and game.world.resource_field.state.rock_11_19.hp == 1
 		success = success and GameState.location == "village" and game.player.position.distance_to(Vector2(1010,480)) < 0.1

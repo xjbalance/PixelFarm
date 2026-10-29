@@ -14,6 +14,8 @@ var options: Array = []
 var selected_choice: String = ""
 var revealed: float = 0
 var legacy_speaker: String = ""
+var social_button: Button
+var social_person: String=""
 
 func _ready() -> void:
 	add_to_group("modal_panels")
@@ -21,18 +23,30 @@ func _ready() -> void:
 	var content := VBoxContainer.new()
 	content.add_theme_constant_override("separation",10)
 	add_child(content)
-	title_label = FarmUIStyle.label("河湾里的故事",14,Color("a6b7a1"))
-	content.add_child(title_label)
+	var title_row := HBoxContainer.new()
+	content.add_child(title_row)
+	title_label = FarmUIStyle.heading(title_row,"河湾里的故事","lantern")
+	title_label.add_theme_font_size_override("font_size",16)
+	title_label.add_theme_color_override("font_color",FarmUIStyle.MUTED)
+	social_button=FarmUIStyle.button("近况与礼物",func():
+		var person := social_person
+		close_dialogue()
+		if person!="": Events.interaction_requested.emit("social:"+person)
+	,160)
+	title_row.add_child(social_button)
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation",24)
 	content.add_child(row)
+	var portrait_frame:=PanelContainer.new()
+	portrait_frame.add_theme_stylebox_override("panel",FarmUIStyle.surface("secondary"))
+	portrait_frame.size_flags_vertical=Control.SIZE_SHRINK_BEGIN
+	row.add_child(portrait_frame)
 	portrait = FarmPortrait.new()
-	row.add_child(portrait)
-	var words := VBoxContainer.new()
+	portrait_frame.add_child(portrait)
+	var words := FarmUIStyle.card(row)
 	words.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	words.add_theme_constant_override("separation",12)
-	row.add_child(words)
-	speaker_label = FarmUIStyle.label("",24,FarmUIStyle.GOLD)
+	speaker_label = FarmUIStyle.label("",24,FarmUIStyle.TITLE)
 	words.add_child(speaker_label)
 	body_label = FarmUIStyle.label("",21)
 	body_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
@@ -43,7 +57,7 @@ func _ready() -> void:
 	content.add_child(choices_box)
 	var actions := HBoxContainer.new()
 	content.add_child(actions)
-	hint = FarmUIStyle.label("",14,Color("b0bda6"))
+	hint = FarmUIStyle.label("",16,FarmUIStyle.MUTED)
 	hint.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	actions.add_child(hint)
 	actions.add_child(FarmUIStyle.button("稍后再聊",close_dialogue,120))
@@ -83,6 +97,14 @@ func refresh() -> void:
 	for child in choices_box.get_children():
 		choices_box.remove_child(child)
 		child.queue_free()
+	social_person=""
+	var nearest := INF
+	var player := get_tree().get_first_node_in_group("farm_player") as Node2D
+	for person in get_tree().get_nodes_in_group("interactables"):
+		if not "person_id" in person or not person.is_visible_in_tree() or player==null: continue
+		var distance: float=person.global_position.distance_to(player.global_position)
+		if distance<=76 and distance<nearest: nearest=distance;social_person=person.person_id
+	social_button.visible=social_person!=""
 	var line = lines[index]
 	if line is Dictionary:
 		speaker_label.text = line.who
@@ -91,7 +113,8 @@ func refresh() -> void:
 	else:
 		speaker_label.text = legacy_speaker
 		body_label.text = str(line)
-		portrait.person = "linya"
+		portrait.person = "xiaojing" if legacy_speaker=="小京" else ("player" if legacy_speaker in ["你","主角"] else "linya")
+	speaker_label.add_theme_color_override("font_color",FarmUIStyle.STAR if portrait.person=="xiaojing" else FarmUIStyle.TITLE)
 	revealed = 0
 	body_label.visible_characters = -1 if scene_id == "" else 0
 	hint.text = "%02d / %02d   ·   E 继续 / 再按一次显示全文" % [index+1,lines.size()]

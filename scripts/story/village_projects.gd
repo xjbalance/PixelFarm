@@ -27,6 +27,7 @@ func build(id: String) -> bool:
 		Events.notice.emit("材料或金币还没备齐，已保留你带来的所有物品。")
 		return false
 	built.append(id)
+	Playtest.record("task",{"id":"village:"+id})
 	built_project.emit(id)
 	changed.emit()
 	Story.changed.emit()
@@ -44,6 +45,7 @@ func water_fields() -> bool:
 	return true
 
 func drink_tea() -> bool:
+	if not Recovery.available() or GameClock.minutes>=1440: return false
 	if not has_project("arbor") or tea_day >= GameClock.day: return false
 	if GameState.stamina >= GameState.max_stamina():
 		Events.notice.emit("你现在精神很好，热茶留到累了再喝吧。")

@@ -1,0 +1,82 @@
+{
+  "version": "0.5.0",
+  "seed": 505201314,
+  "samples_per_scenario": 10000,
+  "balanced_repeatable": {
+    "samples": 10000,
+    "p10_hours": 34.79,
+    "p50_hours": 41.43,
+    "p90_hours": 48.1,
+    "mean_cycles": 88,
+    "diamonds_per_active_hour_mean": 53.85,
+    "mean_hours_by_activity": {
+      "mine": 6.31,
+      "farm_and_provisions": 13.86,
+      "processing_and_travel": 4.24,
+      "campaign_relationships_trials": 17.03
+    },
+    "meets_provisional_80_120": false
+  },
+  "without_commissions": {
+    "samples": 10000,
+    "p10_hours": 37.42,
+    "p50_hours": 44.32,
+    "p90_hours": 51.21,
+    "mean_cycles": 132,
+    "diamonds_per_active_hour_mean": 47.66,
+    "mean_hours_by_activity": {
+      "mine": 9.45,
+      "farm_and_provisions": 11.54,
+      "processing_and_travel": 6.35,
+      "campaign_relationships_trials": 17.0
+    },
+    "meets_provisional_80_120": false
+  },
+  "slow_active_play_sensitivity": {
+    "samples": 10000,
+    "p10_hours": 50.87,
+    "p50_hours": 56.49,
+    "p90_hours": 62.08,
+    "mean_cycles": 88,
+    "diamonds_per_active_hour_mean": 32.86,
+    "mean_hours_by_activity": {
+      "mine": 10.21,
+      "farm_and_provisions": 22.44,
+      "processing_and_travel": 6.86,
+      "campaign_relationships_trials": 16.95
+    },
+    "meets_provisional_80_120": false
+  },
+  "production_data": {
+    "advanced_mine_tool_level": 3,
+    "diamond_veins": 3,
+    "diamond_vein_mean": 1.25,
+    "drop_randomness": "none: one guaranteed, every fourth adds one; counter persists",
+    "raw_starlight_per_cycle": 9,
+    "refined_diamonds_per_cycle": 6,
+    "commission_per_3_days": 5,
+    "diamonds_per_3_day_cycle_mean": 14.75,
+    "diamond_per_game_day_mean": 4.917,
+    "harvesting_energy_per_cycle": 108,
+    "rare_room_tour_grid_steps_lower_bound": 106,
+    "return_surface_transit_grid_steps": 186,
+    "shortest_walking_minutes_lower_bound": 1.07,
+    "refresh_days": 3,
+    "processing_days": 1
+  },
+  "worst_luck": "No rare-drop drought: all advanced diamond veins guarantee one and every fourth grants two. Refining is deterministic. No luck-dependent permanent gate.",
+  "dead_end_audit": [
+    "All configured objects reachable in solved 32px map layouts (abstract floor BFS; actual collision separately tested in Godot).",
+    "Repeatable 3-day regeneration requires no diamond, ore purchase, survey payment or Xiaojing unlock.",
+    "Optional survey requires existing farm/iron/crystal inputs and never resets boxes or story rewards.",
+    "Ordinary pick can acquire copper and iron needed for reinforced pick; reinforced pick can obtain crystal for star pick.",
+    "Refining produces diamonds without spending diamonds; commission is optional.",
+    "Queue stays available if output inventory full; wrong puzzle inputs reset, return stairs never lock."
+  ],
+  "limitations": [
+    "This is a mathematical model, not human playtesting or measured 80-120 hours.",
+    "Timings outside minimum grid movement are stated assumptions; novice play, idle play and repeat enjoyment remain unverified.",
+    "Total 80-120h target is currently unmet; fixed rooms lack sufficient varied endgame content. Do not extend via waiting or lower drop chances.",
+    "No full starlight abyss, generated layers or independent animated wedding implemented."
+  ]
+}

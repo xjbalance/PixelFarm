@@ -1,0 +1,227 @@
+[
+  {
+    "id": "transport",
+    "title": "风车里的旧运输单",
+    "description": "读风车东侧的运输单，找出矿道所在。",
+    "previous": "",
+    "conditions": [
+      "transport"
+    ],
+    "reward": {
+      "coins": 30
+    },
+    "repeatable": false
+  },
+  {
+    "id": "entrance",
+    "title": "寻找封闭矿道入口",
+    "description": "调查河湾村东北岩壁的封矿牌。",
+    "previous": "transport",
+    "conditions": [
+      "entrance"
+    ],
+    "reward": {
+      "items": {
+        "wood": 4
+      }
+    },
+    "repeatable": false
+  },
+  {
+    "id": "repair",
+    "title": "修复第一段矿道",
+    "description": "读采矿手册、开采铜矿，修好道岔并扳向东。",
+    "previous": "entrance",
+    "conditions": [
+      "mining_manual",
+      "copper_mined",
+      "rail_open"
+    ],
+    "reward": {
+      "coins": 40
+    },
+    "repeatable": false
+  },
+  {
+    "id": "records",
+    "title": "收集矿工遗留记录",
+    "description": "从旧工具和矿车底各找到一份记录。",
+    "previous": "repair",
+    "conditions": [
+      "record_a1",
+      "record_a2"
+    ],
+    "reward": {
+      "items": {
+        "copper_ore": 4
+      }
+    },
+    "repeatable": false
+  },
+  {
+    "id": "water",
+    "title": "地下水位异常",
+    "description": "查值班页、按线索开闸，用强化镐清理铁锈岩层。",
+    "previous": "records",
+    "conditions": [
+      "record_b",
+      "water_lowered",
+      "hardened"
+    ],
+    "reward": {
+      "coins": 60
+    },
+    "repeatable": false
+  },
+  {
+    "id": "echo",
+    "title": "晶石洞窟的回声",
+    "description": "让三色晶柱按标本顺序回应，再读深处的共同签名。",
+    "previous": "water",
+    "conditions": [
+      "resonance_open",
+      "record_c"
+    ],
+    "reward": {
+      "items": {
+        "iron_ore": 4
+      }
+    },
+    "repeatable": false
+  },
+  {
+    "id": "other_side",
+    "title": "河湾旧事的另一面",
+    "description": "带着共同签名与林芽、周砚、阿禾分别谈谈。",
+    "previous": "echo",
+    "conditions": [
+      "talk:linya",
+      "talk:zhou",
+      "talk:ahe"
+    ],
+    "reward": {
+      "coins": 50
+    },
+    "repeatable": false
+  },
+  {
+    "id": "discussion",
+    "title": "村庄矿道开放讨论会",
+    "description": "在村庄矿道告示板讨论开放规则，留下对深层支线的疑问。",
+    "previous": "other_side",
+    "conditions": [
+      "discussion"
+    ],
+    "reward": {
+      "coins": 80
+    },
+    "repeatable": false
+  },
+  {
+    "id": "backwater",
+    "title": "退水后留下的刻度",
+    "previous": "discussion",
+    "description": "在深渊20层核对停用页，保留三班人的签名。",
+    "conditions": [
+      "river20"
+    ],
+    "reward": {
+      "coins": 40
+    },
+    "repeatable": false
+  },
+  {
+    "id": "priority",
+    "title": "不挤掉另一条路",
+    "previous": "backwater",
+    "description": "与林芽核对农产品车位，亲自新收六株作物。",
+    "conditions": [
+      "talk2:linya",
+      "new_crop6"
+    ],
+    "reward": {
+      "coins": 40
+    },
+    "repeatable": false
+  },
+  {
+    "id": "prism",
+    "title": "第二道水闸",
+    "previous": "priority",
+    "description": "亲读40层水库记录并完成两轮总闸。",
+    "conditions": [
+      "river40",
+      "gate40"
+    ],
+    "reward": {
+      "coins": 40
+    },
+    "repeatable": false
+  },
+  {
+    "id": "testimony",
+    "title": "签名以外的责任",
+    "previous": "prism",
+    "description": "听周砚说明检修边界，在工台准备可复核的器件。",
+    "conditions": [
+      "talk2:zhou"
+    ],
+    "reward": {
+      "coins": 40
+    },
+    "repeatable": false
+  },
+  {
+    "id": "prototype",
+    "title": "交给下一班的分流器",
+    "previous": "testimony",
+    "description": "新加工两铁锭，在周砚工台实际装配分流器。",
+    "conditions": [
+      "prototype"
+    ],
+    "reward": {
+      "coins": 40
+    },
+    "repeatable": false
+  },
+  {
+    "id": "public_ledger",
+    "title": "不同意的那一页",
+    "previous": "prototype",
+    "description": "到60层找另一份记录，回访阿禾，保留不同意见。",
+    "conditions": [
+      "river60",
+      "talk2:ahe"
+    ],
+    "reward": {
+      "coins": 40
+    },
+    "repeatable": false
+  },
+  {
+    "id": "council_final",
+    "title": "河湾的新时刻表",
+    "previous": "public_ledger",
+    "description": "在矿道告示板决定清水、轮班或共有档案的优先安排。",
+    "conditions": [
+      "closing_choice"
+    ],
+    "reward": {
+      "coins": 40
+    },
+    "repeatable": false
+  },
+  {
+    "id": "echo_departure",
+    "title": "第一班回村的车",
+    "previous": "council_final",
+    "description": "在告示板与三位村民完成重开后的首次交接，为第三章的远途信使留出车位。",
+    "conditions": [
+      "closing_scene"
+    ],
+    "reward": {
+      "coins": 40
+    },
+    "repeatable": false
+  }
+]

@@ -1,0 +1,490 @@
+{
+  "version": "0.7.1",
+  "baseline_commit": "536e30e",
+  "classic_layout_reference": "2a48963",
+  "save_version": 23,
+  "headless": {
+    "checks": 4064,
+    "failures": 0,
+    "process_steps": 127,
+    "suites": [
+      {
+        "suite": "SLEEP RESULT",
+        "checks": 29,
+        "failures": 0
+      },
+      {
+        "suite": "RESULT",
+        "checks": 452,
+        "failures": 0
+      },
+      {
+        "suite": "MINING RESULT",
+        "checks": 98,
+        "failures": 0
+      },
+      {
+        "suite": "STAR RESULT",
+        "checks": 125,
+        "failures": 0
+      },
+      {
+        "suite": "LEGEND RESULT",
+        "checks": 252,
+        "failures": 0
+      },
+      {
+        "suite": "STABILITY RESULT",
+        "checks": 264,
+        "failures": 0
+      },
+      {
+        "suite": "RIVER RESULT",
+        "checks": 446,
+        "failures": 0
+      },
+      {
+        "suite": "AQUACULTURE RESULT",
+        "checks": 155,
+        "failures": 0
+      },
+      {
+        "suite": "SEASONS A RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "CONTROL RECOVERY RESULT",
+        "checks": 52,
+        "failures": 0
+      },
+      {
+        "suite": "FISHING B RESULT",
+        "checks": 84,
+        "failures": 0
+      },
+      {
+        "suite": "LIVESTOCK B RESULT",
+        "checks": 112,
+        "failures": 0
+      },
+      {
+        "suite": "KITCHEN B RESULT",
+        "checks": 100,
+        "failures": 0
+      },
+      {
+        "suite": "ECOLOGY B RESULT",
+        "checks": 65,
+        "failures": 0
+      },
+      {
+        "suite": "FESTIVALS C RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "SOCIAL C RESULT",
+        "checks": 107,
+        "failures": 0
+      },
+      {
+        "suite": "HOUSING C RESULT",
+        "checks": 109,
+        "failures": 0
+      },
+      {
+        "suite": "EXPLORATION D RESULT",
+        "checks": 106,
+        "failures": 0
+      },
+      {
+        "suite": "WORLD PROGRESS D RESULT",
+        "checks": 170,
+        "failures": 0
+      },
+      {
+        "suite": "QUALITY 070 RESULT",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 070 RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FINALE 070 RESULT",
+        "checks": 24,
+        "failures": 0
+      },
+      {
+        "suite": "PALM 071 RESULT",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "suite": "RECOVERY 071 RESULT",
+        "checks": 55,
+        "failures": 0
+      },
+      {
+        "suite": "TUTORIAL UI 071 RESULT",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 071 RESULT",
+        "checks": 17,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH RESULT",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS RESULT",
+        "checks": 110,
+        "failures": 0
+      },
+      {
+        "suite": "FOOD RECOVERY RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "UI 04 THEME RESULT",
+        "checks": 7,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 RESULT",
+        "checks": 51,
+        "failures": 0
+      },
+      {
+        "suite": "HOTBAR 03 RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "UI 05 CAMERA RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "UI05 HOTBAR RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "UI05 LAYOUT RESULT",
+        "checks": 305,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 RESULT",
+        "checks": 102,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH RESULT",
+        "checks": 117,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 PERSISTENCE RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      }
+    ]
+  },
+  "window": {
+    "checks": 2448,
+    "failures": 0,
+    "suites": [
+      {
+        "suite": "render_061 :[ 0 ] RENDER 061 RESULT",
+        "checks": 113,
+        "failures": 0
+      },
+      {
+        "suite": "render_062 :[ 0 ] RENDER 062 RESULT",
+        "checks": 32,
+        "failures": 0
+      },
+      {
+        "suite": "render_seasons_a :[ 0 ] RENDER SEASONS A RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "fishing_b_render :[ 0 ] RENDER FISHING B RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "livestock_b_render :[ 0 ] LIVESTOCK B RENDER RESULT",
+        "checks": 25,
+        "failures": 0
+      },
+      {
+        "suite": "kitchen_b_render :[ 0 ] KITCHEN B RENDER RESULT",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "life_c_render :[ 0 ] LIFE C RENDER RESULT",
+        "checks": 19,
+        "failures": 0
+      },
+      {
+        "suite": "exploration_d_render :[ 0 ] EXPLORATION D RENDER RESULT",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "world_progress_d_render :[ 0 ] RENDER WORLD PROGRESS D RESULT",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "finale_070_render :[ 0 ] FINALE 070 RENDER RESULT",
+        "checks": 13,
+        "failures": 0
+      },
+      {
+        "suite": "palm_ui_render :[ 0 ] PALM UI RENDER RESULT",
+        "checks": 296,
+        "failures": 0
+      },
+      {
+        "suite": "palm_runner :[ 0 ] PALM 071 RESULT",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "suite": "tutorial_071_runner :[ 0 ] TUTORIAL UI 071 RESULT",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "suite": "touch_polish_runner :[ 0 ] TOUCH POLISH RESULT",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "suite": "touch_polish_visual :[ 0 ] TOUCH POLISH VISUAL RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "farming_visual_runner :[ 0 ] FARMING VISUAL RESULT",
+        "checks": 82,
+        "failures": 0
+      },
+      {
+        "suite": "food_recovery_runner :[ 0 ] FOOD RECOVERY RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "inventory03_render :[ 0 ] INVENTORY 03 RENDER RESULT",
+        "checks": 136,
+        "failures": 0
+      },
+      {
+        "suite": "hotbar03_runner :[ 0 ] HOTBAR 03 RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "ui04_runner :[ 0 ] UI 04 RESULT",
+        "checks": 886,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_camera_runner :[ 0 ] UI 05 CAMERA RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_hotbar_runner :[ 0 ] UI05 HOTBAR RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_layout_runner :[ 0 ] UI05 LAYOUT RESULT",
+        "checks": 305,
+        "failures": 0
+      },
+      {
+        "suite": "home05_render :[ 0 ] HOME 05 RENDER RESULT",
+        "checks": 44,
+        "failures": 0
+      },
+      {
+        "suite": "resource_rich_render :[ 0 ] RESOURCE RICH RENDER RESULT",
+        "checks": 73,
+        "failures": 0
+      }
+    ],
+    "platform": "Linux Godot4.3 Xvfb/Mesa"
+  },
+  "resources": {
+    "farm": {
+      "trees": 30,
+      "rocks": 12
+    },
+    "village": {
+      "trees": 10,
+      "rocks": 6
+    },
+    "mist_forest": {
+      "trees": 45,
+      "rocks": 25
+    },
+    "all_nodes": 128,
+    "legacy_ids_preserved": 19
+  },
+  "new_resource_suites": {
+    "headless": 117,
+    "window": 73,
+    "persistence_processes": 6,
+    "persistence_assertions": 21
+  },
+  "apk": {
+    "file": "PixelWorld-0.7.1-debug.apk",
+    "bytes": 68125897,
+    "sha256": "ae006d571a3c91c53da554b66ed768a097cc71b3f8763f66291820245b6b4e28",
+    "version_code": 15,
+    "package": "org.pixelfarm.windbud"
+  },
+  "android_device_tested": false,
+  "apk_desktop_resources_passed": true,
+  "interrupt_restart_passed": true,
+  "tested_production_sha256": {
+    "export_presets.cfg": "a1df608c6aeb8b5433f6cd96544d9175ff20632b0c77ab1a606e84ca4add8bdb",
+    "resources/exploration/exploration.json": "2fc999462e36ffb4ecae61172401c1c1c44810b14cba576e43c3a18ae7aaa9c3",
+    "scripts/core/main.gd": "24e97293fe1b86a4966441fb64944babdeaf0cf6a0776e46d0374fdc0476abf7",
+    "scripts/exploration/exploration_map.gd": "3d3eac57c381970853358cb4d652f0e53ea4247d0ded572c323121d8d1091703",
+    "scripts/gathering/resource_catalog.gd": "98bffa1e3bf2f30c943aeef6bd8a5d39a46a5a759c5965f8bfac62d21a9d22db",
+    "scripts/gathering/resource_field.gd": "4cb8e389c63c73023e78b1ee2900dc2199a31373ac1f799068a3cc4b56819f86",
+    "scripts/gathering/resource_node.gd": "224ff96a763510ef5f06aee2ce3a55629c1992be6a1e331faf988b3f838912e2",
+    "scripts/gathering/resource_world.gd": "93c56f779e29a80fd24e587927c38eb1335ede38c8b5c72896465a78896c1b6f",
+    "scripts/input/interaction_executor.gd": "f0e38d8e2ce68badbeefe54a2d3218f914417c0c452e7b5f840e44b850484bae",
+    "scripts/input/interaction_resolver.gd": "421a25578ae83815a501d4a160f84646d10cf14d3bc16068fa182e15b16ed19c",
+    "scripts/navigation/auto_move_controller.gd": "8f427078a2a74dba7332b83b30e0eff3f69175492494c9373e04481dc01b161a",
+    "scripts/save/save_schema.gd": "534c845aff549d42e3a63541cd1629b4bc11912a551fd70e51cc752a401edda0",
+    "scripts/save/save_store.gd": "7e47efd170d47918b65d80447cabb9b7217effb0edd66f52d32f2f73bb15d404",
+    "scripts/social/social_panel.gd": "62d84545b7b1387c90d5cb5694c3e765f41082bb9926db44211e7ad72dbb3eb4",
+    "scripts/ui/dialogue_panel.gd": "651d2905b9370a7b5e452ad767e55d53433fd08f2850a009819d75c5b8b95562",
+    "scripts/ui/hud.gd": "86dca522b259e0d0aae99e7521e8f71381e57768e1bf1600ffd1f6a79e7907ca",
+    "scripts/ui/inventory_panel.gd": "d74ed0e13166322e73dadc0bf32d8ed99357a5f2fa9f2b8b18efcf8427df9021",
+    "scripts/ui/progress_panel.gd": "b0bbf87c4295dfd4c64e6d024416596ae78f159722f70141af3b046ff3b89ecf",
+    "scripts/ui/story_panel.gd": "4dbafd4b4b9a9803ef5369dd4184e91e45871da08998027c9f10adde8420b545",
+    "scripts/ui/system_panel.gd": "378fa1edd9e19343d0f039b33fd5879fcf21e8aad1a299a6e15d2cff2473a7df",
+    "scripts/ui/ui_layout.gd": "43742d3cd80e8801b7e1ee259bf5c7aa459391714bfe05185e2cec4b58de97c0",
+    "scripts/ui/ui_style.gd": "5886dab6974692c6d5fa8f9e9e36c06225ea1c7f171b19ec770baa25fb9cdbce",
+    "scripts/ui/xiaojing_panel.gd": "221b96e72da83bbdaadf5dbf9a743cb3d6d846b53a9530a2dec72e1995a6ff14",
+    "scripts/world/farm_world.gd": "c6bb57ba34f9c02428d629f0f50967fde85cb09ad5325f0ef97db81adda620dd"
+  },
+  "logs": [
+    "builds/classic-resource-final-check.log",
+    "builds/classic-resource-final-window.log",
+    "builds/classic-resource-final-build.log",
+    "builds/classic-resource-final-apk-runtime.log",
+    "builds/classic-resource-final-interrupt.log"
+  ]
+}

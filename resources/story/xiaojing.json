@@ -1,0 +1,511 @@
+{
+  "name": "第 1314 颗星星",
+  "quests": [
+    {
+      "id": "survey",
+      "title": "借一束窗光",
+      "type": "调查",
+      "description": "到小屋查窗边育苗笔记，再把观察交给小京。",
+      "previous": "",
+      "conditions": {
+        "memory": 1
+      },
+      "materials": {},
+      "reward": {
+        "affection": 5,
+        "trust": 8,
+        "bond": 3
+      },
+      "repeatable": false,
+      "story": "你把笔记抄成两份，一份留在窗下，一份交给小京。小京圈出背阴处的温度：这页以后也写你的名字，不用照我的结论写。",
+      "act": "seed520",
+      "trigger": "读完夜信、认识小京",
+      "gameplay": "到小屋查窗边育苗笔记，再把观察交给小京。",
+      "failure": "窗边的纸还在；没有读完不记入收藏。",
+      "after": "为温室调查建立第一份可靠记录。",
+      "dialogue": {
+        "before": "小京：调查小屋窗边的旧种植笔记。",
+        "after": "你把笔记抄成两份，一份留在窗下，一份交给小京。小京圈出背阴处的温度：这页以后也写你的名字，不用照我的结论写。"
+      },
+      "extra_facts": []
+    },
+    {
+      "id": "flowers",
+      "title": "一起种下的花",
+      "type": "种植",
+      "description": "新播种30株；失败操作不计数。",
+      "previous": "survey",
+      "conditions": {
+        "plant": 30
+      },
+      "materials": {},
+      "reward": {
+        "affection": 8,
+        "trust": 4,
+        "bond": 6
+      },
+      "repeatable": false,
+      "story": "三十株作物长得并不齐。小京把长得慢的那排也记下：我们是在了解土地，不是在交一张没有错字的答卷。",
+      "act": "greenhouse",
+      "trigger": "完成借一束窗光",
+      "gameplay": "新播种30株；失败操作不计数。",
+      "failure": "种子和体力不足时暂停，不清空已种数量。",
+      "after": "让小京愿意把未完成的试验托付给你。",
+      "dialogue": {
+        "before": "小京：研究的是作物伴生植物；成功种植30株，亲手照料这片试验田。",
+        "after": "三十株作物长得并不齐。小京把长得慢的那排也记下：我们是在了解土地，不是在交一张没有错字的答卷。"
+      },
+      "extra_facts": []
+    },
+    {
+      "id": "seed_archive",
+      "title": "不以丰收交换信任",
+      "type": "交付",
+      "description": "留出小麦12、胡萝卜8作种源，整笔交付。",
+      "previous": "flowers",
+      "conditions": {},
+      "materials": {
+        "wheat": 12,
+        "carrot": 8
+      },
+      "reward": {
+        "affection": 6,
+        "trust": 8,
+        "bond": 4
+      },
+      "repeatable": false,
+      "story": "你把样本放上桌，标签上分开写着产地和日期。小京没有把它们混进丰收的箱子：最普通的一株，也值得认真留种。",
+      "act": "greenhouse",
+      "trigger": "完成一起种下的花",
+      "gameplay": "留出小麦12、胡萝卜8作种源，整笔交付。",
+      "failure": "样本不足时一份也不收，先照顾自己的口粮。",
+      "after": "保住恢复温室所需的种源。",
+      "dialogue": {
+        "before": "小京：一起建立留种样本：小麦12、胡萝卜8。",
+        "after": "你把样本放上桌，标签上分开写着产地和日期。小京没有把它们混进丰收的箱子：最普通的一株，也值得认真留种。"
+      },
+      "extra_facts": []
+    },
+    {
+      "id": "river_marks",
+      "title": "被水改写的岸",
+      "type": "调查",
+      "description": "亲访桥西、风车记录；对比三份记忆。",
+      "previous": "seed_archive",
+      "conditions": {
+        "memory": 3
+      },
+      "materials": {},
+      "reward": {
+        "affection": 5,
+        "trust": 9,
+        "bond": 6
+      },
+      "repeatable": false,
+      "story": "你们在桥边比对两个年份的水线。小京把“我以为”改成“待验证”：谢谢你没有拿我的猜测当承诺。",
+      "act": "valley",
+      "trigger": "完成留种档案",
+      "gameplay": "亲访桥西、风车记录；对比三份记忆。",
+      "failure": "不能用材料跳过调查，水线和记录可以重看。",
+      "after": "发现洪水、停运与温室关闭日期的联系。",
+      "dialogue": {
+        "before": "小京：找到桥西、风车下的两份记忆。",
+        "after": "你们在桥边比对两个年份的水线。小京把“我以为”改成“待验证”：谢谢你没有拿我的猜测当承诺。"
+      },
+      "extra_facts": []
+    },
+    {
+      "id": "first_puzzle",
+      "title": "三次回声",
+      "type": "解谜",
+      "description": "按种子→河风→潮声解开旧种箱旋扣。",
+      "previous": "river_marks",
+      "conditions": {
+        "puzzle": 1
+      },
+      "materials": {},
+      "reward": {
+        "affection": 5,
+        "trust": 6,
+        "bond": 8
+      },
+      "repeatable": false,
+      "story": "种箱在最后一次潮声后松开。里面不是戒指，是小京母亲留下的第一只采种袋：我想接着做这件事，但按我自己的办法。",
+      "act": "valley",
+      "trigger": "完成岸线调查",
+      "gameplay": "按种子→河风→潮声解开旧种箱旋扣。",
+      "failure": "错序复位，已有记忆不丢失。",
+      "after": "母亲的种袋里留下临时安置登记。",
+      "dialogue": {
+        "before": "小京：根据屋内的图记解开种箱的三道旋扣。",
+        "after": "种箱在最后一次潮声后松开。里面不是戒指，是小京母亲留下的第一只采种袋：我想接着做这件事，但按我自己的办法。"
+      },
+      "extra_facts": []
+    },
+    {
+      "id": "route_notes",
+      "title": "各自的路线",
+      "type": "探索",
+      "description": "三地图五份记忆；在农场温室检查气窗，以木2石2修活动窗。",
+      "previous": "first_puzzle",
+      "conditions": {
+        "memory": 5,
+        "locations": 3
+      },
+      "materials": {},
+      "reward": {
+        "affection": 6,
+        "trust": 8,
+        "bond": 6
+      },
+      "repeatable": false,
+      "story": "地图上有三种笔迹。小京不要求你复制同一条路线：你画田里的风，我画河岸的阴影，合在一起才有用。",
+      "act": "valley",
+      "trigger": "完成三次回声",
+      "gameplay": "三地图五份记忆；在农场温室检查气窗，以木2石2修活动窗。",
+      "failure": "窗架材料不足不扣费；可以离开后继续。",
+      "after": "让温室具备通风条件，也学会先修日常。",
+      "dialogue": {
+        "before": "小京：收齐五份记忆，去过农场、小屋和河湾村的观察点。",
+        "after": "地图上有三种笔迹。小京不要求你复制同一条路线：你画田里的风，我画河岸的阴影，合在一起才有用。"
+      },
+      "extra_facts": [
+        "vent_repaired"
+      ]
+    },
+    {
+      "id": "tea_together",
+      "title": "同一张桌的两份计划",
+      "type": "共同活动",
+      "description": "18:00后与小京在公共茶座写计划，留小麦2。",
+      "previous": "route_notes",
+      "conditions": {
+        "activity": 1
+      },
+      "materials": {
+        "wheat": 2
+      },
+      "reward": {
+        "affection": 8,
+        "trust": 5,
+        "bond": 8
+      },
+      "repeatable": false,
+      "story": "小京的计划里有一次远行，你的计划里有一片新田。两张纸没有叠成一张，你们只在同一个傍晚画下回来的箭头。",
+      "act": "memories",
+      "trigger": "完成路线调查",
+      "gameplay": "18:00后与小京在公共茶座写计划，留小麦2。",
+      "failure": "没到傍晚可去长椅等候；错过约定可以解释和重约。",
+      "after": "选择研究桌分开或并排，后续对白记住你的安排。",
+      "dialogue": {
+        "before": "小京：18:00后到茶座，共同写下下一季的计划。",
+        "after": "小京的计划里有一次远行，你的计划里有一片新田。两张纸没有叠成一张，你们只在同一个傍晚画下回来的箭头。"
+      },
+      "extra_facts": []
+    },
+    {
+      "id": "market_trial",
+      "title": "不欠明天的账",
+      "type": "经营挑战",
+      "description": "8日内限定60份种子、播种价值预算1000，至少两种作物各12株，净收入1800。",
+      "previous": "tea_together",
+      "conditions": {
+        "trial": "management"
+      },
+      "materials": {},
+      "reward": {
+        "affection": 5,
+        "trust": 7,
+        "bond": 6
+      },
+      "repeatable": false,
+      "story": "你把种子成本也记进账本。小京指着没有出售的那一栏：这些不是浪费，是留给下一季的余地。你们给试验田单独留了预算。",
+      "act": "starlight",
+      "trigger": "完成共同计划",
+      "gameplay": "8日内限定60份种子、播种价值预算1000，至少两种作物各12株，净收入1800。",
+      "failure": "超预算或超期可放弃重试；正常农场仍可继续种植。",
+      "after": "为温室单独留下不挤占村民生活的预算。",
+      "dialogue": {
+        "before": "小京：完成经营试炼：8日内种植并收获24株，实际销售净收益1800金。",
+        "after": "你把种子成本也记进账本。小京指着没有出售的那一栏：这些不是浪费，是留给下一季的余地。你们给试验田单独留了预算。"
+      },
+      "extra_facts": []
+    },
+    {
+      "id": "supply_trial",
+      "title": "带得走的重量",
+      "type": "资源规划",
+      "description": "3日内采木20石12，实际加工一枚铜锭并在温室修铰链，项目用木≤24石≤16，余体力35。",
+      "previous": "market_trial",
+      "conditions": {
+        "trial": "planning"
+      },
+      "materials": {},
+      "reward": {
+        "affection": 5,
+        "trust": 8,
+        "bond": 5
+      },
+      "repeatable": false,
+      "story": "回程的背囊没有塞满。小京称了剩余粮水的重量：能把别人和自己平安带回来的计划，比带走最多东西更难。",
+      "act": "starlight",
+      "trigger": "完成经营试炼",
+      "gameplay": "3日内采木20石12，实际加工一枚铜锭并在温室修铰链，项目用木≤24石≤16，余体力35。",
+      "failure": "未完成加工的队列保留；失败不会吞掉已有成品。",
+      "after": "用可重做的制作链保证温室以后能自行维护。",
+      "dialogue": {
+        "before": "小京：完成一天内的规划试炼：采木20、石12，结余体力至少35。",
+        "after": "回程的背囊没有塞满。小京称了剩余粮水的重量：能把别人和自己平安带回来的计划，比带走最多东西更难。"
+      },
+      "extra_facts": []
+    },
+    {
+      "id": "cave_trial",
+      "title": "把退路画在前面",
+      "type": "矿道探索",
+      "description": "基础矿道同日考察，或直接完成80–100层强化深渊试炼，均认可此约定。",
+      "previous": "supply_trial",
+      "conditions": {
+        "trial": "cave"
+      },
+      "materials": {},
+      "reward": {
+        "affection": 6,
+        "trust": 8,
+        "bond": 7
+      },
+      "repeatable": false,
+      "story": "矿道出口的日光很窄，你们先对照回程图，再分拣矿晶。小京把你的路线抄到入口牌上：下一位来的人，不必从我们的失误开始。",
+      "act": "starlight",
+      "trigger": "完成资源试炼",
+      "gameplay": "备粮进入实体矿道，检查手册与水位牌，采四矿、抵水脉并同日回村，留20体力。",
+      "failure": "180段格间行走观察预算、采矿≤90体力；超限安全返回可重开。",
+      "after": "把退路而非产量写在下一位考察者的入口牌上。",
+      "dialogue": {
+        "before": "小京：完成基础矿道的困难勘探，带出矿晶与完整路线。",
+        "after": "矿道出口的日光很窄，你们先对照回程图，再分拣矿晶。小京把你的路线抄到入口牌上：下一位来的人，不必从我们的失误开始。"
+      },
+      "extra_facts": []
+    },
+    {
+      "id": "star_mechanism",
+      "title": "让星灯依次醒来",
+      "type": "机关解谜",
+      "description": "基础九灯机关，或完成20→60→100层强化三段回路，均认可此约定。",
+      "previous": "cave_trial",
+      "conditions": {
+        "memory": 7,
+        "trial": "mechanism"
+      },
+      "materials": {},
+      "reward": {
+        "affection": 6,
+        "trust": 7,
+        "bond": 8
+      },
+      "repeatable": false,
+      "story": "九盏灯一起亮起时，你们先检查了闸门。小京笑着把灯罩递过来：奇迹也要有人认真拧紧最后一颗螺丝。",
+      "act": "starlight",
+      "trigger": "完成矿道考察并收七记忆",
+      "gameplay": "读晶窟星灯基座线索，在实体九灯五步内全亮。",
+      "failure": "错序五次自动复位，可重新观察。",
+      "after": "通过实际机关验证记忆里的灯位。",
+      "dialogue": {
+        "before": "小京：收齐七份记忆，五步以内点亮九格星灯；按一格会反转自身与四邻。",
+        "after": "九盏灯一起亮起时，你们先检查了闸门。小京笑着把灯罩递过来：奇迹也要有人认真拧紧最后一颗螺丝。"
+      },
+      "extra_facts": []
+    },
+    {
+      "id": "shared_future",
+      "title": "永远的约定",
+      "type": "共同挑战",
+      "description": "基础联合考察，或三作各新收12、重访100层并与三位村民分工的强化版；拼好温室历史。",
+      "previous": "star_mechanism",
+      "conditions": {
+        "trial": "joint"
+      },
+      "materials": {},
+      "reward": {
+        "affection": 8,
+        "trust": 8,
+        "bond": 9
+      },
+      "repeatable": false,
+      "story": "种箱、河岸图和新收的作物并排放在桌上。你们决定温室先留两张研究桌，再留一条谁都不被挤走的过道。未来不需要相同，只需要能商量。",
+      "act": "star1314",
+      "trigger": "完成星灯试炼",
+      "gameplay": "新收获作物、解种箱并走访三图；与林芽、周砚、阿禾完成各自协作，再拼好温室历史。",
+      "failure": "少一位参与者会标明缺项，材料不足不提前结算。",
+      "after": "形成可以执行的温室计划，开放结构修复与求婚。",
+      "dialogue": {
+        "before": "小京：完成联合考察试炼，整理温室修复计划。",
+        "after": "种箱、河岸图和新收的作物并排放在桌上。你们决定温室先留两张研究桌，再留一条谁都不被挤走的过道。未来不需要相同，只需要能商量。"
+      },
+      "extra_facts": [
+        "history_solved"
+      ]
+    }
+  ],
+  "memories": [
+    {
+      "id": "window",
+      "location": "home",
+      "position": [
+        768,
+        274
+      ],
+      "title": "窗光留下的位置",
+      "text": "育苗册第一页：先试耐阴麦，再决定是否扩建。小京的母亲在页脚留了一个空格，给下一位照料者写不同的结论。",
+      "method": "read",
+      "action": "将折角压平，读出育苗日期"
+    },
+    {
+      "id": "pond",
+      "location": "farm",
+      "position": [
+        930,
+        752
+      ],
+      "title": "先画出回去的路",
+      "text": "池岸的铅笔线绕过洼地，先标出返回温室的高处。背面写着：留在这里的人也要有退路，不要把照顾变成困住。",
+      "method": "survey",
+      "action": "沿退水边界选择高处回程线"
+    },
+    {
+      "id": "bridge",
+      "location": "village",
+      "position": [
+        770,
+        580
+      ],
+      "title": "借来的勇气",
+      "text": "量尺上有一处倒写的数字。洪水那天，有人先把温室里的长凳搬给等车的孩子，再回来取量尺；小京第一次知道母亲也会临时改变计划。",
+      "method": "rubbing",
+      "action": "拓下桥边刻度，选择与旧记录吻合的水线"
+    },
+    {
+      "id": "mill",
+      "location": "village",
+      "position": [
+        1160,
+        450
+      ],
+      "title": "不必相同的明天",
+      "text": "矿物订单被划去，种袋旁写着暂存。温室停用的那个星期，架上装的不是幼苗，是每户带来的小包。小京一直把那段安静误认成了放弃。",
+      "method": "compare",
+      "action": "将运输单里的种袋栏与空车栏对照"
+    },
+    {
+      "id": "post",
+      "location": "village",
+      "position": [
+        200,
+        566
+      ],
+      "title": "没有寄给谁的信",
+      "text": "信的收件栏空着。阿禾记着原话：暂住的人需要清水，种子要搬到干燥的窗边。等大家安顿好再说。后来每个人都忙着重新生活，那扇气窗就一直没开。",
+      "method": "witness",
+      "action": "听完阿禾保留的口述原话，再留一条自己的问话"
+    },
+    {
+      "id": "hearth",
+      "location": "home",
+      "position": [
+        538,
+        275
+      ],
+      "title": "两个人的安静",
+      "text": "炉边有三张桌位草图：育苗架、临时长凳、两张研究桌。最旧一张被茶水泡皱了。小京把它也留下：修复不用假装从前没有难处。",
+      "method": "sort",
+      "action": "按育苗、安置、重开的顺序整理三张桌位草图"
+    },
+    {
+      "id": "orchard",
+      "location": "farm",
+      "position": [
+        1210,
+        800
+      ],
+      "title": "星灯以外",
+      "text": "果树下的灯图只给一盏灯画了罩子。小京小时候以为它最重要，后来才明白，那是给最后一个回来的人留的。如今想把灯罩做成谁都能修的样子。",
+      "method": "observe",
+      "action": "对照星灯图选择为晚归者保留的那盏灯"
+    }
+  ],
+  "events": [
+    {
+      "id": "meet",
+      "threshold": 0,
+      "title": "初次认识",
+      "text": "我叫小京，研究河谷耐阴的种子。你照顾过的那些田，把我引到了这里。我有自己的试验计划，也想认识愿意认真种东西的人。"
+    },
+    {
+      "id": "flower",
+      "threshold": 20,
+      "title": "一起种下的花",
+      "text": "我没把伴生花拔掉。它们和作物抢一点位置，也替土地留下休息的缝隙。我们也不必把彼此的生活占满。"
+    },
+    {
+      "id": "secret",
+      "threshold": 50,
+      "title": "星光下的秘密",
+      "text": "我有时会去更远的地方调查。我想和你恋爱，也想继续自己的工作。愿意把这两件事一起商量吗？"
+    },
+    {
+      "id": "promise",
+      "threshold": 80,
+      "title": "永远的约定",
+      "text": "我不会答应永远不离开这条河。我能答应的是：去哪里、何时回来、遇见了什么，都认真告诉你。你也一样。"
+    },
+    {
+      "id": "stars",
+      "threshold": 100,
+      "title": "1314颗钻石",
+      "text": "温室的星灯需要1314颗矿晶。它们不是我的价格，是我们决定修复的公共研究设施。等所有试炼与记忆都完成，再谈婚礼；现在也可以继续各自的生活。"
+    }
+  ],
+  "diamond_sources": {
+    "mine": "resources/mining/mining.json",
+    "note": "复用0.5.0高级矿脉、加工、实地委托；旧在途路线仅结算一次。"
+  },
+  "balance": {
+    "target_hours": [
+      80,
+      120
+    ],
+    "note": "不据本次剧情更新宣称时长达标；必须重新测量主动玩法。"
+  },
+  "acts": [
+    {
+      "id": "seed520",
+      "title": "第 520 次播种",
+      "text": "那封信没有邮戳。小京认出你留在田里的脚印，却先问起哪一垄最怕积水。"
+    },
+    {
+      "id": "greenhouse",
+      "title": "荒废的温室",
+      "text": "封住的气窗旁有一枚铜铰链。小京回来寻找的，是当年为什么没人再打开它。"
+    },
+    {
+      "id": "valley",
+      "title": "山谷里的秘密",
+      "text": "水脉的值班页和温室停用日重合。矿工把干燥的棚架让给了暂住的人。"
+    },
+    {
+      "id": "memories",
+      "title": "七份遗失的记忆",
+      "text": "停用不是谁的过错：安置、种子保存和失去的日常，分别留在不同人的纸上。"
+    },
+    {
+      "id": "starlight",
+      "title": "星光重新亮起",
+      "text": "你们修的是一处可以重新工作的地方。账本、退路和两张桌，都要在灯亮以前安排好。"
+    },
+    {
+      "id": "star1314",
+      "title": "第 1314 颗星星",
+      "text": "最后一颗晶石不比第一颗亮。它只让两个人商量过的日子，多了一盏回家能看见的灯。"
+    }
+  ]
+}

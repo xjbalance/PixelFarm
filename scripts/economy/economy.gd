@@ -8,14 +8,16 @@ static func buy(crop_id: String, quantity: int) -> bool:
 	var crop: CropDefinition = Catalog.crops[crop_id]
 	var cost: int = seed_price(crop_id) * quantity
 	var item := crop_id + "_seed"
-	if Inventory.coins < cost:
+	if not Inventory.diamond_payment and Inventory.coins < cost:
 		Events.notice.emit("金币不足，还差 %d 金。" % (cost - Inventory.coins))
 		return false
 	if Inventory.count(item) + quantity > Inventory.MAX_STACK:
 		Events.notice.emit("这类种子已经装满背包。")
 		return false
 	if not Inventory.exchange({},{item:quantity},-cost): return false
-	Events.notice.emit("买到 %s种子 ×%d，花费 %d 金。" % [crop.display_name,quantity,cost])
+	Xiaojing.on_trade(-cost,item,quantity)
+	Events.progress_committed.emit()
+	Events.notice.emit("买到 %s种子 ×%d，花费 %s。" % [crop.display_name,quantity,"%d钻石" % DiamondPayments.price(cost) if Inventory.diamond_payment else "%d金" % cost])
 	return true
 
 static func seed_price(crop_id: String) -> int:
@@ -30,5 +32,7 @@ static func sell(crop_id: String, quantity: int) -> bool:
 	if not Inventory.exchange({crop_id:quantity},{},total):
 		Events.notice.emit("金币已经达到上限。")
 		return false
+	Xiaojing.on_trade(total,crop_id,quantity)
+	Events.progress_committed.emit()
 	Events.notice.emit("出售 %s ×%d，获得 %d 金。" % [Catalog.item_name(crop_id),quantity,total])
 	return true

@@ -1,0 +1,313 @@
+{
+  "task": "Food restores stamina without daily serving limits",
+  "base_commit": "aef5019",
+  "schema": 22,
+  "schema_changed": false,
+  "automated": {
+    "checks": 3313,
+    "failures": 0,
+    "suites": [
+      {
+        "suite": "SLEEP RESULT",
+        "checks": 29,
+        "failures": 0
+      },
+      {
+        "suite": "RESULT",
+        "checks": 452,
+        "failures": 0
+      },
+      {
+        "suite": "MINING RESULT",
+        "checks": 98,
+        "failures": 0
+      },
+      {
+        "suite": "STAR RESULT",
+        "checks": 125,
+        "failures": 0
+      },
+      {
+        "suite": "LEGEND RESULT",
+        "checks": 252,
+        "failures": 0
+      },
+      {
+        "suite": "STABILITY RESULT",
+        "checks": 264,
+        "failures": 0
+      },
+      {
+        "suite": "RIVER RESULT",
+        "checks": 446,
+        "failures": 0
+      },
+      {
+        "suite": "AQUACULTURE RESULT",
+        "checks": 155,
+        "failures": 0
+      },
+      {
+        "suite": "SEASONS A RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "CONTROL RECOVERY RESULT",
+        "checks": 52,
+        "failures": 0
+      },
+      {
+        "suite": "FISHING B RESULT",
+        "checks": 84,
+        "failures": 0
+      },
+      {
+        "suite": "LIVESTOCK B RESULT",
+        "checks": 112,
+        "failures": 0
+      },
+      {
+        "suite": "KITCHEN B RESULT",
+        "checks": 100,
+        "failures": 0
+      },
+      {
+        "suite": "ECOLOGY B RESULT",
+        "checks": 65,
+        "failures": 0
+      },
+      {
+        "suite": "FESTIVALS C RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "SOCIAL C RESULT",
+        "checks": 107,
+        "failures": 0
+      },
+      {
+        "suite": "HOUSING C RESULT",
+        "checks": 105,
+        "failures": 0
+      },
+      {
+        "suite": "EXPLORATION D RESULT",
+        "checks": 106,
+        "failures": 0
+      },
+      {
+        "suite": "WORLD PROGRESS D RESULT",
+        "checks": 170,
+        "failures": 0
+      },
+      {
+        "suite": "QUALITY 070 RESULT",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 070 RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FINALE 070 RESULT",
+        "checks": 24,
+        "failures": 0
+      },
+      {
+        "suite": "PALM 071 RESULT",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "suite": "RECOVERY 071 RESULT",
+        "checks": 55,
+        "failures": 0
+      },
+      {
+        "suite": "TUTORIAL UI 071 RESULT",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 071 RESULT",
+        "checks": 17,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH RESULT",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS RESULT",
+        "checks": 110,
+        "failures": 0
+      },
+      {
+        "suite": "FOOD RECOVERY RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      }
+    ],
+    "log": "builds/food-recovery-final-check.log"
+  },
+  "window": {
+    "checks": 890,
+    "failures": 0,
+    "suites": [
+      {
+        "suite": "render_061 :[ 0 ] RENDER 061 RESULT",
+        "checks": 113,
+        "failures": 0
+      },
+      {
+        "suite": "render_062 :[ 0 ] RENDER 062 RESULT",
+        "checks": 32,
+        "failures": 0
+      },
+      {
+        "suite": "render_seasons_a :[ 0 ] RENDER SEASONS A RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "fishing_b_render :[ 0 ] RENDER FISHING B RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "livestock_b_render :[ 0 ] LIVESTOCK B RENDER RESULT",
+        "checks": 25,
+        "failures": 0
+      },
+      {
+        "suite": "kitchen_b_render :[ 0 ] KITCHEN B RENDER RESULT",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "life_c_render :[ 0 ] LIFE C RENDER RESULT",
+        "checks": 19,
+        "failures": 0
+      },
+      {
+        "suite": "exploration_d_render :[ 0 ] EXPLORATION D RENDER RESULT",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "world_progress_d_render :[ 0 ] RENDER WORLD PROGRESS D RESULT",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "finale_070_render :[ 0 ] FINALE 070 RENDER RESULT",
+        "checks": 13,
+        "failures": 0
+      },
+      {
+        "suite": "palm_ui_render :[ 0 ] PALM UI RENDER RESULT",
+        "checks": 296,
+        "failures": 0
+      },
+      {
+        "suite": "palm_runner :[ 0 ] PALM 071 RESULT",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "suite": "tutorial_071_runner :[ 0 ] TUTORIAL UI 071 RESULT",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "suite": "touch_polish_runner :[ 0 ] TOUCH POLISH RESULT",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "suite": "touch_polish_visual :[ 0 ] TOUCH POLISH VISUAL RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "farming_visual_runner :[ 0 ] FARMING VISUAL RESULT",
+        "checks": 82,
+        "failures": 0
+      },
+      {
+        "suite": "food_recovery_runner :[ 0 ] FOOD RECOVERY RESULT",
+        "checks": 43,
+        "failures": 0
+      }
+    ],
+    "log": "builds/food-recovery-final-window.log"
+  },
+  "new_food_checks": 43,
+  "native_touch_example": {
+    "carrots_before": 20,
+    "carrots_after": 15,
+    "stamina_before": 0,
+    "stamina_after": 40,
+    "independent_taps": 5,
+    "full_stamina_extra_tap_consumes": 0
+  },
+  "daily_limit_removed_for": [
+    "raw_crop_snacks",
+    "kitchen_dishes",
+    "cooked_fish_food"
+  ],
+  "bench_daily_limit": 3,
+  "buffs_stack_or_refresh": false,
+  "production_files": [
+    "scripts/aquaculture/aquaculture_panel.gd",
+    "scripts/aquaculture/aquaculture_state.gd",
+    "scripts/kitchen/kitchen_panel.gd",
+    "scripts/kitchen/kitchen_state.gd",
+    "scripts/recovery/recovery_panel.gd",
+    "scripts/recovery/recovery_state.gd",
+    "scripts/tutorial/game_tutorial.gd",
+    "scripts/ui/inventory_panel.gd"
+  ],
+  "android_device_tested": false,
+  "apk_exported": false,
+  "notes": [
+    "snacks remains a saturated legacy field, not an eating gate",
+    "meal_day remains last meal date, not an eating gate",
+    "Old limit assertions changed only to reflect the explicit new user requirement; capacity, item cost, reentrancy and persistence assertions retained"
+  ]
+}

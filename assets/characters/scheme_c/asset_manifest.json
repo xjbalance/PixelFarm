@@ -1,0 +1,1637 @@
+{
+  "design_set": "scheme_c",
+  "source": "user_supplied_reference_pack",
+  "source_pack_id": "pixelworld_scheme_c_reference_pack",
+  "pairing": {
+    "player_male": "xiaojing_female",
+    "player_female": "xiaojing_male"
+  },
+  "source_original_sha256": "8560dd9ec72a35a9175d6b5d78b04c49d3f9bb886f0c9b841d2b10ddc4817d7a",
+  "source_sumfile_sha256": "c031643c6e116e2026df7c37c98ad11418fd746f2b18bbe70f95dc317a4d7225",
+  "source_files_verified": 129,
+  "source_checksums": [
+    {
+      "path": "docs/01_角色规范.md",
+      "sha256": "25118cc164967a577583317da965ad8342f5dda08761fb44cbd47bb3cd3f9dd1"
+    },
+    {
+      "path": "docs/02_资源制作规范.md",
+      "sha256": "f78ecac307db89d56e9ae633e2c1e1c06ae360164d517504bce918b1d45d24a6"
+    },
+    {
+      "path": "docs/03_Godot接入说明.md",
+      "sha256": "1f08c06a98963744493a7cd7de6924456159c548387c60f939119b62a9d90f31"
+    },
+    {
+      "path": "docs/04_交给Codex的任务.md",
+      "sha256": "d8540072584bfc4a6beaf1a3967fa603aa2f4ab79e4cc6d9a4e4f6661d2b9754"
+    },
+    {
+      "path": "docs/05_验收清单.md",
+      "sha256": "764ab6e64329cba1fada7d37ee02c831c0f28fbc5d6016af383df25c136aadeb"
+    },
+    {
+      "path": "docs/06_来源与图像核验.md",
+      "sha256": "c88b19740ebbcaad59d37b9e33c5ea5f17bfdec2e99b592110b342d074bdd8f8"
+    },
+    {
+      "path": "generation_sources/player_female_generated_original.png",
+      "sha256": "afc945877553b23e24a37945dc7a5a29a5d6b898959a9a8212fcf01eda65ee38"
+    },
+    {
+      "path": "generation_sources/player_male_generated_original.png",
+      "sha256": "9538da69ea45dcc6b56743e347dfb9e2201dfeeed6619dbeede73cbb6a748612"
+    },
+    {
+      "path": "generation_sources/xiaojing_female_generated_original.png",
+      "sha256": "7ad171022b1d3ca512940c6e8fd4cd8a19fab363ffff7afa498f3618e8440342"
+    },
+    {
+      "path": "generation_sources/xiaojing_male_generated_original.png",
+      "sha256": "4cdcd2d418156938fb6e64f01585b617b80430da0eff6a0ae5a5c5e6dd49ae58"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/compact_32x48/sprite_frames.tres",
+      "sha256": "ac7e18554cf39723d12d2ab4c6e8a9ed5728ac510b3660f97ad4ed9f47225c96"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+      "sha256": "e597b16edfef22dfc0930bc26a8a5ad5df3d4ce133371458303af4cc4231f361"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/idle_down.png",
+      "sha256": "21af34ef20d174ee02b8bad7817c4e33f8215a5904aa35a7b7afb5dd655b8a07"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/idle_left.png",
+      "sha256": "46c80175fe79c5d030928784cab8dd0e90512422551a18cbdc716ebd63ca1dd7"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/idle_right.png",
+      "sha256": "de4e36e932413908ff056d7222fab01421e3c457155e6bf931a21cc7365e45c5"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/idle_up.png",
+      "sha256": "c4a5c8dabf8cb4d964f4c84bd4f36be0635d9a621a78354bc1110ae15778b5ee"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_down_00.png",
+      "sha256": "21af34ef20d174ee02b8bad7817c4e33f8215a5904aa35a7b7afb5dd655b8a07"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_down_01.png",
+      "sha256": "bbf240dce9806107a44353949041bb738c7e0f4c2f760f122d74209bb87f8961"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_down_02.png",
+      "sha256": "c55fb2b9f5db6f44cead6f7ce05f7983d97239f60bb0ff1e1152a03a20dbc965"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_down_03.png",
+      "sha256": "94b44857eecd8db2b22088539bdf879e55cbc97f70c989c97ad198bc046c7b0d"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_left_00.png",
+      "sha256": "46c80175fe79c5d030928784cab8dd0e90512422551a18cbdc716ebd63ca1dd7"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_left_01.png",
+      "sha256": "ad782de57594f3ae3dda47b6ce47ea03399c3d68d487df084d9384e7f024c4a0"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_left_02.png",
+      "sha256": "f73d337e847b00f91cdf6580a397f727f5c7e4806a8cd375c7633e0e4931ecff"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_left_03.png",
+      "sha256": "3fa3186d5b7772bc19cd36cac6a9c98b425e241ea3d26d211885666dab9fba5b"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_right_00.png",
+      "sha256": "de4e36e932413908ff056d7222fab01421e3c457155e6bf931a21cc7365e45c5"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_right_01.png",
+      "sha256": "164c10957334a19c6555656eb5cfc26ba697d7a72e54d45ce1dccabf799a550b"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_right_02.png",
+      "sha256": "12340cb5e81e25bc5cdc8d4fc49d4c73a8a7e7f740bf8beadadfc32772743e49"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_right_03.png",
+      "sha256": "e5d43b0789a1453f0243838d12d4b0b190ae9e457ce161ab1afc824bfdd21a6a"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_up_00.png",
+      "sha256": "c4a5c8dabf8cb4d964f4c84bd4f36be0635d9a621a78354bc1110ae15778b5ee"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_up_01.png",
+      "sha256": "8811c4d9d235bc3a78ce660bc415e801079991ce0946554cb5f26ce310319f70"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_up_02.png",
+      "sha256": "d0c472b326b812e33ea42509892f2b8b8fafa20d98a687b70bf43b80f5485c23"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/frames/walk_up_03.png",
+      "sha256": "c5d58174f2edd753fd6334b48c46a7aaff0543d1a5417634125c7c1932d30056"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/sprite_frames.tres",
+      "sha256": "d6e65370e8dc09ec751ee73804874c8d415fd557b78c433bca62ce0c8bb6376a"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_female/spritesheet.png",
+      "sha256": "af779c5ef7d6e19924388e6bf984f61df8588904c31c3e2aafa6d28e6480366e"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/compact_32x48/sprite_frames.tres",
+      "sha256": "a53911f99f8808f7c34a9f17e0ced02b931a999c8d6b38d78e38d01e90cb7ec6"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/compact_32x48/spritesheet.png",
+      "sha256": "a222b1140caaad44c458d5ae3b05f110de7e246903673ee4449284c745c1e7a9"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/idle_down.png",
+      "sha256": "5b6cab7ad3181766fbe2990151c53b49491f8d396069f9d7bb353b4b3e90b21e"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/idle_left.png",
+      "sha256": "bc019d66cc07508df7e7e0773b0de4c6878fa66b981b7876aef4a18d944a3b40"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/idle_right.png",
+      "sha256": "0b14dad1f759a00d38df9bf7fa3e08a4ee63a7cbe8b8d85ed954f90c26b0adee"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/idle_up.png",
+      "sha256": "6924a182119344af15e2b64b7ab01aab4512f375e4f0ec0f6224398885ecd629"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_down_00.png",
+      "sha256": "5b6cab7ad3181766fbe2990151c53b49491f8d396069f9d7bb353b4b3e90b21e"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_down_01.png",
+      "sha256": "dc774549708fe406ddcce6ab61d69ca581ac6e5794ba0eacb1d3e383fbcf289b"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_down_02.png",
+      "sha256": "923e0cca904ab9835445e965f43b24bcbcf649c45ec5e0de8ae09c89dfdc16d4"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_down_03.png",
+      "sha256": "b3163e6f215c9861c92397da3a641ef4f07393ed5b1edf2d12750e199f6092d7"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_left_00.png",
+      "sha256": "bc019d66cc07508df7e7e0773b0de4c6878fa66b981b7876aef4a18d944a3b40"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_left_01.png",
+      "sha256": "036dd34c11f8d1f4bd5cf5842ec7b4b11106298c295c667d1543e4192fa6f16f"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_left_02.png",
+      "sha256": "a91f21a255fddd4cb0371de818d44d903fada8be4793c16cec20c05d6f333f3d"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_left_03.png",
+      "sha256": "93a8737ff7494f12dd5090854287c494ef136815086b3421d2cda3632c7b3abf"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_right_00.png",
+      "sha256": "0b14dad1f759a00d38df9bf7fa3e08a4ee63a7cbe8b8d85ed954f90c26b0adee"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_right_01.png",
+      "sha256": "6bb8f37444efbf0f6d7c8fb423b9a6268b7c53b617e01e4899a0699b1d5231cc"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_right_02.png",
+      "sha256": "27748fac4e28b2414115c60011c6c2cd09d9f9f3d4dfe47554bb4ecb2184653c"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_right_03.png",
+      "sha256": "979fd36f7a98856d5f51d29251e5a1774833c008e19eef0051d2d35cb0b7c212"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_up_00.png",
+      "sha256": "6924a182119344af15e2b64b7ab01aab4512f375e4f0ec0f6224398885ecd629"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_up_01.png",
+      "sha256": "f16469378888532df8eda8df6ec5cdc74b9a89b047332f827a7434dd75250898"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_up_02.png",
+      "sha256": "479e1708d5b598ce659bc1dab870d5885ed32c386000394572a3a5a2e9cf2e3c"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/frames/walk_up_03.png",
+      "sha256": "381c15d1009dd78fe856b47920189cd82ed110a7003a16a7f8bfd97a8e382f2e"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/sprite_frames.tres",
+      "sha256": "a5ffdddb35e5288c7df57cc703efc3965de62b2dcac07eb9e36f63bf950fb268"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/player_male/spritesheet.png",
+      "sha256": "988904095ae6a606fc0ba8a65fb7fe67a91485b1d3265be874773906183e2648"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/compact_32x48/sprite_frames.tres",
+      "sha256": "0fb00fc5ee84d69096fa8e61d57dad5170fcca4a392d1cd3d3dcbf5188b4b337"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/compact_32x48/spritesheet.png",
+      "sha256": "c2c8a28ff852e35e0c767ed5d2f1f580493d8076b63446905ae6a43ef043d39e"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/idle_down.png",
+      "sha256": "e0627ecd3d6ab0d589152bc5d3cb13ef5cb3c3772e1a98147853b7d844d30e5c"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/idle_left.png",
+      "sha256": "10d7ae325fc22a7ca2f107d4f2ccf02a7d5c8b5d2971c6671fdced67f69503f0"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/idle_right.png",
+      "sha256": "c628ed9277567d014b29edfb67f7c8bb7693215f099d401a0df1cc82a9359f31"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/idle_up.png",
+      "sha256": "8fd5574be42c5f3a8c90289589d8e67b3db4bf29c992ab07d93e9830bdf116de"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_down_00.png",
+      "sha256": "e0627ecd3d6ab0d589152bc5d3cb13ef5cb3c3772e1a98147853b7d844d30e5c"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_down_01.png",
+      "sha256": "7970c520905a40e253b8e73de359b8e3554fe40c87f204f7892a7a2c585e931c"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_down_02.png",
+      "sha256": "06d9d6d29d6b1ab62755b15c34c1f7f98f3a3a0fcfd46c6a7cd8ecfa891e229b"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_down_03.png",
+      "sha256": "0740141dc73ed1353c3017e94374815ccf15f66ac76803a3e34616d94f5a8d91"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_left_00.png",
+      "sha256": "10d7ae325fc22a7ca2f107d4f2ccf02a7d5c8b5d2971c6671fdced67f69503f0"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_left_01.png",
+      "sha256": "a69f49f693a49c3fa10f0f67e6dbc977818ea8d0674cdaaba53df3ade1a7c5d5"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_left_02.png",
+      "sha256": "34bd7083ee89fddbac2ff55daf0cca477440f29acb3e22f5e97760562b4a2801"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_left_03.png",
+      "sha256": "9437ce448908dd1febe4783da99cfb3cc8d117e9d183878bbc4277cedf84587a"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_right_00.png",
+      "sha256": "c628ed9277567d014b29edfb67f7c8bb7693215f099d401a0df1cc82a9359f31"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_right_01.png",
+      "sha256": "b40037e929dee09f063a877d2cc5cb7155d4e11f2635b66b6c2e9df942b4b207"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_right_02.png",
+      "sha256": "44048cb5b00dd7384216a392f1e4de345ed0ab6287406f96631b86d913aca34f"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_right_03.png",
+      "sha256": "f7aec0b1674cdc3cd0730e2d4340e718d6eabb7bf8dd4840574996a4eca6f336"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_up_00.png",
+      "sha256": "8fd5574be42c5f3a8c90289589d8e67b3db4bf29c992ab07d93e9830bdf116de"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_up_01.png",
+      "sha256": "d314d076b31299ad104a6f8ca91ffd2d768aab162b2b7cf7c8a44a812bf13301"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_up_02.png",
+      "sha256": "24ab256cbbb3f4d1b8c512cb58ef628c58a9813ff4ce54fdd1d6bec90cd59d2d"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/frames/walk_up_03.png",
+      "sha256": "48eb02267f0c67ad1a155ea626f1b7d3668530c7cc39b252be447b76b9430043"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/sprite_frames.tres",
+      "sha256": "916213d9cdc6891af675116b13142c8f92b008785df76b9fb9aa0663d98cfbc7"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_female/spritesheet.png",
+      "sha256": "4151ac4ff710470e79d00f27af405e1c11003b6784204e818c4ab7e19a036a71"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/compact_32x48/sprite_frames.tres",
+      "sha256": "60d0c44086ca21c0e1e987b60e5a26c862127ddee4e85c51808c8719ee144ec1"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+      "sha256": "2e7b483ce5fb6e9e075309e57338e8cc5216fded89ac8fa0740678d453a79412"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/idle_down.png",
+      "sha256": "89b1e9d203632f3031231d8db152e71ba33af57b96bf596f58c5cc250b06896d"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/idle_left.png",
+      "sha256": "a453e0ce8b9bdb05f6272d737023246aa37f8a370d8d0af97ca8a6562b5ea487"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/idle_right.png",
+      "sha256": "a3a3570096a6c98fc1fd5807b52cb9a500ecdcd1a55fc60950a224971ba13d49"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/idle_up.png",
+      "sha256": "0022a893ba1dda7b62a008de33468567074fd72854a06e8f1ef8d4f5ba90cbf7"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_down_00.png",
+      "sha256": "89b1e9d203632f3031231d8db152e71ba33af57b96bf596f58c5cc250b06896d"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_down_01.png",
+      "sha256": "f57fe629fa9b74f6cb3c625736baba283a430174ac4b2bce713cbb2039ad80dc"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_down_02.png",
+      "sha256": "777bbe11528cd56cf35f436d2e1d5108dab43d30a291e4183cc89e8b0f97a01a"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_down_03.png",
+      "sha256": "eb573c1be2cbc3ab4d017f266d4a8a36115a02d74174ad148894731f63fa6f55"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_left_00.png",
+      "sha256": "a453e0ce8b9bdb05f6272d737023246aa37f8a370d8d0af97ca8a6562b5ea487"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_left_01.png",
+      "sha256": "d2acf3745c5a7aebe071c624680eecabfd571170d09769a1e87525b1a90a7c1a"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_left_02.png",
+      "sha256": "7de1cc720edeccd00255b871d28103fc2eaaaf05fc9bdcc2e82beb8f3649d21f"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_left_03.png",
+      "sha256": "f16f31169eb0f853444c8ab2b7836bb47892b35dce9c467deed0a11cedfc8955"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_right_00.png",
+      "sha256": "a3a3570096a6c98fc1fd5807b52cb9a500ecdcd1a55fc60950a224971ba13d49"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_right_01.png",
+      "sha256": "62b12be5890a0f43a62e1ce111518f22f73003ab23ee1c3ef85282e162ac52b4"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_right_02.png",
+      "sha256": "361cd7bd77596318567231e8b6b539ea076a8d716d77b759dc58ed31f7c7ce96"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_right_03.png",
+      "sha256": "0a5a48bd2692e2745e1398d54ee33e1d18330447a576e0722f41603f0c904e4e"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_up_00.png",
+      "sha256": "0022a893ba1dda7b62a008de33468567074fd72854a06e8f1ef8d4f5ba90cbf7"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_up_01.png",
+      "sha256": "7437d26ea6b4625f61ea078e46ba597b0e5c0ec5b44c984d7d73f9c05cc19e23"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_up_02.png",
+      "sha256": "e396f5373323534e329bc9cf0e5087859753f0ce1c1b6f27ab275d820c72a65a"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/frames/walk_up_03.png",
+      "sha256": "7b2039c3a13e1199fb17cf1e8ddb67fbd64594a02be22f34eae0073e928503f4"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/sprite_frames.tres",
+      "sha256": "f4651be4cf67c11de3bfda1fa62edb5f97e8dd26584788fdc8942ae36ea6c741"
+    },
+    {
+      "path": "godot_ready/assets/characters/scheme_c/xiaojing_male/spritesheet.png",
+      "sha256": "015592e86b03b7b6dcfb4d1e4582164d4319d175fac2c55bf661c99208e80d97"
+    },
+    {
+      "path": "godot_ready/preview.gd",
+      "sha256": "c39e236dd09fad59f33eef88888a27abb1fd390962432238ec47cee99a868747"
+    },
+    {
+      "path": "godot_ready/preview.tscn",
+      "sha256": "99948e7746f6d3245848406e1f4f9f333014a9776f2f51aad84c8dea2e0976f9"
+    },
+    {
+      "path": "godot_ready/project.godot",
+      "sha256": "9e75d497844ed8264b585d4a6f5787945340a99032156b85aec18f97bd7e5735"
+    },
+    {
+      "path": "godot_ready/使用说明.md",
+      "sha256": "d5a869b9a3ce981675c16700359cfeec68d3e00855d112e0a48456cd26bb4090"
+    },
+    {
+      "path": "metadata/animation_generation_prompts.json",
+      "sha256": "66cdb49447b8fd823b886270d14f56223c1a7afcdd2e953b2888dc8f689095f9"
+    },
+    {
+      "path": "metadata/animation_manifest.json",
+      "sha256": "ff582448a9f7c0f04bf4200cadc8844bddc6afe8155438b1ab990b15f8f38885"
+    },
+    {
+      "path": "metadata/asset_manifest.json",
+      "sha256": "5d323601b13954b6143267717ccd9a56df32ba57811d93ddca0e0e8e2eda96af"
+    },
+    {
+      "path": "metadata/sampled_palette.json",
+      "sha256": "a9f0613c24bb1ed276b1e7b9adb49c5fa1ee3bdb2b8a821f272ad890d4b32ee2"
+    },
+    {
+      "path": "metadata/verification_report.json",
+      "sha256": "0e8cba676dc2dacc7f8124c5eeeb5ba23d0397fa63f2d0b1ac6ab8473b06a1b4"
+    },
+    {
+      "path": "originals/ChatGPT 图像 2026年10月27日 14_53_38.png",
+      "sha256": "8560dd9ec72a35a9175d6b5d78b04c49d3f9bb886f0c9b841d2b10ddc4817d7a"
+    },
+    {
+      "path": "previews/animation_overview.gif",
+      "sha256": "eab897ead32fce04e81ba7185d3a8f9f32e76b097fbec53683c6fbb9a18bbf05"
+    },
+    {
+      "path": "previews/animation_overview.png",
+      "sha256": "317c69f60f8251bfda0bd86b8920a534e032e7eeff64b3e979e1e1af6a5e5253"
+    },
+    {
+      "path": "previews/player_female_walk.gif",
+      "sha256": "33e9157a1fbaf34b9d943f1f6d29516e1464a4d709039fd6bbec9fca36a1eccf"
+    },
+    {
+      "path": "previews/player_male_walk.gif",
+      "sha256": "aad4b60182e1159436fe7435b8713d4cbada9d6682f00547f8f93e287ebc8145"
+    },
+    {
+      "path": "previews/spritesheet_overview.png",
+      "sha256": "877c20d3e5dab6fcab84becc578a18c6e2168820831d58d34aa058e30a4ab28a"
+    },
+    {
+      "path": "previews/xiaojing_female_walk.gif",
+      "sha256": "74df17bb293ead5092a2432c0d4da655ba8f27a27f53dea7030fa55ba9eead01"
+    },
+    {
+      "path": "previews/xiaojing_male_walk.gif",
+      "sha256": "1d3c5893f1668c572bb6dd44633c9d7c289864c7af2c32a632ec8785da461e23"
+    },
+    {
+      "path": "README_先读.md",
+      "sha256": "65caee1d1c3e89452b6171df7b25eabb0617a193e8300fe2a5dcc3237ad3d52e"
+    },
+    {
+      "path": "references/player_female_reference.png",
+      "sha256": "26b467b605e0e393464791dacd4b1b5acd7a3944ef07e8e7354efb6d31b29712"
+    },
+    {
+      "path": "references/player_male_reference.png",
+      "sha256": "bb2fa7d6e1f09d401b9e28743d901db93368bd142493466a4318eb3414ea35a8"
+    },
+    {
+      "path": "references/scheme_c_full_reference.png",
+      "sha256": "8560dd9ec72a35a9175d6b5d78b04c49d3f9bb886f0c9b841d2b10ddc4817d7a"
+    },
+    {
+      "path": "references/xiaojing_female_reference.png",
+      "sha256": "43d452a0682e1fb242498774de050d2ca53ae07a96dff16edfe12fb9458be083"
+    },
+    {
+      "path": "references/xiaojing_male_reference.png",
+      "sha256": "b1188503af3c93482368b93bccfdb7a1d773355e4156f9cf9cc47cedd8410865"
+    }
+  ],
+  "variants": {
+    "player_male": {
+      "world_texture": "res://assets/characters/scheme_c/player_male/compact_32x48/spritesheet.png",
+      "ceremony_texture": "res://assets/characters/scheme_c/player_male/compact_32x48/ceremony.png",
+      "portrait": "res://assets/characters/scheme_c/player_male/portrait.png",
+      "standing": "res://assets/characters/scheme_c/player_male/standing.png",
+      "compact": {
+        "size": [
+          128,
+          192
+        ],
+        "frame_size": [
+          32,
+          48
+        ],
+        "alpha": "binary_0_or_255",
+        "foot_baseline": 45,
+        "frame_boxes": [
+          [
+            6,
+            4,
+            25,
+            45
+          ],
+          [
+            5,
+            3,
+            26,
+            45
+          ],
+          [
+            6,
+            4,
+            25,
+            45
+          ],
+          [
+            6,
+            4,
+            25,
+            45
+          ],
+          [
+            6,
+            4,
+            26,
+            45
+          ],
+          [
+            4,
+            3,
+            27,
+            45
+          ],
+          [
+            6,
+            4,
+            26,
+            45
+          ],
+          [
+            5,
+            4,
+            27,
+            45
+          ],
+          [
+            6,
+            4,
+            26,
+            45
+          ],
+          [
+            5,
+            3,
+            26,
+            45
+          ],
+          [
+            5,
+            4,
+            26,
+            45
+          ],
+          [
+            5,
+            3,
+            27,
+            45
+          ],
+          [
+            6,
+            3,
+            25,
+            45
+          ],
+          [
+            5,
+            3,
+            26,
+            45
+          ],
+          [
+            6,
+            3,
+            25,
+            45
+          ],
+          [
+            6,
+            3,
+            26,
+            45
+          ]
+        ],
+        "distinct_walk_frames_per_direction": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "portrait_source_box": [
+        265,
+        82,
+        339,
+        180
+      ],
+      "standing_source_polygon": [
+        [
+          8,
+          55
+        ],
+        [
+          253,
+          55
+        ],
+        [
+          253,
+          296
+        ],
+        [
+          278,
+          304
+        ],
+        [
+          281,
+          574
+        ],
+        [
+          256,
+          590
+        ],
+        [
+          256,
+          767
+        ],
+        [
+          8,
+          767
+        ]
+      ],
+      "standing_size": [
+        384,
+        768
+      ],
+      "standing_source": "references/player_male_reference.png",
+      "standing_processing": "opaque_rectangular_reference_card; paper_retained; auxiliary_elements_masked",
+      "ceremony_processing": "light_cream_blue_gold_palette_derivative; original_alpha_and_face_rows_preserved"
+    },
+    "player_female": {
+      "world_texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+      "ceremony_texture": "res://assets/characters/scheme_c/player_female/compact_32x48/ceremony.png",
+      "portrait": "res://assets/characters/scheme_c/player_female/portrait.png",
+      "standing": "res://assets/characters/scheme_c/player_female/standing.png",
+      "compact": {
+        "size": [
+          128,
+          192
+        ],
+        "frame_size": [
+          32,
+          48
+        ],
+        "alpha": "binary_0_or_255",
+        "foot_baseline": 45,
+        "frame_boxes": [
+          [
+            2,
+            3,
+            29,
+            45
+          ],
+          [
+            2,
+            3,
+            29,
+            45
+          ],
+          [
+            2,
+            3,
+            29,
+            45
+          ],
+          [
+            2,
+            3,
+            30,
+            45
+          ],
+          [
+            3,
+            4,
+            29,
+            45
+          ],
+          [
+            2,
+            3,
+            29,
+            45
+          ],
+          [
+            3,
+            3,
+            29,
+            45
+          ],
+          [
+            3,
+            3,
+            28,
+            45
+          ],
+          [
+            3,
+            4,
+            29,
+            45
+          ],
+          [
+            2,
+            4,
+            29,
+            45
+          ],
+          [
+            2,
+            4,
+            29,
+            45
+          ],
+          [
+            2,
+            4,
+            29,
+            45
+          ],
+          [
+            3,
+            3,
+            28,
+            45
+          ],
+          [
+            3,
+            3,
+            29,
+            45
+          ],
+          [
+            3,
+            3,
+            29,
+            45
+          ],
+          [
+            3,
+            3,
+            28,
+            45
+          ]
+        ],
+        "distinct_walk_frames_per_direction": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "portrait_source_box": [
+        262,
+        83,
+        336,
+        179
+      ],
+      "standing_source_polygon": [
+        [
+          5,
+          74
+        ],
+        [
+          255,
+          74
+        ],
+        [
+          255,
+          308
+        ],
+        [
+          294,
+          344
+        ],
+        [
+          294,
+          584
+        ],
+        [
+          255,
+          600
+        ],
+        [
+          233,
+          638
+        ],
+        [
+          233,
+          765
+        ],
+        [
+          5,
+          765
+        ]
+      ],
+      "standing_size": [
+        384,
+        768
+      ],
+      "standing_source": "references/player_female_reference.png",
+      "standing_processing": "opaque_rectangular_reference_card; paper_retained; auxiliary_elements_masked",
+      "ceremony_processing": "light_cream_blue_gold_palette_derivative; original_alpha_and_face_rows_preserved"
+    },
+    "xiaojing_female": {
+      "world_texture": "res://assets/characters/scheme_c/xiaojing_female/compact_32x48/spritesheet.png",
+      "ceremony_texture": "res://assets/characters/scheme_c/xiaojing_female/compact_32x48/ceremony.png",
+      "portrait": "res://assets/characters/scheme_c/xiaojing_female/portrait.png",
+      "standing": "res://assets/characters/scheme_c/xiaojing_female/standing.png",
+      "compact": {
+        "size": [
+          128,
+          192
+        ],
+        "frame_size": [
+          32,
+          48
+        ],
+        "alpha": "binary_0_or_255",
+        "foot_baseline": 45,
+        "frame_boxes": [
+          [
+            2,
+            7,
+            30,
+            45
+          ],
+          [
+            2,
+            7,
+            29,
+            45
+          ],
+          [
+            2,
+            7,
+            29,
+            45
+          ],
+          [
+            1,
+            6,
+            30,
+            45
+          ],
+          [
+            2,
+            6,
+            29,
+            45
+          ],
+          [
+            2,
+            7,
+            29,
+            45
+          ],
+          [
+            2,
+            7,
+            29,
+            45
+          ],
+          [
+            2,
+            6,
+            29,
+            45
+          ],
+          [
+            2,
+            6,
+            29,
+            45
+          ],
+          [
+            2,
+            6,
+            29,
+            45
+          ],
+          [
+            3,
+            6,
+            29,
+            45
+          ],
+          [
+            2,
+            5,
+            29,
+            45
+          ],
+          [
+            1,
+            6,
+            31,
+            45
+          ],
+          [
+            1,
+            6,
+            30,
+            45
+          ],
+          [
+            2,
+            5,
+            30,
+            45
+          ],
+          [
+            1,
+            5,
+            30,
+            45
+          ]
+        ],
+        "distinct_walk_frames_per_direction": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "portrait_source_box": [
+        268,
+        83,
+        344,
+        179
+      ],
+      "standing_source_polygon": [
+        [
+          12,
+          55
+        ],
+        [
+          258,
+          55
+        ],
+        [
+          258,
+          300
+        ],
+        [
+          300,
+          303
+        ],
+        [
+          300,
+          445
+        ],
+        [
+          324,
+          455
+        ],
+        [
+          324,
+          558
+        ],
+        [
+          285,
+          588
+        ],
+        [
+          231,
+          613
+        ],
+        [
+          231,
+          768
+        ],
+        [
+          12,
+          768
+        ]
+      ],
+      "standing_size": [
+        384,
+        768
+      ],
+      "standing_source": "references/xiaojing_female_reference.png",
+      "standing_processing": "opaque_rectangular_reference_card; paper_retained; auxiliary_elements_masked",
+      "ceremony_processing": "light_cream_blue_gold_palette_derivative; original_alpha_and_face_rows_preserved"
+    },
+    "xiaojing_male": {
+      "world_texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+      "ceremony_texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/ceremony.png",
+      "portrait": "res://assets/characters/scheme_c/xiaojing_male/portrait.png",
+      "standing": "res://assets/characters/scheme_c/xiaojing_male/standing.png",
+      "compact": {
+        "size": [
+          128,
+          192
+        ],
+        "frame_size": [
+          32,
+          48
+        ],
+        "alpha": "binary_0_or_255",
+        "foot_baseline": 45,
+        "frame_boxes": [
+          [
+            4,
+            3,
+            28,
+            45
+          ],
+          [
+            3,
+            3,
+            28,
+            45
+          ],
+          [
+            4,
+            3,
+            28,
+            45
+          ],
+          [
+            3,
+            3,
+            28,
+            45
+          ],
+          [
+            3,
+            4,
+            29,
+            45
+          ],
+          [
+            2,
+            3,
+            29,
+            45
+          ],
+          [
+            3,
+            4,
+            29,
+            45
+          ],
+          [
+            3,
+            3,
+            28,
+            45
+          ],
+          [
+            3,
+            3,
+            27,
+            45
+          ],
+          [
+            3,
+            3,
+            29,
+            45
+          ],
+          [
+            3,
+            3,
+            28,
+            45
+          ],
+          [
+            3,
+            4,
+            28,
+            45
+          ],
+          [
+            2,
+            3,
+            29,
+            45
+          ],
+          [
+            3,
+            4,
+            29,
+            45
+          ],
+          [
+            3,
+            3,
+            29,
+            45
+          ],
+          [
+            2,
+            3,
+            29,
+            45
+          ]
+        ],
+        "distinct_walk_frames_per_direction": [
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "portrait_source_box": [
+        270,
+        82,
+        349,
+        179
+      ],
+      "standing_source_polygon": [
+        [
+          5,
+          55
+        ],
+        [
+          254,
+          55
+        ],
+        [
+          254,
+          303
+        ],
+        [
+          301,
+          311
+        ],
+        [
+          301,
+          447
+        ],
+        [
+          352,
+          457
+        ],
+        [
+          352,
+          576
+        ],
+        [
+          237,
+          598
+        ],
+        [
+          237,
+          640
+        ],
+        [
+          225,
+          646
+        ],
+        [
+          225,
+          768
+        ],
+        [
+          5,
+          768
+        ]
+      ],
+      "standing_size": [
+        384,
+        768
+      ],
+      "standing_source": "references/xiaojing_male_reference.png",
+      "standing_processing": "opaque_rectangular_reference_card; paper_retained; auxiliary_elements_masked",
+      "ceremony_processing": "light_cream_blue_gold_palette_derivative; original_alpha_and_face_rows_preserved"
+    }
+  },
+  "row_directions": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "columns": 4,
+  "walk_fps": 6,
+  "idle": "static_first_frame_per_direction",
+  "compact_foot_anchor": [
+    16,
+    45
+  ],
+  "compact_centered_offset": [
+    0,
+    -21
+  ],
+  "primary_foot_anchor": [
+    32,
+    90
+  ],
+  "primary_centered_offset": [
+    0,
+    -42
+  ],
+  "files": {
+    "player_female/ceremony.png": {
+      "sha256": "1f4b57aa048e7580f7a83593684691dd6945fab88137785427cb2124d66558a8",
+      "bytes": 135535,
+      "size": [
+        256,
+        384
+      ],
+      "mode": "RGBA"
+    },
+    "player_female/ceremony_frames.tres": {
+      "sha256": "5dd306178ad1c0584119bb65d456d99aebd12b2108429063273e83486822bc9b",
+      "bytes": 3759
+    },
+    "player_female/compact_32x48/ceremony.png": {
+      "sha256": "5fc9918ab95b40cac0353d95efdfceaf776ddd9b859ddd789565fcc1e953bfd8",
+      "bytes": 39069,
+      "size": [
+        128,
+        192
+      ],
+      "mode": "RGBA"
+    },
+    "player_female/compact_32x48/ceremony_frames.tres": {
+      "sha256": "96f6fe02c8ad940302834ce81a675737c031801451d2da899684228dd9514bc1",
+      "bytes": 3761
+    },
+    "player_female/compact_32x48/sprite_frames.tres": {
+      "sha256": "ac7e18554cf39723d12d2ab4c6e8a9ed5728ac510b3660f97ad4ed9f47225c96",
+      "bytes": 3886,
+      "source": "godot_ready/assets/characters/scheme_c/player_female/compact_32x48/sprite_frames.tres",
+      "source_sha256": "ac7e18554cf39723d12d2ab4c6e8a9ed5728ac510b3660f97ad4ed9f47225c96",
+      "operation": "byte_identical_copy"
+    },
+    "player_female/compact_32x48/spritesheet.png": {
+      "sha256": "e597b16edfef22dfc0930bc26a8a5ad5df3d4ce133371458303af4cc4231f361",
+      "bytes": 38979,
+      "size": [
+        128,
+        192
+      ],
+      "mode": "RGBA",
+      "source": "godot_ready/assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+      "source_sha256": "e597b16edfef22dfc0930bc26a8a5ad5df3d4ce133371458303af4cc4231f361",
+      "operation": "byte_identical_copy"
+    },
+    "player_female/portrait.png": {
+      "sha256": "e7efaaa0bd4dc14aae086405b22a80617943f74bb7ba84a67a5f221a74b5c9e7",
+      "bytes": 18729,
+      "size": [
+        74,
+        96
+      ],
+      "mode": "RGBA"
+    },
+    "player_female/preview_pixel.png": {
+      "sha256": "5a8662bdcbad211ba33a39331375fc0830a94c7991958c49c3a854fbc44d2e66",
+      "bytes": 8918,
+      "size": [
+        64,
+        96
+      ],
+      "mode": "RGBA"
+    },
+    "player_female/sprite_frames.tres": {
+      "sha256": "d6e65370e8dc09ec751ee73804874c8d415fd557b78c433bca62ce0c8bb6376a",
+      "bytes": 3884,
+      "source": "godot_ready/assets/characters/scheme_c/player_female/sprite_frames.tres",
+      "source_sha256": "d6e65370e8dc09ec751ee73804874c8d415fd557b78c433bca62ce0c8bb6376a",
+      "operation": "byte_identical_copy"
+    },
+    "player_female/spritesheet.png": {
+      "sha256": "af779c5ef7d6e19924388e6bf984f61df8588904c31c3e2aafa6d28e6480366e",
+      "bytes": 135090,
+      "size": [
+        256,
+        384
+      ],
+      "mode": "RGBA",
+      "source": "godot_ready/assets/characters/scheme_c/player_female/spritesheet.png",
+      "source_sha256": "af779c5ef7d6e19924388e6bf984f61df8588904c31c3e2aafa6d28e6480366e",
+      "operation": "byte_identical_copy"
+    },
+    "player_female/standing.png": {
+      "sha256": "4392ff92c5e731d2e258eff3cd9a1235045c3cdb350ffdb7b82eb1d055212a49",
+      "bytes": 411008,
+      "size": [
+        384,
+        768
+      ],
+      "mode": "RGBA"
+    },
+    "player_male/ceremony.png": {
+      "sha256": "5471b60f6237c1fb0f30f55c53f1ef83bc33fb0fe7f5264aea67e428db0a18e3",
+      "bytes": 105887,
+      "size": [
+        256,
+        384
+      ],
+      "mode": "RGBA"
+    },
+    "player_male/ceremony_frames.tres": {
+      "sha256": "69e93e5609ff80d6e62ce3580a7bdd051337cba148b30f45559edebdd51a1808",
+      "bytes": 3757
+    },
+    "player_male/compact_32x48/ceremony.png": {
+      "sha256": "42d708991767b62a5975200e029732bc2e29809d7da42ec1573d7c7001afffca",
+      "bytes": 31069,
+      "size": [
+        128,
+        192
+      ],
+      "mode": "RGBA"
+    },
+    "player_male/compact_32x48/ceremony_frames.tres": {
+      "sha256": "9e99111dff1107018a340ad660a71173a3561eaebd074d3a228d11a763598d55",
+      "bytes": 3759
+    },
+    "player_male/compact_32x48/sprite_frames.tres": {
+      "sha256": "a53911f99f8808f7c34a9f17e0ced02b931a999c8d6b38d78e38d01e90cb7ec6",
+      "bytes": 3884,
+      "source": "godot_ready/assets/characters/scheme_c/player_male/compact_32x48/sprite_frames.tres",
+      "source_sha256": "a53911f99f8808f7c34a9f17e0ced02b931a999c8d6b38d78e38d01e90cb7ec6",
+      "operation": "byte_identical_copy"
+    },
+    "player_male/compact_32x48/spritesheet.png": {
+      "sha256": "a222b1140caaad44c458d5ae3b05f110de7e246903673ee4449284c745c1e7a9",
+      "bytes": 30716,
+      "size": [
+        128,
+        192
+      ],
+      "mode": "RGBA",
+      "source": "godot_ready/assets/characters/scheme_c/player_male/compact_32x48/spritesheet.png",
+      "source_sha256": "a222b1140caaad44c458d5ae3b05f110de7e246903673ee4449284c745c1e7a9",
+      "operation": "byte_identical_copy"
+    },
+    "player_male/portrait.png": {
+      "sha256": "ebd2630e74a35cd9177e2d9b7f13491112b4bb7f2753f9c81c27d474b47e0839",
+      "bytes": 18164,
+      "size": [
+        74,
+        98
+      ],
+      "mode": "RGBA"
+    },
+    "player_male/preview_pixel.png": {
+      "sha256": "00782b569b9a5104f467ccf6d6e2fb40a8c82c72ca0631c262ab51b7993146a5",
+      "bytes": 6936,
+      "size": [
+        64,
+        96
+      ],
+      "mode": "RGBA"
+    },
+    "player_male/sprite_frames.tres": {
+      "sha256": "a5ffdddb35e5288c7df57cc703efc3965de62b2dcac07eb9e36f63bf950fb268",
+      "bytes": 3882,
+      "source": "godot_ready/assets/characters/scheme_c/player_male/sprite_frames.tres",
+      "source_sha256": "a5ffdddb35e5288c7df57cc703efc3965de62b2dcac07eb9e36f63bf950fb268",
+      "operation": "byte_identical_copy"
+    },
+    "player_male/spritesheet.png": {
+      "sha256": "988904095ae6a606fc0ba8a65fb7fe67a91485b1d3265be874773906183e2648",
+      "bytes": 105024,
+      "size": [
+        256,
+        384
+      ],
+      "mode": "RGBA",
+      "source": "godot_ready/assets/characters/scheme_c/player_male/spritesheet.png",
+      "source_sha256": "988904095ae6a606fc0ba8a65fb7fe67a91485b1d3265be874773906183e2648",
+      "operation": "byte_identical_copy"
+    },
+    "player_male/standing.png": {
+      "sha256": "7e4c54da1b08d8fbb311971908b8b37c1f57bcbf46c7d7dee99d8e846ff5543c",
+      "bytes": 407918,
+      "size": [
+        384,
+        768
+      ],
+      "mode": "RGBA"
+    },
+    "xiaojing_female/ceremony.png": {
+      "sha256": "27f07b10a5d363285906b557251c7043032ba4dc0c41b8e9b724334c3e6a13e1",
+      "bytes": 148076,
+      "size": [
+        256,
+        384
+      ],
+      "mode": "RGBA"
+    },
+    "xiaojing_female/ceremony_frames.tres": {
+      "sha256": "f53e61c7db760875a4b5e921f018091ff1376d96053ccf7d1fd0b5ff8258e442",
+      "bytes": 3761
+    },
+    "xiaojing_female/compact_32x48/ceremony.png": {
+      "sha256": "802a061655425a851f4321cf6f8550333aaa9f867d4978545203849341b4f2d3",
+      "bytes": 41689,
+      "size": [
+        128,
+        192
+      ],
+      "mode": "RGBA"
+    },
+    "xiaojing_female/compact_32x48/ceremony_frames.tres": {
+      "sha256": "4e5b224d9467e5fef3545d2129f17a74f0fa3cbbfc57072a85aeeb9aaaa0ee06",
+      "bytes": 3763
+    },
+    "xiaojing_female/compact_32x48/sprite_frames.tres": {
+      "sha256": "0fb00fc5ee84d69096fa8e61d57dad5170fcca4a392d1cd3d3dcbf5188b4b337",
+      "bytes": 3888,
+      "source": "godot_ready/assets/characters/scheme_c/xiaojing_female/compact_32x48/sprite_frames.tres",
+      "source_sha256": "0fb00fc5ee84d69096fa8e61d57dad5170fcca4a392d1cd3d3dcbf5188b4b337",
+      "operation": "byte_identical_copy"
+    },
+    "xiaojing_female/compact_32x48/spritesheet.png": {
+      "sha256": "c2c8a28ff852e35e0c767ed5d2f1f580493d8076b63446905ae6a43ef043d39e",
+      "bytes": 41815,
+      "size": [
+        128,
+        192
+      ],
+      "mode": "RGBA",
+      "source": "godot_ready/assets/characters/scheme_c/xiaojing_female/compact_32x48/spritesheet.png",
+      "source_sha256": "c2c8a28ff852e35e0c767ed5d2f1f580493d8076b63446905ae6a43ef043d39e",
+      "operation": "byte_identical_copy"
+    },
+    "xiaojing_female/portrait.png": {
+      "sha256": "b2d7fd1a72eaa3a0e2f9740cd3deb4718e913a9b7762cfc46ec07b30d69311b1",
+      "bytes": 18865,
+      "size": [
+        76,
+        96
+      ],
+      "mode": "RGBA"
+    },
+    "xiaojing_female/preview_pixel.png": {
+      "sha256": "77eb7ecb6620f42783cd7c829f82137ad6576ac03c839e17df97c3d882dbff59",
+      "bytes": 9757,
+      "size": [
+        64,
+        96
+      ],
+      "mode": "RGBA"
+    },
+    "xiaojing_female/sprite_frames.tres": {
+      "sha256": "916213d9cdc6891af675116b13142c8f92b008785df76b9fb9aa0663d98cfbc7",
+      "bytes": 3886,
+      "source": "godot_ready/assets/characters/scheme_c/xiaojing_female/sprite_frames.tres",
+      "source_sha256": "916213d9cdc6891af675116b13142c8f92b008785df76b9fb9aa0663d98cfbc7",
+      "operation": "byte_identical_copy"
+    },
+    "xiaojing_female/spritesheet.png": {
+      "sha256": "4151ac4ff710470e79d00f27af405e1c11003b6784204e818c4ab7e19a036a71",
+      "bytes": 149712,
+      "size": [
+        256,
+        384
+      ],
+      "mode": "RGBA",
+      "source": "godot_ready/assets/characters/scheme_c/xiaojing_female/spritesheet.png",
+      "source_sha256": "4151ac4ff710470e79d00f27af405e1c11003b6784204e818c4ab7e19a036a71",
+      "operation": "byte_identical_copy"
+    },
+    "xiaojing_female/standing.png": {
+      "sha256": "28d51a8f4b2f588fe1159c46c9061914319127122578b18914afc88db1687807",
+      "bytes": 426317,
+      "size": [
+        384,
+        768
+      ],
+      "mode": "RGBA"
+    },
+    "xiaojing_male/ceremony.png": {
+      "sha256": "b4d14cfe2903aaa5b6e9b58715dbc3d9292240b2a7a65296ff3c68016203054b",
+      "bytes": 135661,
+      "size": [
+        256,
+        384
+      ],
+      "mode": "RGBA"
+    },
+    "xiaojing_male/ceremony_frames.tres": {
+      "sha256": "ac4d573a3fe2b781f1f695804001f02dbf277da9344c977f02eda9e23ad9c49d",
+      "bytes": 3759
+    },
+    "xiaojing_male/compact_32x48/ceremony.png": {
+      "sha256": "74f9a04560d9d6241b6291366bdbab2d2232caed4da0f5bd6bc6eb8318dba9bb",
+      "bytes": 38212,
+      "size": [
+        128,
+        192
+      ],
+      "mode": "RGBA"
+    },
+    "xiaojing_male/compact_32x48/ceremony_frames.tres": {
+      "sha256": "bf00cbae6d2f86e55f2b6bf1afa89adee8274bacc2358360e25cd1dd5645bb32",
+      "bytes": 3761
+    },
+    "xiaojing_male/compact_32x48/sprite_frames.tres": {
+      "sha256": "60d0c44086ca21c0e1e987b60e5a26c862127ddee4e85c51808c8719ee144ec1",
+      "bytes": 3886,
+      "source": "godot_ready/assets/characters/scheme_c/xiaojing_male/compact_32x48/sprite_frames.tres",
+      "source_sha256": "60d0c44086ca21c0e1e987b60e5a26c862127ddee4e85c51808c8719ee144ec1",
+      "operation": "byte_identical_copy"
+    },
+    "xiaojing_male/compact_32x48/spritesheet.png": {
+      "sha256": "2e7b483ce5fb6e9e075309e57338e8cc5216fded89ac8fa0740678d453a79412",
+      "bytes": 38379,
+      "size": [
+        128,
+        192
+      ],
+      "mode": "RGBA",
+      "source": "godot_ready/assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+      "source_sha256": "2e7b483ce5fb6e9e075309e57338e8cc5216fded89ac8fa0740678d453a79412",
+      "operation": "byte_identical_copy"
+    },
+    "xiaojing_male/portrait.png": {
+      "sha256": "9c6177558a4b2e8b808f55125f5216aaa2efe9dedb71f07d3a2c11e2187d1d1d",
+      "bytes": 19019,
+      "size": [
+        79,
+        97
+      ],
+      "mode": "RGBA"
+    },
+    "xiaojing_male/preview_pixel.png": {
+      "sha256": "b8c162769c6b62f1f71ff0407b82395d35be501240cf464b90f9c516bca80f95",
+      "bytes": 8920,
+      "size": [
+        64,
+        96
+      ],
+      "mode": "RGBA"
+    },
+    "xiaojing_male/sprite_frames.tres": {
+      "sha256": "f4651be4cf67c11de3bfda1fa62edb5f97e8dd26584788fdc8942ae36ea6c741",
+      "bytes": 3884,
+      "source": "godot_ready/assets/characters/scheme_c/xiaojing_male/sprite_frames.tres",
+      "source_sha256": "f4651be4cf67c11de3bfda1fa62edb5f97e8dd26584788fdc8942ae36ea6c741",
+      "operation": "byte_identical_copy"
+    },
+    "xiaojing_male/spritesheet.png": {
+      "sha256": "015592e86b03b7b6dcfb4d1e4582164d4319d175fac2c55bf661c99208e80d97",
+      "bytes": 137039,
+      "size": [
+        256,
+        384
+      ],
+      "mode": "RGBA",
+      "source": "godot_ready/assets/characters/scheme_c/xiaojing_male/spritesheet.png",
+      "source_sha256": "015592e86b03b7b6dcfb4d1e4582164d4319d175fac2c55bf661c99208e80d97",
+      "operation": "byte_identical_copy"
+    },
+    "xiaojing_male/standing.png": {
+      "sha256": "2321c8e664928372cd18f41c2f6f5596519b77b384f8d2138f7fa5f5d6b13cda",
+      "bytes": 458166,
+      "size": [
+        384,
+        768
+      ],
+      "mode": "RGBA"
+    }
+  },
+  "notes": [
+    "Original pack and six existing character files are not edited.",
+    "Reference-card portraits and standing illustrations retain supplied paper; they are not newly painted transparent illustrations.",
+    "Ceremony sprites are palette derivatives, not complete original wedding-costume animations.",
+    "No breathing animation or tool-specific sprite actions were supplied or invented by this import."
+  ]
+}

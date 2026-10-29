@@ -4,3 +4,5 @@
 *.ttc binary
 *.zip binary
 *.apk binary
+# Preserve imported Godot resource checksums and original line endings.
+assets/characters/scheme_c/**/*.tres -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

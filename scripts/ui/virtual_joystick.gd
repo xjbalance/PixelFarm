@@ -11,7 +11,7 @@ func _ready() -> void:
 	Events.modal_changed.connect(func(_active: bool): reset())
 
 func _input(event: InputEvent) -> void:
-	if GameState.modal:
+	if GameState.modal or not is_visible_in_tree() or GameState.control_mode != "joystick":
 		return
 	if event is InputEventScreenTouch:
 		if event.pressed and finger == -1 and get_global_rect().has_point(event.position):

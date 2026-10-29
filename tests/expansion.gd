@@ -23,6 +23,7 @@ static func gathering(test: Node, game: Node) -> void:
 	GameState.select_tool(6)
 	await test.frames()
 	for _hit in range(3):
+		await test.frames(16) # 三次独立工具动作须经过真实0.24秒，不能只清旧冷却。
 		game.action_cooldown = 0
 		Events.action_requested.emit()
 	await test.frames()
@@ -30,20 +31,21 @@ static func gathering(test: Node, game: Node) -> void:
 	test.check(GameState.stamina == energy-9,"砍树准确扣除每次体力")
 	test.check(field.objects.tree_7_20.collider.disabled,"树木采完解除碰撞")
 	test.check(not field.hit("tree_7_20","axe") and Inventory.count("wood") == 5,"枯竭的树不会重复掉落")
+	await test.frames(16) # 工具动画结束后再验证整段移动距离。
 	Input.action_press("move_up")
 	await test.frames(32)
 	Input.action_release("move_up")
 	test.check(game.player.position.y < 625,"角色能够走过采完的树桩")
-	GameClock.next_day()
-	GameClock.next_day()
+	test.advance_day()
+	test.advance_day()
 	test.check(field.state.tree_7_20.hp == 0,"树木未到再生日期不恢复")
 	game.player.position = Vector2(224,640)
 	await test.frames()
-	GameClock.next_day()
+	test.advance_day()
 	test.check(field.state.tree_7_20.hp == 0,"再生时不在玩家身上生成碰撞体")
 	game.player.position = Vector2(224,700)
 	await test.frames()
-	GameClock.next_day()
+	test.advance_day()
 	await test.frames()
 	test.check(field.state.tree_7_20.hp == 3 and not field.objects.tree_7_20.collider.disabled,"位置安全后换日恢复树木和碰撞")
 	test.check(field.hit("rock_11_19","pickaxe") and field.state.rock_11_19.hp == 1,"采石保留剩余耐久")
@@ -52,9 +54,9 @@ static func gathering(test: Node, game: Node) -> void:
 	field.restore(snapshot)
 	test.check(field.state.rock_11_19.hp == 1,"采集进度可恢复")
 	test.check(field.hit("rock_11_19","pickaxe") and Inventory.count("stone") == 4,"两次采石获得三份石料")
-	GameClock.next_day()
+	test.advance_day()
 	test.check(field.state.rock_11_19.hp == 0,"石堆在首日仍枯竭")
-	GameClock.next_day()
+	test.advance_day()
 	test.check(field.state.rock_11_19.hp == 2,"石堆第二天再生")
 	Inventory.items["wood"] = Inventory.MAX_STACK
 	field.hit("tree_7_20","axe")
@@ -89,7 +91,7 @@ static func upgrades_and_quests(test: Node, game: Node) -> void:
 	game.farm.plots = {"17,16":{"crop":"carrot","days":0,"watered":false},"21,16":{"crop":"carrot","days":0,"watered":false}}
 	test.check(FarmProgress.build_upgrade("irrigation"),"修建田边引水渠")
 	test.check(game.farm.plots["17,16"].watered and not game.farm.plots["21,16"].watered,"引水渠只覆盖西北 4×3 格")
-	GameClock.next_day()
+	test.advance_day()
 	test.check(game.farm.plots["17,16"].days == 1 and game.farm.plots["17,16"].watered and game.farm.plots["21,16"].days == 0,"成长结算后引水渠自动补水，未覆盖作物仍须浇水")
 	test.check(game.farm.use_tool(Vector2i(18,16),"hoe") and game.farm.plots["18,16"].watered,"覆盖区新开垦农田立即供水")
 	FarmProgress.friendship = 0
@@ -108,7 +110,7 @@ static func upgrades_and_quests(test: Node, game: Node) -> void:
 	FarmProgress.talk()
 	FarmProgress.talk()
 	test.check(FarmProgress.friendship == 17,"同一天重复交谈只增加一次好感")
-	GameClock.next_day()
+	test.advance_day()
 	FarmProgress.talk()
 	test.check(FarmProgress.friendship == 19,"新一天可以再次获得交谈好感")
 	test.check(FarmProgress.accept("river_path") and FarmProgress.deliver("river_path"),"前置完成后可交付木材和石料委托")
@@ -129,12 +131,12 @@ static func save_compatibility(test: Node, game: Node) -> void:
 	test.check(FarmSaveStore.valid(data) and data.version == FarmSaveStore.VERSION,"包含材料、设施、好感与采集状态的新存档有效")
 	var original: Dictionary = data.duplicate(true)
 	FarmProgress.restore({})
-	game.world.resource_field.restore({})
+	game.resource_world.restore({})
 	Inventory.items.clear()
 	test.check(FarmSaveStore.restore(game,data),"新版本完整状态可恢复")
 	await test.frames()
 	test.check(FarmProgress.built.size() == 3 and FarmProgress.quest_status("valley_table") == "completed" and FarmProgress.friendship == 64,"恢复设施、完整任务链和好感")
-	test.check(game.world.resource_field.state == original.resources and Inventory.items == original.items,"恢复采集物与材料库存")
+	test.check(game.resource_world.snapshot() == original.resources and Inventory.items == original.items,"恢复采集物与材料库存")
 	for mutation in [
 		{"progress":{"built":["unknown"],"quests":{},"friendship":0,"last_talk_day":0}},
 		{"progress":{"built":["toolrack","toolrack"],"quests":{},"friendship":0,"last_talk_day":0}},

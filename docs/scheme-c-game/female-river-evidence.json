@@ -1,0 +1,2853 @@
+{
+	"additional_evidence_checks": 10,
+	"additional_evidence_failures": 0,
+	"events": [
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 2,
+			"assertion_passed": true,
+			"categories": [
+				"memories"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 225,
+			"legacy_test": false,
+			"legend_trial_count": 0,
+			"location": "home",
+			"married": false,
+			"memory_count": 1,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "窗边日期与光照两步调查才取得记忆",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 7,
+			"assertion_passed": true,
+			"categories": [
+				"memories"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": true
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 225,
+			"legacy_test": true,
+			"legend_trial_count": 0,
+			"location": "village",
+			"married": false,
+			"memory_count": 3,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "新旧桥柱刻度对照取得拓片",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 8,
+			"assertion_passed": true,
+			"categories": [
+				"memories"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": true
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 225,
+			"legacy_test": false,
+			"legend_trial_count": 0,
+			"location": "village",
+			"married": false,
+			"memory_count": 4,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "留种与空车两栏对照取得运输记忆",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 9,
+			"assertion_passed": true,
+			"categories": [
+				"memories"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": true
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 225,
+			"legacy_test": false,
+			"legend_trial_count": 0,
+			"location": "village",
+			"married": false,
+			"memory_count": 4,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "听阿禾口述完成记忆，不提前完成第二章后半证词",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 10,
+			"assertion_passed": true,
+			"categories": [
+				"memories"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": true
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 225,
+			"legacy_test": false,
+			"legend_trial_count": 0,
+			"location": "village",
+			"married": false,
+			"memory_count": 5,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "口述后回留言牌取得记忆",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 11,
+			"assertion_passed": true,
+			"categories": [
+				"memories"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 225,
+			"legacy_test": false,
+			"legend_trial_count": 0,
+			"location": "home",
+			"married": false,
+			"memory_count": 6,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "实体种箱解谜影响炉边记忆",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 13,
+			"assertion_passed": true,
+			"categories": [
+				"memories"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 225,
+			"legacy_test": false,
+			"legend_trial_count": 0,
+			"location": "farm",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "夜晚实际观察灯图取得最后记忆",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 14,
+			"assertion_passed": true,
+			"categories": [
+				"memories"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 225,
+			"legacy_test": false,
+			"legend_trial_count": 0,
+			"location": "farm",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "七份独立机制记忆全部完成且唯一",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 281,
+			"assertion_passed": true,
+			"categories": [
+				"trials"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 225,
+			"legacy_test": false,
+			"legend_trial_count": 0,
+			"location": "farm",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "开始新80–100层终局试炼",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 351,
+			"assertion_passed": true,
+			"categories": [
+				"trials"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 225,
+			"legacy_test": false,
+			"legend_trial_count": 1,
+			"location": "farm",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 12,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "80–100层实际路线完成传说试炼",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 376,
+			"assertion_passed": true,
+			"categories": [
+				"trials"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 226,
+			"legacy_test": false,
+			"legend_trial_count": 1,
+			"location": "farm",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "0.6生产试炼保留独立实际规则",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 377,
+			"assertion_passed": true,
+			"categories": [
+				"trials"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 226,
+			"legacy_test": false,
+			"legend_trial_count": 2,
+			"location": "farm",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "0.6经营试炼实际种植销售完成",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 378,
+			"assertion_passed": true,
+			"categories": [
+				"trials"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 226,
+			"legacy_test": false,
+			"legend_trial_count": 2,
+			"location": "farm",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "0.6有限制作链试炼开始",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 379,
+			"assertion_passed": true,
+			"categories": [
+				"trials"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 228,
+			"legacy_test": false,
+			"legend_trial_count": 3,
+			"location": "farm",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "0.6制作链实际完成",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 399,
+			"assertion_passed": true,
+			"categories": [
+				"trials"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 229,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "0.6五场终局试炼完整可玩",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 404,
+			"assertion_passed": true,
+			"categories": [
+				"wedding"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": true
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 229,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "village",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "0.6全进度仍不能以1313钻石求婚",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 405,
+			"assertion_passed": true,
+			"categories": [
+				"wedding"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": true
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 229,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "village",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "完整百层与关系条件满足可求婚",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 0
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 406,
+			"assertion_passed": true,
+			"categories": [
+				"wedding"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/ceremony.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": true
+				}
+			],
+			"day": 229,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "greenhouse",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/ceremony.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "新婚礼自动进入独立可走礼堂",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 1
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 409,
+			"assertion_passed": true,
+			"categories": [
+				"wedding"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/ceremony.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": true
+				}
+			],
+			"day": 229,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "greenhouse",
+			"married": false,
+			"memory_count": 7,
+			"player": {
+				"frame": 8,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/ceremony.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "独立场景取消婚礼不扣钻",
+			"trial_count": 5,
+			"wedding_day": 0,
+			"wedding_phase": 2
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 411,
+			"assertion_passed": true,
+			"categories": [
+				"wedding"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/ceremony.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": true
+				}
+			],
+			"day": 229,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "greenhouse",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 8,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/ceremony.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "独立原创婚礼对白第一段",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 3
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 412,
+			"assertion_passed": true,
+			"categories": [
+				"wedding"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/ceremony.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": true
+				}
+			],
+			"day": 229,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "greenhouse",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 8,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/ceremony.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "婚礼中断恢复独立场景与已扣资源",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 3
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 413,
+			"assertion_passed": true,
+			"categories": [
+				"wedding"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/ceremony.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": true
+				}
+			],
+			"day": 229,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "greenhouse",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 8,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/ceremony.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "双人动作与三段誓言唯一推进",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 3
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 414,
+			"assertion_passed": true,
+			"categories": [
+				"wedding"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 229,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "greenhouse",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 0,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "完整婚礼对白后才能收尾",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 415,
+			"assertion_passed": true,
+			"categories": [
+				"postlife"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 229,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 8,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "新增独立婚后留种合作任务",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 416,
+			"assertion_passed": true,
+			"categories": [
+				"postlife"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 229,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 8,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "两种实际新收作物完成婚后合作，奖励唯一",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 417,
+			"assertion_passed": true,
+			"categories": [
+				"postlife"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 229,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 8,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "新增婚后共同外出项目",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 422,
+			"assertion_passed": true,
+			"categories": [
+				"postlife"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 230,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 12,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "实际外出与守约完成第二个独立婚后项目",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 424,
+			"assertion_passed": true,
+			"categories": [
+				"postlife",
+				"letter_519"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 748,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 12,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "0.6婚后经过519日不开放回信",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 425,
+			"assertion_passed": true,
+			"categories": [
+				"postlife",
+				"letter_520"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 749,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 12,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [
+				"day520"
+			],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "婚后经过520日回信唯一结算",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 426,
+			"assertion_passed": true,
+			"categories": [
+				"wedding",
+				"postlife"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 749,
+			"legacy_test": false,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 12,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [
+				"day520"
+			],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "完整0.6百层、章节、婚礼、婚后状态可保存",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 427,
+			"assertion_passed": true,
+			"categories": [
+				"legacy_save_probe"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 749,
+			"legacy_test": true,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 12,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [
+				"day520"
+			],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "v9前20层与旧5/15检查点迁移不丢失",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 428,
+			"assertion_passed": true,
+			"categories": [
+				"legacy_save_probe"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 749,
+			"legacy_test": true,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 12,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [
+				"day520"
+			],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "v9旧资源、婚姻与钻石完整保留，不重复发奖",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 429,
+			"assertion_passed": true,
+			"categories": [
+				"legacy_save_probe"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 749,
+			"legacy_test": true,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 12,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [
+				"day520"
+			],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "v9→v10反复迁移幂等",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 430,
+			"assertion_passed": true,
+			"categories": [
+				"legacy_save_probe"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 749,
+			"legacy_test": true,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 12,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [
+				"day520"
+			],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "损坏v9旧字段安全拒绝，不在迁移中抛错",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 431,
+			"assertion_passed": true,
+			"categories": [
+				"legacy_save_probe"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 749,
+			"legacy_test": true,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 12,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [
+				"day520"
+			],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "损坏百层机关状态整档拒绝",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		},
+		{
+			"all_visuals_match_current_pair": true,
+			"appearance": {
+				"player_gender": "female",
+				"scheme": "C",
+				"xiaojing_gender": "male"
+			},
+			"assertion_index": 434,
+			"assertion_passed": true,
+			"categories": [
+				"legacy_save_probe"
+			],
+			"companion_sprites": [
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/@CharacterBody2D@1313/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/Home/Linya/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/RiverVillage/Actors/@CharacterBody2D@1314/Sprite2D",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				},
+				{
+					"frame": 0,
+					"hframes": 4,
+					"path": "/root/SchemeCFemaleRiver/PixelFarm/greenhouse/Actors/@Node2D@940/@Sprite2D@941",
+					"scheme_c": true,
+					"texture": "res://assets/characters/scheme_c/xiaojing_male/compact_32x48/spritesheet.png",
+					"variant": "xiaojing_male",
+					"vframes": 4,
+					"visible": false
+				}
+			],
+			"day": 749,
+			"legacy_test": true,
+			"legend_trial_count": 5,
+			"location": "farm",
+			"married": true,
+			"memory_count": 7,
+			"player": {
+				"frame": 12,
+				"hframes": 4,
+				"path": "/root/SchemeCFemaleRiver/PixelFarm/FarmWorld/Actors/Player/Sprite2D",
+				"scheme_c": true,
+				"texture": "res://assets/characters/scheme_c/player_female/compact_32x48/spritesheet.png",
+				"variant": "player_female",
+				"vframes": 4,
+				"visible": true
+			},
+			"post_events": [
+				"day520"
+			],
+			"requested_female_pair_active": true,
+			"save_version": 25,
+			"title": "0.6内容结束后白天仍禁止通过旧接口睡觉",
+			"trial_count": 5,
+			"wedding_day": 229,
+			"wedding_phase": 4
+		}
+	],
+	"female_categories": {
+		"legacy_save_probe": 6,
+		"letter_519": 1,
+		"letter_520": 1,
+		"memories": 8,
+		"postlife": 7,
+		"trials": 7,
+		"wedding": 9
+	},
+	"maximum_companion_sprites": 4,
+	"note": "Original gameplay assertions run unchanged; evidence assertions are separately counted. Explicit legacy-save probes may legitimately restore the historical default pair.",
+	"requested_pair": {
+		"player": "player_female",
+		"xiaojing": "xiaojing_male"
+	},
+	"source_assertions": 446,
+	"source_failures": 0,
+	"suite": "river",
+	"unexpected_pair_losses": [],
+	"visual_faults": []
+}

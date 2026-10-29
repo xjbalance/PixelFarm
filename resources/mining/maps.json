@@ -1,0 +1,911 @@
+{
+  "mine_a": {
+    "name": "废弃矿道",
+    "size": [
+      40,
+      28
+    ],
+    "entry": [
+      4,
+      23
+    ],
+    "theme": 0,
+    "floors": [
+      [
+        2,
+        17,
+        9,
+        9
+      ],
+      [
+        14,
+        11,
+        9,
+        13
+      ],
+      [
+        10,
+        20,
+        7,
+        3
+      ],
+      [
+        3,
+        3,
+        9,
+        10
+      ],
+      [
+        6,
+        11,
+        3,
+        8
+      ],
+      [
+        27,
+        6,
+        10,
+        17
+      ],
+      [
+        22,
+        17,
+        7,
+        3
+      ],
+      [
+        11,
+        6,
+        7,
+        1
+      ],
+      [
+        16,
+        3,
+        6,
+        5
+      ]
+    ],
+    "gates": [
+      {
+        "id": "rail",
+        "rect": [
+          24,
+          17,
+          2,
+          3
+        ]
+      }
+    ],
+    "objects": [
+      {
+        "id": "a_exit",
+        "kind": "exit",
+        "cell": [
+          4,
+          24
+        ],
+        "title": "返回河湾村",
+        "destination": "village",
+        "arrival": [
+          1184,
+          224
+        ]
+      },
+      {
+        "id": "a_down",
+        "kind": "exit",
+        "cell": [
+          34,
+          8
+        ],
+        "title": "下行 · 地下水脉",
+        "destination": "mine_b"
+      },
+      {
+        "id": "a_tutorial",
+        "kind": "note",
+        "cell": [
+          7,
+          23
+        ],
+        "title": "支架旁的采矿手册",
+        "fact": "mining_manual",
+        "text": "镐敲的是矿脉边缘，不是支架。一次一下，留够回程的体力。铜矿能做铜锭；矿物满包时，先整理再继续。"
+      },
+      {
+        "id": "a_record1",
+        "kind": "note",
+        "cell": [
+          5,
+          6
+        ],
+        "title": "旧工具上的名字",
+        "fact": "record_a1",
+        "text": "工具柄上刻着周衡的名字。旁边不是产量，而是逐日的水位。最后一行写着：先停重车，给下游留一夜时间。"
+      },
+      {
+        "id": "a_record2",
+        "kind": "note",
+        "cell": [
+          18,
+          13
+        ],
+        "title": "矿车底的停运记录",
+        "fact": "record_a2",
+        "text": "矿车被掀起的一角压着一张停运单：农产品空车运人，矿石等明天。签名有三个人，墨迹深浅不同。"
+      },
+      {
+        "id": "rail_west",
+        "kind": "rail",
+        "cell": [
+          21,
+          21
+        ],
+        "title": "矿车道岔 · 西侧扳杆"
+      },
+      {
+        "id": "rail_east",
+        "kind": "rail",
+        "cell": [
+          28,
+          21
+        ],
+        "title": "矿车道岔 · 东侧扳杆"
+      },
+      {
+        "id": "rail_hint",
+        "kind": "note",
+        "cell": [
+          18,
+          18
+        ],
+        "title": "道岔图",
+        "fact": "rail_hint",
+        "text": "维修图上只有一条粗线：先补枕木，再让扳杆指向东。扳错可以再扳，两侧都有手柄。"
+      },
+      {
+        "id": "a_chest",
+        "kind": "chest",
+        "cell": [
+          19,
+          5
+        ],
+        "title": "裂隙后的工具箱",
+        "items": {
+          "copper_ore": 6,
+          "wood": 8
+        },
+        "diamonds": 0
+      },
+      {
+        "id": "a_crack",
+        "kind": "ore",
+        "cell": [
+          14,
+          6
+        ],
+        "title": "风从裂隙里吹来",
+        "ore": "rubble"
+      },
+      {
+        "id": "a_copper_0",
+        "kind": "ore",
+        "cell": [
+          4,
+          19
+        ],
+        "title": "铜矿石",
+        "ore": "copper"
+      },
+      {
+        "id": "a_copper_1",
+        "kind": "ore",
+        "cell": [
+          8,
+          20
+        ],
+        "title": "铜矿石",
+        "ore": "copper"
+      },
+      {
+        "id": "a_copper_2",
+        "kind": "ore",
+        "cell": [
+          7,
+          8
+        ],
+        "title": "铜矿石",
+        "ore": "copper"
+      },
+      {
+        "id": "a_copper_3",
+        "kind": "ore",
+        "cell": [
+          9,
+          4
+        ],
+        "title": "铜矿石",
+        "ore": "copper"
+      },
+      {
+        "id": "a_copper_4",
+        "kind": "ore",
+        "cell": [
+          16,
+          15
+        ],
+        "title": "铜矿石",
+        "ore": "copper"
+      },
+      {
+        "id": "a_copper_5",
+        "kind": "ore",
+        "cell": [
+          20,
+          12
+        ],
+        "title": "铜矿石",
+        "ore": "copper"
+      },
+      {
+        "id": "a_iron_0",
+        "kind": "ore",
+        "cell": [
+          30,
+          14
+        ],
+        "title": "铁矿石",
+        "ore": "iron"
+      },
+      {
+        "id": "a_iron_1",
+        "kind": "ore",
+        "cell": [
+          34,
+          19
+        ],
+        "title": "铁矿石",
+        "ore": "iron"
+      }
+    ]
+  },
+  "mine_b": {
+    "name": "地下水脉",
+    "size": [
+      40,
+      28
+    ],
+    "entry": [
+      4,
+      23
+    ],
+    "theme": 1,
+    "floors": [
+      [
+        2,
+        16,
+        12,
+        10
+      ],
+      [
+        3,
+        3,
+        10,
+        10
+      ],
+      [
+        6,
+        11,
+        3,
+        8
+      ],
+      [
+        16,
+        11,
+        8,
+        13
+      ],
+      [
+        12,
+        20,
+        6,
+        3
+      ],
+      [
+        29,
+        3,
+        9,
+        23
+      ],
+      [
+        23,
+        16,
+        8,
+        3
+      ]
+    ],
+    "gates": [
+      {
+        "id": "water",
+        "rect": [
+          25,
+          16,
+          4,
+          3
+        ]
+      },
+      {
+        "id": "hardened",
+        "rect": [
+          29,
+          16,
+          1,
+          3
+        ]
+      }
+    ],
+    "objects": [
+      {
+        "id": "b_exit",
+        "kind": "exit",
+        "cell": [
+          4,
+          24
+        ],
+        "title": "上行 · 废弃矿道",
+        "destination": "mine_a",
+        "arrival": [
+          1072,
+          304
+        ]
+      },
+      {
+        "id": "b_down",
+        "kind": "exit",
+        "cell": [
+          34,
+          5
+        ],
+        "title": "深入 · 晶石洞窟",
+        "destination": "mine_c"
+      },
+      {
+        "id": "b_valve0",
+        "kind": "valve",
+        "cell": [
+          9,
+          11
+        ],
+        "title": "上游进水阀",
+        "symbol": 0
+      },
+      {
+        "id": "b_valve1",
+        "kind": "valve",
+        "cell": [
+          20,
+          22
+        ],
+        "title": "下游泄水闸",
+        "symbol": 1
+      },
+      {
+        "id": "b_hint",
+        "kind": "note",
+        "cell": [
+          6,
+          19
+        ],
+        "title": "水闸刻度",
+        "fact": "water_hint",
+        "text": "旧刻度旁写着：先确认上游，才松下游。若顺序错了，指针回零；水退后石桥会露出来。"
+      },
+      {
+        "id": "b_record",
+        "kind": "note",
+        "cell": [
+          6,
+          5
+        ],
+        "title": "潮湿的值班页",
+        "fact": "record_b",
+        "text": "洪水那天，矿工没有封住下游。有人留下开闸，把涨水引回旧河槽。下一页被撕去，水位数字仍接得上。"
+      },
+      {
+        "id": "b_rockgate",
+        "kind": "hardened",
+        "cell": [
+          28,
+          17
+        ],
+        "title": "铁锈岩层 · 需要强化镐"
+      },
+      {
+        "id": "b_chest",
+        "kind": "chest",
+        "cell": [
+          34,
+          23
+        ],
+        "title": "桥墩侧的密封箱",
+        "items": {
+          "iron_ore": 6,
+          "crystal": 3
+        },
+        "diamonds": 0
+      },
+      {
+        "id": "b_memory",
+        "kind": "memory",
+        "cell": [
+          32,
+          8
+        ],
+        "title": "小京的矿道副页：退路",
+        "memory": "pond"
+      },
+      {
+        "id": "b_iron_0",
+        "kind": "ore",
+        "cell": [
+          4,
+          18
+        ],
+        "title": "铁矿石",
+        "ore": "iron"
+      },
+      {
+        "id": "b_iron_1",
+        "kind": "ore",
+        "cell": [
+          10,
+          21
+        ],
+        "title": "铁矿石",
+        "ore": "iron"
+      },
+      {
+        "id": "b_iron_2",
+        "kind": "ore",
+        "cell": [
+          7,
+          7
+        ],
+        "title": "铁矿石",
+        "ore": "iron"
+      },
+      {
+        "id": "b_iron_3",
+        "kind": "ore",
+        "cell": [
+          11,
+          5
+        ],
+        "title": "铁矿石",
+        "ore": "iron"
+      },
+      {
+        "id": "b_iron_4",
+        "kind": "ore",
+        "cell": [
+          18,
+          13
+        ],
+        "title": "铁矿石",
+        "ore": "iron"
+      },
+      {
+        "id": "b_iron_5",
+        "kind": "ore",
+        "cell": [
+          21,
+          18
+        ],
+        "title": "铁矿石",
+        "ore": "iron"
+      },
+      {
+        "id": "b_crystal_0",
+        "kind": "ore",
+        "cell": [
+          32,
+          20
+        ],
+        "title": "晶石",
+        "ore": "crystal"
+      },
+      {
+        "id": "b_crystal_1",
+        "kind": "ore",
+        "cell": [
+          35,
+          13
+        ],
+        "title": "晶石",
+        "ore": "crystal"
+      }
+    ]
+  },
+  "mine_c": {
+    "name": "晶石洞窟",
+    "size": [
+      40,
+      28
+    ],
+    "entry": [
+      4,
+      23
+    ],
+    "theme": 2,
+    "floors": [
+      [
+        2,
+        17,
+        10,
+        9
+      ],
+      [
+        15,
+        9,
+        9,
+        16
+      ],
+      [
+        10,
+        20,
+        7,
+        3
+      ],
+      [
+        28,
+        3,
+        10,
+        12
+      ],
+      [
+        23,
+        11,
+        7,
+        3
+      ],
+      [
+        28,
+        18,
+        10,
+        8
+      ],
+      [
+        22,
+        21,
+        8,
+        3
+      ],
+      [
+        17,
+        2,
+        7,
+        5
+      ],
+      [
+        19,
+        5,
+        3,
+        5
+      ]
+    ],
+    "gates": [
+      {
+        "id": "resonance",
+        "rect": [
+          25,
+          11,
+          3,
+          3
+        ]
+      }
+    ],
+    "objects": [
+      {
+        "id": "c_exit",
+        "kind": "exit",
+        "cell": [
+          4,
+          24
+        ],
+        "title": "返回 · 地下水脉",
+        "destination": "mine_b",
+        "arrival": [
+          1072,
+          208
+        ]
+      },
+      {
+        "id": "c_hint",
+        "kind": "note",
+        "cell": [
+          16,
+          22
+        ],
+        "title": "三色采样刻痕",
+        "fact": "resonance_hint",
+        "text": "三张标本依次压着麦穗、河沙、白石。旁注：让金色先答，蓝色再答，月白最后。错序会静下来，下一次从头开始。"
+      },
+      {
+        "id": "c_res0",
+        "kind": "resonator",
+        "cell": [
+          6,
+          19
+        ],
+        "title": "蓝色晶柱",
+        "symbol": 0
+      },
+      {
+        "id": "c_res1",
+        "kind": "resonator",
+        "cell": [
+          19,
+          17
+        ],
+        "title": "金色晶柱",
+        "symbol": 1
+      },
+      {
+        "id": "c_res2",
+        "kind": "resonator",
+        "cell": [
+          21,
+          6
+        ],
+        "title": "月白晶柱",
+        "symbol": 2
+      },
+      {
+        "id": "c_record",
+        "kind": "note",
+        "cell": [
+          34,
+          6
+        ],
+        "title": "星辉层的共同签名",
+        "fact": "record_c",
+        "text": "封闭矿道的决定不是一个人的命令。林芽的前辈划去矿石订单，周衡保住水闸，阿禾的母亲记下返乡人数。缺失的那页，可能被带去了更深的支线。"
+      },
+      {
+        "id": "c_chest",
+        "kind": "chest",
+        "cell": [
+          35,
+          4
+        ],
+        "title": "共同签名后的星匣",
+        "items": {
+          "star_alloy": 1
+        },
+        "diamonds": 12
+      },
+      {
+        "id": "c_memory",
+        "kind": "memory",
+        "cell": [
+          18,
+          4
+        ],
+        "title": "小京的矿道副页：各自的明天",
+        "memory": "mill"
+      },
+      {
+        "id": "c_star_hint",
+        "kind": "note",
+        "cell": [
+          30,
+          24
+        ],
+        "title": "星灯基座说明",
+        "fact": "star_hint",
+        "text": "九盏灯会带着上下左右一起翻转。笔记里画着四个角和正中：先走到角落，再回来想中央。小京收齐七份记忆后可以约定这场试炼。"
+      },
+      {
+        "id": "c_crystal_0",
+        "kind": "ore",
+        "cell": [
+          4,
+          20
+        ],
+        "title": "晶石",
+        "ore": "crystal"
+      },
+      {
+        "id": "c_crystal_1",
+        "kind": "ore",
+        "cell": [
+          8,
+          23
+        ],
+        "title": "晶石",
+        "ore": "crystal"
+      },
+      {
+        "id": "c_crystal_2",
+        "kind": "ore",
+        "cell": [
+          18,
+          13
+        ],
+        "title": "晶石",
+        "ore": "crystal"
+      },
+      {
+        "id": "c_crystal_3",
+        "kind": "ore",
+        "cell": [
+          21,
+          10
+        ],
+        "title": "晶石",
+        "ore": "crystal"
+      },
+      {
+        "id": "c_crystal_4",
+        "kind": "ore",
+        "cell": [
+          17,
+          19
+        ],
+        "title": "晶石",
+        "ore": "crystal"
+      },
+      {
+        "id": "c_star_0",
+        "kind": "ore",
+        "cell": [
+          30,
+          8
+        ],
+        "title": "星辉原矿",
+        "ore": "starlight"
+      },
+      {
+        "id": "c_star_1",
+        "kind": "ore",
+        "cell": [
+          35,
+          11
+        ],
+        "title": "星辉原矿",
+        "ore": "starlight"
+      },
+      {
+        "id": "c_star_2",
+        "kind": "ore",
+        "cell": [
+          31,
+          6
+        ],
+        "title": "星辉原矿",
+        "ore": "starlight"
+      },
+      {
+        "id": "c_diamond_0",
+        "kind": "ore",
+        "cell": [
+          32,
+          10
+        ],
+        "title": "钻石矿脉",
+        "ore": "diamond"
+      },
+      {
+        "id": "c_diamond_1",
+        "kind": "ore",
+        "cell": [
+          36,
+          7
+        ],
+        "title": "钻石矿脉",
+        "ore": "diamond"
+      },
+      {
+        "id": "c_diamond_2",
+        "kind": "ore",
+        "cell": [
+          29,
+          4
+        ],
+        "title": "钻石矿脉",
+        "ore": "diamond"
+      },
+      {
+        "id": "star_0",
+        "kind": "star",
+        "cell": [
+          29,
+          19
+        ],
+        "title": "星灯 1",
+        "symbol": 0
+      },
+      {
+        "id": "star_1",
+        "kind": "star",
+        "cell": [
+          32,
+          19
+        ],
+        "title": "星灯 2",
+        "symbol": 1
+      },
+      {
+        "id": "star_2",
+        "kind": "star",
+        "cell": [
+          35,
+          19
+        ],
+        "title": "星灯 3",
+        "symbol": 2
+      },
+      {
+        "id": "star_3",
+        "kind": "star",
+        "cell": [
+          29,
+          22
+        ],
+        "title": "星灯 4",
+        "symbol": 3
+      },
+      {
+        "id": "star_4",
+        "kind": "star",
+        "cell": [
+          32,
+          22
+        ],
+        "title": "星灯 5",
+        "symbol": 4
+      },
+      {
+        "id": "star_5",
+        "kind": "star",
+        "cell": [
+          35,
+          22
+        ],
+        "title": "星灯 6",
+        "symbol": 5
+      },
+      {
+        "id": "star_6",
+        "kind": "star",
+        "cell": [
+          29,
+          25
+        ],
+        "title": "星灯 7",
+        "symbol": 6
+      },
+      {
+        "id": "star_7",
+        "kind": "star",
+        "cell": [
+          32,
+          25
+        ],
+        "title": "星灯 8",
+        "symbol": 7
+      },
+      {
+        "id": "star_8",
+        "kind": "star",
+        "cell": [
+          35,
+          25
+        ],
+        "title": "星灯 9",
+        "symbol": 8
+      }
+    ]
+  }
+}

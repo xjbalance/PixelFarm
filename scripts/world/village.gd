@@ -12,7 +12,7 @@ func _ready() -> void:
 	tiles.add_physics_layer()
 	tiles.set_physics_layer_collision_layer(0,1)
 	var atlas := TileSetAtlasSource.new()
-	atlas.texture = preload("res://assets/tilesets/ground.png")
+	atlas.texture = load("res://assets/tilesets/ground.png")
 	atlas.texture_region_size = Vector2i(32,32)
 	tiles.add_source(atlas,0)
 	for i in range(8):
@@ -31,13 +31,16 @@ func _ready() -> void:
 			if x in [26,27,28]: cell = 6 if x==27 else 5
 			ground.set_cell(Vector2i(x,y),0,Vector2i(cell,0))
 	for bounds in [Rect2(-32,-32,1344,32),Rect2(-32,896,1344,32),Rect2(-32,0,32,896),Rect2(1280,0,32,896)]: blocker(bounds,self)
-	house(Vector2(290,357),preload("res://assets/buildings/tea_house.png"))
-	house(Vector2(520,350),preload("res://assets/buildings/workshop.png"))
-	npc("ahe",Vector2(314,414))
+	house(Vector2(290,357),load("res://assets/buildings/tea_house.png"))
+	house(Vector2(520,350),load("res://assets/buildings/workshop.png"))
+	npc("ahe",Vector2(284,452))
 	npc("zhou",Vector2(488,480))
 	npc("linya",Vector2(610,442))
-	point("farm_return","返回风芽农场",Vector2(640,826),"sign")
+	point("farm_return","返回农场",Vector2(640,826),"sign")
 	point("bridge","看看旧桥",Vector2(790,450),"")
+	point("bridge_survey","调查桥墩水线",Vector2(785,540),"post")
+	point("repair_record","查看维修记录",Vector2(570,389),"post")
+	point("cargo_note","查看货箱便条",Vector2(1020,370),"post")
 	point("mill","读风车下的记录簿",Vector2(1090,350),"windmill")
 	point("lantern","点亮风灯",Vector2(628,524),"festival")
 	point("bench","长椅 · 等到傍晚",Vector2(540,610),"bench")
@@ -72,7 +75,7 @@ func _ready() -> void:
 		for x in range(2,38,3):
 			if x in [17,20,26,29]: continue
 			var tree := Sprite2D.new()
-			tree.texture = preload("res://assets/tilesets/tree.png")
+			tree.texture = load("res://assets/tilesets/tree.png")
 			tree.position = Vector2(x*32,y*32)
 			actors.add_child(tree)
 			blocker(Rect2(-6,31,12,14),tree)
@@ -83,21 +86,55 @@ func _ready() -> void:
 	Story.changed.connect(refresh_bridge)
 	GameClock.changed.connect(refresh_gathering)
 	Story.changed.connect(refresh_gathering)
+	GameWeather.changed.connect(refresh_gathering)
+	VillageProjects.changed.connect(refresh_gathering)
 	refresh_bridge()
 	refresh_gathering()
 
 func refresh_gathering() -> void:
-	# 风灯之夜的人物实际出现在广场，平日仍可到茶屋与木作坊找到他们。
-	var gathering := Story.stage >= 7 and GameClock.minutes >= 1080
-	villagers.linya.visible = gathering
-	villagers.linya.process_mode = Node.PROCESS_MODE_INHERIT if gathering else Node.PROCESS_MODE_DISABLED
-	villagers.zhou.position = Vector2(548,495) if gathering else Vector2(488,480)
-	villagers.ahe.position = Vector2(713,510) if gathering else Vector2(314,414)
+	# 固定工作时段与少量站点；只在可见地图中沿真实可通行路径行走。
+	var ending: bool=River.gathering()
+	var evening: bool=GameClock.minutes >= 1080 or ending
+	var gathering := Story.stage == 7 and evening
+	villagers.linya.visible = evening
+	villagers.linya.process_mode = Node.PROCESS_MODE_INHERIT if evening else Node.PROCESS_MODE_DISABLED
+	var linya_station := Vector2(610,442) if not VillageProjects.has_project("arbor") else Vector2(704,592)
+	var zhou_station := Vector2(488,480)
+	var ahe_station := Vector2(284,452)
+	if Story.stage == 4: zhou_station = Vector2(752,496)
+	elif Story.stage >= 5 and GameClock.minutes >= 840 and not evening: zhou_station = Vector2(960,528)
+	if VillageProjects.has_project("well") and GameClock.minutes >= 720 and GameClock.minutes < 840: ahe_station = Vector2(432,560)
+	if evening and VillageProjects.has_project("arbor"):
+		zhou_station = Vector2(496,656)
+		ahe_station = Vector2(592,656)
+	if (GameWeather.is_rainy() or GameWeather.is_snowy()) and not gathering and not ending:
+		# 三位仍留在原地图，改在门廊与木作坊附近，必需人物不消失。
+		linya_station=Vector2(608,432)
+		zhou_station=Vector2(488,432)
+		ahe_station=Vector2(272,432)
+	if gathering:
+		linya_station=Vector2(610,442)
+		zhou_station = Vector2(548,495)
+		ahe_station = Vector2(713,510)
+	if ending:
+		linya_station=Vector2(700,690)
+		zhou_station=Vector2(760,690)
+		ahe_station=Vector2(810,690)
+	var community_linya: Vector2=WorldDevelopment.community_station("linya")
+	if community_linya!=Vector2.INF: linya_station=community_linya
+	villagers.linya.set_station(linya_station)
+	var community_zhou: Vector2=WorldDevelopment.community_station("zhou")
+	if community_zhou!=Vector2.INF: zhou_station=community_zhou
+	var community_ahe: Vector2=WorldDevelopment.community_station("ahe")
+	if community_ahe!=Vector2.INF: ahe_station=community_ahe
+	if villagers.zhou.get_parent()==actors: villagers.zhou.set_station(zhou_station)
+	if villagers.ahe.get_parent()==actors: villagers.ahe.set_station(ahe_station)
 
 func refresh_bridge() -> void:
 	bridge_open = Story.stage >= 5
 	for y in [14,15]:
 		for x in [26,27,28]: ground.set_cell(Vector2i(x,y),0,Vector2i(7 if bridge_open else 5,0))
+	Events.navigation_changed.emit()
 	queue_redraw()
 
 func blocker(rect: Rect2,parent: Node) -> void:

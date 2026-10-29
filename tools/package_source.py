@@ -6,16 +6,17 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 version = re.search(r'^config/version="([^"]+)"', (ROOT/'project.godot').read_text(),re.MULTILINE).group(1)
-out = ROOT/f'builds/PixelFarm-{version}-source.zip'
+out = ROOT/f'builds/PixelWorld-{version}-source.zip'
 out.parent.mkdir(exist_ok=True)
-excluded = {'.git','.tools','.godot','builds','__pycache__'}
+excluded = {'.git','.tools','.godot','builds','__pycache__','need'}
 with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED,compresslevel=6) as package:
-    package.writestr('PixelFarm/builds/.gitkeep','')
+    package.writestr('PixelWorld/builds/.gitkeep','')
     for path in sorted(ROOT.rglob('*')):
         relative = path.relative_to(ROOT)
-        if not path.is_file() or any(part in excluded for part in relative.parts): continue
-        if path.suffix in {'.pyc','.tmp','.keystore'}: continue
-        package.write(path,Path('PixelFarm')/relative)
+        if path.is_symlink() or not path.is_file() or any(part in excluded for part in relative.parts): continue
+        if path.name == 'export_credentials.cfg' or (path.name.startswith('.env') and path.name != '.env.example'): continue
+        if path.suffix in {'.pyc','.tmp','.keystore','.jks','.p12','.pfx','.key','.pem'}: continue
+        package.write(path,Path('PixelWorld')/relative)
 checksum = hashlib.sha256(out.read_bytes()).hexdigest()
 out.with_suffix('.sha256').write_text(checksum+'  '+out.name+'\n',encoding='ascii')
 print(f'{out}\n{out.stat().st_size} bytes\nSHA256 {checksum}')

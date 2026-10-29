@@ -12,6 +12,8 @@ var costs: VBoxContainer
 var reward: Label
 var action_button: Button
 var hint: Label
+var tab_mode: String=""
+var tab_buttons: Dictionary={}
 
 func _ready() -> void:
 	add_to_group("modal_panels")
@@ -21,36 +23,44 @@ func _ready() -> void:
 	add_child(column)
 	var header := HBoxContainer.new()
 	column.add_child(header)
-	title = FarmUIStyle.label("",26,FarmUIStyle.GOLD)
-	title.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	header.add_child(title)
+	title = FarmUIStyle.heading(header,"","sign")
+	header.add_child(FarmUIStyle.button("住宅改建",func(): close_panel(); Events.interaction_requested.emit("housing:upgrade"),130))
+	header.add_child(FarmUIStyle.button("鱼栏图纸",func(): close_panel(); Events.interaction_requested.emit("fish:guide"),150))
 	header.add_child(FarmUIStyle.button("关闭 ×",close_panel,100))
+	var scroll:=ScrollContainer.new()
+	scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"))
+	scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL
+	scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED
+	column.add_child(scroll)
+	var body:=VBoxContainer.new();body.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+	body.add_theme_constant_override("separation",12);scroll.add_child(body)
 	subtitle = FarmUIStyle.label("",17)
-	column.add_child(subtitle)
+	body.add_child(subtitle)
+	DiamondPayments.controls(body,refresh)
 	tabs = HBoxContainer.new()
 	tabs.add_theme_constant_override("separation",8)
-	column.add_child(tabs)
-	heading = FarmUIStyle.label("",23,FarmUIStyle.GOLD)
-	column.add_child(heading)
+	body.add_child(tabs)
+	var detail:=FarmUIStyle.card(body)
+	heading = FarmUIStyle.heading(detail,"")
 	description = FarmUIStyle.label("",18)
 	description.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	description.custom_minimum_size.y = 55
-	column.add_child(description)
+	detail.add_child(description)
 	costs = VBoxContainer.new()
 	costs.add_theme_constant_override("separation",6)
-	costs.custom_minimum_size.y = 92
-	column.add_child(costs)
-	reward = FarmUIStyle.label("",17,Color("c9d6a1"))
+	detail.add_child(costs)
+	reward = FarmUIStyle.label("",17,FarmUIStyle.SUCCESS)
 	reward.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	column.add_child(reward)
+	detail.add_child(reward)
 	var space := Control.new()
 	space.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	column.add_child(space)
+	detail.add_child(space)
 	action_button = FarmUIStyle.button("",perform_action,160)
-	column.add_child(action_button)
-	hint = FarmUIStyle.label("",14)
+	action_button.size_flags_horizontal=Control.SIZE_SHRINK_END
+	detail.add_child(action_button)
+	hint = FarmUIStyle.label("",16,FarmUIStyle.MUTED)
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	column.add_child(hint)
+	detail.add_child(hint)
 	FarmProgress.changed.connect(refresh)
 	Inventory.changed.connect(refresh)
 
@@ -69,6 +79,7 @@ func open_panel(requested_mode: String, editable: bool) -> void:
 	refresh()
 
 func close_panel() -> void:
+	DiamondPayments.cancel(self)
 	hide()
 	GameState.set_modal(false)
 
@@ -78,27 +89,32 @@ func select(id: String) -> void:
 
 func refresh() -> void:
 	if not visible: return
-	for child in tabs.get_children():
-		tabs.remove_child(child)
-		child.queue_free()
 	for child in costs.get_children():
 		costs.remove_child(child)
 		child.queue_free()
 	var definitions: Dictionary = FarmProgress.upgrades if mode == "workshop" else FarmProgress.quests
+	if tab_mode!=mode:
+		tab_mode=mode;tab_buttons.clear()
+		for child in tabs.get_children(): tabs.remove_child(child);child.queue_free()
+		for id in definitions:
+			var button:=FarmUIStyle.button("",select.bind(id),160)
+			button.toggle_mode=true
+			button.size_flags_horizontal=Control.SIZE_EXPAND_FILL
+			tabs.add_child(button);tab_buttons[id]=button
 	for id in definitions:
 		var name_text: String = definitions[id].name if mode == "workshop" else definitions[id].title
 		var done: bool = FarmProgress.has_upgrade(id) if mode == "workshop" else FarmProgress.quest_status(id) == "completed"
-		var button := FarmUIStyle.button(("✓ " if done else "")+name_text,select.bind(id),160)
-		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		if id == selected_id: button.add_theme_stylebox_override("normal",FarmUIStyle.box(FarmUIStyle.GREEN,FarmUIStyle.GOLD))
-		tabs.add_child(button)
+		var button: Button=tab_buttons[id]
+		button.text=("✓ " if done else "")+name_text
+		button.set_pressed_no_signal(id==selected_id)
+		button.add_theme_stylebox_override("normal",FarmUIStyle.surface("selected" if id==selected_id else "button"))
 	if mode == "workshop": refresh_upgrade()
 	else: refresh_quest()
 
 func add_cost(id: String, amount: int) -> void:
 	var held: int = Inventory.coins if id == "coins" else Inventory.count(id)
 	var name_text: String = "金币" if id == "coins" else Catalog.item_name(id)
-	costs.add_child(FarmUIStyle.label("%s  ·  需要 %d / 持有 %d" % [name_text,amount,held],18,Color("cad5a4") if held >= amount else Color("efb895")))
+	costs.add_child(FarmUIStyle.label("%s  ·  需要 %d / 持有 %d" % [name_text,amount,held],18,FarmUIStyle.SUCCESS if held >= amount else FarmUIStyle.DANGER))
 
 func refresh_upgrade() -> void:
 	var definition: Dictionary = FarmProgress.upgrades[selected_id]
@@ -111,8 +127,8 @@ func refresh_upgrade() -> void:
 	for id in definition.materials: add_cost(id,int(definition.materials[id]))
 	reward.text = "永久生效，离开农场或重新读档后仍然保留。"
 	action_button.text = "已建成" if done else "交付材料并修缮"
-	action_button.disabled = done or Inventory.preview_exchange(definition.materials,{},-int(definition.coins)).is_empty()
-	hint.text = "修缮将扣除上方所列的金币与材料。"
+	action_button.disabled = done or DiamondPayments.preview(definition.materials,{},int(definition.coins)).is_empty()
+	hint.text = "修缮将扣除材料与"+DiamondPayments.text(int(definition.coins))+"。钻石支付需再次确认。"
 
 func refresh_quest() -> void:
 	var definition: Dictionary = FarmProgress.quests[selected_id]
@@ -130,7 +146,9 @@ func refresh_quest() -> void:
 	hint.text = "委托板在小屋东侧。交付会消耗所需物品，奖励只领取一次。"
 
 func perform_action() -> void:
-	if mode == "workshop": FarmProgress.build_upgrade(selected_id)
+	if mode == "workshop":
+		var id := selected_id
+		DiamondPayments.request(self,int(FarmProgress.upgrades[id].coins),func(): FarmProgress.build_upgrade(id); refresh())
 	elif at_board:
 		if FarmProgress.quest_status(selected_id) == "available": FarmProgress.accept(selected_id)
 		else: FarmProgress.deliver(selected_id)

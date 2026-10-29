@@ -1,0 +1,123 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    {
+      "name": "kitchen",
+      "path": "res://builds/facility-ui07-after-kitchen.png",
+      "file": "docs/facility-ui07/after-kitchen.png"
+    },
+    {
+      "name": "housing",
+      "path": "res://builds/facility-ui07-after-housing.png",
+      "file": "docs/facility-ui07/after-housing.png"
+    },
+    {
+      "name": "fishpen",
+      "path": "res://builds/facility-ui07-after-fishpen.png",
+      "file": "docs/facility-ui07/after-fishpen.png"
+    },
+    {
+      "name": "ecology",
+      "path": "res://builds/facility-ui07-after-ecology.png",
+      "file": "docs/facility-ui07/after-ecology.png"
+    },
+    {
+      "name": "livestock",
+      "path": "res://builds/facility-ui07-after-livestock.png",
+      "file": "docs/facility-ui07/after-livestock.png"
+    },
+    {
+      "name": "recovery",
+      "path": "res://builds/facility-ui07-after-recovery.png",
+      "file": "docs/facility-ui07/after-recovery.png"
+    },
+    {
+      "name": "development",
+      "path": "res://builds/facility-ui07-after-development.png",
+      "file": "docs/facility-ui07/after-development.png"
+    },
+    {
+      "name": "exploration",
+      "path": "res://builds/facility-ui07-after-exploration.png",
+      "file": "docs/facility-ui07/after-exploration.png"
+    },
+    {
+      "name": "festival",
+      "path": "res://builds/facility-ui07-after-festival.png",
+      "file": "docs/facility-ui07/after-festival.png"
+    },
+    {
+      "name": "calendar",
+      "path": "res://builds/facility-ui07-after-calendar.png",
+      "file": "docs/facility-ui07/after-calendar.png"
+    },
+    {
+      "name": "fishing",
+      "path": "res://builds/facility-ui07-after-fishing.png",
+      "file": "docs/facility-ui07/after-fishing.png"
+    }
+  ],
+  "checks": 316,
+  "failures": 0,
+  "platform": "X11",
+  "baseline_commit": "96a9667",
+  "before_checks": 232,
+  "before_captures": [
+    {
+      "name": "kitchen",
+      "path": "res://builds/facility-ui07-before-kitchen.png",
+      "file": "docs/facility-ui07/before-kitchen.png"
+    },
+    {
+      "name": "housing",
+      "path": "res://builds/facility-ui07-before-housing.png",
+      "file": "docs/facility-ui07/before-housing.png"
+    },
+    {
+      "name": "fishpen",
+      "path": "res://builds/facility-ui07-before-fishpen.png",
+      "file": "docs/facility-ui07/before-fishpen.png"
+    },
+    {
+      "name": "ecology",
+      "path": "res://builds/facility-ui07-before-ecology.png",
+      "file": "docs/facility-ui07/before-ecology.png"
+    },
+    {
+      "name": "livestock",
+      "path": "res://builds/facility-ui07-before-livestock.png",
+      "file": "docs/facility-ui07/before-livestock.png"
+    },
+    {
+      "name": "recovery",
+      "path": "res://builds/facility-ui07-before-recovery.png",
+      "file": "docs/facility-ui07/before-recovery.png"
+    },
+    {
+      "name": "development",
+      "path": "res://builds/facility-ui07-before-development.png",
+      "file": "docs/facility-ui07/before-development.png"
+    },
+    {
+      "name": "exploration",
+      "path": "res://builds/facility-ui07-before-exploration.png",
+      "file": "docs/facility-ui07/before-exploration.png"
+    },
+    {
+      "name": "festival",
+      "path": "res://builds/facility-ui07-before-festival.png",
+      "file": "docs/facility-ui07/before-festival.png"
+    },
+    {
+      "name": "calendar",
+      "path": "res://builds/facility-ui07-before-calendar.png",
+      "file": "docs/facility-ui07/before-calendar.png"
+    },
+    {
+      "name": "fishing",
+      "path": "res://builds/facility-ui07-before-fishing.png",
+      "file": "docs/facility-ui07/before-fishing.png"
+    }
+  ],
+  "note": "Actual Godot Xvfb/Mesa window captures; baseline rendered in an isolated archive of 96a9667. No Android device acceptance."
+}

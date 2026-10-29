@@ -1,0 +1,200 @@
+[gd_resource type="Theme" load_steps=28 format=3]
+
+[ext_resource type="Texture2D" path="res://assets/ui/river/paper.png" id="paper"]
+[ext_resource type="Texture2D" path="res://assets/ui/river/secondary.png" id="secondary"]
+[ext_resource type="Texture2D" path="res://assets/ui/river/button.png" id="button"]
+[ext_resource type="Texture2D" path="res://assets/ui/river/hover.png" id="hover"]
+[ext_resource type="Texture2D" path="res://assets/ui/river/pressed.png" id="pressed"]
+[ext_resource type="Texture2D" path="res://assets/ui/river/disabled.png" id="disabled"]
+[ext_resource type="Texture2D" path="res://assets/ui/river/focus.png" id="focus"]
+[ext_resource type="Texture2D" path="res://assets/ui/river/selected.png" id="selected"]
+[ext_resource type="Texture2D" path="res://assets/ui/river/nature.png" id="nature"]
+[ext_resource type="Texture2D" path="res://assets/ui/river/star.png" id="star"]
+[ext_resource type="Texture2D" path="res://assets/ui/river/danger.png" id="danger"]
+[ext_resource type="Texture2D" path="res://assets/ui/river/track.png" id="track"]
+[ext_resource type="Texture2D" path="res://assets/ui/river/fill.png" id="fill"]
+[ext_resource type="FontFile" path="res://assets/ui/fonts/NotoSansCJK-Regular.ttc" id="font"]
+
+[sub_resource type="StyleBoxTexture" id="paper"]
+texture = ExtResource("paper")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="secondary"]
+texture = ExtResource("secondary")
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="button"]
+texture = ExtResource("button")
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="hover"]
+texture = ExtResource("hover")
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="pressed"]
+texture = ExtResource("pressed")
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="disabled"]
+texture = ExtResource("disabled")
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="focus"]
+texture = ExtResource("focus")
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="selected"]
+texture = ExtResource("selected")
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="nature"]
+texture = ExtResource("nature")
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="star"]
+texture = ExtResource("star")
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="danger"]
+texture = ExtResource("danger")
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="track"]
+texture = ExtResource("track")
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id="fill"]
+texture = ExtResource("fill")
+texture_margin_left = 8.0
+content_margin_left = 16.0
+texture_margin_top = 8.0
+content_margin_top = 8.0
+texture_margin_right = 8.0
+content_margin_right = 16.0
+texture_margin_bottom = 8.0
+content_margin_bottom = 8.0
+
+[resource]
+default_font = ExtResource("font")
+default_font_size = 18
+Label/colors/font_color = Color(0.207843, 0.160784, 0.121569, 1)
+Button/colors/font_color = Color(0.207843, 0.160784, 0.121569, 1)
+CheckButton/colors/font_color = Color(0.207843, 0.160784, 0.121569, 1)
+CheckBox/colors/font_color = Color(0.207843, 0.160784, 0.121569, 1)
+OptionButton/colors/font_color = Color(0.207843, 0.160784, 0.121569, 1)
+Window/colors/font_color = Color(0.207843, 0.160784, 0.121569, 1)
+ConfirmationDialog/colors/font_color = Color(0.207843, 0.160784, 0.121569, 1)
+Button/colors/font_hover_color = Color(0.207843, 0.160784, 0.121569, 1)
+Button/colors/font_pressed_color = Color(0.207843, 0.160784, 0.121569, 1)
+Button/colors/font_focus_color = Color(0.207843, 0.160784, 0.121569, 1)
+Button/colors/font_disabled_color = Color(0.541176, 0.490196, 0.407843, 1)
+Button/styles/normal = SubResource("button")
+Button/styles/hover = SubResource("hover")
+Button/styles/pressed = SubResource("pressed")
+Button/styles/disabled = SubResource("disabled")
+Button/styles/focus = SubResource("focus")
+PanelContainer/styles/panel = SubResource("paper")
+PopupPanel/styles/panel = SubResource("paper")
+Window/styles/embedded_border = SubResource("paper")
+ProgressBar/styles/background = SubResource("track")
+ProgressBar/styles/fill = SubResource("fill")
+VScrollBar/styles/scroll = SubResource("track")
+VScrollBar/styles/grabber = SubResource("button")
+VScrollBar/styles/grabber_highlight = SubResource("selected")
+VScrollBar/styles/grabber_pressed = SubResource("nature")
+HScrollBar/styles/scroll = SubResource("track")
+HScrollBar/styles/grabber = SubResource("button")
+HScrollBar/styles/grabber_highlight = SubResource("selected")
+HScrollBar/styles/grabber_pressed = SubResource("nature")
+Label/constants/line_spacing = 4
+HBoxContainer/constants/separation = 10
+VBoxContainer/constants/separation = 10
+Window/constants/title_height = 28
+Window/font_sizes/title_font_size = 20
+Window/colors/title_color = Color(0.4, 0.266667, 0.184314, 1)

@@ -1,0 +1,95 @@
+{
+  "version": "0.6.0",
+  "model_not_playtest": true,
+  "layouts": 100,
+  "first_source_depth": {
+    "iron_ore": 1,
+    "crystal": 11,
+    "starlight_ore": 16,
+    "ancient_shard": 61,
+    "star_fragment": 81,
+    "diamond": 81
+  },
+  "production": {
+    "repeatable_diamond_nodes": 20,
+    "guaranteed_mean_per_node": 1.25,
+    "raw_starlight_per_full_survey": 80,
+    "refining_diamonds": 53.333,
+    "one_time_100_chests": 50,
+    "one_time_first_diamond_veins_mean": 25.0,
+    "full_cycle_minimum_energy": 867,
+    "daily_stamina_model": 210,
+    "full_cycle_minimum_days": 5
+  },
+  "scenarios": [
+    {
+      "samples": 10000,
+      "strategy": "deep_diamonds",
+      "optional_diamond_spend": 0,
+      "p10_hours": 29.77,
+      "p50_hours": 35.53,
+      "p90_hours": 41.34,
+      "cycle_days": 3,
+      "diamonds_per_cycle": 25.0,
+      "mean_cycles": 49,
+      "mean_hours": {
+        "repeatable_active": 8.17,
+        "main_and_relationships": 16.94,
+        "first_100": 5.0,
+        "trials": 5.01,
+        "ceremony": 0.42,
+        "calendar_lower_bound": 17.15
+      }
+    },
+    {
+      "samples": 10000,
+      "strategy": "all_rare_and_refining",
+      "optional_diamond_spend": 0,
+      "p10_hours": 31.27,
+      "p50_hours": 36.97,
+      "p90_hours": 42.82,
+      "cycle_days": 5,
+      "diamonds_per_cycle": 78.333,
+      "mean_cycles": 16,
+      "mean_hours": {
+        "repeatable_active": 9.61,
+        "main_and_relationships": 17.01,
+        "first_100": 4.99,
+        "trials": 5.01,
+        "ceremony": 0.42,
+        "calendar_lower_bound": 9.33
+      }
+    },
+    {
+      "samples": 10000,
+      "strategy": "deep_diamonds",
+      "optional_diamond_spend": 100,
+      "p10_hours": 30.47,
+      "p50_hours": 36.31,
+      "p90_hours": 42.01,
+      "cycle_days": 3,
+      "diamonds_per_cycle": 25.0,
+      "mean_cycles": 53,
+      "mean_hours": {
+        "repeatable_active": 8.83,
+        "main_and_relationships": 17.01,
+        "first_100": 5.0,
+        "trials": 5.0,
+        "ceremony": 0.42,
+        "calendar_lower_bound": 18.55
+      }
+    }
+  ],
+  "dead_end_checks": [
+    "All 100 closed/open map routes checked; region bosses/gear gates have reachable return ladders.",
+    "Ancient/star materials are gatherable before their required gear upgrades; crystal/iron/starlight earlier available in original three mines.",
+    "21–100 ores regenerate after three legitimate days, avoid respawning under player; main mine repeatable sources retained.",
+    "One-time chest/core/quest/memory flags persist. Purchases cannot create positive diamond refining cycles.",
+    "Sleep before20 rejected; no arbitrary day skip. Resource model constrains energy instead of assuming 80 rare ores in a single day."
+  ],
+  "limits": [
+    "Time inputs are assumptions, not measured human completion. Fixed-fps testing is not playtesting.",
+    "Calendar lower bound is not entertaining content. Prior 200–350h target remains unverified and is not achieved by this model.",
+    "Phone FPS, input comfort, battery and long-term retention require real devices and playtests."
+  ]
+}

@@ -1,9 +1,13 @@
-; Pixel Farm — Godot 4.3 Standard / GDScript
+; Pixel World — Godot 4.3 Standard / GDScript
 config_version=5
 
 [application]
-config/name="Pixel Farm · 风芽农场"
-config/version="0.3.0"
+config/name="像素世界"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="godot/app_userdata/Pixel Farm · 风芽农场"
+config/custom_user_dir_name.windows="Godot/app_userdata/Pixel Farm · 风芽农场"
+config/custom_user_dir_name.macos="Godot/app_userdata/Pixel Farm · 风芽农场"
+config/version="0.7.1"
 run/main_scene="res://scenes/main/main.tscn"
 run/max_fps=60
 config/features=PackedStringArray("4.3", "GL Compatibility")
@@ -14,11 +18,34 @@ Events="*res://scripts/core/events.gd"
 Catalog="*res://scripts/farming/catalog.gd"
 Inventory="*res://scripts/inventory/inventory.gd"
 GameState="*res://scripts/core/game_state.gd"
+Appearance="*res://scripts/appearance/character_appearance.gd"
 GameClock="*res://scripts/time/game_clock.gd"
+Calendar="*res://scripts/seasons/calendar.gd"
 FarmProgress="*res://scripts/progression/farm_progress.gd"
 Story="*res://scripts/story/story_state.gd"
 GameWeather="*res://scripts/time/weather.gd"
 VillageProjects="*res://scripts/story/village_projects.gd"
+Letters="*res://scripts/story/letter_quests.gd"
+Xiaojing="*res://scripts/story/xiaojing_state.gd"
+MineState="*res://scripts/mining/mine_state.gd"
+ChapterTwo="*res://scripts/mining/chapter_two.gd"
+StarStory="*res://scripts/star/star_story.gd"
+AbyssState="*res://scripts/abyss/abyss_state.gd"
+LegendState="*res://scripts/abyss/legend_state.gd"
+River="*res://scripts/river/river_state.gd"
+Playtest="*res://scripts/diagnostics/playtest.gd"
+Aquaculture="*res://scripts/aquaculture/aquaculture_state.gd"
+LakeEcology="*res://scripts/ecology/lake_ecology.gd"
+WorldChanges="*res://scripts/seasons/world_changes.gd"
+Recovery="*res://scripts/recovery/recovery_state.gd"
+Fishing="*res://scripts/fishing/fishing_state.gd"
+Livestock="*res://scripts/livestock/livestock_state.gd"
+Kitchen="*res://scripts/kitchen/kitchen_state.gd"
+Festival="*res://scripts/festivals/festival_state.gd"
+Social="*res://scripts/social/social_state.gd"
+Housing="*res://scripts/housing/housing_state.gd"
+Exploration="*res://scripts/exploration/exploration_state.gd"
+WorldDevelopment="*res://scripts/world_progress/world_development.gd"
 
 [display]
 window/size/viewport_width=1280

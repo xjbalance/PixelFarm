@@ -2,6 +2,7 @@ extends RefCounted
 ## 用完整章节、真实桥面碰撞、触屏选择和存档边界验证村庄共建流程。
 static func run(test: Node,game: Node) -> void:
 	Story.restore({})
+	Letters.restore({})
 	VillageProjects.restore({})
 	FarmProgress.restore({})
 	GameState.rest()
@@ -33,6 +34,40 @@ static func touch(test: Node,control: Control) -> void:
 	event.pressed = false
 	test.get_viewport().push_input(event,true)
 
+static func find_button(root: Node, caption: String) -> Button:
+	for child in root.get_children():
+		if child is Button and child.is_visible_in_tree() and child.text==caption: return child
+		var found:=find_button(child,caption)
+		if found: return found
+	return null
+
+static func labeled_button(root: Node, label_text: String, caption: String, scope: Node=null) -> Button:
+	if scope==null: scope=root
+	for child in root.get_children():
+		if child is Label and child.text.trim_prefix("✓ ").trim_prefix("○ ").begins_with(label_text):
+			var ancestor: Node=child.get_parent()
+			while ancestor and (ancestor==scope or scope.is_ancestor_of(ancestor)):
+				var found:=find_button(ancestor,caption)
+				if found: return found
+				ancestor=ancestor.get_parent()
+		var nested:=labeled_button(child,label_text,caption,scope)
+		if nested: return nested
+	return null
+
+static func touch_button(test: Node, root: Node, caption: String, section: String="") -> void:
+	# 纸卡、标题与图标可以改变节点层级；仍找到真实公开按钮并发原生触摸。
+	var control: Button=find_button(root,caption) if section=="" else labeled_button(root,section,caption)
+	if not is_instance_valid(control):
+		push_error("UI测试未找到公开按钮："+caption+" / "+section)
+		return
+	var ancestor: Node=control.get_parent()
+	while ancestor:
+		if ancestor is ScrollContainer: ancestor.ensure_control_visible(control)
+		ancestor=ancestor.get_parent()
+	await test.frames(3)
+	touch(test,control)
+	await test.frames(3)
+
 static func story_flow(test: Node,game: Node) -> void:
 	var panel: Node = game.hud.dialogue
 	Story.request("mail")
@@ -57,6 +92,15 @@ static func story_flow(test: Node,game: Node) -> void:
 	Story.request("linya")
 	test.check(panel.scene_id == "linya_daily","作物不足时提供日常提示，不提前交付")
 	panel.close_dialogue()
+	# 新序幕要求真实种植教学；不以直接发物品代替完成条件。
+	game.farm.plots.erase("17,16")
+	game.farm.use_tool(Vector2i(17,16),"hoe")
+	game.farm.use_tool(Vector2i(17,16),"carrot_seed")
+	game.farm.use_tool(Vector2i(17,16),"water")
+	test.advance_day()
+	game.farm.use_tool(Vector2i(17,16),"water")
+	test.advance_day()
+	game.farm.use_tool(Vector2i(17,16),"hand")
 	Inventory.items.carrot = 3
 	Story.request("linya")
 	panel.close_dialogue()
@@ -76,6 +120,10 @@ static func story_flow(test: Node,game: Node) -> void:
 	await test.frames(30)
 	Input.action_release("move_right")
 	test.check(game.player.position.x < 825,"断桥河面真实物理碰撞阻止提前过河")
+	Story.request("bridge_survey")
+	finish(panel)
+	Story.request("repair_record")
+	finish(panel)
 	game.player.position = Vector2(488,524)
 	game.action_cooldown = 0
 	game.interact()
@@ -84,6 +132,8 @@ static func story_flow(test: Node,game: Node) -> void:
 	Inventory.items.wood = 7
 	Inventory.items.stone = 6
 	test.check(not Story.complete("bridge") and Inventory.count("wood") == 7,"修桥材料不足不会部分扣除")
+	Story.request("ahe")
+	finish(panel)
 	Inventory.items.wood = 8
 	Story.request("bridge")
 	finish(panel)
@@ -94,6 +144,7 @@ static func story_flow(test: Node,game: Node) -> void:
 	await test.frames(65)
 	Input.action_release("move_right")
 	test.check(game.player.position.x > 940,"修桥后真实移动可以穿过整个河面")
+	Letters.record("east_bank")
 	Story.request("mill")
 	finish(panel)
 	test.check(Story.stage == 6,"风车建设簿解锁三项村庄公共设施")
@@ -116,8 +167,7 @@ static func story_flow(test: Node,game: Node) -> void:
 	Inventory.items.stone = 30
 	Inventory.changed.emit()
 	await test.frames()
-	var row: HBoxContainer = game.hud.story_panel.content.get_child(4)
-	touch(test,row.get_child(1))
+	await touch_button(test,game.hud.story_panel,"一起建造",str(VillageProjects.definitions.well.name))
 	test.check(VillageProjects.has_project("well") and Inventory.coins == 460,"触屏按钮成功建设水井并准确收费")
 	test.check(game.hud.story_panel.content.get_parent().finger == -1,"建设按钮刷新后正确释放长列表的触点")
 	test.check(not VillageProjects.build("well") and Inventory.coins == 460,"已完成的村庄工程不能重复收费")
@@ -126,15 +176,15 @@ static func story_flow(test: Node,game: Node) -> void:
 	game.hud.story_panel.close_panel()
 	Story.request("ahe")
 	finish(panel)
-	test.check(Story.stage == 7 and Inventory.count("wheat") == 0 and Inventory.count("carrot") == 0,"全部工程建成后，聚餐完成食材交付")
+	test.check(Story.stage == 7 and Inventory.count("wheat") == 2 and Inventory.count("carrot") == 1,"全部工程建成后，生活对话推进主线，不再重复交付食材")
 	test.check(not Story.complete("festival","memory"),"庆典不能在白天通过回调提前完成")
 	Story.request("bench")
 	finish(panel,"wait")
 	test.check(GameClock.minutes == 1080,"长椅可等待到18点，不需要空等现实时间")
-	test.check(game.village.villagers.linya.visible and game.village.villagers.ahe.position.distance_to(Vector2(713,510)) < 1 and not game.world.get_node("Actors/Linya").visible,"风灯之夜三位村民实际来到广场，农场不保留另一位林芽")
+	test.check(game.village.villagers.linya.visible and game.village.villagers.ahe.station.distance_to(Vector2(713,510)) < 1 and not game.world.get_node("Actors/Linya").visible,"风灯之夜三位村民实际来到广场，农场不保留另一位林芽")
 	Story.request("lantern")
-	finish(panel,"tomorrow")
-	test.check(Story.stage == 8 and Story.lantern == "tomorrow" and Inventory.coins == 480,"庆典结尾选择完成首章，村庄留下新的种子灯")
+	finish(panel,"trade")
+	test.check(Story.stage == 8 and Story.lantern == "trade" and Inventory.coins == 480,"庆典结尾选择完成首章，村庄留下新的种子灯")
 	test.check(not Story.complete("festival","memory") and Inventory.coins == 480,"结局不能重复领奖或覆写已做的选择")
 	var after: Dictionary = Story.scene_data("zhou_daily")
 	test.check("种子" in after.lines[1].text,"结局选择改变村民后续对白")
@@ -159,7 +209,7 @@ static func village_benefits(test: Node,game: Node) -> void:
 	finish(game.hud.dialogue,"tea")
 	test.check(GameState.stamina == 60 and VillageProjects.tea_day == GameClock.day,"茶座剧情选择实际恢复40点体力")
 	test.check(not VillageProjects.drink_tea() and GameState.stamina == 60,"热茶每日不能重复领取")
-	GameClock.next_day()
+	test.advance_day()
 	GameState.stamina = 50
 	test.check(VillageProjects.drink_tea() and VillageProjects.water_fields(),"新一天恢复村庄设施每日额度")
 
@@ -167,10 +217,10 @@ static func weather_and_tools(test: Node,game: Node) -> void:
 	GameWeather.enabled = true
 	GameClock.day = 3
 	game.farm.plots = {"20,18":{"crop":"carrot","days":0,"watered":false}}
-	GameClock.next_day()
+	test.advance_day()
 	test.check(GameWeather.is_rainy() and game.farm.plots["20,18"].days == 0 and game.farm.plots["20,18"].watered,"雨天在昨夜成长之后补水，不凭空多长一天")
 	test.check(game.farm.use_tool(Vector2i(23,20),"hoe") and game.farm.plots["23,20"].watered,"雨天新翻土地即时接到雨水")
-	GameClock.next_day()
+	test.advance_day()
 	test.check(not GameWeather.is_rainy() and game.farm.plots["20,18"].days == 1 and not game.farm.plots["20,18"].watered,"雨后的成长正确结算，晴天恢复人工浇水")
 	game.change_location("farm",Vector2(656,560))
 	game.player.facing = Vector2.DOWN
@@ -181,12 +231,15 @@ static func weather_and_tools(test: Node,game: Node) -> void:
 	test.check(game.context_tool() == "water","操作辅助识别已种未浇水的作物")
 	game.action_cooldown = 0
 	game.interact()
+	await test.frames(7)
 	test.check(game.farm.plots[key].watered,"实际交互按键按情境执行浇水")
 	game.farm.plots[key].days = 2
 	test.check(game.context_tool() == "hand","操作辅助识别成熟作物")
 	var carrots: int = Inventory.count("carrot")
+	await test.frames(16) # 浇水动作结束后才能发起收获，断言与经济规则不变。
 	game.action_cooldown = 0
 	game.interact()
+	await test.frames(7)
 	test.check(Inventory.count("carrot") == carrots+1,"实际情境操作成功收获入包")
 	Story.assisted_tools = false
 	test.check(game.context_tool() == "carrot_seed","可关闭辅助，保留精确工具选择")
@@ -203,7 +256,7 @@ static func save_and_ui(test: Node,game: Node) -> void:
 	test.check(not game.village.bridge_open,"重置故事时桥面同步关闭")
 	test.check(FarmSaveStore.restore(game,saved),"新版剧情与村庄设施整份恢复")
 	await test.frames()
-	test.check(Story.stage == 8 and Story.lantern == "tomorrow" and VillageProjects.all_built() and game.village.bridge_open and GameState.location == "village","读档恢复结局装饰、工程福利和实际桥面")
+	test.check(Story.stage == 8 and Story.lantern == "trade" and VillageProjects.all_built() and game.village.bridge_open and GameState.location == "village","读档恢复结局装饰、工程福利和实际桥面")
 	for changes in [{"stage":9},{"seen":["letter"]},{"lantern":"unknown"},{"assisted_tools":1}]:
 		var invalid: Dictionary = saved.duplicate(true)
 		invalid.story.merge(changes,true)
@@ -215,7 +268,7 @@ static func save_and_ui(test: Node,game: Node) -> void:
 	invalid.village.tea_day = GameClock.day+1
 	test.check(not FarmSaveStore.valid(invalid),"拒绝未来日期的每日茶座额度")
 	var legacy: Dictionary = saved.duplicate(true)
-	legacy.version = 2
+	legacy.version = 2;legacy.erase("appearance")
 	legacy.location = "farm"
 	legacy.player = [700,500]
 	legacy.erase("story")

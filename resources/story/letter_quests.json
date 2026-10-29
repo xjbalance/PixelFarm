@@ -1,0 +1,380 @@
+[
+  {
+    "id": "old_letter",
+    "title": "旧屋里的信",
+    "description": "读姨婆留下的信，收起残缺地图。",
+    "type": "investigate",
+    "unlock": [],
+    "completion": [
+      {
+        "fact": "scene:letter",
+        "label": "读信",
+        "count": 1
+      }
+    ],
+    "progress": "运行时计算",
+    "reward": {},
+    "followups": [
+      "first_crop"
+    ],
+    "repeatable": false,
+    "legacy_stage": 1
+  },
+  {
+    "id": "first_crop",
+    "title": "第一声车铃",
+    "description": "完成种植、浇水与收获，交给林芽三个胡萝卜。",
+    "type": "multi",
+    "unlock": [
+      {
+        "task": "old_letter"
+      }
+    ],
+    "completion": [
+      {
+        "fact": "plant",
+        "label": "种植",
+        "count": 1,
+        "type": "plant"
+      },
+      {
+        "fact": "water",
+        "label": "浇水",
+        "count": 1
+      },
+      {
+        "fact": "harvest",
+        "label": "收获",
+        "count": 1
+      },
+      {
+        "fact": "scene:harvest",
+        "label": "交付",
+        "count": 1,
+        "type": "delivery"
+      }
+    ],
+    "progress": "运行时计算",
+    "reward": {
+      "coins": 50,
+      "settled_by": "scene:harvest"
+    },
+    "followups": [
+      "bridge_truth"
+    ],
+    "repeatable": false,
+    "legacy_stage": 3
+  },
+  {
+    "id": "bridge_truth",
+    "title": "不愿修桥的人",
+    "description": "调查桥墩水线与维修记录，再听周砚说完。",
+    "type": "multi",
+    "unlock": [
+      {
+        "task": "first_crop"
+      }
+    ],
+    "completion": [
+      {
+        "fact": "bridge_survey",
+        "label": "桥墩水线",
+        "count": 1
+      },
+      {
+        "fact": "repair_record",
+        "label": "维修记录",
+        "count": 1
+      },
+      {
+        "fact": "scene:carpenter",
+        "label": "周砚交谈",
+        "count": 1
+      }
+    ],
+    "progress": "运行时计算",
+    "reward": {},
+    "followups": [
+      "tea_book"
+    ],
+    "repeatable": false,
+    "legacy_stage": 4
+  },
+  {
+    "id": "tea_book",
+    "title": "茶屋里的留言册",
+    "description": "读阿禾保管的回执，了解离开的原因。",
+    "type": "talk",
+    "unlock": [
+      {
+        "task": "bridge_truth"
+      }
+    ],
+    "completion": [
+      {
+        "fact": "guestbook",
+        "label": "留言册",
+        "count": 1
+      }
+    ],
+    "progress": "运行时计算",
+    "reward": {},
+    "followups": [
+      "bridge_work"
+    ],
+    "repeatable": false,
+    "legacy_stage": 5
+  },
+  {
+    "id": "bridge_work",
+    "title": "把名字留在桥上",
+    "description": "在桥头提供木材8、石料6，与周砚一起施工。",
+    "type": "delivery",
+    "unlock": [
+      {
+        "task": "tea_book"
+      }
+    ],
+    "completion": [
+      {
+        "fact": "scene:bridge",
+        "label": "修桥",
+        "count": 1
+      }
+    ],
+    "progress": "运行时计算",
+    "reward": {},
+    "followups": [
+      "east_records"
+    ],
+    "repeatable": false,
+    "legacy_stage": 5
+  },
+  {
+    "id": "east_records",
+    "title": "风车下的记录",
+    "description": "走到东岸，读货运簿；货箱另有两条可选便条。",
+    "type": "explore",
+    "unlock": [
+      {
+        "task": "bridge_work"
+      }
+    ],
+    "completion": [
+      {
+        "fact": "east_bank",
+        "label": "探索东岸",
+        "count": 1
+      },
+      {
+        "fact": "scene:mill",
+        "label": "货运簿",
+        "count": 1
+      }
+    ],
+    "progress": "运行时计算",
+    "reward": {},
+    "followups": [
+      "public_life"
+    ],
+    "repeatable": false,
+    "legacy_stage": 6
+  },
+  {
+    "id": "public_life",
+    "title": "能借一只桶的邻居",
+    "description": "让水井、共仓与茶座恢复用途，再找阿禾。",
+    "type": "build",
+    "unlock": [
+      {
+        "task": "east_records"
+      }
+    ],
+    "completion": [
+      {
+        "build": "well"
+      },
+      {
+        "build": "cooperative"
+      },
+      {
+        "build": "arbor"
+      },
+      {
+        "fact": "scene:supper",
+        "label": "与阿禾交谈",
+        "count": 1
+      }
+    ],
+    "progress": "运行时计算",
+    "reward": {},
+    "followups": [
+      "lantern_road"
+    ],
+    "repeatable": false,
+    "legacy_stage": 7
+  },
+  {
+    "id": "lantern_road",
+    "title": "风灯照亮的路",
+    "description": "等到18:00，点灯并选择下一阶段的方向。",
+    "type": "multi",
+    "unlock": [
+      {
+        "task": "public_life"
+      }
+    ],
+    "completion": [
+      {
+        "minute": 1080,
+        "type": "wait"
+      },
+      {
+        "fact": "scene:festival",
+        "label": "点亮风灯",
+        "count": 1
+      }
+    ],
+    "progress": "运行时计算",
+    "reward": {
+      "coins": 120,
+      "settled_by": "scene:festival"
+    },
+    "followups": [
+      "next_direction"
+    ],
+    "repeatable": false,
+    "legacy_stage": 8
+  },
+  {
+    "id": "next_direction",
+    "title": "村庄下一页",
+    "description": "在风灯架选择农业贸易、自然探索或居民生活；只影响推荐顺序。",
+    "type": "choice",
+    "unlock": [
+      {
+        "stage": 8
+      }
+    ],
+    "completion": [
+      {
+        "direction": "any",
+        "type": "choice"
+      }
+    ],
+    "progress": "运行时计算",
+    "reward": {
+      "items_by_direction": {
+        "trade": {
+          "carrot_seed": 3
+        },
+        "explore": {
+          "wheat_seed": 6
+        },
+        "life": {
+          "potato_seed": 3
+        }
+      },
+      "settled_by": "festival_or_future"
+    },
+    "followups": [
+      "trade_start",
+      "explore_start",
+      "life_start"
+    ],
+    "repeatable": false,
+    "legacy_stage": 99
+  },
+  {
+    "id": "trade_start",
+    "title": "第二章起步 · 第一张新订单",
+    "description": "和林芽聊共仓订单，种下三次新种子。",
+    "type": "plant",
+    "unlock": [
+      {
+        "stage": 8
+      }
+    ],
+    "completion": [
+      {
+        "fact": "talk:linya",
+        "label": "林芽交谈",
+        "count": 1
+      },
+      {
+        "fact": "chapter2:plant",
+        "label": "种植",
+        "count": 3
+      }
+    ],
+    "progress": "运行时计算",
+    "reward": {
+      "coins": 30
+    },
+    "followups": [],
+    "repeatable": false,
+    "legacy_stage": 99
+  },
+  {
+    "id": "explore_start",
+    "title": "第二章起步 · 河岸采样",
+    "description": "重访风车货箱，采集两处农场资源。",
+    "type": "gather",
+    "unlock": [
+      {
+        "stage": 8
+      }
+    ],
+    "completion": [
+      {
+        "fact": "cargo_note",
+        "label": "货箱便条",
+        "count": 1
+      },
+      {
+        "fact": "chapter2:gather",
+        "label": "采集",
+        "count": 2
+      }
+    ],
+    "progress": "运行时计算",
+    "reward": {
+      "items": {
+        "wheat_seed": 3
+      }
+    },
+    "followups": [],
+    "repeatable": false,
+    "legacy_stage": 99
+  },
+  {
+    "id": "life_start",
+    "title": "第二章起步 · 邻里值日",
+    "description": "和阿禾交谈，在修好的井边引水一次。",
+    "type": "multi",
+    "unlock": [
+      {
+        "stage": 8
+      }
+    ],
+    "completion": [
+      {
+        "fact": "talk:ahe",
+        "label": "阿禾交谈",
+        "count": 1
+      },
+      {
+        "fact": "water_help",
+        "label": "井边引水",
+        "count": 1
+      }
+    ],
+    "progress": "运行时计算",
+    "reward": {
+      "coins": 25
+    },
+    "followups": [],
+    "repeatable": false,
+    "legacy_stage": 99
+  }
+]

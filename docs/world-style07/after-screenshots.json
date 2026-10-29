@@ -1,0 +1,38 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    {
+      "name": "house_behind",
+      "path": "res://builds/world-style07-after-house_behind.png",
+      "file": "docs/world-style07/after-house_behind.png"
+    },
+    {
+      "name": "house_front",
+      "path": "res://builds/world-style07-after-house_front.png",
+      "file": "docs/world-style07/after-house_front.png"
+    },
+    {
+      "name": "farm_home",
+      "path": "res://builds/world-style07-after-farm_home.png",
+      "file": "docs/world-style07/after-farm_home.png"
+    },
+    {
+      "name": "farm_market",
+      "path": "res://builds/world-style07-after-farm_market.png",
+      "file": "docs/world-style07/after-farm_market.png"
+    },
+    {
+      "name": "village_people",
+      "path": "res://builds/world-style07-after-village_people.png",
+      "file": "docs/world-style07/after-village_people.png"
+    },
+    {
+      "name": "home_people",
+      "path": "res://builds/world-style07-after-home_people.png",
+      "file": "docs/world-style07/after-home_people.png"
+    }
+  ],
+  "checks": 40,
+  "failures": 0,
+  "platform": "X11"
+}

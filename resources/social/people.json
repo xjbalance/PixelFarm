@@ -1,0 +1,429 @@
+{
+  "people": {
+    "linya": {
+      "name": "林芽",
+      "birthday": [
+        0,
+        6
+      ],
+      "likes": [
+        "carrot",
+        "berry_jam",
+        "potato_bread",
+        "spring_bloom"
+      ],
+      "dislikes": [
+        "stone",
+        "copper_ore"
+      ],
+      "daily": [
+        "我给每袋种子留了来处。将来谁回村里，都能找到熟悉的一行。",
+        "摊位外那块空白告示牌，不急着写满。也许有人会带来我们没种过的东西。",
+        "订单再忙，也要留一小垄自己喜欢的作物。"
+      ],
+      "season": [
+        "春天先试一垄，别把全年的希望押在同一袋种子上。",
+        "夏天收菜要趁早。我把遮阳布留在共仓门口了。",
+        "秋天留种和售卖的账要分开，少一车也能过冬。",
+        "冬季小麦还长着。我在整理下一年的种源清单。"
+      ],
+      "weather": {
+        "rain": "雨替露天田浇了水，我们先把纸和工具收进檐下。",
+        "snow": "积雪不会替作物浇水。走到路标旁边时慢一点。",
+        "harsh": "今天先把要紧的事放在屋檐下，别冒险赶远路。",
+        "fog": "雾里别抄近路，我会在熟悉的站点等你。",
+        "meteor": "今晚湖面很安静，留一点时间看完，再在午夜前回去。",
+        "clear": "天气合适，先做一件需要走出去的事。"
+      },
+      "birthday_line": "你记得今天呀。我想把这一天过得和平常不太一样，慢一点就很好。"
+    },
+    "zhou": {
+      "name": "周砚",
+      "birthday": [
+        2,
+        9
+      ],
+      "likes": [
+        "wood",
+        "iron_bar",
+        "milk_porridge"
+      ],
+      "dislikes": [
+        "fish_crucian",
+        "wild_berry"
+      ],
+      "daily": [
+        "我把坏掉的零件也收起来了。记下它怎么坏的，下一次才知道该改哪里。",
+        "今天父亲那把尺子终于量准了。不是尺子有问题，是木头需要先放平。",
+        "修好的东西要有人愿意用。我想听听大家用了之后觉得哪里别扭。"
+      ],
+      "season": [
+        "雨季前得查一遍接缝，先别急着上漆。",
+        "热天铁扣会松，我留了几只备用的在工具箱里。",
+        "落叶积在槽里看不出来，清掉以后水声会轻很多。",
+        "雪压过的木梁先看里面，再看外表。"
+      ],
+      "weather": {
+        "rain": "雨替露天田浇了水，我们先把纸和工具收进檐下。",
+        "snow": "积雪不会替作物浇水。走到路标旁边时慢一点。",
+        "harsh": "今天先把要紧的事放在屋檐下，别冒险赶远路。",
+        "fog": "雾里别抄近路，我会在熟悉的站点等你。",
+        "meteor": "今晚湖面很安静，留一点时间看完，再在午夜前回去。",
+        "clear": "天气合适，先做一件需要走出去的事。"
+      },
+      "birthday_line": "你记得今天呀。我想把这一天过得和平常不太一样，慢一点就很好。"
+    },
+    "ahe": {
+      "name": "阿禾",
+      "birthday": [
+        3,
+        3
+      ],
+      "likes": [
+        "carrot_stew",
+        "fish_soup",
+        "berry_jam"
+      ],
+      "dislikes": [
+        "iron_ore",
+        "stone"
+      ],
+      "daily": [
+        "留言册今天有人只画了一只杯子。我没有替他补上名字。",
+        "不是每个人都愿意当众说自己的事。茶凉之前，坐一会儿也很好。",
+        "我想把茶屋的晚灯交给别人管一天，去听听村口的新消息。"
+      ],
+      "season": [
+        "新叶夹进纸里以前，要先擦干露水。",
+        "夏天的茶要留一点空杯，等晚来的人。",
+        "丰收时最忙的人，往往忘了给自己盛一碗。",
+        "冬天有一锅热的，大家说话就不那么急了。"
+      ],
+      "weather": {
+        "rain": "雨替露天田浇了水，我们先把纸和工具收进檐下。",
+        "snow": "积雪不会替作物浇水。走到路标旁边时慢一点。",
+        "harsh": "今天先把要紧的事放在屋檐下，别冒险赶远路。",
+        "fog": "雾里别抄近路，我会在熟悉的站点等你。",
+        "meteor": "今晚湖面很安静，留一点时间看完，再在午夜前回去。",
+        "clear": "天气合适，先做一件需要走出去的事。"
+      },
+      "birthday_line": "你记得今天呀。我想把这一天过得和平常不太一样，慢一点就很好。"
+    },
+    "xiaojing": {
+      "name": "小京",
+      "birthday": [
+        1,
+        14
+      ],
+      "likes": [
+        "milk_porridge",
+        "fish_feast",
+        "crystal"
+      ],
+      "dislikes": [
+        "stone"
+      ],
+      "daily": [
+        "今天想先把自己的记录做完。你忙你的，见面时挑一件有意思的事讲给我。",
+        "我不想把所有答案都写成你的名字。我们可以各自找，再放在一张桌上。",
+        "湖边的新脚印不是昨天那一排。也许有人比我们更早来照料水草。"
+      ],
+      "season": [
+        "春天的水草伸得很慢，正好能看见变化。",
+        "我会留一个不赶路的夜晚，看星，也看看湖面。",
+        "秋叶可以夹在书里，但我不想把每一天都压平保存。",
+        "冬天我常在温室整理记录，也会出门看看新的雪线。"
+      ],
+      "weather": {
+        "rain": "雨替露天田浇了水，我们先把纸和工具收进檐下。",
+        "snow": "积雪不会替作物浇水。走到路标旁边时慢一点。",
+        "harsh": "今天先把要紧的事放在屋檐下，别冒险赶远路。",
+        "fog": "雾里别抄近路，我会在熟悉的站点等你。",
+        "meteor": "今晚湖面很安静，留一点时间看完，再在午夜前回去。",
+        "clear": "天气合适，先做一件需要走出去的事。"
+      },
+      "birthday_line": "你记得今天呀。我想把这一天过得和平常不太一样，慢一点就很好。",
+      "special_gifts": {
+        "milk_porridge": {
+          "taste": "喜欢",
+          "affection": 3,
+          "text": "这份粥很合适。我把手头的笔记收好，趁热慢慢吃。"
+        },
+        "fish_feast": {
+          "taste": "喜欢",
+          "affection": 3,
+          "text": "我认得这阵熏香。下次我来洗碗，你给我讲讲钓鱼时看到的云。"
+        }
+      }
+    }
+  },
+  "quests": [
+    {
+      "id": "linya_1",
+      "person": "linya",
+      "previous": "",
+      "friendship": 0,
+      "title": "给明年的三行麦",
+      "description": "亲手新种、浇水并收获三株小麦，再决定留种袋上的备注。",
+      "goals": {
+        "plant_wheat": 3,
+        "water_own": 3,
+        "harvest_wheat": 3
+      },
+      "required": {},
+      "reward_friendship": 6,
+      "reward_items": {},
+      "reply": "林芽把三个空种袋铺在摊上：“以前我只写收成。这次还写是谁照料、哪天缺过水。”",
+      "choices": {
+        "people": "写下照料人的名字，以后可以互相问经验。",
+        "weather": "写下天气和土壤，给下一季留下能核对的记录。"
+      },
+      "failure": "记录还没齐。做过的事会留下，缺的部分可以继续；不需要重新交付已经完成的材料。"
+    },
+    {
+      "id": "linya_2",
+      "person": "linya",
+      "previous": "linya_1",
+      "friendship": 8,
+      "title": "一张不催人的订单",
+      "description": "再读桥墩水线与风车货运簿，亲自收获两尾鲤鱼，带来两尾湖鲜试一张小订单。",
+      "goals": {
+        "inspect:bridge_survey": 1,
+        "inspect:mill": 1,
+        "fish_carp": 2
+      },
+      "required": {
+        "fish_carp": 2
+      },
+      "reward_friendship": 6,
+      "reward_items": {},
+      "reply": "“我不想让每个人都为了同一班车起得太早。”林芽把两种收货时间写在订单背面。",
+      "choices": {
+        "early": "早车送鲜货，留下晚车给不便早起的人。",
+        "flexible": "先收大家能给的数量，再安排车次。"
+      },
+      "failure": "记录还没齐。做过的事会留下，缺的部分可以继续；不需要重新交付已经完成的材料。"
+    },
+    {
+      "id": "linya_3",
+      "person": "linya",
+      "previous": "linya_2",
+      "friendship": 16,
+      "title": "不只一张丰收表",
+      "description": "新种至少两类作物，并亲手做一份暖锅蔬菜炖。把经营计划和饭桌上的需要放在一起考虑。",
+      "goals": {
+        "plant_types": 2,
+        "cook:carrot_stew": 1
+      },
+      "required": {},
+      "reward_friendship": 6,
+      "reward_items": {},
+      "reply": "林芽把试种田的记录夹在菜单旁：“这回不是卖得最多就算最好。家里有人等饭，也是计划的一部分。”",
+      "choices": {
+        "reserve": "先保留村民这一周的食材，再排远途订单。",
+        "variety": "每季留一小块试种田，不把生活押在单一收成上。"
+      },
+      "failure": "记录还没齐。做过的事会留下，缺的部分可以继续；不需要重新交付已经完成的材料。"
+    },
+    {
+      "id": "zhou_1",
+      "person": "zhou",
+      "previous": "",
+      "friendship": 0,
+      "title": "尺子之外的刻痕",
+      "description": "在现场重新查看维修记录与桥墩水线，和周砚商量检查顺序。",
+      "goals": {
+        "inspect:repair_record": 1,
+        "inspect:bridge_survey": 1
+      },
+      "required": {},
+      "reward_friendship": 6,
+      "reward_items": {},
+      "reply": "周砚摸了摸记录上的旧钉孔：“父亲最怕别人以为，他是在替自己辩解。可检查本来就该留给后来的人看。”",
+      "choices": {
+        "load": "先核对承重，再安排往来的车。",
+        "water": "先核对水位，让每次检修都有同一条基准。"
+      },
+      "failure": "记录还没齐。做过的事会留下，缺的部分可以继续；不需要重新交付已经完成的材料。"
+    },
+    {
+      "id": "zhou_2",
+      "person": "zhou",
+      "previous": "zhou_1",
+      "friendship": 8,
+      "title": "方便后来人修的东西",
+      "description": "新领取一笔铜锭熔炼，带两锭到厨房现场比对已建加工设备，再找周砚谈设计。",
+      "goals": {
+        "process:mines:copper_bar": 1,
+        "site:kitchen": 1
+      },
+      "required": {
+        "copper_bar": 2
+      },
+      "reward_friendship": 6,
+      "reward_items": {},
+      "reply": "“原来你也觉得这个扣子不好拆。”周砚没有把瑕疵盖住，只在图上画了一个能伸进手指的空隙。",
+      "choices": {
+        "service": "优先让普通人能拆开检修。",
+        "durable": "保留耐用结构，另留清楚的维护图。"
+      },
+      "failure": "记录还没齐。做过的事会留下，缺的部分可以继续；不需要重新交付已经完成的材料。"
+    },
+    {
+      "id": "zhou_3",
+      "person": "zhou",
+      "previous": "zhou_2",
+      "friendship": 16,
+      "title": "水声里的值班表",
+      "description": "走进地下水脉读矿工记录，实际清理一次湖岸，再检查修好的水循环设施。",
+      "goals": {
+        "inspect:b_record": 1,
+        "clean_lake": 1,
+        "site:cycle": 1
+      },
+      "required": {},
+      "reward_friendship": 6,
+      "reward_items": {},
+      "reply": "周砚在值班表旁写上“可以补记”。“以前我总觉得少写一行就是失职。现在知道，肯回来检查才算数。”",
+      "choices": {
+        "public": "把检查记录挂在大家都能读到的地方。",
+        "pair": "检修时互相搭档，谁也不独自承担全部责任。"
+      },
+      "failure": "记录还没齐。做过的事会留下，缺的部分可以继续；不需要重新交付已经完成的材料。"
+    },
+    {
+      "id": "ahe_1",
+      "person": "ahe",
+      "previous": "",
+      "friendship": 0,
+      "title": "两种声音，一页纸",
+      "description": "分别与林芽、周砚作一次当日交流，再决定留言册怎样保留不同意见。",
+      "goals": {
+        "talk:linya": 1,
+        "talk:zhou": 1
+      },
+      "required": {},
+      "reward_friendship": 6,
+      "reward_items": {},
+      "reply": "阿禾没有把两段话合成一句。“它们不完全一样，才像两个人真的坐在这里说过。”",
+      "choices": {
+        "signed": "愿意署名的留下名字，不替别人选择。",
+        "anonymous": "留一块匿名的位置，让不擅长开口的人也能写。"
+      },
+      "failure": "记录还没齐。做过的事会留下，缺的部分可以继续；不需要重新交付已经完成的材料。"
+    },
+    {
+      "id": "ahe_2",
+      "person": "ahe",
+      "previous": "ahe_1",
+      "friendship": 8,
+      "title": "晚来的人也有一碗",
+      "description": "亲手做一份暖锅蔬菜炖，18:00–20:00带到已建茶座，与阿禾安排晚饭。",
+      "goals": {
+        "cook:carrot_stew": 1,
+        "site:tea": 1
+      },
+      "required": {
+        "carrot_stew": 1
+      },
+      "reward_friendship": 6,
+      "reward_items": {},
+      "reply": "阿禾把最后一碗放在炉边：“这不是奖给干得最多的人，是留给还没坐下的人。”",
+      "choices": {
+        "leave": "留一份可以晚些再热的饭。",
+        "invite": "轮流招呼还在忙的人来坐一会儿。"
+      },
+      "failure": "记录还没齐。做过的事会留下，缺的部分可以继续；不需要重新交付已经完成的材料。"
+    },
+    {
+      "id": "ahe_3",
+      "person": "ahe",
+      "previous": "ahe_2",
+      "friendship": 16,
+      "title": "茶屋也需要休息日",
+      "description": "在两个不同日期采摘野莓，观察一次当季茶座，回来把阿禾自己的休息日写进留言册。",
+      "goals": {
+        "berry_days": 2,
+        "site:tea_season": 1
+      },
+      "required": {},
+      "reward_friendship": 6,
+      "reward_items": {},
+      "reply": "阿禾在“店主”下面写了自己的名字。“我也想做一个有时候没在店里的人。门口会留字条，不让大家白等。”",
+      "choices": {
+        "weekly": "固定留一天，大家可以提前安排。",
+        "weather": "天气好的时候出门，提前把字条挂上。"
+      },
+      "failure": "记录还没齐。做过的事会留下，缺的部分可以继续；不需要重新交付已经完成的材料。"
+    },
+    {
+      "id": "xiaojing_1",
+      "person": "xiaojing",
+      "previous": "",
+      "friendship": 50,
+      "title": "晚风不需要答案",
+      "description": "约定湖边18:00–20:00见面，现场一起看水，再在小京身边完成一次真正的自由钓鱼。失约后可带新做的饭或新收获重新约。",
+      "goals": {
+        "site:lake_date": 1,
+        "shared_fish": 1
+      },
+      "required": {},
+      "reward_friendship": 0,
+      "reward_items": {},
+      "reply": "小京把空鱼线绕好：“今天没有必要把什么都问明白。你专心看浮标，我记住这一阵风就够了。”",
+      "choices": {
+        "listen": "听小京讲今天自己的发现，不急着提出答案。",
+        "share": "讲一件自己没做好的小事，再一起收线。"
+      },
+      "failure": "记录还没齐。做过的事会留下，缺的部分可以继续；不需要重新交付已经完成的材料。",
+      "reward_bond": 1
+    },
+    {
+      "id": "xiaojing_2",
+      "person": "xiaojing",
+      "previous": "xiaojing_1",
+      "friendship": 60,
+      "title": "夏夜与冬窗",
+      "description": "夏季20:00后在湖边一起观星；冬季走到温室气窗现场检查，亲手做一份奶香麦粥并与小京分享记录。",
+      "goals": {
+        "site:summer_sky": 1,
+        "site:winter_window": 1,
+        "cook:milk_porridge": 1
+      },
+      "required": {
+        "milk_porridge": 1
+      },
+      "reward_friendship": 0,
+      "reward_items": {},
+      "reply": "小京把两张不同季节的纸放在一起。“夏天想走远，冬天想把屋里收拾好。它们都是真的，不必选一个才算我。”",
+      "choices": {
+        "space": "给彼此的独立计划留一格空白。",
+        "ritual": "约定每季交换一份记录，不规定内容。"
+      },
+      "failure": "记录还没齐。做过的事会留下，缺的部分可以继续；不需要重新交付已经完成的材料。",
+      "reward_bond": 1
+    },
+    {
+      "id": "xiaojing_3",
+      "person": "xiaojing",
+      "previous": "xiaojing_2",
+      "friendship": 70,
+      "title": "星星落进湖里的那天",
+      "description": "完成湖泊生态修复，与小京在清澈湖边回访；等一次真实流星夜，一起核对湖面映光方向。",
+      "goals": {
+        "site:ecology_after": 1,
+        "site:star_lake": 1
+      },
+      "required": {},
+      "reward_friendship": 0,
+      "reward_items": {},
+      "reply": "“原来我们追着找的光，也会留在一片被照料好的水里。”小京把最后一笔写完，合上本子。“明天我想去另一条岸。晚上再回来。”",
+      "choices": {
+        "record": "把这一天的观察留给后来人，不写成唯一的答案。",
+        "remember": "各自保留一份不同的记录，明年再拿出来对照。"
+      },
+      "failure": "记录还没齐。做过的事会留下，缺的部分可以继续；不需要重新交付已经完成的材料。",
+      "reward_bond": 1
+    }
+  ]
+}

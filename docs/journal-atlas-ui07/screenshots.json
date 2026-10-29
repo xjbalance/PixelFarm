@@ -1,0 +1,69 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    {
+      "name": "after-story",
+      "path": "res://builds/journal-atlas-after-story.png",
+      "file": "docs/journal-atlas-ui07/after-story.png"
+    },
+    {
+      "name": "after-map",
+      "path": "res://builds/journal-atlas-after-map.png",
+      "file": "docs/journal-atlas-ui07/after-map.png"
+    },
+    {
+      "name": "after-village",
+      "path": "res://builds/journal-atlas-after-village.png",
+      "file": "docs/journal-atlas-ui07/after-village.png"
+    },
+    {
+      "name": "after-people",
+      "path": "res://builds/journal-atlas-after-people.png",
+      "file": "docs/journal-atlas-ui07/after-people.png"
+    },
+    {
+      "name": "after-memories",
+      "path": "res://builds/journal-atlas-after-memories.png",
+      "file": "docs/journal-atlas-ui07/after-memories.png"
+    },
+    {
+      "name": "layout_1280x720",
+      "path": "res://builds/journal-atlas-layout_1280x720.png",
+      "file": "docs/journal-atlas-ui07/layout_1280x720.png"
+    },
+    {
+      "name": "layout_1560x720",
+      "path": "res://builds/journal-atlas-layout_1560x720.png",
+      "file": "docs/journal-atlas-ui07/layout_1560x720.png"
+    },
+    {
+      "name": "layout_1600x720",
+      "path": "res://builds/journal-atlas-layout_1600x720.png",
+      "file": "docs/journal-atlas-ui07/layout_1600x720.png"
+    },
+    {
+      "name": "layout_1280x960",
+      "path": "res://builds/journal-atlas-layout_1280x960.png",
+      "file": "docs/journal-atlas-ui07/layout_1280x960.png"
+    },
+    {
+      "name": "density_320",
+      "path": "res://builds/journal-atlas-density_320.png",
+      "file": "docs/journal-atlas-ui07/density_320.png"
+    },
+    {
+      "name": "density_480",
+      "path": "res://builds/journal-atlas-density_480.png",
+      "file": "docs/journal-atlas-ui07/density_480.png"
+    }
+  ],
+  "checks": 42,
+  "failures": 0,
+  "baseline_commit": "96a9667",
+  "baseline_related_state_checks": 94,
+  "baseline_window_checks": 1,
+  "related_regression_checks": 94,
+  "save_version": 24,
+  "platform": "Linux Godot 4.3 Xvfb/Mesa",
+  "note": "Actual window captures; comparison is a side-by-side composition, not an Android recording."
+}

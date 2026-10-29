@@ -1,0 +1,17 @@
+{
+  "diamond": {
+    "name": "钻石",
+    "cap": 999999,
+    "purchasable": false,
+    "sellable": false,
+    "storage": "xiaojing.diamonds",
+    "description": "星光温室星灯的修复矿晶，婚礼确认时统一消耗1314。"
+  },
+  "rare_ore": {
+    "name": "稀有原矿",
+    "cap": 999999,
+    "purchasable": false,
+    "storage": "xiaojing.ore",
+    "description": "基础矿道带回；小京解锁后每采完五处石堆可取得一份，以石料精炼。"
+  }
+}

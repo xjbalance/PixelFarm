@@ -1,0 +1,19 @@
+{
+  "baseline": "96a9667",
+  "files": {
+    "assets/characters/player.png": "400390660be4d014ca8d433ba2403c4654389f880ccf518f39e8e16a1e458cfa",
+    "assets/characters/linya.png": "7fc0517d35cb5e96ed730e3747112c339502fd5d2b55caf6151927fa178293af",
+    "assets/characters/zhou.png": "b38f3e3ef2e98e1ae6e2cb567d60af42deed53d5d773de8966d45d3a60956cc8",
+    "assets/characters/ahe.png": "4999b8e54a950b2946ff6cfbbb641f47df8ac9d95d4af74b6393caab85aaf9b3",
+    "assets/characters/xiaojing.png": "0f94864707e64c34fd8adefbeaf559a497bae6f68ab087062f8a9ce0b2713ea4",
+    "assets/characters/xiaojing_wedding.png": "4577db4b91932d9c0ce7d6c85f9cc78942e03be546ec0fdd8a5d3d9eb0ebb888",
+    "assets/buildings/house.png": "b67f7609a4d64876f7986608b54cf9c542af45bbfd83e466b1549d94081c9ca8",
+    "assets/buildings/market.png": "26cdfc7559463d7d5cc4850a13bb43515ad38e0523b63b65fa02327dd46fcb1c",
+    "assets/buildings/tea_house.png": "4c403d05ca9400726b1c02349d679ef558e2b212658cd1a4fc3fbd0d9cc7d7b3",
+    "assets/buildings/workshop.png": "9bb44c205d6245ce3708238a068d8cab1d08c218073983dfacd0789717abc8b1",
+    "assets/housing/interior/exterior_1.png": "52db37123bafd86fb65816a6458204f8adc201c1d7f99245d49cef6867f264ec",
+    "assets/housing/interior/exterior_2.png": "1248b4d6287a24666fe61a687007709f71e50b5a3731161b6f4eb4f8b4a5659a",
+    "assets/housing/interior/exterior_3.png": "03c7df567323d8068f47c6cba5fef909e7e02106d7cb576c9147ce9932212f27",
+    "assets/housing/interior/exterior_4.png": "cbe009b58dddc7c7e6eb9dd5cfc220408d0f7a1896555b4af3a5f658bfad0375"
+  }
+}

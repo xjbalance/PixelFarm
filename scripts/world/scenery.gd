@@ -69,7 +69,7 @@ func _draw() -> void:
 			block(-3,-30,6,34,"79604a")
 			block(-33,-54,67,28,"705746")
 			block(-31,-52,63,23,"c4a475")
-			draw_string(preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-27,-34),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color("594f40"))
+			draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-27,-34),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,13,Color("594f40"))
 		"bench":
 			for x in [-30,28]: block(x,-12,6,15,"594e42")
 			for y in [-33,-23]: block(-34,y,72,7,"a08359")
@@ -161,7 +161,7 @@ func _draw() -> void:
 				block(-33+i*25,-78,20,28,"d2d9ae" if i < VillageProjects.built.size() else "e8d9ae")
 				block(-29+i*25,-73,11,2,"948568")
 				block(-29+i*25,-66,11,2,"948568")
-			draw_string(preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-30,-28),"一起建河湾",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("eed6a1"))
+			draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-30,-28),"一起建河湾",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("eed6a1"))
 		"cooperative":
 			if VillageProjects.has_project("cooperative"):
 				block(-49,-67,104,71,"ac8b5d")
@@ -173,14 +173,14 @@ func _draw() -> void:
 					block(x,-39,23,31,"795f47")
 					block(x+3,-34,17,17,"c9b784")
 					block(x+8,-29,5,7,"8caa75")
-				draw_string(preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-27,-51),"种子共仓",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("635540"))
+				draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-27,-51),"种子共仓",HORIZONTAL_ALIGNMENT_LEFT,-1,12,Color("635540"))
 			else:
 				for y in [-12,-5,2]:block(-36,y,80,5,"9d8763")
 				block(-22,-30,24,18,"827351")
 		"shop_sign":
 			block(-39,-14,80,20,"6d5647")
 			block(-37,-12,76,16,"d5b987")
-			draw_string(preload("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-28,1),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("66533f"))
+			draw_string(load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc"),Vector2(-28,1),caption,HORIZONTAL_ALIGNMENT_LEFT,-1,14,Color("66533f"))
 		"fence":
 			for y in [-23,-12]:block(-32,y,64,5,"b39b70")
 			for x in [-30,26]:block(x,-30,6,33,"cbb284")

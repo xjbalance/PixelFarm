@@ -1,0 +1,38 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    {
+      "name": "inside",
+      "path": "res://builds/home-teleport-inside.png",
+      "file": "docs/home-teleport/inside.png"
+    },
+    {
+      "name": "button_1280x720",
+      "path": "res://builds/home-teleport-button_1280x720.png",
+      "file": "docs/home-teleport/button_1280x720.png"
+    },
+    {
+      "name": "button_1560x720",
+      "path": "res://builds/home-teleport-button_1560x720.png",
+      "file": "docs/home-teleport/button_1560x720.png"
+    },
+    {
+      "name": "button_1600x720",
+      "path": "res://builds/home-teleport-button_1600x720.png",
+      "file": "docs/home-teleport/button_1600x720.png"
+    },
+    {
+      "name": "button_1280x960",
+      "path": "res://builds/home-teleport-button_1280x960.png",
+      "file": "docs/home-teleport/button_1280x960.png"
+    },
+    {
+      "name": "dpi480_safe",
+      "path": "res://builds/home-teleport-dpi480_safe.png",
+      "file": "docs/home-teleport/dpi480_safe.png"
+    }
+  ],
+  "checks": 109,
+  "failures": 0,
+  "platform": "X11"
+}

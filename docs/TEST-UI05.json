@@ -1,0 +1,402 @@
+{
+  "version": "0.7.1",
+  "save_version": 22,
+  "baseline_commit": "2a48963",
+  "baseline": {
+    "headless_checks": 3402,
+    "window_checks": 1899
+  },
+  "headless": {
+    "checks": 3794,
+    "failures": 0,
+    "process_steps": 112,
+    "suites": [
+      {
+        "suite": "SLEEP RESULT",
+        "checks": 29,
+        "failures": 0
+      },
+      {
+        "suite": "RESULT",
+        "checks": 452,
+        "failures": 0
+      },
+      {
+        "suite": "MINING RESULT",
+        "checks": 98,
+        "failures": 0
+      },
+      {
+        "suite": "STAR RESULT",
+        "checks": 125,
+        "failures": 0
+      },
+      {
+        "suite": "LEGEND RESULT",
+        "checks": 252,
+        "failures": 0
+      },
+      {
+        "suite": "STABILITY RESULT",
+        "checks": 264,
+        "failures": 0
+      },
+      {
+        "suite": "RIVER RESULT",
+        "checks": 446,
+        "failures": 0
+      },
+      {
+        "suite": "AQUACULTURE RESULT",
+        "checks": 155,
+        "failures": 0
+      },
+      {
+        "suite": "SEASONS A RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "CONTROL RECOVERY RESULT",
+        "checks": 52,
+        "failures": 0
+      },
+      {
+        "suite": "FISHING B RESULT",
+        "checks": 84,
+        "failures": 0
+      },
+      {
+        "suite": "LIVESTOCK B RESULT",
+        "checks": 112,
+        "failures": 0
+      },
+      {
+        "suite": "KITCHEN B RESULT",
+        "checks": 100,
+        "failures": 0
+      },
+      {
+        "suite": "ECOLOGY B RESULT",
+        "checks": 65,
+        "failures": 0
+      },
+      {
+        "suite": "FESTIVALS C RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "SOCIAL C RESULT",
+        "checks": 107,
+        "failures": 0
+      },
+      {
+        "suite": "HOUSING C RESULT",
+        "checks": 105,
+        "failures": 0
+      },
+      {
+        "suite": "EXPLORATION D RESULT",
+        "checks": 106,
+        "failures": 0
+      },
+      {
+        "suite": "WORLD PROGRESS D RESULT",
+        "checks": 170,
+        "failures": 0
+      },
+      {
+        "suite": "QUALITY 070 RESULT",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 070 RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FINALE 070 RESULT",
+        "checks": 24,
+        "failures": 0
+      },
+      {
+        "suite": "PALM 071 RESULT",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "suite": "RECOVERY 071 RESULT",
+        "checks": 55,
+        "failures": 0
+      },
+      {
+        "suite": "TUTORIAL UI 071 RESULT",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 071 RESULT",
+        "checks": 17,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH RESULT",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS RESULT",
+        "checks": 110,
+        "failures": 0
+      },
+      {
+        "suite": "FOOD RECOVERY RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "UI 04 THEME RESULT",
+        "checks": 7,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 RESULT",
+        "checks": 51,
+        "failures": 0
+      },
+      {
+        "suite": "HOTBAR 03 RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "UI 05 CAMERA RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "UI05 HOTBAR RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "UI05 LAYOUT RESULT",
+        "checks": 301,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 PERSISTENCE RESULT",
+        "checks": 6,
+        "failures": 0
+      }
+    ]
+  },
+  "window": {
+    "checks": 2291,
+    "failures": 0,
+    "suite_count": 23,
+    "platform": "Linux Godot 4.3 Xvfb/Mesa",
+    "suites": [
+      {
+        "suite": "render_061",
+        "checks": 113,
+        "failures": 0
+      },
+      {
+        "suite": "render_062",
+        "checks": 32,
+        "failures": 0
+      },
+      {
+        "suite": "render_seasons_a",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "fishing_b_render",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "livestock_b_render",
+        "checks": 25,
+        "failures": 0
+      },
+      {
+        "suite": "kitchen_b_render",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "life_c_render",
+        "checks": 19,
+        "failures": 0
+      },
+      {
+        "suite": "exploration_d_render",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "world_progress_d_render",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "finale_070_render",
+        "checks": 13,
+        "failures": 0
+      },
+      {
+        "suite": "palm_ui_render",
+        "checks": 296,
+        "failures": 0
+      },
+      {
+        "suite": "palm_runner",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "suite": "tutorial_071_runner",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "suite": "touch_polish_runner",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "suite": "touch_polish_visual",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "farming_visual_runner",
+        "checks": 82,
+        "failures": 0
+      },
+      {
+        "suite": "food_recovery_runner",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "inventory03_render",
+        "checks": 136,
+        "failures": 0
+      },
+      {
+        "suite": "hotbar03_runner",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "ui04_runner",
+        "checks": 850,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_camera_runner",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_hotbar_runner",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_layout_runner",
+        "checks": 301,
+        "failures": 0
+      }
+    ]
+  },
+  "new_suites": {
+    "camera": 48,
+    "hotbar": 43,
+    "layout": 301
+  },
+  "interrupt_restart_passed": true,
+  "apk_desktop_resource_startup_passed": true,
+  "apk": {
+    "file": "PixelWorld-0.7.1-debug.apk",
+    "bytes": 68035559,
+    "sha256": "a10626c0310a2a0c048d8733b87830a7925743d92b71f3d63d85524e403b4cb3",
+    "version_code": 13,
+    "package": "org.pixelfarm.windbud"
+  },
+  "android_device_tested": false,
+  "tested_production_sha256": {
+    "export_presets.cfg": "072086a49253087abe664b20c8eed0b06c840052f312e275fc5cbd548a2b3986",
+    "scripts/aquaculture/aquaculture_panel.gd": "ae64b8dd4bf993c75f146e30ec03fde4d789bddf362260a29de8e128251a029a",
+    "scripts/core/main.gd": "44cf9164b6cb3c575d7c41bb47c528e5437e13252c27290d1d11295a55119212",
+    "scripts/festivals/festival_panel.gd": "b12fa960995ce5b49e2fb03468cc3ca9ebdb4de1fd378a5d9464072ce870f742",
+    "scripts/fishing/fishing_panel.gd": "0ceb78668f2a2f27f300b0f4b990b5653fcb178bfae432a737de83ad7f0562d6",
+    "scripts/housing/housing_panel.gd": "df0780e6b81014c4c79cbfcb79810a28cb52e592ff8e9b2cbabf7b5f8f5c24d6",
+    "scripts/input/touch_input_manager.gd": "32d815a070e7780b54b853a2daef52f322c4b130eb95d34f961294cac07b2e1c",
+    "scripts/kitchen/kitchen_panel.gd": "150bfe0d4a8348ed1e98a311f874bf8c7aa09949a7bdcc8ce616e424a553ec06",
+    "scripts/navigation/auto_move_controller.gd": "252a180c639de40467fde119fc2ee6cfc7927c2e5658898b3ad05c3c8807528e",
+    "scripts/presentation/camera_rig.gd": "77cbd5dc3f6c0ebfd75e5430253cee11e4eb5d64fc3fad770a55337b5da000f7",
+    "scripts/social/social_panel.gd": "094a4169ca3b1f753fd73dcee7327c593399b269f1964c2552467cef1495ab86",
+    "scripts/ui/dialogue_panel.gd": "be1ff0115ee01e8dc805e82234b75418a4f2f30988bb43bd6d644e9abbe75ee5",
+    "scripts/ui/hud.gd": "a50cac4b41d81bb787990489da8fa056cb61f3ed21f41c3a3124ebd17c67e267",
+    "scripts/ui/inventory_panel.gd": "dc687bb7aa5a5a5541269b658648cc7ddb8bd179a8fd3719f850c8abf0f38420",
+    "scripts/ui/progress_panel.gd": "2de4d22cd56d3172b896d489c33c698bb6ce9dab1ce31dea7a2284dcc911edf7",
+    "scripts/ui/section_grid.gd": "151c0c5dece8acbefe9402ec16e679f21f8a3040683d87ff4af2fd53075363c8",
+    "scripts/ui/story_panel.gd": "d36c5dc48dd184af5d0ea9a0c432794f6926fec243d11bc95500df2089016e9f",
+    "scripts/ui/system_panel.gd": "2e943b53913041c848a28f63df91e3ac474e3a784a80e235ad91ed9a42f211d8",
+    "scripts/ui/ui_layout.gd": "ec8e8e5c1e3e326463fd324ba7d6022387cc0e0cc53a3ee11fefbd937fff6a51",
+    "scripts/ui/ui_metrics.gd": "9140f044d0d70f69f032883ead20eca0a390dd9b1f4efe77ae6645b1d3e524ff",
+    "scripts/ui/ui_style.gd": "3b77f945a06c6fa25d310351f1b0cfae355ac5e625a6dc80670f314eb20b7e6e",
+    "scripts/ui/xiaojing_panel.gd": "ad546c8b7cdf1c8c747ab9c6533b1ea417f806cc00a3e0580cfa6f15b8fcc890",
+    "scripts/world/world_travel.gd": "a0be46687bcbdce0bb0b724240fc876349693b4241728814c1ad07145833ce06",
+    "scripts/world_progress/world_development_panel.gd": "057a7bfcfc9720871a1293843ceba52ccbcc64dc19177dd9e683ff03063f2bb7"
+  },
+  "logs": [
+    "builds/ui05-final-check.log",
+    "builds/ui05-final-window.log",
+    "builds/ui05-final-interrupt.log",
+    "builds/ui05-final-apk-runtime.log",
+    "builds/ui05-final-build.log"
+  ]
+}

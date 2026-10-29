@@ -1,4 +1,57 @@
 {
-  "wood": {"name":"木材", "sell_price":4, "description":"砍树获得，用于修缮设施和村民委托。"},
-  "stone": {"name":"石料", "sell_price":5, "description":"开采石堆获得，用于引水渠、工具架和委托。"}
+  "wood": {
+    "name": "木材",
+    "sell_price": 4,
+    "description": "砍树获得，用于修缮设施和村民委托。"
+  },
+  "stone": {
+    "name": "石料",
+    "sell_price": 5,
+    "description": "开采石堆获得，用于引水渠、工具架和委托。"
+  },
+  "copper_ore": {
+    "name": "铜矿石",
+    "sell_price": 6,
+    "description": "废弃矿道的基础矿物，可熔炼铜锭。"
+  },
+  "iron_ore": {
+    "name": "铁矿石",
+    "sell_price": 10,
+    "description": "矿道与地下水脉可采集，用于强化工具。"
+  },
+  "crystal": {
+    "name": "晶石",
+    "sell_price": 15,
+    "description": "强化镐开采，可做星纹合金和精炼辅料。"
+  },
+  "starlight_ore": {
+    "name": "星辉原矿",
+    "sell_price": 24,
+    "description": "晶石洞窟的稀有矿物，星纹镐开采。"
+  },
+  "copper_bar": {
+    "name": "铜锭",
+    "sell_price": 25,
+    "description": "铜矿和木燃料加工，用于强化镐。"
+  },
+  "iron_bar": {
+    "name": "铁锭",
+    "sell_price": 40,
+    "description": "铁矿加工，用于星纹合金与星纹镐。"
+  },
+  "star_alloy": {
+    "name": "星纹合金",
+    "sell_price": 85,
+    "description": "晶石与铁锭合成，用于高级工具与勘探补给。"
+  },
+  "ancient_shard": {
+    "name": "遗迹铜纹片",
+    "sell_price": 32,
+    "description": "远古遗迹记录器的碎片，护具与档案修复使用。"
+  },
+  "star_fragment": {
+    "name": "星辉残晶",
+    "sell_price": 45,
+    "description": "星辉深渊稳定析出的晶片，保留着归航台的能量纹路。"
+  }
 }

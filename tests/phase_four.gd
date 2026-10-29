@@ -1,11 +1,13 @@
 extends RefCounted
 
 static func run(test: Node, game: Node) -> void:
+	GameState.set_control_mode("joystick",false)
 	# 用真实 Viewport 布局计算验证横屏比例，不靠截图主观判断是否越界。
 	var original: Vector2i = test.get_window().size
 	for resolution in [Vector2i(1280,720),Vector2i(1600,720),Vector2i(1280,960)]:
 		test.get_window().size = resolution
 		await test.frames(4)
+		await load("res://tests/touch_navigation.gd").expand_hotbar(test,game)
 		var bounds: Rect2 = game.hud.safe.get_global_rect()
 		var controls: Array = [game.hud.joystick,game.hud.action_button]
 		controls.append_array(game.hud.tool_buttons)

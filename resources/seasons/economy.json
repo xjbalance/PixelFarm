@@ -1,0 +1,57 @@
+{
+  "crop_seasons": {
+    "carrot": [
+      0,
+      1,
+      2
+    ],
+    "potato": [
+      0,
+      1,
+      2
+    ],
+    "wheat": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  "groups": {
+    "materials": {
+      "path": "res://resources/items/materials.json",
+      "section": "",
+      "category": "material"
+    },
+    "aquaculture": {
+      "path": "res://resources/aquaculture/fish.json",
+      "section": "items",
+      "category": "aquaculture"
+    },
+    "fishing": {
+      "path": "res://resources/fishing/fishing.json",
+      "section": "items",
+      "category": "fishing"
+    },
+    "livestock": {
+      "path": "res://resources/livestock/livestock.json",
+      "section": "items",
+      "category": "livestock"
+    },
+    "kitchen": {
+      "path": "res://resources/kitchen/kitchen.json",
+      "section": "items",
+      "category": "kitchen"
+    },
+    "festivals": {
+      "path": "res://resources/festivals/festivals.json",
+      "section": "items",
+      "category": "festival"
+    },
+    "exploration": {
+      "path": "res://resources/exploration/exploration.json",
+      "section": "items",
+      "category": "exploration"
+    }
+  }
+}

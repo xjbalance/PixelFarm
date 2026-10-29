@@ -1,0 +1,276 @@
+{
+  "levels": {
+    "1": {
+      "name": "温馨小屋",
+      "coins": 0,
+      "required": {},
+      "slots": 2,
+      "description": "原有床铺、厨房、故事木盒和起居区。"
+    },
+    "2": {
+      "name": "舒适农舍",
+      "coins": 2500,
+      "required": {
+        "wood": 30,
+        "stone": 20
+      },
+      "slots": 4,
+      "description": "打开与起居室相连的左侧小间，增加布置区与四种储物空间；原床、门、厨房与木盒的位置保留。"
+    },
+    "3": {
+      "name": "河湾大屋",
+      "coins": 7500,
+      "required": {
+        "wood": 60,
+        "stone": 40,
+        "iron_bar": 12
+      },
+      "slots": 8,
+      "description": "将左侧扩为宽敞工作间，增加窗户、内饰与八种储物空间；玩家已有家具继续保留。"
+    },
+    "4": {
+      "name": "星光庄园",
+      "coins": 18000,
+      "required": {
+        "wood": 100,
+        "stone": 70,
+        "star_fragment": 20
+      },
+      "slots": 16,
+      "description": "扩建宽阔的星光侧厅，开放十六种储物空间；星辉残晶用于庄园的窗饰和结构，原家具与厨房完整保留。"
+    }
+  },
+  "furniture": {
+    "bed": {
+      "name": "手织午休榻",
+      "category": "bed",
+      "area": "home",
+      "size": [
+        1,
+        2
+      ],
+      "solid": true,
+      "level": 2,
+      "coins": 80,
+      "required": {
+        "wood": 6
+      },
+      "description": "可布置的起居榻。正式睡眠仍使用原卧室床。"
+    },
+    "table": {
+      "name": "方木桌",
+      "category": "table",
+      "area": "home",
+      "size": [
+        2,
+        1
+      ],
+      "solid": true,
+      "level": 1,
+      "coins": 45,
+      "required": {
+        "wood": 5
+      },
+      "description": "放在起居区，不占旧故事桌。"
+    },
+    "chair": {
+      "name": "靠背椅",
+      "category": "chair",
+      "area": "home",
+      "size": [
+        1,
+        1
+      ],
+      "solid": true,
+      "level": 1,
+      "coins": 20,
+      "required": {
+        "wood": 2
+      },
+      "description": "一格木椅，可移动与回收。"
+    },
+    "cabinet": {
+      "name": "矮储物柜",
+      "category": "cabinet",
+      "area": "home",
+      "size": [
+        1,
+        1
+      ],
+      "solid": true,
+      "level": 1,
+      "coins": 40,
+      "required": {
+        "wood": 4,
+        "stone": 1
+      },
+      "description": "装饰柜；真正储物在管理台办理，容量由房屋等级决定。"
+    },
+    "rug": {
+      "name": "麦穗地毯",
+      "category": "rug",
+      "area": "home",
+      "size": [
+        2,
+        2
+      ],
+      "solid": false,
+      "level": 1,
+      "coins": 30,
+      "required": {
+        "wheat": 3
+      },
+      "description": "脚下无碰撞，不删除原屋中央地毯。"
+    },
+    "lamp": {
+      "name": "纸罩立灯",
+      "category": "lamp",
+      "area": "home",
+      "size": [
+        1,
+        1
+      ],
+      "solid": true,
+      "level": 1,
+      "coins": 35,
+      "required": {
+        "wood": 2,
+        "crystal": 1
+      },
+      "description": "固定像素柔光，不增加实时灯光负担。"
+    },
+    "wallpaper": {
+      "name": "苇叶墙纸",
+      "category": "wallpaper",
+      "area": "style",
+      "size": [
+        1,
+        1
+      ],
+      "solid": false,
+      "level": 2,
+      "coins": 100,
+      "required": {
+        "wheat": 5
+      },
+      "description": "持有后可反复启用与还原原墙色，不消耗玩家布置。"
+    },
+    "floor": {
+      "name": "浅木拼花地板",
+      "category": "floor",
+      "area": "style",
+      "size": [
+        1,
+        1
+      ],
+      "solid": false,
+      "level": 2,
+      "coins": 120,
+      "required": {
+        "wood": 10
+      },
+      "description": "只替换原室内地板纹理，保留原碰撞与其他家具。"
+    },
+    "plant": {
+      "name": "窗边蕨盆",
+      "category": "plant",
+      "area": "home",
+      "size": [
+        1,
+        1
+      ],
+      "solid": true,
+      "level": 1,
+      "coins": 25,
+      "required": {
+        "wood": 1,
+        "wheat": 1
+      },
+      "description": "一株适合室内的耐阴蕨。"
+    },
+    "spouse_desk": {
+      "name": "小京的水样桌",
+      "category": "spouse",
+      "area": "home",
+      "size": [
+        2,
+        1
+      ],
+      "solid": true,
+      "level": 2,
+      "married": true,
+      "coins": 120,
+      "required": {
+        "wood": 8,
+        "crystal": 2
+      },
+      "description": "婚后共同商量再安放，保留小京独立的研究位置，不自动覆盖任何原布局。"
+    },
+    "road": {
+      "name": "踏石庭院路",
+      "category": "road",
+      "area": "farm",
+      "size": [
+        1,
+        1
+      ],
+      "solid": false,
+      "level": 1,
+      "coins": 8,
+      "required": {
+        "stone": 1
+      },
+      "description": "庭院专用路面，不能覆盖农田和湖水。"
+    },
+    "flower": {
+      "name": "四季花坛",
+      "category": "flower",
+      "area": "farm",
+      "size": [
+        1,
+        1
+      ],
+      "solid": true,
+      "level": 1,
+      "coins": 18,
+      "required": {
+        "wood": 1,
+        "wheat": 1
+      },
+      "description": "庭院专用花坛，不覆盖原农田。播入春铃花种后，可按游戏日照料并采收纪念花。"
+    },
+    "yard_lamp": {
+      "name": "庭院风灯",
+      "category": "lamp",
+      "area": "farm",
+      "size": [
+        1,
+        1
+      ],
+      "solid": true,
+      "level": 1,
+      "coins": 25,
+      "required": {
+        "wood": 2,
+        "stone": 1
+      },
+      "description": "夜间保留柔光装饰，不使用额外实时灯。"
+    },
+    "water_basin": {
+      "name": "石制小水钵",
+      "category": "facility",
+      "area": "farm",
+      "size": [
+        1,
+        1
+      ],
+      "solid": true,
+      "level": 2,
+      "coins": 40,
+      "required": {
+        "stone": 5
+      },
+      "description": "简单庭院景观设施，不生产金币或资源。"
+    }
+  }
+}

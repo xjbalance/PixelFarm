@@ -11,14 +11,19 @@ func _ready() -> void:
 	build_tiles()
 	build_props()
 	build_river_life()
+	var visual:=FarmVisual06.new()
+	add_child(visual)
 	GameClock.changed.connect(refresh_linya)
 	Story.changed.connect(refresh_linya)
+	GameWeather.changed.connect(refresh_linya)
 	refresh_linya()
 
 func refresh_linya() -> void:
 	var person := get_node_or_null("Actors/Linya")
 	if person:
-		person.visible = not (Story.stage >= 7 and GameClock.minutes >= 1080)
+		if preload("res://scripts/seasons/life_schedule.gd").gathering_summer(): return
+		person.set_station(Vector2(400,432) if GameWeather.is_rainy() or GameWeather.is_snowy() else Vector2(429,441))
+		person.visible = GameClock.minutes < 1080 and not River.gathering()
 		person.process_mode = Node.PROCESS_MODE_INHERIT if person.visible else Node.PROCESS_MODE_DISABLED
 
 func build_tiles() -> void:
@@ -27,7 +32,7 @@ func build_tiles() -> void:
 	tiles.add_physics_layer()
 	tiles.set_physics_layer_collision_layer(0, 1)
 	var atlas := TileSetAtlasSource.new()
-	atlas.texture = preload("res://assets/tilesets/ground.png")
+	atlas.texture = load("res://assets/tilesets/ground.png")
 	atlas.texture_region_size = Vector2i(TILE_SIZE, TILE_SIZE)
 	tiles.add_source(atlas, 0)
 	for i in range(8):
@@ -90,7 +95,7 @@ func build_river_life() -> void:
 			"bush":[Vector2(560,402),Vector2(755,373),Vector2(910,310),Vector2(305,690),Vector2(1260,690),Vector2(900,770)],
 			"flowers":[Vector2(580,414),Vector2(726,416),Vector2(920,375),Vector2(870,748),Vector2(490,765)],
 			"lantern":[Vector2(514,419),Vector2(900,438),Vector2(455,715)],
-			"cart":[Vector2(262,418)]
+			"cart":[Vector2(248,496)] # 给旧rock_8_13保留可达采集面，不移动旧资源ID
 		}[kind]
 		for origin in placements:
 			var prop := RiverScenery.new()
@@ -130,6 +135,8 @@ func add_interaction(kind: String, title: String, origin: Vector2) -> void:
 	add_child(point)
 
 func _draw() -> void:
+	# 地面草花由缓存GroundDetail06按季节绘制；避免旧版散点叠成噪声。
+	if has_node("GroundDetail06"): return
 	# 小花与草丛使用固定种子，加载时地图外观不变化。
 	var random := RandomNumberGenerator.new()
 	random.seed = 909

@@ -1,0 +1,163 @@
+{
+  "ores": {
+    "copper": {
+      "name": "铜矿石",
+      "item": "copper_ore",
+      "level": 1,
+      "hits": 2,
+      "energy": 2,
+      "amount": 3,
+      "regrow": 2,
+      "color": "bf855b"
+    },
+    "iron": {
+      "name": "铁矿石",
+      "item": "iron_ore",
+      "level": 1,
+      "hits": 4,
+      "energy": 3,
+      "amount": 3,
+      "regrow": 2,
+      "color": "93a4af"
+    },
+    "crystal": {
+      "name": "晶石",
+      "item": "crystal",
+      "level": 2,
+      "hits": 3,
+      "energy": 3,
+      "amount": 3,
+      "regrow": 2,
+      "color": "78c7cc"
+    },
+    "starlight": {
+      "name": "星辉原矿",
+      "item": "starlight_ore",
+      "level": 3,
+      "hits": 4,
+      "energy": 4,
+      "amount": 3,
+      "regrow": 3,
+      "color": "b79fe4"
+    },
+    "diamond": {
+      "name": "钻石矿脉",
+      "item": "diamond",
+      "level": 3,
+      "hits": 4,
+      "energy": 5,
+      "amount": 1,
+      "regrow": 3,
+      "color": "c3edf1"
+    },
+    "rubble": {
+      "name": "裂隙岩块",
+      "item": "stone",
+      "level": 1,
+      "hits": 3,
+      "energy": 2,
+      "amount": 4,
+      "regrow": 0,
+      "color": "887e71"
+    }
+  },
+  "recipes": {
+    "copper_bar": {
+      "name": "铜锭",
+      "required": {
+        "copper_ore": 4,
+        "wood": 2
+      },
+      "output": {
+        "copper_bar": 1
+      },
+      "diamonds": 0,
+      "days": 1,
+      "level": 1
+    },
+    "iron_bar": {
+      "name": "铁锭",
+      "required": {
+        "iron_ore": 4,
+        "wood": 2
+      },
+      "output": {
+        "iron_bar": 1
+      },
+      "diamonds": 0,
+      "days": 1,
+      "level": 2
+    },
+    "star_alloy": {
+      "name": "星纹合金",
+      "required": {
+        "iron_bar": 1,
+        "crystal": 3,
+        "wood": 2
+      },
+      "output": {
+        "star_alloy": 1
+      },
+      "diamonds": 0,
+      "days": 1,
+      "level": 2
+    },
+    "refine": {
+      "name": "星辉精炼",
+      "required": {
+        "starlight_ore": 3,
+        "crystal": 2,
+        "wood": 2
+      },
+      "output": {},
+      "diamonds": 2,
+      "days": 1,
+      "level": 3
+    }
+  },
+  "upgrades": {
+    "2": {
+      "name": "强化镐",
+      "required": {
+        "copper_bar": 3,
+        "iron_ore": 2,
+        "wood": 8
+      },
+      "coins": 180
+    },
+    "3": {
+      "name": "星纹镐",
+      "required": {
+        "iron_bar": 4,
+        "star_alloy": 2,
+        "wood": 12
+      },
+      "coins": 450
+    }
+  },
+  "furnace": {
+    "required": {
+      "stone": 12,
+      "wood": 8
+    },
+    "coins": 120
+  },
+  "survey": {
+    "required": {
+      "wheat": 8,
+      "wood": 8,
+      "iron_bar": 1,
+      "star_alloy": 1
+    },
+    "diamonds_min": 3
+  },
+  "commission": {
+    "required": {
+      "potato": 12,
+      "wheat": 12,
+      "wood": 20
+    },
+    "diamonds": 5,
+    "period": 3
+  }
+}

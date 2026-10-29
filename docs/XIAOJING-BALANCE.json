@@ -1,0 +1,136 @@
+{
+  "seed": 5201314,
+  "prototype_current_rules": {
+    "samples": 10000,
+    "median_hours": 38.9,
+    "p10_hours": 34.13,
+    "p90_hours": 43.73,
+    "mean_expeditions": 249,
+    "meets_150_250_scenario": false
+  },
+  "future_unimplemented_design": {
+    "samples": 10000,
+    "median_hours": 171.7,
+    "p10_hours": 166.81,
+    "p90_hours": 176.64,
+    "mean_expeditions": 335.4,
+    "meets_150_250_scenario": true
+  },
+  "cave_feasibility": {
+    "oxygen": 32,
+    "unique_cells": 23,
+    "route": [
+      [
+        2,
+        1
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        3,
+        2
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        3
+      ],
+      [
+        5,
+        3
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        7,
+        4
+      ],
+      [
+        7,
+        5
+      ],
+      [
+        7,
+        6
+      ],
+      [
+        7,
+        7
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ]
+  },
+  "no_dead_end_checks": [
+    "All mineral locations reachable; return path and oxygen feasible",
+    "Repeatable expeditions restore deposits on every expedition",
+    "Failed expeditions permit rope retreat and restart",
+    "Crops and resources regrow; wheat provisions can be planted",
+    "Five trial gates have a valid order; losing a run does not consume completed quests",
+    "1314 diamonds have a separate 999999 cap; original item stacks stay 999"
+  ],
+  "limitations": [
+    "No 150–250h human playtest performed",
+    "Prototype source times and non-mining activity times are assumptions, not measured completion time",
+    "Current prototype does NOT meet duration/content-density target",
+    "Future scenario assumes richer 22–30min expeditions that are NOT implemented",
+    "Fixed puzzle/mining layout replay quality has not been established; avoid padding via timers or lower drop rates"
+  ]
+}

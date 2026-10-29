@@ -1,0 +1,23 @@
+{
+  "theme": "河湾手作 · 星辉田园",
+  "palette": {
+    "paper": "F2E4C5",
+    "wood": "D7B98A",
+    "brown": "754B36",
+    "green": "789C79",
+    "gold": "E7B96B",
+    "star": "7775B4",
+    "text": "35291F",
+    "muted": "705E4C",
+    "title": "66442F",
+    "danger": "984B3E"
+  },
+  "type": {
+    "title": 24,
+    "body": 18,
+    "caption": 16,
+    "number": 19
+  },
+  "touch_design_px": 48,
+  "nine_patch_margin": 8
+}

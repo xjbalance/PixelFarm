@@ -1,0 +1,167 @@
+{
+  "android_device_tested": false,
+  "captures": [
+    {
+      "day": 1,
+      "level": 1,
+      "name": "before",
+      "path": "res://builds/home-arrange-before.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "file": "docs/home-arrange/before.png"
+    },
+    {
+      "day": 1,
+      "level": 1,
+      "name": "bed_preview",
+      "path": "res://builds/home-arrange-bed_preview.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "file": "docs/home-arrange/bed_preview.png"
+    },
+    {
+      "day": 1,
+      "level": 1,
+      "name": "invalid_preview",
+      "path": "res://builds/home-arrange-invalid_preview.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "file": "docs/home-arrange/invalid_preview.png"
+    },
+    {
+      "day": 1,
+      "level": 1,
+      "name": "bed_after",
+      "path": "res://builds/home-arrange-bed_after.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "file": "docs/home-arrange/bed_after.png"
+    },
+    {
+      "day": 2,
+      "level": 1,
+      "name": "sofa_preview",
+      "path": "res://builds/home-arrange-sofa_preview.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "file": "docs/home-arrange/sofa_preview.png"
+    },
+    {
+      "day": 2,
+      "level": 1,
+      "name": "sofa_after",
+      "path": "res://builds/home-arrange-sofa_after.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "file": "docs/home-arrange/sofa_after.png"
+    },
+    {
+      "day": 2,
+      "level": 1,
+      "name": "kitchen_preview",
+      "path": "res://builds/home-arrange-kitchen_preview.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "file": "docs/home-arrange/kitchen_preview.png"
+    },
+    {
+      "day": 2,
+      "level": 1,
+      "name": "kitchen_after",
+      "path": "res://builds/home-arrange-kitchen_after.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "file": "docs/home-arrange/kitchen_after.png"
+    },
+    {
+      "day": 2,
+      "level": 1,
+      "name": "storage_preview",
+      "path": "res://builds/home-arrange-storage_preview.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "file": "docs/home-arrange/storage_preview.png"
+    },
+    {
+      "day": 2,
+      "level": 1,
+      "name": "storage_after",
+      "path": "res://builds/home-arrange-storage_after.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "file": "docs/home-arrange/storage_after.png"
+    },
+    {
+      "day": 2,
+      "level": 1,
+      "name": "crafted_placed",
+      "path": "res://builds/home-arrange-crafted_placed.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "file": "docs/home-arrange/crafted_placed.png"
+    },
+    {
+      "day": 2,
+      "level": 1,
+      "name": "crafted_moved",
+      "path": "res://builds/home-arrange-crafted_moved.png",
+      "resolution": [
+        1280,
+        720
+      ],
+      "file": "docs/home-arrange/crafted_moved.png"
+    },
+    {
+      "day": 2,
+      "level": 1,
+      "name": "layout_1600x720",
+      "path": "res://builds/home-arrange-layout_1600x720.png",
+      "resolution": [
+        1600,
+        720
+      ],
+      "file": "docs/home-arrange/layout_1600x720.png"
+    },
+    {
+      "day": 2,
+      "level": 1,
+      "name": "layout_1280x960",
+      "path": "res://builds/home-arrange-layout_1280x960.png",
+      "resolution": [
+        1280,
+        960
+      ],
+      "file": "docs/home-arrange/layout_1280x960.png"
+    }
+  ],
+  "checks": 86,
+  "failures": 0,
+  "native_map_drags": 1,
+  "native_map_taps": 7,
+  "platform": "X11",
+  "baseline_commit": "a09a661",
+  "save_version": 24,
+  "gif_note": "Sequence of actual rendered state frames, not an Android recording or FPS measurement."
+}

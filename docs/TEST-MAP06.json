@@ -1,0 +1,724 @@
+{
+  "version": "0.7.1",
+  "save_version": 24,
+  "baseline_commit": "0ac1b78",
+  "independent_commits": {
+    "sale_quantity": "d973328",
+    "farm_visual_sample": "cac470b"
+  },
+  "headless": {
+    "checks": 4598,
+    "failures": 0,
+    "process_steps": 142,
+    "suites": [
+      {
+        "suite": "SLEEP RESULT",
+        "checks": 29,
+        "failures": 0
+      },
+      {
+        "suite": "RESULT",
+        "checks": 452,
+        "failures": 0
+      },
+      {
+        "suite": "MINING RESULT",
+        "checks": 98,
+        "failures": 0
+      },
+      {
+        "suite": "STAR RESULT",
+        "checks": 125,
+        "failures": 0
+      },
+      {
+        "suite": "LEGEND RESULT",
+        "checks": 252,
+        "failures": 0
+      },
+      {
+        "suite": "STABILITY RESULT",
+        "checks": 264,
+        "failures": 0
+      },
+      {
+        "suite": "RIVER RESULT",
+        "checks": 446,
+        "failures": 0
+      },
+      {
+        "suite": "AQUACULTURE RESULT",
+        "checks": 155,
+        "failures": 0
+      },
+      {
+        "suite": "SEASONS A RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "CONTROL RECOVERY RESULT",
+        "checks": 52,
+        "failures": 0
+      },
+      {
+        "suite": "FISHING B RESULT",
+        "checks": 84,
+        "failures": 0
+      },
+      {
+        "suite": "LIVESTOCK B RESULT",
+        "checks": 112,
+        "failures": 0
+      },
+      {
+        "suite": "KITCHEN B RESULT",
+        "checks": 100,
+        "failures": 0
+      },
+      {
+        "suite": "ECOLOGY B RESULT",
+        "checks": 65,
+        "failures": 0
+      },
+      {
+        "suite": "FESTIVALS C RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "SOCIAL C RESULT",
+        "checks": 107,
+        "failures": 0
+      },
+      {
+        "suite": "HOUSING C RESULT",
+        "checks": 109,
+        "failures": 0
+      },
+      {
+        "suite": "EXPLORATION D RESULT",
+        "checks": 106,
+        "failures": 0
+      },
+      {
+        "suite": "WORLD PROGRESS D RESULT",
+        "checks": 170,
+        "failures": 0
+      },
+      {
+        "suite": "QUALITY 070 RESULT",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 070 RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FINALE 070 RESULT",
+        "checks": 24,
+        "failures": 0
+      },
+      {
+        "suite": "PALM 071 RESULT",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "suite": "RECOVERY 071 RESULT",
+        "checks": 55,
+        "failures": 0
+      },
+      {
+        "suite": "TUTORIAL UI 071 RESULT",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 071 RESULT",
+        "checks": 17,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH RESULT",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS RESULT",
+        "checks": 110,
+        "failures": 0
+      },
+      {
+        "suite": "FOOD RECOVERY RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "UI 04 THEME RESULT",
+        "checks": 7,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 RESULT",
+        "checks": 51,
+        "failures": 0
+      },
+      {
+        "suite": "HOTBAR 03 RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "UI 05 CAMERA RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "UI05 HOTBAR RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "UI05 LAYOUT RESULT",
+        "checks": 308,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 RESULT",
+        "checks": 103,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE RESULT",
+        "checks": 159,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH RESULT",
+        "checks": 117,
+        "failures": 0
+      },
+      {
+        "suite": "SALE QUANTITY STATE RESULT",
+        "checks": 35,
+        "failures": 0
+      },
+      {
+        "suite": "FARM VISUAL 06 STATE RESULT",
+        "checks": 139,
+        "failures": 0
+      },
+      {
+        "suite": "ATLAS CORE RESULT",
+        "checks": 74,
+        "failures": 0
+      },
+      {
+        "suite": "ATLAS UI STATE RESULT",
+        "checks": 51,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 PERSISTENCE RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 7,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "ATLAS PERSISTENCE RESULT",
+        "checks": 8,
+        "failures": 0
+      },
+      {
+        "suite": "ATLAS PERSISTENCE RESULT",
+        "checks": 14,
+        "failures": 0
+      },
+      {
+        "suite": "ATLAS PERSISTENCE RESULT",
+        "checks": 8,
+        "failures": 0
+      },
+      {
+        "suite": "ATLAS PERSISTENCE RESULT",
+        "checks": 15,
+        "failures": 0
+      }
+    ]
+  },
+  "window": {
+    "checks": 2869,
+    "failures": 0,
+    "suite_count": 30,
+    "suites": [
+      {
+        "suite": "render_061 :[ 0 ] RENDER 061 RESULT",
+        "checks": 113,
+        "failures": 0
+      },
+      {
+        "suite": "render_062 :[ 0 ] RENDER 062 RESULT",
+        "checks": 32,
+        "failures": 0
+      },
+      {
+        "suite": "render_seasons_a :[ 0 ] RENDER SEASONS A RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "fishing_b_render :[ 0 ] RENDER FISHING B RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "livestock_b_render :[ 0 ] LIVESTOCK B RENDER RESULT",
+        "checks": 25,
+        "failures": 0
+      },
+      {
+        "suite": "kitchen_b_render :[ 0 ] KITCHEN B RENDER RESULT",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "life_c_render :[ 0 ] LIFE C RENDER RESULT",
+        "checks": 19,
+        "failures": 0
+      },
+      {
+        "suite": "exploration_d_render :[ 0 ] EXPLORATION D RENDER RESULT",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "world_progress_d_render :[ 0 ] RENDER WORLD PROGRESS D RESULT",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "finale_070_render :[ 0 ] FINALE 070 RENDER RESULT",
+        "checks": 13,
+        "failures": 0
+      },
+      {
+        "suite": "palm_ui_render :[ 0 ] PALM UI RENDER RESULT",
+        "checks": 296,
+        "failures": 0
+      },
+      {
+        "suite": "palm_runner :[ 0 ] PALM 071 RESULT",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "suite": "tutorial_071_runner :[ 0 ] TUTORIAL UI 071 RESULT",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "suite": "touch_polish_runner :[ 0 ] TOUCH POLISH RESULT",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "suite": "touch_polish_visual :[ 0 ] TOUCH POLISH VISUAL RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "farming_visual_runner :[ 0 ] FARMING VISUAL RESULT",
+        "checks": 82,
+        "failures": 0
+      },
+      {
+        "suite": "food_recovery_runner :[ 0 ] FOOD RECOVERY RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "inventory03_render :[ 0 ] INVENTORY 03 RENDER RESULT",
+        "checks": 136,
+        "failures": 0
+      },
+      {
+        "suite": "hotbar03_runner :[ 0 ] HOTBAR 03 RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "ui04_runner :[ 0 ] UI 04 RESULT",
+        "checks": 916,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_camera_runner :[ 0 ] UI 05 CAMERA RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_hotbar_runner :[ 0 ] UI05 HOTBAR RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_layout_runner :[ 0 ] UI05 LAYOUT RESULT",
+        "checks": 308,
+        "failures": 0
+      },
+      {
+        "suite": "home05_render :[ 0 ] HOME 05 RENDER RESULT",
+        "checks": 44,
+        "failures": 0
+      },
+      {
+        "suite": "resource_rich_render :[ 0 ] RESOURCE RICH RENDER RESULT",
+        "checks": 73,
+        "failures": 0
+      },
+      {
+        "suite": "home_arrange_render :[ 0 ] HOME ARRANGE RENDER RESULT",
+        "checks": 86,
+        "failures": 0
+      },
+      {
+        "suite": "sale_quantity_render :[ 0 ] SALE QUANTITY WINDOW RESULT",
+        "checks": 24,
+        "failures": 0
+      },
+      {
+        "suite": "farm_visual06_render :[ 0 ] FARM VISUAL 06 RENDER RESULT",
+        "checks": 147,
+        "failures": 0
+      },
+      {
+        "suite": "atlas_core_runner :[ 0 ] ATLAS CORE RESULT",
+        "checks": 80,
+        "failures": 0
+      },
+      {
+        "suite": "atlas_ui_render :[ 0 ] ATLAS UI RENDER RESULT",
+        "checks": 51,
+        "failures": 0
+      }
+    ],
+    "platform": "Linux Godot 4.3 Xvfb/Mesa"
+  },
+  "new_suites": [
+    {
+      "suite": "SALE QUANTITY STATE RESULT",
+      "checks": 35,
+      "failures": 0
+    },
+    {
+      "suite": "FARM VISUAL 06 STATE RESULT",
+      "checks": 139,
+      "failures": 0
+    },
+    {
+      "suite": "ATLAS CORE RESULT",
+      "checks": 74,
+      "failures": 0
+    },
+    {
+      "suite": "ATLAS UI STATE RESULT",
+      "checks": 51,
+      "failures": 0
+    },
+    {
+      "suite": "ATLAS PERSISTENCE RESULT",
+      "checks": 8,
+      "failures": 0
+    },
+    {
+      "suite": "ATLAS PERSISTENCE RESULT",
+      "checks": 14,
+      "failures": 0
+    },
+    {
+      "suite": "ATLAS PERSISTENCE RESULT",
+      "checks": 8,
+      "failures": 0
+    },
+    {
+      "suite": "ATLAS PERSISTENCE RESULT",
+      "checks": 15,
+      "failures": 0
+    },
+    {
+      "suite": "sale_quantity_render :[ 0 ] SALE QUANTITY WINDOW RESULT",
+      "checks": 24,
+      "failures": 0
+    },
+    {
+      "suite": "farm_visual06_render :[ 0 ] FARM VISUAL 06 RENDER RESULT",
+      "checks": 147,
+      "failures": 0
+    },
+    {
+      "suite": "atlas_core_runner :[ 0 ] ATLAS CORE RESULT",
+      "checks": 80,
+      "failures": 0
+    },
+    {
+      "suite": "atlas_ui_render :[ 0 ] ATLAS UI RENDER RESULT",
+      "checks": 51,
+      "failures": 0
+    }
+  ],
+  "apk": {
+    "file": "PixelWorld-0.7.1-debug.apk",
+    "bytes": 68431285,
+    "sha256": "7284f7cf0b434265b9e3a7a852820b3ebf1343c72972335174ef8161fe054217",
+    "version_code": 17,
+    "package": "org.pixelfarm.windbud"
+  },
+  "android_device_tested": false,
+  "interrupt_restart_passed": true,
+  "apk_desktop_resources_passed": true,
+  "tested_production_sha256": {
+    "assets/farm06/ground_autumn.png": "b10d4672cd82300846883a28106169f7a62001973f98222979f6dcb2a5403644",
+    "assets/farm06/ground_autumn.png.import": "1bb18d2e155ae466733681ff4ad11903565405d6219a061aa371d09dd8fb1f99",
+    "assets/farm06/ground_spring.png": "4328bd6f7bd862bd1d586f0d6bf9151e5631ab9437530c3a9dfbf0dd0fb62f38",
+    "assets/farm06/ground_spring.png.import": "77ce0292d442f04563cc0ca63074360b7c359d171382b828090d501543ba221d",
+    "assets/farm06/ground_summer.png": "a57dec7f40e2ed093e734526c979b8395b51c4edae764f1c8758e0fb0fc96c62",
+    "assets/farm06/ground_summer.png.import": "77888054e3e00046cdd0d80d992e2d302245839b3af5492bbfa4d1685850cceb",
+    "assets/farm06/ground_winter.png": "fbc962e3ef4bf6e2d009c75aadf9894825e01720cf4aed16e02993a400d6135a",
+    "assets/farm06/ground_winter.png.import": "2bd03cc59e2131685485c851c1e4c65450a980541c45acc347f1efd1ea6c36d3",
+    "assets/farm06/soil_dry.png": "cc4878b10adbfc1048e647141ebc102c8290d833c395ac3c536eccb820be8a97",
+    "assets/farm06/soil_dry.png.import": "e883d2bf0740df74d56857e6f422716577a934153947a673b0633d7cfc02e992",
+    "assets/farm06/soil_wet.png": "45eef7becbb64861cf473c98b1feb11fb776f42eff9d81f1bde9082b2bc01c92",
+    "assets/farm06/soil_wet.png.import": "11545735aef57c82afac72d2b577c4b3c53ad0daa8cb1e34c9105b3997bfded2",
+    "assets/farm06/tree_autumn.png": "e86a3162ca0edc91b3ff0324919e2ece2ed760ed165b20a437c1dd8ec6fa41f9",
+    "assets/farm06/tree_autumn.png.import": "63ed4b9f71e28b22bfc289aa390594d6474269e84e5c8c5da04843189fad50f3",
+    "assets/farm06/tree_autumn_1.png": "d29642a12647302c0df471ac283cc00af96eeac2843a15ddcbfb7c2f121fbaac",
+    "assets/farm06/tree_autumn_1.png.import": "390d017e262d17d75dbae9a9b8f0112b8b050b0900918a108a5e65933fde9f53",
+    "assets/farm06/tree_autumn_2.png": "309c30687ea584d96a3eaa1b8f10352b6f2722d69ac134d66965af42e5719047",
+    "assets/farm06/tree_autumn_2.png.import": "a719e1a26e2a6d9142ac6160405dcb692b8ec1991d1af08c5e641a5411e12df7",
+    "assets/farm06/tree_spring.png": "67a49a6b44adfd215dc9857293cb84db063c9a5f14ddcc681938d0f1459ef56b",
+    "assets/farm06/tree_spring.png.import": "fc493090c518e75459366d8ed7f8cc8c0cdc6c1138d228843bc1db12587fb598",
+    "assets/farm06/tree_spring_1.png": "608793905aaa770109b8297d12e4f37e71f21ebfa0c291f8d7166617753cef5d",
+    "assets/farm06/tree_spring_1.png.import": "103a62faa4173db43b9783754f72092f14cff5c720bd8b4a2183d5539bfe90d8",
+    "assets/farm06/tree_spring_2.png": "18e4379775f17b72eb3911e493debc193861fd0b7565d96fd340a1d402ef48c5",
+    "assets/farm06/tree_spring_2.png.import": "84491a26dc154e7f4be62b4e4e060220367724568db7457165063afaf35a746d",
+    "assets/farm06/tree_summer.png": "bfa76559f50abde70dad2c810963dfd50103583941687d4ad1c9dcfe10c43610",
+    "assets/farm06/tree_summer.png.import": "520ef686e64cb23703aea308d696177cc707ab55a9d3a44608f9d91b4b874a96",
+    "assets/farm06/tree_summer_1.png": "5abca297d899fbc4fa009364113f672a7ba5b5d55a5ebf79014c5cfb8adfcf0e",
+    "assets/farm06/tree_summer_1.png.import": "5129ed12d08fcdaa6a0723d286750088bb50622492a611052d1a146eefdd7444",
+    "assets/farm06/tree_summer_2.png": "942ef7f9ba908eb1c13b9a9fd5cf6589861925c87c270ce4f96a6bb4f5dfc943",
+    "assets/farm06/tree_summer_2.png.import": "01f43b5f4e19ce921fc91e5163fa04c7f8334c9fffed86dbfec66b67f51267a3",
+    "assets/farm06/tree_winter.png": "44e7e412f0b7d8d40bf977ca6afa8271f217c7dff7a05e961c6343d746f21ab9",
+    "assets/farm06/tree_winter.png.import": "6a23e10fe9dc1d31ca4cb9a4d263e4d59d4fe7f1be924cae4858295452067fba",
+    "assets/farm06/tree_winter_1.png": "8cd75d9bb27586795de3a4969352c7d7d44eb5cb9724588b572cb1638e44a072",
+    "assets/farm06/tree_winter_1.png.import": "8844bb345baae76d69d31de1196c5a249ba5b789aca395ed8c362b8d64f41e92",
+    "assets/farm06/tree_winter_2.png": "c1d33e81f8b94e6d61a26f716c37f9cbaf78f2b81bed7beae74ddb8522dbb3d5",
+    "assets/farm06/tree_winter_2.png.import": "db77992106e64d64b508f5d230552e87c36218c15a4d661671c19bcb9046d04b",
+    "assets/maps/cave.png": "77599c93bbfe6b89856a93a14e65ef0d09501ed647052d40560fdb30a1025524",
+    "assets/maps/cave.png.import": "949f0c07830a8140a656a643429822e6e6fe1796c036236c26160712309111aa",
+    "assets/maps/farm.png": "18106006b002fd907a18f8bea582b63172c17b7ef87692c67331b41aad851a32",
+    "assets/maps/farm.png.import": "90e8c9f0ea87d88b71e53c5e41af5f55a6dc52eb800b9b5a81ff6723750c9d08",
+    "assets/maps/greenhouse.png": "91df01f329565e91b3cd6dba1d2da3b914e99d010b35aecacef2b7be2a851daa",
+    "assets/maps/greenhouse.png.import": "f36016674bc6d58ea7a3bba8254645fda9c3a33f9fad852c5e66b20956c57406",
+    "assets/maps/home.png": "ed7929b64451315ff55d91e02128889c9c471d91f9d2522ac2757de135189f60",
+    "assets/maps/home.png.import": "f143c46f117f93f9a54c1359d24c20e9798775fe6b08f89bae12be53bfc1f0c5",
+    "assets/maps/icon_barn.png": "1e5b82d98b2367f599d605d60bda3f44ae2c0a01de2daf4635dd096f34d9e026",
+    "assets/maps/icon_barn.png.import": "edcb12470ee0bd57a72547c7d5e22f4d87bcb47cb5045ac826321017dcff52b9",
+    "assets/maps/icon_bed.png": "675c58a0f7eb86c15b416e2cc2f2096e9c12d7cab24a26b49941ad0934fd1360",
+    "assets/maps/icon_bed.png.import": "29642192930ebcc0337547fd63e680e405c2b430922fb58cc68446a3b8df695d",
+    "assets/maps/icon_bridge.png": "27dfdd93f806af369a7afa2b2840cb3a74eee88300c54ef7ea287ae620b4d492",
+    "assets/maps/icon_bridge.png.import": "0bef2fc234b93b0ec3a5f9669826345b4612abb155ef5cb197d0866c9c0d1b01",
+    "assets/maps/icon_dock.png": "6698f736e68c755d36d2619cb22d4d794e8bff1afbfca0d14f1efd3560349c07",
+    "assets/maps/icon_dock.png.import": "d02aad45081fd061d9e37faa84d68af7e9fb6385bbf6d860ed87e1912a289012",
+    "assets/maps/icon_field.png": "39f0b705a2c2ed7c6957dfdbc69351673436b69922f0312b32b059fe2a87a408",
+    "assets/maps/icon_field.png.import": "808bba6268c9f92fa6538e3ce049f47eaa40df5eb4f25168b6d371894b67e295",
+    "assets/maps/icon_forest.png": "8fafbc76957f5efa174cfd93ddb6b80ba3154c30f1a4df42a7e832f98ac1f8bb",
+    "assets/maps/icon_forest.png.import": "d485d88d7a83febb5bdb1a6e78f590166e53a7ba910315d39d0ad5e1fa93d54a",
+    "assets/maps/icon_greenhouse.png": "1be50248b5772b8d90b59c131cbea59e80565fe810eb43cea4701d68c6522c0f",
+    "assets/maps/icon_greenhouse.png.import": "4327f48de8b714e7d0d92b2b14837a81c4f84493125a138bd8adc26dc981dadd",
+    "assets/maps/icon_house_1.png": "1e5b82d98b2367f599d605d60bda3f44ae2c0a01de2daf4635dd096f34d9e026",
+    "assets/maps/icon_house_1.png.import": "2f7e9546908a21911f9307c8bbb50893376ea47f6f221e2a161fcf1a6263cdca",
+    "assets/maps/icon_house_2.png": "049865a214400eea69e953b4e25a26fc6c2576eded79e134555834308dede577",
+    "assets/maps/icon_house_2.png.import": "2049d0c2368bdd6421a644613fff4360be8fb9d483174f47dffdbe9323e65bda",
+    "assets/maps/icon_house_3.png": "d973056cbb2646b26a38f067ccd4d07efbb85454a83ec3e3af938c398c058705",
+    "assets/maps/icon_house_3.png.import": "d1da516133ede415677574dc950390adb4ff0dab3b8e15bbf7ef6798905cb31e",
+    "assets/maps/icon_house_4.png": "718b37d3913d5dab6cf25d765ad48d1cf2856ec2318f732c61f0df4930160710",
+    "assets/maps/icon_house_4.png.import": "23b96d1f7878e59556f24d8f520df0edeb55c4f69fc4a7dae1d0aa3c4f61cb5e",
+    "assets/maps/icon_kitchen.png": "fb149f2f0678d701b0a3251ceb18198976effc958dba04094d868959b4f1ec64",
+    "assets/maps/icon_kitchen.png.import": "32f082aa64f3ec252bec93b42b8a5594c04d9edb5a950cb4aea03e9207671aa4",
+    "assets/maps/icon_lake.png": "124a18ec4e9ebdcdad0c8cf999d2f99256baffc23ab46044a8acec3aa12d89dd",
+    "assets/maps/icon_lake.png.import": "272a927b762104945b0a83874e9a76da28f8752c9c72286080c984ce174a501a",
+    "assets/maps/icon_lantern.png": "24b6f15b330b825f7daf898f431e77d18471b2c4dc8ee6927a063a1aa8f3e753",
+    "assets/maps/icon_lantern.png.import": "01b671090d64080c2806228f99eb6ece1cf83b92d1c93f7e4db6f7854354d9f5",
+    "assets/maps/icon_market.png": "1e5b82d98b2367f599d605d60bda3f44ae2c0a01de2daf4635dd096f34d9e026",
+    "assets/maps/icon_market.png.import": "1571ee0e13a6c357168568792335a7df37fdea0b450005b685de92444fb1314f",
+    "assets/maps/icon_mine.png": "c7b91276445ebab452594cc318abf1f4235cf9688fc1107a302cd0188128ef32",
+    "assets/maps/icon_mine.png.import": "1f5f7d554761a9391f0a8cdeb6e0cfa6045c5b4e493989c2c6bb9cabbbecd792",
+    "assets/maps/icon_pin.png": "c471d94ee6ecfd38aaf8981bdfe93efa01eef2a63d8a007b09d4e54a6a262aa6",
+    "assets/maps/icon_pin.png.import": "301260eae3daff305188fb0c885f62f747bdcbf495067779c72ebe7a88d54e6d",
+    "assets/maps/icon_ruins.png": "eee849f2c2b71c4a0dd21a53dbb6fb8f0cdc5ae29b945c34c2f446998afdf7ac",
+    "assets/maps/icon_ruins.png.import": "bf99413481f3908a67e6822495a84e32eada8e1540849e154d39e23e9cd85509",
+    "assets/maps/icon_sign.png": "c471d94ee6ecfd38aaf8981bdfe93efa01eef2a63d8a007b09d4e54a6a262aa6",
+    "assets/maps/icon_sign.png.import": "46b8f5e59b7a58fa79d9082232fe608d2159c1845d2fcd4df30eef264783cea9",
+    "assets/maps/icon_temple.png": "eee849f2c2b71c4a0dd21a53dbb6fb8f0cdc5ae29b945c34c2f446998afdf7ac",
+    "assets/maps/icon_temple.png.import": "d9e27d4b816f0dbf5a920ea7f1e9b5b7f5e58489278a255a3f0d2514342369fb",
+    "assets/maps/icon_unknown.png": "a52d4ec793e728869917394270db61559ede1ef63ae438921b5e1feb806c86df",
+    "assets/maps/icon_unknown.png.import": "d0ecf8ee0569e654000a03b2b0c3f9de21590016ea2c7f89937f0a3f4e8dceea",
+    "assets/maps/icon_village.png": "1e5b82d98b2367f599d605d60bda3f44ae2c0a01de2daf4635dd096f34d9e026",
+    "assets/maps/icon_village.png.import": "35cae7f5294479e52f4c5658b18fe1e472601ad4db1974b4ba9603cc176e438c",
+    "assets/maps/icon_well.png": "aaf28e636b450bd4f66996fcd3fa3bf92faef9170723c9e42bf16fadd11940d5",
+    "assets/maps/icon_well.png.import": "e6da3b7d9b9937cc4395c9201eeb14fc38b0a3c01bf672d2cb8aa79ddffbcd93",
+    "assets/maps/icon_workshop.png": "1e5b82d98b2367f599d605d60bda3f44ae2c0a01de2daf4635dd096f34d9e026",
+    "assets/maps/icon_workshop.png.import": "60e004b95c31880ee5a6951a1d5b9e420c9cb00256ebda5b79e3f8ca5dad9322",
+    "assets/maps/lake.png": "2af58ec38eb7c9af77db993d4766591be1a6e79b3e238cf0612f57d93bcd65c7",
+    "assets/maps/lake.png.import": "a8275eff53f2e1f1b1567b119f7dff5ffb228cccf4dc1b7dc37c3e0ad524bc9f",
+    "assets/maps/lake_ruins.png": "55d00591233777da694586994f03b2be71e80c8cde68c2491d81c35d704434f8",
+    "assets/maps/lake_ruins.png.import": "1a5105a10a5804afe82faa4c06cc52cc5df65b9576bc6ccbcca426c784bbf6d1",
+    "assets/maps/mist_forest.png": "da7276795724fc17757839fdb32994583431b6865ceaba7e22ac331da2470314",
+    "assets/maps/mist_forest.png.import": "b5715ed33af90838955da8621730c22194a6624af9eefd64051b9b85b024c594",
+    "assets/maps/old_temple.png": "55d350c3bb2656d2f2d03bebb5dc188f41e66a466b4022dd07170869161e9422",
+    "assets/maps/old_temple.png.import": "735beddddd374125f9489a37d26f557876f402046cda62d8964bdc5b3ca93bf6",
+    "assets/maps/village.png": "133174af1c04ec90022fa7b9f3ce77780df61d0e31aab442abf381fd5f55331a",
+    "assets/maps/village.png.import": "49339960279f29674c41d9582df4edc22d2524387382f9adae80360f47ce695c",
+    "assets/maps/world.png": "4c732f5423cf48ce8e307039bd3a0ed82374c525648019ec6188a87abc5d160a",
+    "assets/maps/world.png.import": "f4506b09b3e6f572284af71dac43b1c2b25c75758e5f870e4e15d28c2ccf3154",
+    "assets/ui/map_fold.svg": "3535f3d513f21ed1caf1f1604531ff9c9e4ab560d0c1742a02bcef7915e5358e",
+    "assets/ui/map_fold.svg.import": "31fea08c2ae69d6a6d1d6185081e7d4b1be6898eb20542e7ff8406ccc80bab49",
+    "export_presets.cfg": "03de9a80c1e9d880a750189ee5d20140974c1f5141a982ce3dc702163a1fad57",
+    "scripts/core/main.gd": "98458b6659f996a764b3c0d0caae4b57ff2b65f38339dffeaa0ec58c76a528a9",
+    "scripts/farming/farm.gd": "840c9f2fb45eec9d61bc67d6d258c3a9ce827a0122978313416c1af8e3ec0841",
+    "scripts/maps/atlas_canvas.gd": "4187bf21fb43c6d3700951cb6a26ca98aa19fa09a108eae5f3aab73a8b9b3595",
+    "scripts/maps/atlas_data.gd": "03114b0ac6fb964fa8eaf84476f2d591422d5e8881fe849a6dc64e8c90bab701",
+    "scripts/maps/atlas_panel.gd": "7d3bce28e64c4e4c2837bcb2cd62cf59118d7653e2075b11fa569c5e8f904237",
+    "scripts/presentation/farm_visual06.gd": "bbd12c1ab6df24972b40ba1ee6a8e60d7455558060a8e50985dae9f60055df55",
+    "scripts/presentation/landscape_details.gd": "6551a4bf1cbd4dccbd6bde9d497ac8009e255eed04314a1e83f69b9002d66541",
+    "scripts/seasons/season_landscape.gd": "31845eb283073492bd6c7b225f89ea20dfdef95069034578aa17f75fd64a8a8a",
+    "scripts/ui/hud.gd": "55365f64c5b7a8513300f2d7b15c08147d330a7b3ce25c1d8e5ea70b5d4919a0",
+    "scripts/ui/inventory_panel.gd": "871159f983fd61adfdab3bca828db52e59b5d39de3f1fb60334c16bb0b46f57e",
+    "scripts/ui/system_panel.gd": "ff6b3dbd652c0412e98aebf921c121acdb08d9ca604dc2bd7af9c026dcb580de",
+    "scripts/world/farm_world.gd": "945a8f8739ffc658f76a52a1fb3552ae7a95955087a7a5e7c2b339a14395fa48"
+  },
+  "logs": [
+    "builds/map06-final-check.log",
+    "builds/map06-final-window.log",
+    "builds/map06-final-build.log",
+    "builds/map06-final-apk-runtime.log",
+    "builds/map06-final-interrupt.log"
+  ]
+}

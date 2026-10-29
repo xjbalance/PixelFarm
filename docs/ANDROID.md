@@ -1,98 +1,102 @@
-# Android 导出与真机验收
+# 像素世界0.7.1 Android构建与待真机验收
 
-## 当前状态
+当前APK增加一键回家，code20，保持原包名/签名及v25存档；新增109项状态/109项窗口和相关265项状态/173项窗口通过，实际包内资源桌面启动通过，无Android真机。详见[回家报告](HOME-TELEPORT.md)。
 
-已实际生成并签名 [PixelFarm-0.3.0-debug.apk](https://github.com/xjbalance/PixelFarm/releases/download/v0.3.0/PixelFarm-0.3.0-debug.apk)，66,717,852 字节（63.63 MiB）。下载 APK 到手机后，用文件管理器打开，按系统提示允许该来源安装应用，再安装并打开「风芽农场」。手机无需安装 Godot、Java 或 SDK。
+本次已重新导出，含方案C角色选择、男女主角与小京联动、统一头像及四方向像素动画，同时包含已收口的UI07和全部原经营功能。当前交付`builds/PixelWorld-0.7.1-debug.apk`，71,052,682字节。SHA256：`848c3aa70c7678c509eec462ad67470631f29af5c20928a38a3029a1467b49ce`。原0.7.0记录见[历史说明](ANDROID-0.7.0.md)。
 
-2026-10-23 使用项目内已有便携构建工具完成新版 APK 导出。最终文件通过 v1/v2/v3 签名验证、ZIP 完整性及对齐检查；包内游戏数据与源码一致，提取资源后在桌面 Godot 4.3 独立启动 180 帧无错误。**尚未执行 Android 真机或模拟器安装运行测试**。详细证据见 [APK 构建报告](APK-BUILD-0.3.0.md)。
+已实际导出，原证书验证、清单/双ABI、ZIP对齐/CRC与导出数据检查通过。方案C历史完整回归见[TEST-SCHEME-C.json](TEST-SCHEME-C.json)，当前回家功能与code20构建记录见[TEST-HOME-TELEPORT.json](TEST-HOME-TELEPORT.json)；桌面资源启动不能替代Android运行。纸面立绘卡保留原参考纸底，透明像素角色与仪式配色派生的边界见[资源报告](SCHEME-C-ASSETS.md)。
 
-与 0.2.0 使用相同包名和签名，可直接覆盖安装；不要先卸载旧版。剧情和共建使用存档 v3，旧经营进度迁移后保留。覆盖安装仍需真机确认。
+| 项目 | 当前配置 |
+|---|---|
+| applicationId | org.pixelfarm.windbud，保持不变 |
+| 版本 | 0.7.1 / versionCode 20 |
+| 引擎 | Godot4.3 Standard / Compatibility GLES3 |
+| ABI | ARM64 + ARMv7 |
+| 最低/目标SDK | 21 / 34 |
+| 存档 | v25，兼容v1–v24，原私有目录/旧自定义路径不变 |
+| 原证书SHA256 | 89455063278c15e708389a2caff957c7254ff2e88b3e19aaf23cdd755c90414b |
+| 权限 | 无uses-permission声明，不申请网络权限 |
 
-安装包配置：横屏、Compatibility/OpenGL ES 3.0、ARM64 + ARMv7、包名 `org.pixelfarm.windbud`、版本 `0.3.0`（versionCode 3）、自有图标。最终 AndroidManifest 的最低版本为 **API 21 / Android 5.0**，目标版本为 API 34；没有申请任何 `uses-permission` 权限。手机还需支持 OpenGL ES 3.0。
-
-普通模板导出使用模板内的 SDK 版本，`gradle_build/min_sdk` 和 `gradle_build/target_sdk` 必须留空，不能在未启用 Gradle 时覆盖。本次已修正旧预设，并开启 `rendering/textures/vram_compression/import_etc2_astc`，否则 Godot 4.3 会拒绝 Android 导出。
-
-## 当前 Linux 工作区再次打包
+## 可复现构建
 
 ```bash
-cd /home/xiznhi/xiangqi/PixelFarm
+python3 tools/check_project.py
+python3 tools/check_windows.py
+python3 tools/check_interrupt_071.py
 python3 tools/build_android.py
+python3 tools/verify_apk_runtime.py
 ```
 
-脚本使用 `.tools/android/` 内的 JDK、SDK、导出模板与独立编辑器配置；仅首次创建 `.tools/android/keys/pixelfarm-debug.keystore`，后续复用。导出后自动核对签名、对齐、清单、两种 ARM 引擎和全部游戏 JSON，成功后更新 APK 与 `.apk.sha256` 文件。不会修改系统配置、安装到手机或下载依赖。
+Linux入口使用本机`.tools/android`内JDK17、SDK34、4.3模板与原keystore；隔离编辑器/XDG/ADB15037，不修改全局SDK、不重新生成签名。先写pending，签名/清单/对齐/CRC/JSON/许可全部验证后才替换交付APK。密钥不打进源码包，仍保留本机原路径。Windows/macOS可导入Godot工程，但本轮没有这些平台构建/实机结果。
 
-**保留并自行备份此 keystore**，未来更新使用相同包名和签名才能覆盖安装并保留存档。工具与密钥不进入源码压缩包；换一台构建机时须另行配置工具并安全迁移密钥。当前 APK 是用于直接安装试玩的调试版。
+## 方案C角色与新游戏
 
-## 在 Windows 配置构建环境
+最终6087项自动化、3425项桌面窗口、159个计划进程全部通过；无Android真机。
 
-1. 使用 **Godot 4.3 Standard**。在「编辑器 → 管理导出模板」安装精确版本 **4.3.stable**。Android 官方模板应包含 `android_debug.apk` 和 `android_release.apk`。
-2. 安装 **OpenJDK 17**，确认 `java -version` 和 `keytool` 可运行。
-3. 使用 Android Studio SDK Manager 或官方 command-line tools 安装：
-   - Android SDK Platform-Tools（adb）。
-   - Android SDK Build-Tools **34.0.0**（zipalign、apksigner）。
-   - Android SDK Platform **android-34**。
-   - Android SDK Command-line Tools。
-4. 接受 SDK 许可证。在 Godot「编辑器设置 → 导出 → Android」中设置 **Java SDK Path** 与 **Android SDK Path**。路径为 JDK/SDK 根目录，不是 bin 目录。
-5. 配置调试 keystore、用户名 `androiddebugkey`、密码 `android`。若 Android Studio 已生成 `%USERPROFILE%\.android\debug.keystore`，直接复用；没有时再创建，不要覆盖已有签名。
+角色选择页已执行36项状态与36项桌面窗口专项；包括原生预选、重复确认、双指过滤、后台保留选择、菜单头像、覆盖确认、四种横屏比例和480DPI注入。键鼠和手柄输入事件通过，未做实体手柄或Android真机验收。
 
-创建新的调试签名示例（PowerShell，确认文件不存在后执行）：
+其他已独立通过的专项为外观状态44项、6个持久化进程40项、主场景流程54项状态/54项窗口、首次取消2项及女主配对深层剧情849项。这些不是整套最终总数，也不重复相加；完整结果见[当前机器记录](TEST-SCHEME-C.json)。
 
-```powershell
-New-Item -ItemType Directory -Force "$env:USERPROFILE\.android" | Out-Null
-keytool -genkeypair -keyalg RSA -keysize 2048 -validity 10000 `
-  -alias androiddebugkey -keypass android -storepass android `
-  -keystore "$env:USERPROFILE\.android\debug.keystore" `
-  -dname "CN=Android Debug,O=Android,C=US"
-```
+新档等待选择期间不自动保存；确认角色才进入统一新档事务，重开先备份旧进度。已有存档不重新弹选人，v25只补必要外观数据并保留原经营、婚姻和任务。[选择页](SCHEME-C-SELECTION.md) · [资源边界](SCHEME-C-ASSETS.md) · [迁移说明](SAVE-MIGRATION.md)。
 
-签名文件与密码不应提交到源码仓库。本工程 `.gitignore` 已忽略 `*.keystore`。此预设使用标准 APK 导出，不要求启用 Gradle 自定义构建。
+## UI07全界面收口历史验收
 
-## 导出与验证
+`94f18cd`阶段为v24/code18，5062项自动化、3335项桌面窗口、146个计划进程及34套窗口检查通过。原手记地图已复用羊皮纸Canvas，常用/剧情/经营界面与建筑角色材质完成统一，原尺寸九格保留。历史APK包内桌面启动及异常恢复通过，没有手机实测。[报告](REPORT-UI07.md) · [机器记录](TEST-UI07.json)。
 
-在项目目录执行：
+## 数量出售、农场样板与冒险图纸历史验收
 
-```powershell
-& "C:\Tools\Godot_v4.3-stable_win64_console.exe" --headless --editor --path . --quit
-& "C:\Tools\Godot_v4.3-stable_win64_console.exe" --headless --path . `
-  --export-debug "Android Debug" "builds/PixelFarm-0.3.0-debug.apk"
-Test-Path "builds/PixelFarm-0.3.0-debug.apk"
-Get-Item "builds/PixelFarm-0.3.0-debug.apk" | Select-Object Length, LastWriteTime
-```
+本轮整合记录见[TEST-MAP06.json](TEST-MAP06.json)。最终4598项自动化、2869项桌面窗口、142个计划进程全部通过。已执行专项：数量出售35项状态/24项窗口，农场139项状态/147项窗口，图纸核心74项状态/80项窗口、UI51项状态/51项窗口及4个独立进程45项持久化，全部零失败。APK实际资源桌面运行180帧与接口检查、实际SIGKILL后独立重启通过。
 
-也可在编辑器「项目 → 导出 → Android Debug → 导出项目」中勾选调试后导出。只有导出退出码成功且文件存在，才视为生成成功。再使用 SDK Build-Tools 的 `apksigner verify --verbose builds/PixelFarm-0.3.0-debug.apk` 验证签名。
+地图小折叠图标置于HUD安全区，M展开/收起，原手记入口保留；地图手势由图纸自身消费，关闭后恢复原移动方式。所有新查看/确认状态是临时UI状态，schema仍v24，不新增存档字段，不修改售价、资源收益或剧情条件。[图纸报告](PARCHMENT-MAP.md) · [农场样板](FARM-VISUAL-06.md) · [数量出售](SALE-QUANTITY.md)。
 
-在已授权 USB 调试的测试手机上：
+## 温馨田园住宅与自由布置历史验收
 
-```powershell
-adb devices -l
-adb install -r builds/PixelFarm-0.3.0-debug.apk
+[历史报告](HOME-ARRANGE.md)与[机器记录](TEST-HOME-ARRANGE.json)：4251项自动化、2534项桌面窗口、134个计划进程全部通过。新增159项布置状态、27项跨进程持久化及86项窗口检查；覆盖原生拖动/点选、UI与多指防误触、旧位置失效、动态功能家具、施工和婚姻进度保留。60张住宅PNG由既有原创生成器维护；原参考目录need不导出。v23→v24仅增住宅builtins，旧物品和钱物不重置。
+
+## 布局恢复与资源森林历史验收
+
+[历史报告](RESTORED-LAYOUT-RESOURCES.md)：4064自动化、2448真实窗口、127个计划进程通过。三图资源状态同v23扁平字段保存，原19ID不变；新目录128节点已在最终APK中检查。原全宽界面与完整九格保留DPI换算，手机真机仍待验收。
+
+## 住宅05历史验收
+
+[完整报告与截图](REPORT-HOME05.md)。3926项自动化、2375项桌面窗口、120个计划进程全过。v22旧住宅不降级，家具/柜存/配方/婚姻保留；新工单跨两日唯一完工，沙发午夜走原疲劳结算一次。51张原创住宅资源已导出，need参考目录排除。Android真机仍未验收。
+
+## UI05历史验收
+
+[完整报告](REPORT-UI05.md)与[布局规范](UI05-LAYOUT.md)。真实桌面窗口2291项零失败，含全部旧UI矩阵及相机48、紧凑工具43、布局301专项。地图手势12dp按DPI/视口换算，UI起手/多指/工具/模态不发起世界拖动。自由观察松手保持，新点击使用按下世界坐标后回跟；小屋保留原尺度背景填充。Android手势、刘海和覆盖安装仍待真机验收。
+
+## UI04历史验收
+
+公共九宫格/纸木主题与全部既有面板完成视觉统一；原自动化3402、窗口1899项通过，含5比例/安全区和320/480DPI桌面注入样本。48dp先按真实设备DPI与画布缩放换算为逻辑目标，样本64/96已验证布局；没有把桌面模拟称为手机实测。密度未知回退48逻辑px，仍需设备核验。原生支付标题背景已修复，主要确认/取消按钮按目标扩展，系统小关闭图标仍需真机检查。当前包内主题与UIMetrics换算接口已验证。
+
+## 既有触控与性能优化（保留）
+
+触点按下时捕获坐标和对象，追踪移动NPC/动物，换工具/多指/混合输入/后台取消旧意图。工具脚底和朝向短锁不叠加动作，目标环区分地面/交互/不可达。主要按钮≥48×48逻辑像素，设置/指南滚动，出售全部最终确认。保留默认点击和备用摇杆，选择仍存档。
+
+提示10Hz、NPC同帧静态导航采样共享、动物60Hz物理与4Hz像素帧、天气空重绘/转场清理、隐藏UI不处理每次输入。现有一盏无阴影洞灯、节点/家具/动物上限和按地图启停继续保留。CPU测量与生命周期数据见`PERFORMANCE-0.7.1.json`，不包含手机FPS/功耗。
+
+## 真机验收清单：全部待执行
+
+当前没有Android真机验收；以下是后续设备操作说明，本轮没有安装或覆盖。设备型号、连接记录和实测结果须在真机验收时补齐。
+
+```bash
+adb install -r builds/PixelWorld-0.7.1-debug.apk
 adb shell am start -n org.pixelfarm.windbud/com.godot.game.GodotApp
 adb logcat -s godot
 ```
 
-如果启动器 Activity 在后续自定义导出中改变，可直接从手机桌面点「风芽农场」。以上设备命令是交付后的操作说明，本次未执行设备安装。
+安装前备份原APK和原存档。使用原签名覆盖，勿卸载旧包来冒充升级验证。
 
-## 真机验收清单（待执行）
+| 待验收项目 | 设备上记录/判定 |
+|---|---|
+| 覆盖升级 | 0.7.0/v21或0.7.1/v22–v24→当前v25，钱/作物/矿层/家具/动物/鱼栏/小京三属性、婚姻、钻石、婚后日期、操作模式逐项不变；老档不重新弹教学 |
+| 开局与重开 | 首次选人可切换与返回，后台保留候选而不存默认性别；旧档不强制重选；重开覆盖确认、备份和失败回退安全，两组配对一致 |
+| 屏幕 | 常用16:9、全面屏、平板及刘海/导航条；九工具、地图折叠入口、背包、任务/手记、对话、钓鱼、家具、商店、鱼栏、畜牧、深渊、婚礼确认均可触达 |
+| 相机与目标 | 长距离行走中按下/释放不换格，移动NPC/动物仍追踪本人，不可达有红环反馈且无扣费；地图图纸拖动、双指缩放不误点，关闭后正常移动；连点与UI无穿透 |
+| 农活 | 轻触连续多格，浇水脚底/朝向稳定，播种/翻土/收获/砍伐/采矿不叠加，结束可移动，打开背包不执行工具 |
+| 体力/日结算 | 椅子3次/20分钟/15点、满体力不耗；食物无每日次数上限，茶保留原日限；沙发1小时/最大体力50%，23:30午夜唯一昏睡；取消/重复确认无资源变化，20点前不可床睡 |
+| 后台与中断 | 锁屏/来电/切后台/系统回收/强关后恢复，旧触点/路径不恢复；深渊不在后台受伤，鱼获/加工/婚礼不重领或重扣 |
+| UI重要操作 | 出售/家具/婚礼取消不扣材料，最终确认只结算一次；家内点选/拖动/预览/确认、功能位置与碰撞同步、门口不可堵；长文/列表拖动及两控制模式自由切换 |
+| 长负载 | 至少20–60分钟，三舍18动物/40家具/恶劣天气/夜晚节日/100层切换，记录型号、Android版本、FPS、加载耗时、CPU/GPU、RSS/内存、温升、电量 |
 
-- 横屏启动，字体无缺字；长屏、刘海、挖孔和系统手势导航区域不遮挡按钮。
-- 左指保持摇杆，右指点击工具/动作；抬起右指时左指继续移动，抬起左指后立刻停止。
-- 手指拖出摇杆区域再抬起、切后台再返回、锁屏再解锁，不出现持续移动或时间卡住。
-- 背包、商店和对话期间角色不动，时间暂停；界面关闭后输入恢复。
-- 实际完成翻土、三种作物种植、每日浇水、室内睡觉、收获、出售和购买。
-- 用斧头和镐完成采集，修建三项设施；在委托板接取/交付，通过手机触屏查看材料与委托手记。
-- 从来信完整完成修桥、三项公共设施、聚餐和风灯夜；测试选择、手记触摸滚动、地图和每日设施福利。
-- 保存后结束应用进程，再启动，确认室内/室外位置、日期、库存、金币与作物状态一致。
-- 连续运行 20 分钟，使用 Godot profiler/设备工具检查帧率、内存、音频、发热与前后台恢复。
-
-60 FPS 是工程配置目标，本次软件渲染和无界面测试不能证明手机上的性能。Android 真实系统安全区和多指硬件输入同样需要上述验收。
-
-## Windows EXE
-
-已提供 Windows Desktop 预设。安装匹配的 Windows 导出模板后可执行：
-
-```powershell
-& "C:\Tools\Godot_v4.3-stable_win64_console.exe" --headless --path . `
-  --export-debug "Windows Desktop" "builds/PixelFarm.exe"
-```
-
-本轮已交付 Android APK 和可导入源码，未生成或测试独立 Windows EXE。
+Linux/Xvfb窗口原生触点、隔离进程SIGKILL、模拟安全区与APK导出不能替代这些项目。暂未给出真机验收结论。

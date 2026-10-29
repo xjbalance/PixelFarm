@@ -1,0 +1,607 @@
+{
+  "version": "0.7.1",
+  "save_version": 24,
+  "baseline_commit": "a09a661",
+  "baseline_related_checks": 500,
+  "baseline_window_checks": 44,
+  "headless": {
+    "checks": 4251,
+    "failures": 0,
+    "process_steps": 134,
+    "suites": [
+      {
+        "suite": "SLEEP RESULT",
+        "checks": 29,
+        "failures": 0
+      },
+      {
+        "suite": "RESULT",
+        "checks": 452,
+        "failures": 0
+      },
+      {
+        "suite": "MINING RESULT",
+        "checks": 98,
+        "failures": 0
+      },
+      {
+        "suite": "STAR RESULT",
+        "checks": 125,
+        "failures": 0
+      },
+      {
+        "suite": "LEGEND RESULT",
+        "checks": 252,
+        "failures": 0
+      },
+      {
+        "suite": "STABILITY RESULT",
+        "checks": 264,
+        "failures": 0
+      },
+      {
+        "suite": "RIVER RESULT",
+        "checks": 446,
+        "failures": 0
+      },
+      {
+        "suite": "AQUACULTURE RESULT",
+        "checks": 155,
+        "failures": 0
+      },
+      {
+        "suite": "SEASONS A RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "CONTROL RECOVERY RESULT",
+        "checks": 52,
+        "failures": 0
+      },
+      {
+        "suite": "FISHING B RESULT",
+        "checks": 84,
+        "failures": 0
+      },
+      {
+        "suite": "LIVESTOCK B RESULT",
+        "checks": 112,
+        "failures": 0
+      },
+      {
+        "suite": "KITCHEN B RESULT",
+        "checks": 100,
+        "failures": 0
+      },
+      {
+        "suite": "ECOLOGY B RESULT",
+        "checks": 65,
+        "failures": 0
+      },
+      {
+        "suite": "FESTIVALS C RESULT",
+        "checks": 87,
+        "failures": 0
+      },
+      {
+        "suite": "SOCIAL C RESULT",
+        "checks": 107,
+        "failures": 0
+      },
+      {
+        "suite": "HOUSING C RESULT",
+        "checks": 109,
+        "failures": 0
+      },
+      {
+        "suite": "EXPLORATION D RESULT",
+        "checks": 106,
+        "failures": 0
+      },
+      {
+        "suite": "WORLD PROGRESS D RESULT",
+        "checks": 170,
+        "failures": 0
+      },
+      {
+        "suite": "QUALITY 070 RESULT",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 070 RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FINALE 070 RESULT",
+        "checks": 24,
+        "failures": 0
+      },
+      {
+        "suite": "PALM 071 RESULT",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "suite": "RECOVERY 071 RESULT",
+        "checks": 55,
+        "failures": 0
+      },
+      {
+        "suite": "TUTORIAL UI 071 RESULT",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "suite": "PERFORMANCE 071 RESULT",
+        "checks": 17,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH RESULT",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS RESULT",
+        "checks": 110,
+        "failures": 0
+      },
+      {
+        "suite": "FOOD RECOVERY RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "UI 04 THEME RESULT",
+        "checks": 7,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 RESULT",
+        "checks": 51,
+        "failures": 0
+      },
+      {
+        "suite": "HOTBAR 03 RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "UI 05 CAMERA RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "UI05 HOTBAR RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "UI05 LAYOUT RESULT",
+        "checks": 305,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 RESULT",
+        "checks": 103,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE RESULT",
+        "checks": 159,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH RESULT",
+        "checks": 117,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "TOUCH POLISH PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "FARMING ACTIONS PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "INVENTORY 03 PERSISTENCE RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "HOME 05 PERSISTENCE RESULT",
+        "checks": 3,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 2,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "RESOURCE RICH PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 4,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 7,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      },
+      {
+        "suite": "HOME ARRANGE PERSISTENCE RESULT",
+        "checks": 5,
+        "failures": 0
+      }
+    ]
+  },
+  "window": {
+    "checks": 2534,
+    "failures": 0,
+    "suite_count": 26,
+    "suites": [
+      {
+        "suite": "render_061 :[ 0 ] RENDER 061 RESULT",
+        "checks": 113,
+        "failures": 0
+      },
+      {
+        "suite": "render_062 :[ 0 ] RENDER 062 RESULT",
+        "checks": 32,
+        "failures": 0
+      },
+      {
+        "suite": "render_seasons_a :[ 0 ] RENDER SEASONS A RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "fishing_b_render :[ 0 ] RENDER FISHING B RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "livestock_b_render :[ 0 ] LIVESTOCK B RENDER RESULT",
+        "checks": 25,
+        "failures": 0
+      },
+      {
+        "suite": "kitchen_b_render :[ 0 ] KITCHEN B RENDER RESULT",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "life_c_render :[ 0 ] LIFE C RENDER RESULT",
+        "checks": 19,
+        "failures": 0
+      },
+      {
+        "suite": "exploration_d_render :[ 0 ] EXPLORATION D RENDER RESULT",
+        "checks": 39,
+        "failures": 0
+      },
+      {
+        "suite": "world_progress_d_render :[ 0 ] RENDER WORLD PROGRESS D RESULT",
+        "checks": 22,
+        "failures": 0
+      },
+      {
+        "suite": "finale_070_render :[ 0 ] FINALE 070 RENDER RESULT",
+        "checks": 13,
+        "failures": 0
+      },
+      {
+        "suite": "palm_ui_render :[ 0 ] PALM UI RENDER RESULT",
+        "checks": 296,
+        "failures": 0
+      },
+      {
+        "suite": "palm_runner :[ 0 ] PALM 071 RESULT",
+        "checks": 28,
+        "failures": 0
+      },
+      {
+        "suite": "tutorial_071_runner :[ 0 ] TUTORIAL UI 071 RESULT",
+        "checks": 26,
+        "failures": 0
+      },
+      {
+        "suite": "touch_polish_runner :[ 0 ] TOUCH POLISH RESULT",
+        "checks": 53,
+        "failures": 0
+      },
+      {
+        "suite": "touch_polish_visual :[ 0 ] TOUCH POLISH VISUAL RESULT",
+        "checks": 6,
+        "failures": 0
+      },
+      {
+        "suite": "farming_visual_runner :[ 0 ] FARMING VISUAL RESULT",
+        "checks": 82,
+        "failures": 0
+      },
+      {
+        "suite": "food_recovery_runner :[ 0 ] FOOD RECOVERY RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "inventory03_render :[ 0 ] INVENTORY 03 RENDER RESULT",
+        "checks": 136,
+        "failures": 0
+      },
+      {
+        "suite": "hotbar03_runner :[ 0 ] HOTBAR 03 RESULT",
+        "checks": 23,
+        "failures": 0
+      },
+      {
+        "suite": "ui04_runner :[ 0 ] UI 04 RESULT",
+        "checks": 886,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_camera_runner :[ 0 ] UI 05 CAMERA RESULT",
+        "checks": 48,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_hotbar_runner :[ 0 ] UI05 HOTBAR RESULT",
+        "checks": 43,
+        "failures": 0
+      },
+      {
+        "suite": "ui05_layout_runner :[ 0 ] UI05 LAYOUT RESULT",
+        "checks": 305,
+        "failures": 0
+      },
+      {
+        "suite": "home05_render :[ 0 ] HOME 05 RENDER RESULT",
+        "checks": 44,
+        "failures": 0
+      },
+      {
+        "suite": "resource_rich_render :[ 0 ] RESOURCE RICH RENDER RESULT",
+        "checks": 73,
+        "failures": 0
+      },
+      {
+        "suite": "home_arrange_render :[ 0 ] HOME ARRANGE RENDER RESULT",
+        "checks": 86,
+        "failures": 0
+      }
+    ],
+    "platform": "Linux Godot 4.3 Xvfb/Mesa"
+  },
+  "new_suites": [
+    {
+      "suite": "HOME ARRANGE RESULT",
+      "checks": 159,
+      "failures": 0
+    },
+    {
+      "suite": "HOME ARRANGE PERSISTENCE RESULT",
+      "checks": 4,
+      "failures": 0
+    },
+    {
+      "suite": "HOME ARRANGE PERSISTENCE RESULT",
+      "checks": 6,
+      "failures": 0
+    },
+    {
+      "suite": "HOME ARRANGE PERSISTENCE RESULT",
+      "checks": 7,
+      "failures": 0
+    },
+    {
+      "suite": "HOME ARRANGE PERSISTENCE RESULT",
+      "checks": 5,
+      "failures": 0
+    },
+    {
+      "suite": "HOME ARRANGE PERSISTENCE RESULT",
+      "checks": 5,
+      "failures": 0
+    },
+    {
+      "suite": "home_arrange_render :[ 0 ] HOME ARRANGE RENDER RESULT",
+      "checks": 86,
+      "failures": 0
+    }
+  ],
+  "apk": {
+    "file": "PixelWorld-0.7.1-debug.apk",
+    "bytes": 68169694,
+    "sha256": "5fbcff27391aca9333c3728322810869b21b4b3d15f171a31ad2e62e64a341a0",
+    "version_code": 16,
+    "package": "org.pixelfarm.windbud"
+  },
+  "android_device_tested": false,
+  "interrupt_restart_passed": true,
+  "apk_desktop_resources_passed": true,
+  "tested_production_sha256": {
+    "assets/housing/interior/bed.png": "dd6b75c8e96b8261e0bd6e7576afe6653a064bf8aa2587b764e23ef0f8761645",
+    "assets/housing/interior/bed_quilt.png": "2e549de79f9d95fa309300a86ba33958304a3177869e33d2ef003926f71dabae",
+    "assets/housing/interior/bed_rug.png": "db983a689b33640136e3c5a9a0ea2f41af980a44ac3e2344ae9563207e1d82a3",
+    "assets/housing/interior/bedroom_divider.png": "f3be2a49f8a0cc52e567e5f3436e4a43c9c3906f2a39402aa919d837f6a92e7c",
+    "assets/housing/interior/bookcase.png": "54021bb880667ed7ee514f6d02e0d41b587cd9e18120503061971784d3532a06",
+    "assets/housing/interior/chair_left.png": "9d4bac32dba3e313c1af098796570e990c94b75d307debd2fb4768f06006076c",
+    "assets/housing/interior/chair_right.png": "547aeb7667ea3a16dc7b1d7ac713e48044067afd9d53c8fc582712099befd6a8",
+    "assets/housing/interior/dining_rug.png": "5f2d13d51616e9cb5d253afc955ed1d09382d10eacc88a4378e302e7636e0bf6",
+    "assets/housing/interior/dining_table.png": "2aab8085cc060b5b5f1aa72b6ecf9e946e223f395e08670011a13f871e7c037c",
+    "assets/housing/interior/dresser.png": "797624e592f128229f9336dca5ff29123c1bc56a123c10049f07029e24f0b784",
+    "assets/housing/interior/extension_walls_2.png": "33522eeb44b357dc4bf85f8fa38e9252013dba29d9b89f1b2268a30236fe2828",
+    "assets/housing/interior/extension_walls_3.png": "fb78f5b065a738d548bd5c3232365dec3d4338ac517524c630a9ef2f740c002b",
+    "assets/housing/interior/extension_walls_4.png": "733987bcf0a9df12f4702ff04ddc5d1a4e9c56a7a9ea462ee2c83c812efa1a12",
+    "assets/housing/interior/exterior_1.png": "52db37123bafd86fb65816a6458204f8adc201c1d7f99245d49cef6867f264ec",
+    "assets/housing/interior/exterior_2.png": "1248b4d6287a24666fe61a687007709f71e50b5a3731161b6f4eb4f8b4a5659a",
+    "assets/housing/interior/exterior_3.png": "03c7df567323d8068f47c6cba5fef909e7e02106d7cb576c9147ce9932212f27",
+    "assets/housing/interior/exterior_4.png": "cbe009b58dddc7c7e6eb9dd5cfc220408d0f7a1896555b4af3a5f658bfad0375",
+    "assets/housing/interior/fireplace.png": "fa02fc428dce79f0fd009073b9be3d3805bcf631dacd3a0c79af33a14462ecef",
+    "assets/housing/interior/fireplace_grand.png": "eb899925d5718e7b60b9e0784f023ada40b45caeb3fce0cf94995e2fae32fd27",
+    "assets/housing/interior/floor_estate_atlas.png": "e46499e07e3b7b0d0c0c5be1791070907b65de66ec770b17978efa28813e2d08",
+    "assets/housing/interior/floor_oak_atlas.png": "0546638c43d19d81e16318d51c9473ed54bcff2694c460804995b70e4ba137ae",
+    "assets/housing/interior/floor_pale_atlas.png": "ac719ee1c5381b277f81a89bb02e844b01948a178c4a69ff0e58b32f1d327b3f",
+    "assets/housing/interior/floor_polished_atlas.png": "30bb05244e5c2aff729c956560ff194343d8621972c7936b93cdbeb33039cbf8",
+    "assets/housing/interior/kitchen.png": "ea60792266884faf791ec4b4a6f314890bb3a7871e8021e399d9acb1257987c0",
+    "assets/housing/interior/kitchen_estate.png": "fd0c4eb7b50db38d98f8948e4cd85fc4162bfec2f7a8e9cac6d5dfb02485c531",
+    "assets/housing/interior/kitchen_tiles.png": "962acc1f4680e10eece6f110d2d34570297d349b5d799c97fb640c5698651dec",
+    "assets/housing/interior/lamp.png": "5f5bfbbee3967cdbbd8f4296477d761c34834cf9e0304724dd010009e4b62ff4",
+    "assets/housing/interior/mail_desk.png": "8118badfc1fe1111e6c0e91ab22082399523b9eef7c7cf22577f20eabbcc4246",
+    "assets/housing/interior/main_rug.png": "8d2190cad171f65dd7b27c3120d6fa9907246c9276753f6d0e3628352c3c6aca",
+    "assets/housing/interior/placeable_bed.png": "fe6cbca3b2bca0ce3d63bf04e85a004cd2b1f675719b1456ba53269c8f8f3e3b",
+    "assets/housing/interior/placeable_cabinet.png": "afdf69dbd18b55429f5a5caa4025a1118c0f578b93b1da38b827e08a0f759701",
+    "assets/housing/interior/placeable_chair.png": "ca9be11f7e4effe7cfc8d0a08ac2d96a4335c107f8e5b6e01362e22e8a3b4f84",
+    "assets/housing/interior/placeable_lamp.png": "37a32b17a0bc28a3a10983636cab3841d5fbe2dc30c4f5dff0b8b1e482ca770b",
+    "assets/housing/interior/placeable_plant.png": "5a82e34a33582fe63e6c1316ebe40adcbcfbb05518c7d7bf346689efbf2ff2bb",
+    "assets/housing/interior/placeable_rug.png": "e711a1cb49957054fa3d5944c606a9b19a7cd2a531dfac12e80be70e9d611633",
+    "assets/housing/interior/placeable_spouse_desk.png": "c3a23973e468d9b92b6575d6b2c938b71f1788eda96c2c389b2e283bd6681632",
+    "assets/housing/interior/placeable_table.png": "180d0de65d3e550f38b1885e4ced5f0965aa811ac98ea36b9ed34658b240e9e0",
+    "assets/housing/interior/plant.png": "0b92649b8bedc974d430b362ee32935a142750e63ac3f1aa78eaa250fd8375f1",
+    "assets/housing/interior/sofa.png": "3fb96960f19d25f4e247790594c14549f55f31b87e8c4af1c2ceb39252d78c47",
+    "assets/housing/interior/sofa_cottage.png": "f262d2f93c2555dd85b1314846c7a1f455e6f04f93562e39aa93a27641e90fd5",
+    "assets/housing/interior/sofa_estate.png": "e118e76407a76d2418e41a85a3e77c3bb22804c595cd6d774b9b9aeb52a9e6be",
+    "assets/housing/interior/star_lantern.png": "6f31b20d64dab91e858ccebc292faef32bce4914efd6716e428bd18028ba3193",
+    "assets/housing/interior/star_map.png": "7a0a2a0d4e592980864ceff44505bd8a6a3143722e403e5769c57e11f92a2327",
+    "assets/housing/interior/storage_chest.png": "60f17fc700fb972e6f71f208c465426d2ebe433665e5f69a2fc6796f853c7be6",
+    "assets/housing/interior/storage_slim.png": "9bb5e4a8ed88718adf82d98b75aeac4dba9b1fbc376a45780f3020cef8580bb8",
+    "assets/housing/interior/study_desk_2.png": "43d6d8d22ab6e3f70cc61dd24857cd1bd12f9f6c81aeff3cc6e11b5169b71d05",
+    "assets/housing/interior/study_desk_3.png": "b6942ed4d9090dbf9ec8caeeae484d4a77c1e049c4585a2c9c9ae9d79129a051",
+    "assets/housing/interior/study_desk_4.png": "a0df42c0f27b6196d0cc262d33659b17a8c45bb4bea7ccb7f426605bda1b295f",
+    "assets/housing/interior/study_rug.png": "a2b20fe6f8d956faaa4d56aaff16d8012544bc1ab7100b7fe5e485f40fee611d",
+    "assets/housing/interior/study_rug_2.png": "f41aba506eb85b4e698df3f82e28cc7aec4bf82c5f9d524f9e3188c4b19481cf",
+    "assets/housing/interior/study_rug_4.png": "2f68537a8da87cdc0032d02e36ac9d137be86bf0c7a4a9e6f13a15e5ac1b9025",
+    "assets/housing/interior/sunbeam.png": "f4fb91ad22109e5eb58fae239f0a6ccad5471cca3cf8d8745aba5817fb78b2c7",
+    "assets/housing/interior/wallpaper_sage.png": "27aed390329804ef12240e7917d5ab659a60c1a6c0e237d8b62fe0ed3226a472",
+    "assets/housing/interior/walls_1.png": "a6b3fdf9ea87702f5f5ac83770378b9ccab0d1ab11f57f7bf8a72ccfc4930732",
+    "assets/housing/interior/walls_2.png": "f159f22fa9dee13fe64c063a74b151beafa6d85cdd70371c844600eca25b01e9",
+    "assets/housing/interior/walls_3.png": "f159f22fa9dee13fe64c063a74b151beafa6d85cdd70371c844600eca25b01e9",
+    "assets/housing/interior/walls_4.png": "f159f22fa9dee13fe64c063a74b151beafa6d85cdd70371c844600eca25b01e9",
+    "assets/housing/interior/window.png": "558e4f108a857d7eb44d465a96de06796141626fab8d29a2a970ca94db54a721",
+    "assets/housing/interior/window_cottage.png": "2f927ec00c63623a77532d29f210955c39ca1c01cfed7ef861ee4bbdc6d3e18b",
+    "assets/housing/interior/window_estate.png": "4b1fc8867814cb27c586deb943996e8012e5703e041fdcb2b47cc723aaa9c2c0",
+    "export_presets.cfg": "02de22a61da8df078b7175b2a145ddc0bd80157845a6f6d8cba68eea6bab3c52",
+    "scripts/core/main.gd": "b766d78c14d20ef3780bdf825086ff55f3e5c075bb74eade4e14702bd1d4cdde",
+    "scripts/housing/home_action_point.gd": "6b0d2bc97f21cb09f307a117f669cbec0df8ff5f681f4d510d4247a73e6e7afd",
+    "scripts/housing/home_arrange_controller.gd": "b6e25a50675c05ada761a2825498fc1a10eac0b18c81a530714fd39f1426e826",
+    "scripts/housing/home_arrange_panel.gd": "b1e0db6b5288557c580647707999805415e929f4ac668f8c384b51e5109cb2ae",
+    "scripts/housing/home_builtin_target.gd": "8ab6c33f3b1f1664cb8da59b476d611866aa68fce6f7b3ea705e4c8e1c4f6796",
+    "scripts/housing/home_layout.gd": "16c081c716f7bca5ca17091ca1babb30bd4561cdc546e8644f7d3efeee461323",
+    "scripts/housing/home_placement_preview.gd": "b142b8cd7bb81ed44b2c923e52cd839fb6e1a81976fbcd9ea87891b7450916ce",
+    "scripts/housing/home_rest_controller.gd": "e91a20e8d19404db81ff3ddced9fc69a82dc163084e54ff9f7b3d66f7fd5fc74",
+    "scripts/housing/home_rest_panel.gd": "a4244aaee15640eaf763b1649ca7c7e08dba1f4710fe8edd59a4d92306920787",
+    "scripts/housing/home_upgrade_preview.gd": "a8e3a99f336fd0c6159b0aa7f9a8cfc3765db8a78523bd622d6fbdc6cdb2f1f4",
+    "scripts/housing/housing_extension.gd": "ff6108c7bf995bbe00255216a78776c18b560a1263b3068aad9fd05c34c77a1c",
+    "scripts/housing/housing_furniture.gd": "35c808717190413fb979788646dbb0c77ec7fdd1ff4e528d71c3daf11856854a",
+    "scripts/housing/housing_panel.gd": "2e67a32c6aaf6e4b4d9afe447eb496e429d04d6fecd960c4ffd81e4a47fd838f",
+    "scripts/housing/housing_point.gd": "74e157bdaabf0ddc7a8532380571fb013e266504c397ca73b611f7c220c9accd",
+    "scripts/housing/housing_state.gd": "f8aaaac92f87301abee8562b8e721920e1f4dc3837ab7ddedc84c4143bab7446",
+    "scripts/housing/housing_surface.gd": "8ec2d9bcd59dd67eb98ffcdfae5295bf0eae6bf6149cdb98995ab6983b6e6767",
+    "scripts/housing/housing_world.gd": "33e56f8d45143b367824a19fde362572a25be107ca243fc346d379428d30860c",
+    "scripts/input/interaction_resolver.gd": "5cd262835f41f027374b96ffbf0deb1276c45f1fc783d7339d982ec437aa25e9",
+    "scripts/kitchen/kitchen_point.gd": "7e05859ae7560017d5e866ea559cf5e759ba3c88299c37e4fa912b618ed2b877",
+    "scripts/kitchen/kitchen_state.gd": "6a75f878cfdfe65f8c9440bec7c7e848f994f584d50cefb21bb33aa901b4d841",
+    "scripts/kitchen/kitchen_world.gd": "4522a5cf7e97cbd0b11ae4cdd4e99c44c9c5e834432a11dbe9951244b2a43b3d",
+    "scripts/navigation/navigation_manager.gd": "bc70d05941231bb40ff66e70e1aa18f5f7712cde35cf1aad8de44b3152a1c72d",
+    "scripts/save/save_schema.gd": "f96542a5f5828856327d6029865a840a48cf82e796e7bbbc0a1da5e96ffbad6c",
+    "scripts/save/save_store.gd": "bfb09ade822fa105a58522a4a89983e5c904c498bd034c72dd4d714c73981620",
+    "scripts/ui/hud.gd": "c29b0d64ea4329be338196ae15230becd000f928ebe2ec46d8e1bb5812f14be4",
+    "scripts/ui/system_panel.gd": "62eb94f5a2d6bea283d28e9f47b17767c623df5d215006e6de1aee60e98bda7c",
+    "scripts/world/home.gd": "278efcffb6d60167cfd5605bd854f666c071eece07d18e1b88fead0910e59ca4",
+    "scripts/world/story_point.gd": "af4607cac7ee8a5b01d5cd8f758b9df02ed5da64a33e1d6bfb834860ffeaffc0"
+  },
+  "logs": [
+    "builds/home-arrange-final-check.log",
+    "builds/home-arrange-final-window.log",
+    "builds/home-arrange-final-build.log",
+    "builds/home-arrange-final-apk-runtime.log",
+    "builds/home-arrange-final-interrupt.log"
+  ]
+}

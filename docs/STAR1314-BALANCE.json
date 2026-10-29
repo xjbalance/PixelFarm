@@ -1,0 +1,41 @@
+{
+  "not_human_playtest": true,
+  "management_feasible_plan": {
+    "potato": 48,
+    "wheat": 12,
+    "seed_value": 960,
+    "sales": 2952,
+    "standard_profit": 1992,
+    "growth_days": 3
+  },
+  "shopping_arbitrage": "PASS: all diamond-output recipes cost more diamonds in purchased inputs than they yield",
+  "scenarios": [
+    {
+      "samples": 10000,
+      "optional_diamond_spending": 0,
+      "p10_hours": 36.89,
+      "p50_hours": 43.45,
+      "p90_hours": 49.96,
+      "mean_cycles": 88
+    },
+    {
+      "samples": 10000,
+      "optional_diamond_spending": 100,
+      "p10_hours": 38.36,
+      "p50_hours": 44.98,
+      "p90_hours": 51.75,
+      "mean_cycles": 94
+    },
+    {
+      "samples": 10000,
+      "optional_diamond_spending": 300,
+      "p10_hours": 41.8,
+      "p50_hours": 48.95,
+      "p90_hours": 56.13,
+      "mean_cycles": 108
+    }
+  ],
+  "no_spending_endless_requirement": "Buying is optional. Fixed finite spending can always be recovered through three-day rare-vein regeneration without diamond payment. Continued spending faster than income can delay marriage indefinitely by player choice.",
+  "timing_limits": "Active-time assumptions; no verified 80–120 hour duration, no human playtest. Post-marriage day520 is a date boundary, excluded from pre-marriage completion hours.",
+  "unchanged_guarantees": "No rare-drop drought: all advanced diamond veins guarantee one and every fourth grants two. Refining is deterministic. No luck-dependent permanent gate."
+}

@@ -1,0 +1,358 @@
+{
+  "species": {
+    "crucian": {
+      "name": "鲫鱼",
+      "growth_days": 2,
+      "fry_price": 6,
+      "sell_price": 16,
+      "water": 45,
+      "min_adults": 2,
+      "breed_days": 3,
+      "offspring": 1,
+      "seasons": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "rarity": "普通",
+      "level": 1,
+      "feature": "高背圆腹、短尾；适应四季，适合初学养殖。",
+      "source": "林芽种子摊或湖岸补给",
+      "use": "初识养殖、收藏、四尾可晒一份风干湖鲜"
+    },
+    "carp": {
+      "name": "鲤鱼",
+      "growth_days": 3,
+      "fry_price": 10,
+      "sell_price": 28,
+      "water": 50,
+      "min_adults": 2,
+      "breed_days": 4,
+      "offspring": 2,
+      "seasons": [
+        0,
+        1,
+        2
+      ],
+      "rarity": "普通",
+      "level": 1,
+      "feature": "厚身、两根口须与宽尾；成对留种。",
+      "source": "林芽种子摊或湖岸补给",
+      "use": "河湾鲜鱼订单、鱼干"
+    },
+    "grass": {
+      "name": "草鱼",
+      "growth_days": 4,
+      "fry_price": 14,
+      "sell_price": 42,
+      "water": 55,
+      "min_adults": 3,
+      "breed_days": 5,
+      "offspring": 2,
+      "seasons": [
+        0,
+        1,
+        2
+      ],
+      "rarity": "普通",
+      "level": 1,
+      "feature": "细长身形、平背与分叉尾；需要三尾种鱼。",
+      "source": "林芽种子摊或湖岸补给",
+      "use": "香草鱼汤"
+    },
+    "perch": {
+      "name": "鲈鱼",
+      "growth_days": 5,
+      "fry_price": 18,
+      "sell_price": 60,
+      "water": 60,
+      "min_adults": 2,
+      "breed_days": 6,
+      "offspring": 1,
+      "seasons": [
+        0,
+        2,
+        3
+      ],
+      "rarity": "优良",
+      "level": 1,
+      "feature": "尖背棘与大口；夏季生长较慢。",
+      "source": "林芽种子摊或湖岸补给",
+      "use": "优良鱼收藏、麦香鲈鱼汤"
+    },
+    "golden": {
+      "name": "金鳞鱼",
+      "growth_days": 8,
+      "fry_price": 0,
+      "sell_price": 110,
+      "water": 75,
+      "min_adults": 2,
+      "breed_days": 8,
+      "offspring": 1,
+      "seasons": [
+        0,
+        2
+      ],
+      "rarity": "珍稀",
+      "level": 2,
+      "feature": "长飘带尾与菱形大鳞；春秋水质稳定时繁殖。",
+      "source": "收获三种普通鱼并探索地下水脉后，在湖岸用鲤鱼2、晶石1、80金换取保护站培育鱼苗",
+      "use": "珍稀鱼研究、星辉鱼培育材料、两人份金鳞分享汤",
+      "rare_cost": {
+        "fish_carp": 2,
+        "crystal": 1
+      },
+      "rare_coins": 80
+    },
+    "star": {
+      "name": "星辉鱼",
+      "growth_days": 12,
+      "fry_price": 0,
+      "sell_price": 180,
+      "water": 85,
+      "min_adults": 2,
+      "breed_days": 12,
+      "offspring": 1,
+      "seasons": [
+        1,
+        3
+      ],
+      "rarity": "星辉",
+      "level": 3,
+      "feature": "宽翼鳍、透明星斑和细丝尾；需要生态栏与晶石水样。",
+      "source": "完成珍稀鱼研究、探索晶石洞窟后，用金鳞鱼1、晶石3、星纹合金1换1苗",
+      "use": "星辉收藏、温室水源故事线索、三人份星辉湖宴汤",
+      "rare_cost": {
+        "fish_golden": 1,
+        "crystal": 3,
+        "star_alloy": 1
+      },
+      "rare_coins": 0
+    }
+  },
+  "items": {
+    "fry_crucian": {
+      "name": "鲫鱼鱼苗",
+      "sell_price": 0,
+      "description": "林芽种子摊或湖岸补给",
+      "kind": "fry",
+      "species": "crucian"
+    },
+    "fish_crucian": {
+      "name": "鲫鱼",
+      "sell_price": 16,
+      "description": "高背圆腹、短尾；适应四季，适合初学养殖。 初识养殖、收藏、四尾可晒一份风干湖鲜",
+      "kind": "fish",
+      "species": "crucian"
+    },
+    "fry_carp": {
+      "name": "鲤鱼鱼苗",
+      "sell_price": 0,
+      "description": "林芽种子摊或湖岸补给",
+      "kind": "fry",
+      "species": "carp"
+    },
+    "fish_carp": {
+      "name": "鲤鱼",
+      "sell_price": 28,
+      "description": "厚身、两根口须与宽尾；成对留种。 河湾鲜鱼订单、鱼干",
+      "kind": "fish",
+      "species": "carp"
+    },
+    "fry_grass": {
+      "name": "草鱼鱼苗",
+      "sell_price": 0,
+      "description": "林芽种子摊或湖岸补给",
+      "kind": "fry",
+      "species": "grass"
+    },
+    "fish_grass": {
+      "name": "草鱼",
+      "sell_price": 42,
+      "description": "细长身形、平背与分叉尾；需要三尾种鱼。 香草鱼汤",
+      "kind": "fish",
+      "species": "grass"
+    },
+    "fry_perch": {
+      "name": "鲈鱼鱼苗",
+      "sell_price": 0,
+      "description": "林芽种子摊或湖岸补给",
+      "kind": "fry",
+      "species": "perch"
+    },
+    "fish_perch": {
+      "name": "鲈鱼",
+      "sell_price": 60,
+      "description": "尖背棘与大口；夏季生长较慢。 优良鱼收藏、麦香鲈鱼汤",
+      "kind": "fish",
+      "species": "perch"
+    },
+    "fry_golden": {
+      "name": "金鳞鱼鱼苗",
+      "sell_price": 0,
+      "description": "收获三种普通鱼并探索地下水脉后，在湖岸用鲤鱼2、晶石1、80金换取保护站培育鱼苗",
+      "kind": "fry",
+      "species": "golden"
+    },
+    "fish_golden": {
+      "name": "金鳞鱼",
+      "sell_price": 110,
+      "description": "长飘带尾与菱形大鳞；春秋水质稳定时繁殖。 珍稀鱼研究、星辉鱼培育材料、两人份金鳞分享汤",
+      "kind": "fish",
+      "species": "golden"
+    },
+    "fry_star": {
+      "name": "星辉鱼鱼苗",
+      "sell_price": 0,
+      "description": "完成珍稀鱼研究、探索晶石洞窟后，用金鳞鱼1、晶石3、星纹合金1换1苗",
+      "kind": "fry",
+      "species": "star"
+    },
+    "fish_star": {
+      "name": "星辉鱼",
+      "sell_price": 180,
+      "description": "宽翼鳍、透明星斑和细丝尾；需要生态栏与晶石水样。 星辉收藏、温室水源故事线索、三人份星辉湖宴汤",
+      "kind": "fish",
+      "species": "star"
+    },
+    "fish_feed": {
+      "name": "鱼饲料",
+      "sell_price": 1,
+      "description": "每份可供8尾鱼一天；可以小麦制作。",
+      "kind": "feed",
+      "price": 4
+    },
+    "dried_fish": {
+      "name": "风干湖鲜",
+      "sell_price": 68,
+      "description": "鲤鱼2或鲫鱼4，加木材1加工；可出售或每日食用恢复18体力。",
+      "kind": "food",
+      "energy": 18
+    },
+    "fish_soup": {
+      "name": "香草鱼汤",
+      "sell_price": 66,
+      "description": "草鱼、鲈鱼、金鳞鱼或星辉鱼可按湖岸配方烹制；每日食用一份恢复30体力。",
+      "kind": "food",
+      "energy": 30
+    }
+  },
+  "levels": {
+    "1": {
+      "name": "普通鱼栏",
+      "capacity": 12,
+      "required": {
+        "wood": 10,
+        "stone": 6
+      },
+      "coins": 100
+    },
+    "2": {
+      "name": "加固鱼栏",
+      "capacity": 20,
+      "required": {
+        "wood": 16,
+        "stone": 10,
+        "copper_bar": 2
+      },
+      "coins": 240
+    },
+    "3": {
+      "name": "生态鱼栏",
+      "capacity": 32,
+      "required": {
+        "wood": 24,
+        "stone": 16,
+        "iron_bar": 3,
+        "crystal": 4
+      },
+      "coins": 480
+    }
+  },
+  "recipes": {
+    "feed": {
+      "name": "研磨鱼饲料",
+      "required": {
+        "wheat": 1
+      },
+      "rewards": {
+        "fish_feed": 6
+      },
+      "level": 1,
+      "description": "一份小麦研磨成六份饲料。"
+    },
+    "dried": {
+      "name": "风干湖鲜",
+      "required": {
+        "fish_carp": 2,
+        "wood": 1
+      },
+      "rewards": {
+        "dried_fish": 1
+      },
+      "level": 2,
+      "description": "使用加固鱼栏的晾晒架。"
+    },
+    "soup": {
+      "name": "香草鱼汤",
+      "required": {
+        "fish_grass": 1,
+        "carrot": 1
+      },
+      "rewards": {
+        "fish_soup": 1
+      },
+      "level": 2,
+      "description": "使用湖岸小炉烹煮，成品每天最多食用一份。"
+    },
+    "crucian_dried": {
+      "name": "小鲫晒鱼干",
+      "required": {
+        "fish_crucian": 4,
+        "wood": 1
+      },
+      "rewards": {
+        "dried_fish": 1
+      },
+      "level": 2,
+      "description": "四尾鲫鱼与一份木材在晾晒架处理；产出一份风干湖鲜。"
+    },
+    "perch_soup": {
+      "name": "麦香鲈鱼汤",
+      "required": {
+        "fish_perch": 1,
+        "wheat": 1
+      },
+      "rewards": {
+        "fish_soup": 1
+      },
+      "level": 2,
+      "description": "一尾鲈鱼与一份小麦烹煮，产出一份香草鱼汤。"
+    },
+    "golden_soup": {
+      "name": "金鳞分享汤",
+      "required": {
+        "fish_golden": 1,
+        "carrot": 1
+      },
+      "rewards": {
+        "fish_soup": 2
+      },
+      "level": 2,
+      "description": "一尾金鳞鱼与一份胡萝卜做成两份鱼汤；珍稀鱼先留足种鱼再料理。"
+    },
+    "star_soup": {
+      "name": "星辉湖宴汤",
+      "required": {
+        "fish_star": 1,
+        "carrot": 2
+      },
+      "rewards": {
+        "fish_soup": 3
+      },
+      "level": 3,
+      "description": "生态鱼栏的小炉将星辉鱼与两份胡萝卜分煮三份鱼汤；每日食用限制不变。"
+    }
+  }
+}

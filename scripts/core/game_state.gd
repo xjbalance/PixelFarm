@@ -1,13 +1,25 @@
 extends Node
 ## 仅保存玩家会话状态；作物、背包和时钟分别由各自模块负责。
 signal changed
+signal control_mode_changed
 const MAX_STAMINA: int = 100
 var stamina: int = MAX_STAMINA
 var modal: bool = false
+var restoring: bool = false
 var selected: int = 0
-var tools: Array[String] = ["hoe", "water", "hand", "carrot_seed", "potato_seed", "wheat_seed", "axe", "pickaxe"]
-var tool_names: Array[String] = ["锄头", "水壶", "采收", "胡萝卜", "土豆", "小麦", "斧头", "镐"]
+var tools: Array[String] = ["hoe", "water", "hand", "carrot_seed", "potato_seed", "wheat_seed", "axe", "pickaxe", "fishing_rod"]
+var tool_names: Array[String] = ["锄头", "水壶", "采收", "胡萝卜", "土豆", "小麦", "斧头", "镐", "鱼竿"]
 var location: String = "farm"
+var control_mode: String = "tap"
+# 工具栏的明确选择优先用于下一次点击操作；之后恢复状态辅助。
+var manual_tool: bool = false
+
+func set_control_mode(mode: String, persist: bool = true) -> void:
+	if mode not in ["tap", "joystick"] or mode == control_mode: return
+	control_mode = mode
+	control_mode_changed.emit()
+	changed.emit()
+	if persist: Events.progress_committed.emit()
 
 func _ready() -> void:
 	# 在运行时统一注册按键，避免平台键码与编辑器配置不一致。
@@ -25,6 +37,7 @@ func _ready() -> void:
 
 func select_tool(index: int) -> void:
 	selected = posmod(index, tools.size())
+	manual_tool = true
 	Events.tool_changed.emit()
 	changed.emit()
 
@@ -32,8 +45,9 @@ func tool() -> String:
 	return tools[selected]
 
 func spend_energy(amount: int) -> bool:
+	amount=Kitchen.energy_cost(amount)
 	if stamina < amount:
-		Events.notice.emit("体力不足啦，回小屋睡一觉吧。")
+		Events.notice.emit("体力不足：去屋东椅歇脚，或在背包吃食物。20:00后可睡。")
 		return false
 	stamina -= amount
 	changed.emit()

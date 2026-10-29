@@ -1,0 +1,482 @@
+{
+  "baseline_commit": "2a48963",
+  "runtime": "Godot 4.3 Linux Xvfb/Mesa",
+  "android_device_tested": false,
+  "captures": [
+    {
+      "hud_area_fraction": 0.222942708333333,
+      "hud_union_area": 205464,
+      "name": "hud",
+      "panel": [
+        0,
+        0,
+        1280,
+        720
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/before-1280-hud.png",
+      "phase": "before"
+    },
+    {
+      "hud_area_fraction": 0.222942708333333,
+      "hud_union_area": 205464,
+      "name": "hotbar-expanded",
+      "panel": [
+        283,
+        608,
+        714,
+        96
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/before-1280-hotbar-expanded.png",
+      "phase": "before"
+    },
+    {
+      "hud_area_fraction": 0.222942708333333,
+      "hud_union_area": 205464,
+      "name": "inventory",
+      "panel": [
+        210,
+        95,
+        860,
+        530
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/before-1280-inventory.png",
+      "phase": "before"
+    },
+    {
+      "hud_area_fraction": 0.222942708333333,
+      "hud_union_area": 205464,
+      "name": "dialogue",
+      "panel": [
+        160,
+        215,
+        960,
+        340
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/before-1280-dialogue.png",
+      "phase": "before"
+    },
+    {
+      "hud_area_fraction": 0.222942708333333,
+      "hud_union_area": 205464,
+      "name": "shop",
+      "panel": [
+        210,
+        95,
+        860,
+        530
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/before-1280-shop.png",
+      "phase": "before"
+    },
+    {
+      "hud_area_fraction": 0.222942708333333,
+      "hud_union_area": 205464,
+      "name": "quests",
+      "panel": [
+        190,
+        90,
+        900,
+        540
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/before-1280-quests.png",
+      "phase": "before"
+    },
+    {
+      "hud_area_fraction": 0.222942708333333,
+      "hud_union_area": 205464,
+      "name": "xiaojing",
+      "panel": [
+        180,
+        80,
+        920,
+        560
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/before-1280-xiaojing.png",
+      "phase": "before"
+    },
+    {
+      "hud_area_fraction": 0.185164930555556,
+      "hud_union_area": 170648,
+      "name": "kitchen",
+      "panel": [
+        180,
+        80,
+        920,
+        560
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/before-1280-kitchen.png",
+      "phase": "before"
+    },
+    {
+      "hud_area_fraction": 0.222942708333333,
+      "hud_union_area": 205464,
+      "name": "fishpen",
+      "panel": [
+        180,
+        80,
+        920,
+        560
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/before-1280-fishpen.png",
+      "phase": "before"
+    },
+    {
+      "hud_area_fraction": 0.0405067274305556,
+      "hud_union_area": 37331,
+      "name": "hud",
+      "panel": [
+        0,
+        0,
+        1280,
+        720
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/after-1280-hud.png",
+      "phase": "after"
+    },
+    {
+      "hud_area_fraction": 0.0576595052083333,
+      "hud_union_area": 53139,
+      "name": "hotbar-expanded",
+      "panel": [
+        1064,
+        556,
+        152,
+        152
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/after-1280-hotbar-expanded.png",
+      "phase": "after"
+    },
+    {
+      "hud_area_fraction": 0.0405067274305556,
+      "hud_union_area": 37331,
+      "name": "inventory",
+      "panel": [
+        120,
+        90,
+        1040,
+        540
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/after-1280-inventory.png",
+      "phase": "after"
+    },
+    {
+      "hud_area_fraction": 0.0405067274305556,
+      "hud_union_area": 37331,
+      "name": "dialogue",
+      "panel": [
+        130,
+        468,
+        1020,
+        240
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/after-1280-dialogue.png",
+      "phase": "after"
+    },
+    {
+      "hud_area_fraction": 0.0405067274305556,
+      "hud_union_area": 37331,
+      "name": "shop",
+      "panel": [
+        120,
+        90,
+        1040,
+        540
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/after-1280-shop.png",
+      "phase": "after"
+    },
+    {
+      "hud_area_fraction": 0.0405067274305556,
+      "hud_union_area": 37331,
+      "name": "quests",
+      "panel": [
+        140,
+        60,
+        1000,
+        600
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/after-1280-quests.png",
+      "phase": "after"
+    },
+    {
+      "hud_area_fraction": 0.0405067274305556,
+      "hud_union_area": 37331,
+      "name": "xiaojing",
+      "panel": [
+        160,
+        80,
+        960,
+        560
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/after-1280-xiaojing.png",
+      "phase": "after"
+    },
+    {
+      "hud_area_fraction": 0.0344650607638889,
+      "hud_union_area": 31763,
+      "name": "kitchen",
+      "panel": [
+        160,
+        80,
+        960,
+        560
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/after-1280-kitchen.png",
+      "phase": "after"
+    },
+    {
+      "hud_area_fraction": 0.0405067274305556,
+      "hud_union_area": 37331,
+      "name": "fishpen",
+      "panel": [
+        160,
+        80,
+        960,
+        560
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/after-1280-fishpen.png",
+      "phase": "after"
+    },
+    {
+      "hud_area_fraction": 0.0324053819444444,
+      "hud_union_area": 37331,
+      "name": "hud",
+      "panel": [
+        0,
+        0,
+        1600,
+        720
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1600,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/after-1600-hud.png",
+      "phase": "after"
+    },
+    {
+      "hud_area_fraction": 0.0324053819444444,
+      "hud_union_area": 37331,
+      "name": "dialogue",
+      "panel": [
+        290,
+        468,
+        1020,
+        240
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1600,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/after-1600-dialogue.png",
+      "phase": "after"
+    },
+    {
+      "hud_area_fraction": 0.0405067274305556,
+      "hud_union_area": 37331,
+      "name": "important-story",
+      "panel": [
+        160,
+        80,
+        960,
+        560
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/extra-1280-important-story.png",
+      "phase": "extra"
+    },
+    {
+      "hud_area_fraction": 0.0405067274305556,
+      "hud_union_area": 37331,
+      "name": "menu",
+      "panel": [
+        300,
+        90,
+        680,
+        540
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/extra-1280-menu.png",
+      "phase": "extra"
+    },
+    {
+      "hud_area_fraction": 0.0405067274305556,
+      "hud_union_area": 37331,
+      "name": "social",
+      "panel": [
+        160,
+        80,
+        960,
+        560
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/extra-1280-social.png",
+      "phase": "extra"
+    },
+    {
+      "hud_area_fraction": 0.0344650607638889,
+      "hud_union_area": 31763,
+      "name": "furniture",
+      "panel": [
+        160,
+        80,
+        960,
+        560
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/extra-1280-furniture.png",
+      "phase": "extra"
+    },
+    {
+      "hud_area_fraction": 0.0405067274305556,
+      "hud_union_area": 37331,
+      "name": "fishing-book",
+      "panel": [
+        160,
+        80,
+        960,
+        560
+      ],
+      "panel_inside_safe_area": true,
+      "resolution": [
+        1280,
+        720
+      ],
+      "saved": true,
+      "file": "docs/ui05/extra-1280-fishing-book.png",
+      "phase": "extra"
+    }
+  ]
+}

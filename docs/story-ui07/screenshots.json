@@ -1,0 +1,185 @@
+{
+  "platform": "Linux Godot 4.3 Xvfb/Mesa",
+  "android_device_tested": false,
+  "note": "Actual rendered UI frames captured before the subsequent world character/building palette pass; no image repainting.",
+  "groups": {
+    "before": [
+      {
+        "file": "docs/story-ui07/before-abyss.png",
+        "source": "builds/story-ui07-before-abyss.png"
+      },
+      {
+        "file": "docs/story-ui07/before-dialogue.png",
+        "source": "builds/story-ui07-before-dialogue.png"
+      },
+      {
+        "file": "docs/story-ui07/before-inventory.png",
+        "source": "builds/story-ui07-before-inventory.png"
+      },
+      {
+        "file": "docs/story-ui07/before-mine.png",
+        "source": "builds/story-ui07-before-mine.png"
+      },
+      {
+        "file": "docs/story-ui07/before-quest.png",
+        "source": "builds/story-ui07-before-quest.png"
+      },
+      {
+        "file": "docs/story-ui07/before-river.png",
+        "source": "builds/story-ui07-before-river.png"
+      },
+      {
+        "file": "docs/story-ui07/before-sale_confirmation.png",
+        "source": "builds/story-ui07-before-sale_confirmation.png"
+      },
+      {
+        "file": "docs/story-ui07/before-settings.png",
+        "source": "builds/story-ui07-before-settings.png"
+      },
+      {
+        "file": "docs/story-ui07/before-shop.png",
+        "source": "builds/story-ui07-before-shop.png"
+      },
+      {
+        "file": "docs/story-ui07/before-social.png",
+        "source": "builds/story-ui07-before-social.png"
+      },
+      {
+        "file": "docs/story-ui07/before-star.png",
+        "source": "builds/story-ui07-before-star.png"
+      },
+      {
+        "file": "docs/story-ui07/before-xiaojing.png",
+        "source": "builds/story-ui07-before-xiaojing.png"
+      }
+    ],
+    "after": [
+      {
+        "file": "docs/story-ui07/after-abyss.png",
+        "source": "builds/story-ui07-after-abyss.png"
+      },
+      {
+        "file": "docs/story-ui07/after-dialogue.png",
+        "source": "builds/story-ui07-after-dialogue.png"
+      },
+      {
+        "file": "docs/story-ui07/after-inventory.png",
+        "source": "builds/story-ui07-after-inventory.png"
+      },
+      {
+        "file": "docs/story-ui07/after-mine.png",
+        "source": "builds/story-ui07-after-mine.png"
+      },
+      {
+        "file": "docs/story-ui07/after-quest.png",
+        "source": "builds/story-ui07-after-quest.png"
+      },
+      {
+        "file": "docs/story-ui07/after-river.png",
+        "source": "builds/story-ui07-after-river.png"
+      },
+      {
+        "file": "docs/story-ui07/after-sale_confirmation.png",
+        "source": "builds/story-ui07-after-sale_confirmation.png"
+      },
+      {
+        "file": "docs/story-ui07/after-settings.png",
+        "source": "builds/story-ui07-after-settings.png"
+      },
+      {
+        "file": "docs/story-ui07/after-settings_1280x960.png",
+        "source": "builds/story-ui07-after-settings_1280x960.png"
+      },
+      {
+        "file": "docs/story-ui07/after-settings_1600x720.png",
+        "source": "builds/story-ui07-after-settings_1600x720.png"
+      },
+      {
+        "file": "docs/story-ui07/after-shop.png",
+        "source": "builds/story-ui07-after-shop.png"
+      },
+      {
+        "file": "docs/story-ui07/after-shop_1280x960.png",
+        "source": "builds/story-ui07-after-shop_1280x960.png"
+      },
+      {
+        "file": "docs/story-ui07/after-shop_1600x720.png",
+        "source": "builds/story-ui07-after-shop_1600x720.png"
+      },
+      {
+        "file": "docs/story-ui07/after-social.png",
+        "source": "builds/story-ui07-after-social.png"
+      },
+      {
+        "file": "docs/story-ui07/after-star.png",
+        "source": "builds/story-ui07-after-star.png"
+      },
+      {
+        "file": "docs/story-ui07/after-xiaojing.png",
+        "source": "builds/story-ui07-after-xiaojing.png"
+      }
+    ],
+    "compare": [
+      {
+        "file": "docs/story-ui07/compare-dialogue.png",
+        "source": "builds/story-ui07-compare-dialogue.png"
+      },
+      {
+        "file": "docs/story-ui07/compare-inventory.png",
+        "source": "builds/story-ui07-compare-inventory.png"
+      },
+      {
+        "file": "docs/story-ui07/compare-quest.png",
+        "source": "builds/story-ui07-compare-quest.png"
+      },
+      {
+        "file": "docs/story-ui07/compare-social.png",
+        "source": "builds/story-ui07-compare-social.png"
+      }
+    ]
+  },
+  "before_run": {
+    "android_device_tested": false,
+    "captures": [
+      "res://builds/story-ui07-before-inventory.png",
+      "res://builds/story-ui07-before-shop.png",
+      "res://builds/story-ui07-before-sale_confirmation.png",
+      "res://builds/story-ui07-before-dialogue.png",
+      "res://builds/story-ui07-before-quest.png",
+      "res://builds/story-ui07-before-settings.png",
+      "res://builds/story-ui07-before-social.png",
+      "res://builds/story-ui07-before-xiaojing.png",
+      "res://builds/story-ui07-before-mine.png",
+      "res://builds/story-ui07-before-abyss.png",
+      "res://builds/story-ui07-before-river.png",
+      "res://builds/story-ui07-before-star.png"
+    ],
+    "checks": 40,
+    "failures": 0,
+    "platform": "X11"
+  },
+  "after_run": {
+    "android_device_tested": false,
+    "captures": [
+      "res://builds/story-ui07-after-inventory.png",
+      "res://builds/story-ui07-after-shop.png",
+      "res://builds/story-ui07-after-sale_confirmation.png",
+      "res://builds/story-ui07-after-dialogue.png",
+      "res://builds/story-ui07-after-quest.png",
+      "res://builds/story-ui07-after-settings.png",
+      "res://builds/story-ui07-after-social.png",
+      "res://builds/story-ui07-after-xiaojing.png",
+      "res://builds/story-ui07-after-mine.png",
+      "res://builds/story-ui07-after-abyss.png",
+      "res://builds/story-ui07-after-river.png",
+      "res://builds/story-ui07-after-star.png",
+      "res://builds/story-ui07-after-shop_1600x720.png",
+      "res://builds/story-ui07-after-settings_1600x720.png",
+      "res://builds/story-ui07-after-shop_1280x960.png",
+      "res://builds/story-ui07-after-settings_1280x960.png"
+    ],
+    "checks": 68,
+    "failures": 0,
+    "platform": "X11"
+  }
+}

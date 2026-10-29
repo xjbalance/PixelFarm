@@ -26,3 +26,68 @@ python3 tools/generate_assets.py
 0.3.0 的 `polish_assets.py` 继续编辑本工程已有像素体系：地表色板、周砚/阿禾、八格工具图标、原创音乐与雨声。`detail_scenery.py` 增加门窗、石基、爬藤、树叶、衣着，并生成茶屋与木作坊建筑变体。`scenery.gd`、`portrait.gd` 为原创原生像素陈设和头像绘制。故事、三位角色、信件与对白均原创；没有下载或分发参考游戏美术、音乐或剧本。
 
 完整重绘顺序：先 `python3 tools/generate_assets.py`，再 `python3 tools/polish_assets.py`，最后 `python3 tools/detail_scenery.py`。不需要在运行游戏或导出前重绘。没有使用 AI 图片生成服务。
+
+
+0.4.0新增小京：`tools/generate_xiaojing_assets.py` 以本工程16px原有色板绘制独立32×48角色；`portrait.gd` 原生几何绘制独立头像，`greenhouse.gd` 绘制温室与星灯。未调用AI图片生成服务或引入第三方角色素材。新主线、小京五段关系、12个任务结语、七份记忆、婚礼与婚后信件均为本项目原创文字。截图04来自真实Godot渲染的测试夹具，不代表新档已具备这些进度。
+
+0.5.0矿区图集由`tools/generate_mine_assets.py`使用同一32px色板与固定种子生成，机关/矿脉/入口/灯台由`mine_map.gd`、`mine_point.gd`、`ore_node.gd`原创几何绘制。没有引入外部游戏资源或图片生成服务。05截图为实际Godot窗口渲染的进度夹具；可玩性另由碰撞/输入集成测试验证。
+
+## 0.6.0新增原创资产
+
+工具tools/generate_060.py沿用项目几何像素风：扩展mines.png为五区小图集，原前12图块保留；xiaojing_wedding.png沿原角色轮廓绘制原创礼服/发饰；wedding_floor.png为原创室内地板/墙图块。礼堂桌/杯/灯/1314灯点与村庄交接台由脚本像素绘制。
+
+star_vow.wav为自合成短循环旋律，star_chimes.wav为正弦合成铃风环境音，无外部采样。角色、文本与新机关场景没有使用商业游戏素材。Noto字体与原引擎许可保留，APK校验确认许可内容完整。截图均由实际Godot窗口渲染，使用进度夹具，不能作为真人流程或手机实测证据。
+
+## 0.6.2湖泊养殖
+
+assets/aquaculture 下16张PNG由 tools/generate_aquaculture_assets.py 用Pillow几何逐像素原创生成，含6成鱼、6鱼苗、2帧游动图集、饲料与两种料理。六鱼具有不同轮廓与鳍尾特征，不引用商业游戏素材。岸上木台/栏网/维护箱由 aquaculture_point.gd 程序绘制，沿用现有农场色板；不增加动态光源。
+
+## 0.7.0阶段A季节美术
+
+assets/seasons的四套32px地表和树木纹理由tools/generate_season_assets.py在项目原创旧atlas上生成像素变化，春花、夏草、秋叶、冬雪采用独立细节。SeasonLandscape仅替换纹理并绘制稀疏装饰，不改地图格数或水域碰撞。WeatherScreen使用固定绘制预算、delta动画时钟表现九天气，无外部商业素材、动态灯或粒子实例堆叠。
+
+## 0.7.0阶段B
+
+assets/fishing、livestock、kitchen由各自tools/generate_*_assets.py以项目原创色板程序绘制：鱼竿/饵/钩/传说鱼、鸡牛羊/饲料产物、10食材料理图。原六鱼复用养殖素材，无同ID重复定义。生态水草/水样台、厨房设施、畜舍、休息椅由对应world脚本绘制，均不使用商业游戏素材。
+
+## 0.7.0阶段C
+
+节日7张纪念/装饰图由tools/generate_festival_assets.py原创像素生成；家具与室内地板等15张由tools/generate_housing_assets.py生成。人物继续使用项目原头像与角色，无商业游戏素材。节日绳框/灯会/原村民聚集叠加现有地图；侧间地板、窗户、墙体及装修图形由Housing模块绘制，保留原故事资产。
+
+## 0.7.0阶段D
+
+assets/exploration为三张地图原创地表atlas及6种材料/封记图标，tools/generate_exploration_assets.py程序像素绘制；森林薄雾/季节草叶、排水廊墙体/干道/水桥、神庙光轴与符台均为代码实体呈现。assets/world_progress的招牌/货物等由tools/generate_world_progress_assets.py原创生成，码头/雨棚/灯/花坛按状态绘制。无其他商业游戏素材。
+
+## 0.7.0最终补齐
+
+春铃花种/双铃花/月影纸笺3张32px图由tools/generate_finale_assets.py原创逐像素生成。满月、水面倒影、幼苗成长与成熟标记、剖面暖舍草垫/屋檐均程序绘制，无商业游戏素材或新增重光照。
+
+## 0.7.1全局UI04原创资源
+
+assets/ui/river下13款九宫格材质与5个16px状态图标由tools/generate_ui04_assets.py使用Pillow基础像素绘制原创生成；纸面48px稀疏纤维平铺，其余24px。未使用商业游戏纹理/图标/字体或截图采样。参考文档缺失，两官方参考URL访问超时，遵循用户提供的颜色和可读性规范。中文继续使用原合法授权Noto Sans CJK，许可证路径不变。ui04对照图为本工程真实窗口截图，不是第三方美术。
+
+
+## 0.7.1温馨田园住宅
+
+`assets/housing/interior/`当前60张PNG由既有`tools/generate_home_interior_assets.py`使用Pillow程序像素绘制维护，本轮在51张原资源基础上新增浅色地板图集与8张`placeable_*`家具图。木床、沙发、奶油厨柜、陈设和四级墙地板统一为暖木/奶油/苔绿材质；四张192×168屋外贴图保留原透明轮廓、比例和入口。没有调用AI图像生成服务，也未将商业游戏截图或用户`need/`参考原图打入工程交付资源。
+
+`docs/home-arrange/`图片来自真实Linux Godot4.3 Xvfb/Mesa窗口；前后拼图、四级汇总与GIF由`tools/capture_home_arrange_artifacts.py`整理。GIF组合的是实际窗口状态帧，不是连续手机录像，也不代表手机帧率。字体仍使用原Noto Sans CJK及原许可。
+
+
+## 0.7.1农场视觉样板06与羊皮纸图纸
+
+`assets/farm06/`共18张原创PNG，由`tools/generate_farm06_assets.py`使用Pillow绘制：四季地面4张、三种冠幅×四季树木12张及干湿土2张。仅农场场景使用这套地面与树冠，沿用原地理和碰撞；没有把村庄、森林或矿洞标成已经完成同级重绘。
+
+`assets/maps/`共34张原创PNG，由`tools/generate_atlas_assets.py`使用Pillow绘制：10张总览/区域底图与24张符号；HUD入口`assets/ui/map_fold.svg`为原创小折叠地图图标。纸面、地貌与符号没有复用商业游戏图像；现有Noto中文字体及原许可保留。本轮没有调用AI图像API。
+
+参考访问范围：五个参考链接中的四个HTML页面访问成功，Stonebit素材参考页因TLS失败未打开；实际查看的参考图片只有Cainos Basic预览。页面可访问不等于已经查看其中全部图片。未下载商业瓦片包；预览只在本地构建目录供研究，不导入游戏，不随源码或APK分发。
+
+`docs/farm06/`与`docs/parchment-map/`来自实际Linux Godot4.3 Xvfb/Mesa窗口。前后/四季拼图仅整理真实渲染帧；图纸截图包括总览、区域、展开过程与桥梁修复前后状态，不能代表Android真机性能或真人长线游玩。
+
+## 方案C：用户提供参考与动画资源
+
+输入来自用户的`PixelWorld_SchemeC_Codex_Reference_Pack`。该包声明动画由原会话的内置图像生成工具制作；本轮没有再次调用图像生成API，也没有把这些输入声称为本轮从零手绘。实际核验129项源文件SHA，正常精灵与SpriteFrames逐字节复制，四位角色各自使用对应资源。
+
+新增`assets/characters/scheme_c/`含28张PNG、16份SpriteFrames及清单。头像、纸面立绘卡从同一角色参考图的独立人物区域提取；仪式版为原角色精灵的奶油白/蓝紫/暖金配色派生，透明轮廓与面容保留。`tools/import_scheme_c_assets.py`提供导入与无源包验证入口。具体裁切、来源及制作边界见[资源记录](SCHEME-C-ASSETS.md)。
+
+用户原`need/`目录未改动、未提交或打包；实际游戏所需导出资源已复制到工程。`docs/scheme-c-selection/`和`docs/scheme-c-game/`为实际Godot窗口帧，剧情画面使用明确夹具，不代表新档已自动解锁小京或完成婚礼。
