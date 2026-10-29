@@ -21,6 +21,8 @@ func _ready() -> void:
 	Events.location_changed.connect(func(_id: String): cancel())
 
 func defaults() -> Dictionary:
+	# legend_pity is an inert compatibility field for existing saves. It no
+	# longer influences encounters, grows on casts, or resets on a catch.
 	return {"rod":1,"xp":0,"casts_day":0,"casts":0,"serial":0,"total":0,"counts":{},"collection":[],"achievements":[],"hook_charges":0,"pending":"","pending_day":0,"legend_pity":0,"legend_season":-1}
 
 func empty_session() -> Dictionary:
@@ -99,18 +101,42 @@ func available_species(site_id: String) -> Array[String]:
 		if eligible(species,site_id): result.append(species)
 	return result
 
+func encounter_weights(site_id: String) -> Dictionary:
+	var weights: Dictionary={}
+	var total: int=0
+	for species in available_species(site_id):
+		var weight: int=fish_weight(species,site_id)
+		weights[species]=weight;total+=weight
+	var eternal: int=int(weights.get("eternal",0))
+	var ordinary: int=total-eternal
+	var divisor: int=maxi(1,int(data.get("eternal_chance_divisor",1)))
+	if eternal>0 and ordinary>0 and divisor>1:
+		# Exactly scale final encounter probability by 1/divisor. Multiplying
+		# integer weights preserves ordinary-species ratios without rounding the
+		# rare weight to zero: E'=E*O; other_i'=other_i*(divisor*W-E).
+		for species in weights:
+			weights[species]=eternal*ordinary if species=="eternal" else int(weights[species])*(divisor*total-eternal)
+	return weights
+
+func encounter_chances(site_id: String) -> Dictionary:
+	var chances: Dictionary=encounter_weights(site_id)
+	var total: int=0
+	for weight in chances.values(): total+=int(weight)
+	if total>0:
+		for species in chances: chances[species]=float(chances[species])/float(total)
+	return chances
+
 func choose_species(site_id: String, serial: int) -> String:
-	var choices := available_species(site_id)
+	var choices: Dictionary=encounter_weights(site_id)
 	if choices.is_empty(): return ""
-	if "eternal" in choices and int(state.legend_pity)>=3: return "eternal"
 	var total := 0
-	for species in choices: total+=fish_weight(species,site_id)
+	for weight in choices.values(): total+=int(weight)
 	var hash_value: int=(serial*1103515245+GameClock.day*12345+int(sites[site_id].shore[0])*97)&0x7fffffff
 	var roll: int=hash_value%total
 	for species in choices:
-		roll-=fish_weight(species,site_id)
+		roll-=int(choices[species])
 		if roll<0: return species
-	return choices[0]
+	return str(choices.keys()[0])
 
 func assistance() -> float:
 	var kitchen := get_node_or_null("/root/Kitchen")
@@ -136,7 +162,6 @@ func start(site_id: String) -> bool:
 	GameState.changed.emit()
 	if state.casts_day!=GameClock.day: state.casts_day=GameClock.day;state.casts=0
 	state.casts+=1;state.serial+=1
-	if eligible("eternal",site_id): state.legend_pity=mini(4,int(state.legend_pity)+1)
 	var hooked: bool=state.hook_charges>0
 	if hooked: state.hook_charges-=1
 	session=empty_session()
@@ -204,7 +229,7 @@ func claim() -> bool:
 	state.counts[species]=int(state.counts.get(species,0))+1
 	state.xp+=int(data.species[species].xp)
 	if species not in state.collection: state.collection.append(species)
-	if species=="eternal": state.legend_pity=0;state.legend_season=Calendar.season_serial(caught_day)
+	if species=="eternal": state.legend_season=Calendar.season_serial(caught_day)
 	update_achievements()
 	session.phase="landed";session.species=species;session.message="%s ×1 已放进背包。" % data.species[species].name
 	Events.notice.emit(session.message)

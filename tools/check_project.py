@@ -32,6 +32,7 @@ steps = [
     ('seasons-a', ['--fixed-fps','60','res://tests/seasons_a_runner.tscn']),
     ('control-recovery', ['--fixed-fps','60','res://tests/control_recovery_runner.tscn']),
     ('fishing-b', ['--fixed-fps','60','res://tests/fishing_b_runner.tscn']),
+    ('fishing-odds', ['--fixed-fps','60','res://tests/fishing_odds_runner.tscn']),
     ('livestock-b', ['--fixed-fps','60','res://tests/livestock_b_runner.tscn']),
     ('kitchen-b', ['--fixed-fps','60','res://tests/kitchen_b_runner.tscn']),
     ('ecology-b', ['--fixed-fps','60','res://tests/ecology_b_runner.tscn']),

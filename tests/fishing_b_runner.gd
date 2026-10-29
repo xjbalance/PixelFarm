@@ -148,9 +148,27 @@ func upgrades_and_conditions() -> void:
 		var x := Xiaojing.defaults();x.plants=520;x.plant_serial=520;x.unlocked=true;x.affection=50;x.trust=40;x.bond=3
 		Xiaojing.restore(x)
 		check(Fishing.eligible("eternal","farm_lake"),"生态90、流星夜、小京湖畔研究和星纹竿共同解锁永恒星鲤")
-		Fishing.state.legend_pity=3
-		check(Fishing.choose_species("farm_lake",Fishing.state.serial+1)=="eternal","第四次符合条件的稀有抛竿有保底，不靠无限低掉率")
-		check(Fishing.start("farm_lake") and Fishing.session.species=="eternal" and pilot() and Inventory.count("fish_eternal")==1,"永恒星鲤保底后仍须完成高难度真实小游戏才获得")
+		var unchanged: bool=true
+		var ordinary: bool=false
+		var rare: bool=false
+		for serial in range(1,257):
+			Fishing.state.legend_pity=0
+			var expected: String=Fishing.choose_species("farm_lake",serial)
+			ordinary=ordinary or expected!="eternal";rare=rare or expected=="eternal"
+			for retired in range(1,5):
+				Fishing.state.legend_pity=retired
+				unchanged=unchanged and Fishing.choose_species("farm_lake",serial)==expected
+		check(unchanged and ordinary and rare,"旧存档保底计数0至4均不影响256次加权抽取，普通鱼和传说鱼均可能出现")
+		check(load("res://tests/marriage_requirement_fixture.gd").next_weighted_cast("crucian"),"选择实际普通鱼抽取的合法尝试夹具")
+		Fishing.state.legend_pity=4
+		check(Fishing.start("farm_lake") and Fishing.session.species=="crucian" and Fishing.state.legend_pity==4,"旧计数已满仍能实际遇到普通鱼，抛竿不再增长保底计数")
+		Fishing.cancel()
+		check(load("res://tests/marriage_requirement_fixture.gd").next_weighted_cast("eternal"),"用合法尝试元数据选择普通加权抽中的传说鱼")
+		check(Fishing.start("farm_lake") and Fishing.session.species=="eternal" and pilot() and Inventory.count("fish_eternal")==1,"普通加权遇到永恒星鲤后仍须完成真实小游戏")
+		check(Fishing.state.legend_pity==4,"钓获后旧计数仍仅作为兼容数据保留，不参与或改变概率")
+		var saved: Dictionary=Fishing.snapshot()
+		Fishing.restore(JSON.parse_string(JSON.stringify(saved)))
+		check(Fishing.snapshot()==saved and Fishing.validate(Fishing.snapshot(),GameClock.day),"携带旧保底计数的已钓获存档能正常读取且不重发鱼")
 		check(Fishing.state.legend_season==Calendar.season_serial(),"传说鱼成功记录捕获季节，不由领取时重置")
 		check(not Fishing.eligible("eternal","farm_lake") and Catalog.sell_price("fish_eternal")==0,"永恒星鲤每季限一尾且不能卖钱或兑换钻石")
 func controls_and_navigation() -> void:

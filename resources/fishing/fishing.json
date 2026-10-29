@@ -1,5 +1,6 @@
 {
   "daily_casts":12,
+  "eternal_chance_divisor":10,
   "energy_per_cast":3,
   "bait_price":4,
   "items":{

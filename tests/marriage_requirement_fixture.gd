@@ -39,6 +39,21 @@ static func max_home(_game: Node) -> void:
 static func caught_eternal() -> void:
 	caught_species(["eternal"])
 
+static func next_weighted_cast(species: String, site: String="farm_lake") -> bool:
+	# Select a reproducible ordinary weighted draw for an integration fixture.
+	# The shipped game has no forced encounter or test-only RNG override.
+	if Fishing.active() or Fishing.state.pending!="" or species not in Fishing.available_species(site): return false
+	var first: int=int(Fishing.state.serial)+1
+	var limit: int=mini(first+1024,GameClock.day*12+1)
+	for serial in range(first,limit):
+		if Fishing.choose_species(site,serial)!=species: continue
+		var fishing: Dictionary=Fishing.snapshot()
+		fishing.serial=serial-1;fishing.casts_day=GameClock.day
+		fishing.casts=mini(11,maxi(1,int(fishing.serial)-(GameClock.day-1)*12))
+		Fishing.restore(fishing)
+		return Fishing.validate(Fishing.snapshot(),GameClock.day)
+	return false
+
 static func caught_species(species: Array) -> void:
 	var fishing: Dictionary=Fishing.snapshot()
 	fishing.pending="";fishing.pending_day=0

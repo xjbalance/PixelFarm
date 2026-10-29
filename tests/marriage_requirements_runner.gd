@@ -105,6 +105,7 @@ func actual_fishing() -> void:
 	GameState.select_tool(8);await Touch.place(self,game,"farm",Vector2(944,464))
 	check(Fishing.validate(Fishing.snapshot(),GameClock.day) and AquacultureSaveSchema.validate(Aquaculture.snapshot(),GameClock.day),"星纹竿经验与婚前共同照料条件夹具满足实际保存校验")
 	check(not Xiaojing.state.married and Fishing.eligible("eternal","farm_lake"),"传说鱼所有真实获取前置均可在婚前完成")
+	check(Ready.next_weighted_cast("eternal"),"通过合法历史尝试夹具选取普通加权抽取，不使用保底强制出鱼")
 	check(Fishing.start("farm_lake") and Fishing.session.species=="eternal","流星夜正确生态与鱼竿条件下实际抛竿遇见永恒星鲤")
 	check(pilot() and Fishing.state.pending=="eternal" and Fishing.state.counts.get("eternal",0)==0,"实际追鱼成功但背包堆叠已满时只暂存水桶")
 	check(not goal("fish").ready and not Fishing.claim(),"尚未领取的暂存鱼不提前满足婚礼要求")

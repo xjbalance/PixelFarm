@@ -103,9 +103,11 @@ func build_cast() -> void:
 		)
 	else: button("向水面抛竿",func(): feedback(Fishing.start(context))).disabled=Fishing.remaining_casts(context)<=0 or Fishing.state.pending!=""
 	var possible: Array[String]=Fishing.available_species(context)
+	var chances: Dictionary=Fishing.encounter_chances(context)
 	var names: Array[String]=[]
-	for species in possible: names.append(Fishing.data.species[species].name)
-	words("此时可能遇到："+"、".join(names),16)
+	for species in possible: names.append("%s %.2f%%" % [Fishing.data.species[species].name,float(chances.get(species,0.0))*100])
+	words("此时遇鱼概率："+("、".join(names) if not names.is_empty() else "当前没有符合条件的鱼种"),16)
+	words("这是遇到鱼种的概率，上钩后仍需完成小游戏。没有抛竿次数保底。",16)
 	words("钓获鱼类可出售、料理，或在补给页用亲鱼培育同种鱼苗；珍稀鱼仍遵守原养殖研究和矿区前置。",16)
 func cost_text(required: Dictionary) -> String:
 	var parts: Array[String]=[]
@@ -131,6 +133,7 @@ func build_gear() -> void:
 			button("用"+Fishing.data.species[species].name+"培育鱼苗",func(): ask("使用一尾亲鱼与上方所列材料培育同种鱼苗？",func(): feedback(Fishing.breeding_fry(species,1))))
 func build_book() -> void:
 	words("垂钓记录 · 只计亲自完成的钓获",22)
+	var chances: Dictionary=Fishing.encounter_chances(context)
 	var grid:=FarmUIStyle.section_grid(content)
 	for species in Fishing.data.species:
 		section=FarmUIStyle.section(grid)
@@ -139,7 +142,8 @@ func build_book() -> void:
 		var seasons: Array[String]=[]
 		for season in definition.seasons: seasons.append(Calendar.SEASON_NAMES[int(season)])
 		words("季节："+"、".join(seasons)+" · 时段%02d:00–%02d:00" % [int(definition.hours[0])/60,int(definition.hours[1])/60],16)
-		if species=="eternal": words("生态健康度90、流星夜20:00后、完成小京湖畔共同照料、星纹竿。符合条件第4次抛竿保底遇到，仍需完成实操；每季最多捕一尾，不出售。",16)
+		words("此钓点当前遇到概率：%.2f%%" % (float(chances[species])*100) if chances.has(species) else "此钓点当前条件下暂不出现",16)
+		if species=="eternal": words("生态健康度90、完成小京湖畔共同照料、星纹竿。自然流星夜为夏12日、冬12日20:00后。遇到概率已降为原来的十分之一，无次数保底；上钩后仍需完成实操，每季最多捕一尾，不出售。",16)
 		elif species in ["golden","star"]: words("需要原养殖鱼谱已开放该鱼，并遇到合适天气；旧研究条件不会被钓鱼跳过。",16)
 	section=null
 	words("成就",22)
