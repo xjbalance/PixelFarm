@@ -8,11 +8,12 @@ palette=json.loads((ROOT/'resources/presentation/world_palette.json').read_text(
 colors={tuple(bytes.fromhex(c)) for ramp in palette['ramps'].values() for c in ramp}
 data=json.loads((ROOT/'resources/harvest/harvest.json').read_text())
 ids=['strawberry'] if args.sample else list(data['crops'])+['carrot','potato','wheat']
-records=[]
+records=[];seen=set()
 def image(path,size):
  im=Image.open(ROOT/path).convert('RGBA');assert im.size==size,(path,im.size,size);assert im.getbbox(),path
  assert all(p[:3] in colors for p in im.getdata() if p[3]),'Palette mismatch: '+path
- records.append({'path':path,'size':list(size),'sha256':hashlib.sha256((ROOT/path).read_bytes()).hexdigest()});return im
+ if path not in seen:records.append({'path':path,'size':list(size),'sha256':hashlib.sha256((ROOT/path).read_bytes()).hexdigest()});seen.add(path)
+ return im
 for id in ids:
  image(f'assets/harvest/items/{id}.png',(32,32));image(f'assets/harvest/items/{id}_seed.png',(32,32))
  if id in data['crops']:
@@ -24,8 +25,17 @@ for id in (['jam_pot'] if args.sample else data['stations']):image(f'assets/harv
 image('assets/kitchen/flour.png',(32,32))
 if not args.sample:
  image('assets/crops/crops.png',(128,120))
+ animation=json.loads((ROOT/'resources/presentation/workshop_visuals.json').read_text());sheet=image(animation['texture'].removeprefix('res://'),(128,560))
+ assert set(animation['stations'])==set(data['stations'])
+ for id,row in animation['stations'].items():
+  frames=[sheet.crop((i*32,row['row']*56,(i+1)*32,(row['row']+1)*56)) for i in range(4)]
+  assert len({im.tobytes() for im in frames})>=2,id+' missing visual motion'
+  assert row['padding_top']==8 and row['frame_size']==[32,56] and row['fps']<=6
+ for path in (ROOT/'assets/harvest/orchard').glob('*.png'): image(path.relative_to(ROOT).as_posix(),(96,96))
  for id in ['egg','milk','wool','hay']:image(f'assets/livestock/{id}.png',(32,32))
  for id in ['chicken','cow','sheep']:image(f'assets/livestock/{id}.png',(64,32))
+ for path,rect in json.loads((ROOT/'tools/art_source/agriculture080.json').read_text()).items():image(path,tuple(rect[2:]))
+ image('assets/housing/wool_rug.png',(64,64));image('assets/housing/cotton_chair.png',(32,48))
 if not args.allow_balance:
  before=json.loads((ROOT/'docs/quality081/economy-before.json').read_text())
  for path,value in before.items():assert json.loads((ROOT/'resources'/f'{path}.json').read_text())==value,'Art changed business data: '+path

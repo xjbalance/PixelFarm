@@ -1,0 +1,11 @@
+{
+  "headless": [
+    "QUALITY081 ANIMATION RESULT: 67 checks, 0 failures",
+    "HARVEST CROPS RESULT: 172 checks, 0 failures"
+  ],
+  "window": [
+    "QUALITY081 ANIMATION RESULT: 67 checks, 0 failures"
+  ],
+  "art_resources": 296,
+  "saved_data_unchanged": true
+}

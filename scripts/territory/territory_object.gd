@@ -18,8 +18,14 @@ func _ready() -> void:
 	sprite=Sprite2D.new();sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;add_child(sprite)
 	animated=AnimatedSprite2D.new();animated.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;add_child(animated);animated.hide()
 	Calendar.changed.connect(refresh_art)
-	Workshop.changed.connect(refresh_art)
 	refresh()
+	if str(entry.get("kind","")).begins_with("station_"):
+		Workshop.changed.connect(sync_station_visual)
+		GameClock.changed.connect(sync_station_visual)
+		Events.modal_changed.connect(func(_active: bool): sync_station_visual())
+		Events.location_changed.connect(func(_area: String): sync_station_visual())
+	elif str(entry.get("kind","")).begins_with("orchard_"):
+		Workshop.changed.connect(refresh_art)
 
 func refresh() -> void:
 	entry={}
@@ -56,7 +62,15 @@ func refresh_art() -> void:
 		if frames:
 			if animated.sprite_frames!=frames: animated.sprite_frames=frames;animated.play("loop")
 			animated.position=sprite.position;animated.show();sprite.hide()
+	if str(entry.kind).begins_with("station_"): sync_station_visual()
 	queue_redraw()
+
+func sync_station_visual() -> void:
+	if is_instance_valid(animated): WorkshopVisual.sync(self)
+
+func _notification(what: int) -> void:
+	if what in [NOTIFICATION_VISIBILITY_CHANGED,NOTIFICATION_APPLICATION_FOCUS_OUT,NOTIFICATION_APPLICATION_PAUSED,NOTIFICATION_APPLICATION_FOCUS_IN,NOTIFICATION_APPLICATION_RESUMED]:
+		if is_node_ready(): call_deferred("sync_station_visual")
 
 static func art_position(art: String, extent: Vector2) -> Vector2:
 	if SchemeCAssets.has_repeat(art): return Vector2.ZERO
@@ -67,7 +81,7 @@ static func art_position(art: String, extent: Vector2) -> Vector2:
 func prompt() -> String:
 	if entry.is_empty(): return "领地物件"
 	if str(entry.kind).begins_with("orchard_"): return str(definition.name)+(" · 可采果" if int(Workshop.state.orchard.get(entry_id,{}).get("fruit",0))>0 else " · 果园")
-	if str(entry.kind).begins_with("station_"): return str(definition.name)+(" · 成品待领取" if Workshop.state.jobs.get(entry_id,{}).get("ready",false) else " · 加工")
+	if str(entry.kind).begins_with("station_"): return str(definition.name)+" · "+{"idle":"选择配方","working":"加工中","ready":"成品待领取"}[WorkshopVisual.status(entry_id)]
 	return str(definition.name)+(" · 共用住宅收纳" if bool(definition.get("storage",false)) else " · 建造模式可移动或拆除")
 
 func hit_rect() -> Rect2:

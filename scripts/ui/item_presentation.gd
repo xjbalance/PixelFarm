@@ -8,6 +8,8 @@ static func texture(id: String) -> Texture2D:
 	var result: Texture2D
 	if Catalog.items.get(id,{}).has("icon"):
 		result=load(str(Catalog.items[id].icon))
+	elif (Catalog.crops.has(id) or (id.ends_with("_seed") and Catalog.crops.has(id.trim_suffix("_seed")))) and ResourceLoader.exists("res://assets/harvest/items/"+id+".png"):
+		result=load("res://assets/harvest/items/"+id+".png")
 	elif Catalog.crops.has(id):
 		var atlas:=AtlasTexture.new();atlas.atlas=load("res://assets/crops/crops.png")
 		atlas.region=Rect2(96,Catalog.crops[id].atlas_row*40,32,40);result=atlas

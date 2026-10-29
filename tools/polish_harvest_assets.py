@@ -109,7 +109,7 @@ def crop_sheet(id):
         if stage==0:
             d.line((16,34,16,28),fill=LEAF,width=2);d.polygon([(16,29),(11,25),(8,26),(10,29),(16,31)],fill=GREEN);d.polygon([(16,28),(20,24),(23,25),(21,28)],fill=LIGHT)
         elif shape in ['grain','corn','sunflower','oilflower','stalk','onion']:
-            height=10+stage*8
+            height=min(32,10+stage*8)
             if shape=='grain':
                 for x in [9,16,23]:
                     top=34-height+(3 if x!=16 else 0);d.line((x,34,x,top),fill=LEAF if stage<3 else P['gold'][1],width=2)
@@ -145,7 +145,12 @@ def crop_sheet(id):
                 else:
                     bush(d,17,7,True)
                     col=P['roof'][4] if id=='carrot' else CREAM if shape in ['root','snowroot'] else P['wood_earth'][5] if id=='potato' else P['roof'][2]
-                    d.ellipse((10,28,22,36),fill=DARK);d.ellipse((11,28,21,34),fill=col);d.line((13,29,17,29),fill=P['cream'][-1])
+                    if id=='carrot':
+                        d.polygon([(10,27),(22,27),(19,34),(16,37),(12,33)],fill=DARK);d.polygon([(12,28),(21,28),(18,33),(16,35),(13,32)],fill=col);d.line((13,28,14,32),fill=P['gold'][-1])
+                    elif id=='potato':
+                        d.ellipse((7,28,18,36),fill=DARK);d.ellipse((8,28,17,34),fill=col);d.ellipse((16,27,25,35),fill=DARK);d.ellipse((17,27,24,33),fill=P['wood_earth'][-2]);d.point((13,31),fill=P['wood_earth'][1])
+                    else:
+                        d.ellipse((10,28,22,36),fill=DARK);d.ellipse((11,28,21,34),fill=col);d.line((13,29,17,29),fill=P['cream'][-1])
         elif shape in ['lavender','rose','daisy']:
             bush(d,7+stage*5,5)
             if stage==3:im.alpha_composite(produce(id),(0,6))
@@ -184,11 +189,47 @@ def station(id):
         d.rounded_rectangle((5,12,27,29),radius=5,fill=DARK);d.rounded_rectangle((6,13,26,27),radius=5,fill=P['roof'][2]);d.rounded_rectangle((7,13,25,23),radius=4,fill=P['roof'][4])
         d.ellipse((5,10,27,18),fill=DARK);d.ellipse((6,10,26,16),fill=P['gold'][1]);d.ellipse((8,12,24,16),fill=P['flower'][0]);d.line((8,11,20,11),fill=P['cream'][-2]);d.line((8,19,8,23),fill=P['roof'][-1],width=2)
         d.arc((1,15,9,23),90,270,fill=DARK,width=2);d.arc((24,15,31,23),270,90,fill=DARK,width=2);d.line((22,14,27,4),fill=P['wood_earth'][1],width=2);d.point((26,5),fill=P['wood_earth'][-2])
+    elif id=='drying_rack':
+        for y in [9,18,27]:d.rectangle((8,y,24,y+3),fill=(0,0,0,0))
+        for y in [13,22,30]:d.line((7,y,25,y),fill=P['wood_earth'][3],width=2)
     elif id=='mill':
         d.arc((5,13,27,24),0,180,fill=P['stone'][0],width=2);d.line((8,15,22,15),fill=P['stone'][-2]);d.line((10,8,20,8),fill=DARK)
     elif id=='cheese_table':d.line((9,15,9,23),fill=P['cream'][-1]);d.arc((7,10,18,16),180,310,fill=P['stone'][-1])
     elif id=='smoker':d.line((9,12,9,35),fill=P['stone'][3]);d.line((10,28,23,28),fill=P['stone'][0]);d.point((22,20),fill=P['gold'][3])
     return harmonize(im)
+
+def working_frames():
+    atlas=Image.new('RGBA',(128,len(D['stations'])*56));manifest={}
+    for row,id in enumerate(D['stations']):
+        manifest[id]={'row':row,'frames':4,'fps':4,'frame_size':[32,56],'padding_top':8}
+        for frame in range(4):
+            im=Image.new('RGBA',(32,56));im.alpha_composite(station(id),(0,8));d=ImageDraw.Draw(im)
+            if id=='mill':
+                d.rectangle((26,23,30,29),fill=(0,0,0,0))
+                d.ellipse((6,21,26,30),fill=P['stone'][3]);d.line((9,23,21,23),fill=P['stone'][-2])
+                dx,dy=[(10,0),(0,5),(-9,0),(0,-5)][frame]
+                d.line((16,27,16+dx,27+dy),fill=DARK,width=2);d.rectangle((15+dx,25+dy,17+dx,28+dy),fill=P['wood_earth'][3]);d.point((16,27),fill=P['gold'][-1])
+            elif id=='oil_press':
+                y=27+[0,1,2,1][frame];d.rectangle((11,y,23,y+2),fill=P['gold'][1]);d.line((12,y,22,y),fill=P['gold'][-1]);d.point((17,22+frame),fill=P['gold'][2])
+            elif id in ['jam_pot','smoker','pickle_jar']:
+                x=23 if id=='smoker' else 15;y=8-frame*2
+                color=P['stone'][3] if id=='smoker' else P['cream'][-2]
+                d.rectangle((x-1+(frame%2),y,x+1+(frame%2),y+1),fill=color)
+                d.point((x-3,y+3),fill=P['cream'][3]);d.point((x+3,9-frame),fill=color)
+            elif id=='loom':
+                x=[9,14,19,14][frame];d.rectangle((x,28,x+4,30),fill=P['wood_earth'][0]);d.line((x,28,x+3,28),fill=P['cream'][-1]);d.point((13+frame,36),fill=P['teal'][-1])
+            elif id=='drying_rack':
+                for x,y in [(10,17),(18,17),(10,26),(18,35)]:
+                    d.rectangle((x,y,x+4,y+3),fill=P['roof'][3]);d.line((x,y,x+3,y),fill=P['gold'][3]);d.point((x+frame%2,y+4),fill=P['wood_earth'][1])
+            elif id=='egg_table':
+                x=[22,24,22,20][frame];d.line((15,28,x,17),fill=P['wood_earth'][2],width=2);d.arc((10,25,19,30),frame*90,frame*90+120,fill=P['gold'][2])
+            elif id=='juicer':
+                d.line((12,25,21,25),fill=P['gold'][-1]);d.point((13+frame*2,27),fill=P['cream'][-1]);d.point((21-frame,30),fill=P['roof'][4])
+            else:
+                d.point((11+frame%2,24-frame),fill=P['cream'][-1]);d.point((14,20+frame),fill=P['cream'][2]);d.line((10,35,14+frame,35),fill=P['gold'][-1])
+            atlas.alpha_composite(harmonize(im),(frame*32,row*56))
+    old.save(atlas,OUT/'workshop_work.png')
+    (ROOT/'resources/presentation/workshop_visuals.json').write_text(json.dumps({'texture':'res://assets/harvest/workshop_work.png','stations':manifest},ensure_ascii=False,indent=2)+'\n')
 
 def seed(id):
     im=Image.new('RGBA',(32,32));d=ImageDraw.Draw(im)
@@ -210,6 +251,7 @@ def main():
     for id in (['jam_pot'] if args.sample else D['stations']):old.save(station(id),OUT/'stations'/f'{id}.png')
     old.save(flour(),ROOT/'assets/kitchen/flour.png')
     if not args.sample:
+        working_frames()
         atlas=Image.new('RGBA',(128,120))
         for row,id in enumerate(['carrot','potato','wheat']):atlas.alpha_composite(crop_sheet(id),(0,row*40))
         old.save(atlas,ROOT/'assets/crops/crops.png')

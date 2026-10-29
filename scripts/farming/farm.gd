@@ -204,6 +204,10 @@ func _draw() -> void:
 			var stage: int = mini(int(float(plot["days"]) / crop.growth_days * (crop.stages - 1)), crop.stages - 1)
 			if not crop_textures.has(crop.texture_path): crop_textures[crop.texture_path]=load(crop.texture_path)
 			draw_texture_rect_region(crop_textures[crop.texture_path], Rect2(origin + Vector2(0, -9), Vector2(32, 40)), Rect2(stage * 32, crop.atlas_row * 40, 32, 40))
+			if is_mature(plot):
+				# Static pixel marker; no extra timers, input nodes or production callbacks.
+				draw_rect(Rect2(origin+Vector2(27,2),Vector2(2,5)),Color("edd581"))
+				draw_rect(Rect2(origin+Vector2(26,3),Vector2(4,2)),Color("f7e8a5"))
 		if wet:
 			draw_rect(Rect2(origin + Vector2(24, 24), Vector2(4, 4)), Color("91c8da"))
 	if BOUNDS.has_point(highlighted) and (logical_cell(highlighted)!=INVALID_CELL or GameState.manual_tool or LEGACY_BOUNDS.has_point(highlighted)):

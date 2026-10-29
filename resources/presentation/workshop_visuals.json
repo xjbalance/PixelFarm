@@ -1,0 +1,105 @@
+{
+  "texture": "res://assets/harvest/workshop_work.png",
+  "stations": {
+    "mill": {
+      "row": 0,
+      "frames": 4,
+      "fps": 4,
+      "frame_size": [
+        32,
+        56
+      ],
+      "padding_top": 8
+    },
+    "oil_press": {
+      "row": 1,
+      "frames": 4,
+      "fps": 4,
+      "frame_size": [
+        32,
+        56
+      ],
+      "padding_top": 8
+    },
+    "pickle_jar": {
+      "row": 2,
+      "frames": 4,
+      "fps": 4,
+      "frame_size": [
+        32,
+        56
+      ],
+      "padding_top": 8
+    },
+    "jam_pot": {
+      "row": 3,
+      "frames": 4,
+      "fps": 4,
+      "frame_size": [
+        32,
+        56
+      ],
+      "padding_top": 8
+    },
+    "juicer": {
+      "row": 4,
+      "frames": 4,
+      "fps": 4,
+      "frame_size": [
+        32,
+        56
+      ],
+      "padding_top": 8
+    },
+    "drying_rack": {
+      "row": 5,
+      "frames": 4,
+      "fps": 4,
+      "frame_size": [
+        32,
+        56
+      ],
+      "padding_top": 8
+    },
+    "cheese_table": {
+      "row": 6,
+      "frames": 4,
+      "fps": 4,
+      "frame_size": [
+        32,
+        56
+      ],
+      "padding_top": 8
+    },
+    "egg_table": {
+      "row": 7,
+      "frames": 4,
+      "fps": 4,
+      "frame_size": [
+        32,
+        56
+      ],
+      "padding_top": 8
+    },
+    "loom": {
+      "row": 8,
+      "frames": 4,
+      "fps": 4,
+      "frame_size": [
+        32,
+        56
+      ],
+      "padding_top": 8
+    },
+    "smoker": {
+      "row": 9,
+      "frames": 4,
+      "fps": 4,
+      "frame_size": [
+        32,
+        56
+      ],
+      "padding_top": 8
+    }
+  }
+}

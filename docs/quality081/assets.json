@@ -1,0 +1,2378 @@
+{
+  "phase": "full",
+  "resources": 296,
+  "native_sizes": "passed",
+  "palette": "passed",
+  "distinct_stages": "passed",
+  "business_data_unchanged": true,
+  "files": [
+    {
+      "path": "assets/harvest/items/strawberry.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "07165ec8314bb7ae8b45b4917f4ea93f8a049f4d9a94ca304d2cbf867f2212b1"
+    },
+    {
+      "path": "assets/harvest/items/strawberry_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8ac4575e4b2e3cf8746b03b3d08ea49117c8a5a360dba5529890efb478c6fb4b"
+    },
+    {
+      "path": "assets/harvest/crops/strawberry.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "fe092c68bd9193100b11f0bcb2c9971bf1c2860544c5482f24cc212722f08adf"
+    },
+    {
+      "path": "assets/harvest/items/cabbage.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e80a6fc3d19e0e52b8d598a4de28c6186f21dc8a0275b979109d83de5642657d"
+    },
+    {
+      "path": "assets/harvest/items/cabbage_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "edf224fedc50c224cf77497b15dba9ccb7188a6e691e34dd5bc7d1720c5d78a5"
+    },
+    {
+      "path": "assets/harvest/crops/cabbage.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "5e43cd2b1cb56ab9d26ed9aca764a58c6e64e7f07f22e7f348b47896815cb26b"
+    },
+    {
+      "path": "assets/harvest/items/radish.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "32272f932c11b0aa8afb6c8853e0faf3a1dee69108540f752f55a8131135b55f"
+    },
+    {
+      "path": "assets/harvest/items/radish_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "5687ae2e7da0d6f350f4f7c35e8c1b6b7294b222653eea24987bb8786c524490"
+    },
+    {
+      "path": "assets/harvest/crops/radish.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "c89e2ae37dc9dc7272516c7b564c4e6addc072cb3af2174d33962f92c68bc056"
+    },
+    {
+      "path": "assets/harvest/items/peas.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "1cb3d82838043db50053d580366d1d87cf04a49e940479e938f6d92fce3f9f11"
+    },
+    {
+      "path": "assets/harvest/items/peas_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "478ed4e011f13df92524c5773e70c699b6b9ec83f9d9a8e58ab47bf276a38b11"
+    },
+    {
+      "path": "assets/harvest/crops/peas.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "b4e7d031f617592f757ec6dd1908fef602bddcec714402fe81c20cc440d354cb"
+    },
+    {
+      "path": "assets/harvest/items/spinach.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c5c680969085b62219915ec11abf423cb103e99a24be9ddeed3e8f8d9d2bbc4c"
+    },
+    {
+      "path": "assets/harvest/items/spinach_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "d367d32475a37618d9f7d47b18060ebd5165f4d625ca2c64d00af9511938a137"
+    },
+    {
+      "path": "assets/harvest/crops/spinach.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "04ab3334d7f3a2e677803f314e81d89d8f16b62419e7ff6564d3e59dd0bf7179"
+    },
+    {
+      "path": "assets/harvest/items/rapeseed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "df104526959f3bfd3b86f5f6f60018c6b286e03d053745a65bcc056fca6620df"
+    },
+    {
+      "path": "assets/harvest/items/rapeseed_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "f6df5cf39fe91bf69e95fa3417ff2c6f94a1ac35fbe3888d0df2ce1c1e24554d"
+    },
+    {
+      "path": "assets/harvest/crops/rapeseed.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "15313a0bb2c7bf64ab2f49b26dca704ba438583ad8ffc7217235308ff58687e1"
+    },
+    {
+      "path": "assets/harvest/items/garlic_shoot.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e55a0349a419cac86b8cb62c23a58090a2a81cb3ab13eb181536c2c392f900f8"
+    },
+    {
+      "path": "assets/harvest/items/garlic_shoot_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a1a726c7ca9aa7eec57e04d321330071fc025da828205c942a64f590ba8aa604"
+    },
+    {
+      "path": "assets/harvest/crops/garlic_shoot.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "45e81c310537f55ad68f11afed13ce7a351a85779c166672e8e88fe45cf7a220"
+    },
+    {
+      "path": "assets/harvest/items/tomato.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "cd5c64f0e0b584d586675708ceeba020c928c0d623fac3ced1e25a9365448bee"
+    },
+    {
+      "path": "assets/harvest/items/tomato_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2beb768af67beaad3f73002ac7149bb53006f64835a549844126b4c25018c219"
+    },
+    {
+      "path": "assets/harvest/crops/tomato.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "ba05b6effcdc5251e548143c3c094c38f26d6903802afc38044b11efa91ce8c5"
+    },
+    {
+      "path": "assets/harvest/items/cucumber.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "d4b48eba5a122ec45a4362fe6618a745caba8abfd39ee39795f00679f5024a97"
+    },
+    {
+      "path": "assets/harvest/items/cucumber_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "9e48775a27df740914c0748ed9403348e6e0725ca974c224bdd588dd65372958"
+    },
+    {
+      "path": "assets/harvest/crops/cucumber.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "b4e7d031f617592f757ec6dd1908fef602bddcec714402fe81c20cc440d354cb"
+    },
+    {
+      "path": "assets/harvest/items/corn.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e6bfd49958086ba1024d7b5da28e1ff18d0197b62060cf9e270c43bf126f6f98"
+    },
+    {
+      "path": "assets/harvest/items/corn_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "94adca3dea2a79e0af3c0f948a8ebe74e54e7da4d52c350f7f8ea12422a11376"
+    },
+    {
+      "path": "assets/harvest/crops/corn.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "fe03782516021e6d2b82671b36e88c30bf27f4bffe53cda6fa1a8ed02ab5c8c9"
+    },
+    {
+      "path": "assets/harvest/items/chili.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "4aaeb5640b8ccd665a40130811bee9aa233aaccdeca002e508a39e06cddef254"
+    },
+    {
+      "path": "assets/harvest/items/chili_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c131bd0cade6cd06c1c5d501ee74a875ef380c2394357149de9881f1afd75c1b"
+    },
+    {
+      "path": "assets/harvest/crops/chili.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "cfea9139f9713068163f36320c5dfeeb4e1813c918d0c1fc344bc53066078dbd"
+    },
+    {
+      "path": "assets/harvest/items/eggplant.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "9bf0558715489dae09f71061f78402cea0fbe1c367277eb01e0f5fa5a643e3b3"
+    },
+    {
+      "path": "assets/harvest/items/eggplant_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "113f9a48901d9f5658ef38babd5a6df7bdb64d6d905a640578a85cc6bb813ee0"
+    },
+    {
+      "path": "assets/harvest/crops/eggplant.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "67f9c39dd3a48fc4d08cbcb1909ce78100417abf190f6e4b9f14905bd2d75abc"
+    },
+    {
+      "path": "assets/harvest/items/watermelon.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "b2689c925f0af6ed651ec2b450efd87698f5be3984e0c6391e4e7442269c9432"
+    },
+    {
+      "path": "assets/harvest/items/watermelon_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "6c3c0350358fdbae4067c5a60a2aa6eff9d939e466f977fca1e2cadbb17c3abc"
+    },
+    {
+      "path": "assets/harvest/crops/watermelon.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "f8e5d3431cfc7c9dff02152989be3f09e73d96c90001949de458e0c10d77edfa"
+    },
+    {
+      "path": "assets/harvest/items/blueberry.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "75b31b17377f6037267e4315f58d3eac677b1f58e44487b3449ae58d16cb3cee"
+    },
+    {
+      "path": "assets/harvest/items/blueberry_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2aad2143481160c9fbe5057f878a092498f6fb34772a6b3f9ab0f7b4a84bbfd2"
+    },
+    {
+      "path": "assets/harvest/crops/blueberry.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "195cc44c4eba8d1c7abc09cf660c354db881e873b44df38424427d258e965606"
+    },
+    {
+      "path": "assets/harvest/items/sunflower_crop.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "30323181e7a3ff4c59ba883d677a1ebc61dfbdbf5656e557f580e8289c740d23"
+    },
+    {
+      "path": "assets/harvest/items/sunflower_crop_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "0830c64d2e60e65b3820de002eae7db72a041ed8a127a1ef200fe04e78a45204"
+    },
+    {
+      "path": "assets/harvest/crops/sunflower_crop.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "08d027a6d352230563c577e457cf01a0fac7beff122692d3b44f01e255a31852"
+    },
+    {
+      "path": "assets/harvest/items/pumpkin.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ba147c9bc64c5a5c5a3b74d0fe587c3cf381f8fb79126f7492ae72575d107de4"
+    },
+    {
+      "path": "assets/harvest/items/pumpkin_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "315838d418f42aad025ea16ef246aa83a115205e179296acc2b72c5014188cdc"
+    },
+    {
+      "path": "assets/harvest/crops/pumpkin.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "090065e142e8819a6c4e2389b759dfdec69fde1f0c87bfd7aac2edcca3d38654"
+    },
+    {
+      "path": "assets/harvest/items/sweet_potato.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a528e1f53595d832e8a66d600d08a68b08dcaedf0593526185181cd2e8069d24"
+    },
+    {
+      "path": "assets/harvest/items/sweet_potato_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "632e4a2599e284c01cfe46f451ad22a33463dd78d174fd56f93ebed0867c19e7"
+    },
+    {
+      "path": "assets/harvest/crops/sweet_potato.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "fc3991224c7da155166b7eabe3807b22722b588187ff078c0144222a458804e1"
+    },
+    {
+      "path": "assets/harvest/items/rice_crop.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "0a38744adc2088707a41165266934b827964b1ff47663d7073b871636efc41fe"
+    },
+    {
+      "path": "assets/harvest/items/rice_crop_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "98b328f3096311eac38c7d4ea7c7cbf5ade3146ecb0ab3743ea1ef3bf84fc338"
+    },
+    {
+      "path": "assets/harvest/crops/rice_crop.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "4e6ea43b99ba914111fd521a8115c4e17b0689a24273bd77adfc05425440339d"
+    },
+    {
+      "path": "assets/harvest/items/soybean.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "108ead9ff74211d8e6815b3c1920db2f11b535702704963d6810101cb6d7918f"
+    },
+    {
+      "path": "assets/harvest/items/soybean_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c456c6db1530981fe3f99600efdfe48f27b63352e0813b817426312454f46277"
+    },
+    {
+      "path": "assets/harvest/crops/soybean.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "bb8aa3219cf322aa31c9d60d8be827e871966a2608a7e67821e1a9d92d18bedc"
+    },
+    {
+      "path": "assets/harvest/items/grape.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "3a38965c94788c207b8d55640042f0cb67930f342df65b912e735d7e2e955126"
+    },
+    {
+      "path": "assets/harvest/items/grape_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2795416ecb7c10ed59bd416020684237d668eacd54a1919fe04adc9b25045e61"
+    },
+    {
+      "path": "assets/harvest/crops/grape.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "419ece8cbc86c16bbd1d7ae51ec558e8a2a9887f0f4ec26ac44e61eb508537ee"
+    },
+    {
+      "path": "assets/harvest/items/peanut.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "66ea1f412ca6c33373991c6a0ecbd63ae111d3140007761fee8c57fe6365502e"
+    },
+    {
+      "path": "assets/harvest/items/peanut_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ae56584c624fca638aab4a510f3b014ba8c8e0d6e93eade44a99d3bf3fcc546e"
+    },
+    {
+      "path": "assets/harvest/crops/peanut.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "bb8aa3219cf322aa31c9d60d8be827e871966a2608a7e67821e1a9d92d18bedc"
+    },
+    {
+      "path": "assets/harvest/items/cotton.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "1fddac1905970042798173717a33fd98b4f56acfb470715f4e7dcf86e21c85e5"
+    },
+    {
+      "path": "assets/harvest/items/cotton_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e46abe9f241b6a9e294ceee0b7dfb0c98901637d5711af959744d97d9c792660"
+    },
+    {
+      "path": "assets/harvest/crops/cotton.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "88d9ae787e96ac794d37ab795d9a98eca573210f1cbdb380f8384bd87f4fbfe1"
+    },
+    {
+      "path": "assets/harvest/items/winter_kale.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c62561f0e76f3e1b213d849bb34156c2528f57731692c87ce3677aa6bdacb991"
+    },
+    {
+      "path": "assets/harvest/items/winter_kale_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "d84a7429f90b03e7b7e18acb4312e17f9b4f406b4f97cf572509eb18b345ad83"
+    },
+    {
+      "path": "assets/harvest/crops/winter_kale.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "9f5e591f405f58795719afa1613363edfd6a003b6d4a5e453eec99c9fb9abde6"
+    },
+    {
+      "path": "assets/harvest/items/snow_radish.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "19dd32669ece953ed6c01a8080361f760c53fc600db1df27be7d68992d08ce17"
+    },
+    {
+      "path": "assets/harvest/items/snow_radish_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "90dbecaad6d8ae0df344aece1728580116e75f33dd6d346f70be8e58bec2dcd7"
+    },
+    {
+      "path": "assets/harvest/crops/snow_radish.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "c89e2ae37dc9dc7272516c7b564c4e6addc072cb3af2174d33962f92c68bc056"
+    },
+    {
+      "path": "assets/harvest/items/winter_onion.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c8f8628dc9f4eaf3ab5f3ebb45b975cc8ce9c0f14171746f9f92025c0eb3d9ab"
+    },
+    {
+      "path": "assets/harvest/items/winter_onion_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "edfa51e816f381faef5a7be7c100b358c49ed29603d8251e592d4fbced7167e8"
+    },
+    {
+      "path": "assets/harvest/crops/winter_onion.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "45e81c310537f55ad68f11afed13ce7a351a85779c166672e8e88fe45cf7a220"
+    },
+    {
+      "path": "assets/harvest/items/frost_peas.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "71155418ecf424b0e84a9964e61c1339b77120f3962035114c88738266f3693c"
+    },
+    {
+      "path": "assets/harvest/items/frost_peas_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "33e3b00893f00d8d8c40fcf8ebc5ae0da0119b343c6082421198a04fdb3dab6e"
+    },
+    {
+      "path": "assets/harvest/crops/frost_peas.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "4816b6cdae1872205e8b7f41933248a18e4b53b10e9f0dad071e26037c2d3cf9"
+    },
+    {
+      "path": "assets/harvest/items/winter_cabbage.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "f56f13765073adbd5f96ae0fa70f98339cdad29950b884932a4c324fbbf752bb"
+    },
+    {
+      "path": "assets/harvest/items/winter_cabbage_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "b5f53cdfb4810c410d4d7bf78a5e33d536f5409245089f128ed65b8c9ccca283"
+    },
+    {
+      "path": "assets/harvest/crops/winter_cabbage.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "0c58ec0a9b21ae7fe081680c8e799ba3e9d631ce5adc843ff7298ddcc3687253"
+    },
+    {
+      "path": "assets/harvest/items/lavender.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "12d4c81793a944153d9844fd7be6e2072e3bf17e15247fc03622aa90f2a9bea1"
+    },
+    {
+      "path": "assets/harvest/items/lavender_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "4a64a4ca625ebf5567e59489764784e1da0963582d50b82139275205b0c5dd17"
+    },
+    {
+      "path": "assets/harvest/crops/lavender.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "f17616b0762d6f3b5bc2272f1e2eec94071985720d7515da6dd7cad0347c40c8"
+    },
+    {
+      "path": "assets/harvest/items/rose.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "3b59349ecf228b99d618a699517fcbced18fae45c88023047698e9ed0342b85e"
+    },
+    {
+      "path": "assets/harvest/items/rose_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "063fbcc86da13dcc7075543b924a1e73a994493b1ec8f489ad1789617fdace65"
+    },
+    {
+      "path": "assets/harvest/crops/rose.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "7e1c1ef37136b4c72cd30e86f463c179d98869657e929ed2d85334981d656d11"
+    },
+    {
+      "path": "assets/harvest/items/chamomile.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "80470449337fb5a4c7d7d698323cfba2b58c50f9143940e2c562c776bb395308"
+    },
+    {
+      "path": "assets/harvest/items/chamomile_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "3f4d0e0549c89d396ec4c7d6568e74262abe79995ee5d272a19c2c65e02493f9"
+    },
+    {
+      "path": "assets/harvest/crops/chamomile.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "a0486ecdbc9ccffeb235d0b419d7dba5d7f64aa524f78448cc24ba5a1b7f9df5"
+    },
+    {
+      "path": "assets/harvest/items/carrot.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a57b1f66d6832554c4ec11314182a74009c74f476e48d03fba40347459504e29"
+    },
+    {
+      "path": "assets/harvest/items/carrot_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "fffd5c1e5e30b8ddbf8aa090827177fbc5622217aba9040c3f1e86048c28a012"
+    },
+    {
+      "path": "assets/harvest/items/potato.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "38f097e16af726d15ecc1a296a5d702ff864aab317501c0ac1f4131cb4f603ba"
+    },
+    {
+      "path": "assets/harvest/items/potato_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "22e281304e322b573c48b8a18b5113f44d6dd406e466cde6faee16b56eaac9ee"
+    },
+    {
+      "path": "assets/harvest/items/wheat.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e88295215deeca93e54f4ddb3a4e1fce58c2a06b8684e9e24307b62f2cfdfc79"
+    },
+    {
+      "path": "assets/harvest/items/wheat_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "6e5e674dece7a12bb4c8b0e6176a292384da6b6a10d15e14b255c6652af41a50"
+    },
+    {
+      "path": "assets/harvest/items/apple.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2d01aa5344399bc76a87ed67096dd97ee36a62e8eae3f1df0a2ff62228702f6c"
+    },
+    {
+      "path": "assets/harvest/items/apple_sapling.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8e7c33ef3f27d4f66a28e582a0b7939ea5af538c2130dcaccb02f97291c64079"
+    },
+    {
+      "path": "assets/harvest/items/pear.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "0cf3c5eba8acea363036a9dcfc7f5735fb9191335ca1a9c8bb7b12425828d453"
+    },
+    {
+      "path": "assets/harvest/items/pear_sapling.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8e7c33ef3f27d4f66a28e582a0b7939ea5af538c2130dcaccb02f97291c64079"
+    },
+    {
+      "path": "assets/harvest/items/peach.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "637ad92b2a569c83f93bc7b09dc3ed4669b2ff39a7eaa2f1e26ed92dda093061"
+    },
+    {
+      "path": "assets/harvest/items/peach_sapling.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8e7c33ef3f27d4f66a28e582a0b7939ea5af538c2130dcaccb02f97291c64079"
+    },
+    {
+      "path": "assets/harvest/items/orange.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "cde217f0e580e3235935a252d0749e1b84358c56b1e28c2099ff07da7a480365"
+    },
+    {
+      "path": "assets/harvest/items/orange_sapling.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8e7c33ef3f27d4f66a28e582a0b7939ea5af538c2130dcaccb02f97291c64079"
+    },
+    {
+      "path": "assets/harvest/items/mill_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a1e15d6c446a8664dcfa54041c52c6d61dca041fa6ce531313d358f6d3d535f2"
+    },
+    {
+      "path": "assets/harvest/items/oil_press_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "01e71c6419b281e91cb6f490c2caf8842f009a61e57002b86b347a0d14c27b4c"
+    },
+    {
+      "path": "assets/harvest/items/pickle_jar_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a9ae2bcf304554e995060504864a9dfe3d04ee0a4b82eff24b06f2c3972ca3d0"
+    },
+    {
+      "path": "assets/harvest/items/jam_pot_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "06c85af61bc955d3a92cdf03938843ceb7097c225f5f5e779e2fc9edee70ebb9"
+    },
+    {
+      "path": "assets/harvest/items/juicer_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "dabea6e9152709b397d7c7cef6ab509ebff024167ca94be05269c7216fc266d5"
+    },
+    {
+      "path": "assets/harvest/items/drying_rack_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "52302f3a2b5399a78318e03f655bf0fc9d3a9a84a1efb9034c72c3c211118fc0"
+    },
+    {
+      "path": "assets/harvest/items/cheese_table_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "617c35b61e449d32c42d4d2b90d0de91ab5e091210ba425eb97a8fd74810ffa4"
+    },
+    {
+      "path": "assets/harvest/items/egg_table_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "6b187c7a3ef2b6e4bbf572127e9f06c5061006ee1cdd5e9e55100f3f02fb78ca"
+    },
+    {
+      "path": "assets/harvest/items/loom_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "56e4f0a65c9a326ba0e09ab7a409845a2bdfddcbbe34bf2145001db636009543"
+    },
+    {
+      "path": "assets/harvest/items/smoker_kit.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c68258ad64dd3ce3e3de8b7fdd293c1cdde7ec0c8d6af425d26ce4648177adeb"
+    },
+    {
+      "path": "assets/harvest/items/rice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a20fcea793f57c2627078987e3aa7ab7f8d6021a7b6f1858bc15a142b34926ff"
+    },
+    {
+      "path": "assets/harvest/items/cornmeal.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a20fcea793f57c2627078987e3aa7ab7f8d6021a7b6f1858bc15a142b34926ff"
+    },
+    {
+      "path": "assets/harvest/items/tofu.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "113ff1f0509cb4d505160feed72a207a46f1f2be2922f27c7123a78b4583dabd"
+    },
+    {
+      "path": "assets/harvest/items/canola_oil.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "70725599d8912c68325fa948e258a8749fa7dc8b2dec843230738d89c54fb519"
+    },
+    {
+      "path": "assets/harvest/items/peanut_oil.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "cb6cc3f90f5051f0e609699e5c7453df102ba714af5ea294cb82a350cc957867"
+    },
+    {
+      "path": "assets/harvest/items/sunflower_oil.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "cf3759b8140c9315325fadbd3482043148257d80952c5210abb23bc755363a30"
+    },
+    {
+      "path": "assets/harvest/items/pickled_cucumber.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "9aa6b2e69f6b6d6dd899421f9b0d1aed84405377b2e7c3e705b8d0887d2cebce"
+    },
+    {
+      "path": "assets/harvest/items/kimchi.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "105cf9833c28b6fefa5d8d69356f64b029b7032067e85468ba68c62b3a89da36"
+    },
+    {
+      "path": "assets/harvest/items/pickled_radish.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "af2aacec05e747c816f1bf14ca1ba4fc03efdd07a1630ad688fe1a9b96294717"
+    },
+    {
+      "path": "assets/harvest/items/snow_pickle.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "af2aacec05e747c816f1bf14ca1ba4fc03efdd07a1630ad688fe1a9b96294717"
+    },
+    {
+      "path": "assets/harvest/items/winter_pickle.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8481851ce15de1f5b50ffe6d6a4de61e994a2df2771eb04550934c8cdc13177c"
+    },
+    {
+      "path": "assets/harvest/items/tomato_sauce.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "547effd9f4830b08f03d835260e406e1edce87a090de800cab05223ead97e650"
+    },
+    {
+      "path": "assets/harvest/items/chili_sauce.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "fc998bda02f42fcc2012d843f27888632b3fc5ec42dec5b5b2b2b031819606ee"
+    },
+    {
+      "path": "assets/harvest/items/pumpkin_puree.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "55e6ab20b35c6e45d15fe10245509b374ee5c4cc954c98a90576a0697fde6ff0"
+    },
+    {
+      "path": "assets/harvest/items/strawberry_jam.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ae3e5bf0ccc1f719336a1bea9878a9db3ab7a7b1cd65d5791871892d77a7af2b"
+    },
+    {
+      "path": "assets/harvest/items/blueberry_jam.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c8a2d00a2ee1dd09933cb281e9336da8b495c1bbcdc785c2887129dd0ca9738a"
+    },
+    {
+      "path": "assets/harvest/items/peach_jam.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "86156c8416bba0af0ef42338e0115d5927e2d5976a8b132f97eb948b584a5af0"
+    },
+    {
+      "path": "assets/harvest/items/grape_juice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "dbafdd4e5da50c3947c3e2d18472b38e9962aadb496ba88cf11fa3d8845c20f3"
+    },
+    {
+      "path": "assets/harvest/items/apple_juice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "28a3cf586a165964dbb45077932a23cfd1f4371efd8305e18aeac502ed0de624"
+    },
+    {
+      "path": "assets/harvest/items/pear_juice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "01346fa89a5ddc06aac75178a119acaece6d69448b722a49b477ac1f44bce9dc"
+    },
+    {
+      "path": "assets/harvest/items/orange_juice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "264d60530cf4f66b610e07c91f11bb785a7ba8ecb68810b6112b89e04281a296"
+    },
+    {
+      "path": "assets/harvest/items/watermelon_juice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "7386a4d32466f9061b828fc3f665644ff360bbe0c23dd9e45a991b973203437a"
+    },
+    {
+      "path": "assets/harvest/items/raisins.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "3affe8cfba260eb75f8b97bb83696187dfc4d39df14ab468a02dbe7a9687a0fc"
+    },
+    {
+      "path": "assets/harvest/items/dried_sweet_potato.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e0eb63b6c6c26a587f9e660ae92274bed32b5726cdde9a3d8f30d551b7e30580"
+    },
+    {
+      "path": "assets/harvest/items/dried_pear.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "720c39ed274b128001b769aa145eba5a9b008234c949e08c3f8010858a386835"
+    },
+    {
+      "path": "assets/harvest/items/dried_spinach.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c98f988f9512472f8b03623319a94a6832ae086f51b21c25bcfd473b723ce30d"
+    },
+    {
+      "path": "assets/harvest/items/dried_kale.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c98f988f9512472f8b03623319a94a6832ae086f51b21c25bcfd473b723ce30d"
+    },
+    {
+      "path": "assets/harvest/items/soup_herbs.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c98f988f9512472f8b03623319a94a6832ae086f51b21c25bcfd473b723ce30d"
+    },
+    {
+      "path": "assets/harvest/items/onion_flakes.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c98f988f9512472f8b03623319a94a6832ae086f51b21c25bcfd473b723ce30d"
+    },
+    {
+      "path": "assets/harvest/items/dried_eggplant.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "3affe8cfba260eb75f8b97bb83696187dfc4d39df14ab468a02dbe7a9687a0fc"
+    },
+    {
+      "path": "assets/harvest/items/dried_peas.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c98f988f9512472f8b03623319a94a6832ae086f51b21c25bcfd473b723ce30d"
+    },
+    {
+      "path": "assets/harvest/items/frost_pea_flakes.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "37b101c2bad2e2dbd59aca38a15ddd308abcec5de107472dc5bc01043f71c1e4"
+    },
+    {
+      "path": "assets/harvest/items/lavender_bundle.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ee376f5e504e4cbbe235d7a1ac92a291228efdbc0e3051183a9b90c8851f3b0e"
+    },
+    {
+      "path": "assets/harvest/items/rose_petals.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8ca881b57c31f32bc5d84a7a107a101cfc7de09aadf9c3a551bbe1cf33554e41"
+    },
+    {
+      "path": "assets/harvest/items/chamomile_dried.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "1dac4c7e93a83ffc1583f9095060ece672fec0f771bae9e0f729fbc292c6c816"
+    },
+    {
+      "path": "assets/harvest/items/mayonnaise.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "d081b80a07cb9fe91795fa25f52b7ee5f01e93cbcccfe750e4e6287834bd9fa8"
+    },
+    {
+      "path": "assets/harvest/items/butter.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e35dfc4232fc826e22932623ac3638836aed5196ad10ca3ab3215c48ad50cc19"
+    },
+    {
+      "path": "assets/harvest/items/yogurt.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "1dccfdb55f5b5bf6ee840c2be6886e0cf39392792f3176929d195f9aec7aa3da"
+    },
+    {
+      "path": "assets/harvest/items/wool_cloth.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "5f01f895ef5a4bccf1f09402b377be4fc68fb91006447bc3b4a5cb65cd75a07c"
+    },
+    {
+      "path": "assets/harvest/items/cotton_cloth.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ce7d12d60c9c6201a409092e1f111be5f9e9847fbb6309db71104d04e1fdb189"
+    },
+    {
+      "path": "assets/harvest/items/sachet.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2c02a8f1457ecd6043c5ccb08ed6f34f043f61b5142d8179614654a9f995b7eb"
+    },
+    {
+      "path": "assets/harvest/items/rose_perfume.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "7d4b382327e78050c1dc2cabda81b3f0d1e51005a0ee258041f2a99a14d8a244"
+    },
+    {
+      "path": "assets/harvest/items/bread.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "853bf32ffe8c5c08b9171ff640698dfdaa4e1ce24d50258875aa76a11bc827e5"
+    },
+    {
+      "path": "assets/harvest/items/noodles.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "cd22710180654ea5bc8d00ac149aecc2cc77f84228a8520c14b17bd29751512f"
+    },
+    {
+      "path": "assets/harvest/items/cake.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "99a68ec3b9dcde01dcf73079735ca256fc6740f955813feb08f871c8337d6566"
+    },
+    {
+      "path": "assets/harvest/items/pumpkin_pie.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "429af1266bcc9d479e2cdb85097fa1c16400a7022b8ca936b8e25e92c0acb136"
+    },
+    {
+      "path": "assets/harvest/items/strawberry_cake.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "d6f08f8e020df3d39d7238f646245acb2f679208e0f93afbc69ddaf267aaa0c6"
+    },
+    {
+      "path": "assets/harvest/items/tomato_pasta.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "5cb2d5fef36e1dec4e4ea4584a18f8152db598cd2f1ee1b9cbae5c3ea1cb8229"
+    },
+    {
+      "path": "assets/harvest/items/vegetable_soup.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c9e104177cf62e199a5be50100d083f9e0e85b3c04f1251d4ae6434254f646df"
+    },
+    {
+      "path": "assets/harvest/items/tofu_soup.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "be00c464ac65f6d33e4aeb81e6d45157eff9293c8f5ef936ed7bef698b9e81fd"
+    },
+    {
+      "path": "assets/harvest/items/cooked_rice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "1aa64dfbf9e4d5450210ea44f41ba8f07646fcabe5f5159ce4740497c9d7ad1a"
+    },
+    {
+      "path": "assets/harvest/items/fish_rice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "70405c18df6354104ffb2ae2848f2616d1487e3c2d02b4250b55ddbcdb6ea58b"
+    },
+    {
+      "path": "assets/harvest/items/rice_ball.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "022b2dbee5819b897358c1a189660401a30c5fa1e81380b6690cb52a0ee5424a"
+    },
+    {
+      "path": "assets/harvest/items/corn_cake.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "d1d3b665e4f597b620da035202ccafae5af8a481df0615e0956652426704a8de"
+    },
+    {
+      "path": "assets/harvest/items/corn_bread.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "79b286e8f3142c6fee5dec276d93b3942d4ab858bc246ee35c58a90aacf861d0"
+    },
+    {
+      "path": "assets/harvest/items/cheese_bread.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "56909bc2f55c5331942166c209d186c2656ac87d8d2f338bb9017d56c63049cd"
+    },
+    {
+      "path": "assets/harvest/items/roast_sweet_potato.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "499fbcd46d924e997ff3cb07423df93b5d89977f83d406ddc125aa8d482cd7d2"
+    },
+    {
+      "path": "assets/harvest/items/fruit_salad.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a7eb51de1bf8c44fae740c4fcae380e449c8325178d912709dbbb04e36eff784"
+    },
+    {
+      "path": "assets/harvest/items/cream_stew.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "2c153ac77c34383da7ab38228d07f627ba34ce9ea4c90d09e3be9205eb77d135"
+    },
+    {
+      "path": "assets/harvest/items/herbal_tea.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c05183577f6bc53e79c20848b96175e73b37af3e052172363c3287c59a5b8937"
+    },
+    {
+      "path": "assets/harvest/items/rose_tea.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e6a4b710cff77bb772576b11ba87544c7d6caefd59ba1979b9b3268d24a0ab84"
+    },
+    {
+      "path": "assets/harvest/items/chamomile_tea.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "1dccfdb55f5b5bf6ee840c2be6886e0cf39392792f3176929d195f9aec7aa3da"
+    },
+    {
+      "path": "assets/harvest/items/vegetable_pancake.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "6584d20c3d912730cc707e39d82a742c16d77d5bf7bb8b763f5eca5c529550a0"
+    },
+    {
+      "path": "assets/harvest/items/mixed_juice.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "fc34eb88efd211e7da77ae96694c63a15eff0ddd721a75a4c3c20b5f99378693"
+    },
+    {
+      "path": "assets/harvest/items/apple_pie.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "3e03c592680c06b743b84c6af6faa14cc97bc95b592eb19c445ad7586f5163d6"
+    },
+    {
+      "path": "assets/harvest/items/tofu_vegetables.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "732d02364da5d0cad672f314713025a5407f77fcd51d97a81faed84f74eba5c0"
+    },
+    {
+      "path": "assets/harvest/items/winter_soup.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "309a4fdbb68e26c84fe589fc81d94850d98dd7dbf3875f879d544308c56f495c"
+    },
+    {
+      "path": "assets/harvest/items/farm_fish_soup.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c767e89c4b0a3ef672dd5076b690bda45de980c8bf0257e09605a664ee48587e"
+    },
+    {
+      "path": "assets/harvest/items/sunflower_salad.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "f31b94d7644187249b45ff1253ba7718c40249642efb70e3f647effe3cefc32c"
+    },
+    {
+      "path": "assets/harvest/stations/mill.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "5b28f779d8eb801ab8173e9c595d05d832a9a4d13e908d21fa9b9126b1af15ca"
+    },
+    {
+      "path": "assets/harvest/stations/oil_press.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "38c4465a8689dac9130de9d0491932660405e7b412147c13ee721b06a50847e1"
+    },
+    {
+      "path": "assets/harvest/stations/pickle_jar.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "55838ae7759a9d1fc9ce58062f80c70a77126889c125cb6b8eacdcc05e407a53"
+    },
+    {
+      "path": "assets/harvest/stations/jam_pot.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "2089c08d7e69fec35f73d7f5d3db7ca682ecaa2fa6d92a2fa8dabbc030099e33"
+    },
+    {
+      "path": "assets/harvest/stations/juicer.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "469d6dc09365aba9fcce5f1132d4cad06d007083646318060825149a00edbdad"
+    },
+    {
+      "path": "assets/harvest/stations/drying_rack.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "f6ae5bf887dbd58812d480082cb9466c3073e7291485831e49d49c5217fb9433"
+    },
+    {
+      "path": "assets/harvest/stations/cheese_table.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "215cd590355c8901d6f19f8c0ab5c2c2d64e6a478d2de06fb5fff4f1d919c4de"
+    },
+    {
+      "path": "assets/harvest/stations/egg_table.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "5f375a79be1210ad4ca9462d4c28f69f1e5c854577c5542014060be3cf010688"
+    },
+    {
+      "path": "assets/harvest/stations/loom.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "7dd4c27a843f67dc926c05e175517be780f74e4fd43e7ffdb90c5f5690f7a43b"
+    },
+    {
+      "path": "assets/harvest/stations/smoker.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "c06fd1f4754ba23f67bf8322a125da8f01435d46bad485d0d552923bb9ce8040"
+    },
+    {
+      "path": "assets/kitchen/flour.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "08bafb9a64be735ed0c08c87dff347bc982eca1fe23e21a363d458a6dea4a789"
+    },
+    {
+      "path": "assets/crops/crops.png",
+      "size": [
+        128,
+        120
+      ],
+      "sha256": "48ac3dc2114048b5ceb786d5133f190bcac1a65061efcc7ce394f433159c46f4"
+    },
+    {
+      "path": "assets/harvest/workshop_work.png",
+      "size": [
+        128,
+        560
+      ],
+      "sha256": "ef899cd101c6bbaa6dc5ef34707f388d62e496237bf9404585b208dc71acb906"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_mature_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1880cc726f9dc48e580096b81d776f330791fcd16af1dce48fe09ab41437bed7"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_fruit_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "4e204209515735d7b079924fea4795eb072bdb0335981f86444f8cf99d180ef9"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_mature.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "eaa0c0bdf3e3a5056587dfa6d44a756d79b02c4b878edbaaf6285bcba79797b7"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_fruit.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ccb1b3d9e24e8232e883743b2b683e40934fb805db2c9d5ecfb96522f6f22488"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_young_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1b948e15a268aaf04ec7fbf31d8f98faf127f1ac66c8e51f6bcca33670058220"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_fruit_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "d8a1525f9f35b632974fdf446698732909976ebca1b720cc9b990fcb0fe808d2"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_growing_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ca73e87e95e2142206432fac235519d81ed3ab947ceeeca52e08424bcc12f2f0"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_young_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1b948e15a268aaf04ec7fbf31d8f98faf127f1ac66c8e51f6bcca33670058220"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_young_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "23c4c7799875316edbd599928da63de2b39de8ef1574841b678a8ddedde76098"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_growing_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46582aba23af2372ad4375ec19b44a9c69ecaf29562280893052b962c7705a2c"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_young.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46939d9e37f374b4f4bff6dc0d102fbe5073e3f463a139888d13ad33b834ba1d"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_growing_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "e6863449068ad943b6c9256b1fb819f4ff7c42b67f83f0ced7b080dff0f0ee85"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_young_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "23c4c7799875316edbd599928da63de2b39de8ef1574841b678a8ddedde76098"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_growing_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "c926b2f7b56213427bc1f3092ff8298848e0e11689adb8020bf41a542fc0132a"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_young.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46939d9e37f374b4f4bff6dc0d102fbe5073e3f463a139888d13ad33b834ba1d"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_growing.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "5e59913b3f73811218d5df606c71195adae6fed3d50e32efd10b046ed1b1b762"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_mature_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "90964ba4a5244e797af0eba99a5a4e305305589328215a100612dec2f8f26211"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_mature_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "823f013c8bf2835e3f01e9fc781b2dd288cd71e46bf0a64ceb1f6af6f9f48373"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_mature_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1880cc726f9dc48e580096b81d776f330791fcd16af1dce48fe09ab41437bed7"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_fruit_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "03635eeb102f8274aaa2183e96e95c4e1ebd12a2d45a6e04afd7d35e40585a8e"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_fruit_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "f9da092b053cb572b3b659b37338550c54b464d9d67962bf90fe80772808af41"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_mature_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1880cc726f9dc48e580096b81d776f330791fcd16af1dce48fe09ab41437bed7"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_growing_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "e6863449068ad943b6c9256b1fb819f4ff7c42b67f83f0ced7b080dff0f0ee85"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_young_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ef403d3cc9e518d5100f7c6fdbc4a13128b0a5cff4d2a18bbb7dd249d29c5aff"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_fruit_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "0884af5ab0f015ece296994d7995aba10eafb327001eba5c7901aed45f4eee36"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_fruit.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "b35b4674f23e5d9360205ceaf21e16bc8b19232ad13fd2d590de68488ed2a6ec"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_fruit_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "dd334a968f6ee18877c1e98891571989c23b32dda7516f2a07f0a5e8fdcef05b"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_mature_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "954787164bb2626fd0d75b4e3c8eb287105159d1e5180fb9275854cc66acea8e"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_young_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "9ecdbd5bab993e8205ba421e0225667dc128988841fe3df0bbb41f0648c7e0ed"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_fruit_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "a4423f0ab9a44d7555e580b797d8ee5aed560a04503f0580444840e038d07124"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_fruit_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "835f23abaf8027d0e856e9419f9644cf5a186becc36d5ddf5621b0bb4259590c"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_fruit_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "84fc128d5953151a053acb861cd00b861a6754959bf21aae37648f5a7dc19d84"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_young_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "9ecdbd5bab993e8205ba421e0225667dc128988841fe3df0bbb41f0648c7e0ed"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_growing_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "e6863449068ad943b6c9256b1fb819f4ff7c42b67f83f0ced7b080dff0f0ee85"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_growing_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ca73e87e95e2142206432fac235519d81ed3ab947ceeeca52e08424bcc12f2f0"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_growing_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ca73e87e95e2142206432fac235519d81ed3ab947ceeeca52e08424bcc12f2f0"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_mature_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "954787164bb2626fd0d75b4e3c8eb287105159d1e5180fb9275854cc66acea8e"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_fruit.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "df44440c8343749a21e55b4e13795f376c7a26ef3c48a0dad26ec162a757af6c"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_young_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "9ecdbd5bab993e8205ba421e0225667dc128988841fe3df0bbb41f0648c7e0ed"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_young_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ef403d3cc9e518d5100f7c6fdbc4a13128b0a5cff4d2a18bbb7dd249d29c5aff"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_young_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "23c4c7799875316edbd599928da63de2b39de8ef1574841b678a8ddedde76098"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_young_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ef403d3cc9e518d5100f7c6fdbc4a13128b0a5cff4d2a18bbb7dd249d29c5aff"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_mature_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "90964ba4a5244e797af0eba99a5a4e305305589328215a100612dec2f8f26211"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_fruit_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "014ba5b1ed8fa4ae8e0b0ab8c7fe95f7e2d70100add21e375175019e35151979"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_growing_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46582aba23af2372ad4375ec19b44a9c69ecaf29562280893052b962c7705a2c"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_growing.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "5e59913b3f73811218d5df606c71195adae6fed3d50e32efd10b046ed1b1b762"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_mature.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "eaa0c0bdf3e3a5056587dfa6d44a756d79b02c4b878edbaaf6285bcba79797b7"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_fruit_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "5adb27ed2d05aa6e4915c3cfcbc5c7609afd7cceb748b79489a9f2cbbc571bb5"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_growing.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "5e59913b3f73811218d5df606c71195adae6fed3d50e32efd10b046ed1b1b762"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_fruit_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "82351446c78d667ba0bbdd846842b495a103f248bfbaf4db94b21b45dc41bee8"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_growing_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46582aba23af2372ad4375ec19b44a9c69ecaf29562280893052b962c7705a2c"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_fruit_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "f74010da4252260ffd2e22175ef8d5a48aff16c48b1763c1b063d1a8245a49b3"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_growing_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "c926b2f7b56213427bc1f3092ff8298848e0e11689adb8020bf41a542fc0132a"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_mature.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "eaa0c0bdf3e3a5056587dfa6d44a756d79b02c4b878edbaaf6285bcba79797b7"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_growing_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46582aba23af2372ad4375ec19b44a9c69ecaf29562280893052b962c7705a2c"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_young.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46939d9e37f374b4f4bff6dc0d102fbe5073e3f463a139888d13ad33b834ba1d"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_growing_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ca73e87e95e2142206432fac235519d81ed3ab947ceeeca52e08424bcc12f2f0"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_young_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ef403d3cc9e518d5100f7c6fdbc4a13128b0a5cff4d2a18bbb7dd249d29c5aff"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_growing_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "c926b2f7b56213427bc1f3092ff8298848e0e11689adb8020bf41a542fc0132a"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_young_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "9ecdbd5bab993e8205ba421e0225667dc128988841fe3df0bbb41f0648c7e0ed"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_fruit.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "7abd4f3e4ab0607f34ee994bc6278199709ec9fe8be49a22b0afde93913b8661"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_fruit_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "ff4ec2a773ef3f14eb7c4455d0f15233f76f36b4eecb305f9574238055d2ba14"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_mature.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "eaa0c0bdf3e3a5056587dfa6d44a756d79b02c4b878edbaaf6285bcba79797b7"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_growing_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "e6863449068ad943b6c9256b1fb819f4ff7c42b67f83f0ced7b080dff0f0ee85"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_growing_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "c926b2f7b56213427bc1f3092ff8298848e0e11689adb8020bf41a542fc0132a"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_mature_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "823f013c8bf2835e3f01e9fc781b2dd288cd71e46bf0a64ceb1f6af6f9f48373"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_growing.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "5e59913b3f73811218d5df606c71195adae6fed3d50e32efd10b046ed1b1b762"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_young_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1b948e15a268aaf04ec7fbf31d8f98faf127f1ac66c8e51f6bcca33670058220"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_mature_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "954787164bb2626fd0d75b4e3c8eb287105159d1e5180fb9275854cc66acea8e"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_young_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "23c4c7799875316edbd599928da63de2b39de8ef1574841b678a8ddedde76098"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_mature_spring.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1880cc726f9dc48e580096b81d776f330791fcd16af1dce48fe09ab41437bed7"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_fruit_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "8f8981f5f9369c13445b4297118bd189d2620ffcc16bcfb02514f7137ffb56ef"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_mature_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "90964ba4a5244e797af0eba99a5a4e305305589328215a100612dec2f8f26211"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_young.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "46939d9e37f374b4f4bff6dc0d102fbe5073e3f463a139888d13ad33b834ba1d"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_fruit_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "05dfc0ab18c43226d3f0477f2c6fdfb9959c65ca1bb0a54f8bbac8b5d588ba94"
+    },
+    {
+      "path": "assets/harvest/orchard/peach_young_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "1b948e15a268aaf04ec7fbf31d8f98faf127f1ac66c8e51f6bcca33670058220"
+    },
+    {
+      "path": "assets/harvest/orchard/orange_mature_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "823f013c8bf2835e3f01e9fc781b2dd288cd71e46bf0a64ceb1f6af6f9f48373"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_mature_autumn.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "90964ba4a5244e797af0eba99a5a4e305305589328215a100612dec2f8f26211"
+    },
+    {
+      "path": "assets/harvest/orchard/pear_mature_summer.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "823f013c8bf2835e3f01e9fc781b2dd288cd71e46bf0a64ceb1f6af6f9f48373"
+    },
+    {
+      "path": "assets/harvest/orchard/apple_mature_winter.png",
+      "size": [
+        96,
+        96
+      ],
+      "sha256": "954787164bb2626fd0d75b4e3c8eb287105159d1e5180fb9275854cc66acea8e"
+    },
+    {
+      "path": "assets/livestock/egg.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "314ac323f8a40aef5fcf769535b4d0dd57dc508cf01c9d20ddcf9d7eac40c4ba"
+    },
+    {
+      "path": "assets/livestock/milk.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "32c891bb771126cb766864c3f6e06bc3ca223bbd4ba30edc66da880544c57964"
+    },
+    {
+      "path": "assets/livestock/wool.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "67741b787e4b3b0fbdf4b89e56924e523d934be8820aff1e51262c331c99dd8b"
+    },
+    {
+      "path": "assets/livestock/hay.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "b3cf2e6d21d13a7b217b11f2c4e59ea3913889b5b1e35040c1d7de531dfca7b0"
+    },
+    {
+      "path": "assets/livestock/chicken.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "48bcd88f7a7c1dbd8398b09fee5399740f220c1b676e4cce7459e4d452e610b5"
+    },
+    {
+      "path": "assets/livestock/cow.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "8181cc842b976101218b9620715409bc352e5b6f41d7278c937a01108328c573"
+    },
+    {
+      "path": "assets/livestock/sheep.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "927af90a7bab6f690037e8ab2374c48d0783f9031982e4e8a2c8e3bb69b5121a"
+    },
+    {
+      "path": "assets/aquaculture/dried_fish.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "5d2cd320bf5cc3f80273d9cf98d9448afe29216793d8fcbb403f5d83e5e4d77e"
+    },
+    {
+      "path": "assets/aquaculture/fish_soup.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "3ab6b234df4002124b2796114c2fe5e95ef87a4d50e131fcd1740140a30939f9"
+    },
+    {
+      "path": "assets/kitchen/berry_jam.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c72ec31bba09aeb2c115390e69fd8040ed258353f2b6df0bcaa057b1558c15df"
+    },
+    {
+      "path": "assets/kitchen/carrot_stew.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "a3fdfeb02b9ccc07302c60b3f65212fcae0f4adcef3e2dec822bcbfbbe19ab0b"
+    },
+    {
+      "path": "assets/kitchen/cheese.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "6267d7816d6500b3bb8ac5adaa2c8298fed50054daa15be4ec17e5dab642f898"
+    },
+    {
+      "path": "assets/kitchen/egg_meal.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e04b540059c772eb1c27de627ff045451fdbfe10f4f2385f6fa03478c331e679"
+    },
+    {
+      "path": "assets/kitchen/fish_feast.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "36d5c89789dbe02741448579633983b1644c793d41065b3deb98cb3ac14d1134"
+    },
+    {
+      "path": "assets/kitchen/milk_porridge.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "c53343ecdaf08604aba9fd47070d51d5c5188c05a0f24f56e53ebc5ec917d53a"
+    },
+    {
+      "path": "assets/kitchen/potato_bread.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8972d0e04d78be99ff9fce510b4187919d0598bdaf7bde20747f7b9cda354f08"
+    },
+    {
+      "path": "assets/kitchen/smoked_fish.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "ca972b64304686f9032ae4c3657ab284b7f53b37e4702725fd3a3ba62419d415"
+    },
+    {
+      "path": "assets/kitchen/wild_berry.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "fa21545180438e1764cd0da2ac5ebbc33944d83f889cbf38b0c9051b3b29e77b"
+    },
+    {
+      "path": "assets/housing/wool_rug.png",
+      "size": [
+        64,
+        64
+      ],
+      "sha256": "066d1ffd49766ea013b6555136ed4048ce0afb3577272f8f0f716e18f5de1a51"
+    },
+    {
+      "path": "assets/housing/cotton_chair.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "497f7823507dcbdbbb302f1e7ec19dc7fc80cb63daf08d701f04cf570b9dca85"
+    }
+  ]
+}

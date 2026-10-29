@@ -77,806 +77,842 @@
     32,
     32
   ],
-  "chamomile": [
+  "carrot": [
     524,
+    4,
+    32,
+    32
+  ],
+  "carrot_seed": [
+    564,
+    4,
+    32,
+    32
+  ],
+  "chamomile": [
+    604,
     4,
     32,
     32
   ],
   "chamomile_dried": [
-    564,
     4,
+    52,
     32,
     32
   ],
   "chamomile_seed": [
-    604,
-    4,
+    44,
+    52,
     32,
     32
   ],
   "chamomile_tea": [
-    4,
+    84,
     52,
     32,
     32
   ],
   "cheese_bread": [
-    44,
+    124,
     52,
     32,
     32
   ],
   "cheese_table_kit": [
-    84,
+    164,
     52,
     32,
     32
   ],
   "chili": [
-    124,
+    204,
     52,
     32,
     32
   ],
   "chili_sauce": [
-    164,
+    244,
     52,
     32,
     32
   ],
   "chili_seed": [
-    204,
+    284,
     52,
     32,
     32
   ],
   "cooked_rice": [
-    244,
+    324,
     52,
     32,
     32
   ],
   "corn": [
-    284,
+    364,
     52,
     32,
     32
   ],
   "corn_bread": [
-    324,
+    404,
     52,
     32,
     32
   ],
   "corn_cake": [
-    364,
+    444,
     52,
     32,
     32
   ],
   "corn_seed": [
-    404,
+    484,
     52,
     32,
     32
   ],
   "cornmeal": [
-    444,
+    524,
     52,
     32,
     32
   ],
   "cotton": [
-    484,
+    564,
     52,
     32,
     32
   ],
   "cotton_cloth": [
-    524,
+    604,
     52,
     32,
     32
   ],
   "cotton_seed": [
-    564,
-    52,
+    4,
+    100,
     32,
     32
   ],
   "cream_stew": [
-    604,
-    52,
+    44,
+    100,
     32,
     32
   ],
   "cucumber": [
-    4,
+    84,
     100,
     32,
     32
   ],
   "cucumber_seed": [
-    44,
+    124,
     100,
     32,
     32
   ],
   "dried_eggplant": [
-    84,
+    164,
     100,
     32,
     32
   ],
   "dried_kale": [
-    124,
+    204,
     100,
     32,
     32
   ],
   "dried_pear": [
-    164,
+    244,
     100,
     32,
     32
   ],
   "dried_peas": [
-    204,
+    284,
     100,
     32,
     32
   ],
   "dried_spinach": [
-    244,
+    324,
     100,
     32,
     32
   ],
   "dried_sweet_potato": [
-    284,
+    364,
     100,
     32,
     32
   ],
   "drying_rack_kit": [
-    324,
+    404,
     100,
     32,
     32
   ],
   "egg_table_kit": [
-    364,
+    444,
     100,
     32,
     32
   ],
   "eggplant": [
-    404,
+    484,
     100,
     32,
     32
   ],
   "eggplant_seed": [
-    444,
+    524,
     100,
     32,
     32
   ],
   "farm_fish_soup": [
-    484,
+    564,
     100,
     32,
     32
   ],
   "fish_rice": [
-    524,
+    604,
     100,
     32,
     32
   ],
   "frost_pea_flakes": [
-    564,
-    100,
+    4,
+    148,
     32,
     32
   ],
   "frost_peas": [
-    604,
-    100,
+    44,
+    148,
     32,
     32
   ],
   "frost_peas_seed": [
-    4,
+    84,
     148,
     32,
     32
   ],
   "fruit_salad": [
-    44,
+    124,
     148,
     32,
     32
   ],
   "garlic_shoot": [
-    84,
+    164,
     148,
     32,
     32
   ],
   "garlic_shoot_seed": [
-    124,
+    204,
     148,
     32,
     32
   ],
   "grape": [
-    164,
+    244,
     148,
     32,
     32
   ],
   "grape_juice": [
-    204,
+    284,
     148,
     32,
     32
   ],
   "grape_seed": [
-    244,
+    324,
     148,
     32,
     32
   ],
   "herbal_tea": [
-    284,
+    364,
     148,
     32,
     32
   ],
   "jam_pot_kit": [
-    324,
+    404,
     148,
     32,
     32
   ],
   "juicer_kit": [
-    364,
+    444,
     148,
     32,
     32
   ],
   "kimchi": [
-    404,
+    484,
     148,
     32,
     32
   ],
   "lavender": [
-    444,
+    524,
     148,
     32,
     32
   ],
   "lavender_bundle": [
-    484,
+    564,
     148,
     32,
     32
   ],
   "lavender_seed": [
-    524,
+    604,
     148,
     32,
     32
   ],
   "loom_kit": [
-    564,
-    148,
+    4,
+    196,
     32,
     32
   ],
   "mayonnaise": [
-    604,
-    148,
+    44,
+    196,
     32,
     32
   ],
   "mill_kit": [
-    4,
+    84,
     196,
     32,
     32
   ],
   "mixed_juice": [
-    44,
+    124,
     196,
     32,
     32
   ],
   "noodles": [
-    84,
+    164,
     196,
     32,
     32
   ],
   "oil_press_kit": [
-    124,
+    204,
     196,
     32,
     32
   ],
   "onion_flakes": [
-    164,
+    244,
     196,
     32,
     32
   ],
   "orange": [
-    204,
+    284,
     196,
     32,
     32
   ],
   "orange_juice": [
-    244,
+    324,
     196,
     32,
     32
   ],
   "orange_sapling": [
-    284,
+    364,
     196,
     32,
     32
   ],
   "peach": [
-    324,
+    404,
     196,
     32,
     32
   ],
   "peach_jam": [
-    364,
+    444,
     196,
     32,
     32
   ],
   "peach_sapling": [
-    404,
+    484,
     196,
     32,
     32
   ],
   "peanut": [
-    444,
+    524,
     196,
     32,
     32
   ],
   "peanut_oil": [
-    484,
+    564,
     196,
     32,
     32
   ],
   "peanut_seed": [
-    524,
+    604,
     196,
     32,
     32
   ],
   "pear": [
-    564,
-    196,
+    4,
+    244,
     32,
     32
   ],
   "pear_juice": [
-    604,
-    196,
+    44,
+    244,
     32,
     32
   ],
   "pear_sapling": [
-    4,
+    84,
     244,
     32,
     32
   ],
   "peas": [
-    44,
+    124,
     244,
     32,
     32
   ],
   "peas_seed": [
-    84,
+    164,
     244,
     32,
     32
   ],
   "pickle_jar_kit": [
-    124,
+    204,
     244,
     32,
     32
   ],
   "pickled_cucumber": [
-    164,
+    244,
     244,
     32,
     32
   ],
   "pickled_radish": [
-    204,
+    284,
+    244,
+    32,
+    32
+  ],
+  "potato": [
+    324,
+    244,
+    32,
+    32
+  ],
+  "potato_seed": [
+    364,
     244,
     32,
     32
   ],
   "pumpkin": [
-    244,
+    404,
     244,
     32,
     32
   ],
   "pumpkin_pie": [
-    284,
+    444,
     244,
     32,
     32
   ],
   "pumpkin_puree": [
-    324,
+    484,
     244,
     32,
     32
   ],
   "pumpkin_seed": [
-    364,
+    524,
     244,
     32,
     32
   ],
   "radish": [
-    404,
+    564,
     244,
     32,
     32
   ],
   "radish_seed": [
-    444,
+    604,
     244,
     32,
     32
   ],
   "raisins": [
-    484,
-    244,
+    4,
+    292,
     32,
     32
   ],
   "rapeseed": [
-    524,
-    244,
+    44,
+    292,
     32,
     32
   ],
   "rapeseed_seed": [
-    564,
-    244,
+    84,
+    292,
     32,
     32
   ],
   "rice": [
-    604,
-    244,
+    124,
+    292,
     32,
     32
   ],
   "rice_ball": [
-    4,
+    164,
     292,
     32,
     32
   ],
   "rice_crop": [
-    44,
+    204,
     292,
     32,
     32
   ],
   "rice_crop_seed": [
-    84,
+    244,
     292,
     32,
     32
   ],
   "roast_sweet_potato": [
-    124,
+    284,
     292,
     32,
     32
   ],
   "rose": [
-    164,
+    324,
     292,
     32,
     32
   ],
   "rose_perfume": [
-    204,
+    364,
     292,
     32,
     32
   ],
   "rose_petals": [
-    244,
+    404,
     292,
     32,
     32
   ],
   "rose_seed": [
-    284,
+    444,
     292,
     32,
     32
   ],
   "rose_tea": [
-    324,
+    484,
     292,
     32,
     32
   ],
   "sachet": [
-    364,
+    524,
     292,
     32,
     32
   ],
   "smoker_kit": [
-    404,
+    564,
     292,
     32,
     32
   ],
   "snow_pickle": [
-    444,
+    604,
     292,
     32,
     32
   ],
   "snow_radish": [
-    484,
-    292,
+    4,
+    340,
     32,
     32
   ],
   "snow_radish_seed": [
-    524,
-    292,
+    44,
+    340,
     32,
     32
   ],
   "soup_herbs": [
-    564,
-    292,
+    84,
+    340,
     32,
     32
   ],
   "soybean": [
-    604,
-    292,
+    124,
+    340,
     32,
     32
   ],
   "soybean_seed": [
-    4,
+    164,
     340,
     32,
     32
   ],
   "spinach": [
-    44,
+    204,
     340,
     32,
     32
   ],
   "spinach_seed": [
-    84,
+    244,
     340,
     32,
     32
   ],
   "strawberry": [
-    124,
+    284,
     340,
     32,
     32
   ],
   "strawberry_cake": [
-    164,
+    324,
     340,
     32,
     32
   ],
   "strawberry_jam": [
-    204,
+    364,
     340,
     32,
     32
   ],
   "strawberry_seed": [
-    244,
+    404,
     340,
     32,
     32
   ],
   "sunflower_crop": [
-    284,
+    444,
     340,
     32,
     32
   ],
   "sunflower_crop_seed": [
-    324,
+    484,
     340,
     32,
     32
   ],
   "sunflower_oil": [
-    364,
+    524,
     340,
     32,
     32
   ],
   "sunflower_salad": [
-    404,
+    564,
     340,
     32,
     32
   ],
   "sweet_potato": [
-    444,
+    604,
     340,
     32,
     32
   ],
   "sweet_potato_seed": [
-    484,
-    340,
-    32,
-    32
-  ],
-  "tofu": [
-    524,
-    340,
-    32,
-    32
-  ],
-  "tofu_soup": [
-    564,
-    340,
-    32,
-    32
-  ],
-  "tofu_vegetables": [
-    604,
-    340,
-    32,
-    32
-  ],
-  "tomato": [
     4,
     388,
     32,
     32
   ],
-  "tomato_pasta": [
+  "tofu": [
     44,
     388,
     32,
     32
   ],
-  "tomato_sauce": [
+  "tofu_soup": [
     84,
     388,
     32,
     32
   ],
-  "tomato_seed": [
+  "tofu_vegetables": [
     124,
     388,
     32,
     32
   ],
-  "vegetable_pancake": [
+  "tomato": [
     164,
     388,
     32,
     32
   ],
-  "vegetable_soup": [
+  "tomato_pasta": [
     204,
     388,
     32,
     32
   ],
-  "watermelon": [
+  "tomato_sauce": [
     244,
     388,
     32,
     32
   ],
-  "watermelon_juice": [
+  "tomato_seed": [
     284,
     388,
     32,
     32
   ],
-  "watermelon_seed": [
+  "vegetable_pancake": [
     324,
     388,
     32,
     32
   ],
-  "winter_cabbage": [
+  "vegetable_soup": [
     364,
     388,
     32,
     32
   ],
-  "winter_cabbage_seed": [
+  "watermelon": [
     404,
     388,
     32,
     32
   ],
-  "winter_kale": [
+  "watermelon_juice": [
     444,
     388,
     32,
     32
   ],
-  "winter_kale_seed": [
+  "watermelon_seed": [
     484,
     388,
     32,
     32
   ],
-  "winter_onion": [
+  "wheat": [
     524,
     388,
     32,
     32
   ],
-  "winter_onion_seed": [
+  "wheat_seed": [
     564,
     388,
     32,
     32
   ],
-  "winter_pickle": [
+  "winter_cabbage": [
     604,
     388,
     32,
     32
   ],
-  "winter_soup": [
+  "winter_cabbage_seed": [
     4,
     436,
     32,
     32
   ],
-  "wool_cloth": [
+  "winter_kale": [
     44,
     436,
     32,
     32
   ],
-  "yogurt": [
+  "winter_kale_seed": [
     84,
+    436,
+    32,
+    32
+  ],
+  "winter_onion": [
+    124,
+    436,
+    32,
+    32
+  ],
+  "winter_onion_seed": [
+    164,
+    436,
+    32,
+    32
+  ],
+  "winter_pickle": [
+    204,
+    436,
+    32,
+    32
+  ],
+  "winter_soup": [
+    244,
+    436,
+    32,
+    32
+  ],
+  "wool_cloth": [
+    284,
+    436,
+    32,
+    32
+  ],
+  "yogurt": [
+    324,
     436,
     32,
     32
