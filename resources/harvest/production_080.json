@@ -1,0 +1,450 @@
+{
+  "version": 1,
+  "recipes": {
+    "mill_flour": {
+      "inputs": {
+        "wheat": 1
+      },
+      "outputs": {
+        "flour": 1
+      },
+      "minutes": 45
+    },
+    "rice": {
+      "inputs": {
+        "rice_crop": 1
+      },
+      "outputs": {
+        "rice": 1
+      },
+      "minutes": 45
+    },
+    "cornmeal": {
+      "inputs": {
+        "corn": 1
+      },
+      "outputs": {
+        "cornmeal": 1
+      },
+      "minutes": 45
+    },
+    "tofu": {
+      "inputs": {
+        "soybean": 1
+      },
+      "outputs": {
+        "tofu": 1
+      },
+      "minutes": 60
+    },
+    "corn_feed": {
+      "inputs": {
+        "corn": 1
+      },
+      "outputs": {
+        "hay": 16
+      },
+      "minutes": 45
+    },
+    "canola_oil": {
+      "inputs": {
+        "rapeseed": 2
+      },
+      "outputs": {
+        "canola_oil": 1
+      },
+      "minutes": 180
+    },
+    "peanut_oil": {
+      "inputs": {
+        "peanut": 2
+      },
+      "outputs": {
+        "peanut_oil": 1
+      },
+      "minutes": 180
+    },
+    "sunflower_oil": {
+      "inputs": {
+        "sunflower_crop": 2
+      },
+      "outputs": {
+        "sunflower_oil": 1
+      },
+      "minutes": 180
+    },
+    "pickled_cucumber": {
+      "inputs": {
+        "cucumber": 2
+      },
+      "outputs": {
+        "pickled_cucumber": 1
+      },
+      "minutes": 1440
+    },
+    "kimchi": {
+      "inputs": {
+        "cabbage": 2
+      },
+      "outputs": {
+        "kimchi": 1
+      },
+      "minutes": 1440
+    },
+    "pickled_radish": {
+      "inputs": {
+        "radish": 2
+      },
+      "outputs": {
+        "pickled_radish": 1
+      },
+      "minutes": 1440
+    },
+    "snow_pickle": {
+      "inputs": {
+        "snow_radish": 2
+      },
+      "outputs": {
+        "snow_pickle": 1
+      },
+      "minutes": 1440
+    },
+    "winter_pickle": {
+      "inputs": {
+        "winter_cabbage": 2
+      },
+      "outputs": {
+        "winter_pickle": 1
+      },
+      "minutes": 1440
+    },
+    "tomato_sauce": {
+      "inputs": {
+        "tomato": 2
+      },
+      "outputs": {
+        "tomato_sauce": 1
+      },
+      "minutes": 240
+    },
+    "chili_sauce": {
+      "inputs": {
+        "chili": 2
+      },
+      "outputs": {
+        "chili_sauce": 1
+      },
+      "minutes": 240
+    },
+    "pumpkin_puree": {
+      "inputs": {
+        "pumpkin": 2
+      },
+      "outputs": {
+        "pumpkin_puree": 1
+      },
+      "minutes": 240
+    },
+    "strawberry_jam": {
+      "inputs": {
+        "strawberry": 2
+      },
+      "outputs": {
+        "strawberry_jam": 1
+      },
+      "minutes": 240
+    },
+    "blueberry_jam": {
+      "inputs": {
+        "blueberry": 2
+      },
+      "outputs": {
+        "blueberry_jam": 1
+      },
+      "minutes": 240
+    },
+    "peach_jam": {
+      "inputs": {
+        "peach": 2
+      },
+      "outputs": {
+        "peach_jam": 1
+      },
+      "minutes": 240
+    },
+    "grape_juice": {
+      "inputs": {
+        "grape": 2
+      },
+      "outputs": {
+        "grape_juice": 1
+      },
+      "minutes": 90
+    },
+    "apple_juice": {
+      "inputs": {
+        "apple": 2
+      },
+      "outputs": {
+        "apple_juice": 1
+      },
+      "minutes": 90
+    },
+    "pear_juice": {
+      "inputs": {
+        "pear": 2
+      },
+      "outputs": {
+        "pear_juice": 1
+      },
+      "minutes": 90
+    },
+    "orange_juice": {
+      "inputs": {
+        "orange": 2
+      },
+      "outputs": {
+        "orange_juice": 1
+      },
+      "minutes": 90
+    },
+    "watermelon_juice": {
+      "inputs": {
+        "watermelon": 2
+      },
+      "outputs": {
+        "watermelon_juice": 1
+      },
+      "minutes": 90
+    },
+    "raisins": {
+      "inputs": {
+        "grape": 2
+      },
+      "outputs": {
+        "raisins": 1
+      },
+      "minutes": 180
+    },
+    "dried_sweet_potato": {
+      "inputs": {
+        "sweet_potato": 2
+      },
+      "outputs": {
+        "dried_sweet_potato": 1
+      },
+      "minutes": 180
+    },
+    "dried_pear": {
+      "inputs": {
+        "pear": 2
+      },
+      "outputs": {
+        "dried_pear": 1
+      },
+      "minutes": 180
+    },
+    "dried_spinach": {
+      "inputs": {
+        "spinach": 2
+      },
+      "outputs": {
+        "dried_spinach": 1
+      },
+      "minutes": 180
+    },
+    "dried_kale": {
+      "inputs": {
+        "winter_kale": 2
+      },
+      "outputs": {
+        "dried_kale": 1
+      },
+      "minutes": 180
+    },
+    "soup_herbs": {
+      "inputs": {
+        "garlic_shoot": 2
+      },
+      "outputs": {
+        "soup_herbs": 1
+      },
+      "minutes": 180
+    },
+    "onion_flakes": {
+      "inputs": {
+        "winter_onion": 2
+      },
+      "outputs": {
+        "onion_flakes": 1
+      },
+      "minutes": 180
+    },
+    "dried_eggplant": {
+      "inputs": {
+        "eggplant": 2
+      },
+      "outputs": {
+        "dried_eggplant": 1
+      },
+      "minutes": 180
+    },
+    "dried_peas": {
+      "inputs": {
+        "peas": 2
+      },
+      "outputs": {
+        "dried_peas": 1
+      },
+      "minutes": 180
+    },
+    "frost_pea_flakes": {
+      "inputs": {
+        "frost_peas": 2
+      },
+      "outputs": {
+        "frost_pea_flakes": 1
+      },
+      "minutes": 180
+    },
+    "lavender_bundle": {
+      "inputs": {
+        "lavender": 2
+      },
+      "outputs": {
+        "lavender_bundle": 1
+      },
+      "minutes": 180
+    },
+    "rose_petals": {
+      "inputs": {
+        "rose": 2
+      },
+      "outputs": {
+        "rose_petals": 1
+      },
+      "minutes": 180
+    },
+    "chamomile_dried": {
+      "inputs": {
+        "chamomile": 2
+      },
+      "outputs": {
+        "chamomile_dried": 1
+      },
+      "minutes": 180
+    },
+    "mayonnaise": {
+      "inputs": {
+        "egg": 2
+      },
+      "outputs": {
+        "mayonnaise": 1
+      },
+      "minutes": 120
+    },
+    "butter": {
+      "inputs": {
+        "milk": 1
+      },
+      "outputs": {
+        "butter": 1
+      },
+      "minutes": 360
+    },
+    "dairy_cheese": {
+      "inputs": {
+        "milk": 2
+      },
+      "outputs": {
+        "cheese": 1
+      },
+      "minutes": 360
+    },
+    "yogurt": {
+      "inputs": {
+        "milk": 1
+      },
+      "outputs": {
+        "yogurt": 1
+      },
+      "minutes": 360
+    },
+    "wool_cloth": {
+      "inputs": {
+        "wool": 2
+      },
+      "outputs": {
+        "wool_cloth": 1
+      },
+      "minutes": 360
+    },
+    "cotton_cloth": {
+      "inputs": {
+        "cotton": 2
+      },
+      "outputs": {
+        "cotton_cloth": 1
+      },
+      "minutes": 360
+    },
+    "sachet": {
+      "inputs": {
+        "lavender_bundle": 1,
+        "cotton_cloth": 1
+      },
+      "outputs": {
+        "sachet": 1
+      },
+      "minutes": 180
+    },
+    "rose_perfume": {
+      "inputs": {
+        "rose_petals": 1,
+        "canola_oil": 1
+      },
+      "outputs": {
+        "rose_perfume": 1
+      },
+      "minutes": 240
+    },
+    "smoke_fish_carp": {
+      "inputs": {
+        "fish_carp": 2,
+        "wood": 1
+      },
+      "outputs": {
+        "smoked_fish": 1
+      },
+      "minutes": 180
+    },
+    "dry_fish_carp": {
+      "inputs": {
+        "fish_carp": 2
+      },
+      "outputs": {
+        "dried_fish": 1
+      },
+      "minutes": 240
+    },
+    "smoke_fish_crucian": {
+      "inputs": {
+        "fish_crucian": 2,
+        "wood": 1
+      },
+      "outputs": {
+        "smoked_fish": 1
+      },
+      "minutes": 180
+    },
+    "dry_fish_crucian": {
+      "inputs": {
+        "fish_crucian": 2
+      },
+      "outputs": {
+        "dried_fish": 1
+      },
+      "minutes": 240
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "save_version": 29,
+  "workshop_version": 2,
+  "results": {
+    "quality081-stage-c-final.log": [
+      "QUALITY081 PRODUCTION RESULT: 61 checks, 0 failures",
+      "QUALITY081 ANIMATION RESULT: 67 checks, 0 failures",
+      "TERRITORY WORLD STATE RESULT: 95 checks, 0 failures"
+    ],
+    "quality081-stage-c-compat.log": [
+      "HARVEST PROCESSING RESULT: 29 checks, 0 failures",
+      "HARVEST PERSISTENCE [\"--write\"] RESULT: 3 checks, 0 failures",
+      "HARVEST PERSISTENCE [\"--read\"] RESULT: 5 checks, 0 failures",
+      "HARVEST PERSISTENCE [\"--read-claimed\"] RESULT: 3 checks, 0 failures",
+      "HARVEST PERSISTENCE [\"--legacy\"] RESULT: 5 checks, 0 failures"
+    ]
+  }
+}

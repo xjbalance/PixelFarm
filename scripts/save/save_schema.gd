@@ -2,7 +2,7 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,28): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,29): return {}
 	var data: Dictionary = raw.duplicate(true)
 	# 旧路线盘的数字格ID也必须规范，防止JSON浮点枚举失配/重复矿格。
 	if data.get("xiaojing") is Dictionary and data.xiaojing.get("cave") is Dictionary:
@@ -142,12 +142,17 @@ static func normalize(raw: Variant) -> Dictionary:
 		data.farm_layout=AbyssSaveSchema.canonical(data.farm_layout)
 	if int(data.version)==27:
 		data.workshop=Workshop.defaults();data.version=28
+	if int(data.version)==28:
+		data.workshop=Workshop.migrate_v28(data.get("workshop"),data)
+		if data.workshop.is_empty(): return {}
+		data.version=29
 	data.world_development=AbyssSaveSchema.canonical(data.get("world_development"))
 	data.exploration=AbyssSaveSchema.canonical(data.get("exploration"))
 	data.housing=AbyssSaveSchema.canonical(data.get("housing"))
 	data.festival=AbyssSaveSchema.canonical(data.get("festival"))
 	data.social=AbyssSaveSchema.canonical(data.get("social"))
 	data.kitchen=AbyssSaveSchema.canonical(data.get("kitchen"))
+	data.workshop=AbyssSaveSchema.canonical(data.get("workshop"))
 	data.ecology=AbyssSaveSchema.canonical(data.get("ecology"))
 	data.fishing=AbyssSaveSchema.canonical(data.get("fishing"))
 	data.livestock=AbyssSaveSchema.canonical(data.get("livestock"))
@@ -209,7 +214,7 @@ static func valid_current(data: Variant) -> bool:
 	if not AbyssSaveSchema.validate(data.get("abyss"),int(data.day)) or not AbyssSaveSchema.legend(data.get("legend"),data.xiaojing,int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),28,28) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),29,29) or not Story.validate(data.get("story")): return false
 	if not FarmLayout.validate(data.get("farm_layout"),data): return false
 	if not Territory.validate(data.get("territory"),data): return false
 	if not CharacterAppearance.validate(data.get("appearance")): return false

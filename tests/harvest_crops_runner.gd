@@ -33,7 +33,7 @@ func run() -> void:
 	var same: bool=true
 	for key in old:
 		if key!="version" and JSON.stringify(old[key])!=JSON.stringify(migrated.get(key)): same=false
-	check(same and migrated.version==28,"旧档经营、婚姻、背包、田地与控制模式逐字段保留")
+	check(same and migrated.version==FarmSaveStore.VERSION,"旧档经营、婚姻、背包、田地与控制模式逐字段保留")
 	Inventory.items.strawberry_seed=3;Workshop.select_seed("strawberry")
 	check(GameState.tools.size()==9 and GameState.tool()=="strawberry_seed","九格布局内可装备新种子")
 	var saved:=FarmSaveStore.snapshot(game)

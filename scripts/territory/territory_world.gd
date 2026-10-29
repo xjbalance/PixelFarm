@@ -48,6 +48,8 @@ func refresh() -> void:
 		if not objects.has(id):
 			var object:=Node2D.new();object.set_script(OBJECT_SCRIPT);object.game=game;object.entry_id=id
 			maps[str(entry.area)].get_node("Actors").add_child(object);objects[id]=object
+		var parent: Node=maps[str(entry.area)].get_node("Actors")
+		if objects[id].get_parent()!=parent: objects[id].reparent(parent,false)
 		objects[id].refresh()
 	for id in objects.keys():
 		if wanted.has(id): continue

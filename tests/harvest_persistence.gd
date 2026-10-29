@@ -20,12 +20,12 @@ func run() -> void:
 		await Touch.place(self,game,"farm",Vector2(704,704));await Fixture.approach(self,game,mill)
 		check(Workshop.start(mill,"mill_flour",2),"保存前投入新分钟订单")
 		Fixture.advance(45);Workshop.select_seed("strawberry")
-		check(FarmSaveStore.write(game,"user://harvest-new.json"),"写入v28作物、果树、半成品、旧队列与种子外观")
+		check(FarmSaveStore.write(game,"user://harvest-new.json"),"写入当前格式的作物、果树、半成品、旧队列与种子外观")
 		var expected:=FileAccess.open("user://harvest-expected.json",FileAccess.WRITE);expected.store_string(JSON.stringify(FarmSaveStore.snapshot(game)));expected.close()
 	elif "--legacy" in args:
 		var bytes:=FileAccess.get_file_as_bytes("user://harvest-legacy.json")
 		var old: Dictionary=JSON.parse_string(bytes.get_string_from_utf8());var migrated:=FarmSaveStore.read("user://harvest-legacy.json")
-		check(not migrated.is_empty() and migrated.version==28,"独立进程读取原v27格式并迁入v28")
+		check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION,"独立进程读取原v27格式并迁入当前格式")
 		var unchanged: bool=true
 		for key in old:
 			if key!="version" and JSON.stringify(old[key])!=JSON.stringify(migrated.get(key)): unchanged=false
@@ -42,7 +42,7 @@ func run() -> void:
 			if str(entry.kind)=="station_mill": check(not Workshop.claim(entry.id,1),"跨进程旧领取编号无效")
 	else:
 		var saved:=FarmSaveStore.read("user://harvest-new.json")
-		check(not saved.is_empty() and FarmSaveStore.restore(game,saved),"独立读进程完整恢复v28")
+		check(not saved.is_empty() and FarmSaveStore.restore(game,saved),"独立读进程完整恢复当前格式")
 		await frames(5)
 		var expected: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("user://harvest-expected.json"))
 		check(JSON.stringify(AbyssSaveSchema.canonical(FarmSaveStore.snapshot(game)))==JSON.stringify(AbyssSaveSchema.canonical(expected)),"新进程逐字段恢复原进度、投入材料、树龄与当前种子")

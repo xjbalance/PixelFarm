@@ -11,6 +11,7 @@ var definition: Dictionary={}
 var footprint_size:=Vector2(32,32)
 var geometry_key: String=""
 static var orchard_hit_bounds: Dictionary={}
+var visual_binding: String=""
 
 func _ready() -> void:
 	add_to_group("interactables");add_to_group("territory_objects")
@@ -19,13 +20,6 @@ func _ready() -> void:
 	animated=AnimatedSprite2D.new();animated.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;add_child(animated);animated.hide()
 	Calendar.changed.connect(refresh_art)
 	refresh()
-	if str(entry.get("kind","")).begins_with("station_"):
-		Workshop.changed.connect(sync_station_visual)
-		GameClock.changed.connect(sync_station_visual)
-		Events.modal_changed.connect(func(_active: bool): sync_station_visual())
-		Events.location_changed.connect(func(_area: String): sync_station_visual())
-	elif str(entry.get("kind","")).begins_with("orchard_"):
-		Workshop.changed.connect(refresh_art)
 
 func refresh() -> void:
 	entry={}
@@ -33,6 +27,7 @@ func refresh() -> void:
 		if str(record.id)==entry_id: entry=record;break
 	if entry.is_empty(): return
 	definition=TerritoryCatalog.OBJECT_KINDS[str(entry.kind)]
+	bind_visual_signals()
 	var cells: Rect2i=TerritoryCatalog.footprint(str(entry.kind),Vector2i(entry.cell[0],entry.cell[1]))
 	footprint_size=Vector2(cells.size)*32
 	position=Vector2(cells.position)*32+footprint_size*.5
@@ -64,6 +59,21 @@ func refresh_art() -> void:
 			animated.position=sprite.position;animated.show();sprite.hide()
 	if str(entry.kind).begins_with("station_"): sync_station_visual()
 	queue_redraw()
+
+func bind_visual_signals() -> void:
+	var mode: String="station" if str(entry.kind).begins_with("station_") else "orchard" if str(entry.kind).begins_with("orchard_") else ""
+	if visual_binding==mode: return
+	for pair in [[Workshop.changed,sync_station_visual],[Workshop.changed,refresh_art],[GameClock.changed,sync_station_visual],[Events.modal_changed,on_visual_modal],[Events.location_changed,on_visual_location]]:
+		if pair[0].is_connected(pair[1]): pair[0].disconnect(pair[1])
+	if animated.sprite_frames: animated.stop()
+	visual_binding=mode
+	if mode=="station":
+		Workshop.changed.connect(sync_station_visual);GameClock.changed.connect(sync_station_visual)
+		Events.modal_changed.connect(on_visual_modal);Events.location_changed.connect(on_visual_location)
+	elif mode=="orchard": Workshop.changed.connect(refresh_art)
+
+func on_visual_modal(_active: bool) -> void: sync_station_visual()
+func on_visual_location(_area: String) -> void: sync_station_visual()
 
 func sync_station_visual() -> void:
 	if is_instance_valid(animated): WorkshopVisual.sync(self)
