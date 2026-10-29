@@ -1,28 +1,30 @@
-# 像素世界 · 0.8.0《丰收工坊》
+# 像素世界 · 0.8.1《丰收匠心》
 
-最新：[丰收工坊完整说明、配方与截图](docs/HARVEST-WORKSHOP.md)。新增27种季节作物、3种花卉、4种结果树、10类实体设备、49条加工配方、27道料理及布料家具。设备在农场建造模式摆放，料理仍在住宅厨房制作。存档 **v28**，旧v27及更早进度安全迁移；九格工具栏、全场DIY、婚姻和原钓鱼概率保留。
+最新：[0.8.1开发报告、前后对比、生产链与兼容说明](docs/QUALITY081-REPORT.md)。统一农业素材，完善设备工作动画、工单投入/产出快照、配方与季节购买界面，修正小范围平衡。存档v29安全迁移v28旧单；原Android包名、签名和存档位置保留。
 
-验收与复现：`python3 tools/validate_harvest.py`、`python3 tools/check_project.py`、`python3 tools/capture_harvest.py`。Android 真机手感尚未验收。
+此前：[丰收工坊完整说明、配方与截图](docs/HARVEST-WORKSHOP.md)。新增27种季节作物、3种花卉、4种结果树、10类实体设备、49条加工配方、27道料理及布料家具。设备在农场建造模式摆放，料理仍在住宅厨房制作。存档 **v28**，旧v27及更早进度安全迁移；九格工具栏、全场DIY、婚姻和原钓鱼概率保留。
+
+当前验收：203个进程、11,085项自动断言和530项实际窗口检查通过。Android code31；Windows使用Wine验证，Android及Windows原生真机尚未验收。复现入口：`tools/check_project.py`、`tools/capture_quality081.py`、`tools/analyze_quality081.py`。
 
 此前：[农场全场DIY](docs/REPORT-FARM-DIY.md)。真实住宅、温室、畜舍、商店、鱼栏、原设施、42个资源节点与生产田都能移动或收纳后放回；48×32主农场可重新铺路、改水形并在合法干地开垦。原等级、库存、动物和剧情进度保留。存档 **v27**，兼容v1–v26。[9736项检查与窗口证据](docs/TEST-FARM-DIY.json)
 
 此前的[方案C世界素材整合](docs/REPORT-NEED-ASSETS.md)已接入97款世界素材，保留作本轮之前的对照记录。原来固定的大型功能建筑现已开放搬迁。[还需补充的素材](docs/NEED-ASSET-GAPS.md)
 
-当前版本新增[领地编辑第一阶段](docs/REPORT-TERRITORY-080.md)，并保留[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)、[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)、[按数量出售](docs/SALE-QUANTITY.md)、[农场视觉样板06](docs/FARM-VISUAL-06.md)、[羊皮纸冒险图纸](docs/PARCHMENT-MAP.md)、[UI07全界面收口](docs/REPORT-UI07.md)及[方案C角色选择](docs/SCHEME-C-SELECTION.md)。
+0.8.0基础功能包括[领地编辑第一阶段](docs/REPORT-TERRITORY-080.md)，并保留[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)、[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)、[按数量出售](docs/SALE-QUANTITY.md)、[农场视觉样板06](docs/FARM-VISUAL-06.md)、[羊皮纸冒险图纸](docs/PARCHMENT-MAP.md)、[UI07全界面收口](docs/REPORT-UI07.md)及[方案C角色选择](docs/SCHEME-C-SELECTION.md)。
 
-**0.8.0《丰收工坊》**，Godot 4.3 Standard。主农场支持全场DIY，四处按章节开放的地表领地保留既有权限；公共区域和地下保留原规则。
+**0.8.1《丰收匠心》**，Godot 4.3 Standard。主农场支持全场DIY，四处按章节开放的地表领地保留既有权限；公共区域和地下保留原规则。
 
 保留原种田/采集的消耗与产出、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。原应用包名、证书与存档路径保留。
 
 在主农场打开菜单 →「建造 / 改造领地」→「原物」，选择原建筑、设施、树石或农田后点地图预览并确认；“已收纳”分组可放回。地表页支持挖水和填水；新生产田用普通锄头开垦。观赏摆件不产生资源，共享箱子使用原住宅容量。区域路线与权限见[设计说明](docs/TERRITORY-080-DESIGN.md)。
 
-本次完整回归 **9736项、188个进程通过**，新实际窗口专项 **359项通过**。调试APK为code25，Windows64 ZIP已生成并经Wine验证；Android与Windows原生真机未验收。[最新机器记录](docs/TEST-FARM-DIY.json)；[素材整合阶段](docs/TEST-NEED-ASSETS.json)和[初版0.8.0](docs/TEST-TERRITORY-080.json)的历史记录保留供比较。
+农场全场DIY历史阶段回归 **9736项、188个进程通过**，窗口专项 **359项通过**。该阶段调试APK为code25，Windows64 ZIP已生成并经Wine验证；Android与Windows原生真机未验收。[该阶段机器记录](docs/TEST-FARM-DIY.json)；[素材整合阶段](docs/TEST-NEED-ASSETS.json)和[初版0.8.0](docs/TEST-TERRITORY-080.json)的历史记录保留供比较。
 
 ![真实编辑器预览原住宅搬迁](docs/farm-diy/editor/farm-diy-editor-home_preview.png)
 
 尚未结婚时，婚礼还需住宅完工至当前最高四级「星光庄园」，并亲手钓获、领取过传说鱼「永恒星鲤」。只检查永久钓获记录，不交付或消耗鱼；已婚旧档保留婚姻。详见[婚礼准备](docs/MARRIAGE-REQUIREMENTS.md)。
 
-右上角地图图标旁新增[一键回家](docs/HOME-TELEPORT.md)，免费传送至屋内安全位置；本次新增109项状态/109项窗口与相关265项状态/173项窗口回归通过。
+右上角地图图标旁已有[一键回家](docs/HOME-TELEPORT.md)，免费传送至屋内安全位置；该功能历史验证109项状态/109项窗口与相关265项状态/173项窗口回归通过。
 
 当前采用方案C“温暖田园 × 星辉旅人”：开局可选男女主角，小京自动使用对应形象，世界精灵、头像、菜单和剧情显示共用外观解析。方案C阶段完整整合验收：**6,087项自动化、3,425项桌面窗口、159个计划进程全部通过**，见[方案C机器记录](docs/TEST-SCHEME-C.json)；原签名Android调试APK已构建（versionCode 20），没有Android真机验收。上一轮[UI07风格收口](docs/REPORT-UI07.md)已完成，`94f18cd`记录5,062项自动化、3,335项桌面窗口及146个进程通过，属于v24/code18历史基线。
 

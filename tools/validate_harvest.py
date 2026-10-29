@@ -84,7 +84,7 @@ def validate():
         if row['game_minutes']>0:row['theoretical_batches_per_24h']=1440//row['game_minutes']
     assert data['processing']['corn_feed']['output_quantity']*items['hay']['price']>=items['corn']['sell_price'],'Feed should be useful compared with buying hay'
     report={'crops':len(data['crops']),'trees':len(data['orchard']),'stations':len(data['stations']),'processing':len(data['processing']),'dishes':len(data['recipes']),'recipes':costs,'yearly_one_plot_simulation':yearly,'simulation_assumptions':['112 days, one plot, full-price seeds, all relevant unlocks earned','Water every suitable day; harvest at the following morning; off-season growth pauses','No labor/energy valuation, rainfall bonus, seed discount or terminal crop liquidation','Device throughput is an ideal upper bound; actual collection and night gaps lower output'],'unavailable_extensions':data['future']}
-    (ROOT/'docs/harvest-workshop').mkdir(exist_ok=True,parents=True)
-    (ROOT/'docs/harvest-workshop/economy.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+    (ROOT/'docs/quality081').mkdir(exist_ok=True,parents=True)
+    (ROOT/'docs/quality081/harvest-validation.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     print('HARVEST DATA PASS:',{k:v for k,v in report.items() if isinstance(v,int)})
 if __name__=='__main__':validate()

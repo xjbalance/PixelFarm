@@ -1,0 +1,18 @@
+{
+  "version": "0.8.1",
+  "legacy_item_overrides": {
+    "cheese": {"sell_price": 92},
+    "carrot_stew": {"energy": 32}
+  },
+  "processing_inputs": {
+    "smoke_fish_crucian": {"fish_crucian": 3, "wood": 1},
+    "dry_fish_crucian": {"fish_crucian": 3}
+  },
+  "notes": [
+    "Cheese had only 4 gold margin for 6 hours; the new margin is 16 gold.",
+    "Crucian inputs increase only for new orders; old v28 jobs retain their original two-fish snapshots.",
+    "Basic stew has no buff and restored less stamina than its raw ingredients; restore 32 instead of 22.",
+    "Cheese bread follows the existing 112% input-value pricing rule and becomes 156 gold.",
+    "Crop prices, tree yields, production durations, animal production, fish odds and diamond rules are unchanged."
+  ]
+}

@@ -28,7 +28,8 @@ func run() -> void:
 		check(not migrated.is_empty() and migrated.version==FarmSaveStore.VERSION,"独立进程读取原v27格式并迁入当前格式")
 		var unchanged: bool=true
 		for key in old:
-			if key!="version" and JSON.stringify(old[key])!=JSON.stringify(migrated.get(key)): unchanged=false
+			if key not in ["version","tutorial"] and JSON.stringify(old[key])!=JSON.stringify(migrated.get(key)): unchanged=false
+		check(GameTutorial.migrate_080(old.tutorial)==migrated.tutorial,"旧档新增帮助视为已读，旧已读记录保留")
 		check(unchanged and FileAccess.get_file_as_bytes("user://harvest-legacy.json")==bytes,"迁移不修改旧磁盘字节及任何原有经营字段")
 		check(FarmSaveStore.restore(game,migrated),"旧档带旧加工单恢复实际场景")
 		await Touch.place(self,game,"home",Housing.anchor("kitchen")+Vector2(0,32))

@@ -1469,7 +1469,7 @@
     },
     "cheese_bread": {
       "name": "奶酪面包",
-      "sell_price": 143,
+      "sell_price": 156,
       "kind": "food",
       "description": "恢复38体力；已有增益不叠加或刷新。",
       "icon": "res://assets/harvest/items/cheese_bread.png",
@@ -2403,7 +2403,7 @@
       "processing_station_id": "cheese_table",
       "processing_duration": 360,
       "unlock_condition": "basic",
-      "sell_value": 80,
+      "sell_value": 92,
       "category": "cheese_table",
       "description": "按游戏内时间加工，离场与保存不重置进度。"
     },
@@ -2521,7 +2521,7 @@
       "output_item_id": "smoked_fish",
       "output_quantity": 1,
       "input_items": {
-        "fish_crucian": 2,
+        "fish_crucian": 3,
         "wood": 1
       },
       "processing_station_id": "smoker",
@@ -2537,7 +2537,7 @@
       "output_item_id": "dried_fish",
       "output_quantity": 1,
       "input_items": {
-        "fish_crucian": 2
+        "fish_crucian": 3
       },
       "processing_station_id": "drying_rack",
       "processing_duration": 240,
@@ -2905,7 +2905,7 @@
       "processing_station_id": "kitchen",
       "processing_duration": 0,
       "unlock_condition": "basic",
-      "sell_value": 143,
+      "sell_value": 156,
       "category": "baking"
     },
     "roast_sweet_potato": {

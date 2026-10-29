@@ -4,7 +4,7 @@
   "native_sizes": "passed",
   "palette": "passed",
   "distinct_stages": "passed",
-  "business_data_unchanged": true,
+  "business_data_unchanged": false,
   "files": [
     {
       "path": "assets/harvest/items/strawberry.png",

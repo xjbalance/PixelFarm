@@ -14,7 +14,7 @@
     },
     "cheese": {
       "name": "河湾奶酪",
-      "sell_price": 80,
+      "sell_price": 92,
       "kind": "processed",
       "description": "奶制品台把两份牛奶加工6小时；可用于奶酪面包和湖鲜餐。"
     },
@@ -34,10 +34,10 @@
       "name": "暖锅蔬菜炖",
       "sell_price": 110,
       "kind": "food",
-      "energy": 22,
+      "energy": 32,
       "buff": "",
       "seconds": 0,
-      "description": "胡萝卜2、土豆1；恢复22体力，无额外增益。"
+      "description": "胡萝卜2、土豆1；恢复32体力，无额外增益。"
     },
     "potato_bread": {
       "name": "土豆软面包",

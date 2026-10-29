@@ -1,0 +1,14 @@
+{
+	"android_device_tested": false,
+	"animal_sprites": 18,
+	"animated_devices": 40,
+	"checks": 2,
+	"crops": 120,
+	"failures": 0,
+	"fixture": "render-only actual game resources",
+	"frames": 180,
+	"item_icons": 96,
+	"median_wall_ms": 7.891,
+	"p95_wall_ms": 9.532,
+	"renderer": "desktop software OpenGL under Xvfb; fixed 1/60 logic step; measured wall render intervals"
+}

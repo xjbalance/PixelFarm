@@ -1,0 +1,14 @@
+{
+	"agricultural_inputs": "actual sow/water/harvest/feed/collect",
+	"chains": [
+		"wheat/flour/bread",
+		"strawberry/jam/strawberry_cake",
+		"corn/hay/chicken/egg/mayonnaise",
+		"cow/milk/butter/cream_stew",
+		"cotton/cotton_cloth/cotton_chair"
+	],
+	"checks": 184,
+	"failures": 0,
+	"fixture_only": "construction materials, initial test capital, earned cooperative flag",
+	"new_maps_or_gameplay": false
+}

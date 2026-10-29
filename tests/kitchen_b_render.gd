@@ -42,7 +42,7 @@ func run() -> void:
 	GameState.stamina=10;panel.refresh();await frames(4)
 	button=find_button(panel,"食用一份暖锅蔬菜炖")
 	if button: await touch(panel,button)
-	check(Inventory.count("carrot_stew")==0 and GameState.stamina==32,"触屏食用恢复22体力且共享料理日限")
+	check(Inventory.count("carrot_stew")==0 and GameState.stamina==42,"触屏食用恢复32体力且保留单一增益规则")
 	var at: Vector2=game.player.global_position
 	Touch.tap(self,game,Vector2(640,500));await frames(5)
 	check(game.player.global_position==at and game.auto_move.target.is_empty(),"厨房面板拦截地图触点，不误触走出房间")

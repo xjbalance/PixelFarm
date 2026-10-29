@@ -144,7 +144,7 @@ func compatibility() -> void:
 	var old := snap.duplicate(true)
 	old.version=11;old.erase("farm_layout");old.erase("appearance");old.erase("territory")
 	# v11夹具只保留v11实际拥有的分区，不伪造尚未存在的开发字段。
-	for field in ["calendar","world_changes","recovery","fishing","livestock","ecology","kitchen","festival","social","housing","exploration","world_development"]: old.erase(field)
+	for field in ["calendar","world_changes","recovery","fishing","livestock","ecology","kitchen","festival","social","housing","exploration","world_development","workshop","tutorial"]: old.erase(field)
 	var migrated := FarmSaveSchema.normalize(old)
 	check(not migrated.is_empty(),"既有v11可迁移到v12")
 	if migrated.is_empty(): return

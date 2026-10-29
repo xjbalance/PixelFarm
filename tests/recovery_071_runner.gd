@@ -92,8 +92,8 @@ func meal_transactions() -> void:
 		Inventory.changed.disconnect(attempt)
 		check(committed and called[0],first+"在库存信号内触发跨模块重复料理测试")
 		check(not nested[0] and Inventory.count("carrot_stew")== (2 if first=="kitchen" else 3) and Inventory.count("fish_soup")== (3 if first=="kitchen" else 2),first+"先食用时共享事务锁防止同次信号再次扣物")
-		check(GameState.stamina== (32 if first=="kitchen" else 40) and Aquaculture.state.meal_day==GameClock.day,"共享料理仅恢复一份并记录当天")
-		check(Kitchen.consume("carrot_stew") and Aquaculture.consume_food("fish_soup") and GameState.stamina==(84 if first=="kitchen" else 92),"前一事务结束后可独立继续吃料理，准确扣物恢复体力")
+		check(GameState.stamina== (42 if first=="kitchen" else 40) and Aquaculture.state.meal_day==GameClock.day,"共享料理仅恢复一份并记录当天")
+		check(Kitchen.consume("carrot_stew") and Aquaculture.consume_food("fish_soup") and GameState.stamina==GameState.max_stamina(),"前一事务结束后可独立继续吃料理，准确扣物恢复体力")
 	Kitchen.restore(Kitchen.defaults(GameClock.day));Aquaculture.state.meal_day=0;GameState.stamina=10
 	Inventory.items.erase("fish_soup");Inventory.items.erase("carrot_stew")
 	check(not Kitchen.consume("carrot_stew") and not Aquaculture.consume_food("fish_soup") and Aquaculture.state.meal_day==0,"缺少料理时共享事务释放，记录与资源不改变")
@@ -145,7 +145,7 @@ func meal_lifecycle_guards() -> void:
 		var day: int=GameClock.day
 		GameState.set_modal(true)
 		var consumed: bool=request_meal(source)
-		check(consumed and GameState.modal and not GameClock.running and GameClock.day==day and GameClock.minutes==600 and GameState.stamina=={"kitchen":32,"fish":40,"tea":50}[source],source+"在正常暂停菜单内仍可合法恢复一次")
+		check(consumed and GameState.modal and not GameClock.running and GameClock.day==day and GameClock.minutes==600 and GameState.stamina=={"kitchen":42,"fish":40,"tea":50}[source],source+"在正常暂停菜单内仍可合法恢复一次")
 		GameState.set_modal(false)
 
 func mine_supply_transactions() -> void:

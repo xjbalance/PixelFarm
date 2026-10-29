@@ -22,6 +22,10 @@ logs = ROOT/'builds'
 logs.mkdir(exist_ok=True)
 steps = [
     ('import', ['--import']),
+    ('quality081-animation', ['--fixed-fps','60','res://tests/quality081_animation_runner.tscn']),
+    ('quality081-production', ['--fixed-fps','60','res://tests/quality081_production_runner.tscn']),
+    ('quality081-ui', ['--fixed-fps','60','res://tests/quality081_ui_runner.tscn']),
+    ('quality081-chains', ['--fixed-fps','60','res://tests/quality081_chains_runner.tscn']),
     ('harvest-crops', ['--fixed-fps','60','res://tests/harvest_crops_runner.tscn']),
     ('harvest-processing', ['--fixed-fps','60','res://tests/harvest_processing_runner.tscn']),
     ('harvest-chains', ['--fixed-fps','60','res://tests/harvest_chains_runner.tscn']),

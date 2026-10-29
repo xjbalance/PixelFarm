@@ -1,7 +1,7 @@
 extends "res://tests/runner.gd"
 ## 用户追加规则：体力未满且持有食物即可连续食用；共享事务锁与单一增益仍安全。
 var initial: Dictionary
-const MEALS := {"carrot_stew":22,"potato_bread":18,"egg_meal":20,"milk_porridge":24,"fish_feast":28}
+const MEALS := {"carrot_stew":32,"potato_bread":18,"egg_meal":20,"milk_porridge":24,"fish_feast":28}
 
 func run() -> void:
 	game=load("res://scenes/main/main.tscn").instantiate();game.persistence_enabled=false;add_child(game)
@@ -37,10 +37,11 @@ func continuous_food() -> void:
 	check(Recovery.eat_crop("potato") and GameState.stamina==52 and Inventory.count("potato")==19,"超过旧零食额度后土豆仍恢复12并消耗一份")
 	check(Recovery.eat_crop("wheat") and GameState.stamina==56 and Inventory.count("wheat")==19,"不同基础食物没有隐藏共享日限")
 	await fresh()
-	check(Kitchen.consume("carrot_stew") and Kitchen.consume("carrot_stew") and GameState.stamina==44 and Inventory.count("carrot_stew")==18,"同一天可连续食用两份厨房料理，每份正常恢复")
-	check(Aquaculture.consume_food("dried_fish") and GameState.stamina==62 and Inventory.count("dried_fish")==19,"厨房料理后可继续吃鱼干，不再受共享一餐限制")
-	check(Aquaculture.consume_food("fish_soup") and GameState.stamina==92 and Inventory.count("fish_soup")==19,"同一天鱼干和鱼汤分别按原体力值结算")
+	check(Kitchen.consume("carrot_stew") and Kitchen.consume("carrot_stew") and GameState.stamina==64 and Inventory.count("carrot_stew")==18,"同一天可连续食用两份厨房料理，每份正常恢复")
+	check(Aquaculture.consume_food("dried_fish") and GameState.stamina==82 and Inventory.count("dried_fish")==19,"厨房料理后可继续吃鱼干，不再受共享一餐限制")
+	check(Aquaculture.consume_food("fish_soup") and GameState.stamina==GameState.max_stamina() and Inventory.count("fish_soup")==19,"同一天鱼干和鱼汤分别按原体力值结算")
 	check(Aquaculture.state.meal_day==GameClock.day,"meal_day保留最近一次料理日，兼容原增益存档校验")
+	GameState.stamina=GameState.max_stamina()-8
 	var old_day: int=GameClock.day;var old_time: float=GameClock.minutes
 	check(Recovery.eat_crop("potato") and GameState.stamina==GameState.max_stamina() and Inventory.count("potato")==19,"不足一份的恢复量也只消耗一份食物，体力封顶")
 	check(GameClock.day==old_day and GameClock.minutes==old_time,"连续进食不跳日、不改变游戏分钟")
@@ -88,7 +89,7 @@ func reentrant_food() -> void:
 		Inventory.changed.disconnect(again)
 		check(accepted and seen[0] and nested.size()==3 and not nested.has(true),"库存同步回调不能重入任何食用入口："+source)
 		var item: String={"crop":"carrot","kitchen":"carrot_stew","fish":"fish_soup"}[source]
-		var energy: int={"crop":8,"kitchen":22,"fish":30}[source]
+		var energy: int={"crop":8,"kitchen":32,"fish":30}[source]
 		check(Inventory.count(item)==19 and GameState.stamina==energy,"重入被拒绝后只消耗一份且只恢复一次："+source)
 		check(Recovery.eat_crop("carrot") and GameState.stamina==energy+8,"事务完成后的下一次独立食用正常接受："+source)
 	await fresh()
@@ -97,7 +98,7 @@ func reentrant_food() -> void:
 	GameState.changed.connect(callback)
 	var accepted:=Kitchen.consume("carrot_stew")
 	GameState.changed.disconnect(callback)
-	check(accepted and nested.size()>0 and not nested.has(true) and GameState.stamina==22 and Inventory.count("fish_soup")==20,"共享食用锁保持到体力通知结束，不被晚阶段同步信号重入")
+	check(accepted and nested.size()>0 and not nested.has(true) and GameState.stamina==32 and Inventory.count("fish_soup")==20,"共享食用锁保持到体力通知结束，不被晚阶段同步信号重入")
 
 func lifecycle_and_storage() -> void:
 	await fresh()
@@ -108,14 +109,14 @@ func lifecycle_and_storage() -> void:
 		check(not eat("crop") and not eat("kitchen") and not eat("fish") and stamp()==before,"食物取消日限后仍拒绝后台/恢复边界旧回调："+phase)
 		game.backgrounded=false;game.closing=false;GameState.restoring=false;GameClock.minutes=600
 	GameState.set_modal(true)
-	check(eat("crop") and eat("kitchen") and eat("fish") and GameState.stamina==60,"正常暂停菜单仍可依次食用三类食物")
+	check(eat("crop") and eat("kitchen") and eat("fish") and GameState.stamina==70,"正常暂停菜单仍可依次食用三类食物")
 	GameState.set_modal(false)
 	Recovery.state.snacks=3;Aquaculture.state.meal_day=GameClock.day
 	var saved:=FarmSaveStore.snapshot(game)
 	check(FarmSaveStore.valid(saved) and saved.version==FarmSaveStore.VERSION,"达到旧食品日限的记录仍是当前格式合法存档")
 	check(FarmSaveStore.restore(game,JSON.parse_string(JSON.stringify(saved))),"旧snacks与meal_day字段可以完整保存恢复")
 	await frames(4)
-	check(Recovery.eat_crop("carrot") and Kitchen.consume("carrot_stew") and GameState.stamina==90,"重新加载旧额度已满记录后仍允许正常食用")
+	check(Recovery.eat_crop("carrot") and Kitchen.consume("carrot_stew") and GameState.stamina==GameState.max_stamina(),"重新加载旧额度已满记录后仍允许正常食用")
 	await fresh()
 	var day: int=GameClock.day
 	check(Recovery.rest(day,0) and Recovery.rest(day,1) and Recovery.rest(day,2) and GameState.stamina==45,"休息椅仍只按原三次/每次15体力规则工作")

@@ -1,0 +1,150 @@
+{
+  "base_commit": "14287b5",
+  "status": "unchanged",
+  "files": [
+    {
+      "path": "resources/river/river.json",
+      "sha256": "9e24c6e5536ce96dbf0be18a79df84b9814117ad3cec2228d63d93b790884afd"
+    },
+    {
+      "path": "resources/housing/housing.json",
+      "sha256": "c5d5492bafc893c97ece3667329a93ff48d7a108f84f7881a74a0ddb41d93dfc"
+    },
+    {
+      "path": "resources/exploration/exploration.json",
+      "sha256": "2fc999462e36ffb4ecae61172401c1c1c44810b14cba576e43c3a18ae7aaa9c3"
+    },
+    {
+      "path": "resources/abyss/floors.json",
+      "sha256": "dec49a987e33056acd378bd7e3602be2be72db40c6c0b874894e4d97201a94b7"
+    },
+    {
+      "path": "resources/abyss/legend.json",
+      "sha256": "866f13815f18cf5f6729ed37c06c52c15083a12da0cd248570b68c32b16a3174"
+    },
+    {
+      "path": "resources/abyss/base20.json",
+      "sha256": "22ace4668efdb58d331a7657a45c706199ca5e691afbb08521ffb54e6ad42b5c"
+    },
+    {
+      "path": "resources/items/rare_resources.json",
+      "sha256": "ca91e09a5c7348ef9310de98391077afb746fb2b93f16ac9dfed2500ca307fb9"
+    },
+    {
+      "path": "resources/items/materials.json",
+      "sha256": "45445db8f35b34128ba7e107000554f45fb729910b692aefedb7b1fc3e96344f"
+    },
+    {
+      "path": "resources/seasons/economy.json",
+      "sha256": "e95fbb7f2741ed8a806bf4f52d17c7163aa25e580de553f37f696be34efcbbbd"
+    },
+    {
+      "path": "resources/seasons/climate.json",
+      "sha256": "d582e602bf3ccd51e2321d501e8ed485c9c24155e4c73f4f03043318391a23b4"
+    },
+    {
+      "path": "resources/mining/mining.json",
+      "sha256": "13b36141b81a5cb0c9c8b6eda2d16ef6671e3edf320844c987d21fcc092b5f8e"
+    },
+    {
+      "path": "resources/mining/maps.json",
+      "sha256": "d33aa66ff2a96a7a06918d12aa861cb5f0ebb422ca649c4592e258cbfb5cbfc7"
+    },
+    {
+      "path": "resources/mining/chapter_two.json",
+      "sha256": "d02f4b2b2538619f12391aab03bff4d90e734ba9187844575314fdbbb160a70d"
+    },
+    {
+      "path": "resources/festivals/festivals.json",
+      "sha256": "3d845c4d99db644a1b9b1103ea4814e484de5db300a6aaf3eeafea826019e5d2"
+    },
+    {
+      "path": "resources/fishing/fishing.json",
+      "sha256": "21458f89447ef12395bf9bbb0e74154c20a1a44f1e3f8415d86b3d133fda1457"
+    },
+    {
+      "path": "resources/presentation/world_palette.json",
+      "sha256": "d3f8ab6b2f092d2d21227538778f429682c9230698fdb1ccf6205429dcb534d3"
+    },
+    {
+      "path": "resources/story/xiaojing.json",
+      "sha256": "b2c0ce84b629d00387d9887f4abd671ef32252164f0be3f52290cc74435793a3"
+    },
+    {
+      "path": "resources/story/village_projects.json",
+      "sha256": "b25a52728a7583d4372ae0ad6d0dca974af6868097f97d1580d35ec18115a7b8"
+    },
+    {
+      "path": "resources/story/letter_quests.json",
+      "sha256": "31258ec3d50a5e353df731151cb56dea50114b00929addb88c2669a5b54474dc"
+    },
+    {
+      "path": "resources/story/marriage_preparation.json",
+      "sha256": "dc711406c66044d6fc0968edcf3d031e12519175550cdf95c3583f2111862d76"
+    },
+    {
+      "path": "resources/story/wind_lantern.json",
+      "sha256": "5bc5c109ce212e0b3c80e556298c788694c76f70090c90725db94f2ab42b3d1f"
+    },
+    {
+      "path": "resources/story/star1314.json",
+      "sha256": "725908e67b8d35b4e83a08a394baccfa71d86f1778ef06c0bae56786e1cb0a33"
+    },
+    {
+      "path": "resources/social/people.json",
+      "sha256": "bc2961d0130d90bf830e931f0a871d3de47b65a0bad828d1c2cadc6e4c5f0cb4"
+    },
+    {
+      "path": "resources/livestock/livestock.json",
+      "sha256": "87bd13ad37cf954883be0b0919d36b8ee5f65de87dba79ac2a836e83982bfa07"
+    },
+    {
+      "path": "resources/farm_layout/fixtures.json",
+      "sha256": "215248bbd036089639633bdbc1039fa671a707331eb9a8eaa82a08e4b163de97"
+    },
+    {
+      "path": "resources/world_progress/development.json",
+      "sha256": "3e5b97c03473a683f5483f64f27ee135a315da8cbc6770a17abb2acafbad31b7"
+    },
+    {
+      "path": "resources/progression/upgrades.json",
+      "sha256": "dce3682e7a87419c870d3e965488ff09427c89721cc16078c3a7514dfb88499a"
+    },
+    {
+      "path": "resources/progression/quests.json",
+      "sha256": "435b53cd5ffdaaee031a5af1ada5036597861e293a14fc879c2ac0bbee216079"
+    },
+    {
+      "path": "resources/crops/wheat.tres",
+      "sha256": "c40331d43ff78f08845525f2ba97f6187c1fd19db0fb593ff2c157db4e2c3e81"
+    },
+    {
+      "path": "resources/crops/potato.tres",
+      "sha256": "d80ffe6bc129e51951edbd0413f2024ce0c43d0cb8943818523ed9f2d66c1209"
+    },
+    {
+      "path": "resources/crops/carrot.tres",
+      "sha256": "4cd4c05481c45ae81c6dd89815b949d3eda8ddd26ec504abf934d2c6f9dc5287"
+    },
+    {
+      "path": "resources/ui/river_theme.tres",
+      "sha256": "32870b77a0ec628a1217cb018365531ef438d2b346615675977418d5c4f84e86"
+    },
+    {
+      "path": "resources/ui/world_style07.json",
+      "sha256": "0e7846071ce5a6f12624712226589fcd34dee2b460ab58c6f6b5d358ca03a5c2"
+    },
+    {
+      "path": "resources/ui/river_palette.json",
+      "sha256": "6f29758fbc3d2bc6cb067d17ddcef84eb578093a3a6e7543f217eccb4222aa2b"
+    },
+    {
+      "path": "resources/dialogue/linya.json",
+      "sha256": "5db209e4d1e89d483b7f7431003392c62667ee61b5ece03c1f8d397548d0baed"
+    },
+    {
+      "path": "resources/ecology/config.json",
+      "sha256": "ca77909ae12ae5e2380b7b355f64f308499f8858e57e12dbd9c8c560e14a594c"
+    }
+  ]
+}

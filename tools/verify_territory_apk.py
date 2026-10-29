@@ -20,7 +20,7 @@ func run() -> void:
  GameClock.running=false;GameWeather.enabled=false;game.get_node("Audio").muted=true;await frames(8)
  game.tutorial.restore(GameTutorial.defaults(true));await frames(3)
  var expected: Dictionary=canonical(FarmSaveStore.snapshot(game));expected.erase("territory");expected.erase("farm_layout")
- var ok: bool=FarmSaveStore.VERSION==28 and FarmLayoutCatalog.fixtures().size()==64 and game.territory_world.maps.size()==5 and not Territory.unlocked("east_holding")
+ var ok: bool=FarmSaveStore.VERSION==29 and FarmLayoutCatalog.fixtures().size()==64 and game.territory_world.maps.size()==5 and not Territory.unlocked("east_holding")
  ok=SchemeCAssets.catalog().size()==97 and ok
  for id in SchemeCAssets.catalog():
   var info: Dictionary=SchemeCAssets.definition(id)
@@ -42,6 +42,9 @@ func run() -> void:
  for id in HarvestCatalog.data().items: ok=ItemPresentation.texture(id)!=null and ok
  for id in HarvestCatalog.data().stations: ok=TerritoryWorld.texture_for("station_"+id)!=null and ok
  print("APK HARVEST 33-CROPS/32-DISHES/49-PROCESSES/10-STATIONS: ","PASS" if ok else "FAIL")
+ for id in HarvestCatalog.data().stations: ok=WorkshopVisual.frames_for(id)!=null and WorkshopVisual.frames_for(id).get_frame_count("work")==4 and ok
+ ok=Workshop.state.version==2 and Kitchen.data.items.carrot_stew.energy==32 and Catalog.sell_price("cheese")==92 and ok
+ print("APK QUALITY081 WORKING ATLAS / SNAPSHOT V2 / BALANCE: ","PASS" if ok else "FAIL")
  ok=not WorldTravel.change(game,"east_holding") and not Territory.permission("village",Vector2i(6,6),"grass").allowed and ok
  ok=game.territory_editor.open() and ok
  game.territory_editor.choose_tool("stone_path")
@@ -60,11 +63,11 @@ func run() -> void:
  ok=game.territory_editor.confirm() and ok
  await frames(5);game.territory_editor.cancel();game.save_game();await frames(3)
  var data: Dictionary=FarmSaveStore.read(game.save_path)
- ok=data.get("version")==28 and data.get("farm_layout")==FarmLayout.snapshot() and data.get("territory",{}).get("terrain",{}).get("farm",{}).get(TerritoryCatalog.key(cell))=="stone_path" and ok
+ ok=data.get("version")==29 and data.get("farm_layout")==FarmLayout.snapshot() and data.get("territory",{}).get("terrain",{}).get("farm",{}).get(TerritoryCatalog.key(cell))=="stone_path" and ok
  ok=data.get("farm_layout",{}).get("fixtures",{}).get("home",{}).get("cell")==[20,5] and FarmSaveStore.restore(game,data) and ok
  await frames(5)
  ok=FarmLayout.cell("fixture","home")==Vector2i(20,5) and ok
- print("APK FARM LAYOUT V28 MOVE/RESTORE: ","PASS" if ok else "FAIL")
+ print("APK FARM LAYOUT V29 MOVE/RESTORE: ","PASS" if ok else "FAIL")
  var after: Dictionary=canonical(FarmSaveStore.snapshot(game));after.erase("territory");after.erase("farm_layout")
  ok=after==expected and ok
  print("APK TERRITORY EDITOR SMOKE: ","PASS" if ok else "FAIL")

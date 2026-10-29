@@ -207,7 +207,7 @@ try:
         clean_output(restart.stdout)
         if restart.returncode:raise RuntimeError('Actual EXE restart failed')
         restored_path,restored=locate_save(prefix)
-        if not restored or restored.get('appearance')!=original_appearance or restored.get('version')!=28 or 'farm_layout' not in restored:raise RuntimeError('Restart changed the saved avatar/schema')
+        if not restored or restored.get('appearance')!=original_appearance or restored.get('version')!=29 or 'farm_layout' not in restored:raise RuntimeError('Restart changed the saved avatar/schema')
         report['save_restart']=True;report['player_profile_isolated']=True;report['standalone_without_source']=True;report['unicode_path_tested']=True
         report['status']='passed'
         subprocess.run([str(RUNTIME/'root/usr/lib/wine/wineserver64'),'-k'],env=env,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=10)

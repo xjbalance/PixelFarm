@@ -1,0 +1,2602 @@
+{
+  "changes": [
+    {
+      "path": "aquaculture/fish.items.fish_soup.description",
+      "before": "草鱼、鲈鱼、金鳞鱼或星辉鱼可按湖岸配方烹制；每日食用一份恢复30体力。",
+      "after": "草鱼、鲈鱼、金鳞鱼或星辉鱼按湖岸配方烹制；每份恢复30体力，满体力不消耗。"
+    },
+    {
+      "path": "aquaculture/fish.items.dried_fish.description",
+      "before": "鲤鱼2或鲫鱼4，加木材1加工；可出售或每日食用恢复18体力。",
+      "after": "湖岸晾晒架或烘干架制作；体力未满时每份恢复18体力，可连续食用，满体力不消耗。"
+    },
+    {
+      "path": "aquaculture/fish.recipes.soup.description",
+      "before": "使用湖岸小炉烹煮，成品每天最多食用一份。",
+      "after": "使用湖岸小炉烹煮，每份恢复体力，满体力不消耗。"
+    },
+    {
+      "path": "aquaculture/fish.recipes.star_soup.description",
+      "before": "生态鱼栏的小炉将星辉鱼与两份胡萝卜分煮三份鱼汤；每日食用限制不变。",
+      "after": "生态鱼栏的小炉将星辉鱼与两份胡萝卜分煮三份鱼汤；食用遵循当前体力恢复规则。"
+    },
+    {
+      "path": "kitchen/kitchen.items.cheese.sell_price",
+      "before": 80,
+      "after": 92
+    },
+    {
+      "path": "kitchen/kitchen.items.carrot_stew.energy",
+      "before": 22,
+      "after": 32
+    },
+    {
+      "path": "kitchen/kitchen.items.carrot_stew.description",
+      "before": "胡萝卜2、土豆1；恢复22体力，无额外增益。",
+      "after": "胡萝卜2、土豆1；恢复32体力，无额外增益。"
+    },
+    {
+      "path": "harvest/harvest.processing.dairy_cheese.sell_value",
+      "before": 80,
+      "after": 92
+    },
+    {
+      "path": "harvest/harvest.processing.smoke_fish_crucian.input_items.fish_crucian",
+      "before": 2,
+      "after": 3
+    },
+    {
+      "path": "harvest/harvest.processing.dry_fish_crucian.input_items.fish_crucian",
+      "before": 2,
+      "after": 3
+    },
+    {
+      "path": "harvest/harvest.items.cheese_bread.sell_price",
+      "before": 143,
+      "after": 156
+    },
+    {
+      "path": "harvest/harvest.recipes.cheese_bread.sell_value",
+      "before": 143,
+      "after": 156
+    }
+  ],
+  "recipe_count": 92,
+  "recipes": [
+    {
+      "id": "workshop:mill_flour",
+      "name": "研磨面粉",
+      "station": "mill",
+      "inputs": {
+        "wheat": 1
+      },
+      "outputs": {
+        "flour": 1
+      },
+      "before_input_value": 22,
+      "before_output_value": 24,
+      "before_margin": 2,
+      "after_input_value": 22,
+      "after_output_value": 24,
+      "after_margin": 2,
+      "minutes": 45,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:rice",
+      "name": "精制大米",
+      "station": "mill",
+      "inputs": {
+        "rice_crop": 1
+      },
+      "outputs": {
+        "rice": 1
+      },
+      "before_input_value": 52,
+      "before_output_value": 63,
+      "before_margin": 11,
+      "after_input_value": 52,
+      "after_output_value": 63,
+      "after_margin": 11,
+      "minutes": 45,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:cornmeal",
+      "name": "玉米粉",
+      "station": "mill",
+      "inputs": {
+        "corn": 1
+      },
+      "outputs": {
+        "cornmeal": 1
+      },
+      "before_input_value": 58,
+      "before_output_value": 70,
+      "before_margin": 12,
+      "after_input_value": 58,
+      "after_output_value": 70,
+      "after_margin": 12,
+      "minutes": 45,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:tofu",
+      "name": "鲜豆腐",
+      "station": "mill",
+      "inputs": {
+        "soybean": 1
+      },
+      "outputs": {
+        "tofu": 1
+      },
+      "before_input_value": 50,
+      "before_output_value": 61,
+      "before_margin": 11,
+      "after_input_value": 50,
+      "after_output_value": 61,
+      "after_margin": 11,
+      "minutes": 60,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:corn_feed",
+      "name": "玉米饲料",
+      "station": "mill",
+      "inputs": {
+        "corn": 1
+      },
+      "outputs": {
+        "hay": 16
+      },
+      "before_input_value": 58,
+      "before_output_value": 16,
+      "before_margin": -42,
+      "after_input_value": 58,
+      "after_output_value": 16,
+      "after_margin": -42,
+      "minutes": 45,
+      "production_transactions": 2,
+      "utility": [
+        "可喂养，省去卖原料再购料的往返"
+      ]
+    },
+    {
+      "id": "workshop:canola_oil",
+      "name": "菜籽油",
+      "station": "oil_press",
+      "inputs": {
+        "rapeseed": 2
+      },
+      "outputs": {
+        "canola_oil": 1
+      },
+      "before_input_value": 92,
+      "before_output_value": 112,
+      "before_margin": 20,
+      "after_input_value": 92,
+      "after_output_value": 112,
+      "after_margin": 20,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:peanut_oil",
+      "name": "花生油",
+      "station": "oil_press",
+      "inputs": {
+        "peanut": 2
+      },
+      "outputs": {
+        "peanut_oil": 1
+      },
+      "before_input_value": 120,
+      "before_output_value": 146,
+      "before_margin": 26,
+      "after_input_value": 120,
+      "after_output_value": 146,
+      "after_margin": 26,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:sunflower_oil",
+      "name": "葵花籽油",
+      "station": "oil_press",
+      "inputs": {
+        "sunflower_crop": 2
+      },
+      "outputs": {
+        "sunflower_oil": 1
+      },
+      "before_input_value": 136,
+      "before_output_value": 165,
+      "before_margin": 29,
+      "after_input_value": 136,
+      "after_output_value": 165,
+      "after_margin": 29,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:pickled_cucumber",
+      "name": "腌黄瓜",
+      "station": "pickle_jar",
+      "inputs": {
+        "cucumber": 2
+      },
+      "outputs": {
+        "pickled_cucumber": 1
+      },
+      "before_input_value": 48,
+      "before_output_value": 58,
+      "before_margin": 10,
+      "after_input_value": 48,
+      "after_output_value": 58,
+      "after_margin": 10,
+      "minutes": 1440,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:kimchi",
+      "name": "泡菜",
+      "station": "pickle_jar",
+      "inputs": {
+        "cabbage": 2
+      },
+      "outputs": {
+        "kimchi": 1
+      },
+      "before_input_value": 124,
+      "before_output_value": 151,
+      "before_margin": 27,
+      "after_input_value": 124,
+      "after_output_value": 151,
+      "after_margin": 27,
+      "minutes": 1440,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:pickled_radish",
+      "name": "腌萝卜",
+      "station": "pickle_jar",
+      "inputs": {
+        "radish": 2
+      },
+      "outputs": {
+        "pickled_radish": 1
+      },
+      "before_input_value": 84,
+      "before_output_value": 102,
+      "before_margin": 18,
+      "after_input_value": 84,
+      "after_output_value": 102,
+      "after_margin": 18,
+      "minutes": 1440,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:snow_pickle",
+      "name": "雪萝卜泡菜",
+      "station": "pickle_jar",
+      "inputs": {
+        "snow_radish": 2
+      },
+      "outputs": {
+        "snow_pickle": 1
+      },
+      "before_input_value": 88,
+      "before_output_value": 107,
+      "before_margin": 19,
+      "after_input_value": 88,
+      "after_output_value": 107,
+      "after_margin": 19,
+      "minutes": 1440,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:winter_pickle",
+      "name": "冬白菜泡菜",
+      "station": "pickle_jar",
+      "inputs": {
+        "winter_cabbage": 2
+      },
+      "outputs": {
+        "winter_pickle": 1
+      },
+      "before_input_value": 152,
+      "before_output_value": 185,
+      "before_margin": 33,
+      "after_input_value": 152,
+      "after_output_value": 185,
+      "after_margin": 33,
+      "minutes": 1440,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:tomato_sauce",
+      "name": "番茄酱",
+      "station": "jam_pot",
+      "inputs": {
+        "tomato": 2
+      },
+      "outputs": {
+        "tomato_sauce": 1
+      },
+      "before_input_value": 62,
+      "before_output_value": 75,
+      "before_margin": 13,
+      "after_input_value": 62,
+      "after_output_value": 75,
+      "after_margin": 13,
+      "minutes": 240,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:chili_sauce",
+      "name": "辣椒酱",
+      "station": "jam_pot",
+      "inputs": {
+        "chili": 2
+      },
+      "outputs": {
+        "chili_sauce": 1
+      },
+      "before_input_value": 68,
+      "before_output_value": 82,
+      "before_margin": 14,
+      "after_input_value": 68,
+      "after_output_value": 82,
+      "after_margin": 14,
+      "minutes": 240,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:pumpkin_puree",
+      "name": "南瓜泥",
+      "station": "jam_pot",
+      "inputs": {
+        "pumpkin": 2
+      },
+      "outputs": {
+        "pumpkin_puree": 1
+      },
+      "before_input_value": 188,
+      "before_output_value": 229,
+      "before_margin": 41,
+      "after_input_value": 188,
+      "after_output_value": 229,
+      "after_margin": 41,
+      "minutes": 240,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:strawberry_jam",
+      "name": "草莓果酱",
+      "station": "jam_pot",
+      "inputs": {
+        "strawberry": 2
+      },
+      "outputs": {
+        "strawberry_jam": 1
+      },
+      "before_input_value": 56,
+      "before_output_value": 68,
+      "before_margin": 12,
+      "after_input_value": 56,
+      "after_output_value": 68,
+      "after_margin": 12,
+      "minutes": 240,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:blueberry_jam",
+      "name": "蓝莓果酱",
+      "station": "jam_pot",
+      "inputs": {
+        "blueberry": 2
+      },
+      "outputs": {
+        "blueberry_jam": 1
+      },
+      "before_input_value": 48,
+      "before_output_value": 58,
+      "before_margin": 10,
+      "after_input_value": 48,
+      "after_output_value": 58,
+      "after_margin": 10,
+      "minutes": 240,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:peach_jam",
+      "name": "桃子果酱",
+      "station": "jam_pot",
+      "inputs": {
+        "peach": 2
+      },
+      "outputs": {
+        "peach_jam": 1
+      },
+      "before_input_value": 84,
+      "before_output_value": 102,
+      "before_margin": 18,
+      "after_input_value": 84,
+      "after_output_value": 102,
+      "after_margin": 18,
+      "minutes": 240,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:grape_juice",
+      "name": "葡萄汁",
+      "station": "juicer",
+      "inputs": {
+        "grape": 2
+      },
+      "outputs": {
+        "grape_juice": 1
+      },
+      "before_input_value": 50,
+      "before_output_value": 61,
+      "before_margin": 11,
+      "after_input_value": 50,
+      "after_output_value": 61,
+      "after_margin": 11,
+      "minutes": 90,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:apple_juice",
+      "name": "苹果汁",
+      "station": "juicer",
+      "inputs": {
+        "apple": 2
+      },
+      "outputs": {
+        "apple_juice": 1
+      },
+      "before_input_value": 72,
+      "before_output_value": 87,
+      "before_margin": 15,
+      "after_input_value": 72,
+      "after_output_value": 87,
+      "after_margin": 15,
+      "minutes": 90,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:pear_juice",
+      "name": "梨汁",
+      "station": "juicer",
+      "inputs": {
+        "pear": 2
+      },
+      "outputs": {
+        "pear_juice": 1
+      },
+      "before_input_value": 76,
+      "before_output_value": 92,
+      "before_margin": 16,
+      "after_input_value": 76,
+      "after_output_value": 92,
+      "after_margin": 16,
+      "minutes": 90,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:orange_juice",
+      "name": "橙汁",
+      "station": "juicer",
+      "inputs": {
+        "orange": 2
+      },
+      "outputs": {
+        "orange_juice": 1
+      },
+      "before_input_value": 88,
+      "before_output_value": 107,
+      "before_margin": 19,
+      "after_input_value": 88,
+      "after_output_value": 107,
+      "after_margin": 19,
+      "minutes": 90,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:watermelon_juice",
+      "name": "西瓜汁",
+      "station": "juicer",
+      "inputs": {
+        "watermelon": 2
+      },
+      "outputs": {
+        "watermelon_juice": 1
+      },
+      "before_input_value": 220,
+      "before_output_value": 268,
+      "before_margin": 48,
+      "after_input_value": 220,
+      "after_output_value": 268,
+      "after_margin": 48,
+      "minutes": 90,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:raisins",
+      "name": "葡萄干",
+      "station": "drying_rack",
+      "inputs": {
+        "grape": 2
+      },
+      "outputs": {
+        "raisins": 1
+      },
+      "before_input_value": 50,
+      "before_output_value": 61,
+      "before_margin": 11,
+      "after_input_value": 50,
+      "after_output_value": 61,
+      "after_margin": 11,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:dried_sweet_potato",
+      "name": "红薯干",
+      "station": "drying_rack",
+      "inputs": {
+        "sweet_potato": 2
+      },
+      "outputs": {
+        "dried_sweet_potato": 1
+      },
+      "before_input_value": 112,
+      "before_output_value": 136,
+      "before_margin": 24,
+      "after_input_value": 112,
+      "after_output_value": 136,
+      "after_margin": 24,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:dried_pear",
+      "name": "梨干",
+      "station": "drying_rack",
+      "inputs": {
+        "pear": 2
+      },
+      "outputs": {
+        "dried_pear": 1
+      },
+      "before_input_value": 76,
+      "before_output_value": 92,
+      "before_margin": 16,
+      "after_input_value": 76,
+      "after_output_value": 92,
+      "after_margin": 16,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:dried_spinach",
+      "name": "菠菜干",
+      "station": "drying_rack",
+      "inputs": {
+        "spinach": 2
+      },
+      "outputs": {
+        "dried_spinach": 1
+      },
+      "before_input_value": 56,
+      "before_output_value": 68,
+      "before_margin": 12,
+      "after_input_value": 56,
+      "after_output_value": 68,
+      "after_margin": 12,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:dried_kale",
+      "name": "甘蓝干",
+      "station": "drying_rack",
+      "inputs": {
+        "winter_kale": 2
+      },
+      "outputs": {
+        "dried_kale": 1
+      },
+      "before_input_value": 120,
+      "before_output_value": 146,
+      "before_margin": 26,
+      "after_input_value": 120,
+      "after_output_value": 146,
+      "after_margin": 26,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:soup_herbs",
+      "name": "蒜苗汤料",
+      "station": "drying_rack",
+      "inputs": {
+        "garlic_shoot": 2
+      },
+      "outputs": {
+        "soup_herbs": 1
+      },
+      "before_input_value": 68,
+      "before_output_value": 82,
+      "before_margin": 14,
+      "after_input_value": 68,
+      "after_output_value": 82,
+      "after_margin": 14,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:onion_flakes",
+      "name": "冬葱干",
+      "station": "drying_rack",
+      "inputs": {
+        "winter_onion": 2
+      },
+      "outputs": {
+        "onion_flakes": 1
+      },
+      "before_input_value": 80,
+      "before_output_value": 97,
+      "before_margin": 17,
+      "after_input_value": 80,
+      "after_output_value": 97,
+      "after_margin": 17,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:dried_eggplant",
+      "name": "茄子干",
+      "station": "drying_rack",
+      "inputs": {
+        "eggplant": 2
+      },
+      "outputs": {
+        "dried_eggplant": 1
+      },
+      "before_input_value": 114,
+      "before_output_value": 139,
+      "before_margin": 25,
+      "after_input_value": 114,
+      "after_output_value": 139,
+      "after_margin": 25,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:dried_peas",
+      "name": "豌豆干",
+      "station": "drying_rack",
+      "inputs": {
+        "peas": 2
+      },
+      "outputs": {
+        "dried_peas": 1
+      },
+      "before_input_value": 50,
+      "before_output_value": 61,
+      "before_margin": 11,
+      "after_input_value": 50,
+      "after_output_value": 61,
+      "after_margin": 11,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:frost_pea_flakes",
+      "name": "寒豌豆汤料",
+      "station": "drying_rack",
+      "inputs": {
+        "frost_peas": 2
+      },
+      "outputs": {
+        "frost_pea_flakes": 1
+      },
+      "before_input_value": 52,
+      "before_output_value": 63,
+      "before_margin": 11,
+      "after_input_value": 52,
+      "after_output_value": 63,
+      "after_margin": 11,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:lavender_bundle",
+      "name": "干薰衣草",
+      "station": "drying_rack",
+      "inputs": {
+        "lavender": 2
+      },
+      "outputs": {
+        "lavender_bundle": 1
+      },
+      "before_input_value": 104,
+      "before_output_value": 126,
+      "before_margin": 22,
+      "after_input_value": 104,
+      "after_output_value": 126,
+      "after_margin": 22,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:rose_petals",
+      "name": "干玫瑰花瓣",
+      "station": "drying_rack",
+      "inputs": {
+        "rose": 2
+      },
+      "outputs": {
+        "rose_petals": 1
+      },
+      "before_input_value": 148,
+      "before_output_value": 180,
+      "before_margin": 32,
+      "after_input_value": 148,
+      "after_output_value": 180,
+      "after_margin": 32,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:chamomile_dried",
+      "name": "干洋甘菊",
+      "station": "drying_rack",
+      "inputs": {
+        "chamomile": 2
+      },
+      "outputs": {
+        "chamomile_dried": 1
+      },
+      "before_input_value": 80,
+      "before_output_value": 97,
+      "before_margin": 17,
+      "after_input_value": 80,
+      "after_output_value": 97,
+      "after_margin": 17,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:mayonnaise",
+      "name": "蛋黄酱",
+      "station": "egg_table",
+      "inputs": {
+        "egg": 2
+      },
+      "outputs": {
+        "mayonnaise": 1
+      },
+      "before_input_value": 36,
+      "before_output_value": 43,
+      "before_margin": 7,
+      "after_input_value": 36,
+      "after_output_value": 43,
+      "after_margin": 7,
+      "minutes": 120,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:butter",
+      "name": "黄油",
+      "station": "cheese_table",
+      "inputs": {
+        "milk": 1
+      },
+      "outputs": {
+        "butter": 1
+      },
+      "before_input_value": 38,
+      "before_output_value": 46,
+      "before_margin": 8,
+      "after_input_value": 38,
+      "after_output_value": 46,
+      "after_margin": 8,
+      "minutes": 360,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:dairy_cheese",
+      "name": "河湾奶酪",
+      "station": "cheese_table",
+      "inputs": {
+        "milk": 2
+      },
+      "outputs": {
+        "cheese": 1
+      },
+      "before_input_value": 76,
+      "before_output_value": 80,
+      "before_margin": 4,
+      "after_input_value": 76,
+      "after_output_value": 92,
+      "after_margin": 16,
+      "minutes": 360,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:yogurt",
+      "name": "酸奶",
+      "station": "cheese_table",
+      "inputs": {
+        "milk": 1
+      },
+      "outputs": {
+        "yogurt": 1
+      },
+      "before_input_value": 38,
+      "before_output_value": 46,
+      "before_margin": 8,
+      "after_input_value": 38,
+      "after_output_value": 46,
+      "after_margin": 8,
+      "minutes": 360,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:wool_cloth",
+      "name": "毛布",
+      "station": "loom",
+      "inputs": {
+        "wool": 2
+      },
+      "outputs": {
+        "wool_cloth": 1
+      },
+      "before_input_value": 96,
+      "before_output_value": 117,
+      "before_margin": 21,
+      "after_input_value": 96,
+      "after_output_value": 117,
+      "after_margin": 21,
+      "minutes": 360,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:cotton_cloth",
+      "name": "棉布",
+      "station": "loom",
+      "inputs": {
+        "cotton": 2
+      },
+      "outputs": {
+        "cotton_cloth": 1
+      },
+      "before_input_value": 140,
+      "before_output_value": 170,
+      "before_margin": 30,
+      "after_input_value": 140,
+      "after_output_value": 170,
+      "after_margin": 30,
+      "minutes": 360,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:sachet",
+      "name": "薰衣草香包",
+      "station": "loom",
+      "inputs": {
+        "lavender_bundle": 1,
+        "cotton_cloth": 1
+      },
+      "outputs": {
+        "sachet": 1
+      },
+      "before_input_value": 296,
+      "before_output_value": 361,
+      "before_margin": 65,
+      "after_input_value": 296,
+      "after_output_value": 361,
+      "after_margin": 65,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:rose_perfume",
+      "name": "玫瑰香水",
+      "station": "juicer",
+      "inputs": {
+        "rose_petals": 1,
+        "canola_oil": 1
+      },
+      "outputs": {
+        "rose_perfume": 1
+      },
+      "before_input_value": 292,
+      "before_output_value": 356,
+      "before_margin": 64,
+      "after_input_value": 292,
+      "after_output_value": 356,
+      "after_margin": 64,
+      "minutes": 240,
+      "production_transactions": 2,
+      "utility": []
+    },
+    {
+      "id": "workshop:smoke_fish_carp",
+      "name": "鲤鱼熏制",
+      "station": "smoker",
+      "inputs": {
+        "fish_carp": 2,
+        "wood": 1
+      },
+      "outputs": {
+        "smoked_fish": 1
+      },
+      "before_input_value": 60,
+      "before_output_value": 68,
+      "before_margin": 8,
+      "after_input_value": 60,
+      "after_output_value": 68,
+      "after_margin": 8,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:dry_fish_carp",
+      "name": "鲤鱼晒干",
+      "station": "drying_rack",
+      "inputs": {
+        "fish_carp": 2
+      },
+      "outputs": {
+        "dried_fish": 1
+      },
+      "before_input_value": 56,
+      "before_output_value": 68,
+      "before_margin": 12,
+      "after_input_value": 56,
+      "after_output_value": 68,
+      "after_margin": 12,
+      "minutes": 240,
+      "production_transactions": 2,
+      "utility": [
+        "恢复18体力"
+      ]
+    },
+    {
+      "id": "workshop:smoke_fish_crucian",
+      "name": "鲫鱼熏制",
+      "station": "smoker",
+      "inputs": {
+        "fish_crucian": 3,
+        "wood": 1
+      },
+      "outputs": {
+        "smoked_fish": 1
+      },
+      "before_input_value": 36,
+      "before_output_value": 68,
+      "before_margin": 32,
+      "after_input_value": 52,
+      "after_output_value": 68,
+      "after_margin": 16,
+      "minutes": 180,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "workshop:dry_fish_crucian",
+      "name": "鲫鱼晒干",
+      "station": "drying_rack",
+      "inputs": {
+        "fish_crucian": 3
+      },
+      "outputs": {
+        "dried_fish": 1
+      },
+      "before_input_value": 32,
+      "before_output_value": 68,
+      "before_margin": 36,
+      "after_input_value": 48,
+      "after_output_value": 68,
+      "after_margin": 20,
+      "minutes": 240,
+      "production_transactions": 2,
+      "utility": [
+        "恢复18体力"
+      ]
+    },
+    {
+      "id": "kitchen:carrot_stew",
+      "name": "暖锅蔬菜炖",
+      "station": "kitchen",
+      "inputs": {
+        "carrot": 2,
+        "potato": 1
+      },
+      "outputs": {
+        "carrot_stew": 1
+      },
+      "before_input_value": 128,
+      "before_output_value": 110,
+      "before_margin": -18,
+      "after_input_value": 128,
+      "after_output_value": 110,
+      "after_margin": -18,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复32体力"
+      ]
+    },
+    {
+      "id": "kitchen:potato_bread",
+      "name": "土豆软面包",
+      "station": "kitchen",
+      "inputs": {
+        "flour": 1,
+        "potato": 1
+      },
+      "outputs": {
+        "potato_bread": 1
+      },
+      "before_input_value": 80,
+      "before_output_value": 72,
+      "before_margin": -8,
+      "after_input_value": 80,
+      "after_output_value": 72,
+      "after_margin": -8,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复18体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:egg_meal",
+      "name": "田园煎蛋盘",
+      "station": "kitchen",
+      "inputs": {
+        "egg": 2,
+        "potato": 1
+      },
+      "outputs": {
+        "egg_meal": 1
+      },
+      "before_input_value": 92,
+      "before_output_value": 80,
+      "before_margin": -12,
+      "after_input_value": 92,
+      "after_output_value": 80,
+      "after_margin": -12,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复20体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:milk_porridge",
+      "name": "奶香麦粥",
+      "station": "kitchen",
+      "inputs": {
+        "milk": 1,
+        "flour": 1
+      },
+      "outputs": {
+        "milk_porridge": 1
+      },
+      "before_input_value": 62,
+      "before_output_value": 54,
+      "before_margin": -8,
+      "after_input_value": 62,
+      "after_output_value": 54,
+      "after_margin": -8,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复24体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:fish_feast",
+      "name": "星岸湖鲜餐",
+      "station": "kitchen",
+      "inputs": {
+        "smoked_fish": 1,
+        "cheese": 1,
+        "carrot": 1
+      },
+      "outputs": {
+        "fish_feast": 1
+      },
+      "before_input_value": 184,
+      "before_output_value": 172,
+      "before_margin": -12,
+      "after_input_value": 196,
+      "after_output_value": 172,
+      "after_margin": -24,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复28体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:bread",
+      "name": "麦香面包",
+      "station": "kitchen",
+      "inputs": {
+        "flour": 2
+      },
+      "outputs": {
+        "bread": 1
+      },
+      "before_input_value": 48,
+      "before_output_value": 53,
+      "before_margin": 5,
+      "after_input_value": 48,
+      "after_output_value": 53,
+      "after_margin": 5,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复24体力"
+      ]
+    },
+    {
+      "id": "kitchen:noodles",
+      "name": "手工面条",
+      "station": "kitchen",
+      "inputs": {
+        "flour": 2,
+        "egg": 1
+      },
+      "outputs": {
+        "noodles": 1
+      },
+      "before_input_value": 66,
+      "before_output_value": 73,
+      "before_margin": 7,
+      "after_input_value": 66,
+      "after_output_value": 73,
+      "after_margin": 7,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复26体力",
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "kitchen:cake",
+      "name": "田园蛋糕",
+      "station": "kitchen",
+      "inputs": {
+        "flour": 2,
+        "egg": 2,
+        "milk": 1
+      },
+      "outputs": {
+        "cake": 1
+      },
+      "before_input_value": 122,
+      "before_output_value": 136,
+      "before_margin": 14,
+      "after_input_value": 122,
+      "after_output_value": 136,
+      "after_margin": 14,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复40体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:pumpkin_pie",
+      "name": "南瓜派",
+      "station": "kitchen",
+      "inputs": {
+        "pumpkin_puree": 1,
+        "flour": 2,
+        "butter": 1
+      },
+      "outputs": {
+        "pumpkin_pie": 1
+      },
+      "before_input_value": 323,
+      "before_output_value": 361,
+      "before_margin": 38,
+      "after_input_value": 323,
+      "after_output_value": 361,
+      "after_margin": 38,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复42体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:strawberry_cake",
+      "name": "草莓蛋糕",
+      "station": "kitchen",
+      "inputs": {
+        "strawberry_jam": 1,
+        "flour": 2,
+        "egg": 1,
+        "milk": 1
+      },
+      "outputs": {
+        "strawberry_cake": 1
+      },
+      "before_input_value": 172,
+      "before_output_value": 192,
+      "before_margin": 20,
+      "after_input_value": 172,
+      "after_output_value": 192,
+      "after_margin": 20,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复40体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:tomato_pasta",
+      "name": "番茄意面",
+      "station": "kitchen",
+      "inputs": {
+        "noodles": 1,
+        "tomato_sauce": 1,
+        "canola_oil": 1
+      },
+      "outputs": {
+        "tomato_pasta": 1
+      },
+      "before_input_value": 260,
+      "before_output_value": 291,
+      "before_margin": 31,
+      "after_input_value": 260,
+      "after_output_value": 291,
+      "after_margin": 31,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复38体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:vegetable_soup",
+      "name": "田园蔬菜汤",
+      "station": "kitchen",
+      "inputs": {
+        "cabbage": 1,
+        "spinach": 1,
+        "potato": 1
+      },
+      "outputs": {
+        "vegetable_soup": 1
+      },
+      "before_input_value": 146,
+      "before_output_value": 163,
+      "before_margin": 17,
+      "after_input_value": 146,
+      "after_output_value": 163,
+      "after_margin": 17,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复28体力"
+      ]
+    },
+    {
+      "id": "kitchen:tofu_soup",
+      "name": "豆腐汤",
+      "station": "kitchen",
+      "inputs": {
+        "tofu": 1,
+        "winter_onion": 1
+      },
+      "outputs": {
+        "tofu_soup": 1
+      },
+      "before_input_value": 101,
+      "before_output_value": 113,
+      "before_margin": 12,
+      "after_input_value": 101,
+      "after_output_value": 113,
+      "after_margin": 12,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复26体力"
+      ]
+    },
+    {
+      "id": "kitchen:cooked_rice",
+      "name": "香米饭",
+      "station": "kitchen",
+      "inputs": {
+        "rice": 1
+      },
+      "outputs": {
+        "cooked_rice": 1
+      },
+      "before_input_value": 63,
+      "before_output_value": 70,
+      "before_margin": 7,
+      "after_input_value": 63,
+      "after_output_value": 70,
+      "after_margin": 7,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复22体力"
+      ]
+    },
+    {
+      "id": "kitchen:fish_rice",
+      "name": "湖鲜鱼肉饭",
+      "station": "kitchen",
+      "inputs": {
+        "rice": 1,
+        "fish_carp": 1,
+        "soup_herbs": 1
+      },
+      "outputs": {
+        "fish_rice": 1
+      },
+      "before_input_value": 173,
+      "before_output_value": 193,
+      "before_margin": 20,
+      "after_input_value": 173,
+      "after_output_value": 193,
+      "after_margin": 20,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复36体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:rice_ball",
+      "name": "田园饭团",
+      "station": "kitchen",
+      "inputs": {
+        "rice": 1,
+        "peas": 1
+      },
+      "outputs": {
+        "rice_ball": 1
+      },
+      "before_input_value": 88,
+      "before_output_value": 98,
+      "before_margin": 10,
+      "after_input_value": 88,
+      "after_output_value": 98,
+      "after_margin": 10,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复26体力"
+      ]
+    },
+    {
+      "id": "kitchen:corn_cake",
+      "name": "玉米饼",
+      "station": "kitchen",
+      "inputs": {
+        "cornmeal": 1,
+        "egg": 1
+      },
+      "outputs": {
+        "corn_cake": 1
+      },
+      "before_input_value": 88,
+      "before_output_value": 98,
+      "before_margin": 10,
+      "after_input_value": 88,
+      "after_output_value": 98,
+      "after_margin": 10,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复28体力"
+      ]
+    },
+    {
+      "id": "kitchen:corn_bread",
+      "name": "玉米面包",
+      "station": "kitchen",
+      "inputs": {
+        "cornmeal": 1,
+        "flour": 1
+      },
+      "outputs": {
+        "corn_bread": 1
+      },
+      "before_input_value": 94,
+      "before_output_value": 105,
+      "before_margin": 11,
+      "after_input_value": 94,
+      "after_output_value": 105,
+      "after_margin": 11,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复28体力"
+      ]
+    },
+    {
+      "id": "kitchen:cheese_bread",
+      "name": "奶酪面包",
+      "station": "kitchen",
+      "inputs": {
+        "flour": 2,
+        "cheese": 1
+      },
+      "outputs": {
+        "cheese_bread": 1
+      },
+      "before_input_value": 128,
+      "before_output_value": 143,
+      "before_margin": 15,
+      "after_input_value": 140,
+      "after_output_value": 156,
+      "after_margin": 16,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复38体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:roast_sweet_potato",
+      "name": "烤红薯",
+      "station": "kitchen",
+      "inputs": {
+        "sweet_potato": 1
+      },
+      "outputs": {
+        "roast_sweet_potato": 1
+      },
+      "before_input_value": 56,
+      "before_output_value": 62,
+      "before_margin": 6,
+      "after_input_value": 56,
+      "after_output_value": 62,
+      "after_margin": 6,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复20体力"
+      ]
+    },
+    {
+      "id": "kitchen:fruit_salad",
+      "name": "水果沙拉",
+      "station": "kitchen",
+      "inputs": {
+        "apple": 1,
+        "pear": 1,
+        "blueberry": 1
+      },
+      "outputs": {
+        "fruit_salad": 1
+      },
+      "before_input_value": 98,
+      "before_output_value": 109,
+      "before_margin": 11,
+      "after_input_value": 98,
+      "after_output_value": 109,
+      "after_margin": 11,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复30体力"
+      ]
+    },
+    {
+      "id": "kitchen:cream_stew",
+      "name": "奶油炖菜",
+      "station": "kitchen",
+      "inputs": {
+        "butter": 1,
+        "milk": 1,
+        "potato": 1,
+        "carrot": 1
+      },
+      "outputs": {
+        "cream_stew": 1
+      },
+      "before_input_value": 176,
+      "before_output_value": 197,
+      "before_margin": 21,
+      "after_input_value": 176,
+      "after_output_value": 197,
+      "after_margin": 21,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复42体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:herbal_tea",
+      "name": "香草茶",
+      "station": "kitchen",
+      "inputs": {
+        "lavender_bundle": 1
+      },
+      "outputs": {
+        "herbal_tea": 1
+      },
+      "before_input_value": 126,
+      "before_output_value": 141,
+      "before_margin": 15,
+      "after_input_value": 126,
+      "after_output_value": 141,
+      "after_margin": 15,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复22体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:rose_tea",
+      "name": "玫瑰花茶",
+      "station": "kitchen",
+      "inputs": {
+        "rose_petals": 1
+      },
+      "outputs": {
+        "rose_tea": 1
+      },
+      "before_input_value": 180,
+      "before_output_value": 201,
+      "before_margin": 21,
+      "after_input_value": 180,
+      "after_output_value": 201,
+      "after_margin": 21,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复24体力"
+      ]
+    },
+    {
+      "id": "kitchen:chamomile_tea",
+      "name": "洋甘菊茶",
+      "station": "kitchen",
+      "inputs": {
+        "chamomile_dried": 1
+      },
+      "outputs": {
+        "chamomile_tea": 1
+      },
+      "before_input_value": 97,
+      "before_output_value": 108,
+      "before_margin": 11,
+      "after_input_value": 97,
+      "after_output_value": 108,
+      "after_margin": 11,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复22体力"
+      ]
+    },
+    {
+      "id": "kitchen:vegetable_pancake",
+      "name": "蔬菜煎饼",
+      "station": "kitchen",
+      "inputs": {
+        "flour": 1,
+        "egg": 1,
+        "garlic_shoot": 1
+      },
+      "outputs": {
+        "vegetable_pancake": 1
+      },
+      "before_input_value": 76,
+      "before_output_value": 85,
+      "before_margin": 9,
+      "after_input_value": 76,
+      "after_output_value": 85,
+      "after_margin": 9,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复30体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:mixed_juice",
+      "name": "缤纷混合果汁",
+      "station": "kitchen",
+      "inputs": {
+        "apple_juice": 1,
+        "orange_juice": 1,
+        "grape_juice": 1
+      },
+      "outputs": {
+        "mixed_juice": 1
+      },
+      "before_input_value": 255,
+      "before_output_value": 285,
+      "before_margin": 30,
+      "after_input_value": 255,
+      "after_output_value": 285,
+      "after_margin": 30,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复34体力"
+      ]
+    },
+    {
+      "id": "kitchen:apple_pie",
+      "name": "苹果派",
+      "station": "kitchen",
+      "inputs": {
+        "apple": 2,
+        "flour": 2,
+        "butter": 1
+      },
+      "outputs": {
+        "apple_pie": 1
+      },
+      "before_input_value": 166,
+      "before_output_value": 185,
+      "before_margin": 19,
+      "after_input_value": 166,
+      "after_output_value": 185,
+      "after_margin": 19,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复38体力"
+      ]
+    },
+    {
+      "id": "kitchen:tofu_vegetables",
+      "name": "田园蔬菜豆腐",
+      "station": "kitchen",
+      "inputs": {
+        "tofu": 1,
+        "eggplant": 1,
+        "peanut_oil": 1
+      },
+      "outputs": {
+        "tofu_vegetables": 1
+      },
+      "before_input_value": 264,
+      "before_output_value": 295,
+      "before_margin": 31,
+      "after_input_value": 264,
+      "after_output_value": 295,
+      "after_margin": 31,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复34体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:winter_soup",
+      "name": "暖冬蔬菜汤",
+      "station": "kitchen",
+      "inputs": {
+        "winter_cabbage": 1,
+        "snow_radish": 1,
+        "frost_peas": 1
+      },
+      "outputs": {
+        "winter_soup": 1
+      },
+      "before_input_value": 146,
+      "before_output_value": 163,
+      "before_margin": 17,
+      "after_input_value": 146,
+      "after_output_value": 163,
+      "after_margin": 17,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复30体力"
+      ]
+    },
+    {
+      "id": "kitchen:farm_fish_soup",
+      "name": "葱香鲫鱼汤",
+      "station": "kitchen",
+      "inputs": {
+        "fish_crucian": 1,
+        "winter_onion": 1,
+        "radish": 1
+      },
+      "outputs": {
+        "farm_fish_soup": 1
+      },
+      "before_input_value": 98,
+      "before_output_value": 109,
+      "before_margin": 11,
+      "after_input_value": 98,
+      "after_output_value": 109,
+      "after_margin": 11,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复32体力，附增益"
+      ]
+    },
+    {
+      "id": "kitchen:sunflower_salad",
+      "name": "葵香拌蔬菜",
+      "station": "kitchen",
+      "inputs": {
+        "sunflower_oil": 1,
+        "tomato": 1,
+        "cucumber": 1
+      },
+      "outputs": {
+        "sunflower_salad": 1
+      },
+      "before_input_value": 220,
+      "before_output_value": 246,
+      "before_margin": 26,
+      "after_input_value": 220,
+      "after_output_value": 246,
+      "after_margin": 26,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复30体力"
+      ]
+    },
+    {
+      "id": "lake:feed",
+      "name": "研磨鱼饲料",
+      "station": "existing_fishpen",
+      "inputs": {
+        "wheat": 1
+      },
+      "outputs": {
+        "fish_feed": 6
+      },
+      "before_input_value": 22,
+      "before_output_value": 6,
+      "before_margin": -16,
+      "after_input_value": 22,
+      "after_output_value": 6,
+      "after_margin": -16,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "可喂养，省去卖原料再购料的往返"
+      ]
+    },
+    {
+      "id": "lake:dried",
+      "name": "风干湖鲜",
+      "station": "existing_fishpen",
+      "inputs": {
+        "fish_carp": 2,
+        "wood": 1
+      },
+      "outputs": {
+        "dried_fish": 1
+      },
+      "before_input_value": 60,
+      "before_output_value": 68,
+      "before_margin": 8,
+      "after_input_value": 60,
+      "after_output_value": 68,
+      "after_margin": 8,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复18体力"
+      ]
+    },
+    {
+      "id": "lake:soup",
+      "name": "香草鱼汤",
+      "station": "existing_fishpen",
+      "inputs": {
+        "fish_grass": 1,
+        "carrot": 1
+      },
+      "outputs": {
+        "fish_soup": 1
+      },
+      "before_input_value": 78,
+      "before_output_value": 66,
+      "before_margin": -12,
+      "after_input_value": 78,
+      "after_output_value": 66,
+      "after_margin": -12,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复30体力"
+      ]
+    },
+    {
+      "id": "lake:crucian_dried",
+      "name": "小鲫晒鱼干",
+      "station": "existing_fishpen",
+      "inputs": {
+        "fish_crucian": 4,
+        "wood": 1
+      },
+      "outputs": {
+        "dried_fish": 1
+      },
+      "before_input_value": 68,
+      "before_output_value": 68,
+      "before_margin": 0,
+      "after_input_value": 68,
+      "after_output_value": 68,
+      "after_margin": 0,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复18体力"
+      ]
+    },
+    {
+      "id": "lake:perch_soup",
+      "name": "麦香鲈鱼汤",
+      "station": "existing_fishpen",
+      "inputs": {
+        "fish_perch": 1,
+        "wheat": 1
+      },
+      "outputs": {
+        "fish_soup": 1
+      },
+      "before_input_value": 82,
+      "before_output_value": 66,
+      "before_margin": -16,
+      "after_input_value": 82,
+      "after_output_value": 66,
+      "after_margin": -16,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复30体力"
+      ]
+    },
+    {
+      "id": "lake:golden_soup",
+      "name": "金鳞分享汤",
+      "station": "existing_fishpen",
+      "inputs": {
+        "fish_golden": 1,
+        "carrot": 1
+      },
+      "outputs": {
+        "fish_soup": 2
+      },
+      "before_input_value": 146,
+      "before_output_value": 132,
+      "before_margin": -14,
+      "after_input_value": 146,
+      "after_output_value": 132,
+      "after_margin": -14,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复60体力"
+      ]
+    },
+    {
+      "id": "lake:star_soup",
+      "name": "星辉湖宴汤",
+      "station": "existing_fishpen",
+      "inputs": {
+        "fish_star": 1,
+        "carrot": 2
+      },
+      "outputs": {
+        "fish_soup": 3
+      },
+      "before_input_value": 252,
+      "before_output_value": 198,
+      "before_margin": -54,
+      "after_input_value": 252,
+      "after_output_value": 198,
+      "after_margin": -54,
+      "minutes": 0,
+      "production_transactions": 1,
+      "utility": [
+        "恢复90体力"
+      ]
+    },
+    {
+      "id": "legacy:flour",
+      "name": "研磨小麦粉",
+      "station": "mill",
+      "inputs": {
+        "wheat": 1
+      },
+      "outputs": {
+        "flour": 1
+      },
+      "before_input_value": 22,
+      "before_output_value": 24,
+      "before_margin": 2,
+      "after_input_value": 22,
+      "after_output_value": 24,
+      "after_margin": 2,
+      "minutes": 1440,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "legacy:cheese",
+      "name": "发酵奶酪",
+      "station": "cheese_table",
+      "inputs": {
+        "milk": 2
+      },
+      "outputs": {
+        "cheese": 1
+      },
+      "before_input_value": 76,
+      "before_output_value": 80,
+      "before_margin": 4,
+      "after_input_value": 76,
+      "after_output_value": 92,
+      "after_margin": 16,
+      "minutes": 2880,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "legacy:smoked_fish",
+      "name": "烟熏湖鲜",
+      "station": "smoker",
+      "inputs": {
+        "fish_carp": 2,
+        "wood": 1
+      },
+      "outputs": {
+        "smoked_fish": 1
+      },
+      "before_input_value": 60,
+      "before_output_value": 68,
+      "before_margin": 8,
+      "after_input_value": 60,
+      "after_output_value": 68,
+      "after_margin": 8,
+      "minutes": 1440,
+      "production_transactions": 2,
+      "utility": [
+        "可进一步加工"
+      ]
+    },
+    {
+      "id": "legacy:berry_jam",
+      "name": "熬制野莓酱",
+      "station": "jam_pot",
+      "inputs": {
+        "wild_berry": 4,
+        "wheat": 1
+      },
+      "outputs": {
+        "berry_jam": 1
+      },
+      "before_input_value": 42,
+      "before_output_value": 48,
+      "before_margin": 6,
+      "after_input_value": 42,
+      "after_output_value": 48,
+      "after_margin": 6,
+      "minutes": 2880,
+      "production_transactions": 2,
+      "utility": []
+    }
+  ],
+  "crops": [
+    {
+      "id": "carrot",
+      "name": "胡萝卜",
+      "growth_days": 2,
+      "yield": 1,
+      "seed_cost": 12,
+      "sale_value": 36,
+      "net_per_harvest": 24,
+      "net_per_suitable_day": 12.0,
+      "manual_actions_excluding_first_till": 4,
+      "gold_per_manual_action": 6.0
+    },
+    {
+      "id": "potato",
+      "name": "土豆",
+      "growth_days": 3,
+      "yield": 1,
+      "seed_cost": 18,
+      "sale_value": 56,
+      "net_per_harvest": 38,
+      "net_per_suitable_day": 12.667,
+      "manual_actions_excluding_first_till": 5,
+      "gold_per_manual_action": 7.6
+    },
+    {
+      "id": "wheat",
+      "name": "小麦",
+      "growth_days": 2,
+      "yield": 1,
+      "seed_cost": 8,
+      "sale_value": 22,
+      "net_per_harvest": 14,
+      "net_per_suitable_day": 7.0,
+      "manual_actions_excluding_first_till": 4,
+      "gold_per_manual_action": 3.5
+    },
+    {
+      "id": "strawberry",
+      "name": "草莓",
+      "growth_days": 4,
+      "yield": 2,
+      "seed_cost": 20,
+      "sale_value": 56,
+      "net_per_harvest": 36,
+      "net_per_suitable_day": 9.0,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 6.0
+    },
+    {
+      "id": "cabbage",
+      "name": "卷心菜",
+      "growth_days": 4,
+      "yield": 1,
+      "seed_cost": 22,
+      "sale_value": 62,
+      "net_per_harvest": 40,
+      "net_per_suitable_day": 10.0,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 6.667
+    },
+    {
+      "id": "radish",
+      "name": "白萝卜",
+      "growth_days": 3,
+      "yield": 1,
+      "seed_cost": 14,
+      "sale_value": 42,
+      "net_per_harvest": 28,
+      "net_per_suitable_day": 9.333,
+      "manual_actions_excluding_first_till": 5,
+      "gold_per_manual_action": 5.6
+    },
+    {
+      "id": "peas",
+      "name": "豌豆",
+      "growth_days": 3,
+      "yield": 2,
+      "seed_cost": 16,
+      "sale_value": 50,
+      "net_per_harvest": 34,
+      "net_per_suitable_day": 11.333,
+      "manual_actions_excluding_first_till": 5,
+      "gold_per_manual_action": 6.8
+    },
+    {
+      "id": "spinach",
+      "name": "菠菜",
+      "growth_days": 2,
+      "yield": 1,
+      "seed_cost": 10,
+      "sale_value": 28,
+      "net_per_harvest": 18,
+      "net_per_suitable_day": 9.0,
+      "manual_actions_excluding_first_till": 4,
+      "gold_per_manual_action": 4.5
+    },
+    {
+      "id": "rapeseed",
+      "name": "油菜",
+      "growth_days": 4,
+      "yield": 1,
+      "seed_cost": 16,
+      "sale_value": 46,
+      "net_per_harvest": 30,
+      "net_per_suitable_day": 7.5,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 5.0
+    },
+    {
+      "id": "garlic_shoot",
+      "name": "蒜苗",
+      "growth_days": 3,
+      "yield": 1,
+      "seed_cost": 12,
+      "sale_value": 34,
+      "net_per_harvest": 22,
+      "net_per_suitable_day": 7.333,
+      "manual_actions_excluding_first_till": 5,
+      "gold_per_manual_action": 4.4
+    },
+    {
+      "id": "tomato",
+      "name": "番茄",
+      "growth_days": 4,
+      "yield": 2,
+      "seed_cost": 22,
+      "sale_value": 62,
+      "net_per_harvest": 40,
+      "net_per_suitable_day": 10.0,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 6.667
+    },
+    {
+      "id": "cucumber",
+      "name": "黄瓜",
+      "growth_days": 3,
+      "yield": 2,
+      "seed_cost": 16,
+      "sale_value": 48,
+      "net_per_harvest": 32,
+      "net_per_suitable_day": 10.667,
+      "manual_actions_excluding_first_till": 5,
+      "gold_per_manual_action": 6.4
+    },
+    {
+      "id": "corn",
+      "name": "玉米",
+      "growth_days": 4,
+      "yield": 1,
+      "seed_cost": 20,
+      "sale_value": 58,
+      "net_per_harvest": 38,
+      "net_per_suitable_day": 9.5,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 6.333
+    },
+    {
+      "id": "chili",
+      "name": "辣椒",
+      "growth_days": 4,
+      "yield": 2,
+      "seed_cost": 24,
+      "sale_value": 68,
+      "net_per_harvest": 44,
+      "net_per_suitable_day": 11.0,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 7.333
+    },
+    {
+      "id": "eggplant",
+      "name": "茄子",
+      "growth_days": 4,
+      "yield": 1,
+      "seed_cost": 20,
+      "sale_value": 57,
+      "net_per_harvest": 37,
+      "net_per_suitable_day": 9.25,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 6.167
+    },
+    {
+      "id": "watermelon",
+      "name": "西瓜",
+      "growth_days": 6,
+      "yield": 1,
+      "seed_cost": 38,
+      "sale_value": 110,
+      "net_per_harvest": 72,
+      "net_per_suitable_day": 12.0,
+      "manual_actions_excluding_first_till": 8,
+      "gold_per_manual_action": 9.0
+    },
+    {
+      "id": "blueberry",
+      "name": "蓝莓",
+      "growth_days": 5,
+      "yield": 3,
+      "seed_cost": 24,
+      "sale_value": 72,
+      "net_per_harvest": 48,
+      "net_per_suitable_day": 9.6,
+      "manual_actions_excluding_first_till": 7,
+      "gold_per_manual_action": 6.857
+    },
+    {
+      "id": "sunflower_crop",
+      "name": "向日葵",
+      "growth_days": 5,
+      "yield": 1,
+      "seed_cost": 24,
+      "sale_value": 68,
+      "net_per_harvest": 44,
+      "net_per_suitable_day": 8.8,
+      "manual_actions_excluding_first_till": 7,
+      "gold_per_manual_action": 6.286
+    },
+    {
+      "id": "pumpkin",
+      "name": "南瓜",
+      "growth_days": 6,
+      "yield": 1,
+      "seed_cost": 32,
+      "sale_value": 94,
+      "net_per_harvest": 62,
+      "net_per_suitable_day": 10.333,
+      "manual_actions_excluding_first_till": 8,
+      "gold_per_manual_action": 7.75
+    },
+    {
+      "id": "sweet_potato",
+      "name": "红薯",
+      "growth_days": 4,
+      "yield": 1,
+      "seed_cost": 20,
+      "sale_value": 56,
+      "net_per_harvest": 36,
+      "net_per_suitable_day": 9.0,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 6.0
+    },
+    {
+      "id": "rice_crop",
+      "name": "水稻",
+      "growth_days": 4,
+      "yield": 1,
+      "seed_cost": 18,
+      "sale_value": 52,
+      "net_per_harvest": 34,
+      "net_per_suitable_day": 8.5,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 5.667
+    },
+    {
+      "id": "soybean",
+      "name": "大豆",
+      "growth_days": 4,
+      "yield": 1,
+      "seed_cost": 18,
+      "sale_value": 50,
+      "net_per_harvest": 32,
+      "net_per_suitable_day": 8.0,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 5.333
+    },
+    {
+      "id": "grape",
+      "name": "葡萄",
+      "growth_days": 5,
+      "yield": 3,
+      "seed_cost": 26,
+      "sale_value": 75,
+      "net_per_harvest": 49,
+      "net_per_suitable_day": 9.8,
+      "manual_actions_excluding_first_till": 7,
+      "gold_per_manual_action": 7.0
+    },
+    {
+      "id": "peanut",
+      "name": "花生",
+      "growth_days": 4,
+      "yield": 1,
+      "seed_cost": 22,
+      "sale_value": 60,
+      "net_per_harvest": 38,
+      "net_per_suitable_day": 9.5,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 6.333
+    },
+    {
+      "id": "cotton",
+      "name": "棉花",
+      "growth_days": 5,
+      "yield": 1,
+      "seed_cost": 24,
+      "sale_value": 70,
+      "net_per_harvest": 46,
+      "net_per_suitable_day": 9.2,
+      "manual_actions_excluding_first_till": 7,
+      "gold_per_manual_action": 6.571
+    },
+    {
+      "id": "winter_kale",
+      "name": "冬甘蓝",
+      "growth_days": 4,
+      "yield": 1,
+      "seed_cost": 22,
+      "sale_value": 60,
+      "net_per_harvest": 38,
+      "net_per_suitable_day": 9.5,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 6.333
+    },
+    {
+      "id": "snow_radish",
+      "name": "雪萝卜",
+      "growth_days": 3,
+      "yield": 1,
+      "seed_cost": 16,
+      "sale_value": 44,
+      "net_per_harvest": 28,
+      "net_per_suitable_day": 9.333,
+      "manual_actions_excluding_first_till": 5,
+      "gold_per_manual_action": 5.6
+    },
+    {
+      "id": "winter_onion",
+      "name": "冬葱",
+      "growth_days": 3,
+      "yield": 1,
+      "seed_cost": 14,
+      "sale_value": 40,
+      "net_per_harvest": 26,
+      "net_per_suitable_day": 8.667,
+      "manual_actions_excluding_first_till": 5,
+      "gold_per_manual_action": 5.2
+    },
+    {
+      "id": "frost_peas",
+      "name": "耐寒豌豆",
+      "growth_days": 4,
+      "yield": 2,
+      "seed_cost": 18,
+      "sale_value": 52,
+      "net_per_harvest": 34,
+      "net_per_suitable_day": 8.5,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 5.667
+    },
+    {
+      "id": "winter_cabbage",
+      "name": "冬白菜",
+      "growth_days": 5,
+      "yield": 1,
+      "seed_cost": 26,
+      "sale_value": 76,
+      "net_per_harvest": 50,
+      "net_per_suitable_day": 10.0,
+      "manual_actions_excluding_first_till": 7,
+      "gold_per_manual_action": 7.143
+    },
+    {
+      "id": "lavender",
+      "name": "薰衣草",
+      "growth_days": 4,
+      "yield": 1,
+      "seed_cost": 18,
+      "sale_value": 52,
+      "net_per_harvest": 34,
+      "net_per_suitable_day": 8.5,
+      "manual_actions_excluding_first_till": 6,
+      "gold_per_manual_action": 5.667
+    },
+    {
+      "id": "rose",
+      "name": "玫瑰",
+      "growth_days": 5,
+      "yield": 1,
+      "seed_cost": 26,
+      "sale_value": 74,
+      "net_per_harvest": 48,
+      "net_per_suitable_day": 9.6,
+      "manual_actions_excluding_first_till": 7,
+      "gold_per_manual_action": 6.857
+    },
+    {
+      "id": "chamomile",
+      "name": "洋甘菊",
+      "growth_days": 3,
+      "yield": 1,
+      "seed_cost": 14,
+      "sale_value": 40,
+      "net_per_harvest": 26,
+      "net_per_suitable_day": 8.667,
+      "manual_actions_excluding_first_till": 5,
+      "gold_per_manual_action": 5.2
+    }
+  ],
+  "stations": [
+    {
+      "id": "mill",
+      "coins": 80,
+      "material_sale_value": 62,
+      "materials": {
+        "wood": 8,
+        "stone": 6
+      }
+    },
+    {
+      "id": "oil_press",
+      "coins": 180,
+      "material_sale_value": 138,
+      "materials": {
+        "wood": 12,
+        "stone": 8,
+        "copper_bar": 2
+      }
+    },
+    {
+      "id": "pickle_jar",
+      "coins": 100,
+      "material_sale_value": 56,
+      "materials": {
+        "stone": 8,
+        "wood": 4
+      }
+    },
+    {
+      "id": "jam_pot",
+      "coins": 100,
+      "material_sale_value": 89,
+      "materials": {
+        "wood": 6,
+        "stone": 8,
+        "copper_bar": 1
+      }
+    },
+    {
+      "id": "juicer",
+      "coins": 160,
+      "material_sale_value": 90,
+      "materials": {
+        "wood": 10,
+        "copper_bar": 2
+      }
+    },
+    {
+      "id": "drying_rack",
+      "coins": 100,
+      "material_sale_value": 60,
+      "materials": {
+        "wood": 10,
+        "stone": 4
+      }
+    },
+    {
+      "id": "cheese_table",
+      "coins": 120,
+      "material_sale_value": 85,
+      "materials": {
+        "wood": 10,
+        "stone": 4,
+        "copper_bar": 1
+      }
+    },
+    {
+      "id": "egg_table",
+      "coins": 120,
+      "material_sale_value": 52,
+      "materials": {
+        "wood": 8,
+        "stone": 4
+      }
+    },
+    {
+      "id": "loom",
+      "coins": 280,
+      "material_sale_value": 152,
+      "materials": {
+        "wood": 18,
+        "iron_bar": 2
+      }
+    },
+    {
+      "id": "smoker",
+      "coins": 160,
+      "material_sale_value": 122,
+      "materials": {
+        "wood": 8,
+        "stone": 10,
+        "iron_bar": 1
+      }
+    }
+  ],
+  "graph": "acyclic",
+  "unobtainable_inputs": [],
+  "crop_and_tree_economy_changed": false,
+  "notes": [
+    "Input costs use opportunity sale value, not assumed free farm products.",
+    "Crop labor assumes manual watering; rain and irrigation reduce it.",
+    "A timed batch needs separate start/claim transactions; travel, selection and confirmation add work.",
+    "Food can justify a negative sale margin by recovery, buffs or existing story use.",
+    "Legacy kitchen jobs retain original durations and remain a compatibility route."
+  ]
+}

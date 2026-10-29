@@ -1,6 +1,6 @@
 extends "res://tests/runner.gd"
 ## 综合风险边界：损坏分区安全拒绝、真实旧版本字段迁移、读档不得补发跨系统收益。
-const NEW_SECTIONS := ["calendar","world_changes","recovery","fishing","livestock","ecology","kitchen","festival","social","housing","exploration","world_development"]
+const NEW_SECTIONS := ["calendar","world_changes","recovery","fishing","livestock","ecology","kitchen","festival","social","housing","exploration","world_development","workshop","tutorial"]
 var fresh: Dictionary
 var rich: Dictionary
 func run() -> void:
@@ -58,7 +58,7 @@ func null_and_malformed() -> void:
 	old_bad=old.duplicate(true);old_bad.aquaculture.xiaojing=null
 	refuse(old_bad,"v11迁移早期观察湖畔子状态为null仍安全拒绝")
 	old_bad=rich.duplicate(true);old_bad.version=16;old_bad.erase("farm_layout");old_bad.erase("appearance");old_bad.erase("territory");old_bad.progress=null
-	for section in ["festival","social","housing","exploration","world_development"]: old_bad.erase(section)
+	for section in ["festival","social","housing","exploration","world_development","workshop","tutorial"]: old_bad.erase(section)
 	refuse(old_bad,"v16社交迁移的旧progress损坏时不读取非法好感字段")
 func cross_partition_rules() -> void:
 	var bad := fresh.duplicate(true)

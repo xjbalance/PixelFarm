@@ -1,0 +1,1448 @@
+{
+  "version": "0.8.1",
+  "title": "丰收匠心",
+  "save_version": 29,
+  "workshop_version": 2,
+  "android_version_code": 31,
+  "baseline": {
+    "commit": "14287b5",
+    "worktree": "/tmp/pixelfarm-080-quality-baseline",
+    "processes": 199,
+    "assertions": 10695,
+    "failures": 0,
+    "isolated_saves": true
+  },
+  "regression": {
+    "processes": 203,
+    "checks": 11085,
+    "failures": 0,
+    "all_configured_steps_covered": true,
+    "runs": [
+      "quality081-full-check.log",
+      "quality081-full-part1.log",
+      "quality081-full-part2-failed.log",
+      "quality081-full-part2.log",
+      "quality081-full-part3-failed.log",
+      "quality081-full-part3.log",
+      "quality081-full-part4-failed.log",
+      "quality081-full-part4.log",
+      "quality081-full-part5.log"
+    ],
+    "suites": [
+      {
+        "name": "import",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/import.log"
+      },
+      {
+        "name": "quality081-animation",
+        "checks": 67,
+        "status": "passed",
+        "log": "builds/quality081-animation.log"
+      },
+      {
+        "name": "quality081-production",
+        "checks": 61,
+        "status": "passed",
+        "log": "builds/quality081-production.log"
+      },
+      {
+        "name": "quality081-ui",
+        "checks": 74,
+        "status": "passed",
+        "log": "builds/quality081-ui.log"
+      },
+      {
+        "name": "quality081-chains",
+        "checks": 184,
+        "status": "passed",
+        "log": "builds/quality081-chains.log"
+      },
+      {
+        "name": "harvest-crops",
+        "checks": 173,
+        "status": "passed",
+        "log": "builds/harvest-crops.log"
+      },
+      {
+        "name": "harvest-processing",
+        "checks": 29,
+        "status": "passed",
+        "log": "builds/harvest-processing.log"
+      },
+      {
+        "name": "harvest-chains",
+        "checks": 256,
+        "status": "passed",
+        "log": "builds/harvest-chains.log"
+      },
+      {
+        "name": "harvest-meals",
+        "checks": 232,
+        "status": "passed",
+        "log": "builds/harvest-meals.log"
+      },
+      {
+        "name": "harvest-touch",
+        "checks": 13,
+        "status": "passed",
+        "log": "builds/harvest-touch.log"
+      },
+      {
+        "name": "sleep",
+        "checks": 29,
+        "status": "passed",
+        "log": "builds/sleep.log"
+      },
+      {
+        "name": "integration",
+        "checks": 452,
+        "status": "passed",
+        "log": "builds/integration.log"
+      },
+      {
+        "name": "mining",
+        "checks": 98,
+        "status": "passed",
+        "log": "builds/mining.log"
+      },
+      {
+        "name": "star",
+        "checks": 155,
+        "status": "passed",
+        "log": "builds/star.log"
+      },
+      {
+        "name": "legend",
+        "checks": 252,
+        "status": "passed",
+        "log": "builds/legend.log"
+      },
+      {
+        "name": "stability",
+        "checks": 264,
+        "status": "passed",
+        "log": "builds/stability.log"
+      },
+      {
+        "name": "river",
+        "checks": 446,
+        "status": "passed",
+        "log": "builds/river.log"
+      },
+      {
+        "name": "aquaculture",
+        "checks": 155,
+        "status": "passed",
+        "log": "builds/aquaculture.log"
+      },
+      {
+        "name": "seasons-a",
+        "checks": 87,
+        "status": "passed",
+        "log": "builds/seasons-a.log"
+      },
+      {
+        "name": "control-recovery",
+        "checks": 52,
+        "status": "passed",
+        "log": "builds/control-recovery.log"
+      },
+      {
+        "name": "fishing-b",
+        "checks": 89,
+        "status": "passed",
+        "log": "builds/fishing-b.log"
+      },
+      {
+        "name": "fishing-odds",
+        "checks": 49,
+        "status": "passed",
+        "log": "builds/fishing-odds.log"
+      },
+      {
+        "name": "livestock-b",
+        "checks": 112,
+        "status": "passed",
+        "log": "builds/livestock-b.log"
+      },
+      {
+        "name": "kitchen-b",
+        "checks": 100,
+        "status": "passed",
+        "log": "builds/kitchen-b.log"
+      },
+      {
+        "name": "ecology-b",
+        "checks": 65,
+        "status": "passed",
+        "log": "builds/ecology-b.log"
+      },
+      {
+        "name": "festivals-c",
+        "checks": 87,
+        "status": "passed",
+        "log": "builds/festivals-c.log"
+      },
+      {
+        "name": "social-c",
+        "checks": 107,
+        "status": "passed",
+        "log": "builds/social-c.log"
+      },
+      {
+        "name": "housing-c",
+        "checks": 109,
+        "status": "passed",
+        "log": "builds/housing-c.log"
+      },
+      {
+        "name": "exploration-d",
+        "checks": 106,
+        "status": "passed",
+        "log": "builds/exploration-d.log"
+      },
+      {
+        "name": "world-progress-d",
+        "checks": 170,
+        "status": "passed",
+        "log": "builds/world-progress-d.log"
+      },
+      {
+        "name": "quality-070",
+        "checks": 41,
+        "status": "passed",
+        "log": "builds/quality-070.log"
+      },
+      {
+        "name": "performance-070",
+        "checks": 3,
+        "status": "passed",
+        "log": "builds/performance-070.log"
+      },
+      {
+        "name": "finale-070",
+        "checks": 24,
+        "status": "passed",
+        "log": "builds/finale-070.log"
+      },
+      {
+        "name": "palm-071",
+        "checks": 28,
+        "status": "passed",
+        "log": "builds/palm-071.log"
+      },
+      {
+        "name": "recovery-071",
+        "checks": 55,
+        "status": "passed",
+        "log": "builds/recovery-071.log"
+      },
+      {
+        "name": "tutorial-ui-071",
+        "checks": 26,
+        "status": "passed",
+        "log": "builds/tutorial-ui-071.log"
+      },
+      {
+        "name": "performance-071",
+        "checks": 17,
+        "status": "passed",
+        "log": "builds/performance-071.log"
+      },
+      {
+        "name": "touch-polish",
+        "checks": 53,
+        "status": "passed",
+        "log": "builds/touch-polish.log"
+      },
+      {
+        "name": "farming-actions",
+        "checks": 110,
+        "status": "passed",
+        "log": "builds/farming-actions.log"
+      },
+      {
+        "name": "food-recovery",
+        "checks": 43,
+        "status": "passed",
+        "log": "builds/food-recovery.log"
+      },
+      {
+        "name": "ui04-theme",
+        "checks": 7,
+        "status": "passed",
+        "log": "builds/ui04-theme.log"
+      },
+      {
+        "name": "inventory03",
+        "checks": 51,
+        "status": "passed",
+        "log": "builds/inventory03.log"
+      },
+      {
+        "name": "hotbar03",
+        "checks": 23,
+        "status": "passed",
+        "log": "builds/hotbar03.log"
+      },
+      {
+        "name": "ui05-camera",
+        "checks": 48,
+        "status": "passed",
+        "log": "builds/ui05-camera.log"
+      },
+      {
+        "name": "ui05-hotbar",
+        "checks": 43,
+        "status": "passed",
+        "log": "builds/ui05-hotbar.log"
+      },
+      {
+        "name": "ui05-layout",
+        "checks": 343,
+        "status": "passed",
+        "log": "builds/ui05-layout.log"
+      },
+      {
+        "name": "home05",
+        "checks": 103,
+        "status": "passed",
+        "log": "builds/home05.log"
+      },
+      {
+        "name": "home-arrange",
+        "checks": 159,
+        "status": "passed",
+        "log": "builds/home-arrange.log"
+      },
+      {
+        "name": "resource-rich",
+        "checks": 117,
+        "status": "passed",
+        "log": "builds/resource-rich.log"
+      },
+      {
+        "name": "sale-quantity",
+        "checks": 35,
+        "status": "passed",
+        "log": "builds/sale-quantity.log"
+      },
+      {
+        "name": "farm-visual-06",
+        "checks": 140,
+        "status": "passed",
+        "log": "builds/farm-visual-06.log"
+      },
+      {
+        "name": "atlas-core",
+        "checks": 78,
+        "status": "passed",
+        "log": "builds/atlas-core.log"
+      },
+      {
+        "name": "atlas-ui",
+        "checks": 51,
+        "status": "passed",
+        "log": "builds/atlas-ui.log"
+      },
+      {
+        "name": "journal-atlas-ui07",
+        "checks": 42,
+        "status": "passed",
+        "log": "builds/journal-atlas-ui07.log"
+      },
+      {
+        "name": "story-ui07",
+        "checks": 68,
+        "status": "passed",
+        "log": "builds/story-ui07.log"
+      },
+      {
+        "name": "facility-ui07",
+        "checks": 316,
+        "status": "passed",
+        "log": "builds/facility-ui07.log"
+      },
+      {
+        "name": "world-style07",
+        "checks": 38,
+        "status": "passed",
+        "log": "builds/world-style07.log"
+      },
+      {
+        "name": "appearance",
+        "checks": 44,
+        "status": "passed",
+        "log": "builds/appearance.log"
+      },
+      {
+        "name": "character-select",
+        "checks": 36,
+        "status": "passed",
+        "log": "builds/character-select.log"
+      },
+      {
+        "name": "scheme-c-game",
+        "checks": 54,
+        "status": "passed",
+        "log": "builds/scheme-c-game.log"
+      },
+      {
+        "name": "scheme-c-cancel",
+        "checks": 2,
+        "status": "passed",
+        "log": "builds/scheme-c-cancel.log"
+      },
+      {
+        "name": "home-teleport",
+        "checks": 109,
+        "status": "passed",
+        "log": "builds/home-teleport.log"
+      },
+      {
+        "name": "appearance-switch",
+        "checks": 126,
+        "status": "passed",
+        "log": "builds/appearance-switch.log"
+      },
+      {
+        "name": "marriage-requirements",
+        "checks": 70,
+        "status": "passed",
+        "log": "builds/marriage-requirements.log"
+      },
+      {
+        "name": "marriage-mastery",
+        "checks": 75,
+        "status": "passed",
+        "log": "builds/marriage-mastery.log"
+      },
+      {
+        "name": "territory-core",
+        "checks": 299,
+        "status": "passed",
+        "log": "builds/territory-core.log"
+      },
+      {
+        "name": "territory-editor",
+        "checks": 55,
+        "status": "passed",
+        "log": "builds/territory-editor.log"
+      },
+      {
+        "name": "territory-world",
+        "checks": 95,
+        "status": "passed",
+        "log": "builds/territory-world.log"
+      },
+      {
+        "name": "territory-atlas",
+        "checks": 35,
+        "status": "passed",
+        "log": "builds/territory-atlas.log"
+      },
+      {
+        "name": "world-assets",
+        "checks": 344,
+        "status": "passed",
+        "log": "builds/world-assets.log"
+      },
+      {
+        "name": "scheme-c-nature",
+        "checks": 75,
+        "status": "passed",
+        "log": "builds/scheme-c-nature.log"
+      },
+      {
+        "name": "scheme-c-placement",
+        "checks": 1556,
+        "status": "passed",
+        "log": "builds/scheme-c-placement.log"
+      },
+      {
+        "name": "scheme-c-props",
+        "checks": 45,
+        "status": "passed",
+        "log": "builds/scheme-c-props.log"
+      },
+      {
+        "name": "farm-edit",
+        "checks": 73,
+        "status": "passed",
+        "log": "builds/farm-edit.log"
+      },
+      {
+        "name": "farm-edit-kinds",
+        "checks": 200,
+        "status": "passed",
+        "log": "builds/farm-edit-kinds.log"
+      },
+      {
+        "name": "farm-layout-state",
+        "checks": 79,
+        "status": "passed",
+        "log": "builds/farm-layout-state.log"
+      },
+      {
+        "name": "farm-diy-production",
+        "checks": 88,
+        "status": "passed",
+        "log": "builds/farm-diy-production.log"
+      },
+      {
+        "name": "farm-layout-business",
+        "checks": 107,
+        "status": "passed",
+        "log": "builds/farm-layout-business.log"
+      },
+      {
+        "name": "farm-diy-editor",
+        "checks": 164,
+        "status": "passed",
+        "log": "builds/farm-diy-editor.log"
+      },
+      {
+        "name": "scheme-c-star-female",
+        "checks": 165,
+        "status": "passed",
+        "log": "builds/scheme-c-star-female.log"
+      },
+      {
+        "name": "scheme-c-legend-female",
+        "checks": 258,
+        "status": "passed",
+        "log": "builds/scheme-c-legend-female.log"
+      },
+      {
+        "name": "scheme-c-river-female",
+        "checks": 456,
+        "status": "passed",
+        "log": "builds/scheme-c-river-female.log"
+      },
+      {
+        "name": "persist-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/persist-write.log"
+      },
+      {
+        "name": "persist-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/persist-restart.log"
+      },
+      {
+        "name": "legacy-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/legacy-write.log"
+      },
+      {
+        "name": "legacy-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/legacy-restart.log"
+      },
+      {
+        "name": "mine-persist-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/mine-persist-write.log"
+      },
+      {
+        "name": "mine-persist-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/mine-persist-restart.log"
+      },
+      {
+        "name": "mine-backup-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/mine-backup-write.log"
+      },
+      {
+        "name": "mine-backup-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/mine-backup-corrupt.log"
+      },
+      {
+        "name": "mine-backup-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/mine-backup-restart.log"
+      },
+      {
+        "name": "star-persist-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/star-persist-write.log"
+      },
+      {
+        "name": "star-persist-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/star-persist-restart.log"
+      },
+      {
+        "name": "star-backup-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/star-backup-corrupt.log"
+      },
+      {
+        "name": "star-backup-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/star-backup-restart.log"
+      },
+      {
+        "name": "abyss-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/abyss-write.log"
+      },
+      {
+        "name": "abyss-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/abyss-restart.log"
+      },
+      {
+        "name": "abyss-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/abyss-corrupt.log"
+      },
+      {
+        "name": "abyss-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/abyss-backup.log"
+      },
+      {
+        "name": "river-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/river-write.log"
+      },
+      {
+        "name": "river-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/river-restart.log"
+      },
+      {
+        "name": "river-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/river-corrupt.log"
+      },
+      {
+        "name": "river-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/river-backup.log"
+      },
+      {
+        "name": "stability-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/stability-write.log"
+      },
+      {
+        "name": "stability-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/stability-restart.log"
+      },
+      {
+        "name": "stability-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/stability-corrupt.log"
+      },
+      {
+        "name": "stability-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/stability-backup.log"
+      },
+      {
+        "name": "aquaculture-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/aquaculture-write.log"
+      },
+      {
+        "name": "aquaculture-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/aquaculture-restart.log"
+      },
+      {
+        "name": "aquaculture-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/aquaculture-corrupt.log"
+      },
+      {
+        "name": "aquaculture-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/aquaculture-backup.log"
+      },
+      {
+        "name": "seasons-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/seasons-write.log"
+      },
+      {
+        "name": "seasons-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/seasons-restart.log"
+      },
+      {
+        "name": "seasons-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/seasons-corrupt.log"
+      },
+      {
+        "name": "seasons-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/seasons-backup.log"
+      },
+      {
+        "name": "fishing-b-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/fishing-b-write.log"
+      },
+      {
+        "name": "fishing-b-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/fishing-b-restart.log"
+      },
+      {
+        "name": "fishing-b-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/fishing-b-corrupt.log"
+      },
+      {
+        "name": "fishing-b-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/fishing-b-backup.log"
+      },
+      {
+        "name": "livestock-b-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/livestock-b-write.log"
+      },
+      {
+        "name": "livestock-b-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/livestock-b-restart.log"
+      },
+      {
+        "name": "livestock-b-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/livestock-b-corrupt.log"
+      },
+      {
+        "name": "livestock-b-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/livestock-b-backup.log"
+      },
+      {
+        "name": "kitchen-b-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/kitchen-b-write.log"
+      },
+      {
+        "name": "kitchen-b-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/kitchen-b-restart.log"
+      },
+      {
+        "name": "kitchen-b-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/kitchen-b-corrupt.log"
+      },
+      {
+        "name": "kitchen-b-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/kitchen-b-backup.log"
+      },
+      {
+        "name": "social-c-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/social-c-write.log"
+      },
+      {
+        "name": "social-c-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/social-c-restart.log"
+      },
+      {
+        "name": "social-c-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/social-c-corrupt.log"
+      },
+      {
+        "name": "social-c-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/social-c-backup.log"
+      },
+      {
+        "name": "life-c-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/life-c-write.log"
+      },
+      {
+        "name": "life-c-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/life-c-restart.log"
+      },
+      {
+        "name": "life-c-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/life-c-corrupt.log"
+      },
+      {
+        "name": "life-c-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/life-c-backup.log"
+      },
+      {
+        "name": "exploration-d-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/exploration-d-write.log"
+      },
+      {
+        "name": "exploration-d-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/exploration-d-restart.log"
+      },
+      {
+        "name": "exploration-d-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/exploration-d-corrupt.log"
+      },
+      {
+        "name": "exploration-d-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/exploration-d-backup.log"
+      },
+      {
+        "name": "world-progress-d-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/world-progress-d-write.log"
+      },
+      {
+        "name": "world-progress-d-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/world-progress-d-restart.log"
+      },
+      {
+        "name": "world-progress-d-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/world-progress-d-corrupt.log"
+      },
+      {
+        "name": "world-progress-d-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/world-progress-d-backup.log"
+      },
+      {
+        "name": "palm-write",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/palm-write.log"
+      },
+      {
+        "name": "palm-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/palm-restart.log"
+      },
+      {
+        "name": "palm-interrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/palm-interrupt.log"
+      },
+      {
+        "name": "palm-interrupted-restart",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/palm-interrupted-restart.log"
+      },
+      {
+        "name": "palm-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/palm-corrupt.log"
+      },
+      {
+        "name": "palm-backup",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/palm-backup.log"
+      },
+      {
+        "name": "touch-polish-write",
+        "checks": 2,
+        "status": "passed",
+        "log": "builds/touch-polish-write.log"
+      },
+      {
+        "name": "touch-polish-restart",
+        "checks": 3,
+        "status": "passed",
+        "log": "builds/touch-polish-restart.log"
+      },
+      {
+        "name": "farm-windup-write",
+        "checks": 4,
+        "status": "passed",
+        "log": "builds/farm-windup-write.log"
+      },
+      {
+        "name": "farm-windup-read",
+        "checks": 3,
+        "status": "passed",
+        "log": "builds/farm-windup-read.log"
+      },
+      {
+        "name": "farm-impact-write",
+        "checks": 4,
+        "status": "passed",
+        "log": "builds/farm-impact-write.log"
+      },
+      {
+        "name": "farm-impact-read",
+        "checks": 3,
+        "status": "passed",
+        "log": "builds/farm-impact-read.log"
+      },
+      {
+        "name": "inventory03-write",
+        "checks": 2,
+        "status": "passed",
+        "log": "builds/inventory03-write.log"
+      },
+      {
+        "name": "inventory03-read",
+        "checks": 6,
+        "status": "passed",
+        "log": "builds/inventory03-read.log"
+      },
+      {
+        "name": "home05-pending-write",
+        "checks": 4,
+        "status": "passed",
+        "log": "builds/home05-pending-write.log"
+      },
+      {
+        "name": "home05-pending-read",
+        "checks": 5,
+        "status": "passed",
+        "log": "builds/home05-pending-read.log"
+      },
+      {
+        "name": "home05-finished-read",
+        "checks": 3,
+        "status": "passed",
+        "log": "builds/home05-finished-read.log"
+      },
+      {
+        "name": "home05-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/home05-corrupt.log"
+      },
+      {
+        "name": "home05-backup-read",
+        "checks": 3,
+        "status": "passed",
+        "log": "builds/home05-backup-read.log"
+      },
+      {
+        "name": "home05-sofa-write",
+        "checks": 4,
+        "status": "passed",
+        "log": "builds/home05-sofa-write.log"
+      },
+      {
+        "name": "home05-sofa-read",
+        "checks": 3,
+        "status": "passed",
+        "log": "builds/home05-sofa-read.log"
+      },
+      {
+        "name": "resource-rich-legacy-write",
+        "checks": 2,
+        "status": "passed",
+        "log": "builds/resource-rich-legacy-write.log"
+      },
+      {
+        "name": "resource-rich-legacy-read",
+        "checks": 4,
+        "status": "passed",
+        "log": "builds/resource-rich-legacy-read.log"
+      },
+      {
+        "name": "resource-rich-write",
+        "checks": 5,
+        "status": "passed",
+        "log": "builds/resource-rich-write.log"
+      },
+      {
+        "name": "resource-rich-read",
+        "checks": 5,
+        "status": "passed",
+        "log": "builds/resource-rich-read.log"
+      },
+      {
+        "name": "resource-rich-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/resource-rich-corrupt.log"
+      },
+      {
+        "name": "resource-rich-backup",
+        "checks": 5,
+        "status": "passed",
+        "log": "builds/resource-rich-backup.log"
+      },
+      {
+        "name": "home-arrange-v23-write",
+        "checks": 4,
+        "status": "passed",
+        "log": "builds/home-arrange-v23-write.log"
+      },
+      {
+        "name": "home-arrange-v23-read",
+        "checks": 6,
+        "status": "passed",
+        "log": "builds/home-arrange-v23-read.log"
+      },
+      {
+        "name": "home-arrange-write",
+        "checks": 7,
+        "status": "passed",
+        "log": "builds/home-arrange-write.log"
+      },
+      {
+        "name": "home-arrange-read",
+        "checks": 5,
+        "status": "passed",
+        "log": "builds/home-arrange-read.log"
+      },
+      {
+        "name": "home-arrange-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/home-arrange-corrupt.log"
+      },
+      {
+        "name": "home-arrange-backup",
+        "checks": 5,
+        "status": "passed",
+        "log": "builds/home-arrange-backup.log"
+      },
+      {
+        "name": "atlas-write",
+        "checks": 8,
+        "status": "passed",
+        "log": "builds/atlas-write.log"
+      },
+      {
+        "name": "atlas-read",
+        "checks": 14,
+        "status": "passed",
+        "log": "builds/atlas-read.log"
+      },
+      {
+        "name": "atlas-v23-write",
+        "checks": 8,
+        "status": "passed",
+        "log": "builds/atlas-v23-write.log"
+      },
+      {
+        "name": "atlas-v23-read",
+        "checks": 15,
+        "status": "passed",
+        "log": "builds/atlas-v23-read.log"
+      },
+      {
+        "name": "appearance-write",
+        "checks": 4,
+        "status": "passed",
+        "log": "builds/appearance-write.log"
+      },
+      {
+        "name": "appearance-read",
+        "checks": 10,
+        "status": "passed",
+        "log": "builds/appearance-read.log"
+      },
+      {
+        "name": "appearance-corrupt",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/appearance-corrupt.log"
+      },
+      {
+        "name": "appearance-backup",
+        "checks": 10,
+        "status": "passed",
+        "log": "builds/appearance-backup.log"
+      },
+      {
+        "name": "appearance-v24-write",
+        "checks": 5,
+        "status": "passed",
+        "log": "builds/appearance-v24-write.log"
+      },
+      {
+        "name": "appearance-v24-read",
+        "checks": 11,
+        "status": "passed",
+        "log": "builds/appearance-v24-read.log"
+      },
+      {
+        "name": "territory-write",
+        "checks": 16,
+        "status": "passed",
+        "log": "builds/territory-write.log"
+      },
+      {
+        "name": "territory-read",
+        "checks": 11,
+        "status": "passed",
+        "log": "builds/territory-read.log"
+      },
+      {
+        "name": "territory-corrupt",
+        "checks": 4,
+        "status": "passed",
+        "log": "builds/territory-corrupt.log"
+      },
+      {
+        "name": "territory-backup",
+        "checks": 11,
+        "status": "passed",
+        "log": "builds/territory-backup.log"
+      },
+      {
+        "name": "territory-v25-write",
+        "checks": 5,
+        "status": "passed",
+        "log": "builds/territory-v25-write.log"
+      },
+      {
+        "name": "territory-v25-read",
+        "checks": 13,
+        "status": "passed",
+        "log": "builds/territory-v25-read.log"
+      },
+      {
+        "name": "farm-layout-write",
+        "checks": 19,
+        "status": "passed",
+        "log": "builds/farm-layout-write.log"
+      },
+      {
+        "name": "farm-layout-read",
+        "checks": 16,
+        "status": "passed",
+        "log": "builds/farm-layout-read.log"
+      },
+      {
+        "name": "farm-layout-corrupt",
+        "checks": 5,
+        "status": "passed",
+        "log": "builds/farm-layout-corrupt.log"
+      },
+      {
+        "name": "farm-layout-backup",
+        "checks": 16,
+        "status": "passed",
+        "log": "builds/farm-layout-backup.log"
+      },
+      {
+        "name": "farm-layout-v26-write",
+        "checks": 9,
+        "status": "passed",
+        "log": "builds/farm-layout-v26-write.log"
+      },
+      {
+        "name": "farm-layout-v26-read",
+        "checks": 16,
+        "status": "passed",
+        "log": "builds/farm-layout-v26-read.log"
+      },
+      {
+        "name": "harvest-save-write",
+        "checks": 3,
+        "status": "passed",
+        "log": "builds/harvest-save-write.log"
+      },
+      {
+        "name": "harvest-save-read",
+        "checks": 5,
+        "status": "passed",
+        "log": "builds/harvest-save-read.log"
+      },
+      {
+        "name": "harvest-save-read-claimed",
+        "checks": 3,
+        "status": "passed",
+        "log": "builds/harvest-save-read-claimed.log"
+      },
+      {
+        "name": "harvest-save-legacy",
+        "checks": 6,
+        "status": "passed",
+        "log": "builds/harvest-save-legacy.log"
+      },
+      {
+        "name": "main-smoke",
+        "checks": 0,
+        "status": "passed",
+        "log": "builds/main-smoke.log"
+      }
+    ]
+  },
+  "windows": {
+    "checks": 530,
+    "failures": 0,
+    "suites": [
+      {
+        "scene": "quality081_visual",
+        "checks": 5,
+        "status": "passed"
+      },
+      {
+        "scene": "quality081_animation_runner",
+        "checks": 67,
+        "status": "passed"
+      },
+      {
+        "scene": "quality081_ui_runner",
+        "checks": 74,
+        "status": "passed"
+      },
+      {
+        "scene": "quality081_production_runner",
+        "checks": 61,
+        "status": "passed"
+      },
+      {
+        "scene": "quality081_stress_runner",
+        "checks": 2,
+        "status": "passed"
+      },
+      {
+        "scene": "harvest_render",
+        "checks": 23,
+        "status": "passed"
+      },
+      {
+        "scene": "harvest_touch_runner",
+        "checks": 13,
+        "status": "passed"
+      },
+      {
+        "scene": "harvest_processing_runner",
+        "checks": 29,
+        "status": "passed"
+      },
+      {
+        "scene": "harvest_chains_runner",
+        "checks": 256,
+        "status": "passed"
+      }
+    ],
+    "actual_godot_window": true,
+    "resolutions": [
+      [
+        1280,
+        720
+      ],
+      [
+        1560,
+        720
+      ],
+      [
+        1600,
+        720
+      ],
+      [
+        1280,
+        960
+      ]
+    ],
+    "480dpi_simulated": true,
+    "safe_area_simulated": true
+  },
+  "art": {
+    "native_resources_validated": 296,
+    "palette_colors": 89,
+    "runtime_item_icons": 153,
+    "crop_types": 33,
+    "fruit_tree_types": 4,
+    "physical_stations": 10,
+    "new_content_added": false
+  },
+  "production": {
+    "timed_recipes": 49,
+    "kitchen_recipes": 32,
+    "all_agricultural_routes_audited": 92,
+    "five_real_chains": "passed",
+    "input_output_snapshots": "passed",
+    "old_engine_v28_save": "passed",
+    "cross_save_parent_and_signal_binding": "passed",
+    "menu_background_and_sleep": "passed",
+    "claim_once": "passed"
+  },
+  "economy": {
+    "changed_paths": [
+      {
+        "path": "aquaculture/fish.recipes.star_soup.description",
+        "before": "生态鱼栏的小炉将星辉鱼与两份胡萝卜分煮三份鱼汤；每日食用限制不变。",
+        "after": "生态鱼栏的小炉将星辉鱼与两份胡萝卜分煮三份鱼汤；食用遵循当前体力恢复规则。"
+      },
+      {
+        "path": "aquaculture/fish.recipes.soup.description",
+        "before": "使用湖岸小炉烹煮，成品每天最多食用一份。",
+        "after": "使用湖岸小炉烹煮，每份恢复体力，满体力不消耗。"
+      },
+      {
+        "path": "aquaculture/fish.items.dried_fish.description",
+        "before": "鲤鱼2或鲫鱼4，加木材1加工；可出售或每日食用恢复18体力。",
+        "after": "湖岸晾晒架或烘干架制作；体力未满时每份恢复18体力，可连续食用，满体力不消耗。"
+      },
+      {
+        "path": "aquaculture/fish.items.fish_soup.description",
+        "before": "草鱼、鲈鱼、金鳞鱼或星辉鱼可按湖岸配方烹制；每日食用一份恢复30体力。",
+        "after": "草鱼、鲈鱼、金鳞鱼或星辉鱼按湖岸配方烹制；每份恢复30体力，满体力不消耗。"
+      },
+      {
+        "path": "harvest/harvest.recipes.cheese_bread.sell_value",
+        "before": 143,
+        "after": 156
+      },
+      {
+        "path": "harvest/harvest.processing.dry_fish_crucian.input_items.fish_crucian",
+        "before": 2,
+        "after": 3
+      },
+      {
+        "path": "harvest/harvest.processing.dairy_cheese.sell_value",
+        "before": 80,
+        "after": 92
+      },
+      {
+        "path": "harvest/harvest.processing.smoke_fish_crucian.input_items.fish_crucian",
+        "before": 2,
+        "after": 3
+      },
+      {
+        "path": "harvest/harvest.items.cheese_bread.sell_price",
+        "before": 143,
+        "after": 156
+      },
+      {
+        "path": "kitchen/kitchen.items.cheese.sell_price",
+        "before": 80,
+        "after": 92
+      },
+      {
+        "path": "kitchen/kitchen.items.carrot_stew.energy",
+        "before": 22,
+        "after": 32
+      },
+      {
+        "path": "kitchen/kitchen.items.carrot_stew.description",
+        "before": "胡萝卜2、土豆1；恢复22体力，无额外增益。",
+        "after": "胡萝卜2、土豆1；恢复32体力，无额外增益。"
+      }
+    ],
+    "crop_tree_station_definitions": "unchanged",
+    "non_target_resource_hashes": 36,
+    "recipe_cycles": "none",
+    "unobtainable_active_inputs": []
+  },
+  "performance": {
+    "android_device_tested": false,
+    "animal_sprites": 18,
+    "animated_devices": 40,
+    "checks": 2,
+    "crops": 120,
+    "failures": 0,
+    "fixture": "render-only actual game resources",
+    "frames": 180,
+    "item_icons": 96,
+    "median_wall_ms": 7.891,
+    "p95_wall_ms": 9.532,
+    "renderer": "desktop software OpenGL under Xvfb; fixed 1/60 logic step; measured wall render intervals"
+  },
+  "artifacts": {
+    "PixelWorld-0.8.1-Windows-x64.zip": {
+      "bytes": 55091029,
+      "sha256": "08f9bf5fec9adfbe7d2dd955071bbd9fe547209c04f0e154ee94ca43b59bf9c7"
+    },
+    "PixelWorld-0.8.1-debug.apk": {
+      "bytes": 73937431,
+      "sha256": "276665152e2b97a54735ecdb958cfa4317819283863e122e9e81cf61f2da92f0"
+    }
+  },
+  "apk_signature_original": "passed",
+  "apk_packed_runtime": "passed",
+  "windows_exe_wine": "passed",
+  "source_fresh_import": "passed",
+  "android_device_tested": false,
+  "windows_native_tested": false,
+  "remaining": [
+    "Android hardware touch/thermal/power acceptance",
+    "Native Windows hardware acceptance",
+    "Duck/goat/pig/beehive/mushroom production remains outside implemented base game",
+    "Long-term player economy feedback"
+  ]
+}
