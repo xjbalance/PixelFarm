@@ -1,0 +1,8 @@
+{
+  "commit": "14287b5",
+  "worktree": "/tmp/pixelfarm-080-quality-baseline",
+  "processes": 199,
+  "assertions": 10695,
+  "failures": 0,
+  "isolated_saves": true
+}

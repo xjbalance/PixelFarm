@@ -1,0 +1,32 @@
+{
+  "tests": [
+    "HARVEST CROPS RESULT: 172 checks, 0 failures",
+    "KITCHEN B RESULT: 100 checks, 0 failures"
+  ],
+  "visual_before": {
+    "actual_window": true,
+    "android_device_tested": false,
+    "captures": [
+      "res://docs/quality081/before-crops.png",
+      "res://docs/quality081/before-devices.png",
+      "res://docs/quality081/before-inventory.png",
+      "res://docs/quality081/before-animal-products.png",
+      "res://docs/quality081/before-kitchen.png"
+    ],
+    "checks": 5,
+    "failures": 0
+  },
+  "visual_sample": {
+    "actual_window": true,
+    "android_device_tested": false,
+    "captures": [
+      "res://docs/quality081/sample-crops.png",
+      "res://docs/quality081/sample-devices.png",
+      "res://docs/quality081/sample-inventory.png",
+      "res://docs/quality081/sample-animal-products.png",
+      "res://docs/quality081/sample-kitchen.png"
+    ],
+    "checks": 5,
+    "failures": 0
+  }
+}

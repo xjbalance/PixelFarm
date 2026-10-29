@@ -1,0 +1,373 @@
+{
+  "base_commit": "14287b5",
+  "references": [
+    {
+      "path": "assets/crops/crops.png",
+      "size": [
+        128,
+        120
+      ],
+      "sha256": "3d0b728b8c88dcb7d9453e50ddd927b2d44d6c1932aeb8a922b73768bdf923f9",
+      "opaque_colors": 13,
+      "dominant": [
+        "#a7be61",
+        "#314c3b",
+        "#72a351",
+        "#4b7445",
+        "#efcc70",
+        "#e99542",
+        "#e2c080",
+        "#cfaa6c"
+      ]
+    },
+    {
+      "path": "assets/harvest/crops/strawberry.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "3d9f0c2ac7aed48284eccd8e2272456182de329ad747ec39d2c2405e383c7f6f",
+      "opaque_colors": 6,
+      "dominant": [
+        "#5d8c4e",
+        "#86b462",
+        "#d27856",
+        "#984b44",
+        "#f7e8a5",
+        "#c4994f"
+      ]
+    },
+    {
+      "path": "assets/harvest/crops/corn.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "ebdb15aabfdbd816c8064ff2bc36ab04a5174827e6d8298fa77b4c0c4c3ea8b3",
+      "opaque_colors": 6,
+      "dominant": [
+        "#5d8c4e",
+        "#86b462",
+        "#ddba64",
+        "#f7e8a5",
+        "#a17a43",
+        "#c4994f"
+      ]
+    },
+    {
+      "path": "assets/kitchen/flour.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "18ff5f4362a2892157d2e439e8fcc4797b09ae99a39aa51b76b3d43479021d92",
+      "opaque_colors": 4,
+      "dominant": [
+        "#ede2bc",
+        "#4c5144",
+        "#baa376",
+        "#ac8a54"
+      ]
+    },
+    {
+      "path": "assets/kitchen/potato_bread.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e4efdadbf32b4d4294846c050eee1e7cc148166b6c954ad8963a5293bc5b9b16",
+      "opaque_colors": 6,
+      "dominant": [
+        "#bc8d57",
+        "#dfba76",
+        "#4c5144",
+        "#9c7548",
+        "#dfc389",
+        "#ede2bc"
+      ]
+    },
+    {
+      "path": "assets/harvest/items/bread.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "e950d6e5ce7989b3ba2b02a6103e6d235e44fd158d3fc25ab8de25a53b9b5c4b",
+      "opaque_colors": 5,
+      "dominant": [
+        "#d7ba70",
+        "#805c41",
+        "#d4c2a0",
+        "#f4ead1",
+        "#f7e8a5"
+      ]
+    },
+    {
+      "path": "assets/livestock/egg.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "1f462a3f5958af88fea7bbcd6a3db160eb90c4ef0904ec2a9f3641aa8bd00983",
+      "opaque_colors": 3,
+      "dominant": [
+        "#eee7cd",
+        "#4d5747",
+        "#fff4d8"
+      ]
+    },
+    {
+      "path": "assets/livestock/milk.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "66877b4510b53fec41c907db01d033a9161ae4681170b5182e32707ef1b9675b",
+      "opaque_colors": 6,
+      "dominant": [
+        "#d5dfcb",
+        "#adc6b9",
+        "#4d5747",
+        "#c8d3bf",
+        "#7f9b90",
+        "#f4efd9"
+      ]
+    },
+    {
+      "path": "assets/livestock/wool.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "780444fdd864d939f066ee13c067fbf7a621e99af5a8e80c8104ab1c4bbc23f9",
+      "opaque_colors": 2,
+      "dominant": [
+        "#eee7cd",
+        "#aab99e"
+      ]
+    },
+    {
+      "path": "assets/livestock/chicken.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "5e04f8d25237ec407bad0d4b1e1c405b5562504debe6077cbe54e13a0e35bde3",
+      "opaque_colors": 7,
+      "dominant": [
+        "#eee7cd",
+        "#4d5747",
+        "#adbc9a",
+        "#c7c9a4",
+        "#b76e59",
+        "#b58d51",
+        "#d1aa64"
+      ]
+    },
+    {
+      "path": "assets/livestock/cow.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "b7201225a7b0aba8a0d9d9d181ae2ed33d33d138dab09005d65d990a7781d938",
+      "opaque_colors": 7,
+      "dominant": [
+        "#d8c6a3",
+        "#4d5747",
+        "#6c725b",
+        "#c99f87",
+        "#bdac86",
+        "#c6a38b",
+        "#dcd2ab"
+      ]
+    },
+    {
+      "path": "assets/livestock/sheep.png",
+      "size": [
+        64,
+        32
+      ],
+      "sha256": "88ea5ca7aa93d12de946fc6e30ca5e40053b14fa4db897bc0af190cf1bc84ec4",
+      "opaque_colors": 5,
+      "dominant": [
+        "#eee7cd",
+        "#c6ccb2",
+        "#777d67",
+        "#4d5747",
+        "#e4ddbd"
+      ]
+    },
+    {
+      "path": "assets/harvest/stations/mill.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "d5e90c4a366bcae278482ef5fe3acba200e3ae8fef7417b5e8d877b4465c1a58",
+      "opaque_colors": 8,
+      "dominant": [
+        "#b88e61",
+        "#634c3b",
+        "#805c41",
+        "#54615d",
+        "#abb8a5",
+        "#c4cfbb",
+        "#efdaa9",
+        "#f7e8a5"
+      ]
+    },
+    {
+      "path": "assets/harvest/stations/jam_pot.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "8e34536dd16251861bceeb711961dfbc00584b5f1dbd5ec182c29db6338f2fbf",
+      "opaque_colors": 10,
+      "dominant": [
+        "#634c3b",
+        "#e4946a",
+        "#718078",
+        "#c5808e",
+        "#b88e61",
+        "#984b44",
+        "#414c42",
+        "#ddba64"
+      ]
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/picnic_table.png",
+      "size": [
+        64,
+        40
+      ],
+      "sha256": "15c20d11302f7d316e668007535df37c0038836d106c8f404f0593aa712055fb",
+      "opaque_colors": 20,
+      "dominant": [
+        "#343e37",
+        "#b85f4c",
+        "#b88e61",
+        "#984b44",
+        "#efa980",
+        "#cfa775",
+        "#bd996a",
+        "#763e3e"
+      ]
+    },
+    {
+      "path": "assets/world_scheme_c/bright/sprites/farmhouse.png",
+      "size": [
+        160,
+        160
+      ],
+      "sha256": "cc964a85dcee67b2c3c5cce7e0601c5d2a41c5a022ac9fe141c19e6c3abde697",
+      "opaque_colors": 69,
+      "dominant": [
+        "#984b44",
+        "#343e37",
+        "#b85f4c",
+        "#d27856",
+        "#763e3e",
+        "#e4946a",
+        "#e8d9b9",
+        "#634c3b"
+      ]
+    },
+    {
+      "path": "assets/housing/interior/kitchen.png",
+      "size": [
+        128,
+        72
+      ],
+      "sha256": "ea60792266884faf791ec4b4a6f314890bb3a7871e8021e399d9acb1257987c0",
+      "opaque_colors": 30,
+      "dominant": [
+        "#d6d5b9",
+        "#d2c29e",
+        "#e3d6b2",
+        "#ad9a7a",
+        "#c3c5b0",
+        "#231c18",
+        "#eee4c9",
+        "#59605a"
+      ]
+    },
+    {
+      "path": "assets/characters/scheme_c/player_male/compact_32x48/spritesheet.png",
+      "size": [
+        128,
+        192
+      ],
+      "sha256": "a222b1140caaad44c458d5ae3b05f110de7e246903673ee4449284c745c1e7a9",
+      "opaque_colors": 6544,
+      "dominant": [
+        "#000000",
+        "#010000",
+        "#030000",
+        "#020000",
+        "#724537",
+        "#040101",
+        "#060202",
+        "#6e4335"
+      ]
+    },
+    {
+      "path": "assets/characters/linya.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "f23a2777ce9a552e6d37cbcec522e19a9ba2fb4bb7850b11418d8c25dbed90f5",
+      "opaque_colors": 26,
+      "dominant": [
+        "#e2b689",
+        "#a595ad",
+        "#514237",
+        "#ddcca7",
+        "#304b42",
+        "#c6b7cc",
+        "#4f5b53",
+        "#5a4a3e"
+      ]
+    },
+    {
+      "path": "assets/characters/zhou.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "456f9a4eac0de72427622786de38e3824efdfe51e4d54c893cb9a9f2a768ab65",
+      "opaque_colors": 22,
+      "dominant": [
+        "#555043",
+        "#524d40",
+        "#657e78",
+        "#5a5548",
+        "#6d8680",
+        "#514237",
+        "#e2b689",
+        "#304b42"
+      ]
+    },
+    {
+      "path": "assets/characters/ahe.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "12bf9402924f32f6444ced8bfad88440905d0d49655ffed3221f1fbfdeba7369",
+      "opaque_colors": 23,
+      "dominant": [
+        "#d1c6aa",
+        "#aa7e61",
+        "#b28669",
+        "#514237",
+        "#e2b689",
+        "#d6cbaf",
+        "#304b42",
+        "#4f5b53"
+      ]
+    }
+  ]
+}

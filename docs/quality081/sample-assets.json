@@ -1,0 +1,66 @@
+{
+  "phase": "sample",
+  "resources": 7,
+  "native_sizes": "passed",
+  "palette": "passed",
+  "distinct_stages": "passed",
+  "business_data_unchanged": true,
+  "files": [
+    {
+      "path": "assets/harvest/items/strawberry.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "07165ec8314bb7ae8b45b4917f4ea93f8a049f4d9a94ca304d2cbf867f2212b1"
+    },
+    {
+      "path": "assets/harvest/items/strawberry_seed.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "8ac4575e4b2e3cf8746b03b3d08ea49117c8a5a360dba5529890efb478c6fb4b"
+    },
+    {
+      "path": "assets/harvest/crops/strawberry.png",
+      "size": [
+        128,
+        40
+      ],
+      "sha256": "fe092c68bd9193100b11f0bcb2c9971bf1c2860544c5482f24cc212722f08adf"
+    },
+    {
+      "path": "assets/harvest/items/bread.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "853bf32ffe8c5c08b9171ff640698dfdaa4e1ce24d50258875aa76a11bc827e5"
+    },
+    {
+      "path": "assets/harvest/items/mayonnaise.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "d081b80a07cb9fe91795fa25f52b7ee5f01e93cbcccfe750e4e6287834bd9fa8"
+    },
+    {
+      "path": "assets/harvest/stations/jam_pot.png",
+      "size": [
+        32,
+        48
+      ],
+      "sha256": "2089c08d7e69fec35f73d7f5d3db7ca682ecaa2fa6d92a2fa8dabbc030099e33"
+    },
+    {
+      "path": "assets/kitchen/flour.png",
+      "size": [
+        32,
+        32
+      ],
+      "sha256": "08bafb9a64be735ed0c08c87dff347bc982eca1fe23e21a363d458a6dea4a789"
+    }
+  ]
+}

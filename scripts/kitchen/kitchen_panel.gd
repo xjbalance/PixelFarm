@@ -101,6 +101,7 @@ func recipes() -> void:
 		var selector:=FarmUIStyle.button(Kitchen.data.recipes[id].name,func():
 			if not pending.is_valid(): selected_recipe=recipe_id;refresh()
 		,180)
+		selector.icon=ItemPresentation.texture(str(id));selector.expand_icon=true;selector.add_theme_constant_override("icon_max_width",28)
 		selector.add_theme_stylebox_override("normal",FarmUIStyle.surface("selected" if id==selected_recipe else "secondary"));choices.add_child(selector)
 	if not Kitchen.data.recipes.has(selected_recipe): selected_recipe=str(Kitchen.data.recipes.keys()[0])
 	var recipe: Dictionary=Kitchen.data.recipes[selected_recipe]

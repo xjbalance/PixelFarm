@@ -40,5 +40,8 @@ def draw_item(item):
    d.polygon([(7,10),(11,13),(21,8),(27,13),(23,19),(12,18),(6,21)],fill='#ba9b73')
    d.rectangle((20,11,21,12),fill=CREAM);d.rectangle((8,21,12,23),fill='#d7b45e');d.rectangle((23,21,26,23),fill='#84a274')
  im.save(OUT/(item+'.png'))
-for item in ['wild_berry','flour','cheese','smoked_fish','berry_jam','carrot_stew','potato_bread','egg_meal','milk_porridge','fish_feast']:draw_item(item)
-print('Generated 10 original kitchen icons')
+def main():
+ for item in ['wild_berry','flour','cheese','smoked_fish','berry_jam','carrot_stew','potato_bread','egg_meal','milk_porridge','fish_feast']:draw_item(item)
+ print('Generated 10 original kitchen icons')
+
+if __name__=="__main__": main()

@@ -1,0 +1,116 @@
+{
+  "assets/aquaculture/dried_fish.png": [
+    0,
+    0,
+    32,
+    32
+  ],
+  "assets/aquaculture/fish_soup.png": [
+    64,
+    0,
+    32,
+    32
+  ],
+  "assets/kitchen/berry_jam.png": [
+    128,
+    0,
+    32,
+    32
+  ],
+  "assets/kitchen/carrot_stew.png": [
+    192,
+    0,
+    32,
+    32
+  ],
+  "assets/kitchen/cheese.png": [
+    256,
+    0,
+    32,
+    32
+  ],
+  "assets/kitchen/egg_meal.png": [
+    320,
+    0,
+    32,
+    32
+  ],
+  "assets/kitchen/fish_feast.png": [
+    384,
+    0,
+    32,
+    32
+  ],
+  "assets/kitchen/flour.png": [
+    448,
+    0,
+    32,
+    32
+  ],
+  "assets/kitchen/milk_porridge.png": [
+    0,
+    48,
+    32,
+    32
+  ],
+  "assets/kitchen/potato_bread.png": [
+    64,
+    48,
+    32,
+    32
+  ],
+  "assets/kitchen/smoked_fish.png": [
+    128,
+    48,
+    32,
+    32
+  ],
+  "assets/kitchen/wild_berry.png": [
+    192,
+    48,
+    32,
+    32
+  ],
+  "assets/livestock/chicken.png": [
+    256,
+    48,
+    64,
+    32
+  ],
+  "assets/livestock/cow.png": [
+    320,
+    48,
+    64,
+    32
+  ],
+  "assets/livestock/egg.png": [
+    384,
+    48,
+    32,
+    32
+  ],
+  "assets/livestock/hay.png": [
+    448,
+    48,
+    32,
+    32
+  ],
+  "assets/livestock/milk.png": [
+    0,
+    96,
+    32,
+    32
+  ],
+  "assets/livestock/sheep.png": [
+    64,
+    96,
+    64,
+    32
+  ],
+  "assets/livestock/wool.png": [
+    128,
+    96,
+    32,
+    32
+  ]
+}

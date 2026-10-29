@@ -1,0 +1,13 @@
+{
+	"actual_window": true,
+	"android_device_tested": false,
+	"captures": [
+		"res://docs/quality081/before-crops.png",
+		"res://docs/quality081/before-devices.png",
+		"res://docs/quality081/before-inventory.png",
+		"res://docs/quality081/before-animal-products.png",
+		"res://docs/quality081/before-kitchen.png"
+	],
+	"checks": 5,
+	"failures": 0
+}
