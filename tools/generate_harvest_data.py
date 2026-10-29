@@ -114,6 +114,10 @@ dish('winter_soup','暖冬蔬菜汤',{'winter_cabbage':1,'snow_radish':1,'frost_
 dish('farm_fish_soup','葱香鲫鱼汤',{'fish_crucian':1,'winter_onion':1,'radish':1},32,'fishing',color='cream')
 dish('sunflower_salad','葵香拌蔬菜',{'sunflower_oil':1,'tomato':1,'cucumber':1},30,color='leaf')
 data['future']=[{'recipe_id':'salted_duck_egg','source':'duck_egg','reason':'当前只有鸡、牛、羊的实际养殖；鸭尚未实现。'},{'recipe_id':'goat_cheese','source':'goat_milk','reason':'当前没有山羊产奶玩法。'},{'recipe_id':'honey_cookie','source':'honey','reason':'当前没有可生产蜂蜜的蜂箱。'},{'recipe_id':'truffle_sauce','source':'truffle','reason':'当前没有猪与松露生产玩法。'},{'recipe_id':'mushroom_soup','source':'mushroom','reason':'当前没有可食用蘑菇的合法采集来源。'}]
+data['furniture']={
+ 'wool_rug':{'name':'河湾毛织地毯','category':'rug','area':'home','size':[2,2],'solid':False,'level':1,'coins':40,'required':{'wool_cloth':2},'description':'用自己纺出的毛布织成；可自由移动与回收。'},
+ 'cotton_chair':{'name':'棉布软垫椅','category':'chair','area':'home','size':[1,1],'solid':True,'level':1,'coins':30,'required':{'cotton_cloth':1,'wood':3},'description':'暖木椅架搭配自产棉布；可自由移动与回收。'}
+}
 # Resolve actual uses for crop descriptions and validation.
 for id,crop in data['crops'].items():
     crop['uses']=[r for r,v in {**data['processing'],**data['recipes']}.items() if id in v['input_items']]

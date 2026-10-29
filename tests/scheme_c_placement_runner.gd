@@ -23,7 +23,7 @@ func run() -> void:
 	check(editor.open(),"实际进入领地建造模式后才测试新目录")
 	await frames(3)
 	await catalog_buttons()
-	var kinds: Array=TerritoryCatalog.OBJECT_KINDS.keys()
+	var kinds: Array=TerritoryCatalog.BASE_OBJECT_KINDS.keys() # 原免费景观；新增付费设备/果园由丰收套件覆盖。
 	check(kinds.size()==98,"98种新旧放置目录全部纳入实际场景回归")
 	for kind in kinds: await exercise(str(kind))
 	check(Territory.state.objects.is_empty() and game.territory_world.objects.is_empty(),"全目录拆除后没有遗留实体或碰撞")

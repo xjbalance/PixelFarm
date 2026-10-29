@@ -215,6 +215,7 @@ func apply_plan(plan: Dictionary) -> bool:
 		var entry:=object(str(checked.id));var cell: Vector2i=checked.cells[0]
 		entry.cell=[cell.x,cell.y]
 	else: state.objects.erase(object(str(checked.id)))
+	Workshop.after_plan(checked,str(state.objects[-1].id) if checked.op=="place" else "")
 	state.revision+=1
 	changed.emit();Inventory.changed.emit();Kitchen.changed.emit();Events.navigation_changed.emit();Events.progress_committed.emit()
 	busy=false

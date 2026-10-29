@@ -16,6 +16,7 @@ var busy: bool=false
 
 func _ready() -> void:
 	data=AbyssSaveSchema.canonical(JSON.parse_string(FileAccess.get_file_as_string("res://resources/housing/housing.json")))
+	data.furniture.merge(HarvestCatalog.data().furniture)
 	state=defaults()
 	GameClock.day_advanced.connect(settle_day)
 	GameState.control_mode_changed.connect(func(): changed.emit())

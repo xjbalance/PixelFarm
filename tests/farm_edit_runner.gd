@@ -156,7 +156,8 @@ func hidden_access() -> void:
 func art_and_layout() -> void:
 	await fresh()
 	var arts: Dictionary={};var all_native: bool=true
-	for kind in TerritoryCatalog.OBJECT_KINDS:
+	# 原89款授权景观资源的来源检查；生产设备使用本轮原创目录。
+	for kind in TerritoryCatalog.BASE_OBJECT_KINDS:
 		var definition: Dictionary=TerritoryCatalog.OBJECT_KINDS[kind];var art: String=str(definition.art);arts[art]=true
 		all_native=all_native and not SchemeCAssets.definition(art).is_empty() and game.territory_world.object_texture(str(kind))!=null
 	check(all_native and arts.size()==89,"89款唯一源物件均可实际选用，旧kind身份保持兼容")

@@ -17,7 +17,7 @@ func _ready() -> void:
 	sprite=Sprite2D.new();sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;add_child(sprite)
 	animated=AnimatedSprite2D.new();animated.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;add_child(animated);animated.hide()
 	Calendar.changed.connect(refresh_art)
-	Workshop.changed.connect(queue_redraw)
+	Workshop.changed.connect(refresh_art)
 	refresh()
 
 func refresh() -> void:
@@ -44,13 +44,13 @@ func refresh() -> void:
 func refresh_art() -> void:
 	if entry.is_empty() or not is_instance_valid(sprite): return
 	var art: String=str(definition.get("art",""))
-	var texture: Texture2D=SchemeCAssets.placed_texture(art,footprint_size,Calendar.season())
+	var texture: Texture2D=Workshop.tree_texture(entry) if str(entry.kind).begins_with("orchard_") else SchemeCAssets.placed_texture(art,footprint_size,Calendar.season())
 	if texture==null: texture=TerritoryWorld.texture_for(str(entry.kind))
 	sprite.texture=texture;sprite.visible=texture!=null
 	animated.hide()
 	if texture:
 		sprite.scale=Vector2.ONE
-		sprite.position=Vector2(0,-9) if str(entry.kind).begins_with("station_") else art_position(art,footprint_size)
+		sprite.position=Vector2(0,-32) if str(entry.kind).begins_with("orchard_") else Vector2(0,-9) if str(entry.kind).begins_with("station_") else art_position(art,footprint_size)
 		var frames:=SchemeCAssets.animation(art)
 		if frames:
 			if animated.sprite_frames!=frames: animated.sprite_frames=frames;animated.play("loop")
@@ -65,6 +65,7 @@ static func art_position(art: String, extent: Vector2) -> Vector2:
 
 func prompt() -> String:
 	if entry.is_empty(): return "领地物件"
+	if str(entry.kind).begins_with("orchard_"): return str(definition.name)+(" · 可采果" if int(Workshop.state.orchard.get(entry_id,{}).get("fruit",0))>0 else " · 果园")
 	if str(entry.kind).begins_with("station_"): return str(definition.name)+(" · 成品待领取" if Workshop.state.jobs.get(entry_id,{}).get("ready",false) else " · 加工")
 	return str(definition.name)+(" · 共用住宅收纳" if bool(definition.get("storage",false)) else " · 建造模式可移动或拆除")
 
@@ -80,7 +81,7 @@ func storage_accessible() -> bool:
 
 func interact() -> void:
 	if entry.is_empty() or not is_instance_valid(game) or GameState.modal or game.player.global_position.distance_to(global_position)>54: return
-	if str(entry.kind).begins_with("station_"):
+	if str(entry.kind).begins_with("station_") or str(entry.kind).begins_with("orchard_"):
 		Events.interaction_requested.emit("workshop:"+entry_id);return
 	if bool(definition.get("storage",false)): Events.interaction_requested.emit("housing:territory_storage")
 	else: Events.notice.emit(str(definition.name)+"是领地摆设，可在菜单的建造模式中移动或拆除。")

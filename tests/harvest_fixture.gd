@@ -21,3 +21,15 @@ static func approach(test: Node, game: Node, id: String) -> bool:
 	if path.is_empty(): return false
 	game.player.position=path[-1];game.camera_rig.follow_now();await test.frames(3)
 	return Workshop.near_device(id)
+static func advance(minutes: int) -> void:
+	var finish: int=Workshop.now_minutes()+minutes
+	GameClock.running=true
+	while Workshop.now_minutes()<finish:
+		var step: int=mini(finish-Workshop.now_minutes(),1440-int(GameClock.minutes))
+		GameClock._process(float(step)/2.0)
+	GameClock.running=false
+static func cooperative() -> void:
+	Story.stage=6;Story.motive="home";Story.seen.clear()
+	for id in Story.data.scenes:
+		if Story.data.scenes[id].has("next") and Story.data.scenes[id].next<=6: Story.seen.append(id)
+	VillageProjects.built=["cooperative"];Story.changed.emit();VillageProjects.changed.emit()

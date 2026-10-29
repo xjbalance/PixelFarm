@@ -38,6 +38,6 @@ static func placeables() -> Dictionary:
 	var result: Dictionary={}
 	for id in data().stations:
 		result["station_"+id]={"name":data().stations[id].name,"size":[1,1],"solid":true,"category":"objects","group":"workshop","art":"","station":id}
-	for id in []: # Orchard placement is activated after production regression.
+	for id in data().orchard:
 		result["orchard_"+id]={"name":data().orchard[id].name+"（结果树）","size":[1,1],"solid":true,"category":"vegetation","group":"orchard","art":"","fruit":id}
 	return result

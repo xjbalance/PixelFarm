@@ -34,7 +34,7 @@ func _ready() -> void:
 	FacilityLayout.decorate(self,"workshop")
 
 func open_panel(id: String) -> void:
-	if GameState.modal or not Workshop.near_device(id) or Workshop.station_id(id)=="": return
+	if GameState.modal or not Workshop.near_device(id) or (Workshop.station_id(id)=="" and not Workshop.state.orchard.has(id)): return
 	device=id;selected="";quantity=1;pending.clear();GameState.set_modal(true);show();refresh()
 	Workshop.game.hud.reflow_panels()
 func close_panel() -> void:
@@ -53,6 +53,8 @@ func cost(inputs: Dictionary) -> String:
 func refresh() -> void:
 	if not visible: return
 	epoch+=1;clear(list);clear(detail);clear(actions)
+	if Workshop.state.orchard.has(device): show_orchard();return
+	list.get_parent().show()
 	var station: String=Workshop.station_id(device)
 	if station=="": close_panel();return
 	title.text=HarvestCatalog.data().stations[station].name+" · 丰收工坊"
@@ -99,6 +101,7 @@ func refresh() -> void:
 	refresh_progress()
 func refresh_progress() -> void:
 	if not visible: return
+	if Workshop.state.orchard.has(device): return
 	var job: Dictionary=Workshop.state.jobs.get(device,{})
 	progress.visible=not job.is_empty()
 	if job.is_empty(): remaining.text="空闲 · 多批按顺序加工，总耗时随批数增加。";return
@@ -108,3 +111,17 @@ func refresh_progress() -> void:
 func _process(_delta: float) -> void: refresh_progress()
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed("ui_cancel"): close_panel();get_viewport().set_input_as_handled()
+
+func show_orchard() -> void:
+	list.get_parent().hide();progress.hide();pending.clear()
+	var fruit: String=str(Territory.object(device).kind).trim_prefix("orchard_")
+	var tree: Dictionary=HarvestCatalog.data().orchard[fruit];var row: Dictionary=Workshop.state.orchard[device]
+	title.text=str(tree.name)+" · 我的果园";status.text="生长不需每天浇水；移动保留树龄与果实。"
+	FacilityLayout.item_preview(detail,fruit,64)
+	FacilityLayout.text(detail,"树龄 %d / %d 天" % [mini(Workshop.tree_age(device),int(tree.growth_days)),tree.growth_days],23)
+	var seasons: Array[String]=[]
+	for index in tree.seasons: seasons.append(["春","夏","秋","冬"][int(index)])
+	FacilityLayout.text(detail,"结果季："+"、".join(seasons)+"。成熟后每%d天结%d份果实。" % [tree.regrow_days,tree.yield],18)
+	FacilityLayout.text(detail,"树上成熟果实：%d。满包不丢果；回收树苗会重置生长，请优先移动。" % row.fruit,17)
+	var button:=action(actions,"收获果实",func(): Workshop.harvest_fruit(device);refresh());button.name="HarvestFruit";button.disabled=int(row.fruit)<=0
+	remaining.text="在建造模式的植被 → 生产果园中种植；树苗由种子合作社供货。"

@@ -194,7 +194,10 @@ func refresh_life() -> void:
 		var definition: Dictionary=Catalog.items[id]
 		if definition.get("category","") not in ["fishing","livestock","kitchen","festival","exploration"]: continue
 		var view:=make_row(id);add_selector(view,id)
-		if shop_mode and Catalog.sell_price(id)>0:
+		if shop_mode and definition.get("kind","")=="sapling":
+			var fruit: String=id.trim_suffix("_sapling")
+			add_action(view,"购买树苗",func(): Workshop.buy_sapling(fruit,quantity);refresh(),id,"sapling_buy")
+		elif shop_mode and Catalog.sell_price(id)>0:
 			add_action(view,"",request_sale.bind(id),id,"sell")
 			add_action(view,"按数量出售",request_sale_quantity.bind(id),id,"sell_quantity",120)
 		elif not shop_mode and definition.get("category")=="kitchen" and definition.get("kind")=="food": add_action(view,"食用1份\n恢复体力",use_item.bind(id),id,"eat")
@@ -215,6 +218,9 @@ func update_rows() -> void:
 				"sell":
 					button.text="出售全部\n%d 金 / 个" % Catalog.sell_price(id);button.disabled=Inventory.count(id)<=0
 				"sell_quantity": button.disabled=Inventory.count(id)<=0
+				"sapling_buy":
+					button.disabled=not HarvestCatalog.unlocked(str(HarvestCatalog.data().orchard[id.trim_suffix("_sapling")].unlock))
+					button.text="购入%d棵\n%d金 / 棵" % [quantity,ceili(int(Catalog.items[id].price)*(.8 if VillageProjects.has_project("cooperative") else 1.0))]
 				"seed_buy": button.text="买 %d 袋\n%s" % [quantity,DiamondPayments.text(FarmEconomy.seed_price(id)*quantity)]
 				"crop_buy": button.text="购收获%d个\n%d钻石" % [quantity,DiamondPayments.price(Catalog.sell_price(id)*3*quantity)]
 				"material_buy": button.text="钻石购入%d个\n%d钻石" % [quantity,int(DiamondPayments.GOODS[id])*quantity]

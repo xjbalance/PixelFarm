@@ -61,6 +61,7 @@ func refresh() -> void:
 	invalidate_geometry()
 
 static func texture_for(kind: String) -> Texture2D:
+	if kind.begins_with("orchard_"): return Workshop.tree_texture({"kind":kind})
 	if kind.begins_with("station_"):
 		var station: String=kind.trim_prefix("station_")
 		if HarvestCatalog.data().stations.has(station): return load(str(HarvestCatalog.data().stations[station].icon))

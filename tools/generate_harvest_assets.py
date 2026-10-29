@@ -2,7 +2,7 @@
 from pathlib import Path
 import json, argparse, math
 from PIL import Image, ImageDraw
-from world_palette import harmonize, CONFIG
+from world_palette import harmonize, grade, CONFIG
 ROOT=Path(__file__).resolve().parents[1]
 D=json.loads((ROOT/'resources/harvest/harvest.json').read_text())
 OUT=ROOT/'assets/harvest'
@@ -152,6 +152,11 @@ def product(id,info):
             for x,y in [(10,14),(17,17),(22,14),(13,20)]:d.rectangle((x-2,y-1,x+2,y+1),fill=hi)
         else:
             for x,y in [(10,15),(19,14),(16,19)]:d.rectangle((x,y,x+3,y+2),fill=GREEN if shape=='salad' else P['roof'][4]);d.point((x,y),fill=hi)
+    if shape in ['jar','bottle','perfume']:
+        for recipe in D['processing'].values():
+            source=next(iter(recipe['input_items']))
+            if recipe['output_item_id']==id and source in D['crops']:
+                im.alpha_composite(produce(source).resize((9,9),Image.NEAREST),(12,16));break
     return im
 
 def crop_sheet(id):
@@ -195,6 +200,13 @@ def station(id):
         d.ellipse((5,17,22,29),fill=P['teal'][0]);d.ellipse((6,16,21,23),fill=P['cream'][-1]);d.ellipse((10,18,16,22),fill=P['gold'][3]);d.line((17,20,24,8),fill=WOOD,width=2);d.ellipse((23,22,28,28),fill=CREAM)
     else:
         d.rectangle((6,9,27,40),fill=P['stone'][0]);d.rectangle((8,10,25,37),fill=P['stone'][2]);d.rectangle((21,3,26,10),fill=P['stone'][1]);d.rectangle((11,15,22,27),fill=P['wood_earth'][0]);d.line((12,18,20,18),fill=WOOD);d.line((12,23,20,23),fill=WOOD);d.rectangle((12,30,21,35),fill=P['roof'][1]);d.rectangle((15,32,19,34),fill=P['gold'][3])
+    # A few native-pixel wood grain strokes and fastener highlights match the world props.
+    pixels=im.load();grain=tuple(bytes.fromhex(CONFIG['ramps']['wood_earth'][3]))+(255,)
+    for y in range(10,40,4):
+        for x in range(6,26,7):
+            if all(pixels[x+i,y]==grain for i in range(3)):
+                d.line((x,y,x+2,y),fill=P['wood_earth'][1]);d.point((x,y-1),fill=P['wood_earth'][-2])
+    for x in [6,25]:d.point((x,35),fill=P['gold'][-1])
     return im
 
 def trees(id):
@@ -214,6 +226,7 @@ def trees(id):
             fruit=produce(id).resize((12,12),Image.NEAREST)
             for x,y in [(24,28),(53,19),(66,45),(36,53)]:im.alpha_composite(fruit,(x,y))
         save(im,OUT/'orchard'/f'{id}_{stage}.png')
+        for season in ['spring','summer','autumn','winter']:save(grade(im,'apple_tree','01_trees',season),OUT/'orchard'/f'{id}_{stage}_{season}.png')
 
 p=argparse.ArgumentParser();p.add_argument('--sample',action='store_true');args=p.parse_args()
 crop_ids=['strawberry'] if args.sample else list(D['crops'])
@@ -225,6 +238,15 @@ for id,info in D['items'].items():
 for id in (['jam_pot'] if args.sample else D['stations']):save(station(id),OUT/'stations'/f'{id}.png')
 if not args.sample:
     for id in D['orchard']:trees(id)
+    rug=Image.new('RGBA',(64,64));d=ImageDraw.Draw(rug)
+    d.rectangle((2,8,61,57),fill=P['wood_earth'][0]);d.rectangle((4,9,59,55),fill=CREAM);d.rectangle((7,12,56,52),fill=P['teal'][1]);d.rectangle((11,16,52,48),outline=P['gold'][3],width=2)
+    for x in range(5,60,4):d.line((x,5,x,8),fill=CREAM);d.line((x,56,x,60),fill=CREAM)
+    for x in range(18,50,9):d.polygon([(x,24),(x+4,30),(x,36),(x-4,30)],fill=P['cream'][-2])
+    save(rug,ROOT/'assets/housing/wool_rug.png')
+    chair=Image.new('RGBA',(32,48));d=ImageDraw.Draw(chair)
+    d.rectangle((5,8,27,29),fill=P['wood_earth'][0]);d.rectangle((7,9,25,25),fill=WOOD);d.rectangle((9,12,23,23),fill=P['teal'][2]);d.line((10,13,22,13),fill=P['teal'][-1],width=2)
+    d.rectangle((5,29,8,44),fill=P['wood_earth'][0]);d.rectangle((24,29,27,44),fill=P['wood_earth'][0]);d.rectangle((4,26,28,36),fill=WOOD);d.rectangle((5,25,27,32),fill=P['teal'][2]);d.line((7,26,25,26),fill=P['teal'][-1])
+    save(chair,ROOT/'assets/housing/cotton_chair.png')
 images=sorted((OUT/'items').glob('*.png'));sheet=Image.new('RGBA',(16*40,math.ceil(len(images)/16)*48))
 for i,path in enumerate(images):sheet.alpha_composite(Image.open(path).convert('RGBA'),((i%16)*40+4,(i//16)*48+4))
 save(sheet,OUT/'item_atlas.png')
