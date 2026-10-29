@@ -11,6 +11,8 @@ var materials_tab: bool=false
 var aquaculture_tab: bool=false
 var life_tab: bool=false
 var pending_sale: Dictionary={}
+var pending_purchase: Dictionary={}
+var purchase_serial: int=0
 var sale_serial: int=0
 var selected_item: String=""
 var selected_detail: Label
@@ -56,13 +58,13 @@ func _ready() -> void:
 
 func open_panel(as_shop: bool) -> void:
 	if GameState.modal: return
-	pending_sale.clear();sale_serial+=1;view_epoch+=1;content_key="";selected_item=""
+	pending_sale.clear();pending_purchase.clear();purchase_serial+=1;sale_serial+=1;view_epoch+=1;content_key="";selected_item=""
 	crop_page=0;crop_group=0
 	shop_mode=as_shop;materials_tab=false;aquaculture_tab=false;life_tab=false;quantity=1
 	GameState.set_modal(true);show();refresh();scroll.scroll_vertical=0
 
 func close_panel() -> void:
-	DiamondPayments.cancel(self);pending_sale.clear();sale_serial+=1;view_epoch+=1;content_key="";selected_item=""
+	DiamondPayments.cancel(self);pending_sale.clear();pending_purchase.clear();purchase_serial+=1;sale_serial+=1;view_epoch+=1;content_key="";selected_item=""
 	selected_detail.text="轻点物品图标或名称查看；使用与装备需点对应按钮。"
 	for view in row_views.values():
 		for button in view.selectors: button.set_pressed_no_signal(false)
@@ -70,7 +72,7 @@ func close_panel() -> void:
 
 func change_category(index: int) -> void:
 	if not visible: return
-	DiamondPayments.cancel(self);pending_sale.clear();sale_serial+=1
+	DiamondPayments.cancel(self);pending_sale.clear();pending_purchase.clear();purchase_serial+=1;sale_serial+=1
 	crop_page=0
 	materials_tab=index==1;aquaculture_tab=index==2;life_tab=index==3;selected_item=""
 	refresh();scroll.scroll_vertical=0
@@ -88,16 +90,17 @@ func refresh() -> void:
 		payment_control.reparent(rows);footer.reparent(rows);scrolling_trade_controls=true
 	title.text="林芽的种子摊" if shop_mode else "随身背包"
 	balance.text="%d 金 · 每种最多%d · 钻石%d" % [Inventory.coins,Inventory.MAX_STACK,Xiaojing.state.diamonds]
-	footer.visible=shop_mode and pending_sale.is_empty();payment_control.visible=footer.visible;quantity_label.text=str(quantity)
+	footer.visible=shop_mode and pending_sale.is_empty() and pending_purchase.is_empty();payment_control.visible=footer.visible;quantity_label.text=str(quantity)
 	var current:=category()
 	for i in range(category_buttons.size()): category_buttons[i].set_pressed_no_signal(current==["crops","materials","fish","life"][i])
-	var key: String=("shop:" if shop_mode else "bag:")+current+str(crop_page)+":"+str(crop_group)+":"+str(Calendar.season())+(":sale:"+str(pending_sale.token) if not pending_sale.is_empty() else "")
+	var key: String=("shop:" if shop_mode else "bag:")+current+str(crop_page)+":"+str(crop_group)+":"+str(Calendar.season())+(":sale:"+str(pending_sale.token) if not pending_sale.is_empty() else "")+(":buy:"+str(pending_purchase.token) if not pending_purchase.is_empty() else "")
 	if key!=content_key:
 		view_epoch+=1;content_key=key;row_views.clear()
 		for child in rows.get_children():
 			if scrolling_trade_controls and child in [payment_control,footer]: continue
 			rows.remove_child(child);child.queue_free()
-		if not pending_sale.is_empty(): build_sale()
+		if not pending_purchase.is_empty(): build_purchase()
+		elif not pending_sale.is_empty(): build_sale()
 		else:
 			match current:
 				"life": refresh_life()
@@ -141,22 +144,24 @@ func crop_turn(amount: int) -> void:
 func build_crops() -> void:
 	var available: Array[String]=[]
 	for id in Catalog.crops:
-		if id in ["carrot","potato","wheat"]: available.append(id);continue
-		var row: Dictionary=HarvestCatalog.data().crops[id]
-		if shop_mode:
-			if not HarvestCatalog.seed_available(id) and Inventory.count(id)==0: continue
-		elif not Catalog.crop_grows(id) and Inventory.count(id)==0 and Inventory.count(id+"_seed")==0: continue
-		if crop_group==1 and "flower" not in row.tags: continue
+		var legacy: bool=id in Catalog.FOUNDATION_CROPS
+		var flower: bool=not legacy and "flower" in HarvestCatalog.data().crops[id].tags
+		if crop_group==1 and not flower: continue
+		if crop_group!=2:
+			if shop_mode and not HarvestCatalog.seed_available(id) and Inventory.count(id)==0: continue
+			if not shop_mode and not legacy and not Catalog.crop_grows(id) and Inventory.count(id)==0 and Inventory.count(id+"_seed")==0: continue
 		available.append(id)
 	var pages: int=maxi(1,ceili(available.size()/6.0));crop_page=clampi(crop_page,0,pages-1)
 	var navigation:=HBoxContainer.new();rows.add_child(navigation)
 	navigation.add_child(FarmUIStyle.button("上一页",crop_turn.bind(-1),90));navigation.get_child(0).disabled=crop_page==0
 	navigation.add_child(FarmUIStyle.label("%s季 · %d/%d页" % [["春","夏","秋","冬"][Calendar.season()],crop_page+1,pages],17))
 	var next:=FarmUIStyle.button("下一页",crop_turn.bind(1),90);next.disabled=crop_page>=pages-1;navigation.add_child(next)
-	navigation.add_child(FarmUIStyle.button("全部 / 花卉",func(): crop_group=1-crop_group;crop_page=0;content_key="";refresh(),160))
-	if shop_mode: FacilityLayout.text(rows,"当季种子 · 部分品种在种子合作社建成后供货；树苗见生活分类。",15)
+	navigation.add_child(FarmUIStyle.button(["分类 · 当季与存货","分类 · 花卉","分类 · 四季图鉴"][crop_group],func(): crop_group=(crop_group+1)%3;crop_page=0;content_key="";refresh(),200))
+	if shop_mode: FacilityLayout.text(rows,"当季供货；其他季节与解锁条件可在四季图鉴查看。树苗见生活分类。",16)
 	for id in available.slice(crop_page*6,mini(available.size(),crop_page*6+6)):
 		var view:=make_row("crop:"+id)
+		var info:=FarmUIStyle.label("%s · %d日成熟 · 收获%d个 · 种子%s" % ["当前季节可种" if Catalog.crop_grows(id) else "当前季节不生长",Catalog.crops[id].growth_days,Catalog.crops[id].harvest_quantity,"%d金/袋" % FarmEconomy.seed_price(id)],16,FarmUIStyle.SUCCESS if Catalog.crop_grows(id) else FarmUIStyle.DANGER)
+		info.autowrap_mode=TextServer.AUTOWRAP_WORD_SMART;view.row.get_parent().add_child(info);view.row.get_parent().move_child(info,0)
 		add_selector(view,id+"_seed",160);add_selector(view,id,150)
 		if shop_mode:
 			add_action(view,"",buy.bind(id),id,"seed_buy")
@@ -224,7 +229,8 @@ func update_rows() -> void:
 					button.text="购入%d棵\n%d金 / 棵" % [quantity,ceili(int(Catalog.items[id].price)*(.8 if VillageProjects.has_project("cooperative") else 1.0))]
 				"seed_buy":
 					button.disabled=not HarvestCatalog.seed_available(id)
-					button.text="本季不售种子" if button.disabled else "买 %d 袋\n%s" % [quantity,DiamondPayments.text(FarmEconomy.seed_price(id)*quantity)]
+					var locked: bool=HarvestCatalog.data().crops.has(id) and not HarvestCatalog.unlocked(str(HarvestCatalog.data().crops[id].unlock))
+					button.text="需建种子合作社" if locked else "本季不售种子" if button.disabled else ("买 %d 袋\n%s" if Catalog.crop_grows(id) else "提前备种%d袋\n%s") % [quantity,DiamondPayments.text(FarmEconomy.seed_price(id)*quantity)]
 				"crop_buy": button.text="购收获%d个\n%d钻石" % [quantity,DiamondPayments.price(Catalog.sell_price(id)*3*quantity)]
 				"material_buy": button.text="钻石购入%d个\n%d钻石" % [quantity,int(DiamondPayments.GOODS[id])*quantity]
 				"fish_buy": button.text="购买%d份\n%s" % [quantity,DiamondPayments.text(fish_cost(id)*quantity)]
@@ -243,7 +249,7 @@ func update_selection() -> void:
 		for button in view.selectors:
 			var selected: bool=str(button.get_meta("inventory_item"))==selected_item
 			button.set_pressed_no_signal(selected)
-	selected_detail.text="%s ×%d · %s" % [Catalog.item_name(selected_item),Inventory.count(selected_item),ItemPresentation.description(selected_item)] if selected_item!="" else "轻点物品图标或名称查看；使用与装备需点对应按钮。"
+	selected_detail.text="%s ×%d · %s" % [Catalog.item_name(selected_item),Inventory.count(selected_item),(ProductionInfo.seed_hint(selected_item.trim_suffix("_seed")) if selected_item.ends_with("_seed") else ItemPresentation.description(selected_item))] if selected_item!="" else "轻点物品图标或名称查看；使用与装备需点对应按钮。"
 
 func use_item(id: String) -> void:
 	if not visible or shop_mode or GameState.restoring or not Catalog.is_item(id): return
@@ -260,7 +266,9 @@ func fish_cost(id: String) -> int:
 	return int(Aquaculture.data.species[definition.species].fry_price) if definition.kind=="fry" else 0
 
 func buy(crop_id: String) -> void:
-	if not visible or not shop_mode: return
+	if not visible or not shop_mode or not pending_purchase.is_empty(): return
+	if not Catalog.crop_grows(crop_id):
+		selected_item=crop_id+"_seed";purchase_serial+=1;pending_purchase={"crop":crop_id,"amount":quantity,"price":FarmEconomy.seed_price(crop_id),"diamonds":DiamondPayments.selected,"token":purchase_serial};refresh();scroll.scroll_vertical=0;return
 	var amount:=quantity;DiamondPayments.request(self,FarmEconomy.seed_price(crop_id)*amount,func(): FarmEconomy.buy(crop_id,amount);refresh())
 
 func buy_crop(id: String) -> void:
@@ -304,7 +312,7 @@ func select_sale_all() -> void:
 	set_sale_quantity(Inventory.count(str(pending_sale.item)))
 
 func cancel_sale() -> void:
-	pending_sale.clear();sale_serial+=1;refresh()
+	pending_sale.clear();pending_purchase.clear();purchase_serial+=1;sale_serial+=1;refresh()
 
 func build_sale() -> void:
 	sale_detail=FarmUIStyle.label("",20,FarmUIStyle.TITLE)
@@ -345,7 +353,7 @@ func confirm_sale(token: int) -> void:
 	if Inventory.count(str(pending_sale.item))<int(pending_sale.amount):
 		Events.notice.emit("库存已变化，请重新选择出售数量；物品已保留。")
 		refresh();return
-	var sale:=pending_sale.duplicate();pending_sale.clear();sale_serial+=1;FarmEconomy.sell(sale.item,int(sale.amount));refresh()
+	var sale:=pending_sale.duplicate();pending_sale.clear();pending_purchase.clear();purchase_serial+=1;sale_serial+=1;FarmEconomy.sell(sale.item,int(sale.amount));refresh()
 
 func equip(crop_id: String) -> void:
 	if not visible or Inventory.count(crop_id+"_seed")<=0: return
@@ -358,3 +366,19 @@ func equip_tool(id: String) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and (event.is_action_pressed("ui_cancel") or event.is_action_pressed("bag")):
 		close_panel();get_viewport().set_input_as_handled()
+
+func build_purchase() -> void:
+	var request:=pending_purchase.duplicate();var id: String=request.crop
+	FacilityLayout.text(rows,"提前备种确认",23)
+	FacilityLayout.text(rows,Catalog.item_name(id)+"当前季节不能生长。适种季节："+HarvestCatalog.season_text(id)+"。",18)
+	FacilityLayout.text(rows,"购买%d袋，共%s；确认前不扣款。" % [request.amount,DiamondPayments.text(int(request.price)*int(request.amount))],18)
+	var line:=make_row("purchase")
+	add_action(line,"确认备种",confirm_purchase.bind(int(request.token)))
+	add_action(line,"取消",func(): pending_purchase.clear();purchase_serial+=1;refresh())
+func confirm_purchase(token: int) -> void:
+	if not visible or not shop_mode or GameState.restoring or pending_purchase.is_empty() or token!=int(pending_purchase.token): return
+	var request:=pending_purchase.duplicate();pending_purchase.clear();purchase_serial+=1
+	if FarmEconomy.seed_price(request.crop)!=int(request.price) or DiamondPayments.selected!=bool(request.diamonds):
+		Events.notice.emit("报价已变化，请重新选择。");refresh();return
+	DiamondPayments.request(self,int(request.price)*int(request.amount),func(): FarmEconomy.buy(request.crop,int(request.amount));refresh())
+	refresh()

@@ -145,6 +145,8 @@ static func normalize(raw: Variant) -> Dictionary:
 	if int(data.version)==28:
 		data.workshop=Workshop.migrate_v28(data.get("workshop"),data)
 		if data.workshop.is_empty(): return {}
+		data.tutorial=GameTutorial.migrate_080(data.get("tutorial"))
+		if data.tutorial.is_empty(): return {}
 		data.version=29
 	data.world_development=AbyssSaveSchema.canonical(data.get("world_development"))
 	data.exploration=AbyssSaveSchema.canonical(data.get("exploration"))

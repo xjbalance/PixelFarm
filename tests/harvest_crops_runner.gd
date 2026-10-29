@@ -32,8 +32,9 @@ func run() -> void:
 	var migrated:=FarmSaveSchema.normalize(old)
 	var same: bool=true
 	for key in old:
-		if key!="version" and JSON.stringify(old[key])!=JSON.stringify(migrated.get(key)): same=false
+		if key not in ["version","tutorial"] and JSON.stringify(old[key])!=JSON.stringify(migrated.get(key)): same=false
 	check(same and migrated.version==FarmSaveStore.VERSION,"旧档经营、婚姻、背包、田地与控制模式逐字段保留")
+	check(GameTutorial.PRODUCTION_TOPICS.all(func(id): return id in migrated.tutorial.seen) and old.tutorial.seen.all(func(id): return id in migrated.tutorial.seen),"旧档仅补加工帮助已读，不重放教程")
 	Inventory.items.strawberry_seed=3;Workshop.select_seed("strawberry")
 	check(GameState.tools.size()==9 and GameState.tool()=="strawberry_seed","九格布局内可装备新种子")
 	var saved:=FarmSaveStore.snapshot(game)

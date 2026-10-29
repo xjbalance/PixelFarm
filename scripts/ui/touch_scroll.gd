@@ -14,6 +14,9 @@ func reset_touch() -> void:
 
 func begin_touch(index: int,point: Vector2) -> void:
 	if finger != -1 or not is_visible_in_tree() or not get_global_rect().has_point(point): return
+	# Only the deepest scrollable child owns a drag; nested recipe lists do not move both containers.
+	for child in find_children("*","ScrollContainer",true,false):
+		if child.is_visible_in_tree() and child.get_global_rect().has_point(point) and child.get_v_scroll_bar().max_value>child.get_v_scroll_bar().page+1: return
 	# 同时满足祖先裁剪，不能在被遮住的面板边缘抢走触点。
 	var ancestor := get_parent()
 	while ancestor != null:
@@ -34,7 +37,7 @@ func _input(event: InputEvent) -> void:
 		if event.pressed and not event.canceled: begin_touch(event.index,event.position)
 		elif event.index == finger: reset_touch()
 	elif event is InputEventScreenDrag and event.index == finger:
-		if event.position.distance_to(origin) > 10:
+		if event.position.distance_to(origin) > UIMetrics.drag_threshold():
 			scroll_vertical = initial_scroll-roundi(event.position.y-origin.y)
 			get_viewport().set_input_as_handled()
 

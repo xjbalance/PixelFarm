@@ -40,12 +40,12 @@ func _input(event: InputEvent) -> void:
 				ancestor = ancestor.get_parent()
 			get_viewport().set_input_as_handled()
 		elif not event.pressed and event.index == finger:
-			var accepted: bool = contains_touch(event.position) and not event.canceled and press_origin.distance_to(event.position) <= 12
+			var accepted: bool = contains_touch(event.position) and not event.canceled and press_origin.distance_to(event.position) <= UIMetrics.drag_threshold()
 			reset_touch()
 			# 回调可重建面板、移除按钮，先标记本事件，再调用一次。
 			get_viewport().set_input_as_handled()
 			if accepted: pressed.emit()
-	elif event is InputEventScreenDrag and event.index == finger and event.position.distance_to(press_origin) > 12:
+	elif event is InputEventScreenDrag and event.index == finger and event.position.distance_to(press_origin) > UIMetrics.drag_threshold():
 		# 不终止祖先滚动；它继续消费本次拖动直至手指释放。
 		finger = -1
 		queue_redraw()

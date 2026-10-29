@@ -36,7 +36,7 @@ func near_berry() -> bool:
 	return FarmLayout.active("berry") and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(berry_point())<=54
 
 func _exchange(required: Dictionary, rewards: Dictionary, coins: int = 0) -> bool:
-	if busy or GameClock.settling: return false
+	if busy or GameClock.settling or GameState.restoring or not is_instance_valid(game) or game.backgrounded or game.closing or game.player.suspended: return false
 	busy=true
 	if not Inventory.exchange(required,rewards,coins):
 		busy=false

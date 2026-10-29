@@ -1,0 +1,12 @@
+{
+  "headless": [
+    "QUALITY081 UI RESULT: 74 checks, 0 failures",
+    "HARVEST CROPS RESULT: 173 checks, 0 failures"
+  ],
+  "window": [
+    "QUALITY081 UI RESULT: 74 checks, 0 failures"
+  ],
+  "old_players_new_hints_suppressed": true,
+  "native_touch": true,
+  "android_device_tested": false
+}

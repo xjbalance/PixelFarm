@@ -11,6 +11,11 @@ var recipe_page: int=0
 var recipe_filter: String="all"
 var feedback: Label
 var tab_bar: HBoxContainer
+var main_scroll: ScrollContainer
+var refresh_queued: bool=false
+var rebuild_count: int=0
+var scroll_key: String=""
+var rebuild_epoch: int=0
 func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column := VBoxContainer.new();add_child(column)
@@ -28,9 +33,10 @@ func _ready() -> void:
 			if not pending.is_valid(): page=id;refresh()
 		,200)
 		tab.set_meta("facility_tab",id);tab_bar.add_child(tab)
-	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;column.add_child(scroll)
+	var scroll := ScrollContainer.new();main_scroll=scroll;scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;column.add_child(scroll)
 	content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;content.add_theme_constant_override("separation",12);scroll.add_child(content)
 	FacilityLayout.decorate(self,"kitchen")
+	Inventory.changed.connect(queue_refresh);Kitchen.changed.connect(queue_refresh)
 
 func words(text: String, size: int=18) -> void:
 	FacilityLayout.text(section if is_instance_valid(section) else content,text,size)
@@ -38,9 +44,9 @@ func button(text: String, callback: Callable) -> Button:
 	var b := FarmUIStyle.button(text,callback,180);(section if is_instance_valid(section) else content).add_child(b);return b
 func open_panel(id: String="kitchen") -> void:
 	if GameState.modal or (not Kitchen.near_berry() if id=="berry" else not Kitchen.near_kitchen()): return
-	recipe_page=0;recipe_filter="all";feedback.text="";feedback.hide()
+	recipe_page=0;recipe_filter="all";feedback.text="";feedback.hide();scroll_key=""
 	context=id;page="recipes";selected_recipe="carrot_stew";quantity=1;pending=Callable();message=""
-	GameState.set_modal(true);show();refresh()
+	GameState.set_modal(true);show();refresh();call_deferred("layout_panel")
 func close_panel() -> void:
 	pending=Callable();message="";DiamondPayments.cancel(self);hide();GameState.set_modal(false)
 func ask(text: String, callback: Callable) -> void:
@@ -51,15 +57,39 @@ func accept() -> void:
 	if visible and callback.is_valid(): callback.call()
 	refresh()
 func result(ok: bool) -> void:
-	if not ok: Events.notice.emit("地点、材料、设施、每日额度或背包空间不满足；进度已保留。")
+	if not ok: Events.notice.emit("材料、背包空间或当前操作位置不满足；物品已保留。")
 	refresh()
 func cost(items: Dictionary) -> String:
 	var text: Array[String]=[]
 	for id in items: text.append("%s%d（持有%d）" % [Catalog.item_name(id),int(items[id]),Inventory.count(id)])
 	return "、".join(text)
+func queue_refresh() -> void:
+	if not visible or refresh_queued: return
+	refresh_queued=true;call_deferred("flush_refresh")
+func flush_refresh() -> void:
+	refresh_queued=false
+	if visible: refresh()
+func layout_panel() -> void:
+	if visible and is_instance_valid(Kitchen.game): Kitchen.game.hud.reflow_panels()
+func restore_scroll(token: int, value: int, left_value: int) -> void:
+	if not visible or token!=rebuild_epoch: return
+	main_scroll.scroll_vertical=value
+	for scroll in content.find_children("*","ScrollContainer",true,false): scroll.scroll_vertical=left_value
+func make_dish(id: String, amount: int) -> void:
+	var reason:=ProductionInfo.kitchen_error(id,amount)
+	if reason!="": Events.notice.emit(reason);refresh();return
+	result(Kitchen.cook(id,amount))
+
 func refresh() -> void:
 	section=null
 	if not visible: return
+	var key: String=page+":"+recipe_filter+":"+str(recipe_page)+":"+str(pending.is_valid())
+	var old_scroll: int=main_scroll.scroll_vertical if scroll_key==key else 0
+	var left_scroll: int=0
+	if scroll_key==key:
+		for scroll in content.find_children("*","ScrollContainer",true,false): left_scroll=scroll.scroll_vertical
+	scroll_key=key;rebuild_epoch+=1;rebuild_count+=1
+	call_deferred("restore_scroll",rebuild_epoch,old_scroll,left_scroll)
 	FacilityLayout.tabs(tab_bar,page)
 	for node in get_tree().get_nodes_in_group("payment_toggle"):
 		if is_ancestor_of(node): node.disabled=pending.is_valid()
@@ -102,6 +132,11 @@ func recipes() -> void:
 			if not pending.is_valid(): selected_recipe=recipe_id;refresh()
 		,180)
 		selector.icon=ItemPresentation.texture(str(id));selector.expand_icon=true;selector.add_theme_constant_override("icon_max_width",28)
+		var available: bool=Kitchen.recipe_unlocked(str(id))
+		var enough: bool=Workshop.missing_materials(Kitchen.scaled(Kitchen.data.recipes[id].required,quantity))==""
+		selector.text=str(Kitchen.data.recipes[id].name)+"\n"+("未解锁" if not available else "可制作" if enough else "材料不足")
+		selector.add_theme_font_size_override("font_size",16);selector.add_theme_color_override("font_color",FarmUIStyle.SUCCESS if available and enough else FarmUIStyle.MUTED)
+		selector.set_meta("recipe_id",id)
 		selector.add_theme_stylebox_override("normal",FarmUIStyle.surface("selected" if id==selected_recipe else "secondary"));choices.add_child(selector)
 	if not Kitchen.data.recipes.has(selected_recipe): selected_recipe=str(Kitchen.data.recipes.keys()[0])
 	var recipe: Dictionary=Kitchen.data.recipes[selected_recipe]
@@ -112,13 +147,19 @@ func recipes() -> void:
 	FacilityLayout.text(recipe_heading,recipe.name,22)
 	FacilityLayout.text(recipe_heading,("已掌握" if Kitchen.recipe_unlocked(selected_recipe) else "尚待领会")+" · 已做%d份 · 背包%d份" % [int(Kitchen.state.cooked.get(selected_recipe,0)),Inventory.count(selected_recipe)],16)
 	words(recipe.hint,16)
-	words("每批食材",21);words(cost(recipe.required),17)
+	words("本次食材 · 持有 / 需要",21);ProductionInfo.materials(section,Kitchen.scaled(recipe.required,quantity))
 	words(Kitchen.data.items[selected_recipe].description,16)
+	var reason:=ProductionInfo.kitchen_error(selected_recipe,quantity)
+	if reason!="":
+		words(reason,17)
+		if reason.begins_with("还缺"):
+			var hint: String=Kitchen.game.tutorial.inline_hint("recipe_missing")
+			if hint!="": feedback.text=hint;feedback.show()
 	var amount: int=quantity
 	var id: String=selected_recipe
 	var actions:=FacilityLayout.actions(section)
-	var cook:=FarmUIStyle.button("制作%s ×%d" % [recipe.name,amount],func(): ask("制作%d批%s，消耗：%s？" % [amount,recipe.name,cost(Kitchen.scaled(recipe.required,amount))],func(): result(Kitchen.cook(id,amount))),200);actions.add_child(cook);cook.disabled=not Kitchen.recipe_unlocked(id) or Inventory.preview_exchange(Kitchen.scaled(recipe.required,amount),Kitchen.scaled(recipe.rewards,amount),0).is_empty()
-	var eat:=FarmUIStyle.button("食用一份"+recipe.name,func(): result(Kitchen.consume(id)),200);actions.add_child(eat);eat.disabled=Inventory.count(id)<1
+	var cook:=FarmUIStyle.button("制作%s ×%d" % [recipe.name,amount],func(): ask("制作%d批%s，消耗：%s？" % [amount,recipe.name,cost(Kitchen.scaled(recipe.required,amount))],func(): make_dish(id,amount)),200);actions.add_child(cook);cook.disabled=reason!="";cook.tooltip_text=reason
+	var eat:=FarmUIStyle.button("食用一份"+recipe.name,func(): result(Kitchen.consume(id)),200);actions.add_child(eat);eat.disabled=Inventory.count(id)<1 or GameState.stamina>=GameState.max_stamina()
 	section=null
 	words("原湖岸鱼汤、鱼干继续使用原配方和物品；厨房不会复制另一个同名物品。",16)
 
