@@ -130,7 +130,8 @@ func objects_and_rights() -> void:
 	unlock_all()
 	check(Territory.permission("east_holding",Vector2i(8,3),"flowers").allowed and not Territory.permission("east_holding",Vector2i(8,3),"fence").allowed,"半开放过渡地允许花草但不允许实体阻挡物")
 	check(not Territory.permission("east_holding",Vector2i(19,12),"flowers").allowed,"新领地主通道也始终保留")
-	for kind in TerritoryCatalog.OBJECT_KINDS:
+	# 付费生产设备由 harvest_processing/chains 套件验证；本套保持原免费景观的经济不变断言。
+	for kind in TerritoryCatalog.BASE_OBJECT_KINDS:
 		GameState.location="east_holding"
 		var fresh:=Territory.plan_place("east_holding",str(kind),Vector2i(8,10))
 		check(fresh.valid and Territory.apply_plan(fresh),"本批小型对象可独立摆放："+str(kind))

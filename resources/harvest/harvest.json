@@ -798,6 +798,86 @@
       "icon": "res://assets/harvest/items/orange_sapling.png",
       "price": 280
     },
+    "mill_kit": {
+      "name": "磨坊整机",
+      "sell_price": 0,
+      "kind": "device",
+      "description": "拆装后的完整设备；再次放置不重复支付建设材料。",
+      "icon": "res://assets/harvest/items/mill_kit.png",
+      "station": "mill"
+    },
+    "oil_press_kit": {
+      "name": "榨油机整机",
+      "sell_price": 0,
+      "kind": "device",
+      "description": "拆装后的完整设备；再次放置不重复支付建设材料。",
+      "icon": "res://assets/harvest/items/oil_press_kit.png",
+      "station": "oil_press"
+    },
+    "pickle_jar_kit": {
+      "name": "腌制罐整机",
+      "sell_price": 0,
+      "kind": "device",
+      "description": "拆装后的完整设备；再次放置不重复支付建设材料。",
+      "icon": "res://assets/harvest/items/pickle_jar_kit.png",
+      "station": "pickle_jar"
+    },
+    "jam_pot_kit": {
+      "name": "果酱锅整机",
+      "sell_price": 0,
+      "kind": "device",
+      "description": "拆装后的完整设备；再次放置不重复支付建设材料。",
+      "icon": "res://assets/harvest/items/jam_pot_kit.png",
+      "station": "jam_pot"
+    },
+    "juicer_kit": {
+      "name": "果汁机整机",
+      "sell_price": 0,
+      "kind": "device",
+      "description": "拆装后的完整设备；再次放置不重复支付建设材料。",
+      "icon": "res://assets/harvest/items/juicer_kit.png",
+      "station": "juicer"
+    },
+    "drying_rack_kit": {
+      "name": "烘干架整机",
+      "sell_price": 0,
+      "kind": "device",
+      "description": "拆装后的完整设备；再次放置不重复支付建设材料。",
+      "icon": "res://assets/harvest/items/drying_rack_kit.png",
+      "station": "drying_rack"
+    },
+    "cheese_table_kit": {
+      "name": "奶制品加工台整机",
+      "sell_price": 0,
+      "kind": "device",
+      "description": "拆装后的完整设备；再次放置不重复支付建设材料。",
+      "icon": "res://assets/harvest/items/cheese_table_kit.png",
+      "station": "cheese_table"
+    },
+    "egg_table_kit": {
+      "name": "蛋制品加工台整机",
+      "sell_price": 0,
+      "kind": "device",
+      "description": "拆装后的完整设备；再次放置不重复支付建设材料。",
+      "icon": "res://assets/harvest/items/egg_table_kit.png",
+      "station": "egg_table"
+    },
+    "loom_kit": {
+      "name": "纺织机整机",
+      "sell_price": 0,
+      "kind": "device",
+      "description": "拆装后的完整设备；再次放置不重复支付建设材料。",
+      "icon": "res://assets/harvest/items/loom_kit.png",
+      "station": "loom"
+    },
+    "smoker_kit": {
+      "name": "熏制炉整机",
+      "sell_price": 0,
+      "kind": "device",
+      "description": "拆装后的完整设备；再次放置不重复支付建设材料。",
+      "icon": "res://assets/harvest/items/smoker_kit.png",
+      "station": "smoker"
+    },
     "rice": {
       "name": "精制大米",
       "sell_price": 63,

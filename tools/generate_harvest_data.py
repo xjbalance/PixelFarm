@@ -46,6 +46,7 @@ for id,name,seasons,days,cost,value in [('apple','苹果',[2],10,240,36),('pear'
     item(id+'_sapling',name+'树苗',0,'sapling',f'在建造模式的果园分组栽种；{days}天长成，不需每日浇水。',price=cost)
 stations=[('mill','磨坊',{'wood':8,'stone':6},80),('oil_press','榨油机',{'wood':12,'stone':8,'copper_bar':2},180),('pickle_jar','腌制罐',{'stone':8,'wood':4},100),('jam_pot','果酱锅',{'wood':6,'stone':8,'copper_bar':1},100),('juicer','果汁机',{'wood':10,'copper_bar':2},160),('drying_rack','烘干架',{'wood':10,'stone':4},100),('cheese_table','奶制品加工台',{'wood':10,'stone':4,'copper_bar':1},120),('egg_table','蛋制品加工台',{'wood':8,'stone':4},120),('loom','纺织机',{'wood':18,'iron_bar':2},280),('smoker','熏制炉',{'wood':8,'stone':10,'iron_bar':1},160)]
 for id,name,required,coins in stations:
+    item(id+'_kit',name+'整机',0,'device','拆装后的完整设备；再次放置不重复支付建设材料。',station=id)
     data['stations'][id]={'name':name,'required':required,'coins':coins,'size':[1,1],'icon':f'res://assets/harvest/stations/{id}.png','unlock':'basic','description':'在农场建造模式中摆放；每台设备一次加工一批，完成后留在输出槽。'}
 # Existing prices are consulted, never overwritten.
 prices={'carrot':36,'potato':56,'wheat':22,'wood':3,'stone':2}

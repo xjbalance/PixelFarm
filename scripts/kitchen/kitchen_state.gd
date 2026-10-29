@@ -14,6 +14,8 @@ var busy: bool=false
 
 func _ready() -> void:
 	data=AbyssSaveSchema.canonical(JSON.parse_string(FileAccess.get_file_as_string("res://resources/kitchen/kitchen.json")))
+	data.items.merge(HarvestCatalog.data().items)
+	data.recipes["bread"]=HarvestCatalog.data().recipes.bread
 	state=defaults(GameClock.day)
 	GameClock.day_advanced.connect(settle_day)
 
@@ -52,7 +54,7 @@ func build(id: String) -> bool:
 	state.built.append(id);_commit();return true
 
 func recipe_unlocked(id: String) -> bool:
-	if id not in RECIPES: return false
+	if not data.recipes.has(id): return false
 	var recipe: Dictionary=data.recipes[id]
 	if recipe.facility!="" and recipe.facility not in state.built: return false
 	if recipe.unlock=="basic": return true
@@ -165,9 +167,9 @@ func validate(raw: Variant, day: int) -> bool:
 	if not exact(raw,defaults(day).keys()) or not whole(day,1,999999): return false
 	if not unique(raw.built,FACILITIES) or not whole(raw.next_job,1,999999) or not whole(raw.berry_day,0,day) or not whole(raw.last_settled_day,1,day): return false
 	for name in ["cooked","collected"]:
-		if not raw[name] is Dictionary or raw[name].size()>(RECIPES.size() if name=="cooked" else PROCESSING.size()): return false
+		if not raw[name] is Dictionary or raw[name].size()>(data.recipes.size() if name=="cooked" else PROCESSING.size()): return false
 		for id in raw[name]:
-			if id not in (RECIPES if name=="cooked" else PROCESSING) or not whole(raw[name][id],1,999999): return false
+			if id not in (data.recipes.keys() if name=="cooked" else PROCESSING) or not whole(raw[name][id],1,999999): return false
 	if not raw.claimed is Array or raw.claimed.size()>128: return false
 	var known := {}
 	for id in raw.claimed:

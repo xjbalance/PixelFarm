@@ -411,6 +411,7 @@ func _update_status() -> void:
 	selection_label.text=title+(" · %d格预览" % _brush_cells.size() if not _brush_cells.is_empty() else "")
 	var valid: bool=bool(preview_plan.get("valid",false))
 	status_label.text=_status_override if _status_override!="" else (str(preview_plan.get("reason","")) if not preview_plan.is_empty() and not valid else ("绿色预览可确认；确认前不会改变地表或设施。" if valid else "点击空地预览；地表可连续拖动涂刷。施工只调整景观，不产出资源。"))
+	if _status_override=="" and (preview_plan.is_empty() or valid) and Workshop.placement_hint(selected_tool)!="": status_label.text=Workshop.placement_hint(selected_tool)
 	if _status_override=="" and (preview_plan.is_empty() or valid) and str(TerritoryCatalog.OBJECT_KINDS.get(selected_tool,{}).get("group",""))=="buildings": status_label.text="这是建筑景观装饰，不提供生产、住宿或场景入口。确认前可取消。"
 	status_label.tooltip_text=status_label.text
 	status_label.add_theme_color_override("font_color",FarmUIStyle.SUCCESS if valid else FarmUIStyle.MUTED)

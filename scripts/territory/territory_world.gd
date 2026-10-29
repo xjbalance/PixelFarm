@@ -61,6 +61,9 @@ func refresh() -> void:
 	invalidate_geometry()
 
 static func texture_for(kind: String) -> Texture2D:
+	if kind.begins_with("station_"):
+		var station: String=kind.trim_prefix("station_")
+		if HarvestCatalog.data().stations.has(station): return load(str(HarvestCatalog.data().stations[station].icon))
 	var definition: Dictionary=TerritoryCatalog.OBJECT_KINDS.get(kind,{})
 	var art: String=str(definition.get("art",""))
 	if not SchemeCAssets.definition(art).is_empty(): return SchemeCAssets.placed_texture(art,Vector2(TerritoryCatalog.footprint(kind,Vector2i.ZERO).size)*32,Calendar.season())

@@ -1,0 +1,80 @@
+extends "res://tests/runner.gd"
+const Fixture=preload("res://tests/harvest_fixture.gd")
+const Touch=preload("res://tests/touch_navigation.gd")
+func run() -> void:
+	game=load("res://scenes/main/main.tscn").instantiate();game.persistence_enabled=false;add_child(game)
+	GameClock.running=false;GameWeather.enabled=false;game.get_node("Audio").muted=true;await frames(8)
+	game.tutorial.restore(GameTutorial.defaults(true));Fixture.stock()
+	var original:=FarmSaveStore.snapshot(game)
+	var before: int=Inventory.coins
+	var mill: String=await Fixture.install(self,game,"station_mill")
+	check(mill!="" and Inventory.coins==before-80 and Inventory.count("wood")==192,"建造模式扣一次材料并生成实体磨坊")
+	if mill=="": await finish();return
+	check(FarmSaveStore.valid(FarmSaveStore.snapshot(game)),"设备占地与建筑状态构成合法整档")
+	check(await Fixture.approach(self,game,mill),"磨坊有合法交互位置与真实路径")
+	var target: Node2D=game.territory_world.objects[mill]
+	check(target.body.collision_layer==1 and target.sprite.texture!=null,"实体磨坊有碰撞和实际外观")
+	Inventory.items.wheat=3
+	check(Workshop.start(mill,"mill_flour",2) and Inventory.count("wheat")==1,"小麦磨粉原料一次性投入")
+	var job: Dictionary=Workshop.state.jobs[mill].duplicate()
+	check(int(job.finish_at)-int(job.started_at)==90,"两批45分钟串行加工90分钟")
+	var held: int=Inventory.count("wheat")
+	check(not Workshop.start(mill,"mill_flour") and Inventory.count("wheat")==held,"忙碌输出槽拒绝重复下单")
+	check(not Workshop.claim(mill,int(job.id)),"加工未到期不可领取")
+	game.territory_editor.open();await frames(3)
+	check(not Territory.plan_remove(mill).valid,"有订单时不能拆除设备丢失材料")
+	var origin:=TerritoryCatalog.to_cell(Territory.object(mill).cell)
+	var plan:=Territory.plan_move(mill,origin+Vector2i(2,0))
+	check(plan.valid and Territory.apply_plan(plan),"加工中的设备可以合法搬迁")
+	game.territory_editor.cancel();await frames(5)
+	check(Workshop.state.jobs[mill]==job,"搬迁保留相同订单身份、材料与完成时间")
+	await Touch.place(self,game,"home",Housing.anchor("kitchen")+Vector2(0,32))
+	GameClock.minutes+=45;GameClock.changed.emit()
+	check(not Workshop.state.jobs[mill].ready and not Workshop.claim(mill,int(job.id)),"离场仍加工但不可远程收取")
+	var save:=FarmSaveStore.snapshot(game)
+	check(FarmSaveStore.restore(game,JSON.parse_string(JSON.stringify(save))),"含订单存档JSON恢复")
+	GameClock.minutes+=45;GameClock.changed.emit()
+	check(Workshop.state.jobs[mill].ready,"恢复后使用实际游戏时间完成剩余加工")
+	await Touch.place(self,game,"farm",Vector2(704,704));await Fixture.approach(self,game,mill)
+	Inventory.items.flour=999
+	check(not Workshop.claim(mill,int(job.id)) and Workshop.state.jobs.has(mill),"满包时完整保留输出槽")
+	Inventory.items.erase("flour")
+	check(Workshop.claim(mill,int(job.id)) and Inventory.count("flour")==2,"合法收取磨粉产物")
+	check(not Workshop.claim(mill,int(job.id)) and Inventory.count("flour")==2,"旧领取按钮不可重复结算")
+	await Touch.place(self,game,"home",Housing.anchor("kitchen")+Vector2(0,32))
+	check(Kitchen.cook("bread") and Inventory.count("bread")==1 and Inventory.count("flour")==0,"同一厨房打通面粉到面包")
+	GameState.stamina=50
+	check(Kitchen.consume("bread") and GameState.stamina==74 and Inventory.count("bread")==0,"新面包复用恢复与消费事务")
+	await Touch.place(self,game,"farm",Vector2(704,704));await Fixture.approach(self,game,mill)
+	GameClock.minutes=1410
+	check(Workshop.start(mill,"mill_flour"),"午夜前可开始合法加工")
+	var overnight: int=Workshop.state.jobs[mill].id
+	GameClock.minutes=1440;GameClock._process(0);await frames(4)
+	check(GameClock.day==2 and Workshop.state.jobs[mill].ready,"正常午夜结算推进加工，未重复生产")
+	await Touch.place(self,game,"farm",Vector2(704,704));await Fixture.approach(self,game,mill)
+	check(Workshop.claim(mill,overnight),"跨天成品仍只领取一次")
+	game.territory_editor.open();await frames(3);plan=Territory.plan_remove(mill)
+	check(plan.valid and Territory.apply_plan(plan) and Inventory.count("mill_kit")==1,"空设备拆成一件整机，不能复制")
+	game.territory_editor.cancel();await frames(4)
+	before=Inventory.coins
+	mill=await Fixture.install(self,game,"station_mill")
+	check(mill!="" and Inventory.count("mill_kit")==0 and Inventory.coins==before,"整机重新摆放不二次扣建设费")
+	await Fixture.approach(self,game,mill);GameState.set_control_mode("tap",false)
+	Touch.tap(self,game,game.territory_world.objects[mill].global_position-Vector2(0,16));await Touch.finish(self,game);await frames(4)
+	check(game.hud.workshop_panel.visible,"真实触点点击实体磨坊打开加工面板")
+	if DisplayServer.get_name()!="headless":
+		await frames(5);await RenderingServer.frame_post_draw
+		get_viewport().get_texture().get_image().save_png("res://docs/harvest-workshop/mill-panel.png")
+	var pos: Vector2=game.player.position;Touch.tap(self,game,Vector2(600,600));await frames(8)
+	check(game.player.position==pos and game.auto_move.state==game.auto_move.State.IDLE,"加工面板不穿透底层地图")
+	game.hud.close_active_panel();GameState.set_control_mode("joystick",false);await frames(3)
+	game.action_cooldown=0;game.interact();await frames(3)
+	check(game.hud.workshop_panel.visible,"备用摇杆的E交互仍打开同一设备")
+	game.hud.close_active_panel()
+	var bad:=FarmSaveStore.snapshot(game);bad.workshop.jobs["missing"]={}
+	check(not FarmSaveStore.valid(bad),"不存在的设备订单拒绝恢复")
+	check(FarmSaveStore.restore(game,original),"生产测试后可恢复完整原档")
+	await finish()
+func finish() -> void:
+	print("HARVEST PROCESSING RESULT: %d checks, %d failures" % [checked,failed])
+	game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(4);get_tree().call_deferred("quit",1 if failed else 0)

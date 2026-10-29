@@ -160,6 +160,8 @@ func _plan(area: String, op: String, kind: String, cells: Array, id: String="") 
 			for other in state.objects:
 				if other.area==area and other.id!=id and TerritoryCatalog.footprint(other.kind,TerritoryCatalog.to_cell(other.cell)).intersects(extent): return _failure(plan,"这里已经有植物或设施。")
 			if op=="move" and TerritoryCatalog.to_cell(existing.cell)==plan.cells[0]: return _failure(plan,"请选择一个新的位置。")
+	var harvest_error:=Workshop.edit_error(plan)
+	if harvest_error!="": return _failure(plan,harvest_error)
 	plan.valid=true
 	if _validator.is_valid():
 		var checked: Variant=_validator.call(plan.duplicate(true))
@@ -197,6 +199,7 @@ func apply_plan(plan: Dictionary) -> bool:
 	var checked:=_plan(str(plan.area),str(plan.op),str(plan.kind),plan.cells,str(plan.get("id","")))
 	if not checked.valid: last_error=str(checked.reason);return false
 	busy=true
+	if not Workshop.pay_for_plan(checked): busy=false;last_error="材料已变化，请重新预览。";return false
 	if checked.op=="terrain":
 		if not state.terrain.has(checked.area): state.terrain[checked.area]={}
 		for cell: Vector2i in checked.cells:
@@ -213,7 +216,7 @@ func apply_plan(plan: Dictionary) -> bool:
 		entry.cell=[cell.x,cell.y]
 	else: state.objects.erase(object(str(checked.id)))
 	state.revision+=1
-	changed.emit();Events.navigation_changed.emit();Events.progress_committed.emit()
+	changed.emit();Inventory.changed.emit();Kitchen.changed.emit();Events.navigation_changed.emit();Events.progress_committed.emit()
 	busy=false
 	return true
 

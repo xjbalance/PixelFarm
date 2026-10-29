@@ -17,6 +17,7 @@ func _ready() -> void:
 	sprite=Sprite2D.new();sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;add_child(sprite)
 	animated=AnimatedSprite2D.new();animated.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST;add_child(animated);animated.hide()
 	Calendar.changed.connect(refresh_art)
+	Workshop.changed.connect(queue_redraw)
 	refresh()
 
 func refresh() -> void:
@@ -49,7 +50,7 @@ func refresh_art() -> void:
 	animated.hide()
 	if texture:
 		sprite.scale=Vector2.ONE
-		sprite.position=art_position(art,footprint_size)
+		sprite.position=Vector2(0,-9) if str(entry.kind).begins_with("station_") else art_position(art,footprint_size)
 		var frames:=SchemeCAssets.animation(art)
 		if frames:
 			if animated.sprite_frames!=frames: animated.sprite_frames=frames;animated.play("loop")
@@ -64,6 +65,7 @@ static func art_position(art: String, extent: Vector2) -> Vector2:
 
 func prompt() -> String:
 	if entry.is_empty(): return "领地物件"
+	if str(entry.kind).begins_with("station_"): return str(definition.name)+(" · 成品待领取" if Workshop.state.jobs.get(entry_id,{}).get("ready",false) else " · 加工")
 	return str(definition.name)+(" · 共用住宅收纳" if bool(definition.get("storage",false)) else " · 建造模式可移动或拆除")
 
 func hit_rect() -> Rect2:
@@ -78,6 +80,8 @@ func storage_accessible() -> bool:
 
 func interact() -> void:
 	if entry.is_empty() or not is_instance_valid(game) or GameState.modal or game.player.global_position.distance_to(global_position)>54: return
+	if str(entry.kind).begins_with("station_"):
+		Events.interaction_requested.emit("workshop:"+entry_id);return
 	if bool(definition.get("storage",false)): Events.interaction_requested.emit("housing:territory_storage")
 	else: Events.notice.emit(str(definition.name)+"是领地摆设，可在菜单的建造模式中移动或拆除。")
 
@@ -85,6 +89,8 @@ func _draw() -> void:
 	if entry.is_empty(): return
 	var kind: String=str(entry.kind)
 	if bool(definition.solid): draw_ellipse(Vector2(0,10),Vector2(15,4),Color(0.18,.23,.16,.18))
+	if Workshop.state.jobs.get(entry_id,{}).get("ready",false):
+		draw_colored_polygon(PackedVector2Array([Vector2(0,-42),Vector2(4,-38),Vector2(0,-34),Vector2(-4,-38)]),Color("edd581"))
 	if is_instance_valid(sprite) and sprite.texture: return
 	var season: int=Calendar.season()
 	var leaf: Color=[Color("769b62"),Color("60874e"),Color("ae8c55"),Color("c8d4c2")][season]

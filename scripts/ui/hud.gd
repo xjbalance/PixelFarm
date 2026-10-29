@@ -34,6 +34,7 @@ var housing_panel: PanelContainer
 var festival_panel: PanelContainer
 var social_panel: PanelContainer
 var kitchen_panel: PanelContainer
+var workshop_panel: PanelContainer
 var ecology_panel: PanelContainer
 var fishing_panel: PanelContainer
 var livestock_panel: PanelContainer
@@ -355,6 +356,8 @@ func build_feedback() -> void:
 	kitchen_panel.set_script(preload("res://scripts/kitchen/kitchen_panel.gd"))
 	place(kitchen_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
 	safe.add_child(kitchen_panel)
+	workshop_panel=PanelContainer.new();workshop_panel.set_script(preload("res://scripts/kitchen/workshop_panel.gd"))
+	place(workshop_panel,Vector2(.5,.5),Vector2(.5,.5),Rect2(-460,-280,920,560));safe.add_child(workshop_panel)
 	festival_panel=PanelContainer.new()
 	festival_panel.set_script(preload("res://scripts/festivals/festival_panel.gd"))
 	place(festival_panel,Vector2(0.5,0.5),Vector2(0.5,0.5),Rect2(-460,-280,920,560))
@@ -605,7 +608,7 @@ func close_active_panel() -> bool:
 	if dialogue.visible:
 		dialogue.close_dialogue()
 		return true
-	for panel in [world_development_panel,exploration_panel,housing_panel,festival_panel,social_panel,kitchen_panel,ecology_panel,fishing_panel,livestock_panel,recovery_panel,calendar_panel,aquaculture_panel,river_panel,abyss_panel,star_panel,mine_panel,xiaojing_panel,story_panel,progress_panel,system_panel,inventory_panel]:
+	for panel in [workshop_panel,world_development_panel,exploration_panel,housing_panel,festival_panel,social_panel,kitchen_panel,ecology_panel,fishing_panel,livestock_panel,recovery_panel,calendar_panel,aquaculture_panel,river_panel,abyss_panel,star_panel,mine_panel,xiaojing_panel,story_panel,progress_panel,system_panel,inventory_panel]:
 		if panel.visible:
 			panel.close_panel()
 			return true

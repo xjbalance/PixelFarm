@@ -99,6 +99,8 @@ def produce(id,shape=None):
 
 def product(id,info):
     shape=info.get('shape','sack');ramp=P[info.get('color','gold')];c=ramp[len(ramp)//2];hi=ramp[-1]
+    if info['kind']=='device':
+        im=Image.new('RGBA',(32,32));im.alpha_composite(station(info['station']).resize((20,30),Image.NEAREST),(6,1));return im
     if info['kind']=='fruit':return produce(id)
     if info['kind']=='sapling':
         im=Image.new('RGBA',(32,32));d=ImageDraw.Draw(im);d.line((16,27,16,7),fill=WOOD,width=3);leaf(d,16,13,-1);leaf(d,16,10,1);d.rectangle((10,25,22,29),fill=P['wood_earth'][0]);return im

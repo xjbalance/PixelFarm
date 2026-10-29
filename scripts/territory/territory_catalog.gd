@@ -11,7 +11,10 @@ const TERRAIN_KINDS := {
 	"flowerbed":{"name":"花圃地面","art":"tilled_soil"},"sand":{"name":"沙土地面","art":"sand"},"gravel":{"name":"碎石地面","art":"gravel"},
 	"water":{"name":"挖浅水池","art":"small_pond"},"deep_water":{"name":"挖深水池","art":"large_pond"}
 }
-const OBJECT_KINDS := {
+static var OBJECT_KINDS: Dictionary=_object_kinds()
+static func _object_kinds() -> Dictionary:
+	var result:=BASE_OBJECT_KINDS.duplicate(true);result.merge(HarvestCatalog.placeables());return result
+const BASE_OBJECT_KINDS := {
 	"tree":{"name":"观赏树","size":[2,2],"solid":true,"category":"vegetation","group":"trees","art":"oak_tree","decorative":true},
 	"bush":{"name":"灌木丛","size":[1,1],"solid":true,"category":"vegetation","group":"trees","art":"bush","decorative":true},
 	"tall_grass":{"name":"长草","size":[1,1],"solid":false,"category":"vegetation","group":"flowers","art":"tall_grass","decorative":true},
@@ -111,7 +114,7 @@ const OBJECT_KINDS := {
 	"star_lamp":{"name":"星形路灯","size":[1,1],"solid":true,"category":"objects","group":"star","art":"star_lamp","decorative":true},
 	"star_particles":{"name":"星光粒子","size":[1,1],"solid":false,"category":"objects","group":"star","art":"star_particles","decorative":true}
 }
-const OBJECT_GROUPS := {"all":"全部","trees":"树木与幼苗","flowers":"草地与花草","water":"水景","furniture":"庭院家具","fences":"围栏与桥道","props":"农具与杂物","village":"生活设施","buildings":"建筑景观","star":"星辉装饰"}
+const OBJECT_GROUPS := {"workshop":"加工设备","orchard":"生产果园","all":"全部","trees":"树木与幼苗","flowers":"草地与花草","water":"水景","furniture":"庭院家具","fences":"围栏与桥道","props":"农具与杂物","village":"生活设施","buildings":"建筑景观","star":"星辉装饰"}
 const NAMES := {"farm":"主农场与住宅庭院","east_holding":"河东开发地","lake_holding":"湖畔归属地","forest_holding":"林地开发区","manor_holding":"终局庄园用地","home":"住宅室内","village":"河湾村公共区域","mist_forest":"迷雾森林调查区","lake_ruins":"湖底遗迹","old_temple":"古老神庙","greenhouse":"星光温室礼堂","mine_a":"旧矿道","mine_b":"地下水脉","mine_c":"晶石洞窟","abyss":"地下闯关区域"}
 const HINTS := {
 	"farm":"自己的农场可自由改造；真实农田、建筑、水面和功能入口保留。",

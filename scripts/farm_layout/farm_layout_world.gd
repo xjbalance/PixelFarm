@@ -350,6 +350,12 @@ func _validate_geometry(kind: String, id: String, rectangles: Array[Rect2], terr
 			if (id=="home" and logical!=Vector2(656,440)) or (id=="shop" and logical==Vector2(356,392)) or (id=="greenhouse" and logical==Vector2(1280,780)): continue
 			var physical:=logical+offset;var at:=Vector2i((physical/32).floor())
 			if not FarmLayoutCatalog.WORLD.grow(-10).has_point(physical) or candidate.has(at) or not _approachable(physical,after): return _failure("门前、人物或离场站位需要留出完整空地，请稍微挪开。")
+	for object in game.territory_world.objects.values():
+		if not object.is_visible_in_tree() or not (str(object.entry.kind).begins_with("station_") or str(object.entry.kind).begins_with("orchard_")): continue
+		if kind=="territory" and object.entry_id==id: continue
+		var access_skip: Array[RID]=excluded.duplicate();access_skip.append_array(game.auto_move.navigation.collider_rids(object))
+		if _approachable(object.global_position,before,"",[],access_skip) and not _approachable(object.global_position,after,"",ray_rects,access_skip,candidate_water): return _failure("请给加工设备和果树留下可到达的操作位置。")
+	if kind=="territory" and (str(plan.get("kind","")).begins_with("station_") or str(plan.get("kind","")).begins_with("orchard_")) and not rectangles.is_empty() and not _approachable(rectangles[0].get_center(),after,"",[],excluded,candidate_water): return _failure("新物件旁没有可到达的操作位置。")
 	for key in game.farm.plots:
 		if FarmLayout.stored("plot",key) or (kind=="plot" and key==id): continue
 		var point:=Vector2(FarmLayout.cell("plot",key))*32+Vector2(16,16)
@@ -381,7 +387,7 @@ func check_object(plan: Dictionary) -> Dictionary:
 	var rect:=Rect2(Vector2(footprint.position)*32+Vector2(2,2),Vector2(footprint.size)*32-Vector2(4,4))
 	var rectangles: Array[Rect2]=[]
 	if TerritoryCatalog.is_solid(str(plan.kind)): rectangles.append(rect)
-	return _validate_geometry("territory",str(plan.get("id","")),rectangles)
+	return _validate_geometry("territory",str(plan.get("id","")),rectangles,null,Vector2.INF,true,plan)
 
 func preview_rect(plan: Dictionary) -> Rect2:
 	return FarmLayoutCatalog.world_rect(str(plan.kind),str(plan.id),FarmLayoutCatalog.parse_cell(plan.cell))

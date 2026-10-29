@@ -1,0 +1,17 @@
+{
+  "harvest_processing_runner": [
+    "HARVEST PROCESSING RESULT: 29 checks, 0 failures"
+  ],
+  "kitchen_b_runner": [
+    "KITCHEN B RESULT: 100 checks, 0 failures"
+  ],
+  "territory_core_runner": [
+    "TERRITORY CORE RESULT: 299 checks, 0 failures"
+  ],
+  "farm_edit_kinds_runner": [
+    "FARM EDIT KINDS STATE RESULT: 200 checks, 0 failures"
+  ],
+  "actual_window": [
+    "HARVEST PROCESSING RESULT: 29 checks, 0 failures"
+  ]
+}
