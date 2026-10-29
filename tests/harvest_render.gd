@@ -41,8 +41,18 @@ func run() -> void:
 		await shot("orchard-season-"+str(season))
 	game.hud.root.show()
 	await Touch.place(self,game,"farm",Vector2(704,704));await Fixture.approach(self,game,str(devices.jam_pot))
-	Inventory.items.strawberry=20;Workshop.start(str(devices.jam_pot),"strawberry_jam",2)
-	game.hud.workshop_panel.open_panel(str(devices.jam_pot));game.hud.workshop_panel.selected="strawberry_jam";game.hud.workshop_panel.refresh()
+	Inventory.items.strawberry=20
+	game.hud.workshop_panel.open_panel(str(devices.jam_pot));game.hud.workshop_panel.selected="strawberry_jam";game.hud.workshop_panel.quantity=2;game.hud.workshop_panel.refresh()
+	await frames(5)
+	var start_button: Button=load("res://tests/story.gd").find_button(game.hud.workshop_panel,"开始加工")
+	check(start_button!=null,"窗口存在可触摸开始加工按钮")
+	if start_button: load("res://tests/story.gd").touch(self,start_button)
+	await frames(4)
+	var confirm: Button=load("res://tests/story.gd").find_button(game.hud.workshop_panel,"确认开始")
+	check(confirm!=null and Inventory.count("strawberry")==20,"首次触摸仅预览不扣材料")
+	if confirm: load("res://tests/story.gd").touch(self,confirm)
+	await frames(5)
+	check(Inventory.count("strawberry")==16 and Workshop.state.jobs.has(str(devices.jam_pot)),"窗口原生确认两批果酱只扣四份草莓")
 	await shot("jam-progress")
 	for extent in [Vector2i(1280,720),Vector2i(1560,720),Vector2i(1600,720),Vector2i(1280,960)]:
 		get_window().size=extent;await frames(6);game.hud.reflow_panels();await frames(3)
@@ -51,8 +61,14 @@ func run() -> void:
 	game.hud.close_active_panel();get_window().size=Vector2i(1280,720);await frames(4)
 	await Touch.place(self,game,"home",Housing.anchor("kitchen")+Vector2(0,32))
 	Inventory.items.flour=10;Inventory.items.egg=10;Inventory.items.milk=10
-	game.hud.kitchen_panel.open_panel();await shot("kitchen-recipes");game.hud.close_active_panel()
+	game.hud.kitchen_panel.open_panel();game.hud.kitchen_panel.recipe_page=1;game.hud.kitchen_panel.selected_recipe="cake";game.hud.kitchen_panel.refresh();await shot("kitchen-recipes");game.hud.close_active_panel()
 	game.hud.inventory_panel.open_panel(false);await shot("crops-inventory");game.hud.close_active_panel()
+	var font: Font=load("res://assets/ui/fonts/NotoSansCJK-Regular.ttc");var glyphs_ok: bool=true
+	for row in HarvestCatalog.data().items.values():
+		var text: String=str(row.name)+str(row.description)
+		for i in range(text.length()):
+			if text.unicode_at(i)>32 and not font.has_char(text.unicode_at(i)): glyphs_ok=false
+	check(glyphs_ok,"新增名称与说明均有Noto中文字符覆盖")
 	check(FarmSaveStore.valid(FarmSaveStore.snapshot(game)),"窗口展示作物、设备、果树与真实存档状态一致")
 	print("HARVEST WINDOW RESULT: %d checks, %d failures" % [checked,failed])
 	game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(4);get_tree().call_deferred("quit",1 if failed else 0)

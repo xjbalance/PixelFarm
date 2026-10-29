@@ -6,7 +6,8 @@ scenes=sys.argv[1:] or ['harvest_crops_runner']
 with tempfile.TemporaryDirectory(prefix='harvest-test-') as profile:
     env=dict(os.environ,XDG_DATA_HOME=profile,APPDATA=profile)
     for scene in scenes:
-        opts=['--editor','--import'] if scene=='import' else ['--fixed-fps','60','res://tests/'+scene+'.tscn']
+        base,*extra=scene.split(':')
+        opts=['--editor','--import'] if base=='import' else ['--fixed-fps','60','res://tests/'+base+'.tscn']+(['--','--'+extra[0]] if extra else [])
         run=subprocess.run([str(ROOT/'.tools/Godot_v4.3-stable_linux.x86_64'),'--headless','--path',str(ROOT),*opts],env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=240)
         (ROOT/'builds'/('harvest-'+scene+'.log')).write_text(run.stdout)
         lines=[x for x in run.stdout.splitlines() if any(k in x for k in ['ERROR:','RESULT','FAIL:',' at:'])]

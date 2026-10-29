@@ -61,6 +61,9 @@ func refresh() -> void:
 	if not nearby: words("现在可以读近况和目标；交谈、赠礼、接取与完成约定需要走到本人身边。",16)
 	button("聊聊今天",func(): ask(Social.daily_line(person),func(): outcome(Social.talk(person)))).disabled=not nearby
 	var gift_ids: Array=data.likes.duplicate();gift_ids.append_array(data.dislikes)
+	if person!="xiaojing":
+		for item in Inventory.items:
+			if item not in gift_ids and Catalog.items.get(item,{}).get("gift_to","")==person: gift_ids.append(item)
 	for item in gift_ids:
 		button("赠送%s ×1 · %s（持有%d）" % [Catalog.item_name(item),Social.taste(person,item),Inventory.count(item)],func(): ask("赠送一份"+Catalog.item_name(item)+"？与此人的其他赠礼入口共享每日额度，最近重复的礼物不反复加好感。",func(): outcome(Social.gift(person,item)))).disabled=not nearby or Inventory.count(item)<1
 	var quest: Dictionary=Social.current(person)

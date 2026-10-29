@@ -15,7 +15,7 @@ var busy: bool=false
 func _ready() -> void:
 	data=AbyssSaveSchema.canonical(JSON.parse_string(FileAccess.get_file_as_string("res://resources/kitchen/kitchen.json")))
 	data.items.merge(HarvestCatalog.data().items)
-	data.recipes["bread"]=HarvestCatalog.data().recipes.bread
+	data.recipes.merge(HarvestCatalog.data().recipes)
 	state=defaults(GameClock.day)
 	GameClock.day_advanced.connect(settle_day)
 

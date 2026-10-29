@@ -55,7 +55,7 @@ func friendship(id: String) -> int:
 func is_birthday(id: String, day: int = GameClock.day) -> bool:
 	return data.people.has(id) and Calendar.season(day)==int(data.people[id].birthday[0]) and Calendar.day_of_season(day)==int(data.people[id].birthday[1])
 func taste(id: String, item: String) -> String:
-	if item in data.people[id].likes: return "喜欢"
+	if item in data.people[id].likes or Catalog.items.get(item,{}).get("gift_to","")==id: return "喜欢"
 	if item in data.people[id].dislikes: return "不喜欢"
 	return "普通"
 func daily_line(id: String) -> String:

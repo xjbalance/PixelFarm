@@ -26,6 +26,8 @@ func validate(raw: Variant, _save: Dictionary) -> bool:
 	if not FarmSaveSchema.whole(raw.version,1,1) or not raw.selected_seed is String or not Catalog.crops.has(raw.selected_seed.trim_suffix("_seed")) or not raw.selected_seed.ends_with("_seed"): return false
 	if not raw.jobs is Dictionary or raw.jobs.size()>Territory.MAX_OBJECTS or not FarmSaveSchema.whole(raw.next_job,1,999999999): return false
 	if not raw.claimed is Array or raw.claimed.size()>128 or not AquacultureSaveSchema.unique(raw.legacy_installed,Kitchen.FACILITIES): return false
+	for id in raw.legacy_installed:
+		if id not in _save.get("kitchen",{}).get("built",[]): return false
 	var known: Dictionary={}
 	for id in raw.claimed:
 		if not FarmSaveSchema.whole(id,1,int(raw.next_job)-1) or known.has(int(id)): return false
@@ -60,7 +62,7 @@ func validate(raw: Variant, _save: Dictionary) -> bool:
 
 func now_minutes() -> int: return (GameClock.day-1)*1440+int(GameClock.minutes)
 func available() -> bool:
-	return not busy and not Kitchen.busy and not GameState.restoring and not GameClock.settling and GameClock.minutes<1440 and is_instance_valid(game) and not game.backgrounded and not game.closing
+	return not busy and not Kitchen.busy and not GameState.restoring and not GameClock.settling and GameClock.minutes<1440 and is_instance_valid(game) and not game.backgrounded and not game.closing and game.player.action_time<=0
 
 func near_device(id: String) -> bool:
 	if not available() or not game.territory_world.objects.has(id): return false

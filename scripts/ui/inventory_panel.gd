@@ -193,6 +193,7 @@ func refresh_life() -> void:
 	for id in Catalog.items:
 		var definition: Dictionary=Catalog.items[id]
 		if definition.get("category","") not in ["fishing","livestock","kitchen","festival","exploration"]: continue
+		if HarvestCatalog.data().items.has(id) and Inventory.count(id)==0 and not (shop_mode and definition.get("kind","")=="sapling"): continue
 		var view:=make_row(id);add_selector(view,id)
 		if shop_mode and definition.get("kind","")=="sapling":
 			var fruit: String=id.trim_suffix("_sapling")

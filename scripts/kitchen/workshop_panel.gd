@@ -28,6 +28,9 @@ func _ready() -> void:
 	remaining=FacilityLayout.text(column,"",16)
 	actions=FacilityLayout.actions(column)
 	Workshop.changed.connect(refresh);Inventory.changed.connect(refresh)
+	Events.notice.connect(func(text: String):
+		if visible: status.text=text
+	)
 	Events.location_changed.connect(func(_area: String):
 		if visible: close_panel()
 	)
@@ -35,7 +38,7 @@ func _ready() -> void:
 
 func open_panel(id: String) -> void:
 	if GameState.modal or not Workshop.near_device(id) or (Workshop.station_id(id)=="" and not Workshop.state.orchard.has(id)): return
-	device=id;selected="";quantity=1;pending.clear();GameState.set_modal(true);show();refresh()
+	device=id;selected=str(Workshop.state.jobs.get(id,{}).get("recipe",""));quantity=int(Workshop.state.jobs.get(id,{}).get("batches",1));pending.clear();GameState.set_modal(true);show();refresh()
 	Workshop.game.hud.reflow_panels()
 func close_panel() -> void:
 	epoch+=1;pending.clear();device="";hide();GameState.set_modal(false)

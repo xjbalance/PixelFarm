@@ -628,7 +628,7 @@ func refresh_farm_guide() -> void:
 
 func _process(delta: float) -> void:
 	toast_time = maxf(0, toast_time - delta)
-	toast.visible = toast_time > 0
+	toast.visible = toast_time > 0 and not (is_instance_valid(workshop_panel) and workshop_panel.visible) and not (is_instance_valid(kitchen_panel) and kitchen_panel.visible)
 	prompt_label.visible = not GameState.modal and not prompt_label.text.is_empty()
 	position_camera_return()
 

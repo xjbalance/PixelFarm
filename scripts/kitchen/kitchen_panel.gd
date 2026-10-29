@@ -7,6 +7,9 @@ var page: String="recipes"
 var quantity: int=1
 var pending := Callable()
 var message: String=""
+var recipe_page: int=0
+var recipe_filter: String="all"
+var feedback: Label
 var tab_bar: HBoxContainer
 func _ready() -> void:
 	add_to_group("modal_panels");hide()
@@ -14,7 +17,10 @@ func _ready() -> void:
 	var header := HBoxContainer.new();column.add_child(header)
 	var title := FarmUIStyle.label("炉火与麦香 · 小屋厨房",24,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
-	DiamondPayments.controls(column,refresh)
+	feedback=FacilityLayout.text(column,"",16);feedback.hide()
+	Events.notice.connect(func(text: String):
+		if visible: feedback.text=text;feedback.show()
+	)
 	tab_bar=HBoxContainer.new();column.add_child(tab_bar)
 	for row in [["recipes","料理与图鉴"],["processing","加工设备"],["queue","领取成品"]]:
 		var id: String=row[0]
@@ -24,7 +30,7 @@ func _ready() -> void:
 		tab.set_meta("facility_tab",id);tab_bar.add_child(tab)
 	var scroll := ScrollContainer.new();scroll.set_script(preload("res://scripts/ui/touch_scroll.gd"));scroll.size_flags_vertical=Control.SIZE_EXPAND_FILL;scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;column.add_child(scroll)
 	content=VBoxContainer.new();content.size_flags_horizontal=Control.SIZE_EXPAND_FILL;content.add_theme_constant_override("separation",12);scroll.add_child(content)
-	FacilityLayout.decorate(self,"kitchen","挑一份家常料理，炉火与麦香都在这里。")
+	FacilityLayout.decorate(self,"kitchen")
 
 func words(text: String, size: int=18) -> void:
 	FacilityLayout.text(section if is_instance_valid(section) else content,text,size)
@@ -32,6 +38,7 @@ func button(text: String, callback: Callable) -> Button:
 	var b := FarmUIStyle.button(text,callback,180);(section if is_instance_valid(section) else content).add_child(b);return b
 func open_panel(id: String="kitchen") -> void:
 	if GameState.modal or (not Kitchen.near_berry() if id=="berry" else not Kitchen.near_kitchen()): return
+	recipe_page=0;recipe_filter="all";feedback.text="";feedback.hide()
 	context=id;page="recipes";selected_recipe="carrot_stew";quantity=1;pending=Callable();message=""
 	GameState.set_modal(true);show();refresh()
 func close_panel() -> void:
@@ -64,20 +71,32 @@ func refresh() -> void:
 		words("夏天多汁，冬天仍有藏在叶下的果实。每天可采一次，春夏秋两份、冬季一份；采摘消耗2体力。可以带回厨房熬酱。")
 		button("采摘今天的野莓",func(): result(Kitchen.harvest_berries())).disabled=Kitchen.state.berry_day==GameClock.day
 		return
-	words("第%d天 · %d金 · 钻石%d · 体力%d/%d" % [GameClock.day,Inventory.coins,Xiaojing.state.diamonds,GameState.stamina,GameState.max_stamina()],16)
-	if Kitchen.state.buff.id!="": words("当前增益：%s · 剩余%.0f秒有效游戏时间" % [{"speed":"移动+15%","thrift":"体力消耗75%（至少1）","mining":"采矿伤害+1","fishing":"钓鱼带宽+0.03"}[Kitchen.state.buff.id],Kitchen.state.buff.remaining],16)
-	words("持有料理且体力未满时可以继续吃，每次消耗1份；满体力不消耗。已有增益不叠加、不覆盖或延长，菜单和后台暂停计时。",16)
-	var row := HBoxContainer.new();content.add_child(row)
-	row.add_child(FarmUIStyle.label("批数：%d" % quantity,20,FarmUIStyle.TEXT))
-	row.add_child(FarmUIStyle.button("−",func(): quantity=maxi(1,quantity-1);refresh(),52));row.add_child(FarmUIStyle.button("+",func(): quantity=mini(8,quantity+1);refresh(),52))
 	match page:
 		"processing": processing()
 		"queue": jobs()
 		_: recipes()
 func recipes() -> void:
-	var layout:=HBoxContainer.new();layout.add_theme_constant_override("separation",16);content.add_child(layout)
-	var choices:=VBoxContainer.new();choices.custom_minimum_size.x=180;layout.add_child(choices)
+	var filters:=FacilityLayout.actions(content)
+	for spec in [["all","全部"],["meals","家常与主食"],["baking","烘焙"],["drinks","茶与饮品"]]:
+		var filter_id: String=spec[0]
+		filters.add_child(FarmUIStyle.button(spec[1],func(): recipe_filter=filter_id;recipe_page=0;refresh(),130))
+	filters.add_child(FarmUIStyle.button("−",func(): quantity=maxi(1,quantity-1);refresh(),48))
+	filters.add_child(FarmUIStyle.label("%d 批" % quantity,18))
+	filters.add_child(FarmUIStyle.button("+",func(): quantity=mini(8,quantity+1);refresh(),48))
+	var ids: Array[String]=[]
 	for id in Kitchen.data.recipes:
+		if recipe_filter=="all" or Kitchen.data.recipes[id].get("category","meals")==recipe_filter: ids.append(id)
+	var pages: int=maxi(1,ceili(ids.size()/6.0));recipe_page=clampi(recipe_page,0,pages-1)
+	var shown:=ids.slice(recipe_page*6,mini(ids.size(),recipe_page*6+6))
+	if selected_recipe not in shown and not shown.is_empty(): selected_recipe=shown[0]
+	var navigation:=HBoxContainer.new();content.add_child(navigation)
+	var prev:=FarmUIStyle.button("上一页",func(): recipe_page=maxi(0,recipe_page-1);refresh(),100);prev.disabled=recipe_page==0;navigation.add_child(prev)
+	navigation.add_child(FarmUIStyle.label("配方 %d / %d 页" % [recipe_page+1,pages],16))
+	var next:=FarmUIStyle.button("下一页",func(): recipe_page=mini(pages-1,recipe_page+1);refresh(),100);next.disabled=recipe_page==pages-1;navigation.add_child(next)
+	var layout:=HBoxContainer.new();layout.add_theme_constant_override("separation",16);content.add_child(layout)
+	var left:=ScrollContainer.new();left.set_script(preload("res://scripts/ui/touch_scroll.gd"));left.custom_minimum_size=Vector2(208,260);left.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;layout.add_child(left)
+	var choices:=VBoxContainer.new();choices.size_flags_horizontal=Control.SIZE_EXPAND_FILL;left.add_child(choices)
+	for id in shown:
 		var recipe_id: String=id
 		var selector:=FarmUIStyle.button(Kitchen.data.recipes[id].name,func():
 			if not pending.is_valid(): selected_recipe=recipe_id;refresh()
@@ -97,29 +116,23 @@ func recipes() -> void:
 	var amount: int=quantity
 	var id: String=selected_recipe
 	var actions:=FacilityLayout.actions(section)
-	var cook:=FarmUIStyle.button("制作%s ×%d" % [recipe.name,amount],func(): ask("制作%d批%s，消耗：%s？" % [amount,recipe.name,cost(Kitchen.scaled(recipe.required,amount))],func(): result(Kitchen.cook(id,amount))),200);actions.add_child(cook);cook.disabled=not Kitchen.recipe_unlocked(id)
+	var cook:=FarmUIStyle.button("制作%s ×%d" % [recipe.name,amount],func(): ask("制作%d批%s，消耗：%s？" % [amount,recipe.name,cost(Kitchen.scaled(recipe.required,amount))],func(): result(Kitchen.cook(id,amount))),200);actions.add_child(cook);cook.disabled=not Kitchen.recipe_unlocked(id) or Inventory.preview_exchange(Kitchen.scaled(recipe.required,amount),Kitchen.scaled(recipe.rewards,amount),0).is_empty()
 	var eat:=FarmUIStyle.button("食用一份"+recipe.name,func(): result(Kitchen.consume(id)),200);actions.add_child(eat);eat.disabled=Inventory.count(id)<1
 	section=null
 	words("原湖岸鱼汤、鱼干继续使用原配方和物品；厨房不会复制另一个同名物品。",16)
 
 func processing() -> void:
-	words("设备可同时保留四笔加工，每笔最多八批。材料下单时扣一次，次日或两日后领取；背包满则保留成品。")
+	words("农场工坊 · 十种实体设备",23)
+	words("回到农场，打开菜单 → 建造 → 摆件 → 加工设备。预览不扣材料，确认后建成；点击实体设备开始加工。",17)
+	words("旧订单继续按原完成日保留在“领取成品”；旧已建设备可免费安装一次实体设备。",16)
 	var grid:=FarmUIStyle.section_grid(content)
-	for id in Kitchen.data.facilities:
+	for id in HarvestCatalog.data().stations:
 		section=FarmUIStyle.section(grid)
-		var facility: Dictionary=Kitchen.data.facilities[id]
-		words(facility.name+" · "+("已建成" if id in Kitchen.state.built else "待建"),21)
-		words(facility.description,16)
-		if id not in Kitchen.state.built:
-			words(cost(facility.required)+" · "+DiamondPayments.text(int(facility.coins)),16)
-			button("建造"+facility.name,func(): ask("建造"+facility.name+"，消耗"+cost(facility.required)+"与"+DiamondPayments.text(int(facility.coins))+"？",func(): DiamondPayments.request(self,int(facility.coins),func(): result(Kitchen.build(id)))))
-		else:
-			for recipe_id in Kitchen.data.processing:
-				var recipe: Dictionary=Kitchen.data.processing[recipe_id]
-				if recipe.facility!=id: continue
-				var amount := quantity
-				words("每批："+cost(recipe.required)+" · %d日后完成" % recipe.days,16)
-				button("开始%s ×%d" % [recipe.name,amount],func(): ask("加工%d批，消耗%s；第%d天后领取？" % [amount,cost(Kitchen.scaled(recipe.required,amount)),GameClock.day+int(recipe.days)],func(): result(Kitchen.enqueue(recipe_id,amount))))
+		var facility: Dictionary=HarvestCatalog.data().stations[id]
+		words(facility.name,21)
+		words(cost(facility.required)+" · %d金" % facility.coins,16)
+		if id in Kitchen.state.built and id not in Workshop.state.legacy_installed: words("原设备已建成：首次实体安装免材料与金币。",17)
+		words("加工过程中可以离开或移动；待领取成品保留在对应设备。",16)
 	section=null
 func jobs() -> void:
 	if Kitchen.state.queue.is_empty(): words("加工设备里还没有待领取订单。")
