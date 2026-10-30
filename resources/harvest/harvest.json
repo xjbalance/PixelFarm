@@ -1648,6 +1648,16 @@
       "shape": "bowl",
       "color": "leaf",
       "gift_to": "ahe"
+    },
+    "salted_duck_egg": {
+      "name": "咸鸭蛋",
+      "sell_price": 66,
+      "kind": "processed",
+      "description": "鸡鸭舍的鸭蛋慢慢腌制而成，可出售或赠给阿禾。",
+      "icon": "res://assets/livestock/ranch082/salted_duck_egg.png",
+      "shape": "jar",
+      "color": "cream",
+      "gift_to": "ahe"
     }
   },
   "stations": {
@@ -2545,6 +2555,21 @@
       "sell_value": 68,
       "category": "drying_rack",
       "description": "按游戏内时间加工，离场与保存不重置进度。"
+    },
+    "salted_duck_egg": {
+      "recipe_id": "salted_duck_egg",
+      "name": "咸鸭蛋",
+      "output_item_id": "salted_duck_egg",
+      "output_quantity": 1,
+      "input_items": {
+        "duck_egg": 2
+      },
+      "processing_station_id": "pickle_jar",
+      "processing_duration": 2880,
+      "unlock_condition": "basic",
+      "sell_value": 66,
+      "category": "pickle_jar",
+      "description": "两枚鸭蛋腌制两日，完成后保留在设备中，收取一次。"
     }
   },
   "recipes": {
@@ -3247,11 +3272,6 @@
     }
   },
   "future": [
-    {
-      "recipe_id": "salted_duck_egg",
-      "source": "duck_egg",
-      "reason": "当前只有鸡、牛、羊的实际养殖；鸭尚未实现。"
-    },
     {
       "recipe_id": "goat_cheese",
       "source": "goat_milk",

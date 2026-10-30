@@ -120,14 +120,15 @@ func _new_animal(site: String) -> Dictionary:
 	state.animals.append(result)
 	return result
 
-func buy_animal(site: String) -> bool:
+func buy_animal(site: String, chosen_species: String="") -> bool:
 	if busy or not near_site(site) or int(building(site).level)<1 or state.serial>=999999: return false
 	if int(summary(site).count)>=int(summary(site).capacity):
 		Events.notice.emit("畜舍已经住满了，请先扩建。")
 		return false
-	var species: String=data.buildings[site].species
+	var species: String=str(data.buildings[site].species) if chosen_species=="" else chosen_species
+	if species not in data.buildings[site].get("allowed_species",[data.buildings[site].species]): return false
 	if not _exchange({}, {},-int(data.species[species].price)): return false
-	_new_animal(site)
+	_new_animal(site).species=species
 	_commit()
 	return true
 
@@ -177,6 +178,7 @@ func collect(id: String) -> bool:
 	var quantity: int=int(entry.product)
 	if not _exchange({},{item:quantity},0): return false
 	entry.product=0
+	Events.livestock_collected.emit(str(entry.site))
 	Events.notice.emit("收集%s ×%d。未领取的产物最多暂存三份。" % [Catalog.item_name(item),quantity])
 	_commit()
 	return true
@@ -195,20 +197,22 @@ func graze(site: String) -> bool:
 	_commit()
 	return true
 
-func breed(site: String) -> bool:
+func breed(site: String, chosen_species: String="") -> bool:
 	if busy or not near_site(site) or int(building(site).level)<1 or state.serial>=999999: return false
 	if int(summary(site).count)>=int(summary(site).capacity): return false
-	var definition: Dictionary=data.species[data.buildings[site].species]
+	var species: String=str(data.buildings[site].species) if chosen_species=="" else chosen_species
+	if species not in data.buildings[site].get("allowed_species",[data.buildings[site].species]): return false
+	var definition: Dictionary=data.species[species]
 	if int(building(site).last_breed_day)>0 and GameClock.day-int(building(site).last_breed_day)<int(definition.breed_days): return false
 	var parents := 0
 	for entry in animals_at(site):
-		if is_adult(entry) and int(entry.bond)>=35 and int(entry.mood)>=60 and int(entry.fed_day)==GameClock.day: parents+=1
+		if entry.species==species and is_adult(entry) and int(entry.bond)>=35 and int(entry.mood)>=60 and int(entry.fed_day)==GameClock.day: parents+=1
 	if parents<2:
 		Events.notice.emit("至少两只成年动物需要亲密35、心情60并在今天喂好，才能办理繁育。")
 		return false
 	if not _exchange({"hay":int(definition.breed_hay)},{},-int(definition.breed_coins)): return false
 	building(site).last_breed_day=GameClock.day
-	_new_animal(site)
+	_new_animal(site).species=species
 	Events.notice.emit("繁育站送来了幼畜。它仍需要独立成长，不会继承成年动物进度。")
 	_commit()
 	return true
@@ -263,7 +267,7 @@ func validate(raw: Variant, day: int) -> bool:
 		var serial: int=int(entry.id.trim_prefix("animal_"))
 		if not whole(serial,1,int(raw.serial)) or entry.id!="animal_%06d" % serial or ids.has(entry.id): return false
 		ids[entry.id]=true
-		if entry.site not in SITES or entry.species!=data.buildings[entry.site].species: return false
+		if entry.site not in SITES or entry.species not in data.buildings[entry.site].get("allowed_species",[data.buildings[entry.site].species]): return false
 		var definition: Dictionary=data.species[entry.species]
 		counts[entry.site]+=1
 		if not whole(entry.age,0,int(definition.growth_days)) or not whole(entry.hunger,0,100) or not whole(entry.mood,0,100) or not whole(entry.bond,0,100): return false
@@ -279,3 +283,84 @@ func validate(raw: Variant, day: int) -> bool:
 	for site in SITES:
 		if int(counts[site])>CAPACITY[int(raw.buildings[site].level)]: return false
 	return true
+
+func home_station(entry: Dictionary) -> Vector2:
+	var siblings:=animals_at(str(entry.site));var index: int=0
+	for i in range(siblings.size()):
+		if siblings[i].id==entry.id: index=i;break
+	return site_point(str(entry.site))+INDOOR[index]
+
+func activity_bounds(entry: Dictionary, outdoors: bool) -> Rect2:
+	return Rect2(site_point(str(entry.site))+Vector2(-112,-46),Vector2(224,150)) if outdoors else Rect2(site_point(str(entry.site))+Vector2(-54,-36),Vector2(108,64))
+
+func save_animal_position(entry: Dictionary, point: Vector2) -> void:
+	var logical:=FarmLayout.to_logical(str(entry.site),point)
+	entry.position[0]=snappedf(logical.x,.01);entry.position[1]=snappedf(logical.y,.01)
+
+func animal_route(entry: Dictionary, from: Vector2, to: Vector2) -> PackedVector2Array:
+	if not is_instance_valid(game): return PackedVector2Array()
+	if not activity_bounds(entry,is_grazing(str(entry.site))).grow(2).has_point(to): return PackedVector2Array()
+	if _animal_clear(entry,from,to): return PackedVector2Array([to])
+	for turn in [Vector2(from.x,to.y),Vector2(to.x,from.y)]:
+		if _animal_clear(entry,from,turn) and _animal_clear(entry,turn,to): return PackedVector2Array([turn,to])
+	# A standing herd mate may occupy the direct line to an indoor stall. Try a
+	# bounded detour when selecting a goal, rather than pushing into it each frame.
+	var bounds:=activity_bounds(entry,true)
+	for distance in [32.0,48.0,64.0]:
+		for direction in [Vector2.DOWN,Vector2.LEFT,Vector2.RIGHT,Vector2.UP]:
+			var turn: Vector2=from+direction*distance
+			if bounds.has_point(turn) and _animal_clear(entry,from,turn) and _animal_clear(entry,turn,to): return PackedVector2Array([turn,to])
+	# Small legacy porch fallback: a few standing animals can require more than
+	# two segments. This runs only when selecting/retrying a goal, never per frame.
+	var grid:=AStarGrid2D.new();grid.region=Rect2i(Vector2i((bounds.position/16).floor()),Vector2i((bounds.size/16).ceil()))
+	grid.cell_size=Vector2(16,16);grid.offset=Vector2(8,8);grid.diagonal_mode=AStarGrid2D.DIAGONAL_MODE_NEVER;grid.update()
+	var start:=Vector2i((from/16).floor());var end:=Vector2i((to/16).floor())
+	if not grid.region.has_point(start) or not grid.region.has_point(end): return PackedVector2Array()
+	for y in range(grid.region.position.y,grid.region.end.y):
+		for x in range(grid.region.position.x,grid.region.end.x):
+			var cell:=Vector2i(x,y);var point:=Vector2(cell)*16+Vector2(8,8)
+			grid.set_point_solid(cell,not bounds.has_point(point) or not _animal_clear(entry,point,point))
+	grid.set_point_solid(start,false);grid.set_point_solid(end,false)
+	var path:=grid.get_point_path(start,end)
+	if not path.is_empty():
+		path.remove_at(0);path.append(to)
+	return path
+
+func _animal_clear(entry: Dictionary, from: Vector2, to: Vector2) -> bool:
+	var query:=PhysicsShapeQueryParameters2D.new();var shape:=RectangleShape2D.new()
+	shape.size=Vector2(22,12) if entry.species in ["cow","sheep"] else Vector2(12,8)
+	query.shape=shape;query.transform=Transform2D(0,from+Vector2(0,-3));query.motion=to-from;query.collision_mask=1
+	var space: PhysicsDirectSpaceState2D=game.player.get_world_2d().direct_space_state
+	if not space.intersect_shape(query,1).is_empty() or space.cast_motion(query)[0]<.999: return false
+	for other in state.animals:
+		if other.id==entry.id or other.site!=entry.site: continue
+		var radius: float=21 if entry.species in ["cow","sheep"] else 14
+		var neighbour:=animal_point(other)
+		if neighbour.distance_to(Geometry2D.get_closest_point_to_segment(neighbour,from,to))<radius:
+			if from.distance_to(neighbour)>=radius or to.distance_to(neighbour)<from.distance_to(neighbour): return false
+	return true
+
+func animal_separation_blocked(entry: Dictionary, point: Vector2) -> bool:
+	for other in state.animals:
+		if other.id==entry.id or other.site!=entry.site: continue
+		var radius: float=21 if entry.species in ["cow","sheep"] else 14
+		var current:=animal_point(entry);var neighbour:=animal_point(other)
+		if point.distance_squared_to(neighbour)<radius*radius and point.distance_squared_to(neighbour)<current.distance_squared_to(neighbour): return true
+	return false
+
+func nest_point(site: String) -> Vector2: return site_point(site)+Vector2(-36,52)
+func near_nest(site: String) -> bool:
+	return site=="coop" and FarmLayout.active(site) and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(nest_point(site))<=54
+
+func collect_nest(site: String) -> bool:
+	if busy or not near_nest(site) or int(building(site).level)<1: return false
+	var rewards: Dictionary={}
+	for entry in animals_at(site):
+		if int(entry.product)>0:
+			var product: String=str(data.species[entry.species].product)
+			rewards[product]=int(rewards.get(product,0))+int(entry.product)
+	if rewards.is_empty() or not _exchange({},rewards,0): return false
+	for entry in animals_at(site): entry.product=0
+	Events.livestock_collected.emit(site)
+	Events.notice.emit("鸡窝已收好鸡蛋和鸭蛋；产物已进入背包。")
+	_commit();return true

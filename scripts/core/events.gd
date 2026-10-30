@@ -1,4 +1,5 @@
 extends Node
+signal livestock_collected(site: String)
 ## 系统之间通过信号传递事件，不直接操作别的系统节点。
 signal notice(text: String)
 signal action_requested

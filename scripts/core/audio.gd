@@ -22,6 +22,7 @@ func _ready() -> void:
 	Events.farm_action.connect(func(kind: String): play_sound("harvest" if kind == "收获" else "action"))
 	GameClock.day_advanced.connect(func(): play_sound("day"))
 	Events.resource_hit.connect(func(depleted: bool): play_sound("harvest" if depleted else "action"))
+	Events.livestock_collected.connect(func(_site: String): play_sound("harvest"))
 	music = loop_player(load("res://assets/audio/river_theme.wav"),-23.0)
 	rain = loop_player(load("res://assets/audio/rain.wav"),-40.0)
 

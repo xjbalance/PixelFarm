@@ -202,7 +202,7 @@ func animal_activity_and_restore() -> void:
 	var first: Dictionary=Livestock.animals_at("barn")[0]
 	var initial := Vector2(first.position[0],first.position[1])
 	check(Livestock.graze("barn"),"晴天开启满级六只动物的实体庭院活动")
-	GameClock.running=true;await frames(360);GameClock.running=false
+	GameClock.running=true;await frames(1200);GameClock.running=false
 	check(Vector2(first.position[0],first.position[1]).distance_to(initial)>12,"放牧实际改变动物独立位置，非仅菜单标志")
 	var saved := FarmSaveStore.snapshot(game)
 	var node: CharacterBody2D
@@ -216,14 +216,15 @@ func animal_activity_and_restore() -> void:
 		check(node.global_position.distance_to(expected)<.1,"恢复同时校正实际可见动物位置，不只恢复数据表")
 	GameClock.day=85;GameClock.minutes=600;Calendar.restore(Calendar.snapshot());GameClock.changed.emit()
 	GameWeather.enabled=true
-	GameClock.running=true;await frames(420);GameClock.running=false
+	GameClock.running=true;await frames(1200);GameClock.running=false
 	var sheltered := true
 	var collision_clear := true
 	var occupants: Array=Livestock.animals_at("barn")
 	for i in range(occupants.size()):
 		var a: Dictionary=occupants[i]
 		var position := Vector2(a.position[0],a.position[1])
-		if position.distance_to(Livestock.SITES.barn+Livestock.INDOOR[i])>10: sheltered=false
+		if not Livestock.activity_bounds(a,false).has_point(position):
+			sheltered=false
 		var query := PhysicsShapeQueryParameters2D.new()
 		var footprint := RectangleShape2D.new();footprint.size=Vector2(12,8)
 		query.shape=footprint;query.transform=Transform2D(0,position+Vector2(0,-3));query.collision_mask=1

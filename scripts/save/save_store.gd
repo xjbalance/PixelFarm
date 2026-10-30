@@ -36,7 +36,7 @@ static func write(game: Node, path: String = PATH) -> bool:
 	# 新开局外观尚未确认时不能让自动保存替换已有进度。
 	if game.get("awaiting_character_choice")==true: return false
 	# 农活生效事务的同步通知尚未结束时，不能把半份跨系统进度写入磁盘。
-	if Workshop.busy or Kitchen.busy or Territory.busy or game.farm.committing or Housing.busy or FarmLayout.busy or game.resource_world.committing(): return false
+	if Livestock.busy or Workshop.busy or Kitchen.busy or Territory.busy or game.farm.committing or Housing.busy or FarmLayout.busy or game.resource_world.committing(): return false
 	var data := snapshot(game)
 	if not valid(data): return false
 	var file := FileAccess.open(path+".tmp",FileAccess.WRITE)

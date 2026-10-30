@@ -21,7 +21,7 @@ def validate():
             assert id not in items,id
             items[id]=info
     # These are actual harvest/feed/animal/forage/normal fishing sources, not all registered IDs.
-    sources.update(['wood','stone','egg','milk','wool','wild_berry','fish_carp','fish_crucian'])
+    sources.update(['wood','stone','egg','duck_egg','milk','wool','wild_berry','fish_carp','fish_crucian'])
     for id,crop in data['crops'].items():
         assert id not in items,id
         assert 1<=crop['growth_days']<=28 and crop['seasons'] and all(s in range(4) for s in crop['seasons'])

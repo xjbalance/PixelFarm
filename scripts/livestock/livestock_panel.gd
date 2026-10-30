@@ -29,7 +29,9 @@ func button(text: String, action: Callable) -> Button:
 
 func open_panel(id: String) -> void:
 	if GameState.modal: return
-	if id.begins_with("animal:"):
+	if id.begins_with("nest:"):
+		if not Livestock.near_nest(id.trim_prefix("nest:")): return
+	elif id.begins_with("animal:"):
 		if not Livestock.near_animal(id.trim_prefix("animal:")): return
 	elif not Livestock.near_site(id): return
 	context=id;quantity=1;pending=Callable();confirm_text=""
@@ -72,6 +74,8 @@ func refresh() -> void:
 		words("确认本次操作",23);words(confirm_text,21)
 		button("确认",accept);button("取消",func(): pending=Callable();confirm_text="";refresh());return
 	words("第%d天 · %d金 · 干草%d · 钻石%d" % [GameClock.day,Inventory.coins,Inventory.count("hay"),Xiaojing.state.diamonds],16)
+	if context.begins_with("nest:"):
+		show_nest(context.trim_prefix("nest:"));return
 	if context.begins_with("animal:"):
 		show_animal(context.trim_prefix("animal:"));return
 	show_building(context)
@@ -91,6 +95,10 @@ func show_building(site: String) -> void:
 	FacilityLayout.metrics(section,[["畜舍等级",str(b.level)],["动物",str(s.count)+" / "+str(s.capacity)],["成年动物",str(s.adults)],["待收产物",str(s.products),FarmUIStyle.SUCCESS]])
 	words("%s需%d个足食成长日成年；成年后每%d个合格照料日生产%s。每只每天%d份干草，每只最多暂存3份产物。" % [species.name,species.growth_days,species.cycle,Catalog.item_name(species.product),species.feed],16)
 	button("接回一只"+species.young_name+" · "+DiamondPayments.text(int(species.price)),func(): ask("接回一只%s？费用%s，幼畜从零成长，容量满时不会扣款。" % [species.young_name,DiamondPayments.text(int(species.price))],func(): DiamondPayments.request(self,int(species.price),func(): result(Livestock.buy_animal(site))))).disabled=s.count>=s.capacity
+	if site=="coop":
+		var duck: Dictionary=Livestock.data.species.duck
+		button("接回一只小鸭 · "+DiamondPayments.text(int(duck.price)),func(): ask("接回小鸭？4个足食成长日成年，成年鸭每2个合格照料日产1枚鸭蛋。与鸡共用容量。",func(): DiamondPayments.request(self,int(duck.price),func(): result(Livestock.buy_animal(site,"duck"))))).disabled=s.count>=s.capacity
+		words("鸡窝在舍门左前方：鸡蛋、鸭蛋会安全暂存，点击鸡窝统一收取。",16)
 	if b.level<3:
 		var upgrade: Dictionary=Livestock.data.upgrades[str(int(b.level)+1)]
 		button("升级 · "+upgrade.name,func(): ask("保留全部动物与产物，扩容至%d只。消耗%s与%s？" % [upgrade.capacity,costs(upgrade.required),DiamondPayments.text(int(upgrade.coins))],func(): DiamondPayments.request(self,int(upgrade.coins),func(): result(Livestock.upgrade(site)))))
@@ -104,7 +112,8 @@ func show_building(site: String) -> void:
 	words("点击庭院里的动物可抚摸、喂食和收集产物；下列记录用于查看，离得太远时请先收起面板走近。",16)
 	for entry in Livestock.animals_at(site):
 		section=FacilityLayout.card(content,"animal_record")
-		words("%s · 成长%d/%d · 饥饿%d · 心情%d · 亲密%d · 产物%d" % [Livestock.display_name(entry.id),entry.age,species.growth_days,entry.hunger,entry.mood,entry.bond,entry.product],16)
+		var occupant: Dictionary=Livestock.data.species[entry.species]
+		words("%s · 成长%d/%d · 饥饿%d · 心情%d · 亲密%d · 产物%d" % [Livestock.display_name(entry.id),entry.age,occupant.growth_days,entry.hunger,entry.mood,entry.bond,entry.product],16)
 		var id: String=entry.id
 		button("照料 "+Livestock.display_name(id),func():
 			if Livestock.near_animal(id): context="animal:"+id;refresh()
@@ -142,3 +151,17 @@ func show_feed_shop() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and event.is_action_pressed("ui_cancel"): close_panel();get_viewport().set_input_as_handled()
+
+func show_nest(site: String) -> void:
+	section=FacilityLayout.card(content,"poultry_nest")
+	words("鸡鸭舍 · 温暖的鸡窝",23)
+	var products: Dictionary={"egg":0,"duck_egg":0}
+	for entry in Livestock.animals_at(site):
+		products[str(Livestock.data.species[entry.species].product)]+=int(entry.product)
+	for item in products:
+		var row:=HBoxContainer.new();section.add_child(row)
+		FacilityLayout.item_preview(row,str(item),40)
+		row.add_child(FarmUIStyle.label("%s ×%d" % [Catalog.item_name(str(item)),products[item]],20))
+	words("成年鸡每天、成年鸭每两个合格照料日产蛋。每只最多暂存3枚；背包满时蛋留在鸡窝。",16)
+	button("收取鸡窝里的蛋",func(): result(Livestock.collect_nest(site))).disabled=int(products.egg)+int(products.duck_egg)==0
+	section=null

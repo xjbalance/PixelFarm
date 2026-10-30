@@ -16,6 +16,7 @@ func attach(owner_game: Node) -> void:
 		game.world.get_node("Actors").add_child(point)
 		sites[id]=point
 	Livestock.changed.connect(refresh)
+	var nest:=Node2D.new();nest.set_script(preload("res://scripts/livestock/livestock_nest.gd"));game.world.get_node("Actors").add_child(nest)
 	FarmLayout.changed.connect(refresh)
 	refresh()
 

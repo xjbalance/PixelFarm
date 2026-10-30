@@ -32,6 +32,7 @@ func setup(owner_game: Node) -> void:
 	Events.navigation_changed.connect(func(): navigation.invalidate())
 
 func cancel() -> void:
+	if target.has("object") and is_instance_valid(target.object) and target.object.has_method("release_interaction"): target.object.release_interaction()
 	state = State.CANCELED
 	path.clear()
 	target.clear()
@@ -51,6 +52,7 @@ func request_target(intent: Dictionary) -> void:
 	if intent.is_empty(): return
 	if is_instance_valid(game.camera_rig): game.camera_rig.follow_now()
 	target = intent.duplicate()
+	if target.has("object") and is_instance_valid(target.object) and target.object.has_method("hold_for_interaction"): target.object.hold_for_interaction()
 	marker = target.point
 	marker_time = 0.7
 	marker_color = Color("ffe59a") if target.kind=="ground" else Color("a5e3c6")
@@ -166,6 +168,7 @@ func finish_path() -> void:
 	if pending.kind != "ground":
 		execution_count += 1
 		TouchInteractionExecutor.execute(game,pending,navigation)
+		if pending.has("object") and is_instance_valid(pending.object) and pending.object.has_method("release_interaction"): pending.object.release_interaction()
 	state = State.IDLE if game.player.farm_action.is_empty() else State.INTERACTING
 	if marker_time > 0: marker_time = minf(marker_time,0.25)
 	queue_redraw()

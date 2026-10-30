@@ -1,0 +1,517 @@
+{
+  "daily_eggs": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      1
+    ],
+    [
+      3,
+      2
+    ]
+  ],
+  "motion": [
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 0,
+          "direction": 0,
+          "distance": 0,
+          "position": [
+            136,
+            864
+          ]
+        },
+        "animal_000002": {
+          "behavior": 0,
+          "direction": 0,
+          "distance": 0,
+          "position": [
+            168,
+            864
+          ]
+        }
+      },
+      "frame": 0
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 2,
+          "direction": 0,
+          "distance": 0,
+          "position": [
+            136,
+            864
+          ]
+        },
+        "animal_000002": {
+          "behavior": 2,
+          "direction": 0,
+          "distance": 0,
+          "position": [
+            168,
+            864
+          ]
+        }
+      },
+      "frame": 60
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 2,
+          "direction": 0,
+          "distance": 0,
+          "position": [
+            136,
+            864
+          ]
+        },
+        "animal_000002": {
+          "behavior": 2,
+          "direction": 0,
+          "distance": 0,
+          "position": [
+            168,
+            864
+          ]
+        }
+      },
+      "frame": 120
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 0,
+          "distance": 11.7327923774719,
+          "position": [
+            132.189208984375,
+            875.0966796875
+          ]
+        },
+        "animal_000002": {
+          "behavior": 2,
+          "direction": 0,
+          "distance": 0,
+          "position": [
+            168,
+            864
+          ]
+        }
+      },
+      "frame": 180
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 0,
+          "distance": 43.7313170433044,
+          "position": [
+            121.796142578125,
+            905.3603515625
+          ]
+        },
+        "animal_000002": {
+          "behavior": 2,
+          "direction": 0,
+          "distance": 0,
+          "position": [
+            168,
+            864
+          ]
+        }
+      },
+      "frame": 240
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 0,
+          "distance": 75.7296923398972,
+          "position": [
+            111.403541564941,
+            935.6240234375
+          ]
+        },
+        "animal_000002": {
+          "behavior": 2,
+          "direction": 0,
+          "distance": 0,
+          "position": [
+            168,
+            864
+          ]
+        }
+      },
+      "frame": 300
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 0,
+          "direction": 0,
+          "distance": 88.5295032858849,
+          "position": [
+            107.246681213379,
+            947.730041503906
+          ]
+        },
+        "animal_000002": {
+          "behavior": 3,
+          "direction": 0,
+          "distance": 0,
+          "position": [
+            168,
+            864
+          ]
+        }
+      },
+      "frame": 360
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 2,
+          "distance": 115.729523301125,
+          "position": [
+            134.420288085938,
+            948.928466796875
+          ]
+        },
+        "animal_000002": {
+          "behavior": 3,
+          "direction": 0,
+          "distance": 0,
+          "position": [
+            168,
+            864
+          ]
+        }
+      },
+      "frame": 420
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 2,
+          "distance": 147.729896903038,
+          "position": [
+            166.389587402344,
+            950.33837890625
+          ]
+        },
+        "animal_000002": {
+          "behavior": 3,
+          "direction": 0,
+          "distance": 0,
+          "position": [
+            168,
+            864
+          ]
+        }
+      },
+      "frame": 480
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 2,
+          "distance": 179.730270504951,
+          "position": [
+            198.35888671875,
+            951.748291015625
+          ]
+        },
+        "animal_000002": {
+          "behavior": 1,
+          "direction": 0,
+          "distance": 12.4996814131737,
+          "position": [
+            174.697082519531,
+            874.55419921875
+          ]
+        }
+      },
+      "frame": 540
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 2,
+          "distance": 211.730644106865,
+          "position": [
+            230.328186035156,
+            953.158203125
+          ]
+        },
+        "animal_000002": {
+          "behavior": 1,
+          "direction": 0,
+          "distance": 37.499044239521,
+          "position": [
+            188.091247558594,
+            895.66259765625
+          ]
+        }
+      },
+      "frame": 600
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 2,
+          "distance": 243.73083460331,
+          "position": [
+            262.297302246094,
+            954.568115234375
+          ]
+        },
+        "animal_000002": {
+          "behavior": 1,
+          "direction": 0,
+          "distance": 62.4980151057243,
+          "position": [
+            201.484680175781,
+            916.77099609375
+          ]
+        }
+      },
+      "frame": 660
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 0,
+          "direction": 2,
+          "distance": 255.463969230652,
+          "position": [
+            274.01904296875,
+            955.085083007812
+          ]
+        },
+        "animal_000002": {
+          "behavior": 0,
+          "direction": 0,
+          "distance": 65.8312169015408,
+          "position": [
+            203.270385742188,
+            919.585510253906
+          ]
+        }
+      },
+      "frame": 720
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 0,
+          "direction": 2,
+          "distance": 255.463969230652,
+          "position": [
+            274.01904296875,
+            955.085083007812
+          ]
+        },
+        "animal_000002": {
+          "behavior": 1,
+          "direction": 1,
+          "distance": 69.9978885352612,
+          "position": [
+            199.12548828125,
+            920.010925292969
+          ]
+        }
+      },
+      "frame": 780
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 1,
+          "distance": 284.797012507915,
+          "position": [
+            245.072143554688,
+            952.044128417969
+          ]
+        },
+        "animal_000002": {
+          "behavior": 1,
+          "direction": 1,
+          "distance": 94.9978186786175,
+          "position": [
+            174.256103515625,
+            922.562438964844
+          ]
+        }
+      },
+      "frame": 840
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 1,
+          "distance": 316.797011852264,
+          "position": [
+            225.834350585938,
+            937.034362792969
+          ]
+        },
+        "animal_000002": {
+          "behavior": 0,
+          "direction": 1,
+          "distance": 112.49770873785,
+          "position": [
+            156.847534179688,
+            924.347900390625
+          ]
+        }
+      },
+      "frame": 900
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 1,
+          "distance": 348.797137081623,
+          "position": [
+            206.684219360352,
+            920.780456542969
+          ]
+        },
+        "animal_000002": {
+          "behavior": 1,
+          "direction": 2,
+          "distance": 122.497460305691,
+          "position": [
+            165.25390625,
+            918.932373046875
+          ]
+        }
+      },
+      "frame": 960
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 0,
+          "direction": 0,
+          "distance": 373.864168405533,
+          "position": [
+            196.546142578125,
+            910.491027832031
+          ]
+        },
+        "animal_000002": {
+          "behavior": 1,
+          "direction": 2,
+          "distance": 143.330771833658,
+          "position": [
+            182.767181396484,
+            907.649108886719
+          ]
+        }
+      },
+      "frame": 1020
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 0,
+          "direction": 0,
+          "distance": 373.864168405533,
+          "position": [
+            196.546142578125,
+            910.491027832031
+          ]
+        },
+        "animal_000002": {
+          "behavior": 1,
+          "direction": 2,
+          "distance": 143.330771833658,
+          "position": [
+            182.767181396484,
+            907.649108886719
+          ]
+        }
+      },
+      "frame": 1080
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 0,
+          "distance": 390.930574655533,
+          "position": [
+            196.546142578125,
+            927.557434082031
+          ]
+        },
+        "animal_000002": {
+          "behavior": 1,
+          "direction": 3,
+          "distance": 149.58118185401,
+          "position": [
+            182.351501464844,
+            901.412536621094
+          ]
+        }
+      },
+      "frame": 1140
+    },
+    {
+      "animals": {
+        "animal_000001": {
+          "behavior": 1,
+          "direction": 1,
+          "distance": 422.930270910263,
+          "position": [
+            177.350280761719,
+            940.750549316406
+          ]
+        },
+        "animal_000002": {
+          "behavior": 1,
+          "direction": 3,
+          "distance": 174.582851320505,
+          "position": [
+            180.688339233398,
+            876.466247558594
+          ]
+        }
+      },
+      "frame": 1200
+    }
+  ]
+}
