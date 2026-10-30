@@ -32,9 +32,9 @@ func run() -> void:
 		var rect:=FarmAtlasData.bounds(id);var point: Vector2=rect.position+rect.size*.37
 		check(FarmAtlasData.map_to_world(id,FarmAtlasData.world_to_map(id,point)).distance_to(point)<.001,"独立场景坐标往返："+id)
 	atlas.show_region("farm");await frames(2)
-	check(atlas.region_id=="farm" and atlas.resources.size()==42,"农场详图有原42个稳定采集坐标")
+	check(atlas.region_id=="farm" and atlas.resources.size()==109,"农场详图有109个稳定采集坐标")
 	var marks: Array[Dictionary]=FarmAtlasData.resource_marks("farm",{"tree_5_8":{"hp":0}})
-	check(marks.size()==42 and not marks[0].available and marks[0].id=="tree_5_8","耗尽资源以原稳定ID显示恢复状态，不重新生成资源")
+	check(marks.size()==109 and not marks[0].available and marks[0].id=="tree_5_8","耗尽资源以原稳定ID显示恢复状态，不重新生成资源")
 	check(atlas.player_map_position()==FarmAtlasData.world_to_map("farm",player.position),"农场玩家标记使用真实脚底坐标")
 	var pin:=atlas.player_map_position();var screen:=atlas.map_to_screen(pin)
 	check(atlas.screen_to_map(screen).distance_to(pin)<2,"未缩放图纸正反映射")

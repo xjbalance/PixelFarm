@@ -134,12 +134,12 @@ func autumn_exhibit() -> void:
 	var chick: String=Livestock.state.animals[0].id
 	for i in range(3):
 		var animal: Dictionary=Livestock.animal(chick)
-		await Touch.place(self,game,"farm",Vector2(animal.position[0],animal.position[1])+Vector2(0,24))
+		await Touch.place(self,game,Livestock.animal_area(animal),Livestock.animal_point(animal)+Vector2(0,24))
 		check(Livestock.feed(chick),"亲手饲喂幼鸡照料日："+str(i))
 		GameClock.minutes=1200;check(GameClock.request_sleep(GameClock.day),"畜牧经过真实跨天生长")
 		await frames(4)
 	var adult: Dictionary=Livestock.animal(chick)
-	await Touch.place(self,game,"farm",Vector2(adult.position[0],adult.position[1])+Vector2(0,24))
+	await Touch.place(self,game,Livestock.animal_area(adult),Livestock.animal_point(adult)+Vector2(0,24))
 	check(Livestock.collect(chick) and Inventory.count("egg")>=1,"鸡蛋实际产出并领取，节日有本季畜产凭据")
 	await at_day(78,600)
 	game.change_location("farm",Vector2(656,560))

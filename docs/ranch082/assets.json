@@ -1,0 +1,191 @@
+{
+  "palette": "晴光河湾 · 明亮田园",
+  "grid": 32,
+  "direction_rows": [
+    "down",
+    "left",
+    "right",
+    "up"
+  ],
+  "actions": [
+    "walk",
+    "graze",
+    "rest"
+  ],
+  "frames_per_direction": 4,
+  "assets": [
+    {
+      "file": "assets/livestock/ranch082/boulder_autumn.png",
+      "size": [
+        64,
+        48
+      ],
+      "native_pixels": true,
+      "sha256": "6f275242ee9522edb3413a06a85f52dfffff9ec1460b49f17796b7015bfbe56f"
+    },
+    {
+      "file": "assets/livestock/ranch082/boulder_spring.png",
+      "size": [
+        64,
+        48
+      ],
+      "native_pixels": true,
+      "sha256": "6f275242ee9522edb3413a06a85f52dfffff9ec1460b49f17796b7015bfbe56f"
+    },
+    {
+      "file": "assets/livestock/ranch082/boulder_summer.png",
+      "size": [
+        64,
+        48
+      ],
+      "native_pixels": true,
+      "sha256": "6f275242ee9522edb3413a06a85f52dfffff9ec1460b49f17796b7015bfbe56f"
+    },
+    {
+      "file": "assets/livestock/ranch082/boulder_winter.png",
+      "size": [
+        64,
+        48
+      ],
+      "native_pixels": true,
+      "sha256": "9f5f3a5182f0660873598f90c629bdd5b138e4ffe6ffe3888a49718756cba7b5"
+    },
+    {
+      "file": "assets/livestock/ranch082/chicken.png",
+      "size": [
+        128,
+        384
+      ],
+      "native_pixels": true,
+      "sha256": "816cd9a563aed5b183093d729489ef0f387b171fd5d2ab763cc659eca8b90019"
+    },
+    {
+      "file": "assets/livestock/ranch082/cow.png",
+      "size": [
+        192,
+        480
+      ],
+      "native_pixels": true,
+      "sha256": "684eacadc7e6f0bb975aff17586736bda85a6e8204d0576959019689bde57fdf"
+    },
+    {
+      "file": "assets/livestock/ranch082/duck.png",
+      "size": [
+        128,
+        384
+      ],
+      "native_pixels": true,
+      "sha256": "3ba464acc7e46b6ee3b816ca1bd563720876b39ee805343432c2b1f1e125f3b5"
+    },
+    {
+      "file": "assets/livestock/ranch082/duck_egg.png",
+      "size": [
+        32,
+        32
+      ],
+      "native_pixels": true,
+      "sha256": "b0b6421bbd045e56603f4d72fe13b6e824c6c40dc65bf259ad4d46b861ccddd6"
+    },
+    {
+      "file": "assets/livestock/ranch082/gate.png",
+      "size": [
+        48,
+        40
+      ],
+      "native_pixels": true,
+      "sha256": "cac4d47f23cdc7ba9783ac0efca09e2a76e27ad913b1ca006b37647c165c1625"
+    },
+    {
+      "file": "assets/livestock/ranch082/nest.png",
+      "size": [
+        48,
+        40
+      ],
+      "native_pixels": true,
+      "sha256": "786a9161fda2fd68abfb85d494aa235aa6b9597aaebdf9d32bd9efa37b4f4a83"
+    },
+    {
+      "file": "assets/livestock/ranch082/nest_empty.png",
+      "size": [
+        48,
+        40
+      ],
+      "native_pixels": true,
+      "sha256": "9a02e2ea8fa87403313fc793777d37b8072dca07bebb446bf5957bcbcf38854f"
+    },
+    {
+      "file": "assets/livestock/ranch082/salted_duck_egg.png",
+      "size": [
+        32,
+        32
+      ],
+      "native_pixels": true,
+      "sha256": "c1f0ed0567761d8348fb454de4dd1d4a2b169054e3607dae04185f336745cdcb"
+    },
+    {
+      "file": "assets/livestock/ranch082/sheep.png",
+      "size": [
+        160,
+        432
+      ],
+      "native_pixels": true,
+      "sha256": "29b19b2d4cb366f4a462bfdebc547de49f67e79aea043741019113c4aebc2c95"
+    },
+    {
+      "file": "assets/livestock/ranch082/trough.png",
+      "size": [
+        48,
+        40
+      ],
+      "native_pixels": true,
+      "sha256": "3f1a12e4ec6443db846acd40cdd7192c69f7674160d51db76d39953e4d9953eb"
+    },
+    {
+      "file": "assets/livestock/ranch082/water_basin.png",
+      "size": [
+        48,
+        40
+      ],
+      "native_pixels": true,
+      "sha256": "e05cf14e1d00343d97558536e30fc3784d1020d87cfdbb8a1442d726fec384d1"
+    }
+  ],
+  "external_new_assets": false,
+  "protected_rules": [
+    {
+      "file": "resources/fishing/fishing.json",
+      "sha256": "21458f89447ef12395bf9bbb0e74154c20a1a44f1e3f8415d86b3d133fda1457",
+      "unchanged_since": "244c379"
+    },
+    {
+      "file": "resources/seasons/climate.json",
+      "sha256": "d582e602bf3ccd51e2321d501e8ed485c9c24155e4c73f4f03043318391a23b4",
+      "unchanged_since": "244c379"
+    },
+    {
+      "file": "resources/story/marriage_preparation.json",
+      "sha256": "dc711406c66044d6fc0968edcf3d031e12519175550cdf95c3583f2111862d76",
+      "unchanged_since": "244c379"
+    },
+    {
+      "file": "scripts/time/game_clock.gd",
+      "sha256": "24d6f5869c197b126af31bef9edd5b181ec2bb183ac71555595d5d4e4ba5ea1f",
+      "unchanged_since": "244c379"
+    },
+    {
+      "file": "resources/crops/carrot.tres",
+      "sha256": "4cd4c05481c45ae81c6dd89815b949d3eda8ddd26ec504abf934d2c6f9dc5287",
+      "unchanged_since": "244c379"
+    },
+    {
+      "file": "resources/crops/potato.tres",
+      "sha256": "d80ffe6bc129e51951edbd0413f2024ce0c43d0cb8943818523ed9f2d66c1209",
+      "unchanged_since": "244c379"
+    },
+    {
+      "file": "resources/crops/wheat.tres",
+      "sha256": "c40331d43ff78f08845525f2ba97f6187c1fd19db0fb593ff2c157db4e2c3e81",
+      "unchanged_since": "244c379"
+    }
+  ]
+}

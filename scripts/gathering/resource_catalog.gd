@@ -67,7 +67,7 @@ static func current_footprint(id: String, at: Variant=null) -> Rect2i:
 	if entry.is_empty() or (at==null and stored(id)): return Rect2i()
 	var cell: Vector2i=Vector2i((point(id)/32).floor()) if at==null else TerritoryCatalog.to_cell(at)
 	if cell==TerritoryCatalog.INVALID_CELL: return Rect2i()
-	var extent:=Vector2(22,19) if entry.kind=="tree" else Vector2(30,16)
+	var extent:=Vector2(22,19) if entry.kind=="tree" else Vector2(46,28) if entry.kind=="boulder" else Vector2(30,16)
 	var origin: Vector2=point(id) if at==null else Vector2(cell)*32
 	var rect:=Rect2(origin+Vector2(0,-5)-extent*.5,extent)
 	var start:=Vector2i((rect.position/32).floor());var end:=Vector2i((rect.end/32).ceil())

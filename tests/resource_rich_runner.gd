@@ -106,10 +106,10 @@ func transaction() -> Dictionary:
 func catalogs_and_legacy() -> void:
 	await fresh()
 	var all: Dictionary=FarmResourceCatalog.all_placements()
-	check(all.size()==128 and game.resource_world.fields.size()==3,"三图真实资源目录合计128个唯一节点")
-	for row in [["farm",30,12],["village",10,6],["mist_forest",45,25]]:
+	check(all.size()==195 and game.resource_world.fields.size()==3,"三图真实资源目录合计195个唯一节点")
+	for row in [["farm",50,24],["village",10,6],["mist_forest",45,25]]:
 		var counts: Dictionary={"tree":0,"rock":0};var entries: Dictionary=FarmResourceCatalog.placements(row[0])
-		for entry in entries.values(): counts[entry.kind]+=1
+		for entry in entries.values(): counts[entry.kind]=int(counts.get(entry.kind,0))+1
 		check(counts.tree==row[1] and counts.rock==row[2] and game.resource_world.fields[row[0]].objects.size()==entries.size(),"配置节点与实体树石数量一致："+str(row[0]))
 	var kept:=true
 	for id in LEGACY_IDS: kept=kept and FarmResourceCatalog.placements().has(id)
@@ -122,10 +122,13 @@ func catalogs_and_legacy() -> void:
 	check(FarmSaveStore.restore(game,old),"旧资源快照通过完整恢复入口")
 	await frames(5)
 	var expanded: Dictionary=game.resource_world.snapshot();var old_preserved:=true;var new_defaults:=true
-	for id in old.resources: old_preserved=old_preserved and expanded[id]==old.resources[id]
+	for id in old.resources:
+		var expected: Dictionary=old.resources[id].duplicate(true)
+		if id=="tree_7_20": expected.ready_day=0
+		old_preserved=old_preserved and expanded[id]==expected
 	for id in all:
 		if not old.resources.has(id): new_defaults=new_defaults and expanded[id]=={"hp":int(FarmResourceCatalog.TYPES[all[id].kind].hits),"ready_day":0}
-	check(old_preserved and expanded.size()==128,"旧已砍树和半损石不刷新，新图与新节点被补入")
+	check(old_preserved and expanded.size()==195,"旧已砍树和半损石不刷新，新图与新节点被补入")
 	check(new_defaults,"缺失新增ID仅初始化各自完整耐久，不提前扣费或发奖")
 	var before:=transaction();var snap:=FarmSaveStore.snapshot(game)
 	for _i in range(3):
@@ -156,6 +159,9 @@ func all_resources_reachable(area: String) -> bool:
 		var object: Node2D=field.objects[id]
 		if field.state[id].hp<=0: continue
 		var route: PackedVector2Array=game.auto_move.navigation.path_to({"kind":"resource","object":object,"point":object.global_position})
+		if route.is_empty() and field.access_target(object)!=object:
+			var blocker: Node2D=field.access_target(object)
+			route=game.auto_move.navigation.path_to({"kind":"resource","object":blocker,"point":blocker.global_position})
 		if route.is_empty(): reachable=false;print("RESOURCE PATH MISSING ",id)
 	return reachable
 

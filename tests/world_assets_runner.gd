@@ -29,10 +29,10 @@ func run() -> void:
 		textures.append(hash(house.texture.get_image().get_data()))
 	check(textures[0]!=textures[1] and textures[1]!=textures[2] and textures[2]!=textures[3],"四级房屋真实像素外观有区别")
 	check(collision_count==1 and geometry.size()==collision_count,"换图不会复制房屋实体碰撞")
-	check(game.world.ground.get_used_cells().size()==1536 and game.farm.LEGACY_BOUNDS==Rect2i(17,16,10,6) and game.farm.BOUNDS==Rect2i(0,0,48,32),"保留原60格逻辑范围，同时开放全48×32农场内合法生产田地")
+	check(game.world.ground.get_used_cells().size()==6144 and game.farm.LEGACY_BOUNDS==Rect2i(17,16,10,6) and game.farm.BOUNDS==Rect2i(0,0,96,64),"保留原60格逻辑范围，同时开放全96×64农场内合法生产田地")
 	for area in game.resource_world.fields:
 		for object in game.resource_world.fields[area].objects.values():
-			check(object.sprite.texture.resource_path.contains("/world_scheme_c/") and object.sprite.scale==Vector2.ONE,"新树石保留原生比例："+str(area)+"/"+str(object.resource_id))
+			check((object.sprite.texture.resource_path.contains("/world_scheme_c/") or (object.kind=="boulder" and object.sprite.texture.get_size()==Vector2(64,48))) and object.sprite.scale==Vector2.ONE,"新树石保留原生比例："+str(area)+"/"+str(object.resource_id))
 	check(FarmSaveStore.restore(game,original),"新美术支持原完整存档恢复")
 	await frames(5)
 	check(FarmSaveStore.snapshot(game).plots==original.plots and FarmSaveStore.snapshot(game).resources==original.resources and Housing.snapshot()==original.housing,"美术接入保留农田、资源、家具和储物状态")

@@ -277,5 +277,5 @@ func registry_checks() -> void:
 	check(recount==original_count,"再次扫描实际场景不复制或重复注册原设施节点")
 	var resources: Dictionary=game.resource_world.fields.farm.objects;var resource_nodes: Dictionary={}
 	for node in resources.values(): resource_nodes[node.get_instance_id()]=true
-	check(resources.size()==42 and resource_nodes.size()==42,"42个原采集资源ID对应42个唯一实际节点")
+	check(resources.size()==109 and resource_nodes.size()==109,"109个原有与扩展资源ID各对应唯一实际节点")
 	registry_report={"fixture_ids":definitions.size(),"listed_fixture_ids":listed.size(),"physical_groups":groups,"scene_fixture_nodes":original_count,"resource_nodes":resource_nodes.size(),"nodes_per_fixture":counts,"lake_representation":"live_tilemap_terrain"}

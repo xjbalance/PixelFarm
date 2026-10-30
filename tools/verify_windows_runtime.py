@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Run the actual Windows export with isolated Wine/Xvfb; never Windows-native acceptance."""
 from pathlib import Path
-import argparse,ctypes,hashlib,json,os,shutil,subprocess,tempfile,time
+import argparse,ctypes,hashlib,json,os,re,shutil,subprocess,tempfile,time
 from PIL import ImageGrab
 
 PROJECT=Path(__file__).resolve().parents[1]
+EXPECTED_SAVE_VERSION=int(re.search(r'const VERSION: int = (\d+)',(PROJECT/'scripts/save/save_store.gd').read_text()).group(1))
 RUNTIME=PROJECT/'.tools/windows/runtime'
 WINE=RUNTIME/'bin/wine-portable'
 X11=ctypes.CDLL('libX11.so.6')
@@ -207,7 +208,7 @@ try:
         clean_output(restart.stdout)
         if restart.returncode:raise RuntimeError('Actual EXE restart failed')
         restored_path,restored=locate_save(prefix)
-        if not restored or restored.get('appearance')!=original_appearance or restored.get('version')!=29 or 'farm_layout' not in restored:raise RuntimeError('Restart changed the saved avatar/schema')
+        if not restored or restored.get('appearance')!=original_appearance or restored.get('version')!=EXPECTED_SAVE_VERSION or 'farm_layout' not in restored:raise RuntimeError('Restart changed the saved avatar/schema')
         report['save_restart']=True;report['player_profile_isolated']=True;report['standalone_without_source']=True;report['unicode_path_tested']=True
         report['status']='passed'
         subprocess.run([str(RUNTIME/'root/usr/lib/wine/wineserver64'),'-k'],env=env,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,timeout=10)

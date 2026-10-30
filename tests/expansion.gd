@@ -47,7 +47,7 @@ static func gathering(test: Node, game: Node) -> void:
 	await test.frames()
 	test.advance_day()
 	await test.frames()
-	test.check(field.state.tree_7_20.hp == 3 and not field.objects.tree_7_20.collider.disabled,"位置安全后换日恢复树木和碰撞")
+	test.check(field.state.tree_7_20.hp == 0 and field.objects.tree_7_20.collider.disabled,"农场即使位置安全换日也永久保持清理状态")
 	test.check(field.hit("rock_11_19","pickaxe") and field.state.rock_11_19.hp == 1,"采石保留剩余耐久")
 	var snapshot: Dictionary = field.state.duplicate(true)
 	field.restore({})
@@ -57,15 +57,17 @@ static func gathering(test: Node, game: Node) -> void:
 	test.advance_day()
 	test.check(field.state.rock_11_19.hp == 0,"石堆在首日仍枯竭")
 	test.advance_day()
-	test.check(field.state.rock_11_19.hp == 2,"石堆第二天再生")
+	test.check(field.state.rock_11_19.hp == 0,"农场石堆第二天仍不再生")
+	field.state.tree_9_24={"hp":3,"ready_day":0}
+	field.objects.tree_9_24.refresh()
 	Inventory.items["wood"] = Inventory.MAX_STACK
-	field.hit("tree_7_20","axe")
-	field.hit("tree_7_20","axe")
+	field.hit("tree_9_24","axe")
+	field.hit("tree_9_24","axe")
 	energy = GameState.stamina
-	test.check(not field.hit("tree_7_20","axe") and field.state.tree_7_20.hp == 1 and GameState.stamina == energy,"背包容纳不下整份掉落时不破坏资源或扣体力")
+	test.check(not field.hit("tree_9_24","axe") and field.state.tree_9_24.hp == 1 and GameState.stamina == energy,"背包容纳不下整份掉落时不破坏资源或扣体力")
 	Inventory.items["wood"] = 5
 	GameState.stamina = 0
-	test.check(not field.hit("tree_7_20","axe") and field.state.tree_7_20.hp == 1,"体力耗尽不能采集")
+	test.check(not field.hit("tree_9_24","axe") and field.state.tree_9_24.hp == 1,"体力耗尽不能采集")
 	GameState.rest()
 	var coins: int = Inventory.coins
 	test.check(FarmEconomy.sell("wood",2) and Inventory.count("wood") == 3 and Inventory.coins == coins+8,"木材可在经济系统按单价出售")
@@ -143,7 +145,7 @@ static func save_compatibility(test: Node, game: Node) -> void:
 		{"progress":{"built":[],"quests":{"river_path":2},"friendship":0,"last_talk_day":0}},
 		{"progress":{"built":[],"quests":{},"friendship":101,"last_talk_day":0}},
 		{"resources":{"tree_7_20":{"hp":-1,"ready_day":0}}},
-		{"resources":{"tree_7_20":{"hp":0,"ready_day":0}}},
+		{"resources":{"tree_7_20":{"hp":0,"ready_day":-1}}},
 		{"resources":{"tree_bad":{"hp":1,"ready_day":0}}}
 	]:
 		var invalid: Dictionary = data.duplicate(true)

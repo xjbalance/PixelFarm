@@ -54,13 +54,13 @@ func default_identities() -> void:
 	reset()
 	check(FarmLayout.validate(FarmLayout.defaults()) and FarmLayout.snapshot().fixtures.is_empty(),"初始仅存覆盖记录，原设施仍在原位")
 	check(FarmLayoutCatalog.definitions().size()>=64,"固定索引包含主要建筑与原剧情、生活摆件")
-	check(FarmLayoutCatalog.ids("resource").size()==42 and FarmLayoutCatalog.ids("plot").size()==1536,"只复用原42资源身份及48×32逻辑田池")
+	check(FarmLayoutCatalog.ids("resource").size()==103 and FarmLayoutCatalog.ids("plot").size()==6144,"保留原资源身份并扩充稳定资源与96×64逻辑田池")
 	for id in FarmLayoutCatalog.MAIN_FIXTURES:
 		var at: Array=FarmLayoutCatalog.MAIN_FIXTURES[id]
 		check(FarmLayout.point(id)==Vector2(at[0],at[1]) and FarmLayout.active(id),"默认设施保留完整旧pixel锚点："+str(id))
 	check(FarmLayout.cell("resource","tree_5_8")==Vector2i(5,8) and FarmLayout.position("resource","tree_5_8")==Vector2(160,256),"原资源ID与脚底坐标不变")
 	check(FarmLayout.position("plot","17,16")==Vector2(560,528) and not FarmLayout.stored("plot","17,16"),"生产田默认逻辑ID和物理坐标保持一致")
-	check(FarmLayoutCatalog.valid_id("plot","47,31") and not FarmLayoutCatalog.valid_id("plot","48,31"),"逻辑生产田池完整而不越出原地图")
+	check(FarmLayoutCatalog.valid_id("plot","47,31") and FarmLayoutCatalog.valid_id("plot","48,31") and FarmLayoutCatalog.valid_id("plot","95,63") and not FarmLayoutCatalog.valid_id("plot","96,63"),"逻辑生产田池完整而不越出原地图")
 	for raw in [{},{"version":26},{"housing":false},{"plots":[]},{"resources":"bad"}]:
 		check(FarmLayout.migrate(raw)==FarmLayout.defaults(),"迁移仅新增原位覆盖，不读取或重发旧业务进度")
 
@@ -110,9 +110,9 @@ func bad_layouts() -> void:
 	reset();var source:=FarmLayout.defaults()
 	var bad:=source.duplicate(true);bad.fixtures.home_clone={"cell":[20,10],"stored":false};check(not FarmLayout.validate(bad),"不能复制固定住宅ID")
 	bad=source.duplicate(true);bad.resources.new_tree={"cell":[20,10],"stored":false};check(not FarmLayout.validate(bad),"陌生资源ID不能加入原资源池")
-	for at in [[48,10],[-1,10],[20,32],[1.5,10],[NAN,10],[10,10,0]]:
+	for at in [[96,10],[-1,10],[20,64],[1.5,10],[NAN,10],[10,10,0]]:
 		bad=source.duplicate(true);bad.fixtures.home={"cell":at,"stored":false};check(not FarmLayout.validate(bad),"拒绝畸形或地图外坐标："+str(at))
-	bad=source.duplicate(true);bad.fixtures.home={"cell":[47,31],"stored":false};check(not FarmLayout.validate(bad),"实体占地越出地图时不能伪造合法锚点")
+	bad=source.duplicate(true);bad.fixtures.home={"cell":[95,63],"stored":false};check(not FarmLayout.validate(bad),"实体占地越出地图时不能伪造合法锚点")
 	bad=source.duplicate(true);bad.fixtures.home={"cell":[20,12],"stored":1};check(not FarmLayout.validate(bad),"收纳标志必须为真实布尔值")
 	bad=source.duplicate(true);bad.fixtures.home={"cell":[20,12],"stored":false,"level":4};check(not FarmLayout.validate(bad),"布局中不能夹带建筑等级或生产进度")
 	bad=source.duplicate(true);bad.resources.tree_5_8={"cell":[7,20],"stored":false};check(not FarmLayout.validate(bad),"覆盖记录也需与未移动原资源交叉检查")

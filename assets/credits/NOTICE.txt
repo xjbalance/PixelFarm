@@ -1,7 +1,8 @@
-像素世界 / Pixel World 0.4.0 · 那些没有寄出的信
+像素世界 / Pixel World 0.8.2 · 活力牧场
 
-游戏代码、故事、角色、像素素材和合成音乐由本工程独立制作。
+游戏代码、故事、合成音乐与项目原创像素扩展由本工程制作。
+世界与角色资源沿用用户提供的方案 C 素材及现有派生资源；世界来源与处理记录见 assets/world_scheme_c/manifest.json。
+0.8.2 的四向畜禽图集、鸡窝、食槽、水盆和鸭蛋加工图标由项目像素生成器绘制；大石堆由已有石块以原生像素组合，保留原素材来源说明。
 引擎：Godot Engine 4.3，MIT。完整许可：GODOT-LICENSE.txt。
 引擎第三方声明：GODOT-THIRD-PARTY.txt。
 字体：Noto Sans CJK，SIL Open Font License 1.1；完整版权和许可位于 assets/ui/fonts/LICENSE.txt。
-参考仓库只用于设计研究，未引入其游戏代码、角色、美术或音乐。

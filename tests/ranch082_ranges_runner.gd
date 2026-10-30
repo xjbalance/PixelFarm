@@ -7,7 +7,10 @@ func run() -> void:
 	game.tutorial.restore(GameTutorial.defaults(true))
 	Inventory.items={"wood":999,"stone":999,"hay":999,"copper_bar":99,"iron_bar":99};Inventory.coins=100000
 	for site in RanchLayout.ENABLED: await verify_range(site)
-	var file:=FileAccess.open("res://docs/ranch082/ranges-results.json",FileAccess.WRITE);file.store_string(JSON.stringify(report,"  "));file.close()
+	var path: String="res://docs/ranch082/ranges-"+("window" if DisplayServer.get_name()!="headless" else "headless")+"-results.json"
+	var file:=FileAccess.open(path,FileAccess.WRITE);file.store_string(JSON.stringify(report,"  "));file.close()
+	if DisplayServer.get_name()!="headless":
+		file=FileAccess.open("res://docs/ranch082/ranges-results.json",FileAccess.WRITE);file.store_string(JSON.stringify(report,"  "));file.close()
 	print("RANCH082 RANGES RESULT: %d checks, %d failures" % [checked,failed])
 	game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(8);get_tree().quit(1 if failed else 0)
 func verify_range(site: String) -> void:
@@ -31,17 +34,20 @@ func verify_range(site: String) -> void:
 	var required: int=int(RanchLayout.catalog().baseline_cells[site])*int(RanchLayout.definition(site).minimum_multiplier)
 	check(map.reachable.size()>=required,"connected animal cells meet multiplier "+site)
 	game.auto_move.navigation.rebuild()
-	var physically_clear: int=0;var disconnected: int=0
+	var physically_clear: int=0;var disconnected: int=0;var outdoor: int=0
 	for cell in map.reachable:
-		if not game.auto_move.navigation.static_solid.has(cell): physically_clear+=1
+		if not game.auto_move.navigation.static_solid.has(cell):
+			physically_clear+=1
+			if not RanchLayout.shelter(site).has_point(Vector2(cell)*32+Vector2(16,16)): outdoor+=1
 		else: disconnected+=1
 	check(disconnected==0 and physically_clear>=required,"area count excludes real obstacles and agrees with engine probes "+site)
+	check(outdoor>=required,"outdoor effective grazing area still meets multiplier after deducting entire shelter footprint "+site)
 	var every_home:=true
 	for i in range(6):
 		var cell:=Vector2i((RanchLayout.home(site,i)/32).floor())
 		if not map.reachable.has(cell): every_home=false
 	check(every_home,"all six indoor stalls connect to grazing ground "+site)
-	report.areas[site]={"old_cells":35,"new_connected_cells":map.reachable.size(),"engine_clear_cells":physically_clear,"multiplier":float(physically_clear)/35,"grid":[map.grid.region.size.x,map.grid.region.size.y]}
+	report.areas[site]={"old_cells":35,"new_connected_cells":map.reachable.size(),"engine_clear_cells":physically_clear,"outdoor_effective_cells":outdoor,"shelter_walkable_cells_deducted":physically_clear-outdoor,"multiplier":float(outdoor)/35,"grid":[map.grid.region.size.x,map.grid.region.size.y]}
 	game.auto_move.request_target({"kind":"ground","point":RanchLayout.service(site)+Vector2(16,64)})
 	await Touch.finish(self,game,1200)
 	check(game.player.position.distance_to(RanchLayout.service(site)+Vector2(16,64))<4,"player walks across actual pasture "+site)
@@ -50,8 +56,16 @@ func verify_range(site: String) -> void:
 	check(Livestock.graze(site),"same barn management opens sunny grazing "+site)
 	for entry in Livestock.animals_at(site): entry.age=Livestock.data.species[entry.species].growth_days
 	Livestock.changed.emit();await frames(4)
-	var samples: Array=[];var seen: Dictionary={};GameClock.running=true
+	var samples: Array=[];var seen: Dictionary={};var grazer: String="";var graze_start: int=-1;GameClock.running=true
 	for tick in range(1801):
+		if DisplayServer.get_name()!="headless":
+			if grazer=="":
+				for entry in Livestock.animals_at(site):
+					var node: CharacterBody2D=animal_node(str(entry.id))
+					if int(node.behavior)==2 and node.timer>1.4: grazer=str(entry.id);graze_start=tick;break
+			if grazer!="" and tick-graze_start<=90 and (tick-graze_start)%15==0:
+				game.camera_rig.mode=game.camera_rig.Mode.FREE_LOOK;game.camera_rig.view_center=animal_node(grazer).position;game.camera_rig.apply_camera()
+				await RenderingServer.frame_post_draw;get_viewport().get_texture().get_image().save_png("res://docs/ranch082/"+site+"-graze-%04d.png" % (tick-graze_start))
 		if tick%30==0:
 			var row: Dictionary={"frame":tick,"animals":{}}
 			for entry in Livestock.animals_at(site):
@@ -75,6 +89,7 @@ func verify_range(site: String) -> void:
 	check(seen.has(1) and seen.has(2),"observed actual walking and grazing states "+site)
 	check(FarmSaveStore.valid(FarmSaveStore.snapshot(game)),"moving pasture state validates whole save "+site)
 	report.motion[site]=samples
+	if DisplayServer.get_name()!="headless": await panorama(site)
 	var first: Dictionary=Livestock.animals_at(site)[0];var node: CharacterBody2D=animal_node(str(first.id))
 	game.player.position=node.position+Vector2(0,45);game.camera_rig.follow_now();await frames(4)
 	GameClock.running=true
@@ -113,9 +128,30 @@ func verify_range(site: String) -> void:
 	if DisplayServer.get_name()!="headless":
 		game.player.position=RanchLayout.service(site)+Vector2(0,40);game.camera_rig.follow_now();await frames(4);await RenderingServer.frame_post_draw
 		get_viewport().get_texture().get_image().save_png("res://docs/ranch082/"+site+"-returned.png")
+	await walls(site)
 	game.change_location("farm",Livestock.site_point(site)+Vector2(0,32));await frames(4)
 	check(Livestock.animals_at(site).size()==6,"travel never duplicates animals "+site)
 func animal_node(id: String) -> CharacterBody2D:
 	for node in get_tree().get_nodes_in_group("livestock_animals"):
 		if node.animal_id==id: return node
 	return null
+
+func walls(site: String) -> void:
+	var saved:=FarmSaveStore.snapshot(game);var entry: Dictionary=Livestock.animals_at(site)[0]
+	var room:=RanchLayout.shelter(site);entry.pasture_position=[room.position.x+32,112]
+	Livestock.changed.emit();await frames(4)
+	game.player.position=Vector2(room.position.x-16,112);game.camera_rig.follow_now();await frames(3)
+	var hay: int=Inventory.count("hay");var energy: int=GameState.stamina
+	check(not Livestock.near_animal(str(entry.id)) and not Livestock.feed(str(entry.id)) and not Livestock.pet(str(entry.id)),"within54px across real shelter wall cannot feed or pet "+site)
+	check(Inventory.count("hay")==hay and GameState.stamina==energy,"wall-blocked care consumes no material or energy "+site)
+	GameState.set_control_mode("joystick",false);game.action_cooldown=0;game.interact();await frames(3)
+	check(not game.hud.livestock_panel.visible,"backup E interaction cannot open animal panel through wall "+site)
+	if site=="coop":
+		game.player.position=Livestock.nest_point(site)+Vector2(-48,0);await frames(3)
+		check(not Livestock.near_nest(site) and not Livestock.collect_nest(site),"nest cannot be reached or collected through shelter side wall")
+	check(FarmSaveStore.restore(game,saved),"wall verification restores exact legitimate herd state "+site);await frames(4)
+
+func panorama(site: String) -> void:
+	var viewport:=SubViewport.new();viewport.size=Vector2i(RanchLayout.world_rect(site).size);viewport.world_2d=game.player.get_world_2d();viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS;game.add_child(viewport)
+	var camera:=Camera2D.new();camera.position=RanchLayout.world_rect(site).get_center();viewport.add_child(camera);camera.make_current();await frames(4);await RenderingServer.frame_post_draw
+	viewport.get_texture().get_image().save_png("res://docs/ranch082/"+site+"-panorama.png");viewport.queue_free();await frames(3)

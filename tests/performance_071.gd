@@ -84,27 +84,31 @@ func animal_motion() -> void:
 		for i in range(6): Livestock.buy_animal(site)
 	await frames(4)
 	var first: Dictionary=Livestock.state.animals[0]
-	var initial: Array=first.position.duplicate()
-	var position_array: Array=first.position
-	GameClock.minutes=600;GameClock.running=true;GameClock.changed.emit()
+	var initial: Array=first.pasture_position.duplicate()
+	var position_array: Array=first.pasture_position
+	GameClock.minutes=600;game.player.position=Livestock.site_point("coop")+Vector2(0,32);Livestock.graze("coop")
+	game.change_location("pasture_coop");await frames(4);GameClock.running=true;GameClock.changed.emit();await frames(3)
+	for object in get_tree().get_nodes_in_group("livestock_animals"):
+		if object.animal_id==first.id: object.set_goal(Vector2(416,336))
 	await frames(180);GameClock.running=false
 	check(Livestock.state.animals.size()==18,"性能夹具真实加载满容量十八只动物")
-	check(first.position!=initial and position_array==first.position,"动物物理移动继续更新原有位置数组，省去逐帧替换分配")
+	check(first.pasture_position!=initial and position_array==first.pasture_position,"动物物理移动继续更新原有位置数组，省去逐帧替换分配")
 	check(Livestock.validate(Livestock.snapshot(),GameClock.day),"优化后的移动位置仍可完整合法存档")
 	var valid_footprints := true
 	for object in get_tree().get_nodes_in_group("livestock_animals"):
+		if not object.is_visible_in_tree(): continue
 		var query := PhysicsShapeQueryParameters2D.new()
 		for child in object.get_children():
 			if child is CollisionShape2D: query.shape=child.shape;break
 		query.transform=Transform2D(0,object.global_position+Vector2(0,-3));query.collision_mask=1
 		if not object.get_world_2d().direct_space_state.intersect_shape(query,1).is_empty(): valid_footprints=false
 	check(valid_footprints,"满栏动物运动未以减低更新频率为代价穿入地图碰撞")
-	timings["animals"]={"count":18,"physics_hz":60,"sprite_frames_hz":4,"position_arrays_reallocated_per_physics_frame":0}
+	timings["animals"]={"count":18,"active_in_view":6,"physics_hz":60,"sprite_frames_hz":4,"position_arrays_reallocated_per_physics_frame":0}
 
 func legacy_route(person: CharacterBody2D, destination: Vector2) -> PackedVector2Array:
 	var grid := AStarGrid2D.new()
 	var in_farm := person.get_parent().get_parent().name=="FarmWorld"
-	grid.region=Rect2i(0,0,48,32) if in_farm else Rect2i(0,0,40,28)
+	grid.region=FarmLayoutCatalog.GRID if in_farm else Rect2i(0,0,40,28)
 	grid.cell_size=Vector2(32,32);grid.offset=Vector2(16,16);grid.diagonal_mode=AStarGrid2D.DIAGONAL_MODE_NEVER;grid.update()
 	var query := PhysicsShapeQueryParameters2D.new();var shape := RectangleShape2D.new();shape.size=Vector2(31,31)
 	query.shape=shape;query.exclude=[person.get_rid()];query.collision_mask=1

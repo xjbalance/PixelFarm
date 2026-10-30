@@ -107,18 +107,23 @@ func _draw() -> void:
 	else: return
 	if layer_id=="region":
 		if region_id in ["farm","lake"]: FarmAtlasDrawing.draw_current(self)
+		elif region_id in RanchLayout.AREAS: FarmAtlasDrawing.draw_pasture(self)
 		_draw_changes()
 	else: _draw_world_changes()
 	TerritoryAtlasDrawing.draw_overlay(self)
 	for item in resources:
+		if region_id=="farm" and not item.available: continue
 		var at:=map_to_screen(item.point)
 		var tone:=Color("62806a") if item.kind=="tree" else Color("8c8770")
 		if not item.available: tone=Color("ae9b78")
 		if item.kind=="tree": draw_colored_polygon(PackedVector2Array([at+Vector2(0,-5),at+Vector2(-4,3),at+Vector2(4,3)]),tone)
-		else: draw_circle(at,3,tone)
+		elif item.kind=="bush": draw_circle(at,3,Color("789167"))
+		elif item.kind=="weed": draw_line(at,at+Vector2(2,-4),Color("789167"),1)
+		elif item.kind=="stump": draw_rect(Rect2(at-Vector2(2,1),Vector2(4,3)),Color("9b7751"))
+		else: draw_circle(at,4 if item.kind=="boulder" else 3,tone)
 	_label_rects.clear();_label_hits.clear()
 	_territory_icons.clear()
-	if layer_id=="region" and (region_id in TerritoryCatalog.ANNEX_AREAS or region_id in ["farm","lake"]):
+	if layer_id=="region" and (region_id in TerritoryCatalog.ANNEX_AREAS or region_id in ["farm","lake"] or region_id in RanchLayout.AREAS):
 		for item in places: _territory_icons[str(item.id)]=Rect2(map_to_screen(item.point)-Vector2(18,22),Vector2(36,36))
 	for item in places: _draw_place(item)
 	var player:=player_map_position()

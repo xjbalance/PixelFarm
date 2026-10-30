@@ -41,18 +41,21 @@ func native_assets() -> void:
 				valid=valid and tile is AtlasTexture and tile.get_size()==Vector2(32,32) and tile.atlas.resource_path.contains("world_scheme_c/seasons/")
 			check(valid,"原生32像素连接图块完整："+material+" / "+str(season))
 	var resources: Dictionary=game.resource_world.snapshot()
-	check(resources.size()==128,"全部旧采集ID保持128项，不以观赏树替换业务节点")
+	check(resources.size()==195,"保留全部旧采集ID并扩展到195项，不以观赏树替换业务节点")
 	for area in ["farm","village","mist_forest"]:
 		var field: Node=game.resource_world.fields[area]
 		var valid: bool=true
 		for node in field.objects.values():
 			var texture: Texture2D=node.sprite.texture
 			var art: String=str(node.art_id)
+			if node.kind=="boulder":
+				valid=valid and texture.get_size()==Vector2(64,48) and node.sprite.scale==Vector2.ONE and node.sprite.position==Vector2(0,-20) and node.collider.shape.size==Vector2(46,28)
+				continue
 			valid=valid and texture.resource_path.contains("/world_scheme_c/") and node.sprite.scale==Vector2.ONE and node.sprite.position==SchemeCAssets.offset(art)
 			var size: Array=SchemeCAssets.definition(art).size
 			valid=valid and texture.get_size()==Vector2(size[0],size[1]) and node.collider.shape.size==(Vector2(22,19) if node.kind=="tree" else Vector2(30,16))
 		check(valid,"树石采用源像素大小与脚底锚点，旧碰撞形状未改："+area)
-	check(game.world.get_node("GroundDetail06").trees.size()==30,"农场30棵采集树全部接入，不遗留旧树贴图")
+	check(game.world.get_node("GroundDetail06").trees.size()==50,"农场50棵采集树全部接入，不遗留旧树贴图")
 
 func crown_hit_regions() -> void:
 	var wide_found: bool=false
@@ -96,7 +99,7 @@ func seasonal_maps() -> void:
 		GameClock.day=season*28+1;Calendar.restore(Calendar.snapshot());GameClock.changed.emit();await frames(5)
 		var name: String=SchemeCAssets.SEASONS[season]
 		var visual: Node=game.world.get_node("GroundDetail06")
-		check(visual.applied_season==season and visual.ground_detail.get_meta("season",-1)==season and visual.ground_detail.texture.get_size()==Vector2(1536,1024),"农场有效地形缓存采用对应季节素材组合："+name)
+		check(visual.applied_season==season and visual.ground_detail.get_meta("season",-1)==season and visual.ground_detail.texture.get_size()==FarmLayoutCatalog.WORLD.size,"农场有效地形缓存采用对应季节素材组合："+name)
 		season_pixels[hash(visual.ground_detail.texture.get_image().get_data())]=true
 		check(cell_state(game.world.ground)==farm_before and cell_state(game.village.ground)==village_before and cell_state(forest.ground)==forest_before,"三图换季逐格保留原地形类型与碰撞："+name)
 		check(game.resource_world.snapshot()==resources_before,"换季不提前再生或收获资源："+name)

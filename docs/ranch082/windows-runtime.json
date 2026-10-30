@@ -1,0 +1,51 @@
+{
+  "exe": "/home/xiznhi/xiangqi/PixelFarm/builds/PixelWorld-0.8.2-Windows-x64/PixelWorld.exe",
+  "exe_sha256": "eba4a0ead764b1452b2eccb46f1c0fff141671204237e7401fc6822a0d687f5d",
+  "pck": "/home/xiznhi/xiangqi/PixelFarm/builds/PixelWorld-0.8.2-Windows-x64/PixelWorld.pck",
+  "pck_sha256": "fe95201d9fee5184857c01e68751284b570a2b670a7bf0787d15c616b36492f7",
+  "wine_version": "wine-6.0.3 (Ubuntu 6.0.3~repack-1)",
+  "windows_native_tested": false,
+  "wine_tested": true,
+  "headless": true,
+  "window": true,
+  "save_restart": true,
+  "captures": [
+    {
+      "path": "builds/windows080-wine-character-select.png",
+      "width": 1280,
+      "height": 720,
+      "x": 160,
+      "y": 140,
+      "sha256": "2902ce11fbd18b52c0642cb0e2838323c9045d7019921d50592561b4fe921209"
+    },
+    {
+      "path": "builds/windows080-wine-farm.png",
+      "width": 1280,
+      "height": 720,
+      "x": 160,
+      "y": 140,
+      "sha256": "c1bec5627ac3ac69ed367ca2302966460ef3cb424738c7d5d1a57311d448bd7f"
+    },
+    {
+      "path": "builds/windows080-wine-map.png",
+      "width": 1280,
+      "height": 720,
+      "x": 160,
+      "y": 140,
+      "sha256": "a0f3176320c621cc2ba8016d6f64f317bce1c2b3fa5864fc491a5ef6ce63a850"
+    }
+  ],
+  "window_title": "",
+  "input_method": "keyboard_after_mouse_activation",
+  "save_version": 30,
+  "appearance": {
+    "player_gender": "female",
+    "scheme": "C",
+    "xiaojing_gender": "male"
+  },
+  "territory_saved": true,
+  "player_profile_isolated": true,
+  "standalone_without_source": true,
+  "unicode_path_tested": true,
+  "status": "passed"
+}

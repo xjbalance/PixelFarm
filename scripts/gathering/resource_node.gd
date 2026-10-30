@@ -34,10 +34,10 @@ func _ready() -> void:
 
 func refresh_art() -> void:
 	if not is_instance_valid(sprite): return
-	sprite.texture=SchemeCAssets.texture(art_id,Calendar.season())
-	sprite.position=SchemeCAssets.offset(art_id)
+	sprite.texture=load("res://assets/livestock/ranch082/boulder_"+SchemeCAssets.SEASONS[Calendar.season()]+".png") if kind=="boulder" else SchemeCAssets.texture(art_id,Calendar.season())
+	sprite.position=Vector2(0,-20) if kind=="boulder" else SchemeCAssets.offset(art_id)
 	sprite.set_meta("scheme_c_id",art_id)
-	sprite.scale=Vector2(1.5,1.5) if kind=="boulder" else Vector2.ONE
+	sprite.scale=Vector2.ONE
 
 func refresh() -> void:
 	var stored: bool=is_stored()

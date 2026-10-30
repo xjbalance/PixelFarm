@@ -1,0 +1,217 @@
+{
+  "actual_window": false,
+  "android_device_tested": false,
+  "checks": 209,
+  "failures": 0,
+  "issues": [],
+  "samples": [
+    {
+      "button_count": 3,
+      "configuration": "ranch082-1280x720",
+      "panel": "鸡窝收取",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        180,
+        61.5,
+        920,
+        597
+      ]
+    },
+    {
+      "button_count": 6,
+      "configuration": "ranch082-1280x720",
+      "panel": "barn照料",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        180,
+        80,
+        920,
+        560
+      ]
+    },
+    {
+      "button_count": 6,
+      "configuration": "ranch082-1280x720",
+      "panel": "fold照料",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        180,
+        80,
+        920,
+        560
+      ]
+    },
+    {
+      "button_count": 7,
+      "configuration": "ranch082-1280x720",
+      "panel": "扩建农场图纸",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        12,
+        12,
+        1256,
+        696
+      ]
+    },
+    {
+      "button_count": 3,
+      "configuration": "ranch082-1560x720",
+      "panel": "鸡窝收取",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        320,
+        80,
+        920,
+        560
+      ]
+    },
+    {
+      "button_count": 6,
+      "configuration": "ranch082-1560x720",
+      "panel": "barn照料",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        320,
+        80,
+        920,
+        560
+      ]
+    },
+    {
+      "button_count": 6,
+      "configuration": "ranch082-1560x720",
+      "panel": "fold照料",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        320,
+        80,
+        920,
+        560
+      ]
+    },
+    {
+      "button_count": 7,
+      "configuration": "ranch082-1560x720",
+      "panel": "扩建农场图纸",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        60,
+        12,
+        1440,
+        696
+      ]
+    },
+    {
+      "button_count": 3,
+      "configuration": "ranch082-1600x720",
+      "panel": "鸡窝收取",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        340,
+        80,
+        920,
+        560
+      ]
+    },
+    {
+      "button_count": 6,
+      "configuration": "ranch082-1600x720",
+      "panel": "barn照料",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        340,
+        80,
+        920,
+        560
+      ]
+    },
+    {
+      "button_count": 6,
+      "configuration": "ranch082-1600x720",
+      "panel": "fold照料",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        340,
+        80,
+        920,
+        560
+      ]
+    },
+    {
+      "button_count": 7,
+      "configuration": "ranch082-1600x720",
+      "panel": "扩建农场图纸",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        80,
+        12,
+        1440,
+        696
+      ]
+    },
+    {
+      "button_count": 3,
+      "configuration": "ranch082-1280x960",
+      "panel": "鸡窝收取",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        180,
+        200,
+        920,
+        560
+      ]
+    },
+    {
+      "button_count": 6,
+      "configuration": "ranch082-1280x960",
+      "panel": "barn照料",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        180,
+        200,
+        920,
+        560
+      ]
+    },
+    {
+      "button_count": 6,
+      "configuration": "ranch082-1280x960",
+      "panel": "fold照料",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        180,
+        200,
+        920,
+        560
+      ]
+    },
+    {
+      "button_count": 7,
+      "configuration": "ranch082-1280x960",
+      "panel": "扩建农场图纸",
+      "reachable": true,
+      "readable": true,
+      "rect": [
+        12,
+        30,
+        1256,
+        900
+      ]
+    }
+  ]
+}

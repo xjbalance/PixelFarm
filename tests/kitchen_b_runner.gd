@@ -93,13 +93,13 @@ func production_unlocks() -> void:
 	for i in range(7):
 		for id in ids:
 			var animal: Dictionary=Livestock.animal(id)
-			await Touch.place(self,game,"farm",Vector2(animal.position[0],animal.position[1])+Vector2(0,28))
+			await Touch.place(self,game,Livestock.animal_area(animal),Livestock.animal_point(animal)+Vector2(0,28))
 			Livestock.feed(id);Livestock.pet(id)
 		await next_day()
 	var collected := true
 	for id in ids:
 		var animal: Dictionary=Livestock.animal(id)
-		await Touch.place(self,game,"farm",Vector2(animal.position[0],animal.position[1])+Vector2(0,28))
+		await Touch.place(self,game,Livestock.animal_area(animal),Livestock.animal_point(animal)+Vector2(0,28))
 		collected=Livestock.collect(id) and collected
 	check(collected and Kitchen.recipe_unlocked("egg_meal"),"每日照料实际产蛋产奶后解锁煎蛋料理")
 	await home();Kitchen.build("mill");Kitchen.build("smoker")

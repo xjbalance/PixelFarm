@@ -105,7 +105,7 @@ func terrain_transactions() -> void:
 		check(not Territory.apply_plan(plan),"同一地表预览只能确认一次："+str(kind))
 		original=Territory.snapshot()
 	check(not Territory.state.terrain.has("farm"),"恢复自然地表清除覆盖记录，不积累无用瓦片")
-	var invalid:=Territory.plan_terrain("farm",[Vector2i(11,16),Vector2i(48,18)],"dirt_path")
+	var invalid:=Territory.plan_terrain("farm",[Vector2i(11,16),Vector2i(96,18)],"dirt_path")
 	check(not invalid.valid and not Territory.apply_plan(invalid) and Territory.snapshot()==original,"批量包含越界格时整体失败，不涂半份")
 	var old:=Territory.plan_terrain("farm",cells,"soil");Territory.state.revision+=1
 	check(not Territory.apply_plan(old),"旧修订号不能提交过时地表操作")
@@ -147,7 +147,7 @@ func malformed_saves() -> void:
 	var mutation:=original.duplicate(true);mutation.permissions.village="private";check(not Territory.validate(mutation),"存档不能自授公共区域权限")
 	mutation=original.duplicate(true);mutation.unlocked=["farm","manor_holding"];check(not Territory.validate(mutation),"解锁列表不能跳过阶段")
 	mutation=Territory.migrate(raw_progress(8));check(not Territory.validate(mutation,raw_progress()),"缓存授权与保存剧情不符时拒绝")
-	for key in ["01,16","11.0,16","11, 16","-1,16","999999999999999999999,16","48,11"]:
+	for key in ["01,16","11.0,16","11, 16","-1,16","999999999999999999999,16","96,11"]:
 		mutation=original.duplicate(true);mutation.terrain={"farm":{key:"soil"}};check(not Territory.validate(mutation),"拒绝非规范或越界地表："+key)
 	mutation=original.duplicate(true);mutation.terrain={"farm":{"11,16":"unknown"}};check(not Territory.validate(mutation),"未知地表不会加载错误效果")
 	mutation=original.duplicate(true);mutation.terrain={"farm":{"11,16":"natural"}};check(not Territory.validate(mutation),"自然恢复应删除覆盖记录而不是留下冗余状态")

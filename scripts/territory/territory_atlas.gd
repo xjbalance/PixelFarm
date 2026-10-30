@@ -47,7 +47,8 @@ static func draw_overlay(canvas: Control) -> void:
 			var opened: bool=Territory.unlocked(area)
 			for step in range(1,12,2):
 				canvas.draw_line(origin.lerp(at,float(step)/12),origin.lerp(at,float(step+1)/12),Color("a58b66"),1)
-			var rect:=Rect2(at-Vector2(44,27)*canvas.map_scale(),Vector2(88,54)*canvas.map_scale())
+			var extent:=Vector2(160,98) if area=="farm" else Vector2(88,54)
+			var rect:=Rect2(at-extent*.5*canvas.map_scale(),extent*canvas.map_scale())
 			canvas.draw_rect(rect,Color(OWNED,.14) if opened else Color(LOCKED,.20))
 			canvas.draw_rect(rect,OWNED if opened else LOCKED,false,2)
 		_draw_legend(canvas)

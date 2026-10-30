@@ -120,7 +120,7 @@ func resource_layout() -> void:
 	check(not node.visible and node.collision_layer==0 and field.state[id]==cleared,"收纳隐藏同一节点与碰撞，不重置再生日期")
 	var inventory: Dictionary=Inventory.items.duplicate(true);stamina=GameState.stamina
 	check(not field.hit(id,"axe") and Inventory.items==inventory and GameState.stamina==stamina,"收纳资源不能再采，不扣体力也不产生物品")
-	GameClock.day=int(cleared.ready_day);field.advance_day()
+	GameClock.day+=3;field.advance_day()
 	check(field.state[id]==cleared,"收纳期间到再生日也不会刷新耐久供重复采集")
 	if not await layout("resource",id,"restore",Vector2i(23,5)): return
 	check(field.state[id]==cleared and field.objects[id]==node,"放回只复用旧资源，不借确认操作再生或复制")
@@ -132,15 +132,15 @@ func resource_layout() -> void:
 	check(field.state[id]==cleared,"草地抑制按移动后的脚底检查，不再读取旧资源格")
 	if not await edit(): return
 	var natural:=Territory.plan_terrain("farm",[Vector2i(23,4)],"natural")
-	check(natural.valid and Territory.apply_plan(natural),"恢复自然地表后重新允许原资源按日期恢复")
+	check(natural.valid and Territory.apply_plan(natural),"恢复自然地表也不复活已清理的农场资源")
 	await frames(5);game.territory_editor.cancel()
 	GameClock.day+=1;field.advance_day();await frames(5)
-	check(int(field.state[id].hp)==3 and int(field.state[id].ready_day)==0 and Inventory.items==inventory,"放回后在正常日更新恢复，不自动发放材料")
-	check(game.resource_world.snapshot().size()==128 and field.objects.size()==42,"三图仍128个资源ID，农场仍原42个生产节点")
+	check(int(field.state[id].hp)==0 and int(field.state[id].ready_day)==0 and Inventory.items==inventory,"放回、日更新与恢复自然地表均保持永久清理")
+	check(game.resource_world.snapshot().size()==195 and field.objects.size()==109,"三图195个资源ID、农场109个节点，旧ID与新ID各自唯一")
 	var saved:=FarmSaveStore.snapshot(game)
 	check(FarmSaveStore.valid(saved) and FarmSaveStore.restore(game,saved),"已移动资源的耐久、日期和位置通过完整存档恢复")
 	await frames(5)
-	check(node.position==Vector2(736,160) and field.state[id].hp==3,"读取后原实例对应正确新坐标，不生成第二棵树")
+	check(node.position==Vector2(736,160) and field.state[id].hp==0,"读取后原实例对应正确新坐标，不生成第二棵树")
 	await capture("relocated_resource",Vector2(736,320))
 
 func real_water() -> void:
@@ -177,7 +177,7 @@ func real_water() -> void:
 	check(FarmTerrain.effective_index(Vector2i(26,18),{},offset,true) in [5,6] and FarmTerrain.effective_index(Vector2i(34,18),{},offset,true) not in [5,6],"候选湖偏移只移动原水域，不残留旧水格")
 	check(FarmTerrain.effective_index(Vector2i(34,18),{},Vector2.ZERO,false) not in [5,6],"收纳原湖时其默认水域恢复自然底地")
 	var dry: Texture2D=FarmTerrain.texture(Calendar.season(),{},offset,true)
-	check(dry.get_size()==Vector2(1536,1024),"移动湖泊按有效地形重绘全尺寸地图，旧PNG没有幽灵水域")
+	check(dry.get_size()==FarmLayoutCatalog.WORLD.size,"移动湖泊按有效地形重绘全尺寸地图，旧PNG没有幽灵水域")
 	var saved:=FarmSaveStore.snapshot(game)
 	check(FarmSaveStore.valid(saved) and FarmSaveStore.restore(game,saved),"水陆变化与新建生产田共同保存、恢复")
 	await frames(5)

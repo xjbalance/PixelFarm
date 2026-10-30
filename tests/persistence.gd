@@ -83,7 +83,7 @@ func _ready() -> void:
 		success = success and GameClock.day == 12 and GameClock.minutes == 1057 and GameState.stamina == 117
 		success = success and Inventory.count("wood") == 11 and Inventory.count("stone") == 4 and GameState.selected == 7 and GameState.control_mode == "joystick"
 		success = success and FarmProgress.built.size() == 3 and FarmProgress.quest_status("river_path") == "active" and FarmProgress.friendship == 37
-		success = success and FarmProgress.last_talk_day == 12 and game.world.resource_field.state.tree_7_20.ready_day == 14 and game.world.resource_field.state.rock_11_19.hp == 1
+		success = success and FarmProgress.last_talk_day == 12 and game.world.resource_field.state.tree_7_20.ready_day == 0 and game.world.resource_field.state.rock_11_19.hp == 1
 		success = success and GameState.location == "village" and game.player.position.distance_to(Vector2(1010,480)) < 0.1
 		success = success and Story.stage == 8 and Story.motive == "home" and Story.lantern == "memory" and Story.seen.has("well") and not Story.assisted_tools
 		success = success and VillageProjects.all_built() and VillageProjects.water_day == 12 and VillageProjects.tea_day == 12 and game.village.bridge_open

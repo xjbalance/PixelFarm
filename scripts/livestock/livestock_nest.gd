@@ -5,7 +5,7 @@ var area_id: String="farm"
 var livestock_id: String="nest:coop"
 var effect: float=0
 var label: Label
-var art: Texture2D=preload("res://assets/livestock/ranch082/nest.png")
+var art: Texture2D=load("res://assets/livestock/ranch082/nest.png")
 var empty_art: Texture2D=load("res://assets/livestock/ranch082/nest_empty.png")
 func _ready() -> void:
 	add_to_group("interactables")

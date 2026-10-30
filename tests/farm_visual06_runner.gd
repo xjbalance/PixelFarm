@@ -20,13 +20,13 @@ func run() -> void:
 	check(game.farm.plots==original.plots and game.resource_world.snapshot()==original.resources and Housing.snapshot()==original.housing,"旧农田ID、资源耐久/再生和住宅进度完全保留")
 	check(FarmSaveStore.valid(FarmSaveStore.snapshot(game)),"仍为当前有效存档，无视觉专属进度字段")
 	var report:=FileAccess.open("res://builds/farm06-"+("render" if capture_mode else "state")+"-evidence.json",FileAccess.WRITE)
-	report.store_string(JSON.stringify({"checks":checked,"failures":failed,"platform":DisplayServer.get_name(),"android_device_tested":false,"captures":captures,"farm_cells":1536,"plots":60,"farm_resources":42,"save_version":FarmSaveStore.VERSION},"\t"));report.close()
+	report.store_string(JSON.stringify({"checks":checked,"failures":failed,"platform":DisplayServer.get_name(),"android_device_tested":false,"captures":captures,"farm_cells":6144,"plots":60,"farm_resources":109,"save_version":FarmSaveStore.VERSION},"\t"));report.close()
 	print("FARM VISUAL 06 "+("RENDER" if capture_mode else "STATE")+" RESULT: %d checks, %d failures" % [checked,failed])
 	game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(4);get_tree().quit(1 if failed else 0)
 
 func visuals_and_routes() -> void:
 	var visual: Node=game.world.get_node("GroundDetail06")
-	check(visual is FarmVisual06 and visual.ground_detail.texture.get_size()==Vector2(1536,1024) and visual.get_child_count()==1,"1536x1024原生像素底图只有一个缓存Sprite，无逐帧地形扫描")
+	check(visual is FarmVisual06 and visual.ground_detail.texture.get_size()==FarmLayoutCatalog.WORLD.size and visual.get_child_count()==1,"3072x2048原生像素底图只有一个缓存Sprite，无逐帧地形扫描")
 	check(visual.z_index==-4 and game.world.ground.z_index==-5 and game.farm.z_index==-1 and game.world.actors.y_sort_enabled,"Ground/Detail/作物/实体Y排序分层保持正确")
 	var cells: Array[Vector2i]=game.world.ground.get_used_cells();var expected:=true
 	for cell in cells:
@@ -34,6 +34,7 @@ func visuals_and_routes() -> void:
 		var original_kind: int=0
 		if cell.y in [13,14] or (cell.x in [14,15] and cell.y>5): original_kind=3
 		if Rect2i(16,15,12,8).has_point(cell): original_kind=4
+		if not Rect2i(0,0,48,32).has_point(cell) and ((cell.x in [62,63] and cell.y>=14) or (cell.y in [42,43] and cell.x>=14)): original_kind=3
 		var pond: float=Vector2(cell-Vector2i(34,18)).length()
 		if pond<4.8: original_kind=3
 		if pond<4.1: original_kind=5
@@ -42,7 +43,7 @@ func visuals_and_routes() -> void:
 		else: expected=expected and kind==original_kind
 		var data: TileData=game.world.ground.get_cell_tile_data(cell)
 		expected=expected and data.get_collision_polygons_count(0)==(1 if kind in [5,6] else 0)
-	check(cells.size()==1536 and expected,"全部1536地形格、水碰撞与原坐标类型逐格完全一致")
+	check(cells.size()==6144 and expected,"全部6144地形格、水碰撞与原坐标类型逐格完全一致")
 	game.auto_move.navigation.rebuild()
 	for y in range(16,22):
 		for x in range(17,27):
@@ -50,13 +51,14 @@ func visuals_and_routes() -> void:
 			check(not game.auto_move.navigation.path_to({"kind":"plot","cell":cell,"point":point}).is_empty(),"原60块可种农田仍可达："+str(cell))
 	for id in FarmResourceCatalog.placements("farm"):
 		var object: Node2D=game.world.resource_field.objects[id]
-		check(not game.auto_move.navigation.path_to({"kind":"resource","object":object,"point":object.global_position}).is_empty(),"农场树石采集面仍可达："+id)
-	check(visual.trees.size()==30,"仅替换原30棵可砍树贴图，无新装饰树冒充资源")
+		var target: Node2D=game.world.resource_field.access_target(object)
+		check(not game.auto_move.navigation.path_to({"kind":"resource","object":target,"point":target.global_position}).is_empty(),"农场资源或其合法清除前置仍可达："+id)
+	check(visual.trees.size()==50,"原30棵与新增20棵树均使用真实可砍伐节点")
 	var physics: Dictionary=game.auto_move.navigation.static_solid.duplicate()
 	var season_pixels: Dictionary={}
 	for season in range(4):
 		GameClock.day=season*28+1;Calendar.restore(Calendar.snapshot());GameClock.changed.emit();await frames(3)
-		check(visual.applied_season==season and visual.ground_detail.get_meta("season",-1)==season and visual.ground_detail.texture.get_size()==Vector2(1536,1024) and visual.trees[0].texture.resource_path.contains("/world_scheme_c/seasons/"),"四季有效地形缓存与原生树木同步，不依赖固定PNG路径："+str(season))
+		check(visual.applied_season==season and visual.ground_detail.get_meta("season",-1)==season and visual.ground_detail.texture.get_size()==FarmLayoutCatalog.WORLD.size and visual.trees[0].texture.resource_path.contains("/world_scheme_c/seasons/"),"四季有效地形缓存与原生树木同步，不依赖固定PNG路径："+str(season))
 		season_pixels[hash(visual.ground_detail.texture.get_image().get_data())]=true
 		game.auto_move.navigation.invalidate();await frames(3);game.auto_move.navigation.rebuild()
 		check(game.auto_move.navigation.static_solid==physics,"换季只换图，物理导航格不变化："+str(season))
@@ -94,10 +96,10 @@ func farming_and_resources() -> void:
 		check(field.state[id].hp==0 and Inventory.count(definition.item)==before+int(definition.amount) and not field.objects[id].sprite.visible,"采完取消显示和碰撞，掉落数量沿原规则："+kind)
 		game.auto_move.navigation.rebuild();var at: Vector2=field.objects[id].global_position
 		check(not game.auto_move.navigation.path_to({"kind":"ground","point":at}).is_empty(),"清除资源后原位置可通行："+kind)
-		game.player.global_position=Vector2(656,491);GameClock.day=int(field.state[id].ready_day);field.advance_day();await frames(4)
+		game.player.global_position=Vector2(656,491);GameClock.day+=3;field.advance_day();await frames(4)
 		game.auto_move.navigation.rebuild()
 		# 树石脚底位于32px交点，实体上半格才是其实际阻挡格，不把右下格误作脚底。
-		check(field.state[id].hp==int(definition.hits) and field.objects[id].sprite.visible and not field.objects[id].collider.disabled and game.auto_move.navigation.static_solid.has(game.auto_move.navigation.cell(at-Vector2.ONE)),"到期再生后实体与导航阻挡恢复："+kind)
+		check(field.state[id].hp==0 and not field.objects[id].sprite.visible and field.objects[id].collider.disabled and not game.auto_move.navigation.static_solid.has(game.auto_move.navigation.cell(at-Vector2.ONE)),"农场跨日仍清理完成，不恢复实体或导航阻挡："+kind)
 	check(FarmSaveStore.restore(game,original),"采集测试恢复原资源与钱物")
 	await frames(4)
 
@@ -127,7 +129,7 @@ func render_sample() -> void:
 		game.player.global_position=Vector2(656,410);game.camera_rig.follow_now();await frames(6);await capture("house_level_"+str(level))
 	for resolution in [Vector2i(1280,720),Vector2i(1560,720),Vector2i(1600,720),Vector2i(1280,960)]:
 		get_window().size=resolution;await frames(8);game.camera_rig.follow_now();await frames(3)
-		check(game.world.get_node("GroundDetail06").ground_detail.texture.get_size()==Vector2(1536,1024) and game.hud.safe.size.x>0,"横屏实际窗口农场原像素底图正确："+str(resolution))
+		check(game.world.get_node("GroundDetail06").ground_detail.texture.get_size()==FarmLayoutCatalog.WORLD.size and game.hud.safe.size.x>0,"横屏实际窗口农场原像素底图正确："+str(resolution))
 		await capture("layout_"+str(resolution.x)+"x"+str(resolution.y))
 
 func panorama(label: String) -> void:

@@ -1,10 +1,14 @@
-# 像素世界 · 0.8.1《丰收匠心》
+# 像素世界 · 0.8.2《活力牧场》
 
-最新：[0.8.1开发报告、前后对比、生产链与兼容说明](docs/QUALITY081-REPORT.md)。统一农业素材，完善设备工作动画、工单投入/产出快照、配方与季节购买界面，修正小范围平衡。存档v29安全迁移v28旧单；原Android包名、签名和存档位置保留。
+最新：[0.8.2开发报告、牧场动画、四倍农场与旧档兼容](docs/RANCH082-REPORT.md)。鸡鸭共舍、鸡窝收蛋与鸭蛋腌制已开放；鸡鸭牛羊使用真实四向行走、啄地/吃草、休息与归舍。主农场96×64，旧48×32坐标保留，自然障碍清理后永久开垦。独立牧场通过原畜舍旁围栏门进入，原容量和鸡/牛/羊产量保持。存档v29迁移v30；原Android包名、更新签名和存档位置保留。
+
+操作：主农场选择锄头后点击合法土地即可开垦，菜单进入农场DIY。建好鸡鸭舍、牛棚或羊圈后，从舍旁围栏门进入后方牧场；点击动物自动走近照料，点击鸡窝统一收鸡蛋和鸭蛋。晴天08:00–14:00可开栏，18:00、雨雪和冬季回暖舍。旧场景自然物重叠时，手动选择镐子先清石堆，再选择斧头清灌木，原剧情设施点击保留。
 
 此前：[丰收工坊完整说明、配方与截图](docs/HARVEST-WORKSHOP.md)。新增27种季节作物、3种花卉、4种结果树、10类实体设备、49条加工配方、27道料理及布料家具。设备在农场建造模式摆放，料理仍在住宅厨房制作。存档 **v28**，旧v27及更早进度安全迁移；九格工具栏、全场DIY、婚姻和原钓鱼概率保留。
 
-当前验收：203个进程、11,085项自动断言和530项实际窗口检查通过。Android code31；Windows使用Wine验证，Android及Windows原生真机尚未验收。复现入口：`tools/check_project.py`、`tools/capture_quality081.py`、`tools/analyze_quality081.py`。
+当前验收：217个回归进程全部通过；自动化与实际窗口断言、包体校验和限制见[机器汇总](docs/ranch082/results.json)。Android code32，Windows成品通过Wine独立运行和存档重启；Android及Windows原生真机尚未验收。复现入口：`tools/check_project.py`、`tools/capture_ranch082.py`、`tools/audit_ranch082_assets.py`。
+
+0.8.1历史验收：203个进程、11,085项自动断言和530项实际窗口检查通过。Android code31；Windows使用Wine验证，Android及Windows原生真机尚未验收。复现入口：`tools/check_project.py`、`tools/capture_quality081.py`、`tools/analyze_quality081.py`。
 
 此前：[农场全场DIY](docs/REPORT-FARM-DIY.md)。真实住宅、温室、畜舍、商店、鱼栏、原设施、42个资源节点与生产田都能移动或收纳后放回；48×32主农场可重新铺路、改水形并在合法干地开垦。原等级、库存、动物和剧情进度保留。存档 **v27**，兼容v1–v26。[9736项检查与窗口证据](docs/TEST-FARM-DIY.json)
 
@@ -12,7 +16,7 @@
 
 0.8.0基础功能包括[领地编辑第一阶段](docs/REPORT-TERRITORY-080.md)，并保留[移动精修](docs/TOUCH-POLISH-01.md)、[农活精修](docs/FARMING-POLISH-02.md)、[饮食恢复调整](docs/FOOD-RECOVERY.md)、[背包快捷栏](docs/INVENTORY-POLISH-03.md)、[UI04视觉统一](docs/REPORT-UI04.md)、[UI05沉浸式视野](docs/REPORT-UI05.md)、[住宅05四阶段住宅与小睡](docs/REPORT-HOME05.md)、[原布局恢复与资源丰富森林](docs/RESTORED-LAYOUT-RESOURCES.md)、[温馨田园住宅与家具自由摆放](docs/HOME-ARRANGE.md)、[按数量出售](docs/SALE-QUANTITY.md)、[农场视觉样板06](docs/FARM-VISUAL-06.md)、[羊皮纸冒险图纸](docs/PARCHMENT-MAP.md)、[UI07全界面收口](docs/REPORT-UI07.md)及[方案C角色选择](docs/SCHEME-C-SELECTION.md)。
 
-**0.8.1《丰收匠心》**，Godot 4.3 Standard。主农场支持全场DIY，四处按章节开放的地表领地保留既有权限；公共区域和地下保留原规则。
+**0.8.2《活力牧场》**，Godot 4.3 Standard。主农场支持全场DIY，四处按章节开放的地表领地保留既有权限；公共区域和地下保留原规则。
 
 保留原种田/采集的消耗与产出、三张原地图、第一章与第二章、百层深渊、小京520播种/三属性/12任务/7记忆/5试炼/1314钻石婚礼及婚后520日。原应用包名、证书与存档路径保留。
 

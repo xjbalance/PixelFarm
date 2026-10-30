@@ -73,8 +73,13 @@ func old_engine_save() -> void:
 	if upgraded.is_empty(): HarvestCatalog.data().processing.smoke_fish_crucian=current;return
 	var same: bool=true
 	for key in raw:
-		if key not in ["version","workshop","tutorial"] and JSON.stringify(AbyssSaveSchema.canonical(raw[key]))!=JSON.stringify(upgraded.get(key)): same=false
-	check(same,"旧经营、已婚、四级房屋、矿洞、钱物与操作字段逐项保留")
+		if key not in ["version","workshop","tutorial","livestock","resources"] and JSON.stringify(AbyssSaveSchema.canonical(raw[key]))!=JSON.stringify(upgraded.get(key)): same=false
+	for id in raw.resources:
+		var expected_resource: Dictionary=AbyssSaveSchema.canonical(raw.resources[id])
+		if id in FarmResourceCatalog.placements("farm") and expected_resource.hp==0: expected_resource.ready_day=0
+		same=same and AbyssSaveSchema.canonical(upgraded.resources.get(id))==expected_resource
+	for key in ["buildings","serial","last_settled_day"]: same=same and upgraded.livestock.get(key)==AbyssSaveSchema.canonical(raw.livestock[key])
+	check(same and upgraded.livestock.animals.size()==raw.livestock.animals.size(),"旧经营、已婚、四级房屋、矿洞、钱物与操作字段逐项保留")
 	for id in raw.tutorial.seen: check(id in upgraded.tutorial.seen,"旧教学已读标记保留："+str(id))
 	var smoker: String="";var ready_mill: String=""
 	for id in upgraded.workshop.jobs:

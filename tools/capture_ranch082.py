@@ -14,7 +14,7 @@ with tempfile.TemporaryDirectory(prefix='ranch082-window-') as profile:
  try:
   time.sleep(.4)
   env=dict(os.environ,DISPLAY=display,LIBGL_ALWAYS_SOFTWARE='1',XDG_DATA_HOME=profile,APPDATA=profile)
-  cmd=[str(ROOT/'.tools/Godot_v4.3-stable_linux.x86_64'),'--path',str(project),'--audio-driver','Dummy','--fixed-fps','60','res://tests/'+scene+'.tscn',*(['--',*extra] if extra else [])]
+  cmd=[str(ROOT/'.tools/Godot_v4.3-stable_linux.x86_64'),'--path',str(project),'--audio-driver','Dummy','--fixed-fps','60','--max-fps','0','res://tests/'+scene+'.tscn',*(['--',*extra] if extra else [])]
   run=subprocess.run(cmd,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,timeout=480)
   (ROOT/'builds'/f'ranch082-{scene.replace(chr(47),chr(45))}.log').write_text(run.stdout)
   print(run.stdout[-6000:])

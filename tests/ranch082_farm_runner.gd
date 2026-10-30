@@ -26,8 +26,13 @@ func run() -> void:
 	await agriculture()
 	await construction()
 	await permanence()
-	if DisplayServer.get_name()!="headless": await seasons()
-	var file:=FileAccess.open("res://docs/ranch082/farm-results.json",FileAccess.WRITE);file.store_string(JSON.stringify(report,"  "));file.close()
+	if DisplayServer.get_name()!="headless":
+		await showcase()
+		await seasons()
+	var path: String="res://docs/ranch082/farm-"+("window" if DisplayServer.get_name()!="headless" else "headless")+"-results.json"
+	var file:=FileAccess.open(path,FileAccess.WRITE);file.store_string(JSON.stringify(report,"  "));file.close()
+	if DisplayServer.get_name()!="headless":
+		file=FileAccess.open("res://docs/ranch082/farm-results.json",FileAccess.WRITE);file.store_string(JSON.stringify(report,"  "));file.close()
 	print("RANCH082 FARM RESULT: %d checks, %d failures" % [checked,failed])
 	game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(8);get_tree().quit(1 if failed else 0)
 func screenshot(name_text: String) -> void:
@@ -146,3 +151,32 @@ func seasons() -> void:
 		GameClock.day=day;GameClock.minutes=600;Calendar.restore(Calendar.snapshot());await frames(5)
 		await panorama("farm-season-"+Calendar.SEASON_IDS[Calendar.season()])
 		for id in report.clearing: check(game.resource_world.fields.farm.state[id].hp==0,"season never revives cleared farm land")
+
+func showcase() -> void:
+	# Isolated screenshot capital; all plots still use real seed, tool and daily APIs.
+	var field: Node2D=game.resource_world.fields.farm
+	for id in ["exp082_tree_51_29","exp082_weed_51_25"]:
+		while field.state[id].hp>0:
+			GameState.stamina=100;field.hit(id,str(FarmResourceCatalog.TYPES[field.objects[id].kind].tool))
+	await frames(4) # Let deferred physics shape removal synchronize before direct batch hoe calls.
+	Inventory.items.wheat_seed=200;Inventory.items.carrot_seed=200;Inventory.items.potato_seed=200
+	var cells: Array[Vector2i]=[];var longest: int=0
+	for y in range(17,28):
+		for x in range(50,74):
+			if x in [62,63]: continue
+			var cell:=Vector2i(x,y);var crop: String="wheat" if y<20 else "carrot" if y<24 else "potato"
+			GameState.stamina=100
+			if game.farm.plot_at(cell).is_empty(): check(game.farm.use_tool(cell,"hoe"),"large cultivation specimen genuinely tills new cell")
+			check(game.farm.use_tool(cell,crop+"_seed"),"large cultivation specimen genuinely consumes seed")
+			game.farm.use_tool(cell,"water");cells.append(cell);longest=maxi(longest,Catalog.crops[crop].growth_days)
+	for day in range(longest):
+		for cell in cells:
+			GameState.stamina=100
+			if not game.farm.plot_at(cell).watered: game.farm.use_tool(cell,"water")
+		GameClock.minutes=1200;check(GameClock.request_sleep(GameClock.day),"large cultivation specimen advances original daily growth");await frames(3)
+	var mature_count: int=0
+	for cell in cells:
+		if game.farm.is_mature(game.farm.plot_at(cell)): mature_count+=1
+	check(mature_count==242,"242 new-region wheat carrot and potato plots genuinely reach maturity")
+	report.showcase={"plots":242,"crops":["wheat","carrot","potato"],"normal_tool_and_seed_calls":true,"real_daily_growth":true,"isolated_test_capital":true}
+	GameClock.minutes=720;GameClock.changed.emit();game.player.position=Vector2(62,22)*32+Vector2(16,16);game.camera_rig.follow_now();await screenshot("expanded-cultivation")

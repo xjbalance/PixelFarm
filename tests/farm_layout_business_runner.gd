@@ -59,13 +59,13 @@ func animal_coordinates() -> void:
 	var node: Node2D
 	for candidate in get_tree().get_nodes_in_group("livestock_animals"):
 		if candidate.animal_id==entry.id: node=candidate;break
-	check(is_instance_valid(node) and node.position==logical+FarmLayout.offset("coop"),"原畜舍移动时真实动物使用同一位移，不复制动物")
+	check(is_instance_valid(node) and node.position==Livestock.animal_point(entry) and node.get_parent()==game.mine_maps.pasture_coop.get_node("Actors"),"原畜舍移动后真实动物保留独立牧场坐标与所属场景，不复制动物")
 	check(Vector2(entry.position[0],entry.position[1])==logical and Livestock.validate(Livestock.snapshot(),GameClock.day),"动物保存原逻辑坐标，原严格畜舍范围验证仍通过")
-	at(node.position);check(Livestock.near_animal(entry.id),"动物照料用当前位置校验")
-	check(FarmLayout.to_logical("coop",node.position)==logical,"动物物理位置回写能精确还原原存档逻辑坐标")
+	game.change_location("pasture_coop",node.position);await frames(3);check(Livestock.near_animal(entry.id),"动物照料用当前位置校验")
+	check(Vector2(entry.position[0],entry.position[1])==logical and node.position==Vector2(entry.pasture_position[0],entry.pasture_position[1]),"独立牧场实际坐标与旧存档逻辑坐标分别准确保留")
 	fixture("coop",Vector2i(4,-1),true);await frames(3)
 	check(not node.visible and node.process_mode==Node.PROCESS_MODE_DISABLED and node.collision_mask==0 and not Livestock.near_animal(entry.id),"收纳畜舍保留动物记录并停显示/物理/照料交互")
-	FarmLayout.restore(layout_seed);Livestock.restore(old);await frames(3)
+	game.change_location("farm");FarmLayout.restore(layout_seed);Livestock.restore(old);await frames(3)
 func story_coordinates() -> void:
 	fixture("star:desk_left",Vector2i(-3,-2));await frames(3)
 	var old: Dictionary=StarStory.data.points.desk_left
@@ -103,16 +103,16 @@ func tracking_coordinates() -> void:
 	social.active.linya={"id":"linya_1","start_day":GameClock.day,"counts":{},"tracked":{},"seen":[],"meeting_day":0,"missed":false,"repair_ready":false}
 	var development: Dictionary=WorldDevelopment.defaults(GameClock.day)
 	var festival: Dictionary=Festival.defaults(GameClock.day)
-	for y in range(32):
-		for x in range(48):
+	for y in range(64):
+		for x in range(96):
 			var key: String="%d,%d" % [x,y]
 			social.active.linya.tracked[key]={"crop":"wheat","serial":1}
 			development.tracking.farm[key]=GameClock.day
 			for action in ["播种","浇水","收获"]: festival.tracking.farm[action+":"+key]="%d:1" % GameClock.day
-	check(Social.validate(social,GameClock.day),"1536个合法逻辑农田的社交追踪可以保存，包含原农田外坐标")
+	check(Social.validate(social,GameClock.day),"6144个合法逻辑农田的社交追踪可以保存，包含原农田外坐标")
 	check(WorldDevelopment.validate(development,GameClock.day),"全农场收获追踪可保存，不因60格旧上限拒绝存档")
-	check(Festival.validate(festival,GameClock.day),"全农场三类农活4608条去重追踪可保存")
-	social.active.linya.tracked.erase("0,0");social.active.linya.tracked["48,0"]={"crop":"wheat","serial":1}
+	check(Festival.validate(festival,GameClock.day),"全农场三类农活18432条去重追踪可保存")
+	social.active.linya.tracked.erase("0,0");social.active.linya.tracked["96,0"]={"crop":"wheat","serial":1}
 	check(not Social.validate(social,GameClock.day),"扩区后仍拒绝农场范围外的追踪坐标")
 
 func secondary_coordinates() -> void:

@@ -111,3 +111,15 @@ for ident in ['nest','trough','water_basin','gate','duck_egg','salted_duck_egg']
   d.line((14,10 if ident=='duck_egg' else 16,14,17 if ident=='duck_egg' else 19),fill=HI,width=2)
  harmonize(im).save(OUT/f'{ident}.png')
 print('Generated native 4-way / 3-action livestock atlases and six ranch objects, shared 89-colour palette.')
+# A large clearing pile keeps one source pixel per world pixel: no fractional upscale.
+stone=Image.open(R/'assets/world_scheme_c/bright/sprites/shore_rocks.png').convert('RGBA')
+for season in ('spring','summer','autumn','winter'):
+ pile=Image.new('RGBA',(64,48))
+ for at in [(16,0),(1,14),(31,15),(16,24)]:pile.alpha_composite(stone,at)
+ if season=='winter':
+  mask=pile.getchannel('A');pixels=pile.load()
+  for y in range(1,30):
+   for x in range(1,63):
+    if mask.getpixel((x,y)) and not mask.getpixel((x,y-1)) and (x+y)%9<7:
+     pixels[x,y]=(238,241,226,255)
+ pile.save(OUT/f'boulder_{season}.png')

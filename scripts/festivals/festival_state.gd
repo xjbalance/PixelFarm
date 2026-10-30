@@ -343,7 +343,7 @@ func validate(raw: Variant, day: int) -> bool:
 	var tracking: Variant=raw.tracking
 	if not AquacultureSaveSchema.exact(tracking,["farm","fishing","aquaculture","animal","cooking"]): return false
 	if not whole(tracking.fishing,0,day*12): return false
-	if not tracking.farm is Dictionary or tracking.farm.size()>4608: return false
+	if not tracking.farm is Dictionary or tracking.farm.size()>FarmLayoutCatalog.GRID.get_area()*3: return false
 	for proof in tracking.farm:
 		if not proof is String or proof.split(":").size()!=2: return false
 		var parts: PackedStringArray=proof.split(":")

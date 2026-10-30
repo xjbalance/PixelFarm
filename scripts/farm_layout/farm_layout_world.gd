@@ -34,6 +34,12 @@ func _add(id: String, node: Node2D, original: Vector2, managed: bool=false) -> v
 		_bodies[body.get_instance_id()]={"node":body,"layer":body.collision_layer if body.collision_layer!=0 else 1,"fixture":id}
 
 func collect() -> void:
+	if is_instance_valid(game.world.get("resource_field")):
+		for resource_id in game.world.resource_field.objects:
+			var entry:=FarmResourceCatalog.definition(str(resource_id))
+			if entry.has("fixture"):
+				var id: String=str(entry.fixture)
+				_add(id,game.world.resource_field.objects[resource_id],FarmLayoutCatalog.base_point(id),true)
 	var nodes: Array[Node]=[]
 	nodes.append_array(game.world.actors.get_children());nodes.append_array(game.world.get_children())
 	for node in nodes:
@@ -149,6 +155,7 @@ func _actual_rectangles(kind: String, id: String) -> Array[Rect2]:
 			if not is_instance_valid(item.node): continue
 			for shape in item.node.find_children("*","CollisionShape2D",true,false):
 				if shape.disabled or not shape.shape or not shape.get_parent() is CollisionObject2D: continue
+				if "decorative" in shape.get_parent() and shape.get_parent().decorative: continue
 				out.append(shape.global_transform*shape.shape.get_rect())
 		if out.is_empty() and bool(FarmLayoutCatalog.fixture(id).get("solid",false)):
 			out.append(FarmLayoutCatalog.world_rect(kind,id,FarmLayout.cell(kind,id)))

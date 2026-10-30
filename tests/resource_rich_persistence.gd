@@ -31,13 +31,16 @@ func run() -> void:
 			if old.housing[field]!=now.housing.get(field): preserved=false;print("RESOURCE LEGACY HOUSING MISMATCH ",field)
 		check(preserved,"旧档独立重启逐字段保留原金币背包婚礼钻石与操作模式")
 		var kept:=true
-		for id in old.resources: kept=kept and now.resources[id]==old.resources[id]
-		check(kept and now.resources.size()==128,"旧已砍树和半损石完整保留，仅补新增资源ID")
+		for id in old.resources:
+			var expected: Dictionary=old.resources[id].duplicate(true)
+			if id=="tree_7_20": expected.ready_day=0
+			kept=kept and now.resources[id]==expected
+		check(kept and now.resources.size()==195,"旧已砍树和半损石完整保留，仅补新增资源ID")
 		var full:=true;var all: Dictionary=FarmResourceCatalog.all_placements()
 		for id in all:
 			if not old.resources.has(id): full=full and now.resources[id]=={"hp":int(FarmResourceCatalog.TYPES[all[id].kind].hits),"ready_day":0}
 		check(full,"新图与新增节点按各自默认耐久初始化，无物品补发")
-		check(FarmSaveStore.write(game) and FarmSaveStore.read().resources.size()==128,"旧档升级后安全写回当前格式扩展资源集合")
+		check(FarmSaveStore.write(game) and FarmSaveStore.read().resources.size()==195,"旧档升级后安全写回当前格式扩展资源集合")
 	elif writing:
 		Inventory.items={"wood":4,"stone":3,"carrot_seed":17};Inventory.coins=7921;Xiaojing.state.diamonds=1314;GameState.rest()
 		await Rich.visit(self,game,"farm")

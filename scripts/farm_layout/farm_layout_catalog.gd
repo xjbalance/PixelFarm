@@ -93,7 +93,7 @@ static func _ensure_resources() -> void:
 	for id in placements:
 		var raw: Dictionary=placements[id]
 		if raw.has("fixture"): continue
-		var size:=Vector2(22,19) if raw.kind=="tree" else Vector2(30,16)
+		var size:=Vector2(22,19) if raw.kind=="tree" else Vector2(46,28) if raw.kind=="boulder" else Vector2(30,16)
 		_resources[id]={"id":id,"name":str(FarmResourceCatalog.TYPES[raw.kind].name),"cell":raw.cell,"point":Vector2(raw.cell)*32,"bounds":Rect2(Vector2(0,-5)-size*.5,size)}
 
 static func definition(kind: String, id: String) -> Dictionary:

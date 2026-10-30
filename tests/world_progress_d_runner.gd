@@ -214,12 +214,12 @@ func save_and_seasons() -> void:
 func feed_group(ids: Array) -> void:
 	for id in ids:
 		var entry: Dictionary=Livestock.animal(id)
-		await Touch.place(self,game,"farm",Vector2(entry.position[0],entry.position[1])+Vector2(0,24))
+		await Touch.place(self,game,Livestock.animal_area(entry),Livestock.animal_point(entry)+Vector2(0,24))
 		check(Livestock.feed(id),"订单畜产依真实饲喂推进："+id)
 func collect_group(ids: Array) -> void:
 	for id in ids:
 		var entry: Dictionary=Livestock.animal(id)
-		await Touch.place(self,game,"farm",Vector2(entry.position[0],entry.position[1])+Vector2(0,24))
+		await Touch.place(self,game,Livestock.animal_area(entry),Livestock.animal_point(entry)+Vector2(0,24))
 		check(Livestock.collect(id),"新畜产真实进入背包："+id)
 func advanced_trade_pipeline() -> void:
 	await Touch.place(self,game,"home",Kitchen.ANCHOR+Vector2(-32,0))

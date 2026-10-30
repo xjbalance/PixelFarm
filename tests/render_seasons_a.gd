@@ -25,7 +25,7 @@ func run() -> void:
 			var tilemap: TileMapLayer=map.get_node("Ground")
 			var atlas: TileSetAtlasSource=tilemap.tile_set.get_source(0)
 			seasonal_textures[atlas.texture.resource_path]=true
-			check(tilemap.get_used_cells().size()==(1536 if map_id=="farm" else 1120) and tilemap.tile_set.get_source_count()==1,"换季保留真实TileMap格数与source布局："+map_id)
+			check(tilemap.get_used_cells().size()==(6144 if map_id=="farm" else 1120) and tilemap.tile_set.get_source_count()==1,"换季保留真实TileMap格数与source布局："+map_id)
 			check(atlas.get_tile_data(Vector2i(5,0),0).get_collision_polygons_count(0)==1 and atlas.get_tile_data(Vector2i(6,0),0).get_collision_polygons_count(0)==1,"四季水格保持原碰撞边界："+map_id)
 			check(WorldChanges.features()==features,"季节装饰不抹去已建世界变化："+map_id)
 			if map_id=="farm": get_viewport().get_texture().get_image().save_png("res://docs/screenshot-070a-"+Calendar.SEASON_IDS[Calendar.season()]+".png")

@@ -33,7 +33,8 @@ static func resolve(game: Node, point: Vector2) -> Dictionary:
 			if score < distance:
 				distance = score
 				nearest = object
-	if nearest: return {"kind":"object","object":nearest,"point":nearest.global_position}
+	var gathering: bool=GameState.manual_tool and GameState.tool() in ["axe","pickaxe","hoe"]
+	if nearest and not gathering: return {"kind":"object","object":nearest,"point":nearest.global_position}
 	var fishing_target := FishingWorld.resolve_water(game,point)
 	if not fishing_target.is_empty(): return fishing_target
 	var field: Node2D=game.resource_world.active_field()
@@ -51,7 +52,12 @@ static func resolve(game: Node, point: Vector2) -> Dictionary:
 			if hit:
 				var score: float=point.distance_to(object.global_position-Vector2(0,20))
 				if score<resource_distance: resource=object;resource_distance=score
-		if resource: return {"kind":"resource","object":resource,"point":resource.global_position}
+		if resource:
+			var accessible: Node2D=field.access_target(resource)
+			var result: Dictionary={"kind":"resource","object":accessible,"point":accessible.global_position}
+			if accessible!=resource: result.covered_resource=str(resource.resource_id)
+			return result
+	if nearest: return {"kind":"object","object":nearest,"point":nearest.global_position}
 	if GameState.location == "farm":
 		var cell := Vector2i((point/32).floor())
 		if game.farm.can_target_cell(cell): return {"kind":"plot","cell":cell,"point":Vector2(cell)*32+Vector2(16,16)}

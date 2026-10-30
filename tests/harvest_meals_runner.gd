@@ -104,12 +104,12 @@ func livestock_cycle() -> void:
 	for day in range(7):
 		for id in animals:
 			var animal: Dictionary=Livestock.animal(id)
-			await Touch.place(self,game,"farm",Vector2(animal.position[0],animal.position[1])+Vector2(0,28))
+			await Touch.place(self,game,Livestock.animal_area(animal),Livestock.animal_point(animal)+Vector2(0,28))
 			check(Livestock.feed(id) and Livestock.pet(id),"用自产玉米饲料每日照料真实动物")
 		GameClock.minutes=1200;GameClock.request_sleep(GameClock.day);await frames(3)
 	for id in animals:
 		var animal: Dictionary=Livestock.animal(id)
-		await Touch.place(self,game,"farm",Vector2(animal.position[0],animal.position[1])+Vector2(0,28))
+		await Touch.place(self,game,Livestock.animal_area(animal),Livestock.animal_point(animal)+Vector2(0,28))
 		check(Livestock.collect(id),"从正常养大的动物收集产品")
 	check(Inventory.count("egg")>=2 and Inventory.count("milk")>=1,"鸡蛋与牛奶均来自实际养殖")
 	check(await process_at(mill,"mill_flour",2),"同时收获的小麦磨成蛋糕面粉")

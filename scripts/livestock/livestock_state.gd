@@ -69,12 +69,12 @@ func animal_point(entry: Dictionary) -> Vector2:
 	return FarmLayout.transform_point(Vector2(entry.position[0],entry.position[1]),str(entry.site))
 func near_site(site: String) -> bool:
 	if not SITES.has(site) or not FarmLayout.active(site) or not is_instance_valid(game): return false
-	if GameState.location==RanchLayout.area(site): return game.player.global_position.distance_to(RanchLayout.service(site))<=54
-	return GameState.location=="farm" and game.player.global_position.distance_to(site_point(site))<=54
+	if GameState.location==RanchLayout.area(site): return game.player.global_position.distance_to(RanchLayout.service(site))<=54 and clear_interaction(RanchLayout.service(site))
+	return GameState.location=="farm" and game.player.global_position.distance_to(site_point(site))<=54 and clear_interaction(site_point(site))
 
 func near_animal(id: String) -> bool:
 	var entry := animal(id)
-	return not entry.is_empty() and FarmLayout.active(str(entry.site)) and is_instance_valid(game) and GameState.location==animal_area(entry) and game.player.global_position.distance_to(animal_point(entry))<=54
+	return not entry.is_empty() and FarmLayout.active(str(entry.site)) and is_instance_valid(game) and GameState.location==animal_area(entry) and game.player.global_position.distance_to(animal_point(entry))<=54 and clear_interaction(animal_point(entry))
 
 func near_any() -> bool:
 	for site in SITES:
@@ -381,7 +381,7 @@ func animal_step_legal(entry: Dictionary, point: Vector2) -> bool:
 
 func nest_point(site: String, area_id: String=GameState.location) -> Vector2: return RanchLayout.nest(site) if area_id==RanchLayout.area(site) else site_point(site)+Vector2(-36,52)
 func near_nest(site: String) -> bool:
-	return site=="coop" and FarmLayout.active(site) and is_instance_valid(game) and GameState.location in ["farm",RanchLayout.area(site)] and game.player.global_position.distance_to(nest_point(site))<=54
+	return site=="coop" and FarmLayout.active(site) and is_instance_valid(game) and GameState.location in ["farm",RanchLayout.area(site)] and game.player.global_position.distance_to(nest_point(site))<=54 and clear_interaction(nest_point(site))
 
 func collect_nest(site: String) -> bool:
 	if busy or not near_nest(site) or int(building(site).level)<1: return false
@@ -425,3 +425,7 @@ func migrate_v29(raw: Variant, day: int) -> Dictionary:
 		var at:=RanchLayout.home(str(entry.site),int(counts[entry.site]));counts[entry.site]+=1
 		entry.pasture_position=[at.x,at.y]
 	return migrated if validate(migrated,day) else {}
+
+func clear_interaction(point: Vector2) -> bool:
+	var ray:=PhysicsRayQueryParameters2D.create(game.player.global_position,point,1)
+	return game.player.get_world_2d().direct_space_state.intersect_ray(ray).is_empty()

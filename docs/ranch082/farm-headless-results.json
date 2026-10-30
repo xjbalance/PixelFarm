@@ -1,0 +1,147 @@
+{
+  "area": {
+    "clear_area_multiplier": 4.28686720469552,
+    "new_dimensions": [
+      96,
+      64
+    ],
+    "new_initial_clear_cells": 5843,
+    "new_total_cells": 6144,
+    "old_dimensions": [
+      48,
+      32
+    ],
+    "old_initial_clear_cells": 1363,
+    "old_total_cells": 1536
+  },
+  "clearing": {
+    "brush_original_0": {
+      "hits": 1,
+      "item": "wood",
+      "position": [
+        560,
+        402
+      ],
+      "quantity": 1,
+      "ready_day": 0
+    },
+    "exp082_boulder_94_39": {
+      "hits": 3,
+      "item": "stone",
+      "position": [
+        3008,
+        1248
+      ],
+      "quantity": 6,
+      "ready_day": 0
+    },
+    "exp082_bush_48_35": {
+      "hits": 1,
+      "item": "wood",
+      "position": [
+        1536,
+        1120
+      ],
+      "quantity": 1,
+      "ready_day": 0
+    },
+    "exp082_rock_52_38": {
+      "hits": 2,
+      "item": "stone",
+      "position": [
+        1664,
+        1216
+      ],
+      "quantity": 3,
+      "ready_day": 0
+    },
+    "exp082_stump_55_6": {
+      "hits": 2,
+      "item": "wood",
+      "position": [
+        1760,
+        192
+      ],
+      "quantity": 2,
+      "ready_day": 0
+    },
+    "exp082_tree_50_53": {
+      "hits": 3,
+      "item": "wood",
+      "position": [
+        1600,
+        1696
+      ],
+      "quantity": 4,
+      "ready_day": 0
+    },
+    "exp082_weed_48_49": {
+      "hits": 1,
+      "item": "hay",
+      "position": [
+        1536,
+        1568
+      ],
+      "quantity": 1,
+      "ready_day": 0
+    },
+    "rock_11_19": {
+      "hits": 2,
+      "item": "stone",
+      "position": [
+        352,
+        608
+      ],
+      "quantity": 3,
+      "ready_day": 0
+    },
+    "tree_5_8": {
+      "hits": 3,
+      "item": "wood",
+      "position": [
+        160,
+        256
+      ],
+      "quantity": 4,
+      "ready_day": 0
+    }
+  },
+  "navigation": {
+
+  },
+  "plots": {
+    "20,50": {
+      "crop": "",
+      "days": 0,
+      "watered": false
+    },
+    "50,53": {
+      "crop": "",
+      "days": 0,
+      "watered": false
+    },
+    "56,20": {
+      "crop": "",
+      "days": 0,
+      "watered": false
+    },
+    "68,52": {
+      "crop": "",
+      "days": 0,
+      "watered": false
+    },
+    "70,25": {
+      "crop": "",
+      "days": 0,
+      "watered": false
+    },
+    "93,62": {
+      "crop": "",
+      "days": 0,
+      "watered": false
+    }
+  },
+  "zones": {
+
+  }
+}

@@ -96,7 +96,7 @@ func show_world() -> void:
 
 func show_current() -> void:
 	map_canvas.show_region();selected_place.clear();detail_button.disabled=true
-	title_label.text="河湾冒险图纸 · 当前区域"
+	title_label.text="河湾冒险图纸 · "+FarmAtlasData.title(GameState.location)
 	info_label.text="白金标记是你。地点仅供查看；滚轮或双指缩放，拖动图纸查看周边。"
 
 func center_player() -> void:

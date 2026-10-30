@@ -158,7 +158,7 @@ static func run(test: Node, game: Node) -> void:
 	game.world.resource_field.advance_day()
 	await test.frames(4)
 	game.auto_move.navigation.rebuild()
-	test.check(not game.auto_move.navigation.walkable(Vector2i(7,19)),"树木再生后恢复寻路障碍")
+	test.check(game.auto_move.navigation.walkable(Vector2i(7,19)),"农场永久清理后跨日仍保持寻路通畅")
 	await place(test,game,"farm",Vector2(416,624))
 	tap(test,game,Vector2(352,598))
 	await finish(test,game)

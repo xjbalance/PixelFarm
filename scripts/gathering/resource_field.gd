@@ -42,7 +42,16 @@ func find_target(origin: Vector2, facing: Vector2) -> Node2D:
 		if offset.length() < distance and facing.dot(offset.normalized()) > 0.1:
 			found = object
 			distance = offset.length()
-	return found
+	return access_target(found) if found else null
+
+func access_target(object: Node2D) -> Node2D:
+	# The old cosmetic bush at the south lake edge overlaps an original stone.
+	# Preserve both old coordinates, and clear the reachable natural blocker first.
+	for other in objects.values():
+		if other==object or int(state[other.resource_id].hp)<=0 or other.is_stored() or other.collision_layer & 1 == 0 or other.collider.disabled: continue
+		var footprint: Rect2=other.collider.global_transform*other.collider.shape.get_rect()
+		if footprint.has_point(object.global_position): return other
+	return object
 
 func highlight(target: Node2D) -> void:
 	for object in objects.values(): object.set_highlight(object == target)

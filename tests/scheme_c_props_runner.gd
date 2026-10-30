@@ -60,7 +60,7 @@ func worksite_state() -> void:
 func livestock_stages() -> void:
 	var points: Array=[]
 	for node in get_tree().get_nodes_in_group("interactables"):
-		if game.world.is_ancestor_of(node) and "livestock_id" in node: points.append(node)
+		if game.world.is_ancestor_of(node) and "livestock_id" in node and str(node.livestock_id) in Livestock.SITES: points.append(node)
 	check(points.size()==3,"保留鸡舍、牛棚、羊圈三个原交互实体")
 	var money: int=Inventory.coins;var items: Dictionary=Inventory.items.duplicate(true)
 	game.change_location("farm",Vector2(576,800));await frames(5)
@@ -81,9 +81,9 @@ func livestock_stages() -> void:
 	await frames(5)
 	check(Inventory.coins==2000-charged and Livestock.state.animals.size()==3,"新畜舍外观仍按原价格购买，不改变动物数量与支出")
 	for animal in get_tree().get_nodes_in_group("livestock_animals"):
-		if not game.world.is_ancestor_of(animal): continue
 		var entry: Dictionary=Livestock.animal(animal.animal_id)
-		check(animal.is_visible_in_tree() and animal.position.y>Livestock.SITES[entry.site].y-64,"暖舍动物保留在屋面下方开放显示区域："+entry.species)
+		game.change_location(Livestock.animal_area(entry));await frames(3)
+		check(animal.is_visible_in_tree() and RanchLayout.indoor(str(entry.site)).has_point(animal.position),"暖舍动物在对应独立牧场真实可见："+entry.species)
 	game.player.position=Vector2(576,800);await capture("livestock_with_animals")
 
 func capture(label: String) -> void:

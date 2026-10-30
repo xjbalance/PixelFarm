@@ -52,6 +52,7 @@ func request_target(intent: Dictionary) -> void:
 	if intent.is_empty(): return
 	if is_instance_valid(game.camera_rig): game.camera_rig.follow_now()
 	target = intent.duplicate()
+	if target.has("covered_resource"): Events.notice.emit("先用对应工具清理挡住灌木的石堆，清完后再点灌木；原有位置会保留。")
 	if target.has("object") and is_instance_valid(target.object) and target.object.has_method("hold_for_interaction"): target.object.hold_for_interaction()
 	marker = target.point
 	marker_time = 0.7

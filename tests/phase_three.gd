@@ -57,7 +57,7 @@ static func run(test: Node, game: Node) -> void:
 		{"coins":-1}, {"day":"oops"}, {"player":[-1,42]}, {"location":"unknown"},
 		{"items":{"carrot":-2}}, {"plots":{"24,20":{"crop":"bad","days":0,"watered":false}}},
 		{"plots":{"24,20":{"crop":"carrot","days":999,"watered":false}}},
-		{"plots":{"48,0":{"crop":"","days":0,"watered":false}}}, {"version":999}
+		{"plots":{"96,0":{"crop":"","days":0,"watered":false}}}, {"version":999}
 	]:
 		var invalid := loaded.duplicate(true)
 		invalid.merge(mutation,true)

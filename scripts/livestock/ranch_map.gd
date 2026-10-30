@@ -122,4 +122,4 @@ func _draw() -> void:
 		SchemeCAssets.draw(self,"wood_fence",Vector2(x,27),Calendar.season())
 		SchemeCAssets.draw(self,"wood_fence",Vector2(x,extent.y-5),Calendar.season())
 	for y in range(48,int(extent.y-32),32):
-		for x in [16,extent.x-16]: SchemeCAssets.draw(self,"wood_fence",Vector2(x,y),Calendar.season())
+		for x in [16,extent.x-16]: SchemeCAssets.draw(self,"wood_fence_vertical",Vector2(x,y),Calendar.season())

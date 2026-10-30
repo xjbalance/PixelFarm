@@ -20,7 +20,7 @@ func run() -> void:
  GameClock.running=false;GameWeather.enabled=false;game.get_node("Audio").muted=true;await frames(8)
  game.tutorial.restore(GameTutorial.defaults(true));await frames(3)
  var expected: Dictionary=canonical(FarmSaveStore.snapshot(game));expected.erase("territory");expected.erase("farm_layout")
- var ok: bool=FarmSaveStore.VERSION==29 and FarmLayoutCatalog.fixtures().size()==64 and game.territory_world.maps.size()==5 and not Territory.unlocked("east_holding")
+ var ok: bool=FarmSaveStore.VERSION==30 and FarmLayoutCatalog.fixtures().size()==64 and game.territory_world.maps.size()==5 and not Territory.unlocked("east_holding")
  ok=SchemeCAssets.catalog().size()==97 and ok
  for id in SchemeCAssets.catalog():
   var info: Dictionary=SchemeCAssets.definition(id)
@@ -38,10 +38,10 @@ func run() -> void:
  print("APK MARRIAGE MASTERY 9-STORY/5-RECIPE/7-FISH CONFIG: ","PASS" if ok else "FAIL")
  ok=int(Fishing.data.get("eternal_chance_divisor",0))==10 and Fishing.has_method("encounter_chances") and ok
  print("APK FISHING NO-PITY / ONE-TENTH ENCOUNTER CONFIG: ","PASS" if ok else "FAIL")
- ok=Catalog.crops.size()==33 and Kitchen.data.recipes.size()==32 and HarvestCatalog.data().processing.size()==49 and ok
+ ok=Catalog.crops.size()==33 and Kitchen.data.recipes.size()==32 and HarvestCatalog.data().processing.size()==50 and ok
  for id in HarvestCatalog.data().items: ok=ItemPresentation.texture(id)!=null and ok
  for id in HarvestCatalog.data().stations: ok=TerritoryWorld.texture_for("station_"+id)!=null and ok
- print("APK HARVEST 33-CROPS/32-DISHES/49-PROCESSES/10-STATIONS: ","PASS" if ok else "FAIL")
+ print("APK HARVEST 33-CROPS/32-DISHES/50-PROCESSES/10-STATIONS: ","PASS" if ok else "FAIL")
  for id in HarvestCatalog.data().stations: ok=WorkshopVisual.frames_for(id)!=null and WorkshopVisual.frames_for(id).get_frame_count("work")==4 and ok
  ok=Workshop.state.version==2 and Kitchen.data.items.carrot_stew.energy==32 and Catalog.sell_price("cheese")==92 and ok
  print("APK QUALITY081 WORKING ATLAS / SNAPSHOT V2 / BALANCE: ","PASS" if ok else "FAIL")
@@ -63,11 +63,11 @@ func run() -> void:
  ok=game.territory_editor.confirm() and ok
  await frames(5);game.territory_editor.cancel();game.save_game();await frames(3)
  var data: Dictionary=FarmSaveStore.read(game.save_path)
- ok=data.get("version")==29 and data.get("farm_layout")==FarmLayout.snapshot() and data.get("territory",{}).get("terrain",{}).get("farm",{}).get(TerritoryCatalog.key(cell))=="stone_path" and ok
+ ok=data.get("version")==30 and data.get("farm_layout")==FarmLayout.snapshot() and data.get("territory",{}).get("terrain",{}).get("farm",{}).get(TerritoryCatalog.key(cell))=="stone_path" and ok
  ok=data.get("farm_layout",{}).get("fixtures",{}).get("home",{}).get("cell")==[20,5] and FarmSaveStore.restore(game,data) and ok
  await frames(5)
  ok=FarmLayout.cell("fixture","home")==Vector2i(20,5) and ok
- print("APK FARM LAYOUT V29 MOVE/RESTORE: ","PASS" if ok else "FAIL")
+ print("APK FARM LAYOUT V30 MOVE/RESTORE: ","PASS" if ok else "FAIL")
  var after: Dictionary=canonical(FarmSaveStore.snapshot(game));after.erase("territory");after.erase("farm_layout")
  ok=after==expected and ok
  print("APK TERRITORY EDITOR SMOKE: ","PASS" if ok else "FAIL")
@@ -92,6 +92,36 @@ func run() -> void:
   ok=Kitchen.cook("bread") and Inventory.count("bread")==1 and FarmSaveStore.valid(FarmSaveStore.snapshot(game)) and ok
  else: ok=false
  print("APK HARVEST REAL MILL / FLOUR / BREAD / CLAIM-ONCE: ","PASS" if ok else "FAIL")
+ var ranch_ok: bool=FarmLayoutCatalog.GRID==Rect2i(0,0,96,64) and game.world.ground.get_used_cells().size()==6144 and Catalog.is_item("duck_egg") and Catalog.is_item("salted_duck_egg")
+ Inventory.coins=10000;Inventory.items.wood=200;Inventory.items.stone=200;Inventory.items.hay=30
+ game.change_location("farm",Livestock.site_point("coop")+Vector2(0,32));await frames(4)
+ ranch_ok=Livestock.build("coop") and Livestock.buy_animal("coop") and Livestock.buy_animal("coop","duck") and ranch_ok
+ for day in range(7):
+  for entry in Livestock.animals_at("coop"):
+   game.change_location("pasture_coop",Livestock.animal_point(entry)+Vector2(0,32));await frames(3)
+   ranch_ok=Livestock.feed(entry.id) and ranch_ok
+  GameClock.minutes=1200;ranch_ok=GameClock.request_sleep(GameClock.day) and ranch_ok;await frames(3)
+ game.change_location("pasture_coop",Livestock.nest_point("coop","pasture_coop")+Vector2(0,32));await frames(4)
+ ranch_ok=Livestock.collect_nest("coop") and Inventory.count("egg")==3 and Inventory.count("duck_egg")==2 and ranch_ok
+ ranch_ok=not Livestock.collect_nest("coop") and game.mine_maps.pasture_coop.reachable.size()==638 and game.mine_maps.pasture_barn.reachable.size()==1358 and ranch_ok
+ game.change_location("farm",Vector2(704,704));await frames(4);ranch_ok=game.territory_editor.open() and ranch_ok;await frames(4)
+ var jar: String=""
+ for y in range(23,27):
+  for x in range(17,29):
+   var plan: Dictionary=Territory.plan_place("farm","station_pickle_jar",Vector2i(x,y))
+   if plan.valid and Territory.apply_plan(plan): jar=str(Territory.state.objects[-1].id);break
+  if jar!="":break
+ game.territory_editor.cancel();await frames(5)
+ if jar!="":
+  var object: Node2D=game.territory_world.objects[jar];game.change_location("farm",object.position+Vector2(0,48));await frames(4)
+  ranch_ok=Workshop.start(jar,"salted_duck_egg") and Inventory.count("duck_egg")==0 and ranch_ok
+  var job_id: int=int(Workshop.state.jobs[jar].id)
+  for i in range(2):GameClock.minutes=1200;ranch_ok=GameClock.request_sleep(GameClock.day) and ranch_ok;await frames(3)
+  ranch_ok=Workshop.claim(jar,job_id) and not Workshop.claim(jar,job_id) and Inventory.count("salted_duck_egg")==1 and FarmSaveStore.valid(FarmSaveStore.snapshot(game)) and ranch_ok
+ else:ranch_ok=false
+ for id in ["chicken","duck","cow","sheep"]:ranch_ok=ResourceLoader.exists("res://assets/livestock/ranch082/"+id+".png") and ranch_ok
+ print("APK RANCH REAL CHICKEN/DUCK EGGS / PASTURE / SALTED PRODUCT / SAVE30: ","PASS" if ranch_ok else "FAIL")
+ ok=ranch_ok and ok
  game.persistence_enabled=false;game.get_node("Audio").stop_all();await get_tree().create_timer(.3).timeout;game.queue_free();await frames(4);get_tree().quit(0 if ok else 1)
 '''
 

@@ -45,7 +45,8 @@ func run() -> void:
 		ok=Livestock.build("coop") and Livestock.buy_animal("coop") and ok
 		await frames()
 		var animal: Dictionary=Livestock.state.animals[0]
-		game.player.position=Vector2(animal.position[0],animal.position[1])+Vector2(0,32)
+		game.change_location(Livestock.animal_area(animal),Livestock.animal_point(animal)+Vector2(0,32))
+		await frames(3)
 		ok=Livestock.feed(animal.id) and Livestock.pet(animal.id) and ok
 		game.change_location("home",Housing.HOME+Vector2(32,0));await frames()
 		ok=Housing.buy("chair") and Housing.place("chair","home",Vector2i(8,13)) and Housing.deposit("wood",7) and ok

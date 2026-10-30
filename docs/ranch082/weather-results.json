@@ -2,12 +2,12 @@
   {
     "after": {
       "animal_000001": [
-        464,
-        147.61
+        409.48,
+        201.92
       ],
       "animal_000002": [
-        592,
-        203.62
+        568,
+        211.6
       ]
     },
     "before": {
@@ -21,7 +21,7 @@
       ]
     },
     "frames": 480,
-    "maximum_step_pixels": 0.540379524230957,
+    "maximum_step_pixels": 0.541488587856293,
     "reason": "rain",
     "site": "coop",
     "weather": "rain"
@@ -29,12 +29,12 @@
   {
     "after": {
       "animal_000001": [
-        464,
-        125.74
+        440,
+        211.92
       ],
       "animal_000002": [
-        592,
-        186.53
+        568,
+        211.6
       ]
     },
     "before": {
@@ -47,8 +47,8 @@
         400
       ]
     },
-    "frames": 540,
-    "maximum_step_pixels": 0.540379524230957,
+    "frames": 480,
+    "maximum_step_pixels": 0.541488587856293,
     "reason": "winter",
     "site": "coop",
     "weather": "fog"
@@ -56,12 +56,12 @@
   {
     "after": {
       "animal_000003": [
-        720,
-        187.59
+        696,
+        211.75
       ],
       "animal_000004": [
-        821.95,
-        176.37
+        824,
+        211.75
       ]
     },
     "before": {
@@ -70,12 +70,12 @@
         400
       ],
       "animal_000004": [
-        847.2,
-        367.88
+        839.95,
+        367.15
       ]
     },
-    "frames": 720,
-    "maximum_step_pixels": 0.304162204265594,
+    "frames": 660,
+    "maximum_step_pixels": 0.311150282621384,
     "reason": "rain",
     "site": "barn",
     "weather": "rain"
@@ -83,12 +83,12 @@
   {
     "after": {
       "animal_000003": [
-        720,
-        193.29
+        696,
+        211.75
       ],
       "animal_000004": [
-        848,
-        193.29
+        824,
+        211.75
       ]
     },
     "before": {
@@ -101,8 +101,8 @@
         400
       ]
     },
-    "frames": 720,
-    "maximum_step_pixels": 0.304162204265594,
+    "frames": 660,
+    "maximum_step_pixels": 0.311150282621384,
     "reason": "winter",
     "site": "barn",
     "weather": "fog"
@@ -110,18 +110,18 @@
   {
     "after": {
       "animal_000005": [
-        720,
-        150.99
+        696,
+        211.84
       ],
       "animal_000006": [
-        848,
-        196.61
+        824,
+        211.95
       ]
     },
     "before": {
       "animal_000005": [
-        719.51,
-        357.99
+        709.66,
+        357.86
       ],
       "animal_000006": [
         832,
@@ -129,7 +129,7 @@
       ]
     },
     "frames": 540,
-    "maximum_step_pixels": 0.390143066644669,
+    "maximum_step_pixels": 0.395999640226364,
     "reason": "rain",
     "site": "fold",
     "weather": "rain"
@@ -137,12 +137,12 @@
   {
     "after": {
       "animal_000005": [
-        720,
-        203.89
+        696,
+        211.95
       ],
       "animal_000006": [
-        848,
-        203.89
+        824,
+        211.95
       ]
     },
     "before": {
@@ -156,7 +156,7 @@
       ]
     },
     "frames": 540,
-    "maximum_step_pixels": 0.390143066644669,
+    "maximum_step_pixels": 0.395999640226364,
     "reason": "winter",
     "site": "fold",
     "weather": "fog"

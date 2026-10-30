@@ -1,0 +1,3747 @@
+{
+  "version": "0.8.2",
+  "title": "活力牧场",
+  "base_commit": "244c379",
+  "branch": "development/0.8.2",
+  "save_version": 30,
+  "baseline": {
+    "commit": "244c379",
+    "engine": "4.3.stable.official.77dcf97d8",
+    "isolated_worktree": "/tmp/pixelfarm-081-ranch-baseline",
+    "processes": 203,
+    "assertions": 11085,
+    "completed": true,
+    "failures": 0
+  },
+  "regression": {
+    "complete_fresh_run": true,
+    "processes": 217,
+    "assertions": 12184,
+    "errors": 0,
+    "records": [
+      {
+        "process": "import",
+        "log": "builds/import.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "quality081-animation",
+        "log": "builds/quality081-animation.log",
+        "checks": 67,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "quality081-production",
+        "log": "builds/quality081-production.log",
+        "checks": 61,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "quality081-ui",
+        "log": "builds/quality081-ui.log",
+        "checks": 74,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "quality081-chains",
+        "log": "builds/quality081-chains.log",
+        "checks": 184,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "harvest-crops",
+        "log": "builds/harvest-crops.log",
+        "checks": 173,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "harvest-processing",
+        "log": "builds/harvest-processing.log",
+        "checks": 29,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "harvest-chains",
+        "log": "builds/harvest-chains.log",
+        "checks": 260,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "harvest-meals",
+        "log": "builds/harvest-meals.log",
+        "checks": 232,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "harvest-touch",
+        "log": "builds/harvest-touch.log",
+        "checks": 13,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "sleep",
+        "log": "builds/sleep.log",
+        "checks": 29,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "integration",
+        "log": "builds/integration.log",
+        "checks": 452,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "mining",
+        "log": "builds/mining.log",
+        "checks": 98,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "star",
+        "log": "builds/star.log",
+        "checks": 155,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "legend",
+        "log": "builds/legend.log",
+        "checks": 252,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "stability",
+        "log": "builds/stability.log",
+        "checks": 264,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "river",
+        "log": "builds/river.log",
+        "checks": 446,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "aquaculture",
+        "log": "builds/aquaculture.log",
+        "checks": 155,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "seasons-a",
+        "log": "builds/seasons-a.log",
+        "checks": 87,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "control-recovery",
+        "log": "builds/control-recovery.log",
+        "checks": 52,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "fishing-b",
+        "log": "builds/fishing-b.log",
+        "checks": 89,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "fishing-odds",
+        "log": "builds/fishing-odds.log",
+        "checks": 49,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "livestock-b",
+        "log": "builds/livestock-b.log",
+        "checks": 112,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "kitchen-b",
+        "log": "builds/kitchen-b.log",
+        "checks": 100,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ecology-b",
+        "log": "builds/ecology-b.log",
+        "checks": 65,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "festivals-c",
+        "log": "builds/festivals-c.log",
+        "checks": 87,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "social-c",
+        "log": "builds/social-c.log",
+        "checks": 107,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "housing-c",
+        "log": "builds/housing-c.log",
+        "checks": 109,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "exploration-d",
+        "log": "builds/exploration-d.log",
+        "checks": 106,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "world-progress-d",
+        "log": "builds/world-progress-d.log",
+        "checks": 170,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "quality-070",
+        "log": "builds/quality-070.log",
+        "checks": 41,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "performance-070",
+        "log": "builds/performance-070.log",
+        "checks": 3,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "finale-070",
+        "log": "builds/finale-070.log",
+        "checks": 24,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "palm-071",
+        "log": "builds/palm-071.log",
+        "checks": 28,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "recovery-071",
+        "log": "builds/recovery-071.log",
+        "checks": 55,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "tutorial-ui-071",
+        "log": "builds/tutorial-ui-071.log",
+        "checks": 26,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "performance-071",
+        "log": "builds/performance-071.log",
+        "checks": 17,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "touch-polish",
+        "log": "builds/touch-polish.log",
+        "checks": 53,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farming-actions",
+        "log": "builds/farming-actions.log",
+        "checks": 110,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "food-recovery",
+        "log": "builds/food-recovery.log",
+        "checks": 43,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ui04-theme",
+        "log": "builds/ui04-theme.log",
+        "checks": 7,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "inventory03",
+        "log": "builds/inventory03.log",
+        "checks": 51,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "hotbar03",
+        "log": "builds/hotbar03.log",
+        "checks": 23,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ui05-camera",
+        "log": "builds/ui05-camera.log",
+        "checks": 48,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ui05-hotbar",
+        "log": "builds/ui05-hotbar.log",
+        "checks": 43,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ui05-layout",
+        "log": "builds/ui05-layout.log",
+        "checks": 343,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home05",
+        "log": "builds/home05.log",
+        "checks": 103,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home-arrange",
+        "log": "builds/home-arrange.log",
+        "checks": 159,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "resource-rich",
+        "log": "builds/resource-rich.log",
+        "checks": 117,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "sale-quantity",
+        "log": "builds/sale-quantity.log",
+        "checks": 35,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-visual-06",
+        "log": "builds/farm-visual-06.log",
+        "checks": 207,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "atlas-core",
+        "log": "builds/atlas-core.log",
+        "checks": 78,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "atlas-ui",
+        "log": "builds/atlas-ui.log",
+        "checks": 51,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "journal-atlas-ui07",
+        "log": "builds/journal-atlas-ui07.log",
+        "checks": 42,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "story-ui07",
+        "log": "builds/story-ui07.log",
+        "checks": 68,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "facility-ui07",
+        "log": "builds/facility-ui07.log",
+        "checks": 316,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "world-style07",
+        "log": "builds/world-style07.log",
+        "checks": 38,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "appearance",
+        "log": "builds/appearance.log",
+        "checks": 44,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "character-select",
+        "log": "builds/character-select.log",
+        "checks": 36,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "scheme-c-game",
+        "log": "builds/scheme-c-game.log",
+        "checks": 54,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "scheme-c-cancel",
+        "log": "builds/scheme-c-cancel.log",
+        "checks": 2,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home-teleport",
+        "log": "builds/home-teleport.log",
+        "checks": 109,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "appearance-switch",
+        "log": "builds/appearance-switch.log",
+        "checks": 126,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "marriage-requirements",
+        "log": "builds/marriage-requirements.log",
+        "checks": 70,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "marriage-mastery",
+        "log": "builds/marriage-mastery.log",
+        "checks": 75,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "territory-core",
+        "log": "builds/territory-core.log",
+        "checks": 299,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "territory-editor",
+        "log": "builds/territory-editor.log",
+        "checks": 55,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "territory-world",
+        "log": "builds/territory-world.log",
+        "checks": 95,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "territory-atlas",
+        "log": "builds/territory-atlas.log",
+        "checks": 35,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "world-assets",
+        "log": "builds/world-assets.log",
+        "checks": 411,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "scheme-c-nature",
+        "log": "builds/scheme-c-nature.log",
+        "checks": 75,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "scheme-c-placement",
+        "log": "builds/scheme-c-placement.log",
+        "checks": 1556,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "scheme-c-props",
+        "log": "builds/scheme-c-props.log",
+        "checks": 45,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-edit",
+        "log": "builds/farm-edit.log",
+        "checks": 73,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-edit-kinds",
+        "log": "builds/farm-edit-kinds.log",
+        "checks": 200,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-layout-state",
+        "log": "builds/farm-layout-state.log",
+        "checks": 79,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-diy-production",
+        "log": "builds/farm-diy-production.log",
+        "checks": 88,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-layout-business",
+        "log": "builds/farm-layout-business.log",
+        "checks": 107,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-diy-editor",
+        "log": "builds/farm-diy-editor.log",
+        "checks": 164,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "scheme-c-star-female",
+        "log": "builds/scheme-c-star-female.log",
+        "checks": 165,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "scheme-c-legend-female",
+        "log": "builds/scheme-c-legend-female.log",
+        "checks": 258,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "scheme-c-river-female",
+        "log": "builds/scheme-c-river-female.log",
+        "checks": 456,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "persist-write",
+        "log": "builds/persist-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "persist-restart",
+        "log": "builds/persist-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "legacy-write",
+        "log": "builds/legacy-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "legacy-restart",
+        "log": "builds/legacy-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "mine-persist-write",
+        "log": "builds/mine-persist-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "mine-persist-restart",
+        "log": "builds/mine-persist-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "mine-backup-write",
+        "log": "builds/mine-backup-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "mine-backup-corrupt",
+        "log": "builds/mine-backup-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "mine-backup-restart",
+        "log": "builds/mine-backup-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "star-persist-write",
+        "log": "builds/star-persist-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "star-persist-restart",
+        "log": "builds/star-persist-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "star-backup-corrupt",
+        "log": "builds/star-backup-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "star-backup-restart",
+        "log": "builds/star-backup-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "abyss-write",
+        "log": "builds/abyss-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "abyss-restart",
+        "log": "builds/abyss-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "abyss-corrupt",
+        "log": "builds/abyss-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "abyss-backup",
+        "log": "builds/abyss-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "river-write",
+        "log": "builds/river-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "river-restart",
+        "log": "builds/river-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "river-corrupt",
+        "log": "builds/river-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "river-backup",
+        "log": "builds/river-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "stability-write",
+        "log": "builds/stability-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "stability-restart",
+        "log": "builds/stability-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "stability-corrupt",
+        "log": "builds/stability-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "stability-backup",
+        "log": "builds/stability-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "aquaculture-write",
+        "log": "builds/aquaculture-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "aquaculture-restart",
+        "log": "builds/aquaculture-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "aquaculture-corrupt",
+        "log": "builds/aquaculture-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "aquaculture-backup",
+        "log": "builds/aquaculture-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "seasons-write",
+        "log": "builds/seasons-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "seasons-restart",
+        "log": "builds/seasons-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "seasons-corrupt",
+        "log": "builds/seasons-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "seasons-backup",
+        "log": "builds/seasons-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "fishing-b-write",
+        "log": "builds/fishing-b-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "fishing-b-restart",
+        "log": "builds/fishing-b-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "fishing-b-corrupt",
+        "log": "builds/fishing-b-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "fishing-b-backup",
+        "log": "builds/fishing-b-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "livestock-b-write",
+        "log": "builds/livestock-b-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "livestock-b-restart",
+        "log": "builds/livestock-b-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "livestock-b-corrupt",
+        "log": "builds/livestock-b-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "livestock-b-backup",
+        "log": "builds/livestock-b-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "kitchen-b-write",
+        "log": "builds/kitchen-b-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "kitchen-b-restart",
+        "log": "builds/kitchen-b-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "kitchen-b-corrupt",
+        "log": "builds/kitchen-b-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "kitchen-b-backup",
+        "log": "builds/kitchen-b-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "social-c-write",
+        "log": "builds/social-c-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "social-c-restart",
+        "log": "builds/social-c-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "social-c-corrupt",
+        "log": "builds/social-c-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "social-c-backup",
+        "log": "builds/social-c-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "life-c-write",
+        "log": "builds/life-c-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "life-c-restart",
+        "log": "builds/life-c-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "life-c-corrupt",
+        "log": "builds/life-c-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "life-c-backup",
+        "log": "builds/life-c-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "exploration-d-write",
+        "log": "builds/exploration-d-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "exploration-d-restart",
+        "log": "builds/exploration-d-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "exploration-d-corrupt",
+        "log": "builds/exploration-d-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "exploration-d-backup",
+        "log": "builds/exploration-d-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "world-progress-d-write",
+        "log": "builds/world-progress-d-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "world-progress-d-restart",
+        "log": "builds/world-progress-d-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "world-progress-d-corrupt",
+        "log": "builds/world-progress-d-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "world-progress-d-backup",
+        "log": "builds/world-progress-d-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "palm-write",
+        "log": "builds/palm-write.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "palm-restart",
+        "log": "builds/palm-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "palm-interrupt",
+        "log": "builds/palm-interrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "palm-interrupted-restart",
+        "log": "builds/palm-interrupted-restart.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "palm-corrupt",
+        "log": "builds/palm-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "palm-backup",
+        "log": "builds/palm-backup.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "touch-polish-write",
+        "log": "builds/touch-polish-write.log",
+        "checks": 2,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "touch-polish-restart",
+        "log": "builds/touch-polish-restart.log",
+        "checks": 3,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-windup-write",
+        "log": "builds/farm-windup-write.log",
+        "checks": 4,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-windup-read",
+        "log": "builds/farm-windup-read.log",
+        "checks": 3,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-impact-write",
+        "log": "builds/farm-impact-write.log",
+        "checks": 4,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-impact-read",
+        "log": "builds/farm-impact-read.log",
+        "checks": 3,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "inventory03-write",
+        "log": "builds/inventory03-write.log",
+        "checks": 2,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "inventory03-read",
+        "log": "builds/inventory03-read.log",
+        "checks": 6,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home05-pending-write",
+        "log": "builds/home05-pending-write.log",
+        "checks": 4,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home05-pending-read",
+        "log": "builds/home05-pending-read.log",
+        "checks": 5,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home05-finished-read",
+        "log": "builds/home05-finished-read.log",
+        "checks": 3,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home05-corrupt",
+        "log": "builds/home05-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home05-backup-read",
+        "log": "builds/home05-backup-read.log",
+        "checks": 3,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home05-sofa-write",
+        "log": "builds/home05-sofa-write.log",
+        "checks": 4,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home05-sofa-read",
+        "log": "builds/home05-sofa-read.log",
+        "checks": 3,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "resource-rich-legacy-write",
+        "log": "builds/resource-rich-legacy-write.log",
+        "checks": 2,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "resource-rich-legacy-read",
+        "log": "builds/resource-rich-legacy-read.log",
+        "checks": 4,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "resource-rich-write",
+        "log": "builds/resource-rich-write.log",
+        "checks": 5,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "resource-rich-read",
+        "log": "builds/resource-rich-read.log",
+        "checks": 5,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "resource-rich-corrupt",
+        "log": "builds/resource-rich-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "resource-rich-backup",
+        "log": "builds/resource-rich-backup.log",
+        "checks": 5,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home-arrange-v23-write",
+        "log": "builds/home-arrange-v23-write.log",
+        "checks": 4,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home-arrange-v23-read",
+        "log": "builds/home-arrange-v23-read.log",
+        "checks": 6,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home-arrange-write",
+        "log": "builds/home-arrange-write.log",
+        "checks": 7,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home-arrange-read",
+        "log": "builds/home-arrange-read.log",
+        "checks": 5,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home-arrange-corrupt",
+        "log": "builds/home-arrange-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "home-arrange-backup",
+        "log": "builds/home-arrange-backup.log",
+        "checks": 5,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "atlas-write",
+        "log": "builds/atlas-write.log",
+        "checks": 8,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "atlas-read",
+        "log": "builds/atlas-read.log",
+        "checks": 14,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "atlas-v23-write",
+        "log": "builds/atlas-v23-write.log",
+        "checks": 8,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "atlas-v23-read",
+        "log": "builds/atlas-v23-read.log",
+        "checks": 15,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "appearance-write",
+        "log": "builds/appearance-write.log",
+        "checks": 4,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "appearance-read",
+        "log": "builds/appearance-read.log",
+        "checks": 10,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "appearance-corrupt",
+        "log": "builds/appearance-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "appearance-backup",
+        "log": "builds/appearance-backup.log",
+        "checks": 10,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "appearance-v24-write",
+        "log": "builds/appearance-v24-write.log",
+        "checks": 5,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "appearance-v24-read",
+        "log": "builds/appearance-v24-read.log",
+        "checks": 11,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "territory-write",
+        "log": "builds/territory-write.log",
+        "checks": 16,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "territory-read",
+        "log": "builds/territory-read.log",
+        "checks": 11,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "territory-corrupt",
+        "log": "builds/territory-corrupt.log",
+        "checks": 4,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "territory-backup",
+        "log": "builds/territory-backup.log",
+        "checks": 11,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "territory-v25-write",
+        "log": "builds/territory-v25-write.log",
+        "checks": 5,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "territory-v25-read",
+        "log": "builds/territory-v25-read.log",
+        "checks": 13,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-layout-write",
+        "log": "builds/farm-layout-write.log",
+        "checks": 19,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-layout-read",
+        "log": "builds/farm-layout-read.log",
+        "checks": 16,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-layout-corrupt",
+        "log": "builds/farm-layout-corrupt.log",
+        "checks": 5,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-layout-backup",
+        "log": "builds/farm-layout-backup.log",
+        "checks": 16,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-layout-v26-write",
+        "log": "builds/farm-layout-v26-write.log",
+        "checks": 9,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "farm-layout-v26-read",
+        "log": "builds/farm-layout-v26-read.log",
+        "checks": 16,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "harvest-save-write",
+        "log": "builds/harvest-save-write.log",
+        "checks": 3,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "harvest-save-read",
+        "log": "builds/harvest-save-read.log",
+        "checks": 5,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "harvest-save-read-claimed",
+        "log": "builds/harvest-save-read-claimed.log",
+        "checks": 3,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "harvest-save-legacy",
+        "log": "builds/harvest-save-legacy.log",
+        "checks": 6,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-poultry",
+        "log": "builds/ranch082-poultry.log",
+        "checks": 94,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-ranges",
+        "log": "builds/ranch082-ranges.log",
+        "checks": 121,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-weather",
+        "log": "builds/ranch082-weather.log",
+        "checks": 27,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-farm",
+        "log": "builds/ranch082-farm.log",
+        "checks": 161,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-obstacle",
+        "log": "builds/ranch082-obstacle.log",
+        "checks": 17,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-migration",
+        "log": "builds/ranch082-migration.log",
+        "checks": 184,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-ui",
+        "log": "builds/ranch082-ui.log",
+        "checks": 209,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-ui-dpi480",
+        "log": "builds/ranch082-ui-dpi480.log",
+        "checks": 65,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-seasons",
+        "log": "builds/ranch082-seasons.log",
+        "checks": 4,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-stress",
+        "log": "builds/ranch082-stress.log",
+        "checks": 54,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-save-write",
+        "log": "builds/ranch082-save-write.log",
+        "checks": 9,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-save-read",
+        "log": "builds/ranch082-save-read.log",
+        "checks": 10,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-save-corrupt",
+        "log": "builds/ranch082-save-corrupt.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "ranch082-save-backup",
+        "log": "builds/ranch082-save-backup.log",
+        "checks": 6,
+        "engine_error": false,
+        "exists": true
+      },
+      {
+        "process": "main-smoke",
+        "log": "builds/main-smoke.log",
+        "checks": 0,
+        "engine_error": false,
+        "exists": true
+      }
+    ]
+  },
+  "windows": {
+    "assertions": 1356,
+    "suites": {
+      "ranch_ranges": {
+        "checks": 127,
+        "errors": false,
+        "log": "builds/ranch082-ranch082_ranges_runner.log"
+      },
+      "farm": {
+        "checks": 683,
+        "errors": false,
+        "log": "builds/ranch082-ranch082_farm_runner.log"
+      },
+      "natural_obstacles": {
+        "checks": 17,
+        "errors": false,
+        "log": "builds/ranch082-ranch082_obstacle_runner.log"
+      },
+      "stress": {
+        "checks": 54,
+        "errors": false,
+        "log": "builds/ranch082-ranch082_stress_runner.log"
+      },
+      "seasons": {
+        "checks": 5,
+        "errors": false,
+        "log": "builds/ranch082-ranch082_season_probe.log"
+      },
+      "ranch_ui": {
+        "checks": 209,
+        "errors": false,
+        "actual_window": true,
+        "result": "docs/ranch082/ui-matrix-window-results.json"
+      },
+      "ranch_ui_dpi480": {
+        "checks": 65,
+        "errors": false,
+        "actual_window": true,
+        "result": "docs/ranch082/ui-dpi480-window-results.json"
+      },
+      "livestock_b_render": {
+        "checks": 25,
+        "errors": false,
+        "log": "builds/window-082-livestock_b_render.log"
+      },
+      "kitchen_b_render": {
+        "checks": 24,
+        "errors": false,
+        "log": "builds/window-082-kitchen_b_render.log"
+      },
+      "ui05_camera_runner": {
+        "checks": 48,
+        "errors": false,
+        "log": "builds/window-082-ui05_camera_runner.log"
+      },
+      "territory_editor_render": {
+        "checks": 55,
+        "errors": false,
+        "log": "builds/window-082-territory_editor_render.log"
+      },
+      "home05_render": {
+        "checks": 44,
+        "errors": false,
+        "log": "builds/window-082-home05_render.log"
+      }
+    }
+  },
+  "farm": {
+    "clear_area_multiplier": 4.28686720469552,
+    "new_dimensions": [
+      96,
+      64
+    ],
+    "new_initial_clear_cells": 5843,
+    "new_total_cells": 6144,
+    "old_dimensions": [
+      48,
+      32
+    ],
+    "old_initial_clear_cells": 1363,
+    "old_total_cells": 1536
+  },
+  "pastures": {
+    "barn": {
+      "engine_clear_cells": 1358,
+      "grid": [
+        48,
+        32
+      ],
+      "max_return_step_pixels": 0.308063060045242,
+      "multiplier": 38.1142857142857,
+      "new_connected_cells": 1358,
+      "old_cells": 35,
+      "outdoor_effective_cells": 1334,
+      "return_motion": [
+        {
+          "frame": 0,
+          "positions": {
+            "animal_000007": [
+              616.39,
+              356.5
+            ],
+            "animal_000008": [
+              920,
+              196.37
+            ],
+            "animal_000009": [
+              1033.33,
+              188.38
+            ],
+            "animal_000010": [
+              1006.45,
+              327.28
+            ],
+            "animal_000011": [
+              763.36,
+              207.83
+            ],
+            "animal_000012": [
+              584.14,
+              492.71
+            ]
+          }
+        },
+        {
+          "frame": 60,
+          "positions": {
+            "animal_000007": [
+              616.03,
+              338.51
+            ],
+            "animal_000008": [
+              920,
+              214.37
+            ],
+            "animal_000009": [
+              1024.15,
+              199.1
+            ],
+            "animal_000010": [
+              997.45,
+              313.4
+            ],
+            "animal_000011": [
+              763.36,
+              207.83
+            ],
+            "animal_000012": [
+              598.58,
+              485.24
+            ]
+          }
+        },
+        {
+          "frame": 120,
+          "positions": {
+            "animal_000007": [
+              616,
+              320.51
+            ],
+            "animal_000008": [
+              920,
+              232.37
+            ],
+            "animal_000009": [
+              1006.19,
+              199.93
+            ],
+            "animal_000010": [
+              979.51,
+              312.12
+            ],
+            "animal_000011": [
+              763.36,
+              207.83
+            ],
+            "animal_000012": [
+              599.87,
+              467.31
+            ]
+          }
+        },
+        {
+          "frame": 180,
+          "positions": {
+            "animal_000007": [
+              616,
+              302.51
+            ],
+            "animal_000008": [
+              915.83,
+              246.65
+            ],
+            "animal_000009": [
+              988.19,
+              199.99
+            ],
+            "animal_000010": [
+              961.51,
+              312.01
+            ],
+            "animal_000011": [
+              763.36,
+              207.83
+            ],
+            "animal_000012": [
+              599.99,
+              449.31
+            ]
+          }
+        },
+        {
+          "frame": 240,
+          "positions": {
+            "animal_000007": [
+              616,
+              284.51
+            ],
+            "animal_000008": [
+              897.89,
+              247.89
+            ],
+            "animal_000009": [
+              970.19,
+              200
+            ],
+            "animal_000010": [
+              943.51,
+              312
+            ],
+            "animal_000011": [
+              763.36,
+              207.83
+            ],
+            "animal_000012": [
+              600,
+              431.31
+            ]
+          }
+        },
+        {
+          "frame": 300,
+          "positions": {
+            "animal_000007": [
+              616,
+              266.51
+            ],
+            "animal_000008": [
+              879.9,
+              247.99
+            ],
+            "animal_000009": [
+              953.77,
+              201.79
+            ],
+            "animal_000010": [
+              925.52,
+              312
+            ],
+            "animal_000011": [
+              763.36,
+              207.83
+            ],
+            "animal_000012": [
+              600,
+              413.31
+            ]
+          }
+        },
+        {
+          "frame": 360,
+          "positions": {
+            "animal_000007": [
+              617.19,
+              249.58
+            ],
+            "animal_000008": [
+              872.48,
+              236.08
+            ],
+            "animal_000009": [
+              946.84,
+              214.86
+            ],
+            "animal_000010": [
+              907.52,
+              312
+            ],
+            "animal_000011": [
+              763.36,
+              207.83
+            ],
+            "animal_000012": [
+              600,
+              395.31
+            ]
+          }
+        },
+        {
+          "frame": 420,
+          "positions": {
+            "animal_000007": [
+              635.12,
+              248.15
+            ],
+            "animal_000008": [
+              872.02,
+              218.1
+            ],
+            "animal_000009": [
+              936.85,
+              224.74
+            ],
+            "animal_000010": [
+              889.52,
+              312
+            ],
+            "animal_000011": [
+              763.36,
+              207.83
+            ],
+            "animal_000012": [
+              616.41,
+              392.17
+            ]
+          }
+        },
+        {
+          "frame": 480,
+          "positions": {
+            "animal_000007": [
+              653.12,
+              248.01
+            ],
+            "animal_000008": [
+              872.01,
+              211.8
+            ],
+            "animal_000009": [
+              923.71,
+              231.57
+            ],
+            "animal_000010": [
+              871.52,
+              312
+            ],
+            "animal_000011": [
+              763.36,
+              207.83
+            ],
+            "animal_000012": [
+              630.67,
+              387.85
+            ]
+          }
+        },
+        {
+          "frame": 540,
+          "positions": {
+            "animal_000007": [
+              663.17,
+              239.06
+            ],
+            "animal_000008": [
+              872.01,
+              211.8
+            ],
+            "animal_000009": [
+              918.44,
+              246.29
+            ],
+            "animal_000010": [
+              857.27,
+              307.82
+            ],
+            "animal_000011": [
+              763.36,
+              207.83
+            ],
+            "animal_000012": [
+              639.57,
+              376.89
+            ]
+          }
+        },
+        {
+          "frame": 600,
+          "positions": {
+            "animal_000007": [
+              663.94,
+              221.1
+            ],
+            "animal_000008": [
+              872.01,
+              211.8
+            ],
+            "animal_000009": [
+              900.53,
+              247.84
+            ],
+            "animal_000010": [
+              856.12,
+              289.88
+            ],
+            "animal_000011": [
+              763.36,
+              207.83
+            ],
+            "animal_000012": [
+              647.44,
+              364.87
+            ]
+          }
+        },
+        {
+          "frame": 660,
+          "positions": {
+            "animal_000007": [
+              663.99,
+              211.8
+            ],
+            "animal_000008": [
+              863.08,
+              205.21
+            ],
+            "animal_000009": [
+              882.53,
+              247.99
+            ],
+            "animal_000010": [
+              846.18,
+              280.69
+            ],
+            "animal_000011": [
+              763.36,
+              207.83
+            ],
+            "animal_000012": [
+              647.96,
+              346.89
+            ]
+          }
+        },
+        {
+          "frame": 720,
+          "positions": {
+            "animal_000007": [
+              663.99,
+              211.8
+            ],
+            "animal_000008": [
+              846.45,
+              200.41
+            ],
+            "animal_000009": [
+              872.77,
+              238.76
+            ],
+            "animal_000010": [
+              840.29,
+              266.76
+            ],
+            "animal_000011": [
+              779.42,
+              200.74
+            ],
+            "animal_000012": [
+              648.89,
+              329.69
+            ]
+          }
+        },
+        {
+          "frame": 780,
+          "positions": {
+            "animal_000007": [
+              663.99,
+              211.8
+            ],
+            "animal_000008": [
+              828.46,
+              200.03
+            ],
+            "animal_000009": [
+              872.05,
+              220.79
+            ],
+            "animal_000010": [
+              825.58,
+              261.54
+            ],
+            "animal_000011": [
+              797.4,
+              200.06
+            ],
+            "animal_000012": [
+              662.78,
+              323.71
+            ]
+          }
+        },
+        {
+          "frame": 840,
+          "positions": {
+            "animal_000007": [
+              663.99,
+              211.8
+            ],
+            "animal_000008": [
+              823.36,
+              200.01
+            ],
+            "animal_000009": [
+              872.01,
+              211.79
+            ],
+            "animal_000010": [
+              817.97,
+              249.18
+            ],
+            "animal_000011": [
+              802.2,
+              200.03
+            ],
+            "animal_000012": [
+              671.85,
+              312.94
+            ]
+          }
+        },
+        {
+          "frame": 900,
+          "positions": {
+            "animal_000007": [
+              663.99,
+              211.8
+            ],
+            "animal_000008": [
+              824.22,
+              199.18
+            ],
+            "animal_000009": [
+              872.01,
+              211.79
+            ],
+            "animal_000010": [
+              808.76,
+              238.4
+            ],
+            "animal_000011": [
+              800.27,
+              197
+            ],
+            "animal_000012": [
+              679.46,
+              300.6
+            ]
+          }
+        },
+        {
+          "frame": 960,
+          "positions": {
+            "animal_000007": [
+              663.99,
+              211.8
+            ],
+            "animal_000008": [
+              837.19,
+              186.7
+            ],
+            "animal_000009": [
+              872.01,
+              211.79
+            ],
+            "animal_000010": [
+              794.82,
+              232.34
+            ],
+            "animal_000011": [
+              792.76,
+              181.11
+            ],
+            "animal_000012": [
+              694.18,
+              295.33
+            ]
+          }
+        },
+        {
+          "frame": 1020,
+          "positions": {
+            "animal_000007": [
+              665.44,
+              210.73
+            ],
+            "animal_000008": [
+              839.86,
+              169.39
+            ],
+            "animal_000009": [
+              872,
+              203.09
+            ],
+            "animal_000010": [
+              792.19,
+              215.23
+            ],
+            "animal_000011": [
+              792.06,
+              163.13
+            ],
+            "animal_000012": [
+              700.24,
+              281.4
+            ]
+          }
+        },
+        {
+          "frame": 1080,
+          "positions": {
+            "animal_000007": [
+              680.27,
+              201.01
+            ],
+            "animal_000008": [
+              842.37,
+              153.52
+            ],
+            "animal_000009": [
+              872,
+              185.09
+            ],
+            "animal_000010": [
+              792.15,
+              211.93
+            ],
+            "animal_000011": [
+              792,
+              145.13
+            ],
+            "animal_000012": [
+              711.03,
+              272.19
+            ]
+          }
+        },
+        {
+          "frame": 1140,
+          "positions": {
+            "animal_000007": [
+              698.25,
+              200.1
+            ],
+            "animal_000008": [
+              858.8,
+              152.08
+            ],
+            "animal_000009": [
+              872,
+              168.59
+            ],
+            "animal_000010": [
+              792.15,
+              211.93
+            ],
+            "animal_000011": [
+              792,
+              127.13
+            ],
+            "animal_000012": [
+              723.39,
+              264.55
+            ]
+          }
+        },
+        {
+          "frame": 1200,
+          "positions": {
+            "animal_000007": [
+              716.24,
+              200.01
+            ],
+            "animal_000008": [
+              858.8,
+              152.08
+            ],
+            "animal_000009": [
+              872,
+              168.59
+            ],
+            "animal_000010": [
+              792.15,
+              211.93
+            ],
+            "animal_000011": [
+              804.53,
+              120.38
+            ],
+            "animal_000012": [
+              728.66,
+              249.82
+            ]
+          }
+        },
+        {
+          "frame": 1260,
+          "positions": {
+            "animal_000007": [
+              734.11,
+              201.49
+            ],
+            "animal_000008": [
+              858.8,
+              152.08
+            ],
+            "animal_000009": [
+              865.73,
+              174.63
+            ],
+            "animal_000010": [
+              786.12,
+              207.47
+            ],
+            "animal_000011": [
+              807.29,
+              109.79
+            ],
+            "animal_000012": [
+              746.57,
+              248.17
+            ]
+          }
+        },
+        {
+          "frame": 1320,
+          "positions": {
+            "animal_000007": [
+              734.99,
+              201.65
+            ],
+            "animal_000008": [
+              858.8,
+              152.08
+            ],
+            "animal_000009": [
+              851.02,
+              183.2
+            ],
+            "animal_000010": [
+              770.25,
+              200.62
+            ],
+            "animal_000011": [
+              807.29,
+              109.79
+            ],
+            "animal_000012": [
+              758.95,
+              241.76
+            ]
+          }
+        },
+        {
+          "frame": 1380,
+          "positions": {
+            "animal_000007": [
+              734.99,
+              201.65
+            ],
+            "animal_000008": [
+              858.8,
+              152.08
+            ],
+            "animal_000009": [
+              840.8,
+              175.23
+            ],
+            "animal_000010": [
+              760.76,
+              190.58
+            ],
+            "animal_000011": [
+              807.83,
+              117.57
+            ],
+            "animal_000012": [
+              769.66,
+              232.67
+            ]
+          }
+        },
+        {
+          "frame": 1440,
+          "positions": {
+            "animal_000007": [
+              734.99,
+              201.65
+            ],
+            "animal_000008": [
+              858.8,
+              152.08
+            ],
+            "animal_000009": [
+              827.69,
+              168.42
+            ],
+            "animal_000010": [
+              747.09,
+              184.34
+            ],
+            "animal_000011": [
+              790.57,
+              119.82
+            ],
+            "animal_000012": [
+              787.64,
+              232.05
+            ]
+          }
+        },
+        {
+          "frame": 1500,
+          "positions": {
+            "animal_000007": [
+              734.99,
+              201.65
+            ],
+            "animal_000008": [
+              858.8,
+              152.08
+            ],
+            "animal_000009": [
+              824.2,
+              152.12
+            ],
+            "animal_000010": [
+              747.09,
+              184.34
+            ],
+            "animal_000011": [
+              777.31,
+              125.34
+            ],
+            "animal_000012": [
+              791.8,
+              216.53
+            ]
+          }
+        },
+        {
+          "frame": 1560,
+          "positions": {
+            "animal_000007": [
+              734.99,
+              201.65
+            ],
+            "animal_000008": [
+              858.8,
+              152.08
+            ],
+            "animal_000009": [
+              826.26,
+              134.9
+            ],
+            "animal_000010": [
+              747.09,
+              184.34
+            ],
+            "animal_000011": [
+              767.26,
+              135.22
+            ],
+            "animal_000012": [
+              791.86,
+              211.73
+            ]
+          }
+        }
+      ],
+      "shelter_walkable_cells_deducted": 24
+    },
+    "coop": {
+      "engine_clear_cells": 638,
+      "grid": [
+        32,
+        24
+      ],
+      "max_return_step_pixels": 0.543361663818359,
+      "multiplier": 17.5428571428571,
+      "new_connected_cells": 638,
+      "old_cells": 35,
+      "outdoor_effective_cells": 614,
+      "return_motion": [
+        {
+          "frame": 0,
+          "positions": {
+            "animal_000001": [
+              839.89,
+              638.81
+            ],
+            "animal_000002": [
+              688.71,
+              424.07
+            ],
+            "animal_000003": [
+              408.47,
+              563.49
+            ],
+            "animal_000004": [
+              664,
+              206.85
+            ],
+            "animal_000005": [
+              194.99,
+              551.86
+            ],
+            "animal_000006": [
+              679.99,
+              221.16
+            ]
+          }
+        },
+        {
+          "frame": 60,
+          "positions": {
+            "animal_000001": [
+              824.17,
+              616.26
+            ],
+            "animal_000002": [
+              680.15,
+              406.17
+            ],
+            "animal_000003": [
+              408.01,
+              531.5
+            ],
+            "animal_000004": [
+              664,
+              221.43
+            ],
+            "animal_000005": [
+              199.96,
+              520.56
+            ],
+            "animal_000006": [
+              674.61,
+              230.89
+            ]
+          }
+        },
+        {
+          "frame": 120,
+          "positions": {
+            "animal_000001": [
+              824,
+              584.26
+            ],
+            "animal_000002": [
+              680.01,
+              381.17
+            ],
+            "animal_000003": [
+              408,
+              499.5
+            ],
+            "animal_000004": [
+              664,
+              221.43
+            ],
+            "animal_000005": [
+              200,
+              488.56
+            ],
+            "animal_000006": [
+              674.61,
+              230.89
+            ]
+          }
+        },
+        {
+          "frame": 180,
+          "positions": {
+            "animal_000001": [
+              824,
+              552.26
+            ],
+            "animal_000002": [
+              680,
+              356.17
+            ],
+            "animal_000003": [
+              408,
+              467.5
+            ],
+            "animal_000004": [
+              674.22,
+              207.74
+            ],
+            "animal_000005": [
+              201.06,
+              457.52
+            ],
+            "animal_000006": [
+              665.71,
+              233.46
+            ]
+          }
+        },
+        {
+          "frame": 240,
+          "positions": {
+            "animal_000001": [
+              824,
+              520.26
+            ],
+            "animal_000002": [
+              680,
+              331.17
+            ],
+            "animal_000003": [
+              408,
+              435.5
+            ],
+            "animal_000004": [
+              694.5,
+              201.8
+            ],
+            "animal_000005": [
+              230.6,
+              453.36
+            ],
+            "animal_000006": [
+              652.19,
+              247.56
+            ]
+          }
+        },
+        {
+          "frame": 300,
+          "positions": {
+            "animal_000001": [
+              824,
+              488.26
+            ],
+            "animal_000002": [
+              680,
+              306.17
+            ],
+            "animal_000003": [
+              408,
+              403.5
+            ],
+            "animal_000004": [
+              695.94,
+              226.73
+            ],
+            "animal_000005": [
+              236.23,
+              425.25
+            ],
+            "animal_000006": [
+              627.2,
+              247.99
+            ]
+          }
+        },
+        {
+          "frame": 360,
+          "positions": {
+            "animal_000001": [
+              822.41,
+              457.68
+            ],
+            "animal_000002": [
+              680,
+              281.17
+            ],
+            "animal_000003": [
+              408,
+              371.5
+            ],
+            "animal_000004": [
+              690.61,
+              246.88
+            ],
+            "animal_000005": [
+              262.92,
+              418.18
+            ],
+            "animal_000006": [
+              616.18,
+              232.65
+            ]
+          }
+        },
+        {
+          "frame": 420,
+          "positions": {
+            "animal_000001": [
+              803.43,
+              441.32
+            ],
+            "animal_000002": [
+              670.47,
+              264.71
+            ],
+            "animal_000003": [
+              408,
+              339.5
+            ],
+            "animal_000004": [
+              665.66,
+              247.98
+            ],
+            "animal_000005": [
+              271.41,
+              392.91
+            ],
+            "animal_000006": [
+              616.01,
+              211.82
+            ]
+          }
+        },
+        {
+          "frame": 480,
+          "positions": {
+            "animal_000001": [
+              777.14,
+              433.67
+            ],
+            "animal_000002": [
+              658.4,
+              249.11
+            ],
+            "animal_000003": [
+              408,
+              307.5
+            ],
+            "animal_000004": [
+              640.66,
+              248
+            ],
+            "animal_000005": [
+              295.26,
+              383
+            ],
+            "animal_000006": [
+              616.01,
+              211.82
+            ]
+          }
+        },
+        {
+          "frame": 540,
+          "positions": {
+            "animal_000001": [
+              760.78,
+              414.66
+            ],
+            "animal_000002": [
+              633.46,
+              248.02
+            ],
+            "animal_000003": [
+              414.36,
+              281.15
+            ],
+            "animal_000004": [
+              615.66,
+              248
+            ],
+            "animal_000005": [
+              311.54,
+              364.01
+            ],
+            "animal_000006": [
+              597.03,
+              200.87
+            ]
+          }
+        },
+        {
+          "frame": 600,
+          "positions": {
+            "animal_000001": [
+              748.9,
+              392.58
+            ],
+            "animal_000002": [
+              616.7,
+              238.88
+            ],
+            "animal_000003": [
+              433.34,
+              264.77
+            ],
+            "animal_000004": [
+              590.66,
+              248
+            ],
+            "animal_000005": [
+              328.83,
+              345.8
+            ],
+            "animal_000006": [
+              572.05,
+              200.03
+            ]
+          }
+        },
+        {
+          "frame": 660,
+          "positions": {
+            "animal_000001": [
+              729.9,
+              376.22
+            ],
+            "animal_000002": [
+              616.01,
+              213.91
+            ],
+            "animal_000003": [
+              452.49,
+              248.41
+            ],
+            "animal_000004": [
+              565.66,
+              248
+            ],
+            "animal_000005": [
+              348.01,
+              329.43
+            ],
+            "animal_000006": [
+              547.05,
+              200
+            ]
+          }
+        },
+        {
+          "frame": 720,
+          "positions": {
+            "animal_000001": [
+              713.55,
+              357.05
+            ],
+            "animal_000002": [
+              616.01,
+              211.82
+            ],
+            "animal_000003": [
+              455.98,
+              217.93
+            ],
+            "animal_000004": [
+              540.66,
+              248
+            ],
+            "animal_000005": [
+              367.18,
+              313.05
+            ],
+            "animal_000006": [
+              524.25,
+              201.78
+            ]
+          }
+        },
+        {
+          "frame": 780,
+          "positions": {
+            "animal_000001": [
+              691.53,
+              344.15
+            ],
+            "animal_000002": [
+              608.97,
+              206.63
+            ],
+            "animal_000003": [
+              470.72,
+              211.97
+            ],
+            "animal_000004": [
+              528.35,
+              232.99
+            ],
+            "animal_000005": [
+              375.91,
+              287.26
+            ],
+            "animal_000006": [
+              524.25,
+              201.78
+            ]
+          }
+        },
+        {
+          "frame": 840,
+          "positions": {
+            "animal_000001": [
+              672.25,
+              328.88
+            ],
+            "animal_000002": [
+              600.17,
+              185.41
+            ],
+            "animal_000003": [
+              470.72,
+              211.97
+            ],
+            "animal_000004": [
+              520.16,
+              215.2
+            ],
+            "animal_000005": [
+              402.54,
+              280.06
+            ],
+            "animal_000006": [
+              524.25,
+              201.78
+            ]
+          }
+        },
+        {
+          "frame": 900,
+          "positions": {
+            "animal_000001": [
+              653.1,
+              312.6
+            ],
+            "animal_000002": [
+              590.51,
+              168.81
+            ],
+            "animal_000003": [
+              456.43,
+              188.98
+            ],
+            "animal_000004": [
+              520.12,
+              211.87
+            ],
+            "animal_000005": [
+              421.61,
+              264.25
+            ],
+            "animal_000006": [
+              526.77,
+              197.95
+            ]
+          }
+        },
+        {
+          "frame": 960,
+          "positions": {
+            "animal_000001": [
+              633.93,
+              296.23
+            ],
+            "animal_000002": [
+              578.41,
+              153.13
+            ],
+            "animal_000003": [
+              454.32,
+              183.17
+            ],
+            "animal_000004": [
+              520.12,
+              211.87
+            ],
+            "animal_000005": [
+              438.4,
+              245.57
+            ],
+            "animal_000006": [
+              535.59,
+              175.46
+            ]
+          }
+        },
+        {
+          "frame": 1020,
+          "positions": {
+            "animal_000001": [
+              630.44,
+              265.74
+            ],
+            "animal_000002": [
+              566.52,
+              137.51
+            ],
+            "animal_000003": [
+              445.81,
+              183.66
+            ],
+            "animal_000004": [
+              520.12,
+              211.87
+            ],
+            "animal_000005": [
+              454.76,
+              226.4
+            ],
+            "animal_000006": [
+              550.87,
+              163.6
+            ]
+          }
+        },
+        {
+          "frame": 1080,
+          "positions": {
+            "animal_000001": [
+              601.39,
+              260.84
+            ],
+            "animal_000002": [
+              547.09,
+              131.06
+            ],
+            "animal_000003": [
+              426.91,
+              199.68
+            ],
+            "animal_000004": [
+              520.12,
+              211.87
+            ],
+            "animal_000005": [
+              455.85,
+              211.53
+            ],
+            "animal_000006": [
+              566.75,
+              152.28
+            ]
+          }
+        },
+        {
+          "frame": 1140,
+          "positions": {
+            "animal_000001": [
+              585.13,
+              241.84
+            ],
+            "animal_000002": [
+              547.09,
+              131.06
+            ],
+            "animal_000003": [
+              409.97,
+              201.76
+            ],
+            "animal_000004": [
+              520.12,
+              211.87
+            ],
+            "animal_000005": [
+              464.1,
+              205.64
+            ],
+            "animal_000006": [
+              582.76,
+              156.91
+            ]
+          }
+        },
+        {
+          "frame": 1200,
+          "positions": {
+            "animal_000001": [
+              576.08,
+              216.95
+            ],
+            "animal_000002": [
+              547.09,
+              131.06
+            ],
+            "animal_000003": [
+              409.97,
+              201.76
+            ],
+            "animal_000004": [
+              520.12,
+              211.87
+            ],
+            "animal_000005": [
+              480.36,
+              184.75
+            ],
+            "animal_000006": [
+              573.67,
+              153.89
+            ]
+          }
+        },
+        {
+          "frame": 1260,
+          "positions": {
+            "animal_000001": [
+              569.27,
+              211.96
+            ],
+            "animal_000002": [
+              547.09,
+              131.06
+            ],
+            "animal_000003": [
+              409.97,
+              201.76
+            ],
+            "animal_000004": [
+              520.12,
+              211.87
+            ],
+            "animal_000005": [
+              503.33,
+              173.95
+            ],
+            "animal_000006": [
+              548.89,
+              152.04
+            ]
+          }
+        }
+      ],
+      "shelter_walkable_cells_deducted": 24
+    },
+    "fold": {
+      "engine_clear_cells": 1358,
+      "grid": [
+        48,
+        32
+      ],
+      "max_return_step_pixels": 0.393208920955658,
+      "multiplier": 38.1142857142857,
+      "new_connected_cells": 1358,
+      "old_cells": 35,
+      "outdoor_effective_cells": 1334,
+      "return_motion": [
+        {
+          "frame": 0,
+          "positions": {
+            "animal_000013": [
+              664,
+              229.54
+            ],
+            "animal_000014": [
+              616,
+              189.34
+            ],
+            "animal_000015": [
+              920.02,
+              59.42
+            ],
+            "animal_000016": [
+              676.42,
+              246.53
+            ],
+            "animal_000017": [
+              1275.15,
+              248
+            ],
+            "animal_000018": [
+              872,
+              196.48
+            ]
+          }
+        },
+        {
+          "frame": 60,
+          "positions": {
+            "animal_000013": [
+              678.94,
+              213.34
+            ],
+            "animal_000014": [
+              616,
+              212.34
+            ],
+            "animal_000015": [
+              920,
+              82.42
+            ],
+            "animal_000016": [
+              694.89,
+              242.92
+            ],
+            "animal_000017": [
+              1252.15,
+              248
+            ],
+            "animal_000018": [
+              872,
+              196.48
+            ]
+          }
+        },
+        {
+          "frame": 120,
+          "positions": {
+            "animal_000013": [
+              679.06,
+              211.81
+            ],
+            "animal_000014": [
+              616,
+              235.34
+            ],
+            "animal_000015": [
+              920,
+              105.42
+            ],
+            "animal_000016": [
+              695.91,
+              224.57
+            ],
+            "animal_000017": [
+              1229.15,
+              248
+            ],
+            "animal_000018": [
+              872,
+              196.48
+            ]
+          }
+        },
+        {
+          "frame": 180,
+          "positions": {
+            "animal_000013": [
+              679.06,
+              211.81
+            ],
+            "animal_000014": [
+              628.18,
+              247.54
+            ],
+            "animal_000015": [
+              920,
+              128.42
+            ],
+            "animal_000016": [
+              695.91,
+              224.57
+            ],
+            "animal_000017": [
+              1206.16,
+              248
+            ],
+            "animal_000018": [
+              872,
+              196.48
+            ]
+          }
+        },
+        {
+          "frame": 240,
+          "positions": {
+            "animal_000013": [
+              679.06,
+              211.81
+            ],
+            "animal_000014": [
+              646.74,
+              252.93
+            ],
+            "animal_000015": [
+              920,
+              151.42
+            ],
+            "animal_000016": [
+              705.05,
+              219.7
+            ],
+            "animal_000017": [
+              1183.16,
+              248
+            ],
+            "animal_000018": [
+              872,
+              196.48
+            ]
+          }
+        },
+        {
+          "frame": 300,
+          "positions": {
+            "animal_000013": [
+              667.9,
+              203.06
+            ],
+            "animal_000014": [
+              647.95,
+              275.87
+            ],
+            "animal_000015": [
+              920,
+              174.42
+            ],
+            "animal_000016": [
+              710.91,
+              211.86
+            ],
+            "animal_000017": [
+              1160.16,
+              248
+            ],
+            "animal_000018": [
+              872,
+              196.48
+            ]
+          }
+        },
+        {
+          "frame": 360,
+          "positions": {
+            "animal_000013": [
+              664.12,
+              181.29
+            ],
+            "animal_000014": [
+              668.59,
+              279.86
+            ],
+            "animal_000015": [
+              920,
+              197.42
+            ],
+            "animal_000016": [
+              710.91,
+              211.86
+            ],
+            "animal_000017": [
+              1137.16,
+              248
+            ],
+            "animal_000018": [
+              872,
+              196.48
+            ]
+          }
+        },
+        {
+          "frame": 420,
+          "positions": {
+            "animal_000013": [
+              664.01,
+              158.29
+            ],
+            "animal_000014": [
+              691.59,
+              279.99
+            ],
+            "animal_000015": [
+              920,
+              220.42
+            ],
+            "animal_000016": [
+              710.91,
+              211.86
+            ],
+            "animal_000017": [
+              1114.16,
+              248
+            ],
+            "animal_000018": [
+              872,
+              196.48
+            ]
+          }
+        },
+        {
+          "frame": 480,
+          "positions": {
+            "animal_000013": [
+              664,
+              145.25
+            ],
+            "animal_000014": [
+              701.89,
+              265.18
+            ],
+            "animal_000015": [
+              920,
+              243.42
+            ],
+            "animal_000016": [
+              710.91,
+              211.86
+            ],
+            "animal_000017": [
+              1091.17,
+              248
+            ],
+            "animal_000018": [
+              872,
+              196.48
+            ]
+          }
+        },
+        {
+          "frame": 540,
+          "positions": {
+            "animal_000013": [
+              664,
+              145.25
+            ],
+            "animal_000014": [
+              711.82,
+              249.72
+            ],
+            "animal_000015": [
+              899.78,
+              247.85
+            ],
+            "animal_000016": [
+              710.91,
+              211.86
+            ],
+            "animal_000017": [
+              1068.17,
+              248
+            ],
+            "animal_000018": [
+              872,
+              194.95
+            ]
+          }
+        },
+        {
+          "frame": 600,
+          "positions": {
+            "animal_000013": [
+              668.24,
+              147.04
+            ],
+            "animal_000014": [
+              711.98,
+              232.47
+            ],
+            "animal_000015": [
+              876.78,
+              247.99
+            ],
+            "animal_000016": [
+              712.17,
+              210.98
+            ],
+            "animal_000017": [
+              1045.17,
+              248
+            ],
+            "animal_000018": [
+              858.28,
+              184.25
+            ]
+          }
+        },
+        {
+          "frame": 660,
+          "positions": {
+            "animal_000013": [
+              690.36,
+              151.79
+            ],
+            "animal_000014": [
+              712,
+              212.15
+            ],
+            "animal_000015": [
+              866.49,
+              233.23
+            ],
+            "animal_000016": [
+              732.02,
+              200.64
+            ],
+            "animal_000017": [
+              1022.17,
+              248
+            ],
+            "animal_000018": [
+              835.29,
+              184.01
+            ]
+          }
+        },
+        {
+          "frame": 720,
+          "positions": {
+            "animal_000013": [
+              713.35,
+              151.99
+            ],
+            "animal_000014": [
+              712,
+              211.77
+            ],
+            "animal_000015": [
+              856.22,
+              218.1
+            ],
+            "animal_000016": [
+              755.01,
+              200.02
+            ],
+            "animal_000017": [
+              999.17,
+              248
+            ],
+            "animal_000018": [
+              812.28,
+              184
+            ]
+          }
+        },
+        {
+          "frame": 780,
+          "positions": {
+            "animal_000013": [
+              727.29,
+              162.27
+            ],
+            "animal_000014": [
+              712,
+              211.77
+            ],
+            "animal_000015": [
+              841.26,
+              211.99
+            ],
+            "animal_000016": [
+              776.84,
+              200.28
+            ],
+            "animal_000017": [
+              976.17,
+              248
+            ],
+            "animal_000018": [
+              790.43,
+              184
+            ]
+          }
+        },
+        {
+          "frame": 840,
+          "positions": {
+            "animal_000013": [
+              731.02,
+              182.52
+            ],
+            "animal_000014": [
+              697.42,
+              200.33
+            ],
+            "animal_000015": [
+              841.26,
+              211.99
+            ],
+            "animal_000016": [
+              776.84,
+              200.28
+            ],
+            "animal_000017": [
+              953.17,
+              248
+            ],
+            "animal_000018": [
+              790.43,
+              184
+            ]
+          }
+        },
+        {
+          "frame": 900,
+          "positions": {
+            "animal_000013": [
+              753.95,
+              183.93
+            ],
+            "animal_000014": [
+              696.08,
+              177.38
+            ],
+            "animal_000015": [
+              841.26,
+              211.99
+            ],
+            "animal_000016": [
+              776.84,
+              200.28
+            ],
+            "animal_000017": [
+              930.16,
+              248
+            ],
+            "animal_000018": [
+              800.02,
+              184
+            ]
+          }
+        },
+        {
+          "frame": 960,
+          "positions": {
+            "animal_000013": [
+              758.78,
+              189.31
+            ],
+            "animal_000014": [
+              696,
+              154.39
+            ],
+            "animal_000015": [
+              841.26,
+              211.99
+            ],
+            "animal_000016": [
+              776.84,
+              200.28
+            ],
+            "animal_000017": [
+              907.16,
+              248
+            ],
+            "animal_000018": [
+              823.02,
+              184
+            ]
+          }
+        },
+        {
+          "frame": 1020,
+          "positions": {
+            "animal_000013": [
+              758.78,
+              189.31
+            ],
+            "animal_000014": [
+              702.47,
+              137.13
+            ],
+            "animal_000015": [
+              854.05,
+              201.59
+            ],
+            "animal_000016": [
+              776.84,
+              200.28
+            ],
+            "animal_000017": [
+              884.16,
+              248
+            ],
+            "animal_000018": [
+              842.57,
+              184
+            ]
+          }
+        },
+        {
+          "frame": 1080,
+          "positions": {
+            "animal_000013": [
+              758.78,
+              189.31
+            ],
+            "animal_000014": [
+              724.32,
+              141.94
+            ],
+            "animal_000015": [
+              854.05,
+              201.59
+            ],
+            "animal_000016": [
+              776.84,
+              200.28
+            ],
+            "animal_000017": [
+              872.39,
+              235.43
+            ],
+            "animal_000018": [
+              842.57,
+              184
+            ]
+          }
+        },
+        {
+          "frame": 1140,
+          "positions": {
+            "animal_000013": [
+              758.78,
+              189.31
+            ],
+            "animal_000014": [
+              726.09,
+              142.65
+            ],
+            "animal_000015": [
+              863.08,
+              192.73
+            ],
+            "animal_000016": [
+              776.84,
+              200.28
+            ],
+            "animal_000017": [
+              850.85,
+              232.13
+            ],
+            "animal_000018": [
+              840.32,
+              170
+            ]
+          }
+        },
+        {
+          "frame": 1200,
+          "positions": {
+            "animal_000013": [
+              758.78,
+              189.31
+            ],
+            "animal_000014": [
+              726.09,
+              142.65
+            ],
+            "animal_000015": [
+              871.64,
+              172.99
+            ],
+            "animal_000016": [
+              776.84,
+              200.28
+            ],
+            "animal_000017": [
+              840.24,
+              218.29
+            ],
+            "animal_000018": [
+              833.18,
+              153.09
+            ]
+          }
+        },
+        {
+          "frame": 1260,
+          "positions": {
+            "animal_000013": [
+              758.78,
+              189.31
+            ],
+            "animal_000014": [
+              726.09,
+              142.65
+            ],
+            "animal_000015": [
+              868.18,
+              153.39
+            ],
+            "animal_000016": [
+              783.63,
+              192.98
+            ],
+            "animal_000017": [
+              840.13,
+              211.78
+            ],
+            "animal_000018": [
+              815.45,
+              147.52
+            ]
+          }
+        }
+      ],
+      "shelter_walkable_cells_deducted": 24
+    }
+  },
+  "builds": {
+    "PixelWorld-0.8.2-Windows-x64.zip": {
+      "size_bytes": 55160040,
+      "sha256": "d1fa67f317eb180ce64b60b6779be646798a8cec512755eca57e9b0e6acff92e"
+    },
+    "PixelWorld-0.8.2-debug.apk": {
+      "size_bytes": 74019625,
+      "sha256": "ed9678bdbb5805eaef33d2f25557184b054dd9ae8da86c516d87a40ac917e3aa"
+    }
+  },
+  "platform_limits": {
+    "android_physical_device_tested": false,
+    "windows_native_hardware_tested": false,
+    "windows_wine_tested": true
+  },
+  "generated_at": "2026-10-30T06:59:51.131310+00:00"
+}

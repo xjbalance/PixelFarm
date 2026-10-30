@@ -320,6 +320,7 @@ func resource_target() -> Node2D:
 	if GameState.tool() not in ["axe","pickaxe","hoe"]: return null
 	var field: Node2D=resource_world.active_field()
 	var target: Node2D=field.find_target(player.global_position,player.facing) if field else null
+	if target and is_instance_valid(auto_move) and not auto_move.navigation.legal_interaction(player.position,{"kind":"resource","object":target,"point":target.global_position}): return null
 	return null if target and GameState.tool()=="hoe" and target.kind!="weed" else target
 
 func handle_interaction(kind: String) -> void:
@@ -501,6 +502,7 @@ func context_action_name() -> String:
 	return {"hoe":"翻土","water":"浇水","hand":"收获","axe":"砍伐","pickaxe":"采石","fishing_rod":"抛竿"}.get(context_tool(),"播种")
 
 func context_hint() -> String:
+	if GameState.location in RanchLayout.AREAS: return "点击动物照料 · 鸡窝收蛋 · 雨雪与傍晚回暖舍 · 沿围栏门返回农场"
 	if GameState.location in TerritoryCatalog.ANNEX_AREAS: return Story.NAMES[GameState.location]+" · 菜单进入建造 / 改造领地 · 沿原路牌返回农场"
 	if GameState.location in Exploration.AREAS: return Story.NAMES[GameState.location]+" · 点击路标和机关，调查提示后再操作，沿入口返回"
 	if GameState.location=="greenhouse": return "星光温室 · 左右桌准备仪式 · 星灯下交换约定 · 档案桌安排日常"

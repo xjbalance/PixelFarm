@@ -51,12 +51,12 @@ func coverage() -> Dictionary:
 	var ground: int=0;var solid: int=0
 	var protected_ground: Dictionary=game.territory_world.protected_cells("farm","grass")
 	var protected_solid: Dictionary=game.territory_world.protected_cells("farm","fence")
-	for y in range(32):
-		for x in range(48):
+	for y in range(64):
+		for x in range(96):
 			var cell:=Vector2i(x,y)
 			if Territory.permission("farm",cell,"grass").allowed and not protected_ground.has(cell): ground+=1
 			if Territory.permission("farm",cell,"fence").allowed and not protected_solid.has(cell): solid+=1
-	return {"map_cells":1536,"interior_cells":1536,"legacy_interior_cells":1380,"ground_cells":ground,"ground_fraction":float(ground)/1536.0,"ground_interior_fraction":float(ground)/1536.0,"solid_cells":solid,"solid_fraction":float(solid)/1536.0,"solid_interior_fraction":float(solid)/1536.0,"basis":"Territory.permission and runtime occupied cells; final placement also checks collision and routes"}
+	return {"map_cells":6144,"interior_cells":6144,"legacy_interior_cells":1380,"ground_cells":ground,"ground_fraction":float(ground)/6144.0,"ground_interior_fraction":float(ground)/6144.0,"solid_cells":solid,"solid_fraction":float(solid)/6144.0,"solid_interior_fraction":float(solid)/6144.0,"basis":"Territory.permission and runtime occupied cells; final placement also checks collision and routes"}
 
 func ownership_and_roads() -> void:
 	metrics.initial=coverage()
@@ -70,8 +70,8 @@ func ownership_and_roads() -> void:
 	for cell in [Vector2i(20,11),Vector2i(34,18),Vector2i(0,10)]:
 		var preview:=Territory.plan_terrain("farm",[cell],"grass")
 		check(preview.valid,"自家房屋下方地表、原水域及边缘内圈均允许重铺："+str(cell)+" / "+str(preview.reason))
-	for cell in [Vector2i(-1,10),Vector2i(48,10),Vector2i(0,-1),Vector2i(10,32)]:
-		check(not Territory.plan_terrain("farm",[cell],"grass").valid and not Territory.plan_place("farm","fence",cell).valid,"真正超出48×32农场的地表和物件仍拒绝："+str(cell))
+	for cell in [Vector2i(-1,10),Vector2i(96,10),Vector2i(0,-1),Vector2i(10,64)]:
+		check(not Territory.plan_terrain("farm",[cell],"grass").valid and not Territory.plan_place("farm","fence",cell).valid,"真正超出96×64农场的地表和物件仍拒绝："+str(cell))
 	check(await paint("grass",Vector2i(34,18)),"原有水域通过真实确认填为陆地")
 	await frames(4);game.territory_editor.cancel()
 	check(game.world.ground.get_cell_atlas_coords(Vector2i(34,18)).x==0 and game.world.ground.get_cell_tile_data(Vector2i(34,18)).get_collision_polygons_count(0)==0,"填水同步移除原水瓦片碰撞，没有只盖一层草色")
@@ -121,11 +121,11 @@ func resource_reclamation() -> void:
 	field=game.resource_world.fields.farm
 	check(snapshot()==expected and Territory.resource_edited(id) and not field.objects[id].can_regrow(),"独立主场景重建恢复道路并继续抑制原点再生")
 	game.change_location("farm",Vector2(200,256));await frames(5)
-	check(await paint("natural",cell) and not Territory.resource_edited(id),"恢复自然并清空地面后重新允许原生恢复")
+	check(await paint("natural",cell) and not Territory.resource_edited(id),"恢复自然并清空地面也不复活已清理树木")
 	game.territory_editor.cancel();game.change_location("village");await frames(4);GameClock.minutes=1200
 	check(GameClock.request_sleep(GameClock.day),"再次推进正式一天")
 	await frames(4)
-	check(field.state[id].hp==3 and field.state[id].ready_day==0 and Inventory.count("wood")==wood+4,"原日期已到后只恢复一棵原树，恢复本身不发资源")
+	check(field.state[id].hp==0 and field.state[id].ready_day==0 and Inventory.count("wood")==wood+4,"恢复自然地面后仍保持永久清理，不恢复树木或发资源")
 
 func hidden_access() -> void:
 	await fresh();game.player.position=Vector2(720,592);game.camera_rig.follow_now();await frames(4)

@@ -122,7 +122,8 @@ func validate(raw: Variant, raw_save: Dictionary={}) -> bool:
 	if not FarmLayoutCatalog.whole(raw.version,1,1) or not FarmLayoutCatalog.whole(raw.revision,0,MAX_REVISION): return false
 	for kind in FarmLayoutCatalog.KINDS:
 		var field: String=FarmLayoutCatalog.FIELDS[kind];var entries: Variant=raw[field]
-		if not entries is Dictionary or entries.size()>FarmLayoutCatalog.ids(kind).size(): return false
+		var limit: int=FarmLayoutCatalog.GRID.get_area() if kind=="plot" else FarmLayoutCatalog.ids(kind).size()
+		if not entries is Dictionary or entries.size()>limit: return false
 		for id in entries:
 			if not id is String or not FarmLayoutCatalog.valid_id(kind,id): return false
 			var entry: Variant=entries[id]
