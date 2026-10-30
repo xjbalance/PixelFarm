@@ -69,7 +69,7 @@ func old_engine_save() -> void:
 	var current: Dictionary=HarvestCatalog.data().processing.smoke_fish_crucian.duplicate(true)
 	HarvestCatalog.data().processing.smoke_fish_crucian.input_items.fish_crucian=3
 	var upgraded:=FarmSaveSchema.normalize(raw)
-	check(not upgraded.is_empty() and upgraded.version==29 and upgraded.workshop.version==2,"旧工单安全迁移为有投入产出快照的v29")
+	check(not upgraded.is_empty() and upgraded.version==FarmSaveStore.VERSION and upgraded.workshop.version==2,"旧工单安全迁移为有投入产出快照的v29")
 	if upgraded.is_empty(): HarvestCatalog.data().processing.smoke_fish_crucian=current;return
 	var same: bool=true
 	for key in raw:

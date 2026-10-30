@@ -112,7 +112,7 @@ func show_building(site: String) -> void:
 	words("繁育：至少两只成年、亲密35、心情60、今日喂好；空位1，间隔%d日。消耗干草%d与%s，幼畜仍需独立照料。" % [species.breed_days,species.breed_hay,DiamondPayments.text(int(species.breed_coins))],16)
 	button("确认办理繁育",func(): ask("本次繁育消耗干草%d与%s，满足全部条件才会扣除。继续？" % [species.breed_hay,DiamondPayments.text(int(species.breed_coins))],func(): DiamondPayments.request(self,int(species.breed_coins),func(): result(Livestock.breed(site)))))
 	section=null
-	words("点击庭院里的动物可抚摸、喂食和收集产物；下列记录用于查看，离得太远时请先收起面板走近。",16)
+	words("从舍旁围栏门进入后方牧场，点击动物可抚摸、喂食、挤奶或剪毛；蛋也可在鸡窝统一收取。",16)
 	for entry in Livestock.animals_at(site):
 		section=FacilityLayout.card(content,"animal_record")
 		var occupant: Dictionary=Livestock.data.species[entry.species]

@@ -12,11 +12,11 @@ func run() -> void:
 	Touch.tap(self,game,Livestock.SITES.coop+Vector2(0,-12));await Touch.finish(self,game,500)
 	check(panel.visible and panel.context=="coop","真实触点点击南庭木牌靠近并打开建设")
 	var before: int=Inventory.coins
-	await touch_caption(panel,"建造鸡舍")
+	await touch_caption(panel,"建造鸡鸭舍")
 	check(panel.pending.is_valid(),"建造先进入明确确认页")
 	await touch_caption(panel,"取消")
 	check(Inventory.coins==before and Livestock.building("coop").level==0,"触点取消建造不扣资源")
-	await touch_caption(panel,"建造鸡舍");await touch_caption(panel,"确认")
+	await touch_caption(panel,"建造鸡鸭舍");await touch_caption(panel,"确认")
 	check(Livestock.building("coop").level==1 and Inventory.coins==before-160,"真实确认只执行一次建设事务")
 	panel.accept();panel.accept()
 	check(Inventory.coins==before-160,"重复空确认回调不再次扣料")
@@ -24,8 +24,8 @@ func run() -> void:
 	check(Livestock.animals_at("coop").size()==1,"实际购买入口生成可见独立幼畜")
 	panel.close_panel()
 	var first: Dictionary=Livestock.animals_at("coop")[0]
-	await Touch.place(self,game,"farm",Vector2(first.position[0],first.position[1])+Vector2(0,64))
-	Touch.tap(self,game,Vector2(first.position[0],first.position[1])+Vector2(0,-12));await Touch.finish(self,game,500)
+	await Touch.place(self,game,Livestock.animal_area(first),Livestock.animal_point(first)+Vector2(0,64))
+	Touch.tap(self,game,Livestock.animal_point(first)+Vector2(0,-12));await Touch.finish(self,game,500)
 	check(panel.visible and panel.context=="animal:"+first.id,"点击地图幼畜自动靠近并打开照料")
 	var hay: int=Inventory.count("hay")
 	await touch_caption(panel,"投喂 · 干草1份")
@@ -39,11 +39,12 @@ func run() -> void:
 	Livestock.build("barn");Livestock.upgrade("barn");Livestock.upgrade("barn")
 	for i in range(6): Livestock.buy_animal("barn")
 	GameClock.minutes=600;GameClock.changed.emit();Livestock.graze("barn")
+	game.change_location("pasture_barn");await frames(4)
 	GameClock.running=true;await frames(240);GameClock.running=false
 	check(Livestock.is_grazing("barn"),"晴天放牧实际让六只动物在庭院活动")
 	for entry in Livestock.animals_at("barn"):
-		await Touch.place(self,game,"farm",Vector2(entry.position[0],entry.position[1])+Vector2(0,32))
-		var target: Vector2=Vector2(entry.position[0],entry.position[1])+Vector2(0,-14)
+		await Touch.place(self,game,Livestock.animal_area(entry),Livestock.animal_point(entry)+Vector2(0,32))
+		var target: Vector2=Livestock.animal_point(entry)+Vector2(0,-14)
 		var screen: Vector2=game.player.get_canvas_transform()*target
 		check(not game.touch_input.ui_at(screen),"南庭动物身体点击区域未被工具栏遮住："+entry.id)
 		Touch.tap(self,game,target);await Touch.finish(self,game,500)

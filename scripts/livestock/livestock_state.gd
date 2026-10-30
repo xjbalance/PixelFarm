@@ -82,7 +82,7 @@ func near_any() -> bool:
 	return false
 
 func _exchange(required: Dictionary, rewards: Dictionary, coins: int) -> bool:
-	if busy or GameClock.settling: return false
+	if not can_mutate(): return false
 	busy=true
 	if not Inventory.exchange(required,rewards,coins):
 		busy=false
@@ -119,8 +119,9 @@ func _new_animal(site: String) -> Dictionary:
 	state.serial+=1
 	var index: int=animals_at(site).size()
 	var at: Vector2=SITES[site]+INDOOR[index]
+	var pasture_at:=spawn_point(site,index)
 	var result := {"id":"animal_%06d" % int(state.serial),"site":site,"species":str(data.buildings[site].species),"age":0,"hunger":40,"mood":60,"bond":0,
-		"fed_day":0,"pet_day":0,"product":0,"product_day":0,"progress":0,"position":[at.x,at.y],"pasture_position":[RanchLayout.home(site,index).x,RanchLayout.home(site,index).y]}
+		"fed_day":0,"pet_day":0,"product":0,"product_day":0,"progress":0,"position":[at.x,at.y],"pasture_position":[pasture_at.x,pasture_at.y]}
 	state.animals.append(result)
 	return result
 
@@ -166,7 +167,7 @@ func feed(id: String) -> bool:
 
 func pet(id: String) -> bool:
 	var entry := animal(id)
-	if busy or GameClock.settling or not near_animal(id) or int(entry.pet_day)>=GameClock.day: return false
+	if not can_mutate() or not near_animal(id) or int(entry.pet_day)>=GameClock.day: return false
 	busy=true
 	if not GameState.spend_energy(1): busy=false;return false
 	entry.pet_day=GameClock.day
@@ -194,10 +195,10 @@ func is_grazing(site: String) -> bool:
 	return SITES.has(site) and int(building(site).grazing_day)==GameClock.day and Calendar.season()!=3 and GameWeather.weather_id() in ["clear","cloudy","meteor"] and GameClock.minutes<1080
 
 func graze(site: String) -> bool:
-	if busy or GameClock.settling or not near_site(site) or not can_graze(site) or int(building(site).grazing_day)==GameClock.day: return false
+	if not can_mutate() or not near_site(site) or not can_graze(site) or int(building(site).grazing_day)==GameClock.day: return false
 	busy=true
 	building(site).grazing_day=GameClock.day
-	Events.notice.emit("栏门打开了。动物在庭院吃草，雨雪或傍晚会自动回到门廊。冬季请备干草。")
+	Events.notice.emit("栏门打开了。动物在后方围栏牧场吃草，雨雪或傍晚会走回暖舍。冬季请备干草。")
 	_commit()
 	return true
 
@@ -298,6 +299,19 @@ func home_station(entry: Dictionary) -> Vector2:
 		if siblings[i].id==entry.id: index=i;break
 	return RanchLayout.home(str(entry.site),index) if str(entry.site) in RanchLayout.ENABLED else site_point(str(entry.site))+INDOOR[index]
 
+func spawn_point(site: String, index: int) -> Vector2:
+	var room:=RanchLayout.indoor(site);var candidates: Array[Vector2]=[RanchLayout.home(site,index)]
+	for y in range(int(room.position.y)+16,int(room.end.y)-8,24):
+		for x in range(int(room.position.x)+16,int(room.end.x)-8,24): candidates.append(Vector2(x,y))
+	for point in candidates:
+		if not RanchLayout.point_legal(site,point): continue
+		var clear: bool=true
+		for other in animals_at(site):
+			if Vector2(other.pasture_position[0],other.pasture_position[1]).distance_to(point)<24: clear=false;break
+		if is_instance_valid(game) and GameState.location==RanchLayout.area(site) and game.player.position.distance_to(point)<28: clear=false
+		if clear: return point
+	return RanchLayout.home(site,index)
+
 func activity_bounds(entry: Dictionary, outdoors: bool) -> Rect2:
 	if str(entry.site) in RanchLayout.ENABLED: return RanchLayout.world_rect(str(entry.site)).grow(-32) if outdoors else RanchLayout.indoor(str(entry.site))
 	return Rect2(site_point(str(entry.site))+Vector2(-112,-46),Vector2(224,150)) if outdoors else Rect2(site_point(str(entry.site))+Vector2(-54,-36),Vector2(108,64))
@@ -385,13 +399,18 @@ func collect_nest(site: String) -> bool:
 func animal_area(entry: Dictionary) -> String:
 	return RanchLayout.area(str(entry.site)) if str(entry.site) in RanchLayout.ENABLED else "farm"
 
+func can_mutate() -> bool:
+	return not busy and not GameClock.settling and not GameState.restoring and (not is_instance_valid(game) or (not game.backgrounded and not game.closing))
+
 func enter_pasture(site: String) -> bool:
 	if site not in RanchLayout.ENABLED or not FarmLayout.active(site) or int(building(site).level)<1 or not is_instance_valid(game): return false
 	if GameState.location!="farm" or game.player.global_position.distance_to(gate_point(site))>90: return false
 	return WorldTravel.change(game,RanchLayout.area(site))
 
 func gate_point(site: String) -> Vector2:
-	var point:=site_point(site)
+	return gate_for_point(site_point(site))
+
+func gate_for_point(point: Vector2) -> Vector2:
 	return point+Vector2(-76 if point.x+100>FarmLayoutCatalog.WORLD.end.x else 76,-12)
 
 func migrate_v29(raw: Variant, day: int) -> Dictionary:

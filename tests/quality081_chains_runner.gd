@@ -70,10 +70,10 @@ func process(station: String, recipe: String, batches: int=1) -> bool:
 func care() -> void:
 	for id in animal_ids:
 		var animal: Dictionary=Livestock.animal(id)
-		await Touch.place(self,game,"farm",Vector2(animal.position[0],animal.position[1])+Vector2(0,28))
+		await Touch.place(self,game,Livestock.animal_area(animal),Livestock.animal_point(animal)+Vector2(0,28))
 		check(Livestock.feed(id) and Livestock.pet(id),"消耗自产饲料并照料真实动物")
 func collect() -> void:
 	for id in animal_ids:
 		var animal: Dictionary=Livestock.animal(id)
-		await Touch.place(self,game,"farm",Vector2(animal.position[0],animal.position[1])+Vector2(0,28))
+		await Touch.place(self,game,Livestock.animal_area(animal),Livestock.animal_point(animal)+Vector2(0,28))
 		check(Livestock.collect(id),"收取实际日结算产物")

@@ -49,7 +49,7 @@ func run() -> void:
 func phase_one() -> void:
 	GameState.set_control_mode("joystick",false)
 	check(game.world.get_node("Ground") is TileMapLayer, "地图使用 Godot 4.3 TileMapLayer")
-	check(game.world.get_node("Ground").get_used_cells().size() == 48 * 32, "完整农场地图加载")
+	check(game.world.get_node("Ground").get_used_cells().size() == FarmLayoutCatalog.GRID.get_area(), "完整农场地图加载")
 	var start: Vector2 = game.player.position
 	Input.action_press("move_right")
 	await frames(12)

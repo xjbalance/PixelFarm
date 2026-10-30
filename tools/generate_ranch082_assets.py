@@ -91,6 +91,7 @@ for ident in ['nest','trough','water_basin','gate','duck_egg','salted_duck_egg']
  if ident=='nest':
   d.polygon([(4,27),(10,18),(37,18),(44,27),(39,35),(9,35)],fill=EARTH)
   for y in [24,28,32]:d.line((8,y,40,y),fill=GOLD,width=2)
+  harmonize(im).save(OUT/'nest_empty.png')
   for x,y in [(15,20),(24,18),(32,21)]:d.ellipse((x-4,y-5,x+4,y+6),fill=CREAM,outline=SHADE)
   d.line((11,23,37,23),fill=LIGHT)
  elif ident in ('trough','water_basin'):

@@ -34,7 +34,7 @@ func all_processing() -> void:
 		check(not Workshop.claim(device,serial),"重复点击不能复制该配方成品："+str(id))
 	check(FarmSaveStore.valid(FarmSaveStore.snapshot(game)),"全设备加工历史构成合法存档")
 	var saved:=FarmSaveStore.snapshot(game)
-	check(FarmSaveStore.restore(game,JSON.parse_string(JSON.stringify(saved))) and Workshop.state.claimed.size()==49,"49条配方领取记录可恢复")
+	check(FarmSaveStore.restore(game,JSON.parse_string(JSON.stringify(saved))) and Workshop.state.claimed.size()==HarvestCatalog.data().processing.size(),"全部实际配方领取记录可恢复")
 	var legacy: Dictionary=original.duplicate(true);legacy.version=27;legacy.erase("workshop");legacy.kitchen.built=["mill"]
 	check(FarmSaveStore.restore(game,legacy),"有旧磨坊的v27档仍可迁移")
 	await frames(5);Fixture.stock();var coins: int=Inventory.coins

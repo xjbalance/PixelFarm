@@ -43,7 +43,8 @@ static func write(game: Node, path: String = PATH) -> bool:
 	if file == null:
 		Events.notice.emit("保存失败：无法写入本地目录。")
 		return false
-	file.store_string(JSON.stringify(data,"\t"))
+	# Retain full fractional world precision rather than trimming position digits.
+	file.store_string(JSON.stringify(data,"\t",true,true))
 	file.flush()
 	var error := file.get_error()
 	file.close()

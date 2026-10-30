@@ -78,7 +78,7 @@ func set_goal(point: Vector2, returning: bool=false) -> bool:
 func choose_activity(entry: Dictionary) -> void:
 	var outdoors: bool=Livestock.is_grazing(str(entry.site))
 	var choice: float=rng.randf()
-	if not outdoors and global_position.distance_to(station)>7:
+	if not outdoors and not Livestock.activity_bounds(entry,false).has_point(global_position):
 		if set_goal(station,true): return
 	if choice<.58:
 		var bounds: Rect2=Livestock.activity_bounds(entry,outdoors)
@@ -86,7 +86,7 @@ func choose_activity(entry: Dictionary) -> void:
 			var candidate:=Vector2(rng.randf_range(bounds.position.x+12,bounds.end.x-12),rng.randf_range(bounds.position.y+10,bounds.end.y-10))
 			if rng.randf()<.8: candidate=(global_position+Vector2(rng.randf_range(-128,128),rng.randf_range(-96,96))).clamp(bounds.position+Vector2(12,10),bounds.end-Vector2(12,10))
 			if candidate.distance_to(global_position)<(40 if outdoors else 12): continue
-			if set_goal(candidate): return
+			if set_goal(candidate,not outdoors and not bounds.has_point(global_position)): return
 	behavior=Behavior.GRAZE if choice<.83 else Behavior.REST
 	timer=rng.randf_range(1.2,3.2) if not large else rng.randf_range(2.6,5.5)
 
@@ -104,6 +104,7 @@ func _physics_process(delta: float) -> void:
 		else: timer=0;behavior=Behavior.IDLE
 	if held>0: behavior=Behavior.INTERACT;velocity=Vector2.ZERO
 	elif behavior in [Behavior.WANDER,Behavior.RETURN_HOME]:
+		if behavior==Behavior.RETURN_HOME and Livestock.activity_bounds(entry,false).has_point(global_position): route.clear()
 		while route_index<route.size() and global_position.distance_to(route[route_index])<2: route_index+=1
 		if route_index>=route.size():
 			velocity=Vector2.ZERO;behavior=Behavior.IDLE;timer=rng.randf_range(.5,1.8) if not large else rng.randf_range(1.8,3.5)

@@ -33,7 +33,7 @@ func near_site(site: String) -> void:
 func near_animal(id: String) -> void:
 	while game.hud.close_active_panel(): pass
 	var a: Dictionary=Livestock.animal(id)
-	game.change_location("farm",Vector2(a.position[0],a.position[1])+Vector2(0,24));await frames(4)
+	game.change_location(Livestock.animal_area(a),Livestock.animal_point(a)+Vector2(0,24));await frames(4)
 
 func transaction() -> Dictionary:
 	return {"state":Livestock.snapshot(),"items":Inventory.items.duplicate(true),"coins":Inventory.coins,"diamonds":Xiaojing.state.diamonds}
@@ -180,7 +180,7 @@ func navigation() -> void:
 	for point in points:
 		if "livestock_id" in point and point.livestock_id.begins_with("animal:"): target=point;break
 	check(target!=null,"实际动物有独立点击交互目标")
-	await Touch.place(self,game,"farm",Livestock.SITES.coop+Vector2(0,96))
+	await Touch.place(self,game,"pasture_coop",target.global_position+Vector2(0,96))
 	if target:
 		var count: int=game.auto_move.execution_count
 		Touch.tap(self,game,target.global_position+Vector2(0,-12));await Touch.finish(self,game,500)
@@ -200,29 +200,30 @@ func animal_activity_and_restore() -> void:
 	for i in range(6): Livestock.buy_animal("barn")
 	GameClock.minutes=600;GameClock.changed.emit()
 	var first: Dictionary=Livestock.animals_at("barn")[0]
-	var initial := Vector2(first.position[0],first.position[1])
+	var initial := Livestock.animal_point(first)
 	check(Livestock.graze("barn"),"晴天开启满级六只动物的实体庭院活动")
-	GameClock.running=true;await frames(1200);GameClock.running=false
-	check(Vector2(first.position[0],first.position[1]).distance_to(initial)>12,"放牧实际改变动物独立位置，非仅菜单标志")
+	game.change_location("pasture_barn");await frames(4)
+	GameClock.running=true;await frames(1800);GameClock.running=false
+	check(Livestock.animal_point(first).distance_to(initial)>12,"放牧实际改变动物独立位置，非仅菜单标志")
 	var saved := FarmSaveStore.snapshot(game)
 	var node: CharacterBody2D
 	for candidate in get_tree().get_nodes_in_group("livestock_animals"):
 		if candidate.animal_id==first.id: node=candidate;break
 	if node:
-		var expected := Vector2(first.position[0],first.position[1])
+		var expected := Livestock.animal_point(first)
 		node.position+=Vector2(8,4)
 		check(FarmSaveStore.restore(game,saved),"动物活动中的完整快照可恢复")
 		await frames(4)
 		check(node.global_position.distance_to(expected)<.1,"恢复同时校正实际可见动物位置，不只恢复数据表")
 	GameClock.day=85;GameClock.minutes=600;Calendar.restore(Calendar.snapshot());GameClock.changed.emit()
 	GameWeather.enabled=true
-	GameClock.running=true;await frames(1200);GameClock.running=false
+	GameClock.running=true;await frames(6000);GameClock.running=false
 	var sheltered := true
 	var collision_clear := true
 	var occupants: Array=Livestock.animals_at("barn")
 	for i in range(occupants.size()):
 		var a: Dictionary=occupants[i]
-		var position := Vector2(a.position[0],a.position[1])
+		var position := Livestock.animal_point(a)
 		if not Livestock.activity_bounds(a,false).has_point(position):
 			sheltered=false
 		var query := PhysicsShapeQueryParameters2D.new()

@@ -17,7 +17,8 @@ func run() -> void:
 		ok=Livestock.build("barn") and Livestock.buy_animal("barn")
 		var entry: Dictionary=Livestock.animals_at("barn")[0]
 		for day in range(6):
-			game.player.global_position=Vector2(entry.position[0],entry.position[1])+Vector2(0,24)
+			game.change_location(Livestock.animal_area(entry),Livestock.animal_point(entry)+Vector2(0,24))
+			for i in range(3): await get_tree().physics_frame
 			ok=Livestock.feed(entry.id) and ok
 			Livestock.pet(entry.id)
 			GameClock.minutes=1200;ok=GameClock.request_sleep(GameClock.day) and ok

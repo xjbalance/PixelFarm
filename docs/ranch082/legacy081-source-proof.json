@@ -1,0 +1,104 @@
+{
+  "animals": {
+    "animals": [
+      {
+        "age": 3,
+        "bond": 24,
+        "fed_day": 207,
+        "hunger": 15,
+        "id": "animal_000001",
+        "mood": 100,
+        "pet_day": 207,
+        "position": [
+          136,
+          864
+        ],
+        "product": 3,
+        "product_day": 204,
+        "progress": 0,
+        "site": "coop",
+        "species": "chicken"
+      },
+      {
+        "age": 3,
+        "bond": 24,
+        "fed_day": 207,
+        "hunger": 15,
+        "id": "animal_000002",
+        "mood": 100,
+        "pet_day": 207,
+        "position": [
+          168,
+          864
+        ],
+        "product": 3,
+        "product_day": 204,
+        "progress": 0,
+        "site": "coop",
+        "species": "chicken"
+      },
+      {
+        "age": 6,
+        "bond": 24,
+        "fed_day": 207,
+        "hunger": 15,
+        "id": "animal_000003",
+        "mood": 100,
+        "pet_day": 207,
+        "position": [
+          360,
+          896
+        ],
+        "product": 3,
+        "product_day": 207,
+        "progress": 0,
+        "site": "barn",
+        "species": "cow"
+      },
+      {
+        "age": 5,
+        "bond": 24,
+        "fed_day": 207,
+        "hunger": 15,
+        "id": "animal_000004",
+        "mood": 100,
+        "pet_day": 207,
+        "position": [
+          776,
+          896
+        ],
+        "product": 1,
+        "product_day": 206,
+        "progress": 1,
+        "site": "fold",
+        "species": "sheep"
+      }
+    ],
+    "buildings": {
+      "barn": {
+        "grazing_day": 0,
+        "last_breed_day": 0,
+        "level": 2
+      },
+      "coop": {
+        "grazing_day": 0,
+        "last_breed_day": 0,
+        "level": 3
+      },
+      "fold": {
+        "grazing_day": 0,
+        "last_breed_day": 0,
+        "level": 1
+      }
+    },
+    "last_settled_day": 208,
+    "serial": 4
+  },
+  "checks": 58,
+  "commit": "244c379",
+  "failures": 0,
+  "old_initial_clear_cells": 1363,
+  "old_total_cells": 1536,
+  "schema": 29,
+  "source_version": "0.8.1"
+}

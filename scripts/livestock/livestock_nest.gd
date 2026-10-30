@@ -6,6 +6,7 @@ var livestock_id: String="nest:coop"
 var effect: float=0
 var label: Label
 var art: Texture2D=preload("res://assets/livestock/ranch082/nest.png")
+var empty_art: Texture2D=load("res://assets/livestock/ranch082/nest_empty.png")
 func _ready() -> void:
 	add_to_group("interactables")
 	label=FarmUIStyle.label("",12,FarmUIStyle.CREAM);label.position=Vector2(-52,-40);label.size=Vector2(104,18)
@@ -27,7 +28,7 @@ func _process(delta: float) -> void:
 	effect=maxf(0,effect-delta);queue_redraw()
 	if effect<=0: set_process(false)
 func _draw() -> void:
-	draw_texture(art,Vector2(-24,-32))
+	draw_texture(art if int(Livestock.summary(site).products)>0 else empty_art,Vector2(-24,-32))
 	if effect>0:
 		for i in range(6):
 			var at:=Vector2.from_angle(i*TAU/6)*(1-effect)*24+Vector2(0,-14-(1-effect)*18)

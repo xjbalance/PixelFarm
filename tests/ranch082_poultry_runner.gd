@@ -12,9 +12,9 @@ func run() -> void:
 	var chicken: Dictionary=Livestock.animals_at("coop")[0];var duck: Dictionary=Livestock.animals_at("coop")[1]
 	check(chicken.species=="chicken" and duck.species=="duck","stable separate species identities")
 	var eggs: Array=[]
-	for day in range(7):
+	for day in range(9):
 		for entry in Livestock.animals_at("coop"):
-			game.player.global_position=Livestock.animal_point(entry)+Vector2(0,24)
+			game.change_location(Livestock.animal_area(entry),Livestock.animal_point(entry)+Vector2(0,24));await frames(3)
 			var hay: int=Inventory.count("hay")
 			check(Livestock.feed(entry.id) and Inventory.count("hay")==hay-1,"daily feed exactly once "+str(day)+entry.species)
 			check(not Livestock.feed(entry.id) and Inventory.count("hay")==hay-1,"repeat feed rejected "+str(day)+entry.species)
@@ -23,19 +23,22 @@ func run() -> void:
 		await frames(3);eggs.append([chicken.product,duck.product])
 		if day<2: check(chicken.product==0,"young chicken has no eggs")
 		if day<4: check(duck.product==0,"young duck / incomplete two-day cycle has no eggs")
-	check(chicken.product==3 and duck.product==2,"chicken original cap3 and duck one per2 eligible days")
+	check(chicken.product==3 and duck.product==3,"chicken original cap3 and duck3 from day5 day7 day9")
 	var product_before:=Livestock.snapshot();Livestock.settle_day();GameClock.day_advanced.emit()
 	check(Livestock.snapshot()==product_before,"repeated day signal cannot duplicate products")
-	game.player.global_position=Livestock.nest_point("coop")+Vector2(0,24)
+	game.change_location("pasture_coop",Livestock.nest_point("coop","pasture_coop")+Vector2(0,24));await frames(4)
 	Inventory.items.egg=999
-	check(not Livestock.collect_nest("coop") and chicken.product==3 and duck.product==2,"full egg stack retains all nest products atomically")
+	check(not Livestock.collect_nest("coop") and chicken.product==3 and duck.product==3,"full egg stack retains all nest products atomically")
 	Inventory.items.erase("egg")
-	check(Livestock.collect_nest("coop") and Inventory.count("egg")==3 and Inventory.count("duck_egg")==2,"nest delivers both egg types to real inventory")
-	check(not Livestock.collect_nest("coop") and Inventory.count("duck_egg")==2,"repeat nest click yields nothing")
+	check(Livestock.collect_nest("coop") and Inventory.count("egg")==3 and Inventory.count("duck_egg")==3,"nest delivers both egg types to real inventory")
+	check(not Livestock.collect_nest("coop") and Inventory.count("duck_egg")==3,"repeat nest click yields nothing")
 	check(Catalog.sell_price("duck_egg")==28 and Catalog.is_item("salted_duck_egg"),"duck egg and preserved product registered once")
+	var coins: int=Inventory.coins
+	check(FarmEconomy.sell("duck_egg",1) and Inventory.coins==coins+28 and Inventory.count("duck_egg")==2,"one genuinely produced duck egg sells through existing economy")
 	check(FarmSaveStore.valid(FarmSaveStore.snapshot(game)),"mixed poultry state is a valid whole save")
 	var saved:=FarmSaveStore.snapshot(game)
 	check(FarmSaveStore.restore(game,JSON.parse_string(JSON.stringify(saved))) and Livestock.animals_at("coop")[1].species=="duck","duck age feed identity and products survive JSON restore")
+	game.change_location("farm",Vector2(704,704));await frames(5)
 	Fixture.stock()
 	var jar: String=await Fixture.install(self,game,"station_pickle_jar")
 	check(jar!="" and await Fixture.approach(self,game,jar),"real pickling jar installed and reachable")
@@ -47,11 +50,14 @@ func run() -> void:
 	await Fixture.approach(self,game,jar)
 	check(Workshop.claim(jar,int(job.id)) and Inventory.count("salted_duck_egg")==1,"two game days finish real salted duck egg")
 	check(not Workshop.claim(jar,int(job.id)),"salted egg collection once")
+	coins=Inventory.coins
+	check(FarmEconomy.sell("salted_duck_egg",1) and Inventory.coins==coins+66,"real salted duck egg can be sold")
 	GameClock.minutes=600
 	game.change_location("farm",Livestock.site_point("coop")+Vector2(0,32));await frames(4)
 	check(Livestock.graze("coop"),"open sunny poultry grazing")
+	game.change_location("pasture_coop",RanchLayout.service("coop")+Vector2(0,48));await frames(4)
 	GameClock.running=true
-	for tick in range(1201):
+	for tick in range(3601):
 		if tick%60==0:
 			var row: Dictionary={"frame":tick,"animals":{}}
 			for node in get_tree().get_nodes_in_group("livestock_animals"):

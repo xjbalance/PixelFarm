@@ -39,6 +39,9 @@ func refresh() -> void:
 			animals[entry.id]=animal
 		else:
 			var body: CharacterBody2D=animals[entry.id]
+			var parent: Node=game.world if Livestock.animal_area(entry)=="farm" else game.mine_maps[Livestock.animal_area(entry)]
+			if body.get_parent()!=parent.get_node("Actors"):
+				body.reparent(parent.get_node("Actors"),false);body.route.clear();body.behavior=0;body.timer=.3
 			var destination:=Livestock.animal_point(entry)
 			if body.position.distance_to(destination)>.2: body.route.clear();body.behavior=0;body.timer=.3
 			body.position=destination

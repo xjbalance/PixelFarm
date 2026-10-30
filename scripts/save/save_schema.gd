@@ -158,6 +158,7 @@ static func normalize(raw: Variant) -> Dictionary:
 	var farm_resources:=FarmResourceCatalog.placements("farm")
 	for id in data.resources:
 		if farm_resources.has(id) and int(data.resources[id].hp)==0: data.resources[id].ready_day=0
+	migrate_original_bushes(data)
 	data.world_development=AbyssSaveSchema.canonical(data.get("world_development"))
 	data.exploration=AbyssSaveSchema.canonical(data.get("exploration"))
 	data.housing=AbyssSaveSchema.canonical(data.get("housing"))
@@ -177,6 +178,44 @@ static func normalize(raw: Variant) -> Dictionary:
 	data.legend=AbyssSaveSchema.canonical(data.get("legend"))
 	if not valid_current(data): return {}
 	return data
+
+static func migrate_original_bushes(data: Dictionary) -> void:
+	# These six old bushes were replaceable scenery, so old crops/furniture could
+	# legally occupy them. Never introduce a new gatherable shrub over that work.
+	var layout: Variant=data.get("farm_layout",{})
+	var fixtures: Dictionary=layout.get("fixtures",{}) if layout is Dictionary and layout.get("fixtures",{}) is Dictionary else {}
+	var plot_layout: Dictionary=layout.get("plots",{}) if layout is Dictionary and layout.get("plots",{}) is Dictionary else {}
+	for index in range(6):
+		var id: String="brush_original_"+str(index)
+		if data.resources.has(id): continue
+		var fixture: String="decor:bush:"+str(index);var base:=FarmLayoutCatalog.fixture(fixture)
+		var record: Variant=fixtures.get(fixture,{"cell":[base.cell.x,base.cell.y],"stored":false})
+		if not record is Dictionary or record.get("stored",false)==true: continue
+		var at:=FarmLayoutCatalog.parse_cell(record.get("cell"))
+		if at==FarmLayoutCatalog.INVALID_CELL: continue
+		var cell:=Vector2i(((base.point+Vector2(at-base.cell)*32)/32).floor());var covered: bool=false
+		if data.get("plots") is Dictionary:
+			for key in data.plots:
+				var plot: Variant=plot_layout.get(key,{"stored":false})
+				if not plot is Dictionary or plot.get("stored",false)==true: continue
+				var physical: Vector2i=FarmLayoutCatalog.plot_cell(str(key))
+				if plot_layout.has(key): physical=FarmLayoutCatalog.parse_cell(plot.get("cell"))
+				if physical==cell: covered=true;break
+		var territory: Variant=data.get("territory",{})
+		if territory is Dictionary:
+			var terrain: Variant=territory.get("terrain",{})
+			if terrain is Dictionary and terrain.get("farm",{}) is Dictionary and terrain.get("farm",{}).has(TerritoryCatalog.key(cell)): covered=true
+			var objects: Variant=territory.get("objects",[])
+			if objects is Array:
+				for entry in objects:
+					if not entry is Dictionary or entry.get("area")!="farm" or not entry.get("kind") is String or not TerritoryCatalog.OBJECT_KINDS.has(entry.kind): continue
+					if TerritoryCatalog.footprint(str(entry.kind),TerritoryCatalog.to_cell(entry.get("cell"))).has_point(cell): covered=true;break
+		var housing: Variant=data.get("housing",{})
+		if housing is Dictionary and housing.get("placed",[]) is Array:
+			for entry in housing.get("placed",[]):
+				if not entry is Dictionary or entry.get("area")!="farm" or not entry.get("kind") is String or not Housing.data.furniture.has(entry.kind): continue
+				if Housing.footprint(str(entry.kind),TerritoryCatalog.to_cell(entry.get("cell"))).has_point(cell): covered=true;break
+		if covered: data.resources[id]={"hp":0,"ready_day":0}
 
 static func valid_progress(data: Variant, day: Variant) -> bool:
 	if not data is Dictionary or not whole(day,1,999999): return false

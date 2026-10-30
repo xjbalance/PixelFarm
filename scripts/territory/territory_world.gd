@@ -242,6 +242,7 @@ func _validate_routes(plan: Dictionary) -> Dictionary:
 	var map: Node=maps[GameState.location]
 	for object in game.get_tree().get_nodes_in_group("interactables"):
 		if not map.is_ancestor_of(object) or object.is_in_group("territory_objects"): continue
+		if "livestock_id" in object and not object.is_visible_in_tree(): continue
 		if object is CharacterBody2D:
 			if not object.is_visible_in_tree(): continue
 			var cell:=Vector2i((object.global_position/32).floor())

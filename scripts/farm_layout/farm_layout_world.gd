@@ -333,6 +333,12 @@ func _validate_geometry(kind: String, id: String, rectangles: Array[Rect2], terr
 		var rays: Array[Rect2]=[]
 		if not (kind=="fixture" and key==id and id not in ["home","shop"]): rays.assign(ray_rects)
 		if (key==id or _approachable(FarmLayout.point(key),before,key)) and not _approachable(point,after,key,rays,excluded,candidate_water): return _failure("需要给房门、设施或剧情交互留出可到达的站位。")
+		if key in Livestock.SITES and int(Livestock.building(key).level)>0:
+			var old_gate:=Livestock.gate_point(key);var gate:=Livestock.gate_for_point(point)
+			if not FarmLayoutCatalog.WORLD.grow(-10).has_point(gate) or ((key==id or _approachable(old_gate,before,key)) and not _approachable(gate,after,key,rays,excluded,candidate_water)): return _failure("请给畜舍旁的牧场围栏门留出可到达的入口。")
+			if key=="coop":
+				var nest:=point+Vector2(-36,52)
+				if (key==id or _approachable(Livestock.nest_point(key,"farm"),before,key)) and not _approachable(nest,after,key,rays,excluded,candidate_water): return _failure("请给鸡窝留下可到达的收蛋位置。")
 		if key in ["home","shop","greenhouse"]:
 			var info:=FarmLayoutCatalog.fixture(key)
 			for logical: Vector2 in info.associated_points:
