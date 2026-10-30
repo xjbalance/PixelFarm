@@ -19,7 +19,7 @@ static func title(id: String) -> String:
 	if id in TerritoryCatalog.ANNEX_AREAS: return str(TITLES[id])+("" if known(id) else " · 未开放")
 	return str(TITLES.get(id,"区域图纸")) if known(id) else "尚未探索"
 static func bounds(id: String) -> Rect2:
-	if id=="farm": return Rect2(0,0,1536,1024)
+	if id=="farm": return FarmLayoutCatalog.WORLD
 	if id=="lake": return Rect2(Vector2(864,384)+FarmLayout.offset("lake"),Vector2(544,512))
 	if id=="home": return HomeLayout.map_rect(int(Housing.state.level)).grow(18)
 	return Rect2(0,0,1280,896)

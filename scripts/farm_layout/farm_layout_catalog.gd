@@ -1,8 +1,8 @@
 class_name FarmLayoutCatalog
 extends RefCounted
 ## 原农场实体的固定身份与默认位置。这里只描述布局，不保存等级、物品或任务。
-const GRID := Rect2i(0,0,48,32)
-const WORLD := Rect2(0,0,1536,1024)
+const GRID := Rect2i(0,0,96,64)
+const WORLD := Rect2(0,0,3072,2048)
 const INVALID_CELL := Vector2i(-1000000,-1000000)
 const EXTRA_FIXTURES := "res://resources/farm_layout/fixtures.json"
 const KINDS: Array[String]=["fixture","resource","plot"]
@@ -89,8 +89,10 @@ static func base_point(id: String) -> Vector2:
 
 static func _ensure_resources() -> void:
 	if not _resources.is_empty(): return
-	for id in FarmResourceCatalog.placements("farm"):
-		var raw: Dictionary=FarmResourceCatalog.placements("farm")[id]
+	var placements:=FarmResourceCatalog.placements("farm")
+	for id in placements:
+		var raw: Dictionary=placements[id]
+		if raw.has("fixture"): continue
 		var size:=Vector2(22,19) if raw.kind=="tree" else Vector2(30,16)
 		_resources[id]={"id":id,"name":str(FarmResourceCatalog.TYPES[raw.kind].name),"cell":raw.cell,"point":Vector2(raw.cell)*32,"bounds":Rect2(Vector2(0,-5)-size*.5,size)}
 
@@ -114,8 +116,8 @@ static func ids(kind: String) -> Array[String]:
 	if kind=="fixture": _ensure_fixtures();result.assign(_fixtures.keys())
 	elif kind=="resource": _ensure_resources();result.assign(_resources.keys())
 	elif kind=="plot":
-		for y in range(32):
-			for x in range(48): result.append(cell_key(Vector2i(x,y)))
+		for y in range(GRID.size.y):
+			for x in range(GRID.size.x): result.append(cell_key(Vector2i(x,y)))
 	return result
 
 static func default_cell(kind: String, id: String) -> Vector2i:

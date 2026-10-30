@@ -80,7 +80,7 @@ static func maps(game: Node) -> Dictionary:
 
 static func region(location: String) -> Rect2i:
 	if location in RanchLayout.AREAS: return RanchLayout.region(RanchLayout.site(location))
-	if location=="farm": return Rect2i(0,0,48,32)
+	if location=="farm": return FarmLayoutCatalog.GRID
 	if location=="home": return HomeLayout.navigation_region(int(Housing.state.level))
 	return Rect2i(0,0,40,28)
 

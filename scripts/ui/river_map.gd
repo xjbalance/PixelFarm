@@ -7,7 +7,7 @@ var location: String="farm":
 		if is_node_ready():
 			show_region(location)
 			world_size=FarmAtlasData.bounds(location).size
-var world_size:=Vector2(1536,1024)
+var world_size:=FarmLayoutCatalog.WORLD.size
 
 func _ready() -> void:
 	super._ready()

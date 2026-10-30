@@ -2,8 +2,8 @@ extends Node
 ## 本层只管理私人领地改造。预览不保存，确认以修订号原子提交，不产生经济收益。
 signal changed
 signal unlocked_changed
-const MAX_TERRAIN_PER_AREA: int=4096
-const MAX_OBJECTS: int=256
+const MAX_TERRAIN_PER_AREA: int=8192
+const MAX_OBJECTS: int=1024
 const MAX_BRUSH_CELLS: int=128
 const MAX_SERIAL: int=999999
 const MAX_REVISION: int=2147480000

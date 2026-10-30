@@ -7,8 +7,8 @@ static func screen_rect(canvas: Control, world_rect: Rect2) -> Rect2:
 	return Rect2(a,b-a)
 static func draw_current(canvas: Control) -> void:
 	var bounds:=FarmAtlasData.bounds(canvas.region_id)
-	for y in range(32):
-		for x in range(48):
+	for y in range(FarmLayoutCatalog.GRID.size.y):
+		for x in range(FarmLayoutCatalog.GRID.size.x):
 			var cell:=Vector2i(x,y)
 			var rect:=Rect2(Vector2(cell)*32,Vector2(32,32))
 			if not bounds.intersects(rect): continue

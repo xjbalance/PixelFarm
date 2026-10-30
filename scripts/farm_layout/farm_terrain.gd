@@ -2,7 +2,7 @@ class_name FarmTerrain
 extends RefCounted
 ## The editable farm's effective terrain. Source 0 keeps the original TileData;
 ## selecting atlas columns 5/6 changes real water collision, not only its paint.
-const REGION:=Rect2i(0,0,48,32)
+const REGION:=FarmLayoutCatalog.GRID
 const ROOT: String="res://assets/world_scheme_c/"
 static var _base: Dictionary={}
 static var _images: Dictionary={}
@@ -16,6 +16,13 @@ static func _prepare_base() -> void:
 			if y in [13,14] or (x in [14,15] and y>5): index=3
 			if Rect2i(16,15,12,8).has_point(Vector2i(x,y)): index=4
 			_base[Vector2i(x,y)]=index
+	for y in range(REGION.size.y):
+		for x in range(REGION.size.x):
+			var cell:=Vector2i(x,y)
+			if _base.has(cell): continue
+			var value: int=absi(x*71+y*137+7129)%3
+			if y in [13,14] or (x in [14,15] and y>5) or (x in [62,63] and y>=14) or (y in [42,43] and x>=14): value=3
+			_base[cell]=value
 
 static func overrides() -> Dictionary:
 	return Territory.state.get("terrain",{}).get("farm",{})
@@ -59,8 +66,8 @@ static func apply(target: Node) -> bool:
 	var changed: bool=false
 	var source: Dictionary=overrides()
 	var offset: Vector2=FarmLayout.offset("lake");var active: bool=FarmLayout.active("lake")
-	for y in range(32):
-		for x in range(48):
+	for y in range(REGION.size.y):
+		for x in range(REGION.size.x):
 			var cell:=Vector2i(x,y);var value:=Vector2i(effective_index(cell,source,offset,active),0)
 			if ground.get_cell_source_id(cell)==0 and ground.get_cell_atlas_coords(cell)==value: continue
 			ground.set_cell(cell,0,value);changed=true
@@ -74,6 +81,9 @@ static func hoe_error(game: Node, cell: Vector2i) -> String:
 	var kind: String=str(overrides().get(TerritoryCatalog.key(cell),""))
 	if kind in ["dirt_path","stone_path","wood_path","sand","gravel","flowerbed"]: return "先恢复成草地或自然地表，再开垦。"
 	if not is_instance_valid(game) or not is_instance_valid(game.get("player")) or not is_instance_valid(game.get("world")): return "农场尚未准备好。"
+	if is_instance_valid(game.get("resource_world")):
+		for id in TerritoryCatalog.resource_ids_at(cell):
+			if int(game.resource_world.fields.farm.state.get(id,{}).get("hp",0))>0: return "先用对应工具清理这里的树石、灌木或野草，再开垦。"
 	var query:=PhysicsShapeQueryParameters2D.new();var shape:=RectangleShape2D.new();shape.size=Vector2(28,28)
 	query.shape=shape;query.transform=Transform2D(0,Vector2(cell)*32+Vector2(16,16));query.collision_mask=1
 	for hit in game.player.get_world_2d().direct_space_state.intersect_shape(query,64):
@@ -113,14 +123,14 @@ static func texture(season: int, terrain_overrides: Variant=null, lake_offset: V
 	if lake_offset==Vector2.INF: lake_offset=FarmLayout.offset("lake");lake_active=FarmLayout.active("lake")
 	# Preserve the reviewed baseline when no ground edit exists. Changed layouts use a
 	# full rebuild, so filling or relocating the pond cannot leave its baked image behind.
-	if source.is_empty() and lake_offset==Vector2.ZERO and lake_active:
+	if REGION.size==Vector2i(48,32) and source.is_empty() and lake_offset==Vector2.ZERO and lake_active:
 		return load(ROOT+"derived/farm_ground_"+SchemeCAssets.SEASONS[season]+".png")
-	var result:=Image.create(1536,1024,false,Image.FORMAT_RGBA8)
+	var result:=Image.create(REGION.size.x*32,REGION.size.y*32,false,Image.FORMAT_RGBA8)
 	var kinds: Dictionary={}
-	for y in range(32):
-		for x in range(48): kinds[Vector2i(x,y)]=_kind(Vector2i(x,y),source,lake_offset,lake_active)
-	for y in range(32):
-		for x in range(48):
+	for y in range(REGION.size.y):
+		for x in range(REGION.size.x): kinds[Vector2i(x,y)]=_kind(Vector2i(x,y),source,lake_offset,lake_active)
+	for y in range(REGION.size.y):
+		for x in range(REGION.size.x):
 			var cell:=Vector2i(x,y);var kind: String=str(kinds[cell]);var tile: Image
 			var value: int=effective_index(cell,source,lake_offset,lake_active)
 			if kind=="grass": tile=_ground_tile(value if value<3 else 0,season)
@@ -161,5 +171,10 @@ static func texture(season: int, terrain_overrides: Variant=null, lake_offset: V
 		if reserved: continue
 		var art: String=["short_grass","clover","grass_clump","white_wildflowers","yellow_wildflowers"][counter%5]
 		var herb: Image=_image(art,season)
+		result.blend_rect(herb,Rect2i(Vector2i.ZERO,herb.get_size()),cell*32+Vector2i(16-herb.get_width()/2,18-herb.get_height()))
+	for counter in range(250):
+		var cell:=Vector2i(2+(counter*37)%92,2+(counter*23)%60)
+		if Rect2i(0,0,48,32).has_point(cell) or str(kinds.get(cell,""))!="grass" or source.has(TerritoryCatalog.key(cell)): continue
+		var herb:=_image(["short_grass","clover","white_wildflowers","yellow_wildflowers"][counter%4],season)
 		result.blend_rect(herb,Rect2i(Vector2i.ZERO,herb.get_size()),cell*32+Vector2i(16-herb.get_width()/2,18-herb.get_height()))
 	return ImageTexture.create_from_image(result)

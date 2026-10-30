@@ -100,7 +100,7 @@ static func contract(c: Variant, day: int) -> bool:
 		if not c.get(key) is Dictionary: return false
 		for id in c[key]:
 			if id not in (MineState.data.recipes if key=="crafted" else Catalog.crops) or not FarmSaveSchema.whole(c[key][id],0,999999): return false
-	if not c.get("sown") is Dictionary or c.sown.size()>1536: return false
+	if not c.get("sown") is Dictionary or c.sown.size()>FarmLayoutCatalog.GRID.get_area(): return false
 	for id in c.sown:
 		if not id is String or c.sown[id] not in Catalog.crops: return false
 		var xy: PackedStringArray=id.split(",")

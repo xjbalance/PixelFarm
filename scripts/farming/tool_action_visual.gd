@@ -15,7 +15,7 @@ func _ready() -> void:
 	hide()
 
 func display(tool: String, facing: Vector2, target_local: Vector2, action_elapsed: float, action_duration: float = 0.24, impact_time: float = 0.10) -> void:
-	if tool not in ["hoe","water","hand"] and not tool.ends_with("_seed"):
+	if tool not in ["hoe","water","hand","axe","pickaxe"] and not tool.ends_with("_seed"):
 		clear();return
 	if action_elapsed<0 or action_duration<=0 or action_elapsed>=action_duration:
 		clear();return
@@ -45,7 +45,7 @@ func tool_position() -> Vector2:
 	elif tool_id=="water": end=hand+direction*9
 	var before: float=clampf(elapsed/impact,0.0,1.0)
 	if elapsed<=impact:
-		return (hand.lerp(end,before*before)+Vector2(0,-sin(before*PI)*(7 if tool_id=="hoe" else 3))).round()
+		return (hand.lerp(end,before*before)+Vector2(0,-sin(before*PI)*(9 if tool_id in ["hoe","axe","pickaxe"] else 3))).round()
 	var after: float=clampf((elapsed-impact)/maxf(.001,duration-impact),0.0,1.0)
 	return end.lerp(hand,after*after*(3-2*after)).round()
 
@@ -63,7 +63,7 @@ func _draw() -> void:
 	if tool_id.ends_with("_seed"):
 		draw_texture_rect(seed_texture,Rect2(-8,-8,16,16),false)
 	else:
-		var index: int={"hoe":0,"water":1,"hand":2}[tool_id]
+		var index: int={"hoe":0,"water":1,"hand":2,"axe":6,"pickaxe":7}[tool_id]
 		var size: int=16 if tool_id=="hand" else 32
 		draw_texture_rect_region(tools_texture,Rect2(-size/2,-size/2,size,size),Rect2(index*32,0,32,32))
 	draw_set_transform(Vector2.ZERO)

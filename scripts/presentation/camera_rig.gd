@@ -35,12 +35,15 @@ func setup(owner_game: Node) -> void:
 
 func map_rect() -> Rect2:
 	if GameState.location in RanchLayout.AREAS: return RanchLayout.world_rect(RanchLayout.site(GameState.location))
-	if GameState.location=="farm": return Rect2(0,0,1536,1024)
+	if GameState.location=="farm": return FarmLayoutCatalog.WORLD
 	if GameState.location=="home": return HomeLayout.map_rect(int(Housing.state.level))
 	return Rect2(0,0,1280,896)
 
 func map_bounds() -> Rect2:
 	var made:=map_rect()
+	# Keep edge plots and moving animals out from under the preserved full HUD.
+	if GameState.location=="farm": made=made.grow(224)
+	elif GameState.location in RanchLayout.AREAS: made=made.grow(128)
 	var visible_size:=get_viewport().get_visible_rect().size/camera.zoom
 	var size:=Vector2(maxf(made.size.x,visible_size.x),maxf(made.size.y,visible_size.y))
 	return Rect2(made.get_center()-size/2,size)

@@ -145,7 +145,7 @@ static func region(area: String) -> Dictionary:
 	var editable: bool=area in EDITABLE_AREAS
 	var result: Dictionary={"id":area,"name":str(NAMES.get(area,"公共区域")),"ownership":"private" if editable else "public","hint":str(HINTS.get(area,"公共、剧情或地下区域不开放领地改造。")),"entry":[640,800],"return_position":RETURNS.get(area,[656,440]).duplicate(),"gate_position":GATES.get(area,[0,0]).duplicate(),"editable_rect":Rect2i(),"protected":[],"semi_open":Rect2i()}
 	if area=="farm":
-		result.editable_rect=Rect2i(0,0,48,32)
+		result.editable_rect=FarmLayoutCatalog.GRID
 		# 地表和道路没有大块禁改矩形；实体、水格和真实农田由细格检查保护。
 		result.protected=[]
 	elif area in ANNEX_AREAS:
@@ -191,8 +191,8 @@ static func ownership(area: String, cell: Vector2i) -> String:
 
 static func _mark_farm_rect(target: Dictionary, rect: Rect2) -> void:
 	var start:=Vector2i((rect.position/32).floor());var end:=Vector2i((rect.end/32).ceil())
-	for y in range(maxi(0,start.y),mini(32,end.y)):
-		for x in range(maxi(0,start.x),mini(48,end.x)):
+	for y in range(maxi(0,start.y),mini(FarmLayoutCatalog.GRID.size.y,end.y)):
+		for x in range(maxi(0,start.x),mini(FarmLayoutCatalog.GRID.size.x,end.x)):
 			if rect.intersects(Rect2(x*32,y*32,32,32)): target[Vector2i(x,y)]=true
 
 static func _reserve_anchor(point: Vector2) -> void:
@@ -248,7 +248,7 @@ static func resource_footprint(id: String) -> Rect2i:
 	return FarmResourceCatalog.current_footprint(id)
 
 static func resource_ids_at(cell: Vector2i) -> Array:
-	var signature: int=FarmLayout.state.resources.hash()
+	var signature: int=hash([FarmLayout.state.resources,FarmLayout.state.fixtures])
 	if signature!=_current_resource_signature:
 		_current_resource_signature=signature;_current_resource_cells.clear()
 		for id in FarmResourceCatalog.placements("farm"):

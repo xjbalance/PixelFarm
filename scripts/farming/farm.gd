@@ -1,7 +1,7 @@
 extends Node2D
 ## 土地是可序列化数据；绘制与操作规则独立于 TileMapLayer。
 signal changed
-const BOUNDS := Rect2i(0,0,48,32)
+const BOUNDS := FarmLayoutCatalog.GRID
 const LEGACY_BOUNDS := Rect2i(17,16,10,6)
 const IRRIGATION := Rect2i(17,16,4,3)
 const INVALID_CELL:=Vector2i(-1,-1)
@@ -72,8 +72,8 @@ func can_target_cell(physical: Vector2i) -> bool:
 
 func _new_logical_cell(physical: Vector2i) -> Vector2i:
 	if not plots.has(key(physical)): return physical
-	for y in range(32):
-		for x in range(48):
+	for y in range(BOUNDS.size.y):
+		for x in range(BOUNDS.size.x):
 			var logical:=Vector2i(x,y)
 			if not plots.has(key(logical)): return logical
 	return INVALID_CELL

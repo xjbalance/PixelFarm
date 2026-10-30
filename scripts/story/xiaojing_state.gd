@@ -393,7 +393,7 @@ func validate(saved: Variant, day: int) -> bool:
 		for key in ["plants","harvest","wood","stone","puzzles"]:
 			if not FarmSaveSchema.whole(t.get(key),0,999999): return false
 		if not FarmSaveSchema.whole(t.get("day"),1,day) or not FarmSaveSchema.whole(t.get("profit"),-999999999,999999999): return false
-		if not t.get("sown") is Dictionary or t.sown.size()>1536 or not t.get("maps") is Array or not t.get("outputs") is Dictionary: return false
+		if not t.get("sown") is Dictionary or t.sown.size()>FarmLayoutCatalog.GRID.get_area() or not t.get("maps") is Array or not t.get("outputs") is Dictionary: return false
 		for crop in t.outputs:
 			if crop not in Catalog.crops or not FarmSaveSchema.whole(t.outputs[crop],0,999999): return false
 		for cell in t.sown:

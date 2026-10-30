@@ -306,7 +306,7 @@ func interact() -> void:
 	if player.action_time>0 and (resource or nearest==null): return
 	action_cooldown = 0.16
 	if resource:
-		if resource.field.hit(resource.resource_id,GameState.tool()): player.start_action("采集")
+		if resource.field.hit(resource.resource_id,GameState.tool()): player.start_resource_action(GameState.tool(),resource.global_position)
 		return
 	if nearest:
 		nearest.interact()
@@ -317,9 +317,10 @@ func interact() -> void:
 		else: Events.notice.emit("沿河走走，靠近村民、木牌或长椅再交互。" if GameState.location == "village" else "走到床边休息，或从下方门口返回农场。")
 
 func resource_target() -> Node2D:
-	if GameState.tool() not in ["axe","pickaxe"]: return null
+	if GameState.tool() not in ["axe","pickaxe","hoe"]: return null
 	var field: Node2D=resource_world.active_field()
-	return field.find_target(player.global_position,player.facing) if field else null
+	var target: Node2D=field.find_target(player.global_position,player.facing) if field else null
+	return null if target and GameState.tool()=="hoe" and target.kind!="weed" else target
 
 func handle_interaction(kind: String) -> void:
 	if backgrounded: return

@@ -8,17 +8,22 @@ var collider: CollisionShape2D
 var highlighted: bool = false
 var shake: Tween
 var art_id: String=""
+var decorative: bool=false
+var effect: float=0
+var falling: bool=false
+var effect_kind: String=""
 
 func _ready() -> void:
-	collision_layer = 1
+	decorative=FarmResourceCatalog.definition(resource_id,field.area_id).has("fixture")
+	collision_layer = 0 if decorative else 1
 	collision_mask = 0
 	sprite = Sprite2D.new()
 	sprite.texture_filter=CanvasItem.TEXTURE_FILTER_NEAREST
-	art_id=["oak_tree","birch_tree","pine_tree"][absi(resource_id.hash())%3] if kind=="tree" else "shore_rocks"
+	art_id=["oak_tree","birch_tree","pine_tree"][absi(resource_id.hash())%3] if kind=="tree" else str(FarmResourceCatalog.TYPES[kind].get("art","shore_rocks"))
 	add_child(sprite)
 	collider = CollisionShape2D.new()
 	var shape := RectangleShape2D.new()
-	shape.size = Vector2(22,19) if kind == "tree" else Vector2(30,16)
+	shape.size = Vector2(22,19) if kind == "tree" else Vector2(46,28) if kind=="boulder" else Vector2(30,16)
 	collider.shape = shape
 	collider.position.y = -5
 	add_child(collider)
@@ -32,28 +37,31 @@ func refresh_art() -> void:
 	sprite.texture=SchemeCAssets.texture(art_id,Calendar.season())
 	sprite.position=SchemeCAssets.offset(art_id)
 	sprite.set_meta("scheme_c_id",art_id)
+	sprite.scale=Vector2(1.5,1.5) if kind=="boulder" else Vector2.ONE
 
 func refresh() -> void:
 	var stored: bool=is_stored()
 	var active: bool = field.state[resource_id].hp > 0 and not stored
-	visible=not stored;collision_layer=0 if stored else 1
+	visible=not stored;collision_layer=0 if stored or decorative else 1
 	sprite.visible = active
 	collider.set_deferred("disabled",not active)
 	Events.navigation_changed.emit()
 	queue_redraw()
 
 func is_stored() -> bool:
-	return field.area_id=="farm" and FarmLayout.stored("resource",resource_id)
+	return field.area_id=="farm" and FarmResourceCatalog.stored(resource_id)
 
 func hit_feedback() -> void:
 	if shake and shake.is_valid(): shake.kill()
-	shake = create_tween()
-	shake.tween_property(sprite,"position:x",3.0,0.04)
-	shake.tween_property(sprite,"position:x",-3.0,0.05)
-	shake.tween_property(sprite,"position:x",0.0,0.05)
-	refresh()
+	var origin:=SchemeCAssets.offset(art_id)
+	shake=create_tween();shake.tween_property(sprite,"position:x",origin.x+3,.04);shake.tween_property(sprite,"position:x",origin.x-3,.05);shake.tween_property(sprite,"position:x",origin.x,.05)
+	effect=.32;falling=field.state[resource_id].hp==0;set_process(true);refresh()
+func _process(delta: float) -> void:
+	effect=maxf(0,effect-delta);queue_redraw()
+	if effect<=0: set_process(false)
 
 func can_regrow() -> bool:
+	if field.area_id=="farm": return false
 	if is_stored(): return false
 	if field.area_id=="farm":
 		var rect: Rect2i=FarmResourceCatalog.current_footprint(resource_id)
@@ -115,12 +123,22 @@ func _draw() -> void:
 				var at:=Vector2i(x,y)
 				if Territory.state.get("terrain",{}).get("farm",{}).has(TerritoryCatalog.key(at)) or FarmTerrain.effective_index(at) in [5,6] or not Territory.object_at("farm",at).is_empty() or (is_instance_valid(game) and not game.farm.plot_at(at).is_empty()): covered=true
 		if data.hp==0 and not covered: covered=_farm_shape_blocked()
-	if data.hp == 0 and not covered:
+	if data.hp == 0 and not covered and field.area_id!="farm":
 		if kind == "tree":
 			SchemeCAssets.draw(self,"tree_stump",Vector2.ZERO,Calendar.season())
 		else:
 			draw_rect(Rect2(-8,-2,6,4),Color("768a7a"))
 			draw_rect(Rect2(4,-5,5,5),Color("9ba58c"))
+	if effect>0:
+		var phase: float=1-effect/.32
+		var tint:=Color("c9a576") if kind in ["tree","stump","bush"] else Color("8f9e91")
+		for i in range(7):
+			var at:=Vector2.from_angle(i*TAU/7)*(6+phase*22)+Vector2(0,-sin(phase*PI)*15)
+			draw_rect(Rect2(at,Vector2(3,3)),Color(tint,effect/.32))
+		if falling and kind=="tree":
+			var art: Texture2D=sprite.texture
+			draw_set_transform(Vector2(0,-3),phase*.8,Vector2.ONE)
+			draw_texture(art,SchemeCAssets.offset(art_id)-art.get_size()*.5,Color(1,1,1,1-phase));draw_set_transform(Vector2.ZERO)
 	if highlighted:
 		draw_rect(Rect2(-20,-19,40,30),Color("efdaa0"),false,2)
 		if data.hp > 0:

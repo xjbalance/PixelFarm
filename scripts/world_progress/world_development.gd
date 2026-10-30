@@ -136,7 +136,7 @@ func daily_community(activity: String = "lamps") -> bool:
 	Events.notice.emit("值日记录已经交接。每一天只结算一次巡灯或共餐，明晚也有人接着做。")
 	commit();return true
 func on_farm(kind: String, cell: Vector2i, crop: String, serial: int) -> void:
-	if busy or kind!="收获" or not Catalog.crops.has(crop) or GameState.location!="farm" or serial!=Xiaojing.state.plant_serial or not Rect2i(0,0,48,32).has_point(cell): return
+	if busy or kind!="收获" or not Catalog.crops.has(crop) or GameState.location!="farm" or serial!=Xiaojing.state.plant_serial or not FarmLayoutCatalog.GRID.has_point(cell): return
 	var id := "%d,%d" % [cell.x,cell.y]
 	if int(state.tracking.farm.get(id,0))>=GameClock.day: return
 	busy=true;state.tracking.farm[id]=GameClock.day;note(crop,1,GameClock.day);commit()
@@ -204,11 +204,11 @@ func validate(raw: Variant, day: int) -> bool:
 			if not required.has(item) or not whole(raw.order.credit[item],1,int(required[item])): return false
 	var tracking: Variant=raw.tracking
 	if not AquacultureSaveSchema.exact(tracking,["farm","fishing","aquaculture","animal","cooking","jobs"]) or not whole(tracking.fishing,0,day*12): return false
-	if not tracking.farm is Dictionary or tracking.farm.size()>1536 or not tracking.aquaculture is Dictionary or tracking.aquaculture.size()>6 or not tracking.animal is Dictionary or tracking.animal.size()>999999 or not tracking.cooking is Dictionary or tracking.cooking.size()>Kitchen.RECIPES.size() or not tracking.jobs is Array or tracking.jobs.size()>128: return false
+	if not tracking.farm is Dictionary or tracking.farm.size()>FarmLayoutCatalog.GRID.get_area() or not tracking.aquaculture is Dictionary or tracking.aquaculture.size()>6 or not tracking.animal is Dictionary or tracking.animal.size()>999999 or not tracking.cooking is Dictionary or tracking.cooking.size()>Kitchen.RECIPES.size() or not tracking.jobs is Array or tracking.jobs.size()>128: return false
 	for id in tracking.farm:
 		if not id is String: return false
 		var coords: PackedStringArray=id.split(",")
-		if coords.size()!=2 or not coords[0].is_valid_int() or not coords[1].is_valid_int() or id!="%d,%d" % [int(coords[0]),int(coords[1])] or not Rect2i(0,0,48,32).has_point(Vector2i(int(coords[0]),int(coords[1]))) or not whole(tracking.farm[id],1,day): return false
+		if coords.size()!=2 or not coords[0].is_valid_int() or not coords[1].is_valid_int() or id!="%d,%d" % [int(coords[0]),int(coords[1])] or not FarmLayoutCatalog.GRID.has_point(Vector2i(int(coords[0]),int(coords[1]))) or not whole(tracking.farm[id],1,day): return false
 	for id in tracking.aquaculture:
 		if not Aquaculture.data.species.has(id) or not whole(tracking.aquaculture[id],1,999999): return false
 	for id in tracking.animal:

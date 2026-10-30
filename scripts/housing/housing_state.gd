@@ -177,7 +177,7 @@ func can_manage(area: String, id: String = "") -> bool: return near(area) or (id
 func unlocked(kind: String) -> bool:
 	return data.furniture.has(kind) and state.level>=data.furniture[kind].level and (not data.furniture[kind].get("married",false) or Xiaojing.state.married)
 func area_rect(area: String, level: int = int(state.level)) -> Rect2i:
-	return HomeLayout.main_cells() if area=="home" else Rect2i(1,1,46,30) if area=="farm" else Rect2i()
+	return HomeLayout.main_cells() if area=="home" else FarmLayoutCatalog.GRID.grow(-1) if area=="farm" else Rect2i()
 func allowed_rect(rect: Rect2i, area: String, level: int = int(state.level)) -> bool:
 	return area_rect(area,level).encloses(rect) or (area=="home" and level>=2 and HomeLayout.extension_cells(level).encloses(rect))
 func layout_rects(area: String) -> Array[Rect2i]:

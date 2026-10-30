@@ -30,6 +30,7 @@ func _ready() -> void:
 	for rect in RanchLayout.obstacles(site):
 		var body:=StaticBody2D.new();body.position=rect.get_center();body.collision_layer=1;body.collision_mask=0
 		var collision:=CollisionShape2D.new();var shape:=RectangleShape2D.new();shape.size=rect.size;collision.shape=shape;body.add_child(collision);add_child(body)
+	WorldBoundarySkirt.attach(self,ground,region,4)
 	for i in range(region.size.x*region.size.y/18):
 		var at:=Vector2(random.randi_range(2,region.size.x-3)*32+16,random.randi_range(8,region.size.y-4)*32+16)
 		if absf(at.x-RanchLayout.world_rect(site).get_center().x)>42: details.append(at)

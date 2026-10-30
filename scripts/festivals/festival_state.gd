@@ -102,7 +102,7 @@ func begin(id: String) -> bool:
 		)
 		for key: String in candidates:
 			var cell: Vector2i=FarmLayoutCatalog.plot_cell(key)
-			if not Rect2i(0,0,48,32).has_point(cell) or FarmLayout.stored("plot",key): continue
+			if not FarmLayoutCatalog.GRID.has_point(cell) or FarmLayout.stored("plot",key): continue
 			var plot: Dictionary=game.farm.plots.get(key,{})
 			if str(plot.get("crop",""))=="": cells.append([cell.x,cell.y])
 			if cells.size()==3: break
@@ -152,7 +152,7 @@ func on_farm(kind: String, cell: Vector2i, crop: String, serial: int) -> void:
 	if busy or not is_instance_valid(game) or GameState.location!="farm" or not Catalog.crops.has(crop) or kind not in ["播种","浇水","收获"]: return
 	if serial<0 or serial!=int(Xiaojing.state.plant_serial): return
 	var id := "%d,%d" % [cell.x,cell.y]
-	if not Rect2i(0,0,48,32).has_point(cell): return
+	if not FarmLayoutCatalog.GRID.has_point(cell): return
 	var proof := "%s:%s" % [kind,id]
 	var token := "%d:%d" % [GameClock.day,serial]
 	if state.tracking.farm.get(proof,"")==token: return
@@ -349,7 +349,7 @@ func validate(raw: Variant, day: int) -> bool:
 		var parts: PackedStringArray=proof.split(":")
 		if parts[0] not in ["播种","浇水","收获"]: return false
 		var coords: PackedStringArray=parts[1].split(",")
-		if coords.size()!=2 or not coords[0].is_valid_int() or not coords[1].is_valid_int() or not Rect2i(0,0,48,32).has_point(Vector2i(int(coords[0]),int(coords[1]))): return false
+		if coords.size()!=2 or not coords[0].is_valid_int() or not coords[1].is_valid_int() or not FarmLayoutCatalog.GRID.has_point(Vector2i(int(coords[0]),int(coords[1]))): return false
 		var token: Variant=tracking.farm[proof]
 		if not token is String or token.split(":").size()!=2: return false
 		var values: PackedStringArray=token.split(":")

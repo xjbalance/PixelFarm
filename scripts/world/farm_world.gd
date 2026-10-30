@@ -1,6 +1,6 @@
 extends Node2D
 ## 可重复生成的小型农场；地形碰撞放在 TileSet，树石建筑使用实体碰撞。
-const MAP_SIZE := Vector2i(48, 32)
+const MAP_SIZE := FarmLayoutCatalog.GRID.size
 const TILE_SIZE: int = 32
 const INTERACTABLE = preload("res://scripts/world/interactable.gd")
 @onready var ground: TileMapLayer = $Ground
@@ -42,21 +42,13 @@ func build_tiles() -> void:
 			data.set_collision_polygons_count(0, 1)
 			data.set_collision_polygon_points(0, 0, PackedVector2Array([Vector2(-16,-16), Vector2(16,-16), Vector2(16,16), Vector2(-16,16)]))
 	ground.tile_set = tiles
-	var random := RandomNumberGenerator.new()
-	random.seed = 7129
 	for y in range(MAP_SIZE.y):
 		for x in range(MAP_SIZE.x):
-			var tile: int = random.randi_range(0, 2)
-			if y in [13, 14] or (x in [14, 15] and y > 5): tile = 3
-			if Rect2i(16, 15, 12, 8).has_point(Vector2i(x,y)): tile = 4
-			var pond := Vector2(x - 34, y - 18).length()
-			if pond < 4.8: tile = 3
-			if pond < 4.1: tile = 5
-			if pond < 2.9: tile = 6
-			ground.set_cell(Vector2i(x,y), 0, Vector2i(tile, 0))
+			ground.set_cell(Vector2i(x,y),0,Vector2i(FarmTerrain.base_index(Vector2i(x,y)),0))
 	# 世界边缘显式碰撞，超宽屏也不能走出地图。
-	for bounds in [Rect2(-32,-32,1600,32), Rect2(-32,1024,1600,32), Rect2(-32,0,32,1024), Rect2(1536,0,32,1024)]:
+	for bounds in [Rect2(-32,-32,3136,32), Rect2(-32,2048,3136,32), Rect2(-32,0,32,2048), Rect2(3072,0,32,2048)]:
 		add_blocker(bounds, self)
+	WorldBoundarySkirt.attach(self,ground,FarmLayoutCatalog.GRID)
 
 func build_props() -> void:
 	add_prop("res://assets/buildings/house.png", Vector2(656, 402), Rect2(-72,-68,144,58))
@@ -97,6 +89,7 @@ func build_river_life() -> void:
 			"lantern":[Vector2(514,419),Vector2(900,438),Vector2(455,715)],
 			"cart":[Vector2(248,496)] # 给旧rock_8_13保留可达采集面，不移动旧资源ID
 		}[kind]
+		if kind=="bush": continue # Original bush IDs now belong to the persistent resource field.
 		for origin in placements:
 			var prop := RiverScenery.new()
 			prop.kind = kind

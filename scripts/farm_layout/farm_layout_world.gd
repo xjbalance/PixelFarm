@@ -69,7 +69,7 @@ func refresh() -> void:
 	var signature: int=FarmLayout.state.hash()
 	var changed_geometry: bool=signature!=_layout_signature
 	_layout_signature=signature
-	FarmTerrain.apply(game)
+	if changed_geometry: FarmTerrain.apply(game)
 	for id in groups:
 		for item in groups[id]:
 			var node: Node2D=item.node
@@ -162,8 +162,8 @@ func _baseline(kind: String, id: String) -> Dictionary:
 	query.shape=shape;query.collision_mask=1;query.exclude=_excluded(kind,id)
 	var solids: Dictionary={}
 	var space=game.player.get_world_2d().direct_space_state
-	for y in range(32):
-		for x in range(48):
+	for y in range(FarmLayoutCatalog.GRID.size.y):
+		for x in range(FarmLayoutCatalog.GRID.size.x):
 			var cell:=Vector2i(x,y);query.transform=Transform2D(0,Vector2(cell)*32+Vector2(16,16))
 			for hit in space.intersect_shape(query,64):
 				if hit.collider==game.world.ground: continue
@@ -171,8 +171,8 @@ func _baseline(kind: String, id: String) -> Dictionary:
 	_cache[key]=solids;return solids
 
 func _mark(rect: Rect2, solids: Dictionary) -> void:
-	for y in range(maxi(0,floori((rect.position.y-10)/32)),mini(32,ceili((rect.end.y+10)/32))):
-		for x in range(maxi(0,floori((rect.position.x-10)/32)),mini(48,ceili((rect.end.x+10)/32))):
+	for y in range(maxi(0,floori((rect.position.y-10)/32)),mini(FarmLayoutCatalog.GRID.size.y,ceili((rect.end.y+10)/32))):
+		for x in range(maxi(0,floori((rect.position.x-10)/32)),mini(FarmLayoutCatalog.GRID.size.x,ceili((rect.end.x+10)/32))):
 			var at:=Vector2i(x,y)
 			if rect.grow(10).has_point(Vector2(at)*32+Vector2(16,16)): solids[at]=true
 
@@ -228,8 +228,8 @@ func _approachable(point: Vector2, seen: Dictionary, goal: String="", proposed: 
 
 func _water_solids(solids: Dictionary, terrain: Variant=null, offset: Vector2=Vector2.INF, active: bool=true) -> Dictionary:
 	var result:=solids.duplicate()
-	for y in range(32):
-		for x in range(48):
+	for y in range(FarmLayoutCatalog.GRID.size.y):
+		for x in range(FarmLayoutCatalog.GRID.size.x):
 			var at:=Vector2i(x,y)
 			if FarmTerrain.effective_index(at,terrain,offset,active) in [5,6]: result[at]=true
 	return result
@@ -287,8 +287,8 @@ func _validate_geometry(kind: String, id: String, rectangles: Array[Rect2], terr
 	water_query.shape=water_shape;water_query.collision_mask=1;water_query.exclude=_excluded(kind,id)
 	# New water is real collision. It must not submerge the player, a crop, or
 	# any existing physical entity; moving the lake uses the same rule as a brush.
-	for y in range(32):
-		for x in range(48):
+	for y in range(FarmLayoutCatalog.GRID.size.y):
+		for x in range(FarmLayoutCatalog.GRID.size.x):
 			var at:=Vector2i(x,y)
 			var next_index: int=FarmTerrain.effective_index(at,terrain,lake_offset,lake_active)
 			if next_index in [5,6]: candidate_water[at]=true
@@ -309,8 +309,8 @@ func _validate_geometry(kind: String, id: String, rectangles: Array[Rect2], terr
 		if kind!="plot" and rect.grow(10).has_point(game.player.position): return _failure("请先让人物离开这块占地，再确认。")
 		for person in game.get_tree().get_nodes_in_group("interactables"):
 			if kind!="plot" and person is CharacterBody2D and game.world.is_ancestor_of(person) and person.is_visible_in_tree() and rect.grow(10).has_point(person.global_position): return _failure("人物正在这里，请换个位置或稍后再摆放。")
-		for y in range(maxi(0,floori(rect.position.y/32)),mini(32,ceili(rect.end.y/32))):
-			for x in range(maxi(0,floori(rect.position.x/32)),mini(48,ceili(rect.end.x/32))):
+		for y in range(maxi(0,floori(rect.position.y/32)),mini(FarmLayoutCatalog.GRID.size.y,ceili(rect.end.y/32))):
+			for x in range(maxi(0,floori(rect.position.x/32)),mini(FarmLayoutCatalog.GRID.size.x,ceili(rect.end.x/32))):
 				var at:=Vector2i(x,y)
 				if FarmTerrain.effective_index(at,terrain,lake_offset,lake_active) in [5,6]: return _failure("这里与现有水面重叠。")
 		if kind!="plot": _mark(rect,candidate)
@@ -417,6 +417,7 @@ func preview_art(plan: Dictionary) -> Array[Dictionary]:
 					out.append({"texture":node.texture,"rect":Rect2(node.global_position+node.get_rect().position+delta,node.get_rect().size)})
 		if out.is_empty():
 			var art: String={"recovery":"wood_bench","workshop":"picnic_table","board":"notice_board","mail":"mailbox","greenhouse":"greenhouse","coop":"chicken_coop","barn":"barn","fold":"barn","berry":"bush","yard":"tool_rack","village_gate":"road_sign"}.get(id,"")
+			if id.begins_with("decor:bush:"): art="bush"
 			var texture:=SchemeCAssets.texture(art)
 			if texture: out.append({"texture":texture,"rect":Rect2(FarmLayoutCatalog.world_point(kind,id,at)+SchemeCAssets.offset(art)-texture.get_size()*.5,texture.get_size())})
 	return out
@@ -424,8 +425,8 @@ func preview_art(plan: Dictionary) -> Array[Dictionary]:
 func safe_spawn(preferred: Vector2) -> Vector2:
 	var solids:=_water_solids(_baseline("",""))
 	var best:=Vector2.INF;var distance: float=INF
-	for y in range(32):
-		for x in range(48):
+	for y in range(FarmLayoutCatalog.GRID.size.y):
+		for x in range(FarmLayoutCatalog.GRID.size.x):
 			var cell:=Vector2i(x,y)
 			if solids.has(cell): continue
 			var point:=Vector2(cell)*32+Vector2(16,16);var d:=point.distance_squared_to(preferred)

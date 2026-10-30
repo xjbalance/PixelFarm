@@ -14,6 +14,8 @@ const FARM_DURATION: float = 0.24
 const FARM_IMPACT: float = 0.10
 const FARM_KINDS := ["翻土","播种","浇水","收获"]
 var farm_action: Dictionary = {}
+var resource_tool: String=""
+var resource_target_local:=Vector2.ZERO
 var farm_visual: Node2D
 
 func _ready() -> void:
@@ -38,6 +40,8 @@ func _ready() -> void:
 func start_action(kind: String) -> void:
 	action_time=0.24;action_kind=kind;action_facing=facing;auto_direction=Vector2.ZERO;velocity=Vector2.ZERO
 
+func start_resource_action(tool: String, at: Vector2) -> void:
+	start_action("采集");resource_tool=tool;resource_target_local=to_local(at)
 func begin_farm_action(farm: Node, cell: Vector2i, tool: String) -> bool:
 	if not farm_action.is_empty() or action_time>0 or suspended or GameState.modal or GameState.restoring or GameState.location!="farm": return false
 	var target:=Vector2(cell)*32+Vector2(16,16)
@@ -89,7 +93,11 @@ func _physics_process(delta: float) -> void:
 		velocity=Vector2.ZERO
 		return
 	if not farm_action.is_empty(): advance_farm_action(delta)
-	else: action_time = maxf(0,action_time-delta)
+	else:
+		action_time = maxf(0,action_time-delta)
+		if resource_tool!="":
+			if action_time>0 and not GameState.modal: farm_visual.display(resource_tool,action_facing,resource_target_local,.24-action_time)
+			else: resource_tool="";farm_visual.clear()
 	var direction := Vector2.ZERO
 	if not GameState.modal and action_time<=0:
 		direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")

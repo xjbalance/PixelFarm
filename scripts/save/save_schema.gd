@@ -153,6 +153,11 @@ static func normalize(raw: Variant) -> Dictionary:
 		data.livestock=Livestock.migrate_v29(data.get("livestock"),int(data.day))
 		if data.livestock.is_empty(): return {}
 		data.version=30
+	# Cleared farm resources become permanent land, including v29's pending regrowth.
+	if not valid_resources(data.get("resources"),data.get("day")): return {}
+	var farm_resources:=FarmResourceCatalog.placements("farm")
+	for id in data.resources:
+		if farm_resources.has(id) and int(data.resources[id].hp)==0: data.resources[id].ready_day=0
 	data.world_development=AbyssSaveSchema.canonical(data.get("world_development"))
 	data.exploration=AbyssSaveSchema.canonical(data.get("exploration"))
 	data.housing=AbyssSaveSchema.canonical(data.get("housing"))
@@ -201,6 +206,8 @@ static func valid_resources(data: Variant, day: Variant) -> bool:
 		if not whole(entry.get("hp"),0,int(definition.hits)): return false
 		if entry.hp > 0:
 			if not whole(entry.get("ready_day"),0,0): return false
+		elif id in FarmResourceCatalog.placements("farm"):
+			if not whole(entry.get("ready_day"),0,int(day)+int(definition.regrow)): return false
 		elif not whole(entry.get("ready_day"),1,int(day)+int(definition.regrow)): return false
 	return true
 
@@ -259,7 +266,7 @@ static func valid_current(data: Variant) -> bool:
 	if not pos is Array or pos.size() != 2: return false
 	for axis in pos:
 		if not (axis is int or axis is float) or not is_finite(float(axis)): return false
-	var region := Rect2(10,10,1516,1004) if location == "farm" else Rect2(362,234,556,332)
+	var region := FarmLayoutCatalog.WORLD.grow(-10) if location == "farm" else Rect2(362,234,556,332)
 	if location=="home" and data.housing.level>=2:
 		var side_room := Rect2(224,384,128,160) if data.housing.level==2 else Rect2(128,256,224,288)
 		if data.housing.level==4:
@@ -279,7 +286,7 @@ static func valid_current(data: Variant) -> bool:
 		if not id is String or not Catalog.is_item(id): return false
 		if not whole(items[id],1,Inventory.MAX_STACK): return false
 	var plots = data.get("plots")
-	if not plots is Dictionary or plots.size() > 1536: return false
+	if not plots is Dictionary or plots.size() > FarmLayoutCatalog.GRID.get_area(): return false
 	for id in plots:
 		if not id is String: return false
 		var cell:=FarmLayoutCatalog.plot_cell(id)

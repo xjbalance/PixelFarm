@@ -130,7 +130,7 @@ func note(person: String, goal: String, amount: int, token: String) -> bool:
 	active.counts[goal]=mini(int(quest.goals[goal]),int(active.counts.get(goal,0))+amount)
 	return true
 func on_farm(kind: String, cell: Vector2i, crop: String, serial: int) -> void:
-	if GameState.restoring or not Rect2i(0,0,48,32).has_point(cell): return
+	if GameState.restoring or not FarmLayoutCatalog.GRID.has_point(cell): return
 	var did := false
 	var cell_id := "%d,%d" % [cell.x,cell.y]
 	for person in state.active:
@@ -322,13 +322,13 @@ func validate(raw: Variant, day: int) -> bool:
 		for token in active.seen:
 			if not token is String or token.length()>100 or seen.has(token): return false
 			seen[token]=true
-		if not active.tracked is Dictionary or active.tracked.size()>1536: return false
+		if not active.tracked is Dictionary or active.tracked.size()>FarmLayoutCatalog.GRID.get_area(): return false
 		for cell in active.tracked:
 			if not cell is String: return false
 			var parts: PackedStringArray=cell.split(",")
 			if parts.size()!=2 or not parts[0].is_valid_int() or not parts[1].is_valid_int(): return false
 			var point := Vector2i(int(parts[0]),int(parts[1]))
-			if cell!="%d,%d" % [point.x,point.y] or not Rect2i(0,0,48,32).has_point(point): return false
+			if cell!="%d,%d" % [point.x,point.y] or not FarmLayoutCatalog.GRID.has_point(point): return false
 			var entry: Variant=active.tracked[cell]
 			if not AquacultureSaveSchema.exact(entry,["crop","serial"]) or not Catalog.crops.has(entry.crop) or not FarmSaveSchema.whole(entry.serial,1,999999999): return false
 	return true

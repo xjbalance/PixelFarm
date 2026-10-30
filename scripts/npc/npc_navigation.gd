@@ -12,7 +12,7 @@ static var sample_count: int = 0
 static func route(person: CharacterBody2D, destination: Vector2) -> PackedVector2Array:
 	var map: Node=person.get_parent().get_parent()
 	var in_farm := map.name == "FarmWorld"
-	var region := Rect2i(0,0,48,32) if in_farm else Rect2i(0,0,40,28)
+	var region := FarmLayoutCatalog.GRID if in_farm else Rect2i(0,0,40,28)
 	var query := PhysicsShapeQueryParameters2D.new()
 	var shape := RectangleShape2D.new()
 	shape.size = Vector2(31,31)

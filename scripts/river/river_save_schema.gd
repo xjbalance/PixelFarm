@@ -20,7 +20,7 @@ static func validate(s: Variant, day: int) -> bool:
 	if s.policy not in ["","water","rotation","commons"] or s.post not in ["","seed_collab","outing"]: return false
 	if ("closing_choice" in s.facts)!=(s.policy!="") or ("closing_scene" in s.facts and s.policy==""): return false
 	if not MiningSaveSchema.unique(s.post_done,["seed_collab","outing"]) or not MiningSaveSchema.unique(s.post_steps,["wheat","potato","water","tea"]): return false
-	if not s.sown is Dictionary or s.sown.size()>1536: return false
+	if not s.sown is Dictionary or s.sown.size()>FarmLayoutCatalog.GRID.get_area(): return false
 	for cell in s.sown:
 		if not cell is String or s.sown[cell] not in Catalog.crops: return false
 		var v: PackedStringArray=cell.split(",")
