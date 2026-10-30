@@ -387,8 +387,12 @@ func animal_area(entry: Dictionary) -> String:
 
 func enter_pasture(site: String) -> bool:
 	if site not in RanchLayout.ENABLED or not FarmLayout.active(site) or int(building(site).level)<1 or not is_instance_valid(game): return false
-	if GameState.location!="farm" or game.player.global_position.distance_to(site_point(site)+Vector2(36,52))>90: return false
+	if GameState.location!="farm" or game.player.global_position.distance_to(gate_point(site))>90: return false
 	return WorldTravel.change(game,RanchLayout.area(site))
+
+func gate_point(site: String) -> Vector2:
+	var point:=site_point(site)
+	return point+Vector2(-76 if point.x+100>FarmLayoutCatalog.WORLD.end.x else 76,-12)
 
 func migrate_v29(raw: Variant, day: int) -> Dictionary:
 	if not raw is Dictionary: return {}

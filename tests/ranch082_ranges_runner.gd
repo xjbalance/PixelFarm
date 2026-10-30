@@ -87,8 +87,20 @@ func verify_range(site: String) -> void:
 	check(GameState.location==area and animal_node(str(first.id)).position.distance_to(position)<.1,"restore actual body positions in same pasture "+site)
 	GameClock.minutes=1080;GameClock.changed.emit();GameClock.running=true
 	var returned:=false
+	var previous: Dictionary={};var max_step: float=0;var return_samples: Array=[]
+	for entry in Livestock.animals_at(site): previous[entry.id]=Livestock.animal_point(entry)
 	for tick in range(6001):
+		var center:=Vector2.ZERO
+		for entry in Livestock.animals_at(site):
+			var at:=Livestock.animal_point(entry);max_step=maxf(max_step,at.distance_to(previous[entry.id]));previous[entry.id]=at;center+=at
+		if DisplayServer.get_name()!="headless":
+			game.camera_rig.mode=game.camera_rig.Mode.FREE_LOOK;game.camera_rig.view_center=center/6;game.camera_rig.apply_camera()
 		if tick%60==0:
+			var positions: Dictionary={}
+			for entry in Livestock.animals_at(site): positions[entry.id]=entry.pasture_position.duplicate()
+			return_samples.append({"frame":tick,"positions":positions})
+			if DisplayServer.get_name()!="headless" and tick<=1200:
+				await RenderingServer.frame_post_draw;get_viewport().get_texture().get_image().save_png("res://docs/ranch082/"+site+"-return-%04d.png" % tick)
 			returned=true
 			for entry in Livestock.animals_at(site):
 				if not RanchLayout.indoor(site).has_point(Livestock.animal_point(entry)): returned=false
@@ -96,6 +108,8 @@ func verify_range(site: String) -> void:
 		await frames(1)
 	GameClock.running=false
 	check(returned and not Livestock.is_grazing(site),"entire herd walks home at evening without teleport "+site)
+	check(max_step<.8,"every return step is bounded by actual speed, no teleport "+site)
+	report.areas[site].max_return_step_pixels=max_step;report.areas[site].return_motion=return_samples
 	if DisplayServer.get_name()!="headless":
 		game.player.position=RanchLayout.service(site)+Vector2(0,40);game.camera_rig.follow_now();await frames(4);await RenderingServer.frame_post_draw
 		get_viewport().get_texture().get_image().save_png("res://docs/ranch082/"+site+"-returned.png")

@@ -14,7 +14,7 @@ func _ready() -> void:
 	label.horizontal_alignment=HORIZONTAL_ALIGNMENT_CENTER;label.mouse_filter=Control.MOUSE_FILTER_IGNORE;add_child(label)
 	Livestock.changed.connect(refresh);FarmLayout.changed.connect(refresh);refresh()
 func refresh() -> void:
-	if not returning and not service: position=Livestock.site_point(site)+Vector2(36,52)
+	if not returning and not service: position=Livestock.gate_point(site)
 	visible=FarmLayout.active(site) and int(Livestock.building(site).level)>0
 	label.text="管理畜舍 · 饲料" if service else "返回自家农场" if returning else "后方牧场 →"
 	queue_redraw()
@@ -22,7 +22,7 @@ func hit_rect() -> Rect2: return Rect2(-24,-34,48,46)
 func prompt() -> String: return label.text
 func interact() -> void:
 	if service: Events.interaction_requested.emit("livestock:"+site)
-	elif returning: game.change_location("farm",Livestock.site_point(site)+Vector2(36,72))
+	elif returning: game.change_location("farm",Livestock.gate_point(site)+Vector2(0,32))
 	else: Livestock.enter_pasture(site)
 func _draw() -> void:
 	draw_texture(art,Vector2(-24,-34))

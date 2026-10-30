@@ -1,7 +1,7 @@
 class_name RanchLayout
 extends RefCounted
 ## Immutable geometry shared by rendering, collisions, AI, save validation and area audit.
-const ENABLED: Array[String]=["coop"]
+const ENABLED: Array[String]=["coop","barn","fold"]
 const AREAS: Array[String]=["pasture_coop","pasture_barn","pasture_fold"]
 static var _catalog: Dictionary={}
 static func catalog() -> Dictionary:

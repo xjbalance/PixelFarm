@@ -1,0 +1,164 @@
+[
+  {
+    "after": {
+      "animal_000001": [
+        464,
+        147.61
+      ],
+      "animal_000002": [
+        592,
+        203.62
+      ]
+    },
+    "before": {
+      "animal_000001": [
+        448,
+        400
+      ],
+      "animal_000002": [
+        576,
+        400
+      ]
+    },
+    "frames": 480,
+    "maximum_step_pixels": 0.540379524230957,
+    "reason": "rain",
+    "site": "coop",
+    "weather": "rain"
+  },
+  {
+    "after": {
+      "animal_000001": [
+        464,
+        125.74
+      ],
+      "animal_000002": [
+        592,
+        186.53
+      ]
+    },
+    "before": {
+      "animal_000001": [
+        448,
+        400
+      ],
+      "animal_000002": [
+        576,
+        400
+      ]
+    },
+    "frames": 540,
+    "maximum_step_pixels": 0.540379524230957,
+    "reason": "winter",
+    "site": "coop",
+    "weather": "fog"
+  },
+  {
+    "after": {
+      "animal_000003": [
+        720,
+        187.59
+      ],
+      "animal_000004": [
+        821.95,
+        176.37
+      ]
+    },
+    "before": {
+      "animal_000003": [
+        704,
+        400
+      ],
+      "animal_000004": [
+        847.2,
+        367.88
+      ]
+    },
+    "frames": 720,
+    "maximum_step_pixels": 0.304162204265594,
+    "reason": "rain",
+    "site": "barn",
+    "weather": "rain"
+  },
+  {
+    "after": {
+      "animal_000003": [
+        720,
+        193.29
+      ],
+      "animal_000004": [
+        848,
+        193.29
+      ]
+    },
+    "before": {
+      "animal_000003": [
+        704,
+        400
+      ],
+      "animal_000004": [
+        832,
+        400
+      ]
+    },
+    "frames": 720,
+    "maximum_step_pixels": 0.304162204265594,
+    "reason": "winter",
+    "site": "barn",
+    "weather": "fog"
+  },
+  {
+    "after": {
+      "animal_000005": [
+        720,
+        150.99
+      ],
+      "animal_000006": [
+        848,
+        196.61
+      ]
+    },
+    "before": {
+      "animal_000005": [
+        719.51,
+        357.99
+      ],
+      "animal_000006": [
+        832,
+        400
+      ]
+    },
+    "frames": 540,
+    "maximum_step_pixels": 0.390143066644669,
+    "reason": "rain",
+    "site": "fold",
+    "weather": "rain"
+  },
+  {
+    "after": {
+      "animal_000005": [
+        720,
+        203.89
+      ],
+      "animal_000006": [
+        848,
+        203.89
+      ]
+    },
+    "before": {
+      "animal_000005": [
+        704,
+        400
+      ],
+      "animal_000006": [
+        832,
+        400
+      ]
+    },
+    "frames": 540,
+    "maximum_step_pixels": 0.390143066644669,
+    "reason": "winter",
+    "site": "fold",
+    "weather": "fog"
+  }
+]
