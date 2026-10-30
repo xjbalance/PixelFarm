@@ -544,7 +544,7 @@ func apply_safe_area(area: Rect2, screen: Vector2) -> void:
 
 func refresh() -> void:
 	# 起居侧间需要完整点选空间，农场任务卡在屋内收起。
-	guide_panel.visible=GameState.location not in ["home","mist_forest","lake_ruins","old_temple"]
+	guide_panel.visible=GameState.location not in ["home","mist_forest","lake_ruins","old_temple"] and GameState.location not in RanchLayout.AREAS
 	refresh_clock()
 	money_label.text = "%d 金" % Inventory.coins
 	stamina_label.text = "体力  %d / %d" % [GameState.stamina,GameState.max_stamina()]

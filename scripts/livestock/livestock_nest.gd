@@ -1,6 +1,7 @@
 extends Node2D
 ## A real clickable nest backed by the same per-animal safe product inventory.
 var site: String="coop"
+var area_id: String="farm"
 var livestock_id: String="nest:coop"
 var effect: float=0
 var label: Label
@@ -15,7 +16,7 @@ func _ready() -> void:
 	)
 	set_process(false);refresh()
 func refresh() -> void:
-	position=Livestock.nest_point(site);visible=FarmLayout.active(site) and int(Livestock.building(site).level)>0
+	position=Livestock.nest_point(site,area_id);visible=FarmLayout.active(site) and int(Livestock.building(site).level)>0
 	var count: int=int(Livestock.summary(site).products)
 	label.text="鸡窝 · 待收%d枚" % count if count>0 else "鸡窝"
 	queue_redraw()

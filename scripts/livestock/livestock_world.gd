@@ -8,6 +8,10 @@ var animals: Dictionary = {}
 func attach(owner_game: Node) -> void:
 	game=owner_game
 	Livestock.game=game
+	for id in RanchLayout.ENABLED:
+		var map:=RanchMap.new();map.site=id;map.game=game;map.hide();map.process_mode=Node.PROCESS_MODE_DISABLED
+		game.add_child(map);map.ground.enabled=false;game.mine_maps[RanchLayout.area(id)]=map
+		var gate:=Node2D.new();gate.set_script(preload("res://scripts/livestock/ranch_gate.gd"));gate.game=game;gate.site=id;game.world.get_node("Actors").add_child(gate)
 	for id in Livestock.SITES:
 		var point := Node2D.new()
 		point.set_script(preload("res://scripts/livestock/livestock_point.gd"))
@@ -29,10 +33,15 @@ func refresh() -> void:
 			animal.set_script(preload("res://scripts/livestock/livestock_animal.gd"))
 			animal.animal_id=entry.id
 			animal.position=Livestock.animal_point(entry)
-			game.world.get_node("Actors").add_child(animal)
+			var area: String=Livestock.animal_area(entry)
+			var parent: Node=game.world if area=="farm" else game.mine_maps[area]
+			parent.get_node("Actors").add_child(animal)
 			animals[entry.id]=animal
 		else:
-			animals[entry.id].position=Livestock.animal_point(entry)
+			var body: CharacterBody2D=animals[entry.id]
+			var destination:=Livestock.animal_point(entry)
+			if body.position.distance_to(destination)>.2: body.route.clear();body.behavior=0;body.timer=.3
+			body.position=destination
 			animals[entry.id].refresh()
 		var animal: CharacterBody2D=animals[entry.id]
 		animal.visible=FarmLayout.active(str(entry.site))

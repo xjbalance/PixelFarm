@@ -84,6 +84,7 @@ func choose_activity(entry: Dictionary) -> void:
 		var bounds: Rect2=Livestock.activity_bounds(entry,outdoors)
 		for attempt in range(10):
 			var candidate:=Vector2(rng.randf_range(bounds.position.x+12,bounds.end.x-12),rng.randf_range(bounds.position.y+10,bounds.end.y-10))
+			if rng.randf()<.8: candidate=(global_position+Vector2(rng.randf_range(-128,128),rng.randf_range(-96,96))).clamp(bounds.position+Vector2(12,10),bounds.end-Vector2(12,10))
 			if candidate.distance_to(global_position)<(40 if outdoors else 12): continue
 			if set_goal(candidate): return
 	behavior=Behavior.GRAZE if choice<.83 else Behavior.REST
@@ -110,7 +111,7 @@ func _physics_process(delta: float) -> void:
 			var offset: Vector2=route[route_index]-global_position
 			velocity=offset.normalized()*minf(speed,offset.length()/maxf(delta,.001))
 			# Stable per-animal routes and a small separation brake; no full-map A* per frame.
-			if Livestock.animal_separation_blocked(entry,global_position+velocity*delta): velocity=Vector2.ZERO
+			if not Livestock.animal_step_legal(entry,global_position+velocity*delta) or Livestock.animal_separation_blocked(entry,global_position+velocity*delta): velocity=Vector2.ZERO
 			var before:=global_position;move_and_slide();var distance: float=global_position.distance_to(before);total_distance+=distance
 			if distance<.03: stalled+=delta
 			else: stalled=0

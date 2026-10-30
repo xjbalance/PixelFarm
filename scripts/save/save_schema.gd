@@ -2,7 +2,7 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,29): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,30): return {}
 	var data: Dictionary = raw.duplicate(true)
 	# 旧路线盘的数字格ID也必须规范，防止JSON浮点枚举失配/重复矿格。
 	if data.get("xiaojing") is Dictionary and data.xiaojing.get("cave") is Dictionary:
@@ -148,6 +148,11 @@ static func normalize(raw: Variant) -> Dictionary:
 		data.tutorial=GameTutorial.migrate_080(data.get("tutorial"))
 		if data.tutorial.is_empty(): return {}
 		data.version=29
+	if int(data.version)==29:
+		if not whole(data.get("day"),1,999999): return {}
+		data.livestock=Livestock.migrate_v29(data.get("livestock"),int(data.day))
+		if data.livestock.is_empty(): return {}
+		data.version=30
 	data.world_development=AbyssSaveSchema.canonical(data.get("world_development"))
 	data.exploration=AbyssSaveSchema.canonical(data.get("exploration"))
 	data.housing=AbyssSaveSchema.canonical(data.get("housing"))
@@ -216,7 +221,7 @@ static func valid_current(data: Variant) -> bool:
 	if not AbyssSaveSchema.validate(data.get("abyss"),int(data.day)) or not AbyssSaveSchema.legend(data.get("legend"),data.xiaojing,int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),29,29) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),30,30) or not Story.validate(data.get("story")): return false
 	if not FarmLayout.validate(data.get("farm_layout"),data): return false
 	if not Territory.validate(data.get("territory"),data): return false
 	if not CharacterAppearance.validate(data.get("appearance")): return false
@@ -230,7 +235,10 @@ static func valid_current(data: Variant) -> bool:
 	var minute = data.get("minutes")
 	if not (minute is int or minute is float) or not is_finite(float(minute)) or minute < 360 or minute >= 1440: return false
 	var location = data.get("location")
-	if location not in ["farm","home","village","mine_a","mine_b","mine_c","abyss","greenhouse","mist_forest","lake_ruins","old_temple"] and location not in TerritoryCatalog.ANNEX_AREAS: return false
+	if location not in ["farm","home","village","mine_a","mine_b","mine_c","abyss","greenhouse","mist_forest","lake_ruins","old_temple"] and location not in TerritoryCatalog.ANNEX_AREAS and location not in RanchLayout.AREAS: return false
+	if location in RanchLayout.AREAS:
+		var site:=RanchLayout.site(location)
+		if site not in RanchLayout.ENABLED or int(data.livestock.buildings.get(site,{}).get("level",0))<1 or data.farm_layout.fixtures.get(site,{}).get("stored",false): return false
 	if location in TerritoryCatalog.ANNEX_AREAS and location not in data.territory.unlocked: return false
 	if not MineState.validate(data.get("mines"),int(data.day)) or not ChapterTwo.validate(data.get("chapter_two")): return false
 	if data.abyss.unlocked and ("discussion" not in data.chapter_two.completed or not data.mines.resonance_open or data.mines.tool!=3): return false
@@ -260,6 +268,7 @@ static func valid_current(data: Variant) -> bool:
 		if side_room.has_point(Vector2(data.player[0],data.player[1])): region=side_room
 		elif Rect2(336,416,42,96).has_point(Vector2(data.player[0],data.player[1])): region=Rect2(336,416,42,96)
 	if location == "village" or location in MineState.AREAS or location in ["abyss","greenhouse","mist_forest","lake_ruins","old_temple"]: region = Rect2(10,10,1260,876)
+	if location in RanchLayout.AREAS: region=RanchLayout.world_rect(RanchLayout.site(location)).grow(-10)
 	if location in TerritoryCatalog.ANNEX_AREAS: region=Rect2(42,42,1196,812)
 	if location=="home" and HomeLayout.floor_encloses(Rect2(Vector2(pos[0],pos[1])-Vector2.ONE,Vector2(2,2)),int(data.housing.level)):
 		region=Rect2(Vector2(pos[0],pos[1])-Vector2.ONE,Vector2(2,2))

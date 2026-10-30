@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "baseline_cells": {"coop":35,"barn":35,"fold":35},
+  "maps": {
+    "coop":{"name":"南庭鸡鸭牧场","size":[32,24],"minimum_multiplier":6},
+    "barn":{"name":"绿荫牛牧场","size":[48,32],"minimum_multiplier":10},
+    "fold":{"name":"暖风羊牧场","size":[48,32],"minimum_multiplier":10}
+  }
+}

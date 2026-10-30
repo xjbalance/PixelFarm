@@ -2,7 +2,7 @@ class_name FarmSaveStore
 extends RefCounted
 ## 写临时文件后重命名；保留上一次存档。先完整校验再修改运行状态。
 const PATH: String = "user://farm_save.json"
-const VERSION: int = 29
+const VERSION: int = 30
 
 static func snapshot(game: Node) -> Dictionary:
 	var result: Dictionary={

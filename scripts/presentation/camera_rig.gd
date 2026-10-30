@@ -34,6 +34,7 @@ func setup(owner_game: Node) -> void:
 	map_changed()
 
 func map_rect() -> Rect2:
+	if GameState.location in RanchLayout.AREAS: return RanchLayout.world_rect(RanchLayout.site(GameState.location))
 	if GameState.location=="farm": return Rect2(0,0,1536,1024)
 	if GameState.location=="home": return HomeLayout.map_rect(int(Housing.state.level))
 	return Rect2(0,0,1280,896)

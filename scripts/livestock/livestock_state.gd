@@ -18,7 +18,7 @@ func _ready() -> void:
 func defaults(day: int = GameClock.day) -> Dictionary:
 	var buildings := {}
 	for site in SITES: buildings[site]={"level":0,"last_breed_day":0,"grazing_day":0}
-	return {"buildings":buildings,"animals":[],"serial":0,"last_settled_day":day}
+	return {"buildings":buildings,"animals":[],"serial":0,"last_settled_day":day,"range_version":1}
 
 func snapshot() -> Dictionary:
 	return state.duplicate(true)
@@ -64,13 +64,17 @@ func display_name(id: String) -> String:
 
 func site_point(site: String) -> Vector2: return FarmLayout.point(site) if SITES.has(site) else Vector2.INF
 func animal_point(entry: Dictionary) -> Vector2:
-	return FarmLayout.transform_point(Vector2(entry.position[0],entry.position[1]),str(entry.site)) if not entry.is_empty() else Vector2.INF
+	if entry.is_empty(): return Vector2.INF
+	if str(entry.site) in RanchLayout.ENABLED: return Vector2(entry.pasture_position[0],entry.pasture_position[1])
+	return FarmLayout.transform_point(Vector2(entry.position[0],entry.position[1]),str(entry.site))
 func near_site(site: String) -> bool:
-	return SITES.has(site) and FarmLayout.active(site) and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(site_point(site))<=54
+	if not SITES.has(site) or not FarmLayout.active(site) or not is_instance_valid(game): return false
+	if GameState.location==RanchLayout.area(site): return game.player.global_position.distance_to(RanchLayout.service(site))<=54
+	return GameState.location=="farm" and game.player.global_position.distance_to(site_point(site))<=54
 
 func near_animal(id: String) -> bool:
 	var entry := animal(id)
-	return not entry.is_empty() and FarmLayout.active(str(entry.site)) and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(animal_point(entry))<=54
+	return not entry.is_empty() and FarmLayout.active(str(entry.site)) and is_instance_valid(game) and GameState.location==animal_area(entry) and game.player.global_position.distance_to(animal_point(entry))<=54
 
 func near_any() -> bool:
 	for site in SITES:
@@ -116,7 +120,7 @@ func _new_animal(site: String) -> Dictionary:
 	var index: int=animals_at(site).size()
 	var at: Vector2=SITES[site]+INDOOR[index]
 	var result := {"id":"animal_%06d" % int(state.serial),"site":site,"species":str(data.buildings[site].species),"age":0,"hunger":40,"mood":60,"bond":0,
-		"fed_day":0,"pet_day":0,"product":0,"product_day":0,"progress":0,"position":[at.x,at.y]}
+		"fed_day":0,"pet_day":0,"product":0,"product_day":0,"progress":0,"position":[at.x,at.y],"pasture_position":[RanchLayout.home(site,index).x,RanchLayout.home(site,index).y]}
 	state.animals.append(result)
 	return result
 
@@ -254,7 +258,7 @@ func exact(raw: Variant, keys: Array) -> bool:
 
 func validate(raw: Variant, day: int) -> bool:
 	if not whole(day,1,999999) or not exact(raw,defaults(day).keys()) or not exact(raw.buildings,SITES.keys()): return false
-	if not whole(raw.serial,0,999999) or not whole(raw.last_settled_day,1,day) or not raw.animals is Array or raw.animals.size()>18: return false
+	if not whole(raw.serial,0,999999) or not whole(raw.last_settled_day,1,day) or not raw.animals is Array or raw.animals.size()>18 or not whole(raw.range_version,1,1): return false
 	for site in SITES:
 		var b: Variant=raw.buildings[site]
 		if not exact(b,["level","last_breed_day","grazing_day"]) or not whole(b.level,0,3) or not whole(b.last_breed_day,0,day) or not whole(b.grazing_day,0,day): return false
@@ -262,7 +266,7 @@ func validate(raw: Variant, day: int) -> bool:
 	var ids := {}
 	var counts := {"coop":0,"barn":0,"fold":0}
 	for entry in raw.animals:
-		if not exact(entry,["id","site","species","age","hunger","mood","bond","fed_day","pet_day","product","product_day","progress","position"]): return false
+		if not exact(entry,["id","site","species","age","hunger","mood","bond","fed_day","pet_day","product","product_day","progress","position","pasture_position"]): return false
 		if not entry.id is String or not entry.id.begins_with("animal_") or entry.id.length()!=13 or not entry.id.trim_prefix("animal_").is_valid_int(): return false
 		var serial: int=int(entry.id.trim_prefix("animal_"))
 		if not whole(serial,1,int(raw.serial)) or entry.id!="animal_%06d" % serial or ids.has(entry.id): return false
@@ -280,6 +284,10 @@ func validate(raw: Variant, day: int) -> bool:
 		for axis in entry.position:
 			if not (axis is int or axis is float) or not is_finite(float(axis)): return false
 		if not Rect2(SITES[entry.site]+Vector2(-116,-48),Vector2(232,160)).has_point(Vector2(entry.position[0],entry.position[1])): return false
+		if not entry.pasture_position is Array or entry.pasture_position.size()!=2: return false
+		for axis in entry.pasture_position:
+			if not (axis is int or axis is float) or not is_finite(float(axis)): return false
+		if not RanchLayout.point_legal(str(entry.site),Vector2(entry.pasture_position[0],entry.pasture_position[1])): return false
 	for site in SITES:
 		if int(counts[site])>CAPACITY[int(raw.buildings[site].level)]: return false
 	return true
@@ -288,16 +296,22 @@ func home_station(entry: Dictionary) -> Vector2:
 	var siblings:=animals_at(str(entry.site));var index: int=0
 	for i in range(siblings.size()):
 		if siblings[i].id==entry.id: index=i;break
-	return site_point(str(entry.site))+INDOOR[index]
+	return RanchLayout.home(str(entry.site),index) if str(entry.site) in RanchLayout.ENABLED else site_point(str(entry.site))+INDOOR[index]
 
 func activity_bounds(entry: Dictionary, outdoors: bool) -> Rect2:
+	if str(entry.site) in RanchLayout.ENABLED: return RanchLayout.world_rect(str(entry.site)).grow(-32) if outdoors else RanchLayout.indoor(str(entry.site))
 	return Rect2(site_point(str(entry.site))+Vector2(-112,-46),Vector2(224,150)) if outdoors else Rect2(site_point(str(entry.site))+Vector2(-54,-36),Vector2(108,64))
 
 func save_animal_position(entry: Dictionary, point: Vector2) -> void:
+	if str(entry.site) in RanchLayout.ENABLED:
+		entry.pasture_position[0]=snappedf(point.x,.01);entry.pasture_position[1]=snappedf(point.y,.01);return
 	var logical:=FarmLayout.to_logical(str(entry.site),point)
 	entry.position[0]=snappedf(logical.x,.01);entry.position[1]=snappedf(logical.y,.01)
 
 func animal_route(entry: Dictionary, from: Vector2, to: Vector2) -> PackedVector2Array:
+	if str(entry.site) in RanchLayout.ENABLED and is_instance_valid(game):
+		var map: RanchMap=game.mine_maps.get(RanchLayout.area(str(entry.site)))
+		return map.animal_path(entry,from,to) if is_instance_valid(map) else PackedVector2Array()
 	if not is_instance_valid(game): return PackedVector2Array()
 	if not activity_bounds(entry,is_grazing(str(entry.site))).grow(2).has_point(to): return PackedVector2Array()
 	if _animal_clear(entry,from,to): return PackedVector2Array([to])
@@ -348,9 +362,12 @@ func animal_separation_blocked(entry: Dictionary, point: Vector2) -> bool:
 		if point.distance_squared_to(neighbour)<radius*radius and point.distance_squared_to(neighbour)<current.distance_squared_to(neighbour): return true
 	return false
 
-func nest_point(site: String) -> Vector2: return site_point(site)+Vector2(-36,52)
+func animal_step_legal(entry: Dictionary, point: Vector2) -> bool:
+	return RanchLayout.point_legal(str(entry.site),point) if str(entry.site) in RanchLayout.ENABLED else true
+
+func nest_point(site: String, area_id: String=GameState.location) -> Vector2: return RanchLayout.nest(site) if area_id==RanchLayout.area(site) else site_point(site)+Vector2(-36,52)
 func near_nest(site: String) -> bool:
-	return site=="coop" and FarmLayout.active(site) and is_instance_valid(game) and GameState.location=="farm" and game.player.global_position.distance_to(nest_point(site))<=54
+	return site=="coop" and FarmLayout.active(site) and is_instance_valid(game) and GameState.location in ["farm",RanchLayout.area(site)] and game.player.global_position.distance_to(nest_point(site))<=54
 
 func collect_nest(site: String) -> bool:
 	if busy or not near_nest(site) or int(building(site).level)<1: return false
@@ -364,3 +381,24 @@ func collect_nest(site: String) -> bool:
 	Events.livestock_collected.emit(site)
 	Events.notice.emit("鸡窝已收好鸡蛋和鸭蛋；产物已进入背包。")
 	_commit();return true
+
+func animal_area(entry: Dictionary) -> String:
+	return RanchLayout.area(str(entry.site)) if str(entry.site) in RanchLayout.ENABLED else "farm"
+
+func enter_pasture(site: String) -> bool:
+	if site not in RanchLayout.ENABLED or not FarmLayout.active(site) or int(building(site).level)<1 or not is_instance_valid(game): return false
+	if GameState.location!="farm" or game.player.global_position.distance_to(site_point(site)+Vector2(36,52))>90: return false
+	return WorldTravel.change(game,RanchLayout.area(site))
+
+func migrate_v29(raw: Variant, day: int) -> Dictionary:
+	if not raw is Dictionary: return {}
+	var migrated: Dictionary=AbyssSaveSchema.canonical(raw).duplicate(true)
+	if migrated.has("range_version"): return migrated if validate(migrated,day) else {}
+	if not exact(migrated,["buildings","animals","serial","last_settled_day"]) or not migrated.animals is Array: return {}
+	migrated.range_version=1
+	var counts: Dictionary={"coop":0,"barn":0,"fold":0}
+	for entry in migrated.animals:
+		if not entry is Dictionary or not entry.get("site") is String or not counts.has(entry.site) or entry.has("pasture_position"): return {}
+		var at:=RanchLayout.home(str(entry.site),int(counts[entry.site]));counts[entry.site]+=1
+		entry.pasture_position=[at.x,at.y]
+	return migrated if validate(migrated,day) else {}

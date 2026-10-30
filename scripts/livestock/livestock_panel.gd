@@ -90,6 +90,9 @@ func show_building(site: String) -> void:
 		words("一级容量2只。建造需要"+costs(definition.required)+"、"+DiamondPayments.text(int(definition.coins))+"。")
 		button("建造"+definition.name,func(): ask("消耗"+costs(definition.required)+"与"+DiamondPayments.text(int(definition.coins))+"建造？",func(): DiamondPayments.request(self,int(definition.coins),func(): result(Livestock.build(site)))))
 		section=null;show_feed_shop();return
+	if site in RanchLayout.ENABLED:
+		button("进入后方牧场",func(): close_panel();Livestock.enter_pasture(site)).disabled=GameState.location!="farm"
+		words("动物在围栏后的真实牧场生活。晴天开栏放牧，雨雪或傍晚会走回暖舍。",16)
 	var s: Dictionary=Livestock.summary(site)
 	var species: Dictionary=Livestock.data.species[definition.species]
 	FacilityLayout.metrics(section,[["畜舍等级",str(b.level)],["动物",str(s.count)+" / "+str(s.capacity)],["成年动物",str(s.adults)],["待收产物",str(s.products),FarmUIStyle.SUCCESS]])

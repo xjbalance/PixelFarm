@@ -79,11 +79,13 @@ static func maps(game: Node) -> Dictionary:
 	return result
 
 static func region(location: String) -> Rect2i:
+	if location in RanchLayout.AREAS: return RanchLayout.region(RanchLayout.site(location))
 	if location=="farm": return Rect2i(0,0,48,32)
 	if location=="home": return HomeLayout.navigation_region(int(Housing.state.level))
 	return Rect2i(0,0,40,28)
 
 static func entry(location: String) -> Vector2:
+	if location in RanchLayout.AREAS: return RanchLayout.entry(RanchLayout.site(location))
 	if location in TerritoryCatalog.ANNEX_AREAS:
 		var at: Array=TerritoryCatalog.region(location).entry
 		return Vector2(at[0],at[1])
@@ -98,6 +100,9 @@ static func entry(location: String) -> Vector2:
 static func change(game: Node, destination: String, saved_position: Vector2 = Vector2.INF) -> bool:
 	var all_maps := maps(game)
 	if not all_maps.has(destination): return false
+	if destination in RanchLayout.AREAS:
+		var site:=RanchLayout.site(destination)
+		if site not in RanchLayout.ENABLED or int(Livestock.building(site).level)<1 or not FarmLayout.active(site): return false
 	if destination in TerritoryCatalog.ANNEX_AREAS and not Territory.unlocked(destination):
 		Events.notice.emit(TerritoryCatalog.region(destination).hint);return false
 	if destination in Exploration.AREAS and not Exploration.unlocked(destination):
