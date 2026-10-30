@@ -1,0 +1,178 @@
+{
+	"actual_window": false,
+	"android_device_tested": false,
+	"checks": 74,
+	"failures": 0,
+	"issues": [],
+	"samples": [
+		{
+			"button_count": 9,
+			"configuration": "",
+			"panel": "加工",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				180,
+				80,
+				920,
+				560
+			]
+		},
+		{
+			"button_count": 20,
+			"configuration": "",
+			"panel": "厨房",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				180,
+				80,
+				920,
+				560
+			]
+		},
+		{
+			"button_count": 47,
+			"configuration": "",
+			"panel": "种子商店",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				157,
+				95,
+				966,
+				530
+			]
+		},
+		{
+			"button_count": 9,
+			"configuration": "",
+			"panel": "加工",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				320,
+				80,
+				920,
+				560
+			]
+		},
+		{
+			"button_count": 20,
+			"configuration": "",
+			"panel": "厨房",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				320,
+				80,
+				920,
+				560
+			]
+		},
+		{
+			"button_count": 47,
+			"configuration": "",
+			"panel": "种子商店",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				297,
+				95,
+				966,
+				530
+			]
+		},
+		{
+			"button_count": 9,
+			"configuration": "",
+			"panel": "加工",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				340,
+				80,
+				920,
+				560
+			]
+		},
+		{
+			"button_count": 20,
+			"configuration": "",
+			"panel": "厨房",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				340,
+				80,
+				920,
+				560
+			]
+		},
+		{
+			"button_count": 47,
+			"configuration": "",
+			"panel": "种子商店",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				317,
+				95,
+				966,
+				530
+			]
+		},
+		{
+			"button_count": 9,
+			"configuration": "",
+			"panel": "加工",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				180,
+				200,
+				920,
+				560
+			]
+		},
+		{
+			"button_count": 20,
+			"configuration": "",
+			"panel": "厨房",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				180,
+				200,
+				920,
+				560
+			]
+		},
+		{
+			"button_count": 47,
+			"configuration": "",
+			"panel": "种子商店",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				157,
+				215,
+				966,
+				530
+			]
+		},
+		{
+			"button_count": 9,
+			"configuration": "",
+			"panel": "加工",
+			"reachable": true,
+			"readable": true,
+			"rect": [
+				180,
+				80,
+				920,
+				560
+			]
+		}
+	]
+}

@@ -11,6 +11,7 @@ var recipe_page: int=0
 var recipe_filter: String="all"
 var feedback: Label
 var tab_bar: HBoxContainer
+var title: Label
 var main_scroll: ScrollContainer
 var refresh_queued: bool=false
 var rebuild_count: int=0
@@ -20,7 +21,7 @@ func _ready() -> void:
 	add_to_group("modal_panels");hide()
 	var column := VBoxContainer.new();add_child(column)
 	var header := HBoxContainer.new();column.add_child(header)
-	var title := FarmUIStyle.label("炉火与麦香 · 小屋厨房",24,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
+	title=FarmUIStyle.label("炉火与麦香 · 小屋厨房",24,FarmUIStyle.TITLE);title.size_flags_horizontal=Control.SIZE_EXPAND_FILL;header.add_child(title)
 	header.add_child(FarmUIStyle.button("收起 ×",close_panel,100))
 	feedback=FacilityLayout.text(column,"",16);feedback.hide()
 	Events.notice.connect(func(text: String):
@@ -46,6 +47,8 @@ func open_panel(id: String="kitchen") -> void:
 	if GameState.modal or (not Kitchen.near_berry() if id=="berry" else not Kitchen.near_kitchen()): return
 	recipe_page=0;recipe_filter="all";feedback.text="";feedback.hide();scroll_key=""
 	context=id;page="recipes";selected_recipe="carrot_stew";quantity=1;pending=Callable();message=""
+	tab_bar.visible=id!="berry"
+	title.text="野莓采集 · 果酱原料" if id=="berry" else "炉火与麦香 · 小屋厨房"
 	GameState.set_modal(true);show();refresh();call_deferred("layout_panel")
 func close_panel() -> void:
 	pending=Callable();message="";DiamondPayments.cancel(self);hide();GameState.set_modal(false)
@@ -98,13 +101,38 @@ func refresh() -> void:
 		words("确认本次操作",23);words(message);button("确认",accept);button("取消",func(): pending=Callable();refresh());return
 	if context=="berry":
 		words("屋西的野莓丛",23)
-		words("夏天多汁，冬天仍有藏在叶下的果实。每天可采一次，春夏秋两份、冬季一份；采摘消耗2体力。可以带回厨房熬酱。")
+		words("夏天多汁，冬天仍有藏在叶下的果实。每天可采一次，春夏秋两份、冬季一份；采摘消耗2体力。")
 		button("采摘今天的野莓",func(): result(Kitchen.harvest_berries())).disabled=Kitchen.state.berry_day==GameClock.day
+		button("前往果酱锅",go_to_jam_pot)
+		words("野莓果酱：野莓4份＋小麦1份，在农场的果酱锅加工两游戏日。点击实体果酱锅，选择「野莓果酱」后确认投入。",18)
+		words("还没有果酱锅：菜单 → 建造 → 摆件 → 加工设备 → 果酱锅；木材6、石头8、铜锭1、100金。旧厨房订单仍在厨房的「领取成品」中。",16)
 		return
 	match page:
 		"processing": processing()
 		"queue": jobs()
 		_: recipes()
+
+func go_to_jam_pot() -> void:
+	if not visible or context!="berry" or not Kitchen.near_berry(): return
+	var owner_game: Node=Kitchen.game
+	var navigation: WorldNavigation=owner_game.auto_move.navigation
+	navigation.rebuild()
+	var best: Dictionary={}
+	var distance: float=INF
+	for object in owner_game.territory_world.objects.values():
+		if not object.is_visible_in_tree() or object.entry.get("area","")!="farm" or object.entry.get("kind","")!="station_jam_pot": continue
+		var target: Dictionary={"kind":"object","object":object,"point":object.global_position}
+		var path:=navigation.path_to(target)
+		if path.is_empty(): continue
+		var length: float=owner_game.player.global_position.distance_to(path[0])
+		for i in range(1,path.size()): length+=path[i-1].distance_to(path[i])
+		if length<distance: distance=length;best=target
+	if best.is_empty():
+		Events.notice.emit("没有已摆放且可走近的果酱锅；请先在建造中摆放，或为现有设备留出通路。")
+		return
+	close_panel()
+	owner_game.auto_move.request_target(best)
+
 func recipes() -> void:
 	var filters:=FacilityLayout.actions(content)
 	for spec in [["all","全部"],["meals","家常与主食"],["baking","烘焙"],["drinks","茶与饮品"]]:

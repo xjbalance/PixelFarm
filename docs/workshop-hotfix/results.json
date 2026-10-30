@@ -1,0 +1,46 @@
+{
+  "baseline": "314996b",
+  "save_version": 30,
+  "headless": [
+    {
+      "scene": "workshop_access_runner",
+      "checks": 38,
+      "failures": 0
+    },
+    {
+      "scene": "kitchen_b_runner",
+      "checks": 100,
+      "failures": 0
+    },
+    {
+      "scene": "harvest_processing_runner",
+      "checks": 29,
+      "failures": 0
+    },
+    {
+      "scene": "harvest_chains_runner",
+      "checks": 264,
+      "failures": 0
+    },
+    {
+      "scene": "harvest_touch_runner",
+      "checks": 13,
+      "failures": 0
+    },
+    {
+      "scene": "quality081_ui_runner",
+      "checks": 74,
+      "failures": 0
+    },
+    {
+      "scene": "ranch082_obstacle_runner",
+      "checks": 17,
+      "failures": 0
+    }
+  ],
+  "headless_total": 535,
+  "window_checks": 38,
+  "failures": 0,
+  "physical_android_tested": false,
+  "native_windows_hardware_tested": false
+}

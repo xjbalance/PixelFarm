@@ -2057,6 +2057,22 @@
       "category": "jam_pot",
       "description": "按游戏内时间加工，离场与保存不重置进度。"
     },
+    "berry_jam": {
+      "recipe_id": "berry_jam",
+      "name": "野莓果酱",
+      "output_item_id": "berry_jam",
+      "output_quantity": 1,
+      "input_items": {
+        "wild_berry": 4,
+        "wheat": 1
+      },
+      "processing_station_id": "jam_pot",
+      "processing_duration": 2880,
+      "unlock_condition": "basic",
+      "sell_value": 48,
+      "category": "jam_pot",
+      "description": "四份野莓与一份小麦熬制两游戏日；可出售或赠礼。"
+    },
     "strawberry_jam": {
       "recipe_id": "strawberry_jam",
       "name": "草莓果酱",

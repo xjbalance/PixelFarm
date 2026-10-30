@@ -1,0 +1,51 @@
+Godot Engine v4.3.stable.official.77dcf97d8 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:360)
+OpenGL API 4.5 (Core Profile) Mesa 23.2.1-1ubuntu3.1~22.04.4 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 15.0.7, 256 bits)
+
+PASS: outdoor repair workshop exists
+WORKSHOP PROBE (0, -20) intent={ "kind": "object", "object": @Node2D@23:<Node2D#342422980211>, "point": (820, 432) } path=[(688, 464), (720, 464), (752, 464), (784, 464)]
+PASS: tap outdoor repair table opens workshop (0, -20)
+WORKSHOP PROBE (0, -42) intent={ "kind": "object", "object": @Node2D@23:<Node2D#342422980211>, "point": (820, 432) } path=[(688, 464), (720, 464), (752, 464), (784, 464)]
+PASS: tap outdoor repair table opens workshop (0, -42)
+WORKSHOP PROBE (0, 0) intent={ "kind": "object", "object": @Node2D@23:<Node2D#342422980211>, "point": (820, 432) } path=[(688, 464), (720, 464), (752, 464), (784, 464)]
+PASS: tap outdoor repair table opens workshop (0, 0)
+PASS: outdoor furniture crafting table exists
+YARD PROBE intent={ "kind": "object", "object": @Node2D@1482:<Node2D#432197865849>, "point": (464, 752) } path=[(464, 688), (464, 720)]
+PASS: tap outdoor furniture table opens crafting panel
+PASS: wild berry jam is available at the physical jam pot
+PASS: visible enabled action: 前往果酱锅
+PASS: no installed pot keeps berry guide open and cannot remotely process or consume anything
+POT INSTALL PROBE cell=(5, 22) plan={ "area": "farm", "op": "place", "kind": "station_jam_pot", "cells": [(5, 22)], "id": "", "revision": 0, "valid": true, "reason": "" }
+PASS: physical jam pot installed above original poultry shelter
+JAM POT PROBE player=(218.25, 688) device=(176, 720) available=true near=true
+PASS: tap jam pot above poultry shelter opens processing panel
+PASS: Windows mouse click opens same physical jam pot
+PASS: berry bush above poultry opens original harvest interaction
+PASS: berry context hides nonfunctional kitchen tabs and uses a distinct title
+PASS: visible enabled action: 前往果酱锅
+PASS: guide starts walking and does not teleport or open remote processing
+BERRY ROUTE PROBE position=(176, 668.0834) state=0 modal=true berry_panel=false
+PASS: berry guide walks to real reachable pot and opens it without teleporting
+PASS: physical recipe preserves existing inputs, two-day timing and output ID
+PASS: physical pot lists wild berry jam
+PASS: native recipe tap selects wild berry jam
+PASS: visible enabled action: 开始加工
+PASS: preview does not deduct materials
+PASS: visible enabled action: 取消
+PASS: cancel preserves berries and wheat
+PASS: visible enabled action: 开始加工
+PASS: visible enabled action: 确认开始
+PASS: confirmed jam order deducts exactly four berries and one wheat
+PASS: occupied pot rejects duplicate submission
+PASS: DIY move preserves device identity and active order
+PASS: in-progress berry jam and moved pot restore through whole save
+PASS: moved restored pot opens and completes after two game days
+PASS: visible enabled action: 收取成品
+PASS: full inventory retains completed jam in device
+PASS: visible enabled action: 收取成品
+PASS: claim delivers exactly one existing wild berry jam item
+PASS: repeated claim cannot duplicate jam
+PASS: completed new order keeps existing save schema valid
+PASS: returning indoors restores actual kitchen title and all tabs
+WORKSHOP ACCESS RESULT: 38 checks, 0 failures

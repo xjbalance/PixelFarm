@@ -28,6 +28,7 @@ steps = [
     ('quality081-chains', ['--fixed-fps','60','res://tests/quality081_chains_runner.tscn']),
     ('harvest-crops', ['--fixed-fps','60','res://tests/harvest_crops_runner.tscn']),
     ('harvest-processing', ['--fixed-fps','60','res://tests/harvest_processing_runner.tscn']),
+    ('workshop-access', ['--fixed-fps','60','res://tests/workshop_access_runner.tscn']),
     ('harvest-chains', ['--fixed-fps','60','res://tests/harvest_chains_runner.tscn']),
     ('harvest-meals', ['--fixed-fps','60','res://tests/harvest_meals_runner.tscn']),
     ('harvest-touch', ['--fixed-fps','60','res://tests/harvest_touch_runner.tscn']),

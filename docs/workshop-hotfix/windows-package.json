@@ -1,0 +1,29 @@
+{
+  "version": "0.8.2",
+  "platform": "Windows x86_64",
+  "configuration": "release",
+  "pck_bytes": 27282352,
+  "embedded_pck": false,
+  "exe_sha256": "eba4a0ead764b1452b2eccb46f1c0fff141671204237e7401fc6822a0d687f5d",
+  "pck_sha256": "92cf56535f28809c8c2d84a49af096990fc4e313953688439a6004f6d23f0ca9",
+  "files": [
+    "PixelWorld.exe",
+    "PixelWorld.pck",
+    "开始游戏.txt",
+    "字体许可.txt",
+    "licenses/GODOT-LICENSE.txt",
+    "licenses/GODOT-THIRD-PARTY.txt",
+    "licenses/NOTICE.txt"
+  ],
+  "zip": "PixelWorld-0.8.2-berry-hotfix-Windows-x64.zip",
+  "zip_bytes": 55159780,
+  "zip_sha256": "f687f132bc9ecd762b182e6506342bcea3b902fe1d8ce16f5658426a9e869831",
+  "zip_crc_verified": true,
+  "pe_amd64_verified": true,
+  "version_resource_verified": true,
+  "packed_resources_desktop_startup": true,
+  "windows_native_tested": false,
+  "hotfix": "wild berry jam recipe and berry-to-pot walk interaction",
+  "wine_tested": true,
+  "wine_save_restart": true
+}

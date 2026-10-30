@@ -1,0 +1,936 @@
+{
+  "crops": 30,
+  "trees": 4,
+  "stations": 10,
+  "processing": 51,
+  "dishes": 27,
+  "recipes": [
+    {
+      "recipe": "mill_flour",
+      "inputs_sale_value": 22,
+      "output_sale_value": 24,
+      "margin": 2,
+      "game_minutes": 45,
+      "theoretical_batches_per_24h": 32
+    },
+    {
+      "recipe": "rice",
+      "inputs_sale_value": 52,
+      "output_sale_value": 63,
+      "margin": 11,
+      "game_minutes": 45,
+      "theoretical_batches_per_24h": 32
+    },
+    {
+      "recipe": "cornmeal",
+      "inputs_sale_value": 58,
+      "output_sale_value": 70,
+      "margin": 12,
+      "game_minutes": 45,
+      "theoretical_batches_per_24h": 32
+    },
+    {
+      "recipe": "tofu",
+      "inputs_sale_value": 50,
+      "output_sale_value": 61,
+      "margin": 11,
+      "game_minutes": 60,
+      "theoretical_batches_per_24h": 24
+    },
+    {
+      "recipe": "corn_feed",
+      "inputs_sale_value": 58,
+      "output_sale_value": 16,
+      "margin": -42,
+      "game_minutes": 45,
+      "theoretical_batches_per_24h": 32
+    },
+    {
+      "recipe": "canola_oil",
+      "inputs_sale_value": 92,
+      "output_sale_value": 112,
+      "margin": 20,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "peanut_oil",
+      "inputs_sale_value": 120,
+      "output_sale_value": 146,
+      "margin": 26,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "sunflower_oil",
+      "inputs_sale_value": 136,
+      "output_sale_value": 165,
+      "margin": 29,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "pickled_cucumber",
+      "inputs_sale_value": 48,
+      "output_sale_value": 58,
+      "margin": 10,
+      "game_minutes": 1440,
+      "theoretical_batches_per_24h": 1
+    },
+    {
+      "recipe": "kimchi",
+      "inputs_sale_value": 124,
+      "output_sale_value": 151,
+      "margin": 27,
+      "game_minutes": 1440,
+      "theoretical_batches_per_24h": 1
+    },
+    {
+      "recipe": "pickled_radish",
+      "inputs_sale_value": 84,
+      "output_sale_value": 102,
+      "margin": 18,
+      "game_minutes": 1440,
+      "theoretical_batches_per_24h": 1
+    },
+    {
+      "recipe": "snow_pickle",
+      "inputs_sale_value": 88,
+      "output_sale_value": 107,
+      "margin": 19,
+      "game_minutes": 1440,
+      "theoretical_batches_per_24h": 1
+    },
+    {
+      "recipe": "winter_pickle",
+      "inputs_sale_value": 152,
+      "output_sale_value": 185,
+      "margin": 33,
+      "game_minutes": 1440,
+      "theoretical_batches_per_24h": 1
+    },
+    {
+      "recipe": "tomato_sauce",
+      "inputs_sale_value": 62,
+      "output_sale_value": 75,
+      "margin": 13,
+      "game_minutes": 240,
+      "theoretical_batches_per_24h": 6
+    },
+    {
+      "recipe": "chili_sauce",
+      "inputs_sale_value": 68,
+      "output_sale_value": 82,
+      "margin": 14,
+      "game_minutes": 240,
+      "theoretical_batches_per_24h": 6
+    },
+    {
+      "recipe": "pumpkin_puree",
+      "inputs_sale_value": 188,
+      "output_sale_value": 229,
+      "margin": 41,
+      "game_minutes": 240,
+      "theoretical_batches_per_24h": 6
+    },
+    {
+      "recipe": "berry_jam",
+      "inputs_sale_value": 42,
+      "output_sale_value": 48,
+      "margin": 6,
+      "game_minutes": 2880,
+      "theoretical_batches_per_24h": 0
+    },
+    {
+      "recipe": "strawberry_jam",
+      "inputs_sale_value": 56,
+      "output_sale_value": 68,
+      "margin": 12,
+      "game_minutes": 240,
+      "theoretical_batches_per_24h": 6
+    },
+    {
+      "recipe": "blueberry_jam",
+      "inputs_sale_value": 48,
+      "output_sale_value": 58,
+      "margin": 10,
+      "game_minutes": 240,
+      "theoretical_batches_per_24h": 6
+    },
+    {
+      "recipe": "peach_jam",
+      "inputs_sale_value": 84,
+      "output_sale_value": 102,
+      "margin": 18,
+      "game_minutes": 240,
+      "theoretical_batches_per_24h": 6
+    },
+    {
+      "recipe": "grape_juice",
+      "inputs_sale_value": 50,
+      "output_sale_value": 61,
+      "margin": 11,
+      "game_minutes": 90,
+      "theoretical_batches_per_24h": 16
+    },
+    {
+      "recipe": "apple_juice",
+      "inputs_sale_value": 72,
+      "output_sale_value": 87,
+      "margin": 15,
+      "game_minutes": 90,
+      "theoretical_batches_per_24h": 16
+    },
+    {
+      "recipe": "pear_juice",
+      "inputs_sale_value": 76,
+      "output_sale_value": 92,
+      "margin": 16,
+      "game_minutes": 90,
+      "theoretical_batches_per_24h": 16
+    },
+    {
+      "recipe": "orange_juice",
+      "inputs_sale_value": 88,
+      "output_sale_value": 107,
+      "margin": 19,
+      "game_minutes": 90,
+      "theoretical_batches_per_24h": 16
+    },
+    {
+      "recipe": "watermelon_juice",
+      "inputs_sale_value": 220,
+      "output_sale_value": 268,
+      "margin": 48,
+      "game_minutes": 90,
+      "theoretical_batches_per_24h": 16
+    },
+    {
+      "recipe": "raisins",
+      "inputs_sale_value": 50,
+      "output_sale_value": 61,
+      "margin": 11,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "dried_sweet_potato",
+      "inputs_sale_value": 112,
+      "output_sale_value": 136,
+      "margin": 24,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "dried_pear",
+      "inputs_sale_value": 76,
+      "output_sale_value": 92,
+      "margin": 16,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "dried_spinach",
+      "inputs_sale_value": 56,
+      "output_sale_value": 68,
+      "margin": 12,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "dried_kale",
+      "inputs_sale_value": 120,
+      "output_sale_value": 146,
+      "margin": 26,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "soup_herbs",
+      "inputs_sale_value": 68,
+      "output_sale_value": 82,
+      "margin": 14,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "onion_flakes",
+      "inputs_sale_value": 80,
+      "output_sale_value": 97,
+      "margin": 17,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "dried_eggplant",
+      "inputs_sale_value": 114,
+      "output_sale_value": 139,
+      "margin": 25,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "dried_peas",
+      "inputs_sale_value": 50,
+      "output_sale_value": 61,
+      "margin": 11,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "frost_pea_flakes",
+      "inputs_sale_value": 52,
+      "output_sale_value": 63,
+      "margin": 11,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "lavender_bundle",
+      "inputs_sale_value": 104,
+      "output_sale_value": 126,
+      "margin": 22,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "rose_petals",
+      "inputs_sale_value": 148,
+      "output_sale_value": 180,
+      "margin": 32,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "chamomile_dried",
+      "inputs_sale_value": 80,
+      "output_sale_value": 97,
+      "margin": 17,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "mayonnaise",
+      "inputs_sale_value": 36,
+      "output_sale_value": 43,
+      "margin": 7,
+      "game_minutes": 120,
+      "theoretical_batches_per_24h": 12
+    },
+    {
+      "recipe": "butter",
+      "inputs_sale_value": 38,
+      "output_sale_value": 46,
+      "margin": 8,
+      "game_minutes": 360,
+      "theoretical_batches_per_24h": 4
+    },
+    {
+      "recipe": "dairy_cheese",
+      "inputs_sale_value": 76,
+      "output_sale_value": 92,
+      "margin": 16,
+      "game_minutes": 360,
+      "theoretical_batches_per_24h": 4
+    },
+    {
+      "recipe": "yogurt",
+      "inputs_sale_value": 38,
+      "output_sale_value": 46,
+      "margin": 8,
+      "game_minutes": 360,
+      "theoretical_batches_per_24h": 4
+    },
+    {
+      "recipe": "wool_cloth",
+      "inputs_sale_value": 96,
+      "output_sale_value": 117,
+      "margin": 21,
+      "game_minutes": 360,
+      "theoretical_batches_per_24h": 4
+    },
+    {
+      "recipe": "cotton_cloth",
+      "inputs_sale_value": 140,
+      "output_sale_value": 170,
+      "margin": 30,
+      "game_minutes": 360,
+      "theoretical_batches_per_24h": 4
+    },
+    {
+      "recipe": "sachet",
+      "inputs_sale_value": 296,
+      "output_sale_value": 361,
+      "margin": 65,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "rose_perfume",
+      "inputs_sale_value": 292,
+      "output_sale_value": 356,
+      "margin": 64,
+      "game_minutes": 240,
+      "theoretical_batches_per_24h": 6
+    },
+    {
+      "recipe": "smoke_fish_carp",
+      "inputs_sale_value": 60,
+      "output_sale_value": 68,
+      "margin": 8,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "dry_fish_carp",
+      "inputs_sale_value": 56,
+      "output_sale_value": 68,
+      "margin": 12,
+      "game_minutes": 240,
+      "theoretical_batches_per_24h": 6
+    },
+    {
+      "recipe": "smoke_fish_crucian",
+      "inputs_sale_value": 52,
+      "output_sale_value": 68,
+      "margin": 16,
+      "game_minutes": 180,
+      "theoretical_batches_per_24h": 8
+    },
+    {
+      "recipe": "dry_fish_crucian",
+      "inputs_sale_value": 48,
+      "output_sale_value": 68,
+      "margin": 20,
+      "game_minutes": 240,
+      "theoretical_batches_per_24h": 6
+    },
+    {
+      "recipe": "salted_duck_egg",
+      "inputs_sale_value": 56,
+      "output_sale_value": 66,
+      "margin": 10,
+      "game_minutes": 2880,
+      "theoretical_batches_per_24h": 0
+    },
+    {
+      "recipe": "bread",
+      "inputs_sale_value": 48,
+      "output_sale_value": 53,
+      "margin": 5,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "noodles",
+      "inputs_sale_value": 66,
+      "output_sale_value": 73,
+      "margin": 7,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "cake",
+      "inputs_sale_value": 122,
+      "output_sale_value": 136,
+      "margin": 14,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "pumpkin_pie",
+      "inputs_sale_value": 323,
+      "output_sale_value": 361,
+      "margin": 38,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "strawberry_cake",
+      "inputs_sale_value": 172,
+      "output_sale_value": 192,
+      "margin": 20,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "tomato_pasta",
+      "inputs_sale_value": 260,
+      "output_sale_value": 291,
+      "margin": 31,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "vegetable_soup",
+      "inputs_sale_value": 146,
+      "output_sale_value": 163,
+      "margin": 17,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "tofu_soup",
+      "inputs_sale_value": 101,
+      "output_sale_value": 113,
+      "margin": 12,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "cooked_rice",
+      "inputs_sale_value": 63,
+      "output_sale_value": 70,
+      "margin": 7,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "fish_rice",
+      "inputs_sale_value": 173,
+      "output_sale_value": 193,
+      "margin": 20,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "rice_ball",
+      "inputs_sale_value": 88,
+      "output_sale_value": 98,
+      "margin": 10,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "corn_cake",
+      "inputs_sale_value": 88,
+      "output_sale_value": 98,
+      "margin": 10,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "corn_bread",
+      "inputs_sale_value": 94,
+      "output_sale_value": 105,
+      "margin": 11,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "cheese_bread",
+      "inputs_sale_value": 140,
+      "output_sale_value": 156,
+      "margin": 16,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "roast_sweet_potato",
+      "inputs_sale_value": 56,
+      "output_sale_value": 62,
+      "margin": 6,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "fruit_salad",
+      "inputs_sale_value": 98,
+      "output_sale_value": 109,
+      "margin": 11,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "cream_stew",
+      "inputs_sale_value": 176,
+      "output_sale_value": 197,
+      "margin": 21,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "herbal_tea",
+      "inputs_sale_value": 126,
+      "output_sale_value": 141,
+      "margin": 15,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "rose_tea",
+      "inputs_sale_value": 180,
+      "output_sale_value": 201,
+      "margin": 21,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "chamomile_tea",
+      "inputs_sale_value": 97,
+      "output_sale_value": 108,
+      "margin": 11,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "vegetable_pancake",
+      "inputs_sale_value": 76,
+      "output_sale_value": 85,
+      "margin": 9,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "mixed_juice",
+      "inputs_sale_value": 255,
+      "output_sale_value": 285,
+      "margin": 30,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "apple_pie",
+      "inputs_sale_value": 166,
+      "output_sale_value": 185,
+      "margin": 19,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "tofu_vegetables",
+      "inputs_sale_value": 264,
+      "output_sale_value": 295,
+      "margin": 31,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "winter_soup",
+      "inputs_sale_value": 146,
+      "output_sale_value": 163,
+      "margin": 17,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "farm_fish_soup",
+      "inputs_sale_value": 98,
+      "output_sale_value": 109,
+      "margin": 11,
+      "game_minutes": 0
+    },
+    {
+      "recipe": "sunflower_salad",
+      "inputs_sale_value": 220,
+      "output_sale_value": 246,
+      "margin": 26,
+      "game_minutes": 0
+    }
+  ],
+  "yearly_one_plot_simulation": [
+    {
+      "crop": "strawberry",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 14,
+      "watering_actions": 28,
+      "net_gold": 252,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "cabbage",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 7,
+      "watering_actions": 28,
+      "net_gold": 280,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "radish",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 10,
+      "harvested": 9,
+      "watering_actions": 28,
+      "net_gold": 238,
+      "unharvested_growth_days": 1
+    },
+    {
+      "crop": "peas",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 10,
+      "harvested": 18,
+      "watering_actions": 28,
+      "net_gold": 290,
+      "unharvested_growth_days": 1
+    },
+    {
+      "crop": "spinach",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 14,
+      "harvested": 14,
+      "watering_actions": 28,
+      "net_gold": 252,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "rapeseed",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 7,
+      "watering_actions": 28,
+      "net_gold": 210,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "garlic_shoot",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 10,
+      "harvested": 9,
+      "watering_actions": 28,
+      "net_gold": 186,
+      "unharvested_growth_days": 1
+    },
+    {
+      "crop": "tomato",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 14,
+      "watering_actions": 28,
+      "net_gold": 280,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "cucumber",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 10,
+      "harvested": 18,
+      "watering_actions": 28,
+      "net_gold": 272,
+      "unharvested_growth_days": 1
+    },
+    {
+      "crop": "corn",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 7,
+      "watering_actions": 28,
+      "net_gold": 266,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "chili",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 14,
+      "watering_actions": 28,
+      "net_gold": 308,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "eggplant",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 7,
+      "watering_actions": 28,
+      "net_gold": 259,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "watermelon",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 5,
+      "harvested": 4,
+      "watering_actions": 28,
+      "net_gold": 250,
+      "unharvested_growth_days": 4
+    },
+    {
+      "crop": "blueberry",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 6,
+      "harvested": 15,
+      "watering_actions": 28,
+      "net_gold": 216,
+      "unharvested_growth_days": 3
+    },
+    {
+      "crop": "sunflower_crop",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 6,
+      "harvested": 5,
+      "watering_actions": 28,
+      "net_gold": 196,
+      "unharvested_growth_days": 3
+    },
+    {
+      "crop": "pumpkin",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 5,
+      "harvested": 4,
+      "watering_actions": 28,
+      "net_gold": 216,
+      "unharvested_growth_days": 4
+    },
+    {
+      "crop": "sweet_potato",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 7,
+      "watering_actions": 28,
+      "net_gold": 252,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "rice_crop",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 7,
+      "watering_actions": 28,
+      "net_gold": 238,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "soybean",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 7,
+      "watering_actions": 28,
+      "net_gold": 224,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "grape",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 6,
+      "harvested": 15,
+      "watering_actions": 28,
+      "net_gold": 219,
+      "unharvested_growth_days": 3
+    },
+    {
+      "crop": "peanut",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 7,
+      "watering_actions": 28,
+      "net_gold": 266,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "cotton",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 6,
+      "harvested": 5,
+      "watering_actions": 28,
+      "net_gold": 206,
+      "unharvested_growth_days": 3
+    },
+    {
+      "crop": "winter_kale",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 6,
+      "watering_actions": 28,
+      "net_gold": 206,
+      "unharvested_growth_days": 4
+    },
+    {
+      "crop": "snow_radish",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 10,
+      "harvested": 9,
+      "watering_actions": 28,
+      "net_gold": 236,
+      "unharvested_growth_days": 1
+    },
+    {
+      "crop": "winter_onion",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 10,
+      "harvested": 9,
+      "watering_actions": 28,
+      "net_gold": 220,
+      "unharvested_growth_days": 1
+    },
+    {
+      "crop": "frost_peas",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 7,
+      "harvested": 12,
+      "watering_actions": 28,
+      "net_gold": 186,
+      "unharvested_growth_days": 4
+    },
+    {
+      "crop": "winter_cabbage",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 6,
+      "harvested": 5,
+      "watering_actions": 28,
+      "net_gold": 224,
+      "unharvested_growth_days": 3
+    },
+    {
+      "crop": "lavender",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 14,
+      "harvested": 14,
+      "watering_actions": 56,
+      "net_gold": 476,
+      "unharvested_growth_days": null
+    },
+    {
+      "crop": "rose",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 17,
+      "harvested": 16,
+      "watering_actions": 84,
+      "net_gold": 742,
+      "unharvested_growth_days": 4
+    },
+    {
+      "crop": "chamomile",
+      "days": 112,
+      "plots": 1,
+      "seed_purchases": 19,
+      "harvested": 18,
+      "watering_actions": 56,
+      "net_gold": 454,
+      "unharvested_growth_days": 2
+    }
+  ],
+  "simulation_assumptions": [
+    "112 days, one plot, full-price seeds, all relevant unlocks earned",
+    "Water every suitable day; harvest at the following morning; off-season growth pauses",
+    "No labor/energy valuation, rainfall bonus, seed discount or terminal crop liquidation",
+    "Device throughput is an ideal upper bound; actual collection and night gaps lower output"
+  ],
+  "unavailable_extensions": [
+    {
+      "recipe_id": "goat_cheese",
+      "source": "goat_milk",
+      "reason": "当前没有山羊产奶玩法。"
+    },
+    {
+      "recipe_id": "honey_cookie",
+      "source": "honey",
+      "reason": "当前没有可生产蜂蜜的蜂箱。"
+    },
+    {
+      "recipe_id": "truffle_sauce",
+      "source": "truffle",
+      "reason": "当前没有猪与松露生产玩法。"
+    },
+    {
+      "recipe_id": "mushroom_soup",
+      "source": "mushroom",
+      "reason": "当前没有可食用蘑菇的合法采集来源。"
+    }
+  ]
+}
