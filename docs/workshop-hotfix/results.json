@@ -42,5 +42,7 @@
   "window_checks": 38,
   "failures": 0,
   "physical_android_tested": false,
-  "native_windows_hardware_tested": false
+  "native_windows_hardware_tested": false,
+  "android_apk_checks": 38,
+  "android_version_code": 33
 }

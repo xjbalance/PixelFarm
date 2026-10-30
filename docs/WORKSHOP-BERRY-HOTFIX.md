@@ -38,4 +38,12 @@ python3 tools/capture_ranch082.py workshop_access_runner
 
 `builds/PixelWorld-0.8.2-berry-hotfix-Windows-x64.zip`。完整解压后保留EXE与PCK同目录；沿用原应用名称、存档路径与v30存档。原0.8.2安装包保留，避免把旧包校验记录与本修复包混用。[修复包元数据](workshop-hotfix/windows-package.json)记录完整校验值。
 
-本次交付Windows修复包，未重新导出Android APK；没有Android真机及原生Windows硬件验收。Windows包内资源启动检查通过；实际EXE经Wine验证中文路径、游戏窗口与存档重启，[Wine结果](workshop-hotfix/windows-runtime.json)绑定本修复包的EXE和PCK校验值。
+Windows包内资源启动检查通过；实际EXE经Wine验证中文路径、游戏窗口与存档重启，[Wine结果](workshop-hotfix/windows-runtime.json)绑定本修复包的EXE和PCK校验值。没有原生Windows硬件验收。
+
+## Android 修复包
+
+补充交付 `builds/PixelWorld-0.8.2-berry-hotfix-debug.apk`，版本码从32升到33，显示版本仍为0.8.2。保持 `org.pixelfarm.windbud`、原签名证书及原存档位置，可覆盖原版本安装，不需要卸载。
+
+APK签名、ZIP对齐、CRC、两种ARM架构及全部JSON数据与源码一致性检查通过。从最终APK提取实际游戏资源，仅额外加入测试入口，独立运行38项野莓配方/原生触点/加工/搬迁/存档/领取检查，全部通过；没有使用源码游戏资源覆盖包内资源。[Android包校验记录](workshop-hotfix/android-package.json)、[实际APK资源运行日志](workshop-hotfix/android-runtime.txt)。
+
+没有Android真机，本记录不代表手机触控和性能真机验收。

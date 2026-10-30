@@ -1,0 +1,18 @@
+{
+  "artifact": "PixelWorld-0.8.2-berry-hotfix-debug.apk",
+  "sha256": "89d6849e9c358ec5304b8d079f1f7c29111bb6b31405e4058f8c4ff6944b6584",
+  "bytes": 74023721,
+  "package": "org.pixelfarm.windbud",
+  "version": "0.8.2",
+  "version_code": 33,
+  "signature_sha256": "89455063278c15e708389a2caff957c7254ff2e88b3e19aaf23cdd755c90414b",
+  "abis": [
+    "arm64-v8a",
+    "armeabi-v7a"
+  ],
+  "actual_apk_resources": true,
+  "headless_checks": 38,
+  "failures": 0,
+  "android_physical_device_tested": false,
+  "save_version": 30
+}
