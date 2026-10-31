@@ -31,6 +31,8 @@ static func sell(crop_id: String, quantity: int) -> bool:
 	if Catalog.sell_price(crop_id) <= 0 or quantity <= 0 or Inventory.count(crop_id) < quantity:
 		Events.notice.emit("没有足够的收获可以出售。")
 		return false
+	if Inventory.transferable(crop_id)<quantity:
+		Events.notice.emit("这部分物品已锁定，请先在背包解锁。");return false
 	var total: int = Catalog.sell_price(crop_id) * quantity
 	if not Inventory.exchange({crop_id:quantity},{},total):
 		Events.notice.emit("金币已经达到上限。")

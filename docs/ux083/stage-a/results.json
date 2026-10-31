@@ -1,0 +1,66 @@
+{
+  "save_version": 31,
+  "items_total_authority": "Inventory.items",
+  "max_per_item": 999,
+  "tests": [
+    {
+      "test": "ux083_inventory_runner",
+      "checks": 76,
+      "failures": 0
+    },
+    {
+      "test": "ux083_backpack_runner",
+      "checks": 37,
+      "failures": 0
+    },
+    {
+      "test": "inventory03_runner",
+      "checks": 52,
+      "failures": 0
+    },
+    {
+      "test": "harvest_processing_runner",
+      "checks": 29,
+      "failures": 0
+    },
+    {
+      "test": "kitchen_b_runner",
+      "checks": 100,
+      "failures": 0
+    },
+    {
+      "test": "farming_actions_runner",
+      "checks": 110,
+      "failures": 0
+    },
+    {
+      "test": "ranch082_migration_runner",
+      "checks": 184,
+      "failures": 0
+    },
+    {
+      "test": "ranch082_persistence:write-ranch",
+      "checks": 9,
+      "failures": 0
+    },
+    {
+      "test": "ranch082_persistence",
+      "checks": 10,
+      "failures": 0
+    }
+  ],
+  "checks": 607,
+  "windows": [
+    {
+      "log": "ux083-backpack-window.log",
+      "checks": 37,
+      "failures": 0
+    },
+    {
+      "log": "ux083-backpack-dpi480-window.log",
+      "checks": 37,
+      "failures": 0
+    }
+  ],
+  "android_device_tested": false
+}

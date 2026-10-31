@@ -10,7 +10,7 @@ func run() -> void:
 	check(proof.source_version=="0.8.1" and proof.schema==29 and proof.failures==0,"legacy fixture actually produced by passing old 244c379 source")
 	old=AbyssSaveSchema.canonical(JSON.parse_string(FileAccess.get_file_as_string("res://docs/ranch082/legacy081-v29.json")))
 	normalized=FarmSaveSchema.normalize(old)
-	check(not normalized.is_empty() and normalized.version==30,"actual v29 full save migrates to v30")
+	check(not normalized.is_empty() and normalized.version==FarmSaveStore.VERSION,"actual v29 full save migrates to current schema")
 	if normalized.is_empty(): await finish();return
 	for section in old:
 		if section in ["version","resources","livestock"]: continue

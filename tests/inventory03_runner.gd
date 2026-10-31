@@ -57,8 +57,17 @@ func touch_button(control: Button, index: int=151) -> void:
 
 func row_ids() -> Array:
 	var result: Array=[]
+	if not panel.shop_mode:
+		for cell in panel.backpack.cells: result.append(cell.get_instance_id())
+		return result
 	for view in panel.row_views.values(): result.append(view.row.get_instance_id())
 	return result
+
+func details_text() -> String:
+	var text: String=""
+	for label in panel.backpack.detail.find_children("*","Label",true,false):
+		if label.is_visible_in_tree(): text+=str(label.text)+"\n"
+	return text
 
 func opening_and_updates() -> void:
 	await fresh();panel.open_panel(false);await frames(4)
@@ -77,7 +86,7 @@ func opening_and_updates() -> void:
 func use_safety() -> void:
 	await fresh();panel.open_panel(false);await frames(4)
 	panel.select_item("carrot");await frames(2)
-	var eat:=find_button(panel,"吃1个\n+8体力")
+	var eat:=find_button(panel,"食用1份")
 	check(eat!=null,"基础食物仍使用明确食用按钮")
 	if not eat: return
 	await reveal(eat)
@@ -88,24 +97,24 @@ func use_safety() -> void:
 	check(Inventory.count("carrot")==19 and GameState.stamina==18,"同次有效触点多次释放只扣一份食物并恢复一次")
 	var more:=true
 	for i in range(4):
-		var current:=find_button(panel,"吃1个\n+8体力")
+		var current:=find_button(panel,"食用1份")
 		await touch_button(current,160+i)
 		more=more and Inventory.count("carrot")==18-i and GameState.stamina==26+8*i
 	check(more,"四次独立快速食用按份结算，保留食物不按日限额的新规则")
 	GameState.stamina=99;var count: int=Inventory.count("carrot")
-	await touch_button(find_button(panel,"吃1个\n+8体力"))
+	await touch_button(find_button(panel,"食用1份"))
 	check(GameState.stamina==100 and Inventory.count("carrot")==count-1,"不足一份恢复也只扣一份且体力不超过上限")
-	var before:=stamp();await touch_button(find_button(panel,"吃1个\n+8体力"))
+	var before:=stamp();await touch_button(find_button(panel,"食用1份"))
 	check(stamp()==before,"满体力再次食用不消耗物品")
 	GameState.stamina=20
-	var old:=find_button(panel,"吃1个\n+8体力")
+	var old:=find_button(panel,"食用1份")
 	panel.close_panel();before=stamp()
 	if is_instance_valid(old): old.pressed.emit()
 	await frames(2)
 	check(stamp()==before,"背包关闭后旧按钮回调不继续食用")
 	panel.open_panel(false);await frames(4)
 	panel.select_item("carrot");await frames(2)
-	var carrot:=find_button(panel,"吃1个\n+8体力")
+	var carrot:=find_button(panel,"食用1份")
 	await reveal(carrot)
 	before=stamp()
 	if carrot:
@@ -113,7 +122,7 @@ func use_safety() -> void:
 		Touch.finger(self,a,true,170);Touch.finger(self,a,true,171)
 		Touch.finger(self,a,false,171);Touch.finger(self,a,false,170);await frames(3)
 	check(GameState.stamina==int(before.stamina)+8 and Inventory.count("carrot")==int(before.items.carrot)-1,"同按钮只认主触点，两手指释放不会重复消费同次点击")
-	var held:=find_button(panel,"吃1个\n+8体力");await reveal(held)
+	var held:=find_button(panel,"食用1份");await reveal(held)
 	before=stamp()
 	if held:
 		var a: Vector2=held.get_global_rect().get_center();Touch.finger(self,a,true,172)
@@ -129,30 +138,31 @@ func selection_and_tabs() -> void:
 	if not panel.has_method("select_item"): return
 	var before:=stamp();panel.select_item("carrot_seed");await frames(2)
 	check(panel.selected_item=="carrot_seed" and stamp()==before,"选择种子只查看，不装备或消耗")
-	check(panel.selected_detail.text.contains(Catalog.item_name("carrot_seed")) and panel.selected_detail.text.contains("8"),"选择详情显示对应物品名称和实际数量")
+	check(details_text().contains(Catalog.item_name("carrot_seed")) and details_text().contains("8"),"选择详情显示对应物品名称和实际数量")
 	panel.select_item("carrot");await frames(2)
-	check(panel.selected_item=="carrot" and panel.selected_detail.text.contains(Catalog.item_name("carrot")) and stamp()==before,"切换到收获物品立即更新详情，不消费食物")
+	check(panel.selected_item=="carrot" and details_text().contains(Catalog.item_name("carrot")) and stamp()==before,"切换到收获物品立即更新详情，不消费食物")
 	panel.select_item("invented_item");await frames(2)
 	check(panel.selected_item!="invented_item" and stamp()==before,"未知物品不能成为有效使用目标")
-	for caption in ["材料与矿物","鱼苗与湖鲜","生活与料理","种子与收获"]:
+	for caption in ["材料","料理","种子","全部"]:
 		await touch_button(find_button(panel,caption))
 		check(stamp()==before,"切换原分类只重排显示，不改变物品总数："+caption)
-	await touch_button(find_button(panel,"鱼苗与湖鲜"));panel.select_item("fish_feed");await frames(2)
+	await touch_button(find_button(panel,"材料"));panel.select_item("fish_feed");await frames(2)
 	check(panel.selected_item=="fish_feed" and stamp()==before,"鱼饲料只查看照料用途，不从背包凭空投喂或扣除")
-	await touch_button(find_button(panel,"生活与料理"));panel.select_item("fishing_bait");await frames(2)
+	await touch_button(find_button(panel,"材料"));panel.select_item("fishing_bait");await frames(2)
 	check(panel.selected_item=="fishing_bait" and stamp()==before,"鱼饵只查看钓鱼用途，不从背包直接抛竿或消耗")
-	await touch_button(find_button(panel,"种子与收获"))
+	await touch_button(find_button(panel,"全部"))
 	panel.select_item("carrot");var count: int=Inventory.count("carrot")
 	Inventory.remove("carrot",1);await frames(3)
-	check(panel.selected_item=="carrot" and panel.selected_detail.text.contains(str(count-1)),"选中物品数量减少后详情即时同步")
+	check(panel.selected_item=="carrot" and details_text().contains(str(count-1)),"选中物品数量减少后详情即时同步")
 	Inventory.remove("carrot",Inventory.count("carrot"));await frames(3)
 	check(Inventory.count("carrot")==0 and not Inventory.items.has("carrot"),"数量为零按原规则删除库存键")
-	check(panel.selected_item in ["","carrot"] and not panel.selected_detail.text.contains("-1"),"耗尽物品详情不显示负数量或悬空对象")
-	var empty_food:=find_button(panel,"吃1个\n+8体力");before=stamp()
-	await touch_button(empty_food)
+	check(panel.selected_item in ["","carrot"] and not details_text().contains("-1"),"耗尽物品详情不显示负数量或悬空对象")
+	var empty_food:=find_button(panel,"食用1份");before=stamp()
+	check(empty_food==null,"耗尽物品不再留下可点击的食用按钮")
+	panel.use_item("carrot");await frames(2)
 	check(stamp()==before,"数量为零时原食用入口不能凭空恢复体力或变成负库存")
 	before=stamp();panel.refresh();await frames(2)
-	check(stamp()==before,"当前工程没有拆分拖拽玩法，重排刷新仍保持全部物品守恒")
+	check(stamp()==before,"新分组界面重复刷新仍保持全部物品守恒")
 	panel.close_panel();await frames(2)
 	check(str(panel.selected_item)=="" and panel.pending_sale.is_empty(),"关闭背包清理临时选中和悬浮确认状态")
 
@@ -212,7 +222,7 @@ func lifecycle() -> void:
 		check(GameState.control_mode==mode and not GameState.modal and game.hud.joystick.visible==(mode=="joystick"),"关闭背包恢复原操作方式："+mode)
 	panel.open_panel(false);await frames(3)
 	panel.select_item("carrot");await frames(2)
-	var old:=find_button(panel,"吃1个\n+8体力")
+	var old:=find_button(panel,"食用1份")
 	var before:=stamp();game.change_location("home");await frames(3)
 	if is_instance_valid(old): old.pressed.emit()
 	await frames(2)

@@ -28,10 +28,12 @@ var crop_page: int=0
 var crop_group: int=0
 var sale_detail: Label
 var sale_quantity_label: Label
+var legacy_column: VBoxContainer
+var backpack: BackpackView
 
 func _ready() -> void:
 	add_to_group("modal_panels");hide()
-	var column:=VBoxContainer.new();column.add_theme_constant_override("separation",10);add_child(column)
+	var column:=VBoxContainer.new();legacy_column=column;column.add_theme_constant_override("separation",10);add_child(column)
 	var header:=HBoxContainer.new();column.add_child(header)
 	title=FarmUIStyle.heading(header,"背包","market")
 	header.add_child(FarmUIStyle.button("关闭 ×",close_panel,100))
@@ -55,15 +57,28 @@ func _ready() -> void:
 	Events.location_changed.connect(func(_id: String):
 		if visible: close_panel()
 	)
+	backpack=BackpackView.new();backpack.owner_panel=self;add_child(backpack)
 
 func open_panel(as_shop: bool) -> void:
 	if GameState.modal: return
 	pending_sale.clear();pending_purchase.clear();purchase_serial+=1;sale_serial+=1;view_epoch+=1;content_key="";selected_item=""
 	crop_page=0;crop_group=0
 	shop_mode=as_shop;materials_tab=false;aquaculture_tab=false;life_tab=false;quantity=1
-	GameState.set_modal(true);show();refresh();scroll.scroll_vertical=0
+	legacy_column.visible=as_shop
+	GameState.set_modal(true);show()
+	if as_shop: backpack.close();refresh();scroll.scroll_vertical=0
+	else: backpack.open()
+	call_deferred("layout_backpack")
+
+func layout_backpack() -> void:
+	if not visible or shop_mode or not is_instance_valid(Kitchen.game): return
+	var hud: Node=Kitchen.game.hud
+	var extent: Vector2=(hud.safe.size-Vector2(24,24)).min(Vector2(1160,680))
+	hud.place(self,Vector2(.5,.5),Vector2(.5,.5),Rect2(-extent*.5,extent))
+	backpack.queue_refresh()
 
 func close_panel() -> void:
+	if is_instance_valid(backpack): backpack.close()
 	DiamondPayments.cancel(self);pending_sale.clear();pending_purchase.clear();purchase_serial+=1;sale_serial+=1;view_epoch+=1;content_key="";selected_item=""
 	selected_detail.text="轻点物品图标或名称查看；使用与装备需点对应按钮。"
 	for view in row_views.values():
@@ -72,6 +87,8 @@ func close_panel() -> void:
 
 func change_category(index: int) -> void:
 	if not visible: return
+	if not shop_mode:
+		backpack.change_filter(["all","materials","materials","all"][clampi(index,0,3)]);return
 	DiamondPayments.cancel(self);pending_sale.clear();pending_purchase.clear();purchase_serial+=1;sale_serial+=1
 	crop_page=0
 	materials_tab=index==1;aquaculture_tab=index==2;life_tab=index==3;selected_item=""
@@ -85,6 +102,7 @@ func category() -> String:
 
 func refresh() -> void:
 	if not visible: return
+	if not shop_mode and is_instance_valid(backpack): backpack.queue_refresh();return
 	# 高密度触控目标增大时，交易辅助区随内容滚动，保留至少一行物品视野。
 	if UIMetrics.minimum_target()>64 and not scrolling_trade_controls:
 		payment_control.reparent(rows);footer.reparent(rows);scrolling_trade_controls=true
@@ -236,6 +254,9 @@ func update_rows() -> void:
 				"fish_buy": button.text="购买%d份\n%s" % [quantity,DiamondPayments.text(fish_cost(id)*quantity)]
 
 func select_item(id: String) -> void:
+	if not shop_mode and is_instance_valid(backpack):
+		if visible: backpack.select_item(id)
+		return
 	if not visible or not Catalog.is_item(id): return
 	var present:=false
 	for view in row_views.values():
@@ -365,6 +386,7 @@ func equip_tool(id: String) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if visible and (event.is_action_pressed("ui_cancel") or event.is_action_pressed("bag")):
+		if not shop_mode and backpack.handle_back(): get_viewport().set_input_as_handled();return
 		close_panel();get_viewport().set_input_as_handled()
 
 func build_purchase() -> void:

@@ -27,7 +27,26 @@
 
 P0完整回归已完成：221进程、12,526断言零失败。因旧断言要求吸回格心及继续未生效旧农活，按新要求校正这些断言后从失败步骤继续；生产代码在这轮回归中保持冻结。执行日志为 `builds/ux083-p0-full-regression-final.log`、`-resume.log`、`-resume2.log`，汇总 `docs/ux083/p0/results.json` 已标记complete。实际窗口数据与GIF另存P0目录，动画为实际帧取样，没有生成运动补帧。
 
-P0报告：`docs/UX083-P0-TASKS.md`。正在清理重复采集时的过期帧并独立提交P0，尚未开始UI实现。下一步阶段A。旧版UI实拍已从2d427f2隔离副本生成到 `docs/ux083/before/`（背包、材料、仓库、商店、厨房、加工、九格HUD及共同fixture），捕获工具 `tests/ux083_baseline_ui.gd`只用于旧版。真实v30旧档由旧版本9项通过的独立写档进程产生，见 `legacy082-v30.json`与`legacy082-source-proof.json`。
+P0报告：`docs/UX083-P0-TASKS.md`。独立提交 `ab712de` 已推送到 `development/0.8.3`。旧版UI实拍已从2d427f2隔离副本生成到 `docs/ux083/before/`（背包、材料、仓库、商店、厨房、加工、九格HUD及共同fixture），捕获工具 `tests/ux083_baseline_ui.gd`只用于旧版。真实v30旧档由旧版本9项通过的独立写档进程产生，见 `legacy082-v30.json`与`legacy082-source-proof.json`。
+
+## 阶段A：进行中
+
+当前未提交修改包括新背包样板与库存布局层，版本标记已更新0.8.3《指尖田园》、Android code34，存档v31。没有发布0.8.3安装包。
+
+- `Inventory.items`仍是唯一实际物品总量，999上限不变；`inventory_layout`仅持久保存分组UID、格子位置和锁定。原有6种永久工具以已有能力的只读引用进入布局，不注册新物品、不进入仓库或丢弃。
+- `InventorySlots`负责数量投影和安全恢复；拆分、交换、合并、整理、丢弃和选用都在`Inventory`执行。重复token拒绝；整理保留较早UID和锁定格，其他业务变更自动同步分组。
+- 新增`ui_preferences`仍写入原存档，预留独立9格物品ID绑定、三格显示、分类、UI/触控/镜头偏好。v30→v31只补这两个字段；损坏的可选布局按原真实总量修复，非法真实库存仍拒绝。
+- 新`BackpackView`由原`InventoryPanel.open_panel(false)`打开；商店保留原界面及交易。10种数据分类、真实格子、详情、稳定选择、整理、数量滑块/1半全部/+−、长按菜单、长按拖动、鼠标交换、无效落点返回已实现。
+- `ModalTouchShield`阻断触摸在弹层空白处穿到背包；确认操作有独立弹层token，旧确认不能提交新弹层。物品拖动不会触发世界。
+- `Housing.deposit`与`FarmEconomy.sell`也检查锁定数量。食物、工具、种子选用仍复用原API。
+- 复用原羊皮纸/木色主题和图标，工具衬底抽到`ItemPresentation.tool_badge`；弹层增加同色系遮罩，背包内提示接到本地反馈，避免旧欢迎toast盖住页脚。
+- 参考原则沿用项目UI05已有研究：Stardew Mobile的目标操作与工具识别；Mistria的物品层级；Sun Haven的数量与转移；Pacha的常用工具/种子选择。没有引入这些游戏的美术资源。
+
+当前库存76项、背包输入37项、常规/480DPI实际窗口各37项通过。旧inventory03的52项消费/选择/容量/手势断言全部通过，原加工29、厨房100、农活110、旧牧场迁移184、独立进程写档9/读档10通过。UI截图在 `docs/ux083/stage-a/`。修复了分组整理后保留较早UID、JSON数字规范化、弹层旧确认token，以及弹层空白触摸穿透。
+
+阶段A代码与窗口样板已验证，报告`docs/UX083-INVENTORY.md`，正在独立提交。之后B仓库与快捷栏、C输入手势、D任务导航/智能交互、E其他UI与设置、F全量验收和APK/Windows/源码交付均未完成。
+
+旧版UI基线曾给一级仓库存3种物品，违反原2种容量；已改为通过旧`Housing.deposit`真实存入木材/石头两种并验证完整旧档，重新生成所有before截图和共同fixture。新背包没有放宽仓库规则。
 
 旧版完整基线218进程、12,226断言完成，`docs/ux083/baseline-tests.json`。首次ranch082-ui功能断言全部通过但退出有音频资源警告，同项与后续重跑通过；原日志保留。新代码审计用verbose确认AudioStreamPlaybackWAV泄漏，已让停止的音频通道不再每帧切换暂停状态，两个受影响测试452/209项均无警告。正常活动通道的播放规则不变。
 

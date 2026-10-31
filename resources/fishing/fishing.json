@@ -4,9 +4,9 @@
   "energy_per_cast":3,
   "bait_price":4,
   "items":{
-    "fishing_bait":{"name":"湖岸鱼饵","sell_price":1,"description":"每次抛竿消耗一份；小麦可制作，取消钓鱼不退还。","category":"fishing"},
-    "fishing_hook":{"name":"稳流鱼钩","sell_price":0,"description":"装上后可辅助30次抛竿；鱼更容易停留在控制区内。","category":"fishing"},
-    "fish_eternal":{"name":"永恒星鲤","sell_price":0,"description":"高生态流星夜的活体记录。每季最多捕获一尾，不出售、不兑换钻石。","category":"fish"}
+    "fishing_bait":{"kind":"material","name":"湖岸鱼饵","sell_price":1,"description":"每次抛竿消耗一份；小麦可制作，取消钓鱼不退还。","category":"fishing"},
+    "fishing_hook":{"kind":"equipment","name":"稳流鱼钩","sell_price":0,"description":"装上后可辅助30次抛竿；鱼更容易停留在控制区内。","category":"fishing"},
+    "fish_eternal":{"kind":"collection","protected":true,"name":"永恒星鲤","sell_price":0,"description":"高生态流星夜的活体记录。每季最多捕获一尾，不出售、不兑换钻石。","category":"fish"}
   },
   "sites":{
     "farm_lake":{"name":"河湾湖泊 · 西北岸","area":"farm","shore":[976,464],"water":[1040,528],"habitat":"lake"},

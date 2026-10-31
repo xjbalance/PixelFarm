@@ -3,6 +3,17 @@ extends RefCounted
 ## 展示层复用原物品图；无原图的材料采用轻量原创像素符号，不注册新物品。
 static var textures: Dictionary = {}
 
+static func tool_badge(source: Texture2D) -> Texture2D:
+	var original: Image=source.atlas.get_image() if source is AtlasTexture else source.get_image()
+	if original.is_compressed(): original.decompress()
+	if source is AtlasTexture: original=original.get_region(Rect2i(source.region))
+	if original.get_format()!=Image.FORMAT_RGBA8: original.convert(Image.FORMAT_RGBA8)
+	var badge:=Image.create(32,32,false,Image.FORMAT_RGBA8);badge.fill(Color("425b4b"))
+	for point in range(32):
+		for edge in [Vector2i(point,0),Vector2i(point,31),Vector2i(0,point),Vector2i(31,point)]: badge.set_pixelv(edge,Color("81765c"))
+	badge.blend_rect(original,Rect2i(0,0,32,32),Vector2i.ZERO)
+	return ImageTexture.create_from_image(badge)
+
 static func texture(id: String) -> Texture2D:
 	if textures.has(id): return textures[id]
 	var result: Texture2D

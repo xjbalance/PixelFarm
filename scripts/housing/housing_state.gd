@@ -344,6 +344,7 @@ func clear_style(kind: String) -> bool:
 	busy=true;state.appearance[kind]="plain";_commit();return true
 func deposit(item: String, quantity: int) -> bool:
 	if busy or not near_storage() or not Catalog.is_item(item) or quantity<1 or quantity>999 or int(state.storage.get(item,0))+quantity>999: return false
+	if Inventory.transferable(item)<quantity: return false
 	if not state.storage.has(item) and state.storage.size()>=slot_count(): return false
 	if not _exchange({item:quantity},{}): return false
 	state.storage[item]=int(state.storage.get(item,0))+quantity;_commit();return true

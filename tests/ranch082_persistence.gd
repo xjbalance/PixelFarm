@@ -29,7 +29,7 @@ func write_fixture() -> void:
 	await frames(24);game.change_location("pasture_coop",RanchLayout.entry("coop"));await frames(5)
 	GameState.set_control_mode("joystick",false)
 	var snapshot:=FarmSaveStore.snapshot(game)
-	check(snapshot.version==30 and FarmSaveStore.valid(snapshot),"pasture location and all old/new animal state valid")
+	check(snapshot.version==FarmSaveStore.VERSION and FarmSaveStore.valid(snapshot),"pasture location and all old/new animal state valid")
 	var device: String=str(Workshop.state.jobs.keys()[0]);var serial: int=int(Workshop.state.jobs[device].id)
 	proof_write({"data":snapshot,"duck":duck.id,"device":device,"serial":serial,"claimed":false})
 	check(FarmSaveStore.write(game) and FarmSaveStore.write(game),"v30 pasture save and valid backup written in independent process")

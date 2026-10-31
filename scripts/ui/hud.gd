@@ -226,17 +226,7 @@ func build_controls() -> void:
 	safe.add_child(cycle)
 
 func tool_badge(source: Texture2D) -> Texture2D:
-	# 原工具贴图保持不变，只在一次性显示纹理中衬深色底，提高浅色工具对比。
-	var original: Image=source.atlas.get_image() if source is AtlasTexture else source.get_image()
-	if original.is_compressed(): original.decompress()
-	if source is AtlasTexture: original=original.get_region(Rect2i(source.region))
-	if original.get_format()!=Image.FORMAT_RGBA8: original.convert(Image.FORMAT_RGBA8)
-	var badge:=Image.create(32,32,false,Image.FORMAT_RGBA8)
-	badge.fill(Color("425b4b"))
-	for point in range(32):
-		for edge in [Vector2i(point,0),Vector2i(point,31),Vector2i(0,point),Vector2i(31,point)]: badge.set_pixelv(edge,Color("81765c"))
-	badge.blend_rect(original,Rect2i(0,0,32,32),Vector2i.ZERO)
-	return ImageTexture.create_from_image(badge)
+	return ItemPresentation.tool_badge(source)
 
 func build_feedback() -> void:
 	var guide := PanelContainer.new()
@@ -393,6 +383,8 @@ func reflow_panels() -> void:
 	if not is_instance_valid(dialogue): return
 	for panel in get_tree().get_nodes_in_group("modal_panels"):
 		if not safe.is_ancestor_of(panel): continue
+		if panel==inventory_panel and inventory_panel.visible and not inventory_panel.shop_mode:
+			inventory_panel.layout_backpack();continue
 		if panel.get_meta("territory_editor",false):
 			panel.controller.layout_panel();continue
 		if panel.get_meta("home_editor",false):
@@ -628,7 +620,7 @@ func refresh_farm_guide() -> void:
 
 func _process(delta: float) -> void:
 	toast_time = maxf(0, toast_time - delta)
-	toast.visible = toast_time > 0 and not (is_instance_valid(workshop_panel) and workshop_panel.visible) and not (is_instance_valid(kitchen_panel) and kitchen_panel.visible)
+	toast.visible = toast_time > 0 and not (is_instance_valid(workshop_panel) and workshop_panel.visible) and not (is_instance_valid(kitchen_panel) and kitchen_panel.visible) and not (is_instance_valid(inventory_panel) and inventory_panel.visible and not inventory_panel.shop_mode)
 	prompt_label.visible = not GameState.modal and not prompt_label.text.is_empty()
 	position_camera_return()
 

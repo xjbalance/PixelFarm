@@ -2,7 +2,7 @@ class_name FarmSaveSchema
 extends RefCounted
 ## schema 版本迁移与验证不修改游戏状态；返回空字典表示整份存档不可用。
 static func normalize(raw: Variant) -> Dictionary:
-	if not raw is Dictionary or not whole(raw.get("version"),1,30): return {}
+	if not raw is Dictionary or not whole(raw.get("version"),1,31): return {}
 	var data: Dictionary = raw.duplicate(true)
 	# 旧路线盘的数字格ID也必须规范，防止JSON浮点枚举失配/重复矿格。
 	if data.get("xiaojing") is Dictionary and data.xiaojing.get("cave") is Dictionary:
@@ -153,6 +153,15 @@ static func normalize(raw: Variant) -> Dictionary:
 		data.livestock=Livestock.migrate_v29(data.get("livestock"),int(data.day))
 		if data.livestock.is_empty(): return {}
 		data.version=30
+	if not valid_item_totals(data.get("items")): return {}
+	if int(data.version)==30:
+		data.inventory_layout=InventorySlots.defaults(data.items)
+		data.ui_preferences=InteractionPreferences.defaults(data)
+		data.version=31
+	# Layout/preferences are optional presentation metadata. Repair them from
+	# authoritative totals without granting, deleting or repricing any item.
+	data.inventory_layout=InventorySlots.normalize(data.get("inventory_layout"),data.items)
+	data.ui_preferences=InteractionPreferences.normalize(data.get("ui_preferences"),data)
 	# Cleared farm resources become permanent land, including v29's pending regrowth.
 	if not valid_resources(data.get("resources"),data.get("day")): return {}
 	var farm_resources:=FarmResourceCatalog.placements("farm")
@@ -253,6 +262,12 @@ static func valid_resources(data: Variant, day: Variant) -> bool:
 static func whole(value: Variant, low: int, high: int) -> bool:
 	return (value is int or value is float) and is_finite(float(value)) and float(value) == floorf(float(value)) and value >= low and value <= high
 
+static func valid_item_totals(value: Variant) -> bool:
+	if not value is Dictionary or value.size()>Catalog.items.size(): return false
+	for id in value:
+		if not id is String or not Catalog.is_item(id) or not whole(value[id],1,Inventory.MAX_STACK): return false
+	return true
+
 static func valid_current(data: Variant) -> bool:
 	if not data is Dictionary: return false
 	if not Letters.validate(data.get("letters")): return false
@@ -267,7 +282,8 @@ static func valid_current(data: Variant) -> bool:
 	if not AbyssSaveSchema.validate(data.get("abyss"),int(data.day)) or not AbyssSaveSchema.legend(data.get("legend"),data.xiaojing,int(data.day)): return false
 	if not valid_progress(data.get("progress"),data.get("day")): return false
 	if not valid_resources(data.get("resources"),data.get("day")): return false
-	if not whole(data.get("version"),30,30) or not Story.validate(data.get("story")): return false
+	if not whole(data.get("version"),31,31) or not Story.validate(data.get("story")): return false
+	if not InventorySlots.valid(data.get("inventory_layout"),data.get("items",{})): return false
 	if not FarmLayout.validate(data.get("farm_layout"),data): return false
 	if not Territory.validate(data.get("territory"),data): return false
 	if not CharacterAppearance.validate(data.get("appearance")): return false

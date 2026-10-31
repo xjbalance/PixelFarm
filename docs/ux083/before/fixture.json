@@ -1,0 +1,1554 @@
+{
+	"abyss": {
+		"air": 160,
+		"bosses": [],
+		"camp_day": 0,
+		"checkpoint": 1,
+		"chests": [],
+		"depth": 1,
+		"diamond_counter": 0,
+		"extra": {
+
+		},
+		"gates": [],
+		"gear": 1,
+		"hazards": [],
+		"max_clear": 0,
+		"notes": [],
+		"ore_days": {
+
+		},
+		"ores": {
+
+		},
+		"rations": 0,
+		"rescues": 0,
+		"run": 0,
+		"safety": [],
+		"seen": [],
+		"shortcuts": [],
+		"steps": {
+
+		},
+		"survey": 0,
+		"survey_day": 0,
+		"unlocked": false,
+		"warnings": {
+
+		}
+	},
+	"appearance": {
+		"player_gender": "male",
+		"scheme": "C",
+		"xiaojing_gender": "female"
+	},
+	"aquaculture": {
+		"collection": [],
+		"harvested": {
+
+		},
+		"last_settled_day": 1,
+		"meal_day": 0,
+		"order_baseline": 0,
+		"order_count": 0,
+		"order_day": 0,
+		"pens": {
+			"pen_1": {
+				"adults": 0,
+				"breeding": 0,
+				"built": false,
+				"cohorts": [],
+				"fed_count": 0,
+				"feed_stock": 0,
+				"health": 100,
+				"id": "pen_1",
+				"last_feed_day": 0,
+				"last_maintain_day": 0,
+				"last_settled_day": 1,
+				"level": 0,
+				"species": "",
+				"water": 80
+			},
+			"pen_2": {
+				"adults": 0,
+				"breeding": 0,
+				"built": false,
+				"cohorts": [],
+				"fed_count": 0,
+				"feed_stock": 0,
+				"health": 100,
+				"id": "pen_2",
+				"last_feed_day": 0,
+				"last_maintain_day": 0,
+				"last_settled_day": 1,
+				"level": 0,
+				"species": "",
+				"water": 80
+			},
+			"pen_3": {
+				"adults": 0,
+				"breeding": 0,
+				"built": false,
+				"cohorts": [],
+				"fed_count": 0,
+				"feed_stock": 0,
+				"health": 100,
+				"id": "pen_3",
+				"last_feed_day": 0,
+				"last_maintain_day": 0,
+				"last_settled_day": 1,
+				"level": 0,
+				"species": "",
+				"water": 80
+			},
+			"pen_4": {
+				"adults": 0,
+				"breeding": 0,
+				"built": false,
+				"cohorts": [],
+				"fed_count": 0,
+				"feed_stock": 0,
+				"health": 100,
+				"id": "pen_4",
+				"last_feed_day": 0,
+				"last_maintain_day": 0,
+				"last_settled_day": 1,
+				"level": 0,
+				"species": "",
+				"water": 80
+			}
+		},
+		"processed": {
+
+		},
+		"quests": [],
+		"xiaojing": {
+			"care_days": [],
+			"harvested": 0,
+			"invited_day": 0,
+			"pen": "",
+			"stage": 0
+		}
+	},
+	"calendar": {
+		"date": {
+			"absolute": 1,
+			"season": 0,
+			"season_day": 1,
+			"year": 1
+		},
+		"seed": 70701,
+		"weather": {
+			"day": 1,
+			"id": "clear",
+			"origin": "seasonal"
+		}
+	},
+	"chapter_two": {
+		"completed": [],
+		"facts": [],
+		"policy": ""
+	},
+	"coins": 1200,
+	"control_mode": "tap",
+	"day": 1,
+	"ecology": {
+		"clean_day": 0,
+		"cycle": false,
+		"debris": 0,
+		"health": 70,
+		"last_settled_day": 1,
+		"meteor_seen": false,
+		"plant_day": 0,
+		"plants": 0,
+		"restored": false,
+		"xiaojing_seen": false
+	},
+	"exploration": {
+		"chests": [],
+		"collection_reward": false,
+		"crafted": [],
+		"facts": [],
+		"forest": {
+			"open": false,
+			"step": 0
+		},
+		"gathered": {
+
+		},
+		"lake": {
+			"flow": 0,
+			"open": false,
+			"water": 2
+		},
+		"samples": [],
+		"temple": {
+			"mirror": 0,
+			"open": false,
+			"step": 0
+		},
+		"unlocked": [
+			"mist_forest"
+		]
+	},
+	"farm_layout": {
+		"fixtures": {
+
+		},
+		"plots": {
+
+		},
+		"resources": {
+
+		},
+		"revision": 0,
+		"version": 1
+	},
+	"festival": {
+		"claims": [],
+		"production": {
+			"items": {
+
+			},
+			"season": 0
+		},
+		"purchases": {
+
+		},
+		"runs": {
+
+		},
+		"tracking": {
+			"animal": {
+
+			},
+			"aquaculture": {
+
+			},
+			"cooking": {
+
+			},
+			"farm": {
+
+			},
+			"fishing": 0
+		},
+		"xiaojing_summer": false
+	},
+	"fishing": {
+		"achievements": [],
+		"casts": 0,
+		"casts_day": 0,
+		"collection": [],
+		"counts": {
+
+		},
+		"hook_charges": 0,
+		"legend_pity": 0,
+		"legend_season": -1,
+		"pending": "",
+		"pending_day": 0,
+		"rod": 1,
+		"serial": 0,
+		"total": 0,
+		"xp": 0
+	},
+	"housing": {
+		"appearance": {
+			"floor": "plain",
+			"wallpaper": "plain"
+		},
+		"builtins": {
+			"bed": {
+				"cell": [
+					25,
+					7
+				]
+			},
+			"bed_rug": {
+				"cell": [
+					24,
+					7
+				]
+			},
+			"chair_left": {
+				"cell": [
+					17,
+					10
+				]
+			},
+			"chair_right": {
+				"cell": [
+					21,
+					10
+				]
+			},
+			"dining_rug": {
+				"cell": [
+					16,
+					8
+				]
+			},
+			"dining_table": {
+				"cell": [
+					17,
+					9
+				]
+			},
+			"dresser": {
+				"cell": [
+					12,
+					7
+				]
+			},
+			"fireplace": {
+				"cell": [
+					17,
+					7
+				]
+			},
+			"kitchen": {
+				"cell": [
+					25,
+					12
+				]
+			},
+			"kitchen_tiles": {
+				"cell": [
+					24,
+					11
+				]
+			},
+			"lamp": {
+				"cell": [
+					28,
+					8
+				]
+			},
+			"mail_desk": {
+				"cell": [
+					21,
+					7
+				]
+			},
+			"main_rug": {
+				"cell": [
+					16,
+					12
+				]
+			},
+			"plant": {
+				"cell": [
+					28,
+					17
+				]
+			},
+			"sofa": {
+				"cell": [
+					20,
+					14
+				]
+			},
+			"storage": {
+				"cell": [
+					11,
+					14
+				]
+			}
+		},
+		"completed_jobs": [],
+		"construction": {
+
+		},
+		"flowers": {
+
+		},
+		"last_settled_day": 1,
+		"level": 1,
+		"owned": {
+
+		},
+		"placed": [],
+		"recovered": [],
+		"serial": 0,
+		"storage": {
+			"stone": 20,
+			"wood": 20
+		},
+		"upgrade_serial": 0
+	},
+	"items": {
+		"berry_jam": 3,
+		"bread": 8,
+		"carrot": 16,
+		"carrot_seed": 40,
+		"copper_bar": 6,
+		"cotton_cloth": 2,
+		"egg": 12,
+		"fish_carp": 4,
+		"flour": 12,
+		"milk": 6,
+		"mill_kit": 1,
+		"potato": 8,
+		"potato_seed": 12,
+		"rose": 5,
+		"stone": 45,
+		"strawberry_seed": 8,
+		"wheat": 30,
+		"wheat_seed": 24,
+		"wild_berry": 8,
+		"wood": 76
+	},
+	"journal": [],
+	"kitchen": {
+		"berry_day": 0,
+		"buff": {
+			"id": "",
+			"remaining": 0
+		},
+		"built": [],
+		"claimed": [],
+		"collected": {
+
+		},
+		"cooked": {
+
+		},
+		"last_settled_day": 1,
+		"next_job": 1,
+		"queue": []
+	},
+	"legend": {
+		"choice": "",
+		"contract": {
+
+		},
+		"deduction": 0,
+		"evidence": [],
+		"gifts": [],
+		"greenhouse": 0,
+		"legacy_vow": false,
+		"review": false,
+		"survey_day": 0,
+		"trials": []
+	},
+	"letters": {
+		"completed": [],
+		"direction": "",
+		"facts": {
+
+		},
+		"legacy_review": false
+	},
+	"livestock": {
+		"animals": [],
+		"buildings": {
+			"barn": {
+				"grazing_day": 0,
+				"last_breed_day": 0,
+				"level": 0
+			},
+			"coop": {
+				"grazing_day": 0,
+				"last_breed_day": 0,
+				"level": 0
+			},
+			"fold": {
+				"grazing_day": 0,
+				"last_breed_day": 0,
+				"level": 0
+			}
+		},
+		"last_settled_day": 1,
+		"range_version": 1,
+		"serial": 0
+	},
+	"location": "farm",
+	"mines": {
+		"chests": [],
+		"commission_mines": [],
+		"diamond_counter": 0,
+		"expedition": {
+
+		},
+		"exploration_events": [],
+		"furnace": false,
+		"hardened": false,
+		"job_serial": 0,
+		"legacy_board_claimable": false,
+		"legacy_board_settled": false,
+		"legacy_trials": [],
+		"linked_memories": [],
+		"ores": {
+
+		},
+		"queue": [],
+		"resonance_open": false,
+		"resonance_step": 0,
+		"survey": 0,
+		"tool": 1,
+		"track_repaired": false,
+		"track_switch": 0,
+		"unlocked": [],
+		"water_lowered": false,
+		"water_step": 0
+	},
+	"minutes": 360,
+	"muted": true,
+	"player": [
+		656,
+		480
+	],
+	"plots": {
+
+	},
+	"progress": {
+		"built": [],
+		"friendship": 0,
+		"last_talk_day": 0,
+		"quests": {
+
+		}
+	},
+	"recovery": {
+		"day": 1,
+		"rests": 0,
+		"snacks": 0
+	},
+	"resources": {
+		"brush_original_0": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"brush_original_1": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"brush_original_2": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"brush_original_3": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"brush_original_4": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"brush_original_5": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_boulder_5_60": {
+			"hp": 5,
+			"ready_day": 0
+		},
+		"exp082_boulder_92_7": {
+			"hp": 5,
+			"ready_day": 0
+		},
+		"exp082_boulder_94_39": {
+			"hp": 5,
+			"ready_day": 0
+		},
+		"exp082_bush_35_60": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_bush_46_56": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_bush_48_35": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_bush_53_10": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_bush_6_57": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_bush_73_40": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_bush_87_8": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_bush_90_60": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_bush_93_28": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_bush_94_46": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_rock_20_60": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_rock_42_38": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_rock_47_52": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_rock_52_38": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_rock_52_8": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_rock_5_36": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_rock_76_8": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_rock_79_40": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_rock_80_59": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_rock_89_9": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_rock_92_43": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_rock_93_24": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_stump_45_59": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_stump_55_6": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_stump_5_49": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_stump_92_19": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"exp082_tree_10_58": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_27_60": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_40_46": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_42_60": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_4_44": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_4_55": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_50_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_50_53": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_51_29": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_57_40": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_58_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_70_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_77_60": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_82_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_88_40": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_89_59": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_91_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_92_56": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_94_11": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_tree_94_32": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"exp082_weed_24_59": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_weed_43_45": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_weed_48_49": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_weed_51_25": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_weed_56_11": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_weed_59_40": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_weed_6_41": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_weed_75_60": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_weed_86_41": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_weed_90_12": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_weed_91_51": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"exp082_weed_93_35": {
+			"hp": 1,
+			"ready_day": 0
+		},
+		"mist_forest_rock_10_6": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_14_11": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_14_25": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_15_13": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_15_4": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_17_17": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_19_2": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_20_25": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_21_15": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_24_25": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_25_22": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_26_25": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_27_11": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_27_20": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_29_4": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_29_8": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_2_17": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_32_24": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_33_10": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_36_4": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_36_7": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_3_13": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_3_2": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_7_14": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_rock_9_2": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"mist_forest_tree_11_13": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_11_2": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_11_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_11_8": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_12_21": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_13_13": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_13_17": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_13_2": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_15_17": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_15_2": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_16_25": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_17_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_18_25": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_19_13": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_19_15": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_19_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_20_11": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_22_11": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_22_25": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_23_13": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_25_20": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_29_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_2_19": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_2_21": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_2_23": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_31_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_33_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_33_7": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_34_24": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_36_10": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_36_24": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_3_11": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_3_15": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_3_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_3_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_3_9": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_5_2": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_6_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_7_12": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_7_16": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_7_2": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_7_8": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_8_10": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_9_12": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"mist_forest_tree_9_16": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"rock_10_10": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_11_19": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_23_3": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_28_24": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_30_9": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_32_6": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_39_24": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_42_9": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_45_25": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_4_22": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_4_6": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"rock_8_13": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"tree_10_3": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_10_8": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_12_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_16_3": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_18_3": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_19_26": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_25_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_27_8": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_29_11": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_30_26": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_31_3": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_35_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_37_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_3_12": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_3_18": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_3_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_40_23": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_41_13": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_41_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_42_27": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_43_3": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_44_21": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_45_12": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_45_29": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_45_8": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_4_15": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_5_8": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_7_20": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_7_4": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"tree_9_24": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_rock_21_5": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"village_rock_34_22": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"village_rock_36_26": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"village_rock_37_10": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"village_rock_4_11": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"village_rock_8_21": {
+			"hp": 2,
+			"ready_day": 0
+		},
+		"village_tree_12_24": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_12_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_18_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_23_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_31_5": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_34_24": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_3_19": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_3_22": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_3_6": {
+			"hp": 3,
+			"ready_day": 0
+		},
+		"village_tree_7_6": {
+			"hp": 3,
+			"ready_day": 0
+		}
+	},
+	"river": {
+		"crafted": {
+
+		},
+		"crop_count": 0,
+		"ending_day": 0,
+		"ending_until": 0,
+		"facts": [],
+		"festival": -1,
+		"jobs": [],
+		"legacy_rules": false,
+		"legacy_scene": false,
+		"memory_seen": [],
+		"memory_steps": {
+
+		},
+		"old_checkpoints": [],
+		"old_contract": "",
+		"policy": "",
+		"post": "",
+		"post_done": [],
+		"post_steps": [],
+		"sown": {
+
+		},
+		"venue_used": false,
+		"wedding_step": 0,
+		"weekly_day": 0
+	},
+	"selected": 0,
+	"social": {
+		"active": {
+
+		},
+		"choices": {
+
+		},
+		"completed": [],
+		"daily": {
+			"ahe": {
+				"birthday_year": 0,
+				"gift_day": 0,
+				"gifts": [],
+				"talk_day": 0
+			},
+			"linya": {
+				"birthday_year": 0,
+				"gift_day": 0,
+				"gifts": [],
+				"talk_day": 0
+			},
+			"xiaojing": {
+				"birthday_year": 0,
+				"gift_day": 0,
+				"gifts": [],
+				"talk_day": 0
+			},
+			"zhou": {
+				"birthday_year": 0,
+				"gift_day": 0,
+				"gifts": [],
+				"talk_day": 0
+			}
+		},
+		"friendship": {
+			"ahe": 0,
+			"linya": 0,
+			"zhou": 0
+		}
+	},
+	"stamina": 100,
+	"star_story": {
+		"appointment": {
+
+		},
+		"assembly": 0,
+		"challenge": {
+
+		},
+		"choices": {
+
+		},
+		"cooperate_day": 0,
+		"events": [],
+		"facts": [],
+		"gift_mood_day": 0,
+		"invited": [],
+		"legacy_import": false,
+		"post_run": "",
+		"post_steps": [],
+		"repair_pending": false,
+		"season_done": -1,
+		"season_run": {
+
+		},
+		"wedding_phase": 0
+	},
+	"story": {
+		"assisted_tools": true,
+		"lantern": "",
+		"motive": "",
+		"seen": [],
+		"stage": 0
+	},
+	"territory": {
+		"objects": [],
+		"permissions": {
+			"east_holding": "private",
+			"farm": "private",
+			"forest_holding": "private",
+			"lake_holding": "private",
+			"manor_holding": "private"
+		},
+		"revision": 0,
+		"serial": 0,
+		"terrain": {
+
+		},
+		"unlocked": [
+			"farm"
+		],
+		"version": 1
+	},
+	"tutorial": {
+		"seen": [
+			"tap_move",
+			"farm_basics",
+			"sleep_hours",
+			"day_rest",
+			"fishing",
+			"fishpens",
+			"animals",
+			"seasons",
+			"wheat_milling",
+			"workshop_first",
+			"workshop_collect",
+			"food_energy",
+			"recipe_missing"
+		]
+	},
+	"version": 30,
+	"village": {
+		"built": [],
+		"tea_day": 0,
+		"water_day": 0
+	},
+	"workshop": {
+		"claimed": [],
+		"jobs": {
+
+		},
+		"legacy_installed": [],
+		"next_job": 1,
+		"orchard": {
+
+		},
+		"selected_seed": "wheat_seed",
+		"version": 2
+	},
+	"world_changes": {
+		"observed": {
+
+		}
+	},
+	"world_development": {
+		"build_days": {
+			"community": [],
+			"dock": []
+		},
+		"community": 0,
+		"community_count": 0,
+		"community_day": 0,
+		"dock": 0,
+		"lamps": {
+			"river": 0,
+			"square": 0,
+			"west": 0
+		},
+		"order": {
+
+		},
+		"parcel_claimed": [],
+		"parcels": {
+
+		},
+		"supper_count": 0,
+		"supper_day": 0,
+		"tracking": {
+			"animal": {
+
+			},
+			"aquaculture": {
+
+			},
+			"cooking": {
+
+			},
+			"farm": {
+
+			},
+			"fishing": 0,
+			"jobs": []
+		},
+		"trade_count": 0,
+		"trade_day": 0
+	},
+	"xiaojing": {
+		"activity_day": 0,
+		"affection": 0,
+		"bond": 0,
+		"cave": {
+
+		},
+		"counters": {
+			"activity": 0,
+			"plant": 0,
+			"puzzle": 0
+		},
+		"dating": false,
+		"diamonds": 0,
+		"events": [],
+		"gift_day": 0,
+		"greenhouse": false,
+		"letter_ready": false,
+		"married": false,
+		"mechanism": 0,
+		"mechanism_moves": 0,
+		"memories": [],
+		"mineral_counter": 0,
+		"order_day": 0,
+		"ore": 0,
+		"plant_serial": 0,
+		"plants": 0,
+		"post_events": [],
+		"proposed": false,
+		"puzzle_step": 0,
+		"quest_baseline": {
+			"activity": 0,
+			"plant": 0,
+			"puzzle": 0
+		},
+		"quests": [],
+		"relic_claimed": false,
+		"talk_day": 0,
+		"trial": {
+
+		},
+		"trials": [],
+		"trust": 0,
+		"ultimate": false,
+		"unlocked": false,
+		"visited": [],
+		"wedding_day": 0
+	}
+}
