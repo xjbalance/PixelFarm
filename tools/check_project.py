@@ -22,6 +22,9 @@ logs = ROOT/'builds'
 logs.mkdir(exist_ok=True)
 steps = [
     ('import', ['--import']),
+    ('ux083-task-equivalence', ['--fixed-fps','60','res://tests/ux083_task_equivalence.tscn']),
+    ('ux083-navigation-geometry', ['--fixed-fps','60','res://tests/ux083_navigation_geometry.tscn']),
+    ('ux083-request-lifecycle', ['--fixed-fps','60','res://tests/ux083_request_lifecycle.tscn']),
     ('quality081-animation', ['--fixed-fps','60','res://tests/quality081_animation_runner.tscn']),
     ('quality081-production', ['--fixed-fps','60','res://tests/quality081_production_runner.tscn']),
     ('quality081-ui', ['--fixed-fps','60','res://tests/quality081_ui_runner.tscn']),

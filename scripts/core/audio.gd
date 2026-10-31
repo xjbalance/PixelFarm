@@ -41,10 +41,12 @@ func loop_player(source: AudioStreamWAV, volume: float) -> AudioStreamPlayer:
 
 func _process(delta: float) -> void:
 	for channel in extra_channels:
-		if is_instance_valid(channel): channel.stream_paused=muted or in_background or GameState.location!="greenhouse"
+		if is_instance_valid(channel) and channel.playing: channel.stream_paused=muted or in_background or GameState.location!="greenhouse"
 	if not music or not rain: return
-	music.stream_paused = muted or in_background or GameState.location=="greenhouse"
-	rain.stream_paused = muted or in_background
+	# Stopped channels must stay stopped. In Godot 4.3 toggling pause on an
+	# inactive loop can retain/recreate its playback during asynchronous shutdown.
+	if music.playing: music.stream_paused = muted or in_background or GameState.location=="greenhouse"
+	if rain.playing: rain.stream_paused = muted or in_background
 	var rain_level := -24.0 if GameWeather.is_rainy() and GameState.location not in ["home","mine_a","mine_b","mine_c","abyss","greenhouse"] else -65.0
 	rain.volume_db = move_toward(rain.volume_db,rain_level,delta*24)
 	music.volume_db = move_toward(music.volume_db,-27.0 if GameState.modal else -23.0,delta*8)

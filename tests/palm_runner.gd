@@ -37,7 +37,7 @@ func moving_press() -> void:
 	Touch.finger(self,screen,false,81)
 	check(game.auto_move.target.get("object")==npc,"NPC在按下后移走，释放仍保留原人物而不是地面意图")
 	await Touch.finish(self,game,500)
-	check(game.hud.dialogue.visible and game.player.position.distance_to(npc.position)<=54,"保留人物目标后沿实际新位置靠近并对话一次")
+	check(game.hud.dialogue.visible and game.player.position.distance_to(npc.position)<=58,"保留人物目标后沿实际新位置靠近到原手动交互范围并对话一次")
 	game.hud.close_active_panel()
 
 func action_guard() -> void:

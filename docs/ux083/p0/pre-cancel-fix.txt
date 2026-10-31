@@ -1,0 +1,24 @@
+Godot Engine v4.3.stable.official.77dcf97d8 - https://godotengine.org
+
+PASS: 用真实开垦业务准备可播种地块
+PASS: 取消专项恢复同一份种子、农田和任务前置
+PASS: 真实点击已开始播种动作但尚未到生效帧
+ERROR: FAIL: 新点击替换未生效的播种，不扣种子、不增加520计数
+   at: push_error (core/variant/variant_utility.cpp:1092)
+PASS: 取消专项恢复同一份种子、农田和任务前置
+PASS: 真实点击已开始播种动作但尚未到生效帧
+ERROR: FAIL: 手动方向接管取消尚未生效的自动农活
+   at: push_error (core/variant/variant_utility.cpp:1092)
+PASS: 取消专项恢复同一份种子、农田和任务前置
+PASS: 真实点击已开始播种动作但尚未到生效帧
+PASS: 原生摇杆接管真实行走且释放后不恢复旧播种
+PASS: 取消专项恢复同一份种子、农田和任务前置
+PASS: 真实点击已开始播种动作但尚未到生效帧
+PASS: 打开关闭背包不提交尚未生效的世界交互
+PASS: 取消专项恢复同一份种子、农田和任务前置
+PASS: 真实点击已开始播种动作但尚未到生效帧
+PASS: 已经生效的播种不因取消动画退回或重复扣种
+PASS: 取消专项恢复同一份种子、农田和任务前置
+PASS: 任务对象消失会取消请求，不改投旁边对象或记录调查
+PASS: 失效目标不无限重算路径
+UX083 REQUEST LIFECYCLE RESULT: 19 checks, 2 failures

@@ -1,7 +1,7 @@
 class_name WorldNavigation
 extends RefCounted
 ## 32px 基数网格。静态碰撞按变更缓存，动态 NPC 在每次规划时刷新。
-## 保守格占位 + 起点脚底扫掠，避免旧档非格心位置直接穿进障碍。
+## 使用玩家实际脚底与碰撞掩码采样；起点和终点保留真实世界坐标。
 # AStarGrid2D 没有逐边禁用接口；对碰撞边施加不可选的高代价，结果再次拒绝该边。
 # 合法地图最远路线不到2000格，因而任何真实可达路线都优先于碰撞边。
 class CollisionGrid extends AStarGrid2D:
@@ -18,14 +18,18 @@ var dirty: bool = true
 var ready_frame: int = 0
 var rebuild_count: int = 0
 var query := PhysicsShapeQueryParameters2D.new()
+const NEARBY_LIMIT: float=64.0
 
 func _init(owner_game: Node) -> void:
 	game = owner_game
-	var footprint := RectangleShape2D.new()
-	footprint.size = Vector2(20,20)
-	query.shape = footprint
-	query.collision_mask = 1
-	query.margin = 0.01
+	query.shape=game.player.get_node("CollisionShape2D").shape
+	query.collision_mask=game.player.collision_mask
+	query.margin=game.player.safe_margin
+
+func foot_transform(at: Vector2) -> Transform2D:
+	var transform: Transform2D=game.player.global_transform
+	transform.origin=at
+	return transform*game.player.get_node("CollisionShape2D").transform
 
 func invalidate() -> void:
 	dirty = true
@@ -67,7 +71,7 @@ func rebuild() -> void:
 		static_solid.clear()
 		grid.blocked_edges.clear()
 		dynamic_cells.clear()
-		var excluded: Array[RID] = []
+		var excluded: Array[RID] = [game.player.get_rid()]
 		for object in game.get_tree().get_nodes_in_group("interactables"):
 			if object is CharacterBody2D: excluded.append(object.get_rid())
 		query.exclude = excluded
@@ -75,17 +79,14 @@ func rebuild() -> void:
 		for y in range(region.position.y,region.end.y):
 			for x in range(region.position.x,region.end.x):
 				var id := Vector2i(x,y)
-				query.transform = Transform2D(0,center(id))
+				query.transform = foot_transform(center(id))
 				for hit in space.intersect_shape(query,64):
 					if active_collider(hit.collider):
 						static_solid[id] = true
 						break
 				grid.set_point_solid(id,static_solid.has(id))
-		# 仅格心无碰撞不足以保证相邻格之间可走：薄围栏可能恰好位于格边。
-		# 以20px脚底方框扫过相邻格，缓存每条静态边的通行性。
-		var foot_shape: Shape2D = query.shape
-		var edge_shape := RectangleShape2D.new()
-		query.shape=edge_shape
+		# Sweep the same feet that move_and_slide uses. A 20px rectangle used
+		# here used to reject passages that the player's 18px circle can enter.
 		for y in range(region.position.y,region.end.y):
 			for x in range(region.position.x,region.end.x):
 				var id := Vector2i(x,y)
@@ -93,26 +94,26 @@ func rebuild() -> void:
 				for step in [Vector2i.RIGHT,Vector2i.DOWN]:
 					var other: Vector2i=id+step
 					if not region.has_point(other) or static_solid.has(other): continue
-					edge_shape.size=Vector2(20,20)+Vector2(step)*32
-					query.transform=Transform2D(0,(center(id)+center(other))*0.5)
-					for hit in space.intersect_shape(query,64):
-						if active_collider(hit.collider):
-							grid.blocked_edges[id+other]=true
-							break
-		query.shape=foot_shape
+					query.transform=foot_transform(center(id));query.motion=Vector2(step)*32
+					if space.cast_motion(query)[0]<0.99999: grid.blocked_edges[id+other]=true
+		query.motion=Vector2.ZERO
 		dirty = false
 		rebuild_count += 1
 	for id in dynamic_cells: grid.set_point_solid(id,static_solid.has(id))
 	dynamic_cells.clear()
+	var excluded:=query.exclude
+	query.exclude=[game.player.get_rid()]
 	for person in people():
 		var at := cell(person.global_position)
 		for y in range(at.y-1,at.y+2):
 			for x in range(at.x-1,at.x+2):
 				var id := Vector2i(x,y)
-				var offset: Vector2 = (center(id)-person.global_position).abs()
-				if region.has_point(id) and offset.x < 26 and offset.y < 26:
-					grid.set_point_solid(id,true)
-					dynamic_cells.append(id)
+				if not region.has_point(id): continue
+				query.transform=foot_transform(center(id))
+				for hit in game.player.get_world_2d().direct_space_state.intersect_shape(query,64):
+					if active_collider(hit.collider):
+						grid.set_point_solid(id,true);dynamic_cells.append(id);break
+	query.exclude=excluded
 
 func walkable(id: Vector2i) -> bool:
 	return region.has_point(id) and not grid.is_point_solid(id)
@@ -129,26 +130,38 @@ func collider_rids(node: Node) -> Array[RID]:
 func clear_segment(from: Vector2, to: Vector2) -> bool:
 	var sweep := PhysicsShapeQueryParameters2D.new()
 	sweep.shape = game.player.get_node("CollisionShape2D").shape
-	sweep.transform = Transform2D(0,from)
+	sweep.transform = foot_transform(from)
 	sweep.motion = to-from
-	sweep.collision_mask = 1
-	sweep.margin = 0.2
+	sweep.collision_mask = game.player.collision_mask
+	sweep.exclude=[game.player.get_rid()]
+	sweep.margin = game.player.safe_margin
 	var space := game.player.get_world_2d().direct_space_state as PhysicsDirectSpaceState2D
 	# cast_motion 不检查起点相交；两项一起防止读档或动态阻挡时穿透。
 	if not space.intersect_shape(sweep,1).is_empty(): return false
-	return space.cast_motion(sweep)[0] >= 0.999
+	return space.cast_motion(sweep)[0] >= 0.99999
 
 func line_of_sight(from: Vector2, to: Vector2, object: Node = null) -> bool:
-	var ray := PhysicsRayQueryParameters2D.create(from,to,1)
-	if object != null: ray.exclude = collider_rids(object)
+	var ray := PhysicsRayQueryParameters2D.create(from,to,game.player.collision_mask)
+	var excluded: Array[RID]=[game.player.get_rid()]
+	if object != null: excluded.append_array(collider_rids(object))
+	ray.exclude=excluded
 	return game.player.get_world_2d().direct_space_state.intersect_ray(ray).is_empty()
 
+func interaction_reach(target: Dictionary) -> float:
+	if target.kind=="plot": return 38.0
+	var object: Node=target.get("object")
+	# Preserve the old manual reach for story/NPC/mine interactions. Devices
+	# and household facilities already enforce 54px in their business layer.
+	if target.kind=="object" and object!=null and ("actor_id" in object or "person_id" in object or "mine_id" in object): return 58.0
+	return 54.0
+
 func legal_interaction(from: Vector2, target: Dictionary) -> bool:
-	var reach: float = 38.0 if target.kind == "plot" else 54.0
+	var reach:=interaction_reach(target)
 	return from.distance_to(target.point) <= reach and line_of_sight(from,target.point,target.get("object"))
 
 func path_to(target: Dictionary) -> PackedVector2Array:
 	var origin: Vector2 = game.player.global_position
+	if target.kind=="ground": return ground_path(origin,target.point)
 	if target.kind != "ground" and legal_interaction(origin,target): return PackedVector2Array([origin])
 	var start := cell(origin)
 	if not region.has_point(start): return PackedVector2Array()
@@ -183,4 +196,62 @@ func path_to(target: Dictionary) -> PackedVector2Array:
 			if length < cost:
 				cost = length
 				best = points
+	return best
+
+func ground_path(origin: Vector2, point: Vector2, allow_nearby: bool=true) -> PackedVector2Array:
+	if not region.has_point(cell(point)) or not region.has_point(cell(origin)): return PackedVector2Array()
+	# A ground click is an exact world position. Snapping it back to the centre
+	# of a 32px cell can leave the player outside a real quest trigger boundary.
+	if clear_segment(origin,point): return PackedVector2Array([point])
+	var starts: Array[Vector2i]=[]
+	var start:=cell(origin)
+	for y in range(start.y-1,start.y+2):
+		for x in range(start.x-1,start.x+2):
+			var id:=Vector2i(x,y)
+			if walkable(id) and clear_segment(origin,center(id)): starts.append(id)
+	var goal:=cell(point)
+	var best:=PackedVector2Array()
+	var cost: float=INF
+	for y in range(goal.y-1,goal.y+2):
+		for x in range(goal.x-1,goal.x+2):
+			var id:=Vector2i(x,y)
+			if not walkable(id) or not clear_segment(center(id),point): continue
+			for anchor in starts:
+				var route:=grid.get_point_path(anchor,id)
+				if route.is_empty(): continue
+				var valid: bool=true
+				for i in range(1,route.size()):
+					if grid.blocked_edges.has(cell(route[i-1])+cell(route[i])): valid=false;break
+				if not valid: continue
+				var length: float=origin.distance_to(route[0])+float(route.size()-1)*32+route[-1].distance_to(point)
+				if length<cost:
+					cost=length;best=route
+					if best[-1].distance_to(point)>.01: best.append(point)
+	if best.is_empty() and allow_nearby: return nearby_ground_path(origin,point)
+	return best
+
+func route_length(origin: Vector2, route: PackedVector2Array) -> float:
+	if route.is_empty(): return INF
+	var result: float=origin.distance_to(route[0])
+	for i in range(1,route.size()): result+=route[i-1].distance_to(route[i])
+	return result
+
+func nearby_ground_path(origin: Vector2, point: Vector2) -> PackedVector2Array:
+	var goal:=cell(point)
+	var best:=PackedVector2Array()
+	var cost: float=INF
+	# Search only two map tiles around the clicked point, and only use a route
+	# from the actual player position. A near point behind a sealed wall loses
+	# to a connected point on this side; a local click never sends us round a map.
+	var detour_limit: float=origin.distance_to(point)+256.0
+	for y in range(goal.y-2,goal.y+3):
+		for x in range(goal.x-2,goal.x+3):
+			var id:=Vector2i(x,y);var candidate:=center(id)
+			var proximity: float=candidate.distance_to(point)
+			if not walkable(id) or proximity>NEARBY_LIMIT: continue
+			var route:=ground_path(origin,candidate,false)
+			var length:=route_length(origin,route)
+			if length>detour_limit: continue
+			var score: float=proximity*3.0+length
+			if score<cost: cost=score;best=route
 	return best

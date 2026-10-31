@@ -291,6 +291,7 @@ func nearest_interactable() -> Node2D:
 		if not object.is_visible_in_tree(): continue
 		if "fish_point_id" in object and GameState.tool()!="fishing_rod": continue
 		if ("mine_id" in object or "abyss_id" in object) and "active" in object and not object.active: continue
+		if is_instance_valid(auto_move) and not auto_move.navigation.legal_interaction(player.global_position,{"kind":"object","object":object,"point":object.global_position}): continue
 		var current: float = player.global_position.distance_to(object.global_position)
 		if current < distance:
 			distance = current

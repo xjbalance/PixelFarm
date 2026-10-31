@@ -1,0 +1,1512 @@
+{
+	"baseline": true,
+	"business_mismatches": [
+		"east_bank",
+		"old_letter_marker"
+	],
+	"cases": [
+		{
+			"after": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [
+						"old_letter",
+						"first_crop",
+						"bridge_truth",
+						"tea_book",
+						"bridge_work"
+					],
+					"direction": "",
+					"facts": {
+						"bridge_survey": 1,
+						"east_bank": 1,
+						"guestbook": 1,
+						"harvest": 1,
+						"plant": 1,
+						"repair_record": 1,
+						"scene:bridge": 1,
+						"scene:carpenter": 1,
+						"scene:harvest": 1,
+						"scene:letter": 1,
+						"scene:welcome": 1,
+						"water": 1
+					},
+					"legacy_review": true
+				},
+				"location": "village",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "renew",
+					"seen": [
+						"letter",
+						"welcome",
+						"harvest",
+						"carpenter",
+						"bridge"
+					],
+					"stage": 5
+				}
+			},
+			"before": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [
+						"old_letter",
+						"first_crop",
+						"bridge_truth",
+						"tea_book",
+						"bridge_work"
+					],
+					"direction": "",
+					"facts": {
+						"bridge_survey": 1,
+						"guestbook": 1,
+						"harvest": 1,
+						"plant": 1,
+						"repair_record": 1,
+						"scene:bridge": 1,
+						"scene:carpenter": 1,
+						"scene:harvest": 1,
+						"scene:letter": 1,
+						"scene:welcome": 1,
+						"water": 1
+					},
+					"legacy_review": true
+				},
+				"location": "village",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "renew",
+					"seen": [
+						"letter",
+						"welcome",
+						"harvest",
+						"carpenter",
+						"bridge"
+					],
+					"stage": 5
+				}
+			},
+			"click": [
+				957,
+				496
+			],
+			"collision": false,
+			"dialogue": "",
+			"entered_east_bank": true,
+			"events": [
+				{
+					"completed": [
+						"old_letter",
+						"first_crop",
+						"bridge_truth",
+						"tea_book",
+						"bridge_work"
+					],
+					"event": "task_facts_changed",
+					"facts": {
+						"bridge_survey": 1,
+						"east_bank": 1,
+						"guestbook": 1,
+						"harvest": 1,
+						"plant": 1,
+						"repair_record": 1,
+						"scene:bridge": 1,
+						"scene:carpenter": 1,
+						"scene:harvest": 1,
+						"scene:letter": 1,
+						"scene:welcome": 1,
+						"water": 1
+					}
+				}
+			],
+			"mode": "joystick",
+			"navigation_calls": 0,
+			"navigation_state": 0,
+			"positions": [
+				{
+					"collision": false,
+					"position": [
+						946.416687011719,
+						496
+					],
+					"scene": "village"
+				},
+				{
+					"collision": false,
+					"position": [
+						948.833374023438,
+						496
+					],
+					"scene": "village"
+				},
+				{
+					"collision": false,
+					"position": [
+						951.250061035156,
+						496
+					],
+					"scene": "village"
+				},
+				{
+					"collision": false,
+					"position": [
+						953.666748046875,
+						496
+					],
+					"scene": "village"
+				},
+				{
+					"collision": false,
+					"position": [
+						956.083435058594,
+						496
+					],
+					"scene": "village"
+				}
+			],
+			"resolved_kind": "ground",
+			"scene": "village",
+			"start": [
+				944,
+				496
+			],
+			"stop": [
+				956.083435058594,
+				496
+			],
+			"success": true,
+			"target_id": "(957, 496)",
+			"task": "east_bank"
+		},
+		{
+			"after": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [
+						"old_letter",
+						"first_crop",
+						"bridge_truth",
+						"tea_book",
+						"bridge_work"
+					],
+					"direction": "",
+					"facts": {
+						"bridge_survey": 1,
+						"guestbook": 1,
+						"harvest": 1,
+						"plant": 1,
+						"repair_record": 1,
+						"scene:bridge": 1,
+						"scene:carpenter": 1,
+						"scene:harvest": 1,
+						"scene:letter": 1,
+						"scene:welcome": 1,
+						"water": 1
+					},
+					"legacy_review": true
+				},
+				"location": "village",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "renew",
+					"seen": [
+						"letter",
+						"welcome",
+						"harvest",
+						"carpenter",
+						"bridge"
+					],
+					"stage": 5
+				}
+			},
+			"before": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [
+						"old_letter",
+						"first_crop",
+						"bridge_truth",
+						"tea_book",
+						"bridge_work"
+					],
+					"direction": "",
+					"facts": {
+						"bridge_survey": 1,
+						"guestbook": 1,
+						"harvest": 1,
+						"plant": 1,
+						"repair_record": 1,
+						"scene:bridge": 1,
+						"scene:carpenter": 1,
+						"scene:harvest": 1,
+						"scene:letter": 1,
+						"scene:welcome": 1,
+						"water": 1
+					},
+					"legacy_review": true
+				},
+				"location": "village",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "renew",
+					"seen": [
+						"letter",
+						"welcome",
+						"harvest",
+						"carpenter",
+						"bridge"
+					],
+					"stage": 5
+				}
+			},
+			"click": [
+				957,
+				496
+			],
+			"collision": false,
+			"dialogue": "",
+			"entered_east_bank": false,
+			"events": [],
+			"mode": "tap",
+			"navigation_calls": 0,
+			"navigation_state": 0,
+			"positions": [
+				{
+					"collision": false,
+					"position": [
+						944,
+						496
+					],
+					"scene": "village"
+				},
+				{
+					"collision": false,
+					"position": [
+						944,
+						496
+					],
+					"scene": "village"
+				}
+			],
+			"resolved_kind": "ground",
+			"scene": "village",
+			"start": [
+				944,
+				496
+			],
+			"stop": [
+				944,
+				496
+			],
+			"success": false,
+			"target_id": "(957, 496)",
+			"task": "east_bank"
+		},
+		{
+			"after": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [
+						"old_letter"
+					],
+					"direction": "",
+					"facts": {
+						"scene:letter": 1,
+						"scene:welcome": 1
+					},
+					"legacy_review": true
+				},
+				"location": "farm",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "renew",
+					"seen": [
+						"letter",
+						"welcome"
+					],
+					"stage": 2
+				}
+			},
+			"before": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [
+						"old_letter"
+					],
+					"direction": "",
+					"facts": {
+						"scene:letter": 1
+					},
+					"legacy_review": true
+				},
+				"location": "farm",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "renew",
+					"seen": [
+						"letter"
+					],
+					"stage": 1
+				}
+			},
+			"click": [
+				429,
+				421
+			],
+			"collision": false,
+			"dialogue": "welcome",
+			"entered_east_bank": false,
+			"events": [
+				{
+					"event": "story_dialogue",
+					"id": "welcome",
+					"position": [
+						429,
+						480
+					],
+					"scene": "farm"
+				},
+				{
+					"event": "notice",
+					"text": "手记已更新 · 序幕 · 第一声车铃"
+				},
+				{
+					"completed": [
+						"old_letter"
+					],
+					"event": "task_facts_changed",
+					"facts": {
+						"scene:letter": 1,
+						"scene:welcome": 1
+					}
+				}
+			],
+			"mode": "joystick",
+			"navigation_calls": 0,
+			"navigation_state": 0,
+			"positions": [
+				{
+					"collision": false,
+					"position": [
+						429,
+						507.583343505859
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						505.166687011719
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						502.750030517578
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						500.333374023438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						497.916717529297
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						495.500061035156
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						493.083404541016
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						490.666748046875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						488.250091552734
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						485.833435058594
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						483.416778564453
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						481.000122070312
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						478.583465576172
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						429,
+						480
+					],
+					"scene": "farm"
+				}
+			],
+			"resolved_kind": "object",
+			"scene": "farm",
+			"start": [
+				429,
+				510
+			],
+			"stop": [
+				429,
+				480
+			],
+			"success": true,
+			"target_id": "person_id:linya",
+			"task": "welcome"
+		},
+		{
+			"after": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [
+						"old_letter"
+					],
+					"direction": "",
+					"facts": {
+						"scene:letter": 1,
+						"scene:welcome": 1
+					},
+					"legacy_review": true
+				},
+				"location": "farm",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "renew",
+					"seen": [
+						"letter",
+						"welcome"
+					],
+					"stage": 2
+				}
+			},
+			"before": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [
+						"old_letter"
+					],
+					"direction": "",
+					"facts": {
+						"scene:letter": 1
+					},
+					"legacy_review": true
+				},
+				"location": "farm",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "renew",
+					"seen": [
+						"letter"
+					],
+					"stage": 1
+				}
+			},
+			"click": [
+				429,
+				421
+			],
+			"collision": false,
+			"dialogue": "welcome",
+			"entered_east_bank": false,
+			"events": [
+				{
+					"event": "story_dialogue",
+					"id": "welcome",
+					"position": [
+						418.689453125,
+						493.6455078125
+					],
+					"scene": "farm"
+				},
+				{
+					"event": "notice",
+					"text": "手记已更新 · 序幕 · 第一声车铃"
+				},
+				{
+					"completed": [
+						"old_letter"
+					],
+					"event": "task_facts_changed",
+					"facts": {
+						"scene:letter": 1,
+						"scene:welcome": 1
+					}
+				}
+			],
+			"mode": "tap",
+			"navigation_calls": 1,
+			"navigation_state": 0,
+			"positions": [
+				{
+					"collision": false,
+					"position": [
+						429,
+						510
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						427.711181640625,
+						507.955688476562
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						426.42236328125,
+						505.911376953125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						425.133544921875,
+						503.867065429688
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						423.8447265625,
+						501.82275390625
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						422.555908203125,
+						499.778442382812
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						421.26708984375,
+						497.734130859375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						419.978271484375,
+						495.689819335938
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						418.689453125,
+						493.6455078125
+					],
+					"scene": "farm"
+				}
+			],
+			"resolved_kind": "object",
+			"scene": "farm",
+			"start": [
+				429,
+				510
+			],
+			"stop": [
+				418.689453125,
+				493.6455078125
+			],
+			"success": true,
+			"target_id": "person_id:linya",
+			"task": "welcome"
+		},
+		{
+			"after": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [],
+					"direction": "",
+					"facts": {
+
+					},
+					"legacy_review": false
+				},
+				"location": "home",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "",
+					"seen": [],
+					"stage": 0
+				}
+			},
+			"before": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [],
+					"direction": "",
+					"facts": {
+
+					},
+					"legacy_review": false
+				},
+				"location": "farm",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "",
+					"seen": [],
+					"stage": 0
+				}
+			},
+			"click": [
+				656,
+				408
+			],
+			"collision": false,
+			"dialogue": "",
+			"entered_east_bank": false,
+			"events": [
+				{
+					"event": "location",
+					"id": "home",
+					"position": [
+						640,
+						500
+					],
+					"scene": "home"
+				},
+				{
+					"event": "interaction",
+					"id": "home",
+					"position": [
+						640,
+						500
+					],
+					"scene": "home"
+				}
+			],
+			"mode": "joystick",
+			"navigation_calls": 1,
+			"navigation_state": 0,
+			"positions": [
+				{
+					"collision": false,
+					"position": [
+						656,
+						477.583343505859
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						475.166687011719
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						472.750030517578
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						470.333374023438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						467.916717529297
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						465.500061035156
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						463.083404541016
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						460.666748046875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						458.250091552734
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						455.833435058594
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						453.416778564453
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						451.000122070312
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						448.583465576172
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						446.166809082031
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						443.750152587891
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						441.33349609375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						440
+					],
+					"scene": "farm"
+				}
+			],
+			"resolved_kind": "object",
+			"scene": "farm",
+			"start": [
+				656,
+				480
+			],
+			"stop": [
+				640,
+				500
+			],
+			"success": true,
+			"target_id": "kind:home",
+			"task": "home_entry"
+		},
+		{
+			"after": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [],
+					"direction": "",
+					"facts": {
+
+					},
+					"legacy_review": false
+				},
+				"location": "home",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "",
+					"seen": [],
+					"stage": 0
+				}
+			},
+			"before": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [],
+					"direction": "",
+					"facts": {
+
+					},
+					"legacy_review": false
+				},
+				"location": "farm",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "",
+					"seen": [],
+					"stage": 0
+				}
+			},
+			"click": [
+				656,
+				408
+			],
+			"collision": false,
+			"dialogue": "",
+			"entered_east_bank": false,
+			"events": [
+				{
+					"event": "location",
+					"id": "home",
+					"position": [
+						640,
+						500
+					],
+					"scene": "home"
+				},
+				{
+					"event": "interaction",
+					"id": "home",
+					"position": [
+						640,
+						500
+					],
+					"scene": "home"
+				}
+			],
+			"mode": "tap",
+			"navigation_calls": 2,
+			"navigation_state": 0,
+			"positions": [
+				{
+					"collision": false,
+					"position": [
+						656,
+						480
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						477.583343505859
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						475.166687011719
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						472.750030517578
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						470.333374023438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						467.916717529297
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						465.500061035156
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						656,
+						464
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						640,
+						500
+					],
+					"scene": "home"
+				}
+			],
+			"resolved_kind": "object",
+			"scene": "farm",
+			"start": [
+				656,
+				480
+			],
+			"stop": [
+				640,
+				500
+			],
+			"success": true,
+			"target_id": "kind:home",
+			"task": "home_entry"
+		},
+		{
+			"after": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [
+						"old_letter"
+					],
+					"direction": "",
+					"facts": {
+						"scene:letter": 1
+					},
+					"legacy_review": false
+				},
+				"location": "home",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "renew",
+					"seen": [
+						"letter"
+					],
+					"stage": 1
+				}
+			},
+			"before": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [],
+					"direction": "",
+					"facts": {
+
+					},
+					"legacy_review": false
+				},
+				"location": "home",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "",
+					"seen": [],
+					"stage": 0
+				}
+			},
+			"click": [
+				720,
+				198
+			],
+			"collision": false,
+			"dialogue": "letter",
+			"entered_east_bank": false,
+			"events": [
+				{
+					"event": "story_dialogue",
+					"id": "letter",
+					"position": [
+						720,
+						304.583465576172
+					],
+					"scene": "home"
+				},
+				{
+					"event": "notice",
+					"text": "手记已更新 · 序幕 · 留下的种子"
+				},
+				{
+					"completed": [
+						"old_letter"
+					],
+					"event": "task_facts_changed",
+					"facts": {
+						"scene:letter": 1
+					}
+				},
+				{
+					"completed": [
+						"old_letter"
+					],
+					"event": "task_facts_changed",
+					"facts": {
+						"scene:letter": 1
+					}
+				}
+			],
+			"mode": "joystick",
+			"navigation_calls": 2,
+			"navigation_state": 0,
+			"positions": [
+				{
+					"collision": false,
+					"position": [
+						720,
+						333.583343505859
+					],
+					"scene": "home"
+				},
+				{
+					"collision": false,
+					"position": [
+						720,
+						331.166687011719
+					],
+					"scene": "home"
+				},
+				{
+					"collision": false,
+					"position": [
+						720,
+						328.750030517578
+					],
+					"scene": "home"
+				},
+				{
+					"collision": false,
+					"position": [
+						720,
+						326.333374023438
+					],
+					"scene": "home"
+				},
+				{
+					"collision": false,
+					"position": [
+						720,
+						323.916717529297
+					],
+					"scene": "home"
+				},
+				{
+					"collision": false,
+					"position": [
+						720,
+						321.500061035156
+					],
+					"scene": "home"
+				},
+				{
+					"collision": false,
+					"position": [
+						720,
+						319.083404541016
+					],
+					"scene": "home"
+				},
+				{
+					"collision": false,
+					"position": [
+						720,
+						316.666748046875
+					],
+					"scene": "home"
+				},
+				{
+					"collision": false,
+					"position": [
+						720,
+						314.250091552734
+					],
+					"scene": "home"
+				},
+				{
+					"collision": false,
+					"position": [
+						720,
+						311.833435058594
+					],
+					"scene": "home"
+				},
+				{
+					"collision": false,
+					"position": [
+						720,
+						309.416778564453
+					],
+					"scene": "home"
+				},
+				{
+					"collision": false,
+					"position": [
+						720,
+						307.000122070312
+					],
+					"scene": "home"
+				}
+			],
+			"resolved_kind": "ground",
+			"scene": "home",
+			"start": [
+				720,
+				336
+			],
+			"stop": [
+				720,
+				304.583465576172
+			],
+			"success": true,
+			"target_id": "(720, 198)",
+			"task": "old_letter_marker"
+		},
+		{
+			"after": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [],
+					"direction": "",
+					"facts": {
+
+					},
+					"legacy_review": false
+				},
+				"location": "home",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "",
+					"seen": [],
+					"stage": 0
+				}
+			},
+			"before": {
+				"chapter_two": {
+					"completed": [],
+					"facts": [],
+					"policy": ""
+				},
+				"coins": 120,
+				"items": {
+					"carrot_seed": 12,
+					"potato_seed": 6,
+					"wheat_seed": 6
+				},
+				"letters": {
+					"completed": [],
+					"direction": "",
+					"facts": {
+
+					},
+					"legacy_review": false
+				},
+				"location": "home",
+				"story": {
+					"assisted_tools": true,
+					"lantern": "",
+					"motive": "",
+					"seen": [],
+					"stage": 0
+				}
+			},
+			"click": [
+				720,
+				198
+			],
+			"collision": false,
+			"dialogue": "",
+			"entered_east_bank": false,
+			"events": [
+				{
+					"event": "notice",
+					"text": "暂时走不到那里，试试附近的空地。"
+				}
+			],
+			"mode": "tap",
+			"navigation_calls": 2,
+			"navigation_state": 6,
+			"positions": [
+				{
+					"collision": false,
+					"position": [
+						720,
+						336
+					],
+					"scene": "home"
+				}
+			],
+			"resolved_kind": "ground",
+			"scene": "home",
+			"start": [
+				720,
+				336
+			],
+			"stop": [
+				720,
+				336
+			],
+			"success": false,
+			"target_id": "(720, 198)",
+			"task": "old_letter_marker"
+		}
+	],
+	"checks": 20,
+	"failures": 0
+}

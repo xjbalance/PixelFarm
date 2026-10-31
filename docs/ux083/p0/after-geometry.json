@@ -1,0 +1,2101 @@
+{
+	"baseline": false,
+	"cases": [
+		{
+			"arrived": true,
+			"collisions": 0,
+			"mode": "joystick",
+			"stop": [
+				2319.99926757812,
+				1503.49890136719
+			],
+			"trace": [
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1501.58337402344
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1499.16674804688
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1496.75012207031
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1494.33349609375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1491.91687011719
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1489.50024414062
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1487.08361816406
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1484.6669921875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1482.25036621094
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1479.83374023438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1477.41711425781
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1475.00048828125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1472.58386230469
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1470.16723632812
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1467.75061035156
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1465.333984375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1462.91735839844
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1460.50073242188
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1458.08410644531
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1455.66748046875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1453.25085449219
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1450.83422851562
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1448.41760253906
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1446.0009765625
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1443.58435058594
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1441.16772460938
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1438.75109863281
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1436.33447265625
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1433.91784667969
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1431.50122070312
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1429.08459472656
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1426.66796875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1424.25134277344
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1421.83471679688
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1419.41809082031
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1417.00146484375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1414.58483886719
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1412.16821289062
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1409.75158691406
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1407.3349609375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1404.91833496094
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1402.50170898438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1400.08508300781
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1397.66845703125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1395.25183105469
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1392.83520507812
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1390.41857910156
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1388.001953125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1385.58532714844
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1383.16870117188
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1380.75207519531
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1378.33544921875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1375.91882324219
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1373.50219726562
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1371.08557128906
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1368.6689453125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1366.25231933594
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1363.83569335938
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1361.41906738281
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1359.00244140625
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1356.58581542969
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1354.16918945312
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1351.75256347656
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1349.3359375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1346.91931152344
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1344.50268554688
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2242.41650390625,
+						1344.48754882812
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2244.8330078125,
+						1344.47241210938
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2247.24951171875,
+						1344.45727539062
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2249.666015625,
+						1344.44213867188
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2252.08251953125,
+						1344.42700195312
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2254.4990234375,
+						1344.41186523438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2256.91552734375,
+						1344.39672851562
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2259.33203125,
+						1344.38159179688
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2261.74853515625,
+						1344.36633300781
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2264.1650390625,
+						1344.35119628906
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2266.58154296875,
+						1344.3359375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2268.998046875,
+						1344.32080078125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2271.41455078125,
+						1344.30554199219
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2273.8310546875,
+						1344.29040527344
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2276.24755859375,
+						1344.27514648438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2278.6640625,
+						1344.26000976562
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2281.08056640625,
+						1344.24475097656
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2283.4970703125,
+						1344.22961425781
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2285.91357421875,
+						1344.21435546875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288.330078125,
+						1344.19921875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2290.74658203125,
+						1344.18395996094
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2293.1630859375,
+						1344.16882324219
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2295.57958984375,
+						1344.15356445312
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2297.99609375,
+						1344.13842773438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2300.41259765625,
+						1344.12316894531
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2302.8291015625,
+						1344.10803222656
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2305.24560546875,
+						1344.0927734375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2307.662109375,
+						1344.07763671875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2310.07861328125,
+						1344.06237792969
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2312.4951171875,
+						1344.04724121094
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2314.91162109375,
+						1344.03198242188
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2317.328125,
+						1344.01684570312
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.74462890625,
+						1344.00158691406
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.74853515625,
+						1346.41821289062
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.75244140625,
+						1348.83483886719
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.75634765625,
+						1351.25146484375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.76025390625,
+						1353.66809082031
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.76416015625,
+						1356.08471679688
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.76806640625,
+						1358.50134277344
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.77197265625,
+						1360.91796875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.77587890625,
+						1363.33459472656
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.77978515625,
+						1365.75122070312
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.78369140625,
+						1368.16784667969
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.78759765625,
+						1370.58447265625
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.79150390625,
+						1373.00109863281
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.79541015625,
+						1375.41772460938
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.79931640625,
+						1377.83435058594
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.80322265625,
+						1380.2509765625
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.80712890625,
+						1382.66760253906
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.81103515625,
+						1385.08422851562
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.81494140625,
+						1387.50085449219
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.81884765625,
+						1389.91748046875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.82275390625,
+						1392.33410644531
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.82666015625,
+						1394.75073242188
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.83056640625,
+						1397.16735839844
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.83447265625,
+						1399.583984375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.83837890625,
+						1402.00061035156
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.84228515625,
+						1404.41723632812
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.84619140625,
+						1406.83386230469
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.85009765625,
+						1409.25048828125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.85400390625,
+						1411.66711425781
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.85791015625,
+						1414.08374023438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.86181640625,
+						1416.50036621094
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.86572265625,
+						1418.9169921875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.86962890625,
+						1421.33361816406
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.87353515625,
+						1423.75024414062
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.87744140625,
+						1426.16687011719
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.88134765625,
+						1428.58349609375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.88525390625,
+						1431.00012207031
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.88916015625,
+						1433.41674804688
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.89306640625,
+						1435.83337402344
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.89697265625,
+						1438.25
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.90087890625,
+						1440.66662597656
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.90454101562,
+						1443.08325195312
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.90844726562,
+						1445.49987792969
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.912109375,
+						1447.91650390625
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.916015625,
+						1450.33312988281
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.91967773438,
+						1452.74975585938
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.92358398438,
+						1455.16638183594
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.92724609375,
+						1457.5830078125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.93115234375,
+						1459.99963378906
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.93481445312,
+						1462.41625976562
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.93872070312,
+						1464.83288574219
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.9423828125,
+						1467.24951171875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.9462890625,
+						1469.66613769531
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.94995117188,
+						1472.08276367188
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.95385742188,
+						1474.49938964844
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.95751953125,
+						1476.916015625
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.96142578125,
+						1479.33264160156
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.96508789062,
+						1481.74926757812
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.96899414062,
+						1484.16589355469
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.97265625,
+						1486.58251953125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.9765625,
+						1488.99914550781
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.98022460938,
+						1491.41577148438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.98413085938,
+						1493.83239746094
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.98779296875,
+						1496.2490234375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.99169921875,
+						1498.66564941406
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.99536132812,
+						1501.08227539062
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.99926757812,
+						1503.49890136719
+					],
+					"scene": "farm"
+				}
+			]
+		},
+		{
+			"arrived": true,
+			"collisions": 0,
+			"mode": "tap",
+			"stop": [
+				2320,
+				1504
+			],
+			"trace": [
+				{
+					"collision": false,
+					"position": [
+						2240,
+						1504
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2241.70874023438,
+						1505.70886230469
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2243.41748046875,
+						1507.41772460938
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2245.12622070312,
+						1509.12658691406
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2246.8349609375,
+						1510.83544921875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2248.54370117188,
+						1512.54431152344
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2250.25244140625,
+						1514.25317382812
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2251.96118164062,
+						1515.96203613281
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2253.669921875,
+						1517.6708984375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2255.37890625,
+						1519.37976074219
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2257.087890625,
+						1521.08862304688
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2258.79663085938,
+						1522.79748535156
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2260.50561523438,
+						1524.50634765625
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2262.21459960938,
+						1526.21520996094
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2263.92333984375,
+						1527.92407226562
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2265.63232421875,
+						1529.63293457031
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2267.34130859375,
+						1531.341796875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2269.05004882812,
+						1533.05065917969
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2270.75903320312,
+						1534.75952148438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2272.46801757812,
+						1536.46838378906
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2274.1767578125,
+						1538.17724609375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2275.8857421875,
+						1539.88610839844
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2277.5947265625,
+						1541.59497070312
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2279.30346679688,
+						1543.30383300781
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2281.01245117188,
+						1545.0126953125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2282.72143554688,
+						1546.72155761719
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2284.43017578125,
+						1548.43041992188
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2286.13916015625,
+						1550.13916015625
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2287.84790039062,
+						1551.84802246094
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1552
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1554.41662597656
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1556.83325195312
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1559.24987792969
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1561.66650390625
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1564.08312988281
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1566.49975585938
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1568.91638183594
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1571.3330078125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1573.74963378906
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1576.16625976562
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1578.58288574219
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1580.99951171875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1583.41613769531
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2288,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2290.41674804688,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2292.83349609375,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2295.25024414062,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2297.6669921875,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2300.08374023438,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2302.50048828125,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2304.91723632812,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2307.333984375,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2309.75073242188,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2312.16748046875,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2314.58422851562,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2317.0009765625,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2319.41772460938,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1584
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1581.58337402344
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1579.16674804688
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1576.75012207031
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1574.33349609375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1571.91687011719
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1569.50024414062
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1567.08361816406
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1564.6669921875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1562.25036621094
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1559.83374023438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1557.41711425781
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1555.00048828125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1552.58386230469
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1552
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1549.58337402344
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1547.16674804688
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1544.75012207031
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1542.33349609375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1539.91687011719
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1537.50024414062
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1535.08361816406
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1532.6669921875
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1530.25036621094
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1527.83374023438
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1525.41711425781
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1523.00048828125
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1520.58386230469
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1520
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1517.58337402344
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1515.16674804688
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1512.75012207031
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1510.33349609375
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1507.91687011719
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1505.50024414062
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1504
+					],
+					"scene": "farm"
+				},
+				{
+					"collision": false,
+					"position": [
+						2320,
+						1504
+					],
+					"scene": "farm"
+				}
+			]
+		}
+	],
+	"checks": 14,
+	"failures": 0
+}

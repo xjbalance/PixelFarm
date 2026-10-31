@@ -71,11 +71,11 @@ static func run(test: Node, game: Node) -> void:
 		query.collision_mask=1
 		collision_free = collision_free and game.player.get_world_2d().direct_space_state.intersect_shape(query,1).is_empty()
 		if game.auto_move.state==game.auto_move.State.IDLE: break
-	test.check(game.player.position.distance_to(Vector2(720,336))<1.1 and collision_free,"玩家沿路线真实绕过桌子，全程未穿墙")
+	test.check(game.player.position.distance_to(Vector2(710,336))<1.1 and collision_free,"玩家真实绕过桌子抵达原点击位置，全程未穿墙")
 	# 床现为可点击交互目标；不可达探针改用无交互的实体柜体内部。
 	game.auto_move.request(Vector2(464,272))
 	await finish(test,game)
-	test.check(game.auto_move.state==game.auto_move.State.FAILED and game.player.auto_direction==Vector2.ZERO,"不可通行柜体内部有限失败并停止")
+	test.check(game.auto_move.state==game.auto_move.State.IDLE and game.player.position.distance_to(Vector2(464,272))<=64 and game.player.auto_direction==Vector2.ZERO,"不可通行柜体内部点击改为附近连通落脚点并停止")
 	game.auto_move.request(Vector2(-20,300))
 	await finish(test,game)
 	test.check(game.auto_move.state==game.auto_move.State.FAILED,"地图外目标立即失败")
@@ -89,7 +89,7 @@ static func run(test: Node, game: Node) -> void:
 	var linya: Node2D = game.world.get_node("Actors/Linya")
 	tap(test,game,linya.global_position+Vector2(0,-18))
 	await finish(test,game)
-	test.check(game.hud.dialogue.visible and GameState.modal and game.player.position.distance_to(linya.global_position)<=54,"点击林芽自动靠近、面对并打开对话")
+	test.check(game.hud.dialogue.visible and GameState.modal and game.auto_move.navigation.legal_interaction(game.player.position,{"kind":"object","object":linya,"point":linya.global_position}),"点击林芽在与手动交互相同的合法范围靠近、面对并打开对话")
 	var at: Vector2=game.player.position
 	await test.frames(5)
 	test.check(game.player.position==at and game.auto_move.target.is_empty(),"对话立即清空待执行动作并停止移动")
@@ -189,7 +189,7 @@ static func run(test: Node, game: Node) -> void:
 	await test.frames(4)
 	game.auto_move.request(Vector2(1010,480))
 	await finish(test,game)
-	test.check(game.player.position.distance_to(Vector2(1008,496))<1.1,"修桥后刷新网格并真实走过桥梁")
+	test.check(game.player.position.distance_to(Vector2(1010,480))<1.1,"修桥后刷新网格并真实走过桥梁到原点击位置")
 	# 当前移动目标变化时正常追踪；日程开关不影响原 NPC 行为。
 	await place(test,game,"farm",Vector2(360,780))
 	linya.position=Vector2(500,780)
@@ -198,7 +198,7 @@ static func run(test: Node, game: Node) -> void:
 	await test.frames(3)
 	tap(test,game,linya.global_position+Vector2(0,-18))
 	await finish(test,game,450)
-	test.check(game.hud.dialogue.visible and game.player.position.distance_to(linya.position)<=54,"移动中的NPC能重新规划后到达并交谈")
+	test.check(game.hud.dialogue.visible and game.auto_move.navigation.legal_interaction(game.player.position,{"kind":"object","object":linya,"point":linya.global_position}),"移动中的NPC能重新规划后到达同一合法交互范围并交谈")
 	GameClock.running=false
 	game.hud.close_active_panel()
 	linya.position=Vector2(432,480)
@@ -343,7 +343,7 @@ static func edge_cases(test: Node, game: Node) -> void:
 	await test.frames(3)
 	game.auto_move.request(Vector2(784,480))
 	await finish(test,game)
-	test.check(game.player.position.distance_to(Vector2(784,496))<1.1,"动态NPC占位参与绕行，玩家不会推挤人物")
+	test.check(game.player.position.distance_to(Vector2(784,480))<1.1,"动态NPC占位参与绕行，玩家不会推挤人物")
 	var count: int=game.auto_move.navigation.rebuild_count
 	game.auto_move.request(Vector2(816,480))
 	await finish(test,game)
@@ -363,7 +363,7 @@ static func edge_cases(test: Node, game: Node) -> void:
 	await test.frames(4)
 	game.auto_move.request(Vector2(784,480))
 	await finish(test,game)
-	test.check(game.player.position.distance_to(Vector2(784,496))<1.1,"格心之间的薄障碍被逐边检测并正确绕过")
+	test.check(game.player.position.distance_to(Vector2(784,480))<1.1,"格心之间的薄障碍被逐边检测并正确绕过")
 	thin.queue_free()
 	Events.navigation_changed.emit()
 	await test.frames(4)

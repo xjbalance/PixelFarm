@@ -1,0 +1,743 @@
+{
+  "issue": "arrival threshold stopped before x>950 boundary",
+  "cases": [
+    {
+      "after": {
+        "chapter_two": {
+          "completed": [],
+          "facts": [],
+          "policy": ""
+        },
+        "coins": 120,
+        "ecology": {
+          "clean_day": 0,
+          "cycle": false,
+          "debris": 0,
+          "health": 70,
+          "last_settled_day": 1,
+          "meteor_seen": false,
+          "plant_day": 0,
+          "plants": 0,
+          "restored": false,
+          "xiaojing_seen": false
+        },
+        "gathering": {
+          "rock": {
+            "hp": 2,
+            "ready_day": 0
+          },
+          "tree": {
+            "hp": 3,
+            "ready_day": 0
+          }
+        },
+        "items": {
+          "carrot_seed": 12,
+          "potato_seed": 6,
+          "wheat_seed": 6
+        },
+        "letters": {
+          "completed": [
+            "old_letter",
+            "first_crop",
+            "bridge_truth",
+            "tea_book",
+            "bridge_work"
+          ],
+          "direction": "",
+          "facts": {
+            "bridge_survey": 1,
+            "east_bank": 1,
+            "guestbook": 1,
+            "harvest": 1,
+            "plant": 1,
+            "repair_record": 1,
+            "scene:bridge": 1,
+            "scene:carpenter": 1,
+            "scene:harvest": 1,
+            "scene:letter": 1,
+            "scene:welcome": 1,
+            "water": 1
+          },
+          "legacy_review": true
+        },
+        "location": "village",
+        "mines": {
+          "chests": [],
+          "commission_mines": [],
+          "diamond_counter": 0,
+          "expedition": {},
+          "exploration_events": [],
+          "furnace": false,
+          "hardened": false,
+          "job_serial": 0,
+          "legacy_board_claimable": false,
+          "legacy_board_settled": false,
+          "legacy_trials": [],
+          "linked_memories": [],
+          "ores": {},
+          "queue": [],
+          "resonance_open": false,
+          "resonance_step": 0,
+          "survey": 0,
+          "tool": 1,
+          "track_repaired": false,
+          "track_switch": 0,
+          "unlocked": [],
+          "water_lowered": false,
+          "water_step": 0
+        },
+        "plots": {},
+        "progress": {
+          "built": [],
+          "friendship": 0,
+          "last_talk_day": 0,
+          "quests": {}
+        },
+        "stamina": 100,
+        "story": {
+          "assisted_tools": true,
+          "lantern": "",
+          "motive": "renew",
+          "seen": [
+            "letter",
+            "welcome",
+            "harvest",
+            "carpenter",
+            "bridge"
+          ],
+          "stage": 5
+        },
+        "xiaojing": {
+          "activity_day": 0,
+          "affection": 0,
+          "bond": 0,
+          "cave": {},
+          "counters": {
+            "activity": 0,
+            "plant": 0,
+            "puzzle": 0
+          },
+          "dating": false,
+          "diamonds": 0,
+          "events": [],
+          "gift_day": 0,
+          "greenhouse": false,
+          "letter_ready": false,
+          "married": false,
+          "mechanism": 0,
+          "mechanism_moves": 0,
+          "memories": [],
+          "mineral_counter": 0,
+          "order_day": 0,
+          "ore": 0,
+          "plant_serial": 0,
+          "plants": 0,
+          "post_events": [],
+          "proposed": false,
+          "puzzle_step": 0,
+          "quest_baseline": {
+            "activity": 0,
+            "plant": 0,
+            "puzzle": 0
+          },
+          "quests": [],
+          "relic_claimed": false,
+          "talk_day": 0,
+          "trial": {},
+          "trials": [],
+          "trust": 0,
+          "ultimate": false,
+          "unlocked": false,
+          "visited": [],
+          "wedding_day": 0
+        }
+      },
+      "before": {
+        "chapter_two": {
+          "completed": [],
+          "facts": [],
+          "policy": ""
+        },
+        "coins": 120,
+        "ecology": {
+          "clean_day": 0,
+          "cycle": false,
+          "debris": 0,
+          "health": 70,
+          "last_settled_day": 1,
+          "meteor_seen": false,
+          "plant_day": 0,
+          "plants": 0,
+          "restored": false,
+          "xiaojing_seen": false
+        },
+        "gathering": {
+          "rock": {
+            "hp": 2,
+            "ready_day": 0
+          },
+          "tree": {
+            "hp": 3,
+            "ready_day": 0
+          }
+        },
+        "items": {
+          "carrot_seed": 12,
+          "potato_seed": 6,
+          "wheat_seed": 6
+        },
+        "letters": {
+          "completed": [
+            "old_letter",
+            "first_crop",
+            "bridge_truth",
+            "tea_book",
+            "bridge_work"
+          ],
+          "direction": "",
+          "facts": {
+            "bridge_survey": 1,
+            "guestbook": 1,
+            "harvest": 1,
+            "plant": 1,
+            "repair_record": 1,
+            "scene:bridge": 1,
+            "scene:carpenter": 1,
+            "scene:harvest": 1,
+            "scene:letter": 1,
+            "scene:welcome": 1,
+            "water": 1
+          },
+          "legacy_review": true
+        },
+        "location": "village",
+        "mines": {
+          "chests": [],
+          "commission_mines": [],
+          "diamond_counter": 0,
+          "expedition": {},
+          "exploration_events": [],
+          "furnace": false,
+          "hardened": false,
+          "job_serial": 0,
+          "legacy_board_claimable": false,
+          "legacy_board_settled": false,
+          "legacy_trials": [],
+          "linked_memories": [],
+          "ores": {},
+          "queue": [],
+          "resonance_open": false,
+          "resonance_step": 0,
+          "survey": 0,
+          "tool": 1,
+          "track_repaired": false,
+          "track_switch": 0,
+          "unlocked": [],
+          "water_lowered": false,
+          "water_step": 0
+        },
+        "plots": {},
+        "progress": {
+          "built": [],
+          "friendship": 0,
+          "last_talk_day": 0,
+          "quests": {}
+        },
+        "stamina": 100,
+        "story": {
+          "assisted_tools": true,
+          "lantern": "",
+          "motive": "renew",
+          "seen": [
+            "letter",
+            "welcome",
+            "harvest",
+            "carpenter",
+            "bridge"
+          ],
+          "stage": 5
+        },
+        "xiaojing": {
+          "activity_day": 0,
+          "affection": 0,
+          "bond": 0,
+          "cave": {},
+          "counters": {
+            "activity": 0,
+            "plant": 0,
+            "puzzle": 0
+          },
+          "dating": false,
+          "diamonds": 0,
+          "events": [],
+          "gift_day": 0,
+          "greenhouse": false,
+          "letter_ready": false,
+          "married": false,
+          "mechanism": 0,
+          "mechanism_moves": 0,
+          "memories": [],
+          "mineral_counter": 0,
+          "order_day": 0,
+          "ore": 0,
+          "plant_serial": 0,
+          "plants": 0,
+          "post_events": [],
+          "proposed": false,
+          "puzzle_step": 0,
+          "quest_baseline": {
+            "activity": 0,
+            "plant": 0,
+            "puzzle": 0
+          },
+          "quests": [],
+          "relic_claimed": false,
+          "talk_day": 0,
+          "trial": {},
+          "trials": [],
+          "trust": 0,
+          "ultimate": false,
+          "unlocked": false,
+          "visited": [],
+          "wedding_day": 0
+        }
+      },
+      "click": [
+        950.25,
+        496
+      ],
+      "collision": false,
+      "dialogue": "",
+      "entered_east_bank": true,
+      "events": [
+        {
+          "completed": [
+            "old_letter",
+            "first_crop",
+            "bridge_truth",
+            "tea_book",
+            "bridge_work"
+          ],
+          "event": "task_facts_changed",
+          "facts": {
+            "bridge_survey": 1,
+            "east_bank": 1,
+            "guestbook": 1,
+            "harvest": 1,
+            "plant": 1,
+            "repair_record": 1,
+            "scene:bridge": 1,
+            "scene:carpenter": 1,
+            "scene:harvest": 1,
+            "scene:letter": 1,
+            "scene:welcome": 1,
+            "water": 1
+          }
+        }
+      ],
+      "mode": "joystick",
+      "navigation_calls": 0,
+      "navigation_state": 0,
+      "positions": [
+        {
+          "collision": false,
+          "position": [
+            947.416687011719,
+            496
+          ],
+          "scene": "village"
+        },
+        {
+          "collision": false,
+          "position": [
+            949.833374023438,
+            496
+          ],
+          "scene": "village"
+        },
+        {
+          "collision": false,
+          "position": [
+            951,
+            496
+          ],
+          "scene": "village"
+        }
+      ],
+      "resolved_kind": "ground",
+      "scene": "village",
+      "start": [
+        945,
+        496
+      ],
+      "stop": [
+        951,
+        496
+      ],
+      "success": true,
+      "target_id": "(950.25, 496)",
+      "task": "east_bank_edge"
+    },
+    {
+      "after": {
+        "chapter_two": {
+          "completed": [],
+          "facts": [],
+          "policy": ""
+        },
+        "coins": 120,
+        "ecology": {
+          "clean_day": 0,
+          "cycle": false,
+          "debris": 0,
+          "health": 70,
+          "last_settled_day": 1,
+          "meteor_seen": false,
+          "plant_day": 0,
+          "plants": 0,
+          "restored": false,
+          "xiaojing_seen": false
+        },
+        "gathering": {
+          "rock": {
+            "hp": 2,
+            "ready_day": 0
+          },
+          "tree": {
+            "hp": 3,
+            "ready_day": 0
+          }
+        },
+        "items": {
+          "carrot_seed": 12,
+          "potato_seed": 6,
+          "wheat_seed": 6
+        },
+        "letters": {
+          "completed": [
+            "old_letter",
+            "first_crop",
+            "bridge_truth",
+            "tea_book",
+            "bridge_work"
+          ],
+          "direction": "",
+          "facts": {
+            "bridge_survey": 1,
+            "guestbook": 1,
+            "harvest": 1,
+            "plant": 1,
+            "repair_record": 1,
+            "scene:bridge": 1,
+            "scene:carpenter": 1,
+            "scene:harvest": 1,
+            "scene:letter": 1,
+            "scene:welcome": 1,
+            "water": 1
+          },
+          "legacy_review": true
+        },
+        "location": "village",
+        "mines": {
+          "chests": [],
+          "commission_mines": [],
+          "diamond_counter": 0,
+          "expedition": {},
+          "exploration_events": [],
+          "furnace": false,
+          "hardened": false,
+          "job_serial": 0,
+          "legacy_board_claimable": false,
+          "legacy_board_settled": false,
+          "legacy_trials": [],
+          "linked_memories": [],
+          "ores": {},
+          "queue": [],
+          "resonance_open": false,
+          "resonance_step": 0,
+          "survey": 0,
+          "tool": 1,
+          "track_repaired": false,
+          "track_switch": 0,
+          "unlocked": [],
+          "water_lowered": false,
+          "water_step": 0
+        },
+        "plots": {},
+        "progress": {
+          "built": [],
+          "friendship": 0,
+          "last_talk_day": 0,
+          "quests": {}
+        },
+        "stamina": 100,
+        "story": {
+          "assisted_tools": true,
+          "lantern": "",
+          "motive": "renew",
+          "seen": [
+            "letter",
+            "welcome",
+            "harvest",
+            "carpenter",
+            "bridge"
+          ],
+          "stage": 5
+        },
+        "xiaojing": {
+          "activity_day": 0,
+          "affection": 0,
+          "bond": 0,
+          "cave": {},
+          "counters": {
+            "activity": 0,
+            "plant": 0,
+            "puzzle": 0
+          },
+          "dating": false,
+          "diamonds": 0,
+          "events": [],
+          "gift_day": 0,
+          "greenhouse": false,
+          "letter_ready": false,
+          "married": false,
+          "mechanism": 0,
+          "mechanism_moves": 0,
+          "memories": [],
+          "mineral_counter": 0,
+          "order_day": 0,
+          "ore": 0,
+          "plant_serial": 0,
+          "plants": 0,
+          "post_events": [],
+          "proposed": false,
+          "puzzle_step": 0,
+          "quest_baseline": {
+            "activity": 0,
+            "plant": 0,
+            "puzzle": 0
+          },
+          "quests": [],
+          "relic_claimed": false,
+          "talk_day": 0,
+          "trial": {},
+          "trials": [],
+          "trust": 0,
+          "ultimate": false,
+          "unlocked": false,
+          "visited": [],
+          "wedding_day": 0
+        }
+      },
+      "before": {
+        "chapter_two": {
+          "completed": [],
+          "facts": [],
+          "policy": ""
+        },
+        "coins": 120,
+        "ecology": {
+          "clean_day": 0,
+          "cycle": false,
+          "debris": 0,
+          "health": 70,
+          "last_settled_day": 1,
+          "meteor_seen": false,
+          "plant_day": 0,
+          "plants": 0,
+          "restored": false,
+          "xiaojing_seen": false
+        },
+        "gathering": {
+          "rock": {
+            "hp": 2,
+            "ready_day": 0
+          },
+          "tree": {
+            "hp": 3,
+            "ready_day": 0
+          }
+        },
+        "items": {
+          "carrot_seed": 12,
+          "potato_seed": 6,
+          "wheat_seed": 6
+        },
+        "letters": {
+          "completed": [
+            "old_letter",
+            "first_crop",
+            "bridge_truth",
+            "tea_book",
+            "bridge_work"
+          ],
+          "direction": "",
+          "facts": {
+            "bridge_survey": 1,
+            "guestbook": 1,
+            "harvest": 1,
+            "plant": 1,
+            "repair_record": 1,
+            "scene:bridge": 1,
+            "scene:carpenter": 1,
+            "scene:harvest": 1,
+            "scene:letter": 1,
+            "scene:welcome": 1,
+            "water": 1
+          },
+          "legacy_review": true
+        },
+        "location": "village",
+        "mines": {
+          "chests": [],
+          "commission_mines": [],
+          "diamond_counter": 0,
+          "expedition": {},
+          "exploration_events": [],
+          "furnace": false,
+          "hardened": false,
+          "job_serial": 0,
+          "legacy_board_claimable": false,
+          "legacy_board_settled": false,
+          "legacy_trials": [],
+          "linked_memories": [],
+          "ores": {},
+          "queue": [],
+          "resonance_open": false,
+          "resonance_step": 0,
+          "survey": 0,
+          "tool": 1,
+          "track_repaired": false,
+          "track_switch": 0,
+          "unlocked": [],
+          "water_lowered": false,
+          "water_step": 0
+        },
+        "plots": {},
+        "progress": {
+          "built": [],
+          "friendship": 0,
+          "last_talk_day": 0,
+          "quests": {}
+        },
+        "stamina": 100,
+        "story": {
+          "assisted_tools": true,
+          "lantern": "",
+          "motive": "renew",
+          "seen": [
+            "letter",
+            "welcome",
+            "harvest",
+            "carpenter",
+            "bridge"
+          ],
+          "stage": 5
+        },
+        "xiaojing": {
+          "activity_day": 0,
+          "affection": 0,
+          "bond": 0,
+          "cave": {},
+          "counters": {
+            "activity": 0,
+            "plant": 0,
+            "puzzle": 0
+          },
+          "dating": false,
+          "diamonds": 0,
+          "events": [],
+          "gift_day": 0,
+          "greenhouse": false,
+          "letter_ready": false,
+          "married": false,
+          "mechanism": 0,
+          "mechanism_moves": 0,
+          "memories": [],
+          "mineral_counter": 0,
+          "order_day": 0,
+          "ore": 0,
+          "plant_serial": 0,
+          "plants": 0,
+          "post_events": [],
+          "proposed": false,
+          "puzzle_step": 0,
+          "quest_baseline": {
+            "activity": 0,
+            "plant": 0,
+            "puzzle": 0
+          },
+          "quests": [],
+          "relic_claimed": false,
+          "talk_day": 0,
+          "trial": {},
+          "trials": [],
+          "trust": 0,
+          "ultimate": false,
+          "unlocked": false,
+          "visited": [],
+          "wedding_day": 0
+        }
+      },
+      "click": [
+        950.25,
+        496
+      ],
+      "collision": false,
+      "dialogue": "",
+      "entered_east_bank": false,
+      "events": [],
+      "mode": "tap",
+      "navigation_calls": 0,
+      "navigation_state": 0,
+      "positions": [
+        {
+          "collision": false,
+          "position": [
+            945,
+            496
+          ],
+          "scene": "village"
+        },
+        {
+          "collision": false,
+          "position": [
+            947.416687011719,
+            496
+          ],
+          "scene": "village"
+        },
+        {
+          "collision": false,
+          "position": [
+            949.833374023438,
+            496
+          ],
+          "scene": "village"
+        },
+        {
+          "collision": false,
+          "position": [
+            949.833374023438,
+            496
+          ],
+          "scene": "village"
+        }
+      ],
+      "resolved_kind": "ground",
+      "scene": "village",
+      "start": [
+        945,
+        496
+      ],
+      "stop": [
+        949.833374023438,
+        496
+      ],
+      "success": false,
+      "target_id": "(950.25, 496)",
+      "task": "east_bank_edge"
+    }
+  ]
+}

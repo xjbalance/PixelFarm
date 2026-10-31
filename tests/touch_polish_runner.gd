@@ -60,7 +60,10 @@ func ground_and_corners() -> void:
 		max_step=maxf(max_step,displacement.length());previous=game.player.position
 		if displacement.length()>.1:
 			var direction: Vector2=Vector2(signf(displacement.x),0) if absf(displacement.x)>absf(displacement.y) else Vector2(0,signf(displacement.y))
-			facing_sync=facing_sync and game.player.facing==direction
+			# At 45 degrees either axis is valid; subtraction of float world
+			# coordinates can differ by 0.00003px and must not demand a visual turn.
+			var diagonal: bool=absf(absf(displacement.x)-absf(displacement.y))<.001
+			facing_sync=facing_sync and (game.player.facing in [Vector2(signf(displacement.x),0),Vector2(0,signf(displacement.y))] if diagonal else game.player.facing==direction)
 		var query:=PhysicsShapeQueryParameters2D.new();query.shape=game.player.get_node("CollisionShape2D").shape
 		query.transform=game.player.global_transform;query.collision_mask=1
 		collision_free=collision_free and game.player.get_world_2d().direct_space_state.intersect_shape(query,1).is_empty()
@@ -72,12 +75,12 @@ func ground_and_corners() -> void:
 	await frames(3);stopped("远处抵达")
 	await fresh(Vector2(530,336),"home")
 	Touch.tap(self,game,Vector2(710,336));await Touch.finish(self,game,450)
-	check(game.player.position.distance_to(Vector2(720,336))<1.1,"点击桌后地面绕过拐角抵达目标格")
+	check(game.player.position.distance_to(Vector2(710,336))<1.1,"点击桌后地面绕过拐角抵达原点击坐标")
 	await frames(3);stopped("拐角抵达")
 	var count: int=game.auto_move.execution_count
 	# 床现为可点击交互目标；不可达探针改用无交互的实体柜体内部。
 	Touch.tap(self,game,Vector2(464,272));await Touch.finish(self,game)
-	check(game.auto_move.state==game.auto_move.State.FAILED and game.auto_move.execution_count==count,"不可通行柜体内部有限失败，不执行任何交互")
+	check(game.auto_move.state==game.auto_move.State.IDLE and game.auto_move.execution_count==count and game.player.position.distance_to(Vector2(464,272))<=64 and game.auto_move.navigation.clear_segment(game.player.position,game.player.position),"不可通行柜体内部点击选择附近合法空地，不执行任何交互")
 	await fresh(Vector2(656,480))
 	Touch.tap(self,game,Vector2(784,496));await frames(6)
 	Touch.tap(self,game,Vector2(592,496));await Touch.finish(self,game)
@@ -234,8 +237,9 @@ func pending_intent_cancellation() -> void:
 	Touch.tap(self,game,Vector2(784,496))
 	Input.action_press("move_left");await frames(2);Input.action_release("move_left")
 	check(game.auto_move.target.is_empty(),"工具动画等待期间短按键盘也立即取消排队路径")
+	var cancelled_at: Vector2=game.player.position
 	await frames(24)
-	check(game.player.position.distance_to(Vector2(624,592))<.1 and game.player.auto_direction==Vector2.ZERO,"短按取消后动画结束不自行恢复旧路径")
+	check(cancelled_at.x<624 and game.player.position.distance_to(cancelled_at)<.1 and game.player.auto_direction==Vector2.ZERO and not game.farm.plots["20,18"].watered and GameState.stamina==energy,"手动输入接管后停在新位置，不恢复旧路径或补交未生效农活")
 
 func mining() -> void:
 	await fresh()

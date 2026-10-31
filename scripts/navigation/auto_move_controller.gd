@@ -32,6 +32,9 @@ func setup(owner_game: Node) -> void:
 	Events.navigation_changed.connect(func(): navigation.invalidate())
 
 func cancel() -> void:
+	# The pending farm impact belongs to the automatic request too. Cancel
+	# its animation before impact; an already committed result is never rolled back.
+	if state==State.INTERACTING and is_instance_valid(game): game.player.cancel_farm_action()
 	if target.has("object") and is_instance_valid(target.object) and target.object.has_method("release_interaction"): target.object.release_interaction()
 	state = State.CANCELED
 	path.clear()
@@ -69,6 +72,11 @@ func plan() -> void:
 	navigation.rebuild()
 	planned = target.point
 	path = navigation.path_to(target)
+	if target.kind=="ground" and not path.is_empty():
+		marker=path[-1]
+		if marker.distance_to(target.point)>1 and not target.get("nearby_notice",false):
+			target.nearby_notice=true
+			Events.notice.emit("目标处无法落脚，走到附近可达的空地。")
 	cursor = 0
 	since_plan = 0
 	if path.is_empty(): fail()
@@ -102,12 +110,12 @@ func _physics_process(delta: float) -> void:
 	if marker_time > 0:
 		marker_time = maxf(0,marker_time-delta)
 		queue_redraw()
+	if state not in [State.PATHFINDING,State.MOVING,State.INTERACTING]: return
+	if GameState.modal or GameState.restoring or game.backgrounded or game.closing or game.player.suspended or GameState.control_mode != "tap" or game.player.touch_direction.length()>.08 or Input.get_vector("move_left","move_right","move_up","move_down").length() > 0.1:
+		cancel()
+		return
 	if state==State.INTERACTING:
 		if game.player.farm_action.is_empty(): state=State.IDLE
-		return
-	if state not in [State.PATHFINDING,State.MOVING]: return
-	if GameState.modal or game.backgrounded or GameState.control_mode != "tap" or Input.get_vector("move_left","move_right","move_up","move_down").length() > 0.1:
-		cancel()
 		return
 	if not refresh_target(): return
 	if game.player.action_time>0:
@@ -147,7 +155,9 @@ func _physics_process(delta: float) -> void:
 		game.player.auto_direction = Vector2.ZERO
 		state = State.PATHFINDING
 		return
-	while cursor < path.size() and game.player.global_position.distance_to(path[cursor]) < 1.0: cursor += 1
+	# Keep the final physical step, even below one pixel: quest boundaries may
+	# lie between the current feet and the actual clicked point.
+	while cursor < path.size() and game.player.global_position.distance_to(path[cursor]) < .001: cursor += 1
 	if cursor >= path.size():
 		if target.kind != "ground" and not navigation.legal_interaction(game.player.global_position,target):
 			state = State.PATHFINDING

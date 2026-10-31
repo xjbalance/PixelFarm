@@ -277,7 +277,7 @@ func real_input() -> void:
 	await fresh();plot("carrot")
 	Touch.tap(self,game,POINT);await frames(3)
 	Touch.tap(self,game,Vector2(688,592));await Touch.finish(self,game,500);await wait_action()
-	check(game.farm.plots["20,18"].watered and game.farm.plots.has("21,18") and facts.size()==2,"点击另一块田不重定向已开始的水壶，后续新农活各作用于原目标")
+	check(not game.farm.plots["20,18"].watered and game.farm.plots.has("21,18") and facts.size()==1 and facts[0].cell==Vector2i(21,18) and GameState.stamina==98,"新目标取消未生效浇水，只结算新地块一次开垦，不把水壶重定向或补扣体力")
 	await fresh(Vector2(624,592),"joystick");plot("carrot")
 	game.player.facing=Vector2.RIGHT;GameState.select_tool(GameState.tools.find("water"));game.action_cooldown=0
 	game.player.touch_direction=Vector2.UP

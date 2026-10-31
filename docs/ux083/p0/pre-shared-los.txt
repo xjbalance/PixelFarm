@@ -1,0 +1,18 @@
+Godot Engine v4.3.stable.official.77dcf97d8 - https://godotengine.org
+
+PASS: 狭窄通路测试起点合法 joystick
+PASS: 原生摇杆输入真实抵达 narrow-passage-joystick
+PASS: 原生摇杆输入真实抵达 narrow-passage-joystick
+PASS: 原生摇杆输入真实抵达 narrow-passage-joystick
+PASS: 真实物理行走不穿过两侧碰撞墙 joystick
+PASS: 同一脚底可以穿过19px通道 joystick
+PASS: 狭窄通路测试起点合法 tap
+PASS: 真实物理行走不穿过两侧碰撞墙 tap
+PASS: 同一脚底可以穿过19px通道 tap
+PASS: 墙内地面点击只走向同侧64px内的连通落脚点
+PASS: 邻近落点没有穿墙或透明碰撞重叠
+PASS: 被完全围住的真实任务对象有限失败，不走到墙另一侧
+PASS: 两种模式都不能隔着封闭墙开启任务或推进进度 tap
+ERROR: FAIL: 两种模式都不能隔着封闭墙开启任务或推进进度 joystick
+   at: push_error (core/variant/variant_utility.cpp:1092)
+UX083 GEOMETRY RESULT: 14 checks, 1 failures

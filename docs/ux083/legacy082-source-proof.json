@@ -1,0 +1,11 @@
+{
+  "source_commit": "2d427f277787e8aff5fa081b85d325cedd14cb64",
+  "source_version": "0.8.2",
+  "save_version": 30,
+  "producer": "tests/ranch082_persistence.tscn --write-ranch",
+  "producer_script_sha256": "06392fa2d38761ea2f1d234849d590d6002cfae1c6de43bf0742d5cb285aca1a",
+  "sha256": "e285192cb631bbb2fcbcc33d1ec96be06630662b6bb1931e5cc0b056cc810667",
+  "checks": 9,
+  "failures": 0,
+  "isolated_profile": true
+}

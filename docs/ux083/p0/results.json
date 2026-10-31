@@ -1,0 +1,1403 @@
+{
+  "baseline": "2d427f2",
+  "save_version": 30,
+  "complete_regression": true,
+  "processes": 221,
+  "passed_processes": 221,
+  "checks": 12526,
+  "records": [
+    {
+      "process": "import",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "ux083-task-equivalence",
+      "executed_in_this_run": true,
+      "checks": 267,
+      "errors": false
+    },
+    {
+      "process": "ux083-navigation-geometry",
+      "executed_in_this_run": true,
+      "checks": 14,
+      "errors": false
+    },
+    {
+      "process": "ux083-request-lifecycle",
+      "executed_in_this_run": true,
+      "checks": 19,
+      "errors": false
+    },
+    {
+      "process": "quality081-animation",
+      "executed_in_this_run": true,
+      "checks": 67,
+      "errors": false
+    },
+    {
+      "process": "quality081-production",
+      "executed_in_this_run": true,
+      "checks": 61,
+      "errors": false
+    },
+    {
+      "process": "quality081-ui",
+      "executed_in_this_run": true,
+      "checks": 74,
+      "errors": false
+    },
+    {
+      "process": "quality081-chains",
+      "executed_in_this_run": true,
+      "checks": 184,
+      "errors": false
+    },
+    {
+      "process": "harvest-crops",
+      "executed_in_this_run": true,
+      "checks": 173,
+      "errors": false
+    },
+    {
+      "process": "harvest-processing",
+      "executed_in_this_run": true,
+      "checks": 29,
+      "errors": false
+    },
+    {
+      "process": "workshop-access",
+      "executed_in_this_run": true,
+      "checks": 38,
+      "errors": false
+    },
+    {
+      "process": "harvest-chains",
+      "executed_in_this_run": true,
+      "checks": 264,
+      "errors": false
+    },
+    {
+      "process": "harvest-meals",
+      "executed_in_this_run": true,
+      "checks": 232,
+      "errors": false
+    },
+    {
+      "process": "harvest-touch",
+      "executed_in_this_run": true,
+      "checks": 13,
+      "errors": false
+    },
+    {
+      "process": "sleep",
+      "executed_in_this_run": true,
+      "checks": 29,
+      "errors": false
+    },
+    {
+      "process": "integration",
+      "executed_in_this_run": true,
+      "checks": 452,
+      "errors": false
+    },
+    {
+      "process": "mining",
+      "executed_in_this_run": true,
+      "checks": 98,
+      "errors": false
+    },
+    {
+      "process": "star",
+      "executed_in_this_run": true,
+      "checks": 155,
+      "errors": false
+    },
+    {
+      "process": "legend",
+      "executed_in_this_run": true,
+      "checks": 252,
+      "errors": false
+    },
+    {
+      "process": "stability",
+      "executed_in_this_run": true,
+      "checks": 264,
+      "errors": false
+    },
+    {
+      "process": "river",
+      "executed_in_this_run": true,
+      "checks": 446,
+      "errors": false
+    },
+    {
+      "process": "aquaculture",
+      "executed_in_this_run": true,
+      "checks": 155,
+      "errors": false
+    },
+    {
+      "process": "seasons-a",
+      "executed_in_this_run": true,
+      "checks": 87,
+      "errors": false
+    },
+    {
+      "process": "control-recovery",
+      "executed_in_this_run": true,
+      "checks": 52,
+      "errors": false
+    },
+    {
+      "process": "fishing-b",
+      "executed_in_this_run": true,
+      "checks": 89,
+      "errors": false
+    },
+    {
+      "process": "fishing-odds",
+      "executed_in_this_run": true,
+      "checks": 49,
+      "errors": false
+    },
+    {
+      "process": "livestock-b",
+      "executed_in_this_run": true,
+      "checks": 112,
+      "errors": false
+    },
+    {
+      "process": "kitchen-b",
+      "executed_in_this_run": true,
+      "checks": 100,
+      "errors": false
+    },
+    {
+      "process": "ecology-b",
+      "executed_in_this_run": true,
+      "checks": 65,
+      "errors": false
+    },
+    {
+      "process": "festivals-c",
+      "executed_in_this_run": true,
+      "checks": 87,
+      "errors": false
+    },
+    {
+      "process": "social-c",
+      "executed_in_this_run": true,
+      "checks": 107,
+      "errors": false
+    },
+    {
+      "process": "housing-c",
+      "executed_in_this_run": true,
+      "checks": 109,
+      "errors": false
+    },
+    {
+      "process": "exploration-d",
+      "executed_in_this_run": true,
+      "checks": 106,
+      "errors": false
+    },
+    {
+      "process": "world-progress-d",
+      "executed_in_this_run": true,
+      "checks": 170,
+      "errors": false
+    },
+    {
+      "process": "quality-070",
+      "executed_in_this_run": true,
+      "checks": 41,
+      "errors": false
+    },
+    {
+      "process": "performance-070",
+      "executed_in_this_run": true,
+      "checks": 3,
+      "errors": false
+    },
+    {
+      "process": "finale-070",
+      "executed_in_this_run": true,
+      "checks": 24,
+      "errors": false
+    },
+    {
+      "process": "palm-071",
+      "executed_in_this_run": true,
+      "checks": 28,
+      "errors": false
+    },
+    {
+      "process": "recovery-071",
+      "executed_in_this_run": true,
+      "checks": 55,
+      "errors": false
+    },
+    {
+      "process": "tutorial-ui-071",
+      "executed_in_this_run": true,
+      "checks": 26,
+      "errors": false
+    },
+    {
+      "process": "performance-071",
+      "executed_in_this_run": true,
+      "checks": 17,
+      "errors": false
+    },
+    {
+      "process": "touch-polish",
+      "executed_in_this_run": true,
+      "checks": 53,
+      "errors": false
+    },
+    {
+      "process": "farming-actions",
+      "executed_in_this_run": true,
+      "checks": 110,
+      "errors": false
+    },
+    {
+      "process": "food-recovery",
+      "executed_in_this_run": true,
+      "checks": 43,
+      "errors": false
+    },
+    {
+      "process": "ui04-theme",
+      "executed_in_this_run": true,
+      "checks": 7,
+      "errors": false
+    },
+    {
+      "process": "inventory03",
+      "executed_in_this_run": true,
+      "checks": 51,
+      "errors": false
+    },
+    {
+      "process": "hotbar03",
+      "executed_in_this_run": true,
+      "checks": 23,
+      "errors": false
+    },
+    {
+      "process": "ui05-camera",
+      "executed_in_this_run": true,
+      "checks": 48,
+      "errors": false
+    },
+    {
+      "process": "ui05-hotbar",
+      "executed_in_this_run": true,
+      "checks": 43,
+      "errors": false
+    },
+    {
+      "process": "ui05-layout",
+      "executed_in_this_run": true,
+      "checks": 343,
+      "errors": false
+    },
+    {
+      "process": "home05",
+      "executed_in_this_run": true,
+      "checks": 103,
+      "errors": false
+    },
+    {
+      "process": "home-arrange",
+      "executed_in_this_run": true,
+      "checks": 159,
+      "errors": false
+    },
+    {
+      "process": "resource-rich",
+      "executed_in_this_run": true,
+      "checks": 117,
+      "errors": false
+    },
+    {
+      "process": "sale-quantity",
+      "executed_in_this_run": true,
+      "checks": 35,
+      "errors": false
+    },
+    {
+      "process": "farm-visual-06",
+      "executed_in_this_run": true,
+      "checks": 207,
+      "errors": false
+    },
+    {
+      "process": "atlas-core",
+      "executed_in_this_run": true,
+      "checks": 78,
+      "errors": false
+    },
+    {
+      "process": "atlas-ui",
+      "executed_in_this_run": true,
+      "checks": 51,
+      "errors": false
+    },
+    {
+      "process": "journal-atlas-ui07",
+      "executed_in_this_run": true,
+      "checks": 42,
+      "errors": false
+    },
+    {
+      "process": "story-ui07",
+      "executed_in_this_run": true,
+      "checks": 68,
+      "errors": false
+    },
+    {
+      "process": "facility-ui07",
+      "executed_in_this_run": true,
+      "checks": 316,
+      "errors": false
+    },
+    {
+      "process": "world-style07",
+      "executed_in_this_run": true,
+      "checks": 38,
+      "errors": false
+    },
+    {
+      "process": "appearance",
+      "executed_in_this_run": true,
+      "checks": 44,
+      "errors": false
+    },
+    {
+      "process": "character-select",
+      "executed_in_this_run": true,
+      "checks": 36,
+      "errors": false
+    },
+    {
+      "process": "scheme-c-game",
+      "executed_in_this_run": true,
+      "checks": 54,
+      "errors": false
+    },
+    {
+      "process": "scheme-c-cancel",
+      "executed_in_this_run": true,
+      "checks": 2,
+      "errors": false
+    },
+    {
+      "process": "home-teleport",
+      "executed_in_this_run": true,
+      "checks": 109,
+      "errors": false
+    },
+    {
+      "process": "appearance-switch",
+      "executed_in_this_run": true,
+      "checks": 126,
+      "errors": false
+    },
+    {
+      "process": "marriage-requirements",
+      "executed_in_this_run": true,
+      "checks": 70,
+      "errors": false
+    },
+    {
+      "process": "marriage-mastery",
+      "executed_in_this_run": true,
+      "checks": 75,
+      "errors": false
+    },
+    {
+      "process": "territory-core",
+      "executed_in_this_run": true,
+      "checks": 299,
+      "errors": false
+    },
+    {
+      "process": "territory-editor",
+      "executed_in_this_run": true,
+      "checks": 55,
+      "errors": false
+    },
+    {
+      "process": "territory-world",
+      "executed_in_this_run": true,
+      "checks": 95,
+      "errors": false
+    },
+    {
+      "process": "territory-atlas",
+      "executed_in_this_run": true,
+      "checks": 35,
+      "errors": false
+    },
+    {
+      "process": "world-assets",
+      "executed_in_this_run": true,
+      "checks": 411,
+      "errors": false
+    },
+    {
+      "process": "scheme-c-nature",
+      "executed_in_this_run": true,
+      "checks": 75,
+      "errors": false
+    },
+    {
+      "process": "scheme-c-placement",
+      "executed_in_this_run": true,
+      "checks": 1556,
+      "errors": false
+    },
+    {
+      "process": "scheme-c-props",
+      "executed_in_this_run": true,
+      "checks": 45,
+      "errors": false
+    },
+    {
+      "process": "farm-edit",
+      "executed_in_this_run": true,
+      "checks": 73,
+      "errors": false
+    },
+    {
+      "process": "farm-edit-kinds",
+      "executed_in_this_run": true,
+      "checks": 200,
+      "errors": false
+    },
+    {
+      "process": "farm-layout-state",
+      "executed_in_this_run": true,
+      "checks": 79,
+      "errors": false
+    },
+    {
+      "process": "farm-diy-production",
+      "executed_in_this_run": true,
+      "checks": 88,
+      "errors": false
+    },
+    {
+      "process": "farm-layout-business",
+      "executed_in_this_run": true,
+      "checks": 107,
+      "errors": false
+    },
+    {
+      "process": "farm-diy-editor",
+      "executed_in_this_run": true,
+      "checks": 164,
+      "errors": false
+    },
+    {
+      "process": "scheme-c-star-female",
+      "executed_in_this_run": true,
+      "checks": 165,
+      "errors": false
+    },
+    {
+      "process": "scheme-c-legend-female",
+      "executed_in_this_run": true,
+      "checks": 258,
+      "errors": false
+    },
+    {
+      "process": "scheme-c-river-female",
+      "executed_in_this_run": true,
+      "checks": 456,
+      "errors": false
+    },
+    {
+      "process": "persist-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "persist-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "legacy-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "legacy-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "mine-persist-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "mine-persist-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "mine-backup-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "mine-backup-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "mine-backup-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "star-persist-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "star-persist-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "star-backup-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "star-backup-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "abyss-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "abyss-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "abyss-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "abyss-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "river-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "river-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "river-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "river-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "stability-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "stability-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "stability-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "stability-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "aquaculture-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "aquaculture-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "aquaculture-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "aquaculture-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "seasons-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "seasons-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "seasons-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "seasons-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "fishing-b-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "fishing-b-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "fishing-b-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "fishing-b-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "livestock-b-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "livestock-b-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "livestock-b-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "livestock-b-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "kitchen-b-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "kitchen-b-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "kitchen-b-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "kitchen-b-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "social-c-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "social-c-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "social-c-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "social-c-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "life-c-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "life-c-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "life-c-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "life-c-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "exploration-d-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "exploration-d-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "exploration-d-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "exploration-d-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "world-progress-d-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "world-progress-d-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "world-progress-d-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "world-progress-d-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "palm-write",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "palm-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "palm-interrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "palm-interrupted-restart",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "palm-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "palm-backup",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "touch-polish-write",
+      "executed_in_this_run": true,
+      "checks": 2,
+      "errors": false
+    },
+    {
+      "process": "touch-polish-restart",
+      "executed_in_this_run": true,
+      "checks": 3,
+      "errors": false
+    },
+    {
+      "process": "farm-windup-write",
+      "executed_in_this_run": true,
+      "checks": 4,
+      "errors": false
+    },
+    {
+      "process": "farm-windup-read",
+      "executed_in_this_run": true,
+      "checks": 3,
+      "errors": false
+    },
+    {
+      "process": "farm-impact-write",
+      "executed_in_this_run": true,
+      "checks": 4,
+      "errors": false
+    },
+    {
+      "process": "farm-impact-read",
+      "executed_in_this_run": true,
+      "checks": 3,
+      "errors": false
+    },
+    {
+      "process": "inventory03-write",
+      "executed_in_this_run": true,
+      "checks": 2,
+      "errors": false
+    },
+    {
+      "process": "inventory03-read",
+      "executed_in_this_run": true,
+      "checks": 6,
+      "errors": false
+    },
+    {
+      "process": "home05-pending-write",
+      "executed_in_this_run": true,
+      "checks": 4,
+      "errors": false
+    },
+    {
+      "process": "home05-pending-read",
+      "executed_in_this_run": true,
+      "checks": 5,
+      "errors": false
+    },
+    {
+      "process": "home05-finished-read",
+      "executed_in_this_run": true,
+      "checks": 3,
+      "errors": false
+    },
+    {
+      "process": "home05-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "home05-backup-read",
+      "executed_in_this_run": true,
+      "checks": 3,
+      "errors": false
+    },
+    {
+      "process": "home05-sofa-write",
+      "executed_in_this_run": true,
+      "checks": 4,
+      "errors": false
+    },
+    {
+      "process": "home05-sofa-read",
+      "executed_in_this_run": true,
+      "checks": 3,
+      "errors": false
+    },
+    {
+      "process": "resource-rich-legacy-write",
+      "executed_in_this_run": true,
+      "checks": 2,
+      "errors": false
+    },
+    {
+      "process": "resource-rich-legacy-read",
+      "executed_in_this_run": true,
+      "checks": 4,
+      "errors": false
+    },
+    {
+      "process": "resource-rich-write",
+      "executed_in_this_run": true,
+      "checks": 5,
+      "errors": false
+    },
+    {
+      "process": "resource-rich-read",
+      "executed_in_this_run": true,
+      "checks": 5,
+      "errors": false
+    },
+    {
+      "process": "resource-rich-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "resource-rich-backup",
+      "executed_in_this_run": true,
+      "checks": 5,
+      "errors": false
+    },
+    {
+      "process": "home-arrange-v23-write",
+      "executed_in_this_run": true,
+      "checks": 4,
+      "errors": false
+    },
+    {
+      "process": "home-arrange-v23-read",
+      "executed_in_this_run": true,
+      "checks": 6,
+      "errors": false
+    },
+    {
+      "process": "home-arrange-write",
+      "executed_in_this_run": true,
+      "checks": 7,
+      "errors": false
+    },
+    {
+      "process": "home-arrange-read",
+      "executed_in_this_run": true,
+      "checks": 5,
+      "errors": false
+    },
+    {
+      "process": "home-arrange-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "home-arrange-backup",
+      "executed_in_this_run": true,
+      "checks": 5,
+      "errors": false
+    },
+    {
+      "process": "atlas-write",
+      "executed_in_this_run": true,
+      "checks": 8,
+      "errors": false
+    },
+    {
+      "process": "atlas-read",
+      "executed_in_this_run": true,
+      "checks": 14,
+      "errors": false
+    },
+    {
+      "process": "atlas-v23-write",
+      "executed_in_this_run": true,
+      "checks": 8,
+      "errors": false
+    },
+    {
+      "process": "atlas-v23-read",
+      "executed_in_this_run": true,
+      "checks": 15,
+      "errors": false
+    },
+    {
+      "process": "appearance-write",
+      "executed_in_this_run": true,
+      "checks": 4,
+      "errors": false
+    },
+    {
+      "process": "appearance-read",
+      "executed_in_this_run": true,
+      "checks": 10,
+      "errors": false
+    },
+    {
+      "process": "appearance-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "appearance-backup",
+      "executed_in_this_run": true,
+      "checks": 10,
+      "errors": false
+    },
+    {
+      "process": "appearance-v24-write",
+      "executed_in_this_run": true,
+      "checks": 5,
+      "errors": false
+    },
+    {
+      "process": "appearance-v24-read",
+      "executed_in_this_run": true,
+      "checks": 11,
+      "errors": false
+    },
+    {
+      "process": "territory-write",
+      "executed_in_this_run": true,
+      "checks": 16,
+      "errors": false
+    },
+    {
+      "process": "territory-read",
+      "executed_in_this_run": true,
+      "checks": 11,
+      "errors": false
+    },
+    {
+      "process": "territory-corrupt",
+      "executed_in_this_run": true,
+      "checks": 4,
+      "errors": false
+    },
+    {
+      "process": "territory-backup",
+      "executed_in_this_run": true,
+      "checks": 11,
+      "errors": false
+    },
+    {
+      "process": "territory-v25-write",
+      "executed_in_this_run": true,
+      "checks": 5,
+      "errors": false
+    },
+    {
+      "process": "territory-v25-read",
+      "executed_in_this_run": true,
+      "checks": 13,
+      "errors": false
+    },
+    {
+      "process": "farm-layout-write",
+      "executed_in_this_run": true,
+      "checks": 19,
+      "errors": false
+    },
+    {
+      "process": "farm-layout-read",
+      "executed_in_this_run": true,
+      "checks": 16,
+      "errors": false
+    },
+    {
+      "process": "farm-layout-corrupt",
+      "executed_in_this_run": true,
+      "checks": 5,
+      "errors": false
+    },
+    {
+      "process": "farm-layout-backup",
+      "executed_in_this_run": true,
+      "checks": 16,
+      "errors": false
+    },
+    {
+      "process": "farm-layout-v26-write",
+      "executed_in_this_run": true,
+      "checks": 9,
+      "errors": false
+    },
+    {
+      "process": "farm-layout-v26-read",
+      "executed_in_this_run": true,
+      "checks": 16,
+      "errors": false
+    },
+    {
+      "process": "harvest-save-write",
+      "executed_in_this_run": true,
+      "checks": 3,
+      "errors": false
+    },
+    {
+      "process": "harvest-save-read",
+      "executed_in_this_run": true,
+      "checks": 5,
+      "errors": false
+    },
+    {
+      "process": "harvest-save-read-claimed",
+      "executed_in_this_run": true,
+      "checks": 3,
+      "errors": false
+    },
+    {
+      "process": "harvest-save-legacy",
+      "executed_in_this_run": true,
+      "checks": 6,
+      "errors": false
+    },
+    {
+      "process": "ranch082-poultry",
+      "executed_in_this_run": true,
+      "checks": 94,
+      "errors": false
+    },
+    {
+      "process": "ranch082-ranges",
+      "executed_in_this_run": true,
+      "checks": 121,
+      "errors": false
+    },
+    {
+      "process": "ranch082-weather",
+      "executed_in_this_run": true,
+      "checks": 27,
+      "errors": false
+    },
+    {
+      "process": "ranch082-farm",
+      "executed_in_this_run": true,
+      "checks": 161,
+      "errors": false
+    },
+    {
+      "process": "ranch082-obstacle",
+      "executed_in_this_run": true,
+      "checks": 17,
+      "errors": false
+    },
+    {
+      "process": "ranch082-migration",
+      "executed_in_this_run": true,
+      "checks": 184,
+      "errors": false
+    },
+    {
+      "process": "ranch082-ui",
+      "executed_in_this_run": true,
+      "checks": 209,
+      "errors": false
+    },
+    {
+      "process": "ranch082-ui-dpi480",
+      "executed_in_this_run": true,
+      "checks": 65,
+      "errors": false
+    },
+    {
+      "process": "ranch082-seasons",
+      "executed_in_this_run": true,
+      "checks": 4,
+      "errors": false
+    },
+    {
+      "process": "ranch082-stress",
+      "executed_in_this_run": true,
+      "checks": 54,
+      "errors": false
+    },
+    {
+      "process": "ranch082-save-write",
+      "executed_in_this_run": true,
+      "checks": 9,
+      "errors": false
+    },
+    {
+      "process": "ranch082-save-read",
+      "executed_in_this_run": true,
+      "checks": 10,
+      "errors": false
+    },
+    {
+      "process": "ranch082-save-corrupt",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    },
+    {
+      "process": "ranch082-save-backup",
+      "executed_in_this_run": true,
+      "checks": 6,
+      "errors": false
+    },
+    {
+      "process": "main-smoke",
+      "executed_in_this_run": true,
+      "checks": 0,
+      "errors": false
+    }
+  ],
+  "original_business_mismatches": [
+    "east_bank",
+    "old_letter_marker"
+  ],
+  "paired_task_cases": 24,
+  "window_checks": [
+    {
+      "suite": "task",
+      "checks": 267,
+      "failures": 0,
+      "log": "ux083-p0-proof-task-window.log"
+    },
+    {
+      "suite": "geometry",
+      "checks": 14,
+      "failures": 0,
+      "log": "ux083-p0-proof-geometry-window.log"
+    },
+    {
+      "suite": "lifecycle",
+      "checks": 19,
+      "failures": 0,
+      "log": "ux083-p0-proof-lifecycle-window.log"
+    }
+  ],
+  "window_total": 300,
+  "clips": [
+    {
+      "file": "welcome-tap.gif",
+      "frames": 3,
+      "actual_window": true,
+      "note": "640x360 nearest-neighbour reduction of actual window samples; no synthetic motion or altered game camera"
+    },
+    {
+      "file": "mill_records-tap.gif",
+      "frames": 20,
+      "actual_window": true,
+      "note": "640x360 nearest-neighbour reduction of actual window samples; no synthetic motion or altered game camera"
+    },
+    {
+      "file": "gather_tree-tap.gif",
+      "frames": 8,
+      "actual_window": true,
+      "note": "640x360 nearest-neighbour reduction of actual window samples; no synthetic motion or altered game camera"
+    },
+    {
+      "file": "narrow-passage-tap.gif",
+      "frames": 31,
+      "actual_window": true,
+      "note": "640x360 nearest-neighbour reduction of actual window samples; no synthetic motion or altered game camera"
+    },
+    {
+      "file": "narrow-passage-joystick.gif",
+      "frames": 55,
+      "actual_window": true,
+      "note": "640x360 nearest-neighbour reduction of actual window samples; no synthetic motion or altered game camera"
+    }
+  ],
+  "android_physical_device_tested": false,
+  "gameplay_sources": {
+    "scripts/navigation/navigation_manager.gd": "57da85f6a94bd666fae720e6bf514261f6be3b650e83ceb55ab849de1989137e",
+    "scripts/navigation/auto_move_controller.gd": "71879e90192f73709b9d7917affa2a84fae70931e5de121e6a09070777736880",
+    "scripts/input/interaction_resolver.gd": "ed747f124b06970c37acd5ffa5eba977b51075c7b020e97029ffbe16e862a36d",
+    "scripts/world/story_point.gd": "b2bdd1833761b08e396f6fade32878f605f0b08789a1784f39cd51801f3fd73d",
+    "scripts/core/main.gd": "f1448a275b9d72272e4deac540ce9755f6839c7e826a832b2f0f2a218001e627",
+    "scripts/core/audio.gd": "7e673f872b893708dff3b552ca4767d29841b3a5f0042bef8c6139cbb8e8ed20"
+  }
+}
